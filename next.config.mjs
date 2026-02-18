@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  images: { unoptimized: true },
+  // Si querés Cloudflare Pages estático: descomentá
+  // output: "export",
+  // images: { unoptimized: true },
 };
 
 export default nextConfig;

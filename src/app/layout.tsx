@@ -4,21 +4,21 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
-  title: "Oriavision | Hub de Herramientas para Vendedores",
-  description: "Precio Exacto en 5 segundos. Maximizá tu rentabilidad.",
+  title: "Oriavision | Hub de Herramientas E-commerce",
+  description: "Herramientas inteligentes para vendedores de Mercado Libre.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <body className={`${inter.variable} font-sans bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700 min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

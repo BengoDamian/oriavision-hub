@@ -1,102 +1,206 @@
-import Link from 'next/link';
-import { tools } from '@/lib/tools';
-import ToolCard from '@/components/ToolCard';
-import TestimonialCard from '@/components/TestimonialCard';
+import { ArrowRight, Calculator, BarChart3, Users, CheckCircle2 } from "lucide-react";
 
 export default function Home() {
-  const steps = [
-    { id: "1", title: "Elegí tu\nHerramienta", desc: "Seleccioná la calculadora o solución que necesitás." },
-    { id: "2", title: "Cargá los\nDatos", desc: "Ingresá precio, costos y condiciones de venta." },
-    { id: "3", title: "Obtené el\nResultado", desc: "Visualizá tu ganancia neta real al instante." },
-    { id: "4", title: "Tomá la\nDecisión", desc: "Publicá con la tranquilidad de saber cuánto ganás." }
-  ];
-
   return (
-    <div className="flex flex-col gap-24 pb-24">
-      
+    <main className="flex flex-col min-h-screen">
       {/* --- HERO SECTION --- */}
-      <section className="pt-24 pb-12 text-center container px-4">
-        <div className="inline-block bg-blue-50 text-primary px-4 py-2 rounded-full text-xs font-black tracking-widest uppercase mb-8">
-          Versión Hub 2.0
-        </div>
-        <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-gray-900 max-w-5xl mx-auto">
-          PRECIO EXACTO EN <br className="hidden md:block"/>
-          <span className="text-primary underline decoration-4 decoration-blue-200 underline-offset-4">5 SEGUNDOS.</span>
-        </h1>
-        <p className="text-xl text-gray-500 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-          Dejá de perder dinero por errores de cálculo. Usá nuestras herramientas profesionales para vendedores de Mercado Libre.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/herramientas/calculadora-ml" className="btn-primary">
-            CALCULAR GRATIS
-          </Link>
-          <Link href="/herramientas" className="btn-secondary">
-            VER TODO EL CATÁLOGO
-          </Link>
-        </div>
-      </section>
+      <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-white">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10" />
 
-      {/* --- TOOLS GRID --- */}
-      <section className="container px-4">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl font-black text-gray-900">Nuestras Herramientas</h2>
-          <Link href="/herramientas" className="text-primary font-bold hover:underline">Ver todas &rarr;</Link>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map(tool => (
-            <ToolCard key={tool.slug} tool={tool} />
-          ))}
-        </div>
-      </section>
+        <div className="container text-center max-w-5xl">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-brand-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8 border border-blue-100">
+            <span className="w-2 h-2 bg-brand-600 rounded-full animate-pulse" />
+            Hub de Herramientas v1.0
+          </div>
 
-      {/* --- CÓMO FUNCIONA (4 PASOS) --- */}
-      <section className="bg-bgLight py-24 rounded-[3rem] container mx-auto px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black mb-16 text-center">CÓMO FUNCIONA ORIAVISION</h2>
-          <div className="grid md:grid-cols-4 gap-12 relative">
-            {/* Línea conectora visual (solo desktop) */}
-            <div className="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-200 -z-10" />
-            
-            {steps.map((step) => (
-              <div key={step.id} className="flex flex-col items-center text-center bg-bgLight">
-                <div className="w-16 h-16 bg-white border-4 border-primary text-primary rounded-full flex items-center justify-center text-2xl font-black mb-6 shadow-md z-10">
-                  {step.id}
-                </div>
-                <h3 className="font-black text-xl mb-3 whitespace-pre-line leading-tight">{step.title}</h3>
-                <p className="text-gray-500 font-medium text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8 text-balance">
+            Todo lo que necesitás para <br className="hidden md:block" />
+            <span className="text-brand-600 relative inline-block">
+              escalar tu E-commerce.
+              <svg
+                className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+              </svg>
+            </span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-slate-500 mb-12 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
+            En Oriavision creamos soluciones simples para problemas complejos de Mercado Libre. Menos planillas de Excel,
+            más rentabilidad.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="#herramientas"
+              className="w-full sm:w-auto px-10 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-bold rounded-full transition-all shadow-xl shadow-blue-200 flex items-center justify-center gap-2"
+            >
+              VER HERRAMIENTAS
+              <ArrowRight className="w-5 h-5" />
+            </a>
+
+            <a
+              href="#nosotros"
+              className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
+            >
+              QUIÉNES SOMOS
+            </a>
           </div>
         </div>
       </section>
 
-      {/* --- TESTIMONIOS --- */}
-      <section className="container px-4">
-        <h2 className="text-3xl md:text-4xl font-black mb-16 text-center">OPINIONES DE USUARIOS</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <TestimonialCard initial="MC" name="Marcos C." role="MercadoLíder Platinum" quote="Antes perdía plata en cada venta por no calcular bien el IIBB. Esta calculadora me salvó el negocio." />
-          <TestimonialCard initial="JR" name="Julieta R." role="Vendedora de Moda" quote="Simple, rápida y sin vueltas. Lo mejor es que es gratis y súper precisa." />
-          <TestimonialCard initial="LS" name="Lucas S." role="Consultor E-commerce" quote="Recomiendo Oriavision a todos mis clientes. Es el estándar para calcular costos hoy." />
+      {/* --- HERRAMIENTAS GRID --- */}
+      <section id="herramientas" className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-20">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Nuestras Soluciones</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">Seleccioná una herramienta para empezar a trabajar.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* CARD 1: CALCULADORA (Destacada) */}
+            <div className="group bg-white rounded-[2rem] p-8 border-2 border-blue-100 hover:border-brand-600 transition-all duration-300 shadow-lg shadow-blue-50 relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold px-4 py-2 rounded-bl-2xl">
+                MÁS USADA
+              </div>
+
+              <div className="w-14 h-14 bg-blue-100 text-brand-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Calculator className="w-8 h-8" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Calculadora ML</h3>
+              <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                Calculá costos, comisiones e impuestos exactos (IIBB, Ganancias) para publicar con precio correcto.
+              </p>
+
+              <a
+                href="https://calculadoraml.oriavision.com.ar"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-auto w-full py-3 rounded-xl border-2 border-brand-600 text-brand-600 font-bold uppercase text-sm hover:bg-brand-600 hover:text-white transition-colors text-center block"
+              >
+                Abrir Herramienta
+              </a>
+            </div>
+
+            {/* CARD 2 */}
+            <div className="group bg-white rounded-[2rem] p-8 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 flex flex-col opacity-75 hover:opacity-100">
+              <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                <BarChart3 className="w-8 h-8" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Analizador de Stock</h3>
+              <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                Predicciones de quiebre de stock basadas en tu historial de ventas real. Evitá pausar publicaciones.
+              </p>
+
+              <button
+                disabled
+                className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+              >
+                Próximamente
+              </button>
+            </div>
+
+            {/* CARD 3 */}
+            <div className="group bg-white rounded-[2rem] p-8 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 flex flex-col opacity-75 hover:opacity-100">
+              <div className="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="w-8 h-8" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Auditor de Competencia</h3>
+              <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                Espiá legalmente a tus competidores. Descubrí qué títulos y fotos usan los que más venden.
+              </p>
+
+              <button
+                disabled
+                className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+              >
+                En Desarrollo
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- QUIÉNES SOMOS --- */}
+      <section id="nosotros" className="py-24 bg-white overflow-hidden">
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="flex-1">
+              <span className="text-brand-600 font-bold uppercase tracking-widest text-sm mb-2 block">
+                Sobre Oriavision
+              </span>
+
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
+                Vendedores desarrollando para <span className="text-brand-600">vendedores.</span>
+              </h2>
+
+              <div className="space-y-6 text-lg text-slate-500 font-medium leading-relaxed">
+                <p>
+                  No somos una agencia de marketing tradicional. Somos un equipo que nació vendiendo en Mercado Libre y
+                  entendió que <strong>sin datos claros, se pierde dinero.</strong>
+                </p>
+                <p>
+                  Oriavision es nuestro Hub de herramientas internas que decidimos abrir al público. Nuestro objetivo es
+                  simple: democratizar la inteligencia de datos para el e-commerce.
+                </p>
+              </div>
+
+              <div className="mt-10 space-y-4">
+                {["Datos precisos en tiempo real", "Enfoque en rentabilidad neta", "Soporte local en Argentina"].map(
+                  (item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle2 className="text-brand-600 w-6 h-6" />
+                      <span className="font-bold text-slate-800">{item}</span>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+
+            <div className="flex-1 relative">
+              <div className="absolute -inset-4 bg-brand-600 rounded-[3rem] rotate-3 opacity-10" />
+
+              <div className="relative bg-slate-900 rounded-[2.5rem] p-10 md:p-14 text-white shadow-2xl">
+                <div className="text-6xl font-black mb-2 text-brand-400">100%</div>
+                <div className="text-2xl font-bold mb-8">Enfoque Analítico</div>
+
+                <p className="text-slate-300 leading-relaxed mb-8">
+                  "Lo que no se mide, no se puede mejorar. Nuestras herramientas eliminan la intuición y ponen números
+                  reales sobre la mesa."
+                </p>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-slate-700 rounded-full" />
+                  <div>
+                    <div className="font-bold">Equipo Oriavision</div>
+                    <div className="text-sm text-slate-400">Buenos Aires, AR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* --- CTA FINAL --- */}
-      <section className="container px-4 mb-12">
-        <div className="bg-gray-900 text-white rounded-[2.5rem] p-12 md:p-24 text-center relative overflow-hidden">
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase tracking-tight">
-              ¿Listo para vender con rentabilidad real?
-            </h2>
-            <Link href="/herramientas/calculadora-ml" className="bg-primary text-white px-10 py-5 rounded-xl font-black text-xl uppercase inline-block hover:scale-105 transition-transform shadow-lg shadow-blue-900/50">
-              EMPEZAR AHORA
-            </Link>
-          </div>
-          {/* Decoración de fondo */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl -mr-32 -mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500 opacity-20 rounded-full blur-3xl -ml-20 -mb-20"></div>
-        </div>
-      </section>
+      <section className="py-20 bg-brand-50 border-t border-brand-100 text-center px-4">
+        <h2 className="text-3xl font-black mb-6 text-slate-900">¿Tenés una idea para una herramienta?</h2>
+        <p className="text-slate-500 mb-8 max-w-xl mx-auto">
+          Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
+        </p>
 
-    </div>
+        <a
+          href="mailto:contacto@oriavision.com"
+          className="inline-block px-8 py-3 bg-white border-2 border-slate-200 text-slate-900 font-bold rounded-full hover:border-brand-600 transition-colors"
+        >
+          CONTACTAR SOPORTE
+        </a>
+      </section>
+    </main>
   );
 }
