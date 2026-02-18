@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0057FF;
+}
+
+body {
+  color: #1E293B;
+  background: white;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Clases utilitarias personalizadas */
+.btn-primary {
+  @apply bg-primary text-white font-bold uppercase tracking-wide py-4 px-8 rounded-xl transition-all hover:bg-primaryDark hover:scale-[1.02] shadow-lg shadow-blue-500/20;
+}
+
+.btn-secondary {
+  @apply bg-white text-primary border-2 border-primary font-bold uppercase tracking-wide py-4 px-8 rounded-xl transition-all hover:bg-blue-50;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
