@@ -1,14 +1,24 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
       <div className="container h-20 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-black tracking-tighter text-brand-600">
-          ORIAVISION
+        {/* LOGO */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Oriavisión"
+            width={220}
+            height={60}
+            priority
+            className="h-9 w-auto"
+          />
         </Link>
 
+        {/* Menú Desktop */}
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/#herramientas"
@@ -16,6 +26,7 @@ export default function Navbar() {
           >
             Herramientas
           </Link>
+
           <Link
             href="/#nosotros"
             className="text-sm font-bold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-wide"
@@ -33,6 +44,7 @@ export default function Navbar() {
           </a>
         </div>
 
+        {/* Mobile */}
         <button className="md:hidden text-slate-800" aria-label="Abrir menú">
           <Menu className="w-8 h-8" />
         </button>
