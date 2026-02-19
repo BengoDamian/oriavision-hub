@@ -1,8 +1,22 @@
-import { ArrowRight, Calculator, BarChart3, Users, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Calculator, BarChart3, Users, CheckCircle2, MessageCircle } from "lucide-react";
+import PromptCard from "@/components/PromptCard";
+import { prompts } from "@/lib/prompts";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
+      {/* Floating WhatsApp button */}
+      <a
+        href="https://wa.me/5491127575675"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        className="fixed bottom-6 right-6 z-[60] inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-white font-extrabold shadow-2xl hover:scale-[1.03] active:scale-[0.99] transition-transform"
+      >
+        <MessageCircle className="w-5 h-5" />
+        WhatsApp
+      </a>
+
       {/* --- HERO SECTION --- */}
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-white">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10" />
@@ -46,6 +60,13 @@ export default function Home() {
               className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
             >
               QUIÉNES SOMOS
+            </a>
+
+            <a
+              href="#prompts"
+              className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
+            >
+              PROMPTS
             </a>
           </div>
         </div>
@@ -122,6 +143,26 @@ export default function Home() {
                 En Desarrollo
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PROMPTS --- */}
+      <section id="prompts" className="py-24 bg-white scroll-mt-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+              Prompts listos para usar
+            </h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre y contenido.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {prompts.map((p) => (
+              <PromptCard key={p.id} item={p} />
+            ))}
           </div>
         </div>
       </section>
