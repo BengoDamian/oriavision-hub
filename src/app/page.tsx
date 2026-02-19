@@ -7,7 +7,7 @@ export default function Home() {
     <main className="flex flex-col min-h-screen">
       {/* Floating WhatsApp button */}
       <a
-        href="https://wa.me/5491127575675"
+        href="https://wa.me/5491127575675?text=Hola+OriaVisi%C3%B3n%21+Quiero+m%C3%A1s+info%2C+por+favor."
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
