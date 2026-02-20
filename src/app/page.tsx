@@ -19,7 +19,7 @@ const TEAM = [
   {
     name: "Edgardo A. Díaz",
     role: "Experto en MercadoLibre y Comercio Electrónico",
-    bio: "Vendedor con 18 años de experiencia. Dueño de ERCAS, AVTECNO y VDS.",
+    bio: "Vendedor con 18 años de experiencia. Socio Fundador de ERCAS, AVTECNO y VDS.",
     img: "/team/persona-1.jpg",
   },
   {
