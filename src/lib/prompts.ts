@@ -124,44 +124,4 @@ Preguntas y respuestas cortas basadas en dudas típicas que frenan la compra o g
 # REGLA FINAL
 Si el usuario envía solo el nombre del producto, igual generar toda la salida completa usando [DATO PENDIENTE] donde falte información.`,
   },
-
-  {
-    id: "ml-precio-competencia",
-    title: "Análisis de precio vs competencia",
-    description: "Checklist para decidir si subir, bajar o reposicionar.",
-    category: "Rentabilidad",
-    tags: ["precio", "competencia"],
-    prompt: `Actuá como consultor de pricing para Mercado Libre.
-Mi producto: {{PRODUCTO}}
-Mi costo: {{COSTO}}
-Mi precio actual: {{PRECIO}}
-Competidores: {{LISTA_COMPETIDORES_CON_PRECIOS}}
-
-Quiero que me devuelvas:
-- Diagnóstico (1 párrafo)
-- 5 acciones concretas (ordenadas por impacto)
-- Recomendación final de precio (rango) y por qué
-- Riesgos y cómo mitigarlos`,
-  },
-
-  {
-    id: "tiktok-guion-30s",
-    title: "Guion TikTok 30–40s (estilo argentino)",
-    description: "Hook + guion + texto en pantalla + CTA suave.",
-    category: "Contenido",
-    featured: true,
-    tags: ["tiktok", "guion", "hooks"],
-    prompt: `Actuá como estratega de TikTok para vendedores de Mercado Libre Argentina.
-Tema del video: {{TEMA}}
-Objetivo: {{OBJETIVO}} (ej: comentarios / guardados / leads)
-Nivel del público: {{NIVEL}} (principiante/medio/avanzado)
-
-Entregá:
-1) 3 títulos de portada (cortos)
-2) 3 hooks (uno polémico)
-3) Guion 30–40s (oral) + texto en pantalla + cortes
-4) Comentario anzuelo
-5) CTA suave
-6) Caption + hashtags`,
-  },
 ];
