@@ -16,8 +16,8 @@ import { prompts } from "@/lib/prompts";
 const TEAM = [
   {
     name: "Edgardo A. Díaz",
-    role: "Rol / Especialidad",
-    bio: "1 línea corta de quién es y qué aporta.",
+    role: "Experto en MercadoLibre y Comercio Electrónico",
+    bio: "Vendedor con 18 años de experiencia. Dueño de ERCAS, AVTECNO y VDS.",
     img: "/team/persona-1.jpg",
   },
   {
@@ -398,10 +398,6 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-10 text-center text-sm text-slate-400">
-              Guardá las fotos en <span className="font-semibold">/public/team/</span> (persona-1.jpg, persona-2.jpg, persona-3.jpg).
             </div>
           </div>
         </div>
