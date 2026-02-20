@@ -27,7 +27,7 @@ const TEAM = [
     img: "/team/persona-2.jpg",
   },
   {
-    name: "Damián Bengochea",
+    name: "Damián E. Bengochea",
     role: "Rol / Especialidad",
     bio: "1 línea corta de quién es y qué aporta.",
     img: "/team/persona-3.jpg",
