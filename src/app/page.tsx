@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowRight,
   Calculator,
@@ -12,6 +13,27 @@ import {
 import PromptCard from "@/components/PromptCard";
 import { prompts } from "@/lib/prompts";
 
+const TEAM = [
+  {
+    name: "Edgardo A. Díaz",
+    role: "Rol / Especialidad",
+    bio: "1 línea corta de quién es y qué aporta.",
+    img: "/team/persona-1.jpg",
+  },
+  {
+    name: "Analía L. Rodriguez",
+    role: "Rol / Especialidad",
+    bio: "1 línea corta de quién es y qué aporta.",
+    img: "/team/persona-2.jpg",
+  },
+  {
+    name: "Damián Bengochea",
+    role: "Rol / Especialidad",
+    bio: "1 línea corta de quién es y qué aporta.",
+    img: "/team/persona-3.jpg",
+  },
+];
+
 export default function Home() {
   const whatsappHref =
     "https://wa.me/5491127575675?text=Hola%20OriaVisi%C3%B3n%21%20Vi%20el%20Hub%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20herramientas.%20%C2%BFMe%20ayudan%3F";
@@ -19,14 +41,14 @@ export default function Home() {
   const calcHref = "https://calculadoraml.oriavision.com.ar";
 
   return (
-    <main className="flex flex-col min-h-screen pb-24">
+    <main className="flex flex-col min-h-screen pb-28">
       {/* Floating Calculadora ML button (abajo izquierda) */}
       <a
         href={calcHref}
         target="_blank"
         rel="noreferrer"
         aria-label="Abrir Calculadora ML"
-        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[60] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 text-white font-extrabold shadow-2xl hover:scale-[1.03] active:scale-[0.99] transition-transform"
+        className="fixed left-4 sm:left-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 text-white font-extrabold shadow-2xl hover:scale-[1.03] active:scale-[0.99] transition-transform bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <Calculator className="w-5 h-5" />
         <span className="hidden sm:inline">Calculadora ML</span>
@@ -38,7 +60,7 @@ export default function Home() {
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 sm:px-5 sm:py-3 text-white font-extrabold shadow-2xl hover:scale-[1.03] active:scale-[0.99] transition-transform"
+        className="fixed right-4 sm:right-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 sm:px-5 sm:py-3 text-white font-extrabold shadow-2xl hover:scale-[1.03] active:scale-[0.99] transition-transform bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <MessageCircle className="w-5 h-5" />
         <span className="hidden sm:inline">WhatsApp</span>
@@ -280,6 +302,7 @@ export default function Home() {
       {/* QUIÉNES SOMOS */}
       <section id="nosotros" className="py-24 bg-white overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4">
+          {/* Bloque principal */}
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="flex-1">
               <span className="text-brand-600 font-bold uppercase tracking-widest text-sm mb-2 block">
@@ -330,6 +353,55 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Equipo (3 personas) */}
+          <div className="mt-16">
+            <div className="text-center mb-10">
+              <h3 className="text-2xl md:text-3xl font-black text-slate-900">Quiénes somos</h3>
+              <p className="text-slate-500 mt-3 font-medium">
+                Un equipo chico, obsesionado con vender mejor y con menos errores.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {TEAM.map((p) => (
+                <div
+                  key={p.name}
+                  className="bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    {/* Foto circular con marco */}
+                    <div className="relative w-28 h-28">
+                      <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/25 to-slate-200/60" />
+                      <div className="relative w-28 h-28 rounded-full bg-white p-1 shadow-lg">
+                        <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-white">
+                          <Image
+                            src={p.img}
+                            alt={p.name}
+                            fill
+                            sizes="112px"
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5">
+                      <div className="text-xl font-black text-slate-900">{p.name}</div>
+                      <div className="text-sm font-extrabold text-brand-600 uppercase tracking-wide mt-1">
+                        {p.role}
+                      </div>
+                      <p className="text-slate-500 font-medium mt-3 leading-relaxed">{p.bio}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center text-sm text-slate-400">
+              Guardá las fotos en <span className="font-semibold">/public/team/</span> (persona-1.jpg, persona-2.jpg, persona-3.jpg).
             </div>
           </div>
         </div>
