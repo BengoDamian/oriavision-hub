@@ -25,13 +25,13 @@ const TEAM = [
   {
     name: "Analía L. Rodriguez",
     role: "Operaciones & Customer Success Manager (CSM)",
-    bio: "Diseña los procesos, resuelve el soporte y cuida cada detalle de la experiencia. La que garantiza que lo que se promete, se cumpla.",
+    bio: "Se encarga de que todo funcione sin complicaciones. Procesos simples, soporte rápido y cero fricción.",
     img: "/team/persona-2.jpg",
   },
   {
     name: "Damián E. Bengochea",
     role: "Desarrollo & Producto (Full-stack)",
-    bio: "Convierte problemas complejos en herramientas simples. Sin software de más, sin pasos de más. Solo lo que el vendedor realmente necesita.",
+    bio: "Convierte ideas en herramientas que funcionan. Obsesionado con que sean rápidas, simples y confiables.",
     img: "/team/persona-3.jpg",
   },
 ];
@@ -82,9 +82,9 @@ export default function Home() {
 
           <Reveal delay={0.05}>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8 text-balance">
-              Todo lo que necesitás para <br className="hidden md:block" />
+              Somos Vendedores que <br className="hidden md:block" />
               <span className="text-brand-600 relative inline-block">
-                escalar tu E-commerce.
+                Creamos Herramientas.
                 <svg
                   className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10"
                   viewBox="0 0 100 10"
@@ -98,8 +98,7 @@ export default function Home() {
 
           <Reveal delay={0.1}>
             <p className="text-xl md:text-2xl text-slate-500 mb-10 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
-              En Oriavision creamos soluciones simples para problemas complejos de
-              Mercado Libre. Menos planillas de Excel, más rentabilidad.
+              Construimos lo que necesitábamos para vender mejor. Herramientas reales para problemas que vivimos todos los días. Ahora las compartimos con otros vendedores.
             </p>
           </Reveal>
 
@@ -157,7 +156,7 @@ export default function Home() {
                 Herramientas
               </h2>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-                Seleccioná una para empezar a trabajar.
+                Nuestra Herramienta Principal.
               </p>
             </div>
           </Reveal>
@@ -178,8 +177,7 @@ export default function Home() {
                   Calculadora ML
                 </h3>
                 <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
-                  Calculá costos, comisiones e impuestos exactos (IIBB, Ganancias)
-                  para publicar con precio correcto.
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB, Ganancias) y opciónes de cuotas.
                 </p>
 
                 <a
@@ -363,22 +361,21 @@ export default function Home() {
 
               <Reveal delay={0.05}>
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
-                  Vendedores desarrollando para{" "}
-                  <span className="text-brand-600">vendedores.</span>
+                  Vendedores Desde 2006. Herramientas Desde{" "}
+                  <span className="text-brand-600">2024.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.1}>
                 <div className="space-y-6 text-lg text-slate-500 font-medium leading-relaxed">
                   <p>
-                    No somos una agencia de marketing tradicional. Somos un equipo
-                    que nació vendiendo en Mercado Libre y entendió que{" "}
-                    <strong>sin datos claros, se pierde dinero.</strong>
+                    No somos una agencia ni consultores de marketing. Somos un equipo
+                    que lleva 18 años vendiendo en MercadoLibre y Tiendanube. Después de
+                    perder tiempo con Excel y otros programas, construimos las
+                    herramientas que nos faltaban.
                   </p>
                   <p>
-                    Oriavision es nuestro Hub de herramientas internas que decidimos
-                    abrir al público. Nuestro objetivo es simple: democratizar la
-                    inteligencia de datos para el e-commerce.
+                    Funcionaron tan bien que decidimos compartirlas. Simple.
                   </p>
                 </div>
               </Reveal>
@@ -405,8 +402,7 @@ export default function Home() {
                 <div className="text-6xl font-black mb-2 text-brand-400">100%</div>
                 <div className="text-2xl font-bold mb-8">Enfoque Analítico</div>
                 <p className="text-slate-300 leading-relaxed mb-8">
-                  "Lo que no se mide, no se puede mejorar. Nuestras herramientas
-                  eliminan la intuición y ponen números reales sobre la mesa."
+                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas que eliminan el error humano y te muestran la realidad."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-slate-700 rounded-full" />
@@ -473,11 +469,10 @@ export default function Home() {
         <Reveal>
           <div className="mx-auto max-w-4xl">
             <h2 className="text-3xl font-black mb-6 text-slate-900">
-              ¿Tenés una idea para una herramienta?
+              ¿Necesitás Otra Herramienta?
             </h2>
             <p className="text-slate-500 mb-8 max-w-xl mx-auto">
-              Siempre estamos buscando nuevas formas de ayudar a los vendedores.
-              Escribinos y contanos qué necesitás.
+              Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
             </p>
 
             <a
