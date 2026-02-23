@@ -24,14 +24,14 @@ const TEAM = [
   },
   {
     name: "Analía L. Rodriguez",
-    role: "Operaciones & Customer Success",
-    bio: "Procesos, soporte y calidad. Enfoque total en experiencia simple y sin fricción.",
+    role: "Operaciones & Customer Success Manager (CSM)",
+    bio: "Diseña los procesos, resuelve el soporte y cuida cada detalle de la experiencia. La que garantiza que lo que se promete, se cumpla.",
     img: "/team/persona-2.jpg",
   },
   {
     name: "Damián E. Bengochea",
     role: "Desarrollo & Producto (Full-stack)",
-    bio: "Construye herramientas web rápidas y confiables, con obsesión por UX y performance.",
+    bio: "Convierte problemas complejos en herramientas simples. Sin software de más, sin pasos de más. Solo lo que el vendedor realmente necesita.",
     img: "/team/persona-3.jpg",
   },
 ];
