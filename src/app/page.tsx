@@ -98,8 +98,8 @@ export default function Home() {
 
           <Reveal delay={0.1}>
             <p className="text-xl md:text-2xl text-slate-500 mb-10 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
-              En Oriavision creamos soluciones simples para problemas complejos de Mercado Libre. Menos planillas de Excel,
-              más rentabilidad.
+              En Oriavision creamos soluciones simples para problemas complejos de
+              Mercado Libre. Menos planillas de Excel, más rentabilidad.
             </p>
           </Reveal>
 
@@ -146,12 +146,19 @@ export default function Home() {
       </section>
 
       {/* HERRAMIENTAS */}
-      <section id="herramientas" className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-24">
+      <section
+        id="herramientas"
+        className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-24"
+      >
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Herramientas</h2>
-              <p className="text-lg text-slate-500 max-w-2xl mx-auto">Seleccioná una para empezar a trabajar.</p>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+                Herramientas
+              </h2>
+              <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+                Seleccioná una para empezar a trabajar.
+              </p>
             </div>
           </Reveal>
 
@@ -167,9 +174,12 @@ export default function Home() {
                   <Calculator className="w-8 h-8" />
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Calculadora ML</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                  Calculadora ML
+                </h3>
                 <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
-                  Calculá costos, comisiones e impuestos exactos (IIBB, Ganancias) para publicar con precio correcto.
+                  Calculá costos, comisiones e impuestos exactos (IIBB, Ganancias)
+                  para publicar con precio correcto.
                 </p>
 
                 <a
@@ -183,7 +193,8 @@ export default function Home() {
               </div>
             </Reveal>
 
-            {/* Analizador */}
+            {/* ✅ Analizador + Auditor comentados */}
+            {/*
             <Reveal delay={0.1}>
               <div className="group bg-white rounded-[2rem] p-8 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 flex flex-col opacity-90 hover:opacity-100 hover:-translate-y-1 hover:shadow-xl">
                 <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
@@ -202,7 +213,6 @@ export default function Home() {
               </div>
             </Reveal>
 
-            {/* Auditor */}
             <Reveal delay={0.15}>
               <div className="group bg-white rounded-[2rem] p-8 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 flex flex-col opacity-90 hover:opacity-100 hover:-translate-y-1 hover:shadow-xl">
                 <div className="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
@@ -220,82 +230,89 @@ export default function Home() {
                 </button>
               </div>
             </Reveal>
+            */}
           </div>
         </div>
       </section>
 
-      {/* RECURSOS */}
-      <section id="recursos" className="py-24 bg-white scroll-mt-24">
-        <div className="mx-auto max-w-6xl px-4">
-          <Reveal>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Recursos</h2>
-              <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-                Guías, plantillas y checklists para vender mejor (todo en un solo lugar).
-              </p>
-            </div>
-          </Reveal>
+      {/*
+<section id="recursos" className="py-24 bg-white scroll-mt-24">
+  <div className="mx-auto max-w-6xl px-4">
+    <Reveal>
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+          Recursos
+        </h2>
+        <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          Guías, plantillas y checklists para vender mejor (todo en un solo lugar).
+        </p>
+      </div>
+    </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Reveal delay={0.05}>
-              <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-blue-100 text-brand-600 rounded-2xl flex items-center justify-center mb-6">
-                  <ClipboardList className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Checklists</h3>
-                <p className="text-slate-500 font-medium leading-relaxed flex-grow">
-                  Listas rápidas para auditar publicaciones, títulos, fotos y conversiones.
-                </p>
-                <button
-                  disabled
-                  className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
-                >
-                  Próximamente
-                </button>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
-                  <FileText className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Plantillas</h3>
-                <p className="text-slate-500 font-medium leading-relaxed flex-grow">
-                  Plantillas para descripciones, preguntas frecuentes y mensajes automáticos.
-                </p>
-                <button
-                  disabled
-                  className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
-                >
-                  Próximamente
-                </button>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.15}>
-              <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
-                <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
-                  <BookOpen className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">Guías</h3>
-                <p className="text-slate-500 font-medium leading-relaxed flex-grow">
-                  Guías simples y accionables (rentabilidad, estrategia, contenido).
-                </p>
-                <button
-                  disabled
-                  className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
-                >
-                  Próximamente
-                </button>
-              </div>
-            </Reveal>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <Reveal delay={0.05}>
+        <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
+          <div className="w-14 h-14 bg-blue-100 text-brand-600 rounded-2xl flex items-center justify-center mb-6">
+            <ClipboardList className="w-8 h-8" />
           </div>
+          <h3 className="text-2xl font-bold text-slate-900 mb-3">Checklists</h3>
+          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+            Listas rápidas para auditar publicaciones, títulos, fotos y conversiones.
+          </p>
+          <button
+            disabled
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+          >
+            Próximamente
+          </button>
         </div>
-      </section>
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
+          <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+            <FileText className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-bold text-slate-900 mb-3">Plantillas</h3>
+          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+            Plantillas para descripciones, preguntas frecuentes y mensajes automáticos.
+          </p>
+          <button
+            disabled
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+          >
+            Próximamente
+          </button>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.15}>
+        <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-200 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all">
+          <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+            <BookOpen className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-bold text-slate-900 mb-3">Guías</h3>
+          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+            Guías simples y accionables (rentabilidad, estrategia, contenido).
+          </p>
+          <button
+            disabled
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+          >
+            Próximamente
+          </button>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>
+*/}
 
       {/* PROMPTS */}
-      <section id="prompts" className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-24">
+      <section
+        id="prompts"
+        className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-24"
+      >
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="text-center mb-16">
@@ -303,7 +320,8 @@ export default function Home() {
                 Prompts listos para usar
               </h2>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-                Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre y contenido.
+                Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre y
+                contenido.
               </p>
             </div>
           </Reveal>
@@ -345,33 +363,38 @@ export default function Home() {
 
               <Reveal delay={0.05}>
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
-                  Vendedores desarrollando para <span className="text-brand-600">vendedores.</span>
+                  Vendedores desarrollando para{" "}
+                  <span className="text-brand-600">vendedores.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.1}>
                 <div className="space-y-6 text-lg text-slate-500 font-medium leading-relaxed">
                   <p>
-                    No somos una agencia de marketing tradicional. Somos un equipo que nació vendiendo en Mercado Libre y
-                    entendió que <strong>sin datos claros, se pierde dinero.</strong>
+                    No somos una agencia de marketing tradicional. Somos un equipo
+                    que nació vendiendo en Mercado Libre y entendió que{" "}
+                    <strong>sin datos claros, se pierde dinero.</strong>
                   </p>
                   <p>
-                    Oriavision es nuestro Hub de herramientas internas que decidimos abrir al público. Nuestro objetivo es
-                    simple: democratizar la inteligencia de datos para el e-commerce.
+                    Oriavision es nuestro Hub de herramientas internas que decidimos
+                    abrir al público. Nuestro objetivo es simple: democratizar la
+                    inteligencia de datos para el e-commerce.
                   </p>
                 </div>
               </Reveal>
 
               <Reveal delay={0.15}>
                 <div className="mt-10 space-y-4">
-                  {["Datos precisos en tiempo real", "Enfoque en rentabilidad neta", "Soporte local en Argentina"].map(
-                    (item) => (
-                      <div key={item} className="flex items-center gap-3">
-                        <CheckCircle2 className="text-brand-600 w-6 h-6" />
-                        <span className="font-bold text-slate-800">{item}</span>
-                      </div>
-                    )
-                  )}
+                  {[
+                    "Datos precisos en tiempo real",
+                    "Enfoque en rentabilidad neta",
+                    "Soporte local en Argentina",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <CheckCircle2 className="text-brand-600 w-6 h-6" />
+                      <span className="font-bold text-slate-800">{item}</span>
+                    </div>
+                  ))}
                 </div>
               </Reveal>
             </div>
@@ -382,8 +405,8 @@ export default function Home() {
                 <div className="text-6xl font-black mb-2 text-brand-400">100%</div>
                 <div className="text-2xl font-bold mb-8">Enfoque Analítico</div>
                 <p className="text-slate-300 leading-relaxed mb-8">
-                  "Lo que no se mide, no se puede mejorar. Nuestras herramientas eliminan la intuición y ponen números
-                  reales sobre la mesa."
+                  "Lo que no se mide, no se puede mejorar. Nuestras herramientas
+                  eliminan la intuición y ponen números reales sobre la mesa."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-slate-700 rounded-full" />
@@ -400,7 +423,9 @@ export default function Home() {
           <div className="mt-16">
             <Reveal>
               <div className="text-center mb-10">
-                <h3 className="text-2xl md:text-3xl font-black text-slate-900">Quiénes somos</h3>
+                <h3 className="text-2xl md:text-3xl font-black text-slate-900">
+                  Quiénes somos
+                </h3>
                 <p className="text-slate-500 mt-3 font-medium">
                   Un equipo chico, obsesionado con vender mejor y con menos errores.
                 </p>
@@ -416,7 +441,13 @@ export default function Home() {
                         <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/25 to-slate-200/60" />
                         <div className="relative w-28 h-28 rounded-full bg-white p-1 shadow-lg">
                           <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-white">
-                            <Image src={p.img} alt={p.name} fill sizes="112px" className="object-cover" />
+                            <Image
+                              src={p.img}
+                              alt={p.name}
+                              fill
+                              sizes="112px"
+                              className="object-cover"
+                            />
                           </div>
                         </div>
                       </div>
@@ -441,9 +472,12 @@ export default function Home() {
       <section className="py-20 bg-brand-50 border-t border-brand-100 text-center px-4">
         <Reveal>
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-black mb-6 text-slate-900">¿Tenés una idea para una herramienta?</h2>
+            <h2 className="text-3xl font-black mb-6 text-slate-900">
+              ¿Tenés una idea para una herramienta?
+            </h2>
             <p className="text-slate-500 mb-8 max-w-xl mx-auto">
-              Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
+              Siempre estamos buscando nuevas formas de ayudar a los vendedores.
+              Escribinos y contanos qué necesitás.
             </p>
 
             <a
