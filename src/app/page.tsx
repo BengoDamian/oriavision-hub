@@ -380,16 +380,28 @@ export default function Home() {
                 </div>
               </Reveal>
 
-              <Reveal delay={0.15}>
+<Reveal delay={0.15}>
                 <div className="mt-10 space-y-4">
                   {[
-                    "Datos que no mienten",
-                    "Rentabilidad neta, no ventas brutas",
-                    "Soporte que entiende",
+                    {
+                      title: "Datos que no mienten",
+                      subtitle: "Cálculos precisos con tarifas actualizadas"
+                    },
+                    {
+                      title: "Ganancia real, no vanity metrics",
+                      subtitle: "Rentabilidad neta, no ventas brutas"
+                    },
+                    {
+                      title: "Soporte que entiende",
+                      subtitle: "Equipo local que vende como vos"
+                    },
                   ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <CheckCircle2 className="text-brand-600 w-6 h-6" />
-                      <span className="font-bold text-slate-800">{item}</span>
+                    <div key={item.title} className="flex items-start gap-3">
+                      <CheckCircle2 className="text-brand-600 w-6 h-6 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-bold text-slate-800 block">{item.title}</span>
+                        <span className="text-slate-500 text-sm">{item.subtitle}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
