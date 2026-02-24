@@ -19,10 +19,10 @@ const config: Config = {
         bgLight: "#F8FAFC",
         textMain: "#1E293B",
 
-        // ✅ Texto consistente (marca) — MÁS LEGIBLE
-        textStrong: "#0F172A", // títulos
-        textBody: "#1E293B",   // párrafos (más oscuro y nítido)
-        textMuted: "#334155",  // secundario (no apagado)
+        // ✅ Texto consistente (marca) — MÁS OSCURO (mejor contraste)
+        textStrong: "#020617", // títulos (slate-950)
+        textBody: "#0F172A",   // párrafos (slate-900)
+        textMuted: "#1E293B",  // secundario (slate-800)
 
         // ✅ Paleta ORIAVISION basada en #0A3B8C
         brand: {
