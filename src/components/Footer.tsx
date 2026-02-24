@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="col-span-1 md:col-span-2">
           <h4 className="font-black text-xl text-primary mb-4">ORIAVISION</h4>
           <p className="text-gray-500 max-w-sm">
-            Creamos herramientas simples para vendedores complejos. Optimizá tu rentabilidad en Mercado Libre y e-commerce.
+            Herramientas simples para problemas complejos. Optimizá tu rentabilidad en MercadoLibre, Tiendanube y e-commerce.
           </p>
         </div>
         <div>
