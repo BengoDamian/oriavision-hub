@@ -12,22 +12,24 @@ const config: Config = {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
-        // ✅ Alias para no romper clases existentes
-        primary: "#2563EB",
-        primaryDark: "#1d4ed8",
+        // ✅ Alias (compatibilidad)
+        primary: "#0A3B8C", // antes #2563EB
+        primaryDark: "#072E6E",
         secondary: "#F97316",
         bgLight: "#F8FAFC",
         textMain: "#1E293B",
 
-        // ✅ Paleta “landing”
+        // ✅ Paleta ORIAVISION basada en #0A3B8C
         brand: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563EB",
-          700: "#1d4ed8",
-          900: "#1e3a8a",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#1D4ED8",
+          600: "#0A3B8C", // ✅ tu azul exacto
+          700: "#072E6E",
+          900: "#041A3D",
         },
       },
       container: {
