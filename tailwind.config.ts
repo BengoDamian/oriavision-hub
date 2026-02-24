@@ -13,11 +13,16 @@ const config: Config = {
       },
       colors: {
         // ✅ Alias (compatibilidad)
-        primary: "#0A3B8C", // antes #2563EB
+        primary: "#0A3B8C",
         primaryDark: "#072E6E",
         secondary: "#F97316",
         bgLight: "#F8FAFC",
         textMain: "#1E293B",
+
+        // ✅ Texto consistente (marca) — MÁS LEGIBLE
+        textStrong: "#0F172A", // títulos
+        textBody: "#1E293B",   // párrafos (más oscuro y nítido)
+        textMuted: "#334155",  // secundario (no apagado)
 
         // ✅ Paleta ORIAVISION basada en #0A3B8C
         brand: {
@@ -27,7 +32,7 @@ const config: Config = {
           300: "#93C5FD",
           400: "#60A5FA",
           500: "#1D4ED8",
-          600: "#0A3B8C", // ✅ tu azul exacto
+          600: "#0A3B8C",
           700: "#072E6E",
           900: "#041A3D",
         },
