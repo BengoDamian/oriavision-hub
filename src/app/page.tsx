@@ -19,7 +19,7 @@ const TEAM = [
   {
     name: "Edgardo A. Díaz",
     role: "Experto en MercadoLibre y Comercio Electrónico",
-    bio: "Vendedor con 18 años de experiencia. Socio Fundador de ERCAS, AVTECNO y VDS.",
+    bio: "18 años vendiendo en MercadoLibre. Fundador de ERCAS, AVTECNO y VDS. Creó Oriavision porque le faltaban herramientas que no existían.",
     img: "/team/persona-1.jpg",
   },
   {
@@ -177,7 +177,7 @@ export default function Home() {
                   Calculadora ML
                 </h3>
                 <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
-                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB, Ganancias) y opciónes de cuotas.
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB, Ganancias) y opciones de cuotas.
                 </p>
 
                 <a
@@ -383,9 +383,9 @@ export default function Home() {
               <Reveal delay={0.15}>
                 <div className="mt-10 space-y-4">
                   {[
-                    "Datos precisos en tiempo real",
-                    "Enfoque en rentabilidad neta",
-                    "Soporte local en Argentina",
+                    "Datos que no mienten",
+                    "Rentabilidad neta, no ventas brutas",
+                    "Soporte que entiende",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <CheckCircle2 className="text-brand-600 w-6 h-6" />
