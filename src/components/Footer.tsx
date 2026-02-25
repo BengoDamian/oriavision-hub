@@ -19,20 +19,14 @@ export default function Footer() {
           </h5>
           <ul className="space-y-2 text-textBody text-sm font-medium">
             <li>
-              <Link
-                href="/herramientas/calculadora-ml"
+              <a
+                href="https://calculadoraml.oriavision.com.ar"
+                target="_blank"
+                rel="noreferrer"
                 className="hover:text-brand-600 transition-colors"
               >
                 Calculadora ML
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/herramientas"
-                className="hover:text-brand-600 transition-colors"
-              >
-                Ver todas
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -43,18 +37,12 @@ export default function Footer() {
           </h5>
           <ul className="space-y-2 text-textBody text-sm font-medium">
             <li>
-              <Link
-                href="/legal/privacidad"
-                className="hover:text-brand-600 transition-colors"
-              >
+              <Link href="/legal/privacidad" className="hover:text-brand-600 transition-colors">
                 Privacidad
               </Link>
             </li>
             <li>
-              <Link
-                href="/legal/terminos"
-                className="hover:text-brand-600 transition-colors"
-              >
+              <Link href="/legal/terminos" className="hover:text-brand-600 transition-colors">
                 Términos y condiciones
               </Link>
             </li>
