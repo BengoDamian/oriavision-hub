@@ -73,12 +73,7 @@ export default function Home() {
         <Blob />
 
         <div className="mx-auto max-w-6xl px-4 text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-brand-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8 border border-blue-100">
-              <span className="w-2 h-2 bg-brand-600 rounded-full animate-pulse" />
-              Hub de Herramientas v1.0
-            </div>
-          </Reveal>
+          {/* ✅ Badge eliminado */}
 
           <Reveal delay={0.05}>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8 text-balance">
@@ -90,7 +85,12 @@ export default function Home() {
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
                 >
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                  <path
+                    d="M0 5 Q 50 10 100 5"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="none"
+                  />
                 </svg>
               </span>
             </h1>
@@ -98,7 +98,9 @@ export default function Home() {
 
           <Reveal delay={0.1}>
             <p className="text-xl md:text-2xl text-textBody mb-10 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
-              Construimos lo que necesitábamos para vender mejor. Herramientas reales para problemas que vivimos todos los días. Ahora las compartimos con otros vendedores.
+              Construimos lo que necesitábamos para vender mejor. Herramientas reales
+              para problemas que vivimos todos los días. Ahora las compartimos con
+              otros vendedores.
             </p>
           </Reveal>
 
@@ -177,7 +179,8 @@ export default function Home() {
                   Calculadora ML
                 </h3>
                 <p className="text-textBody mb-8 font-medium leading-relaxed flex-grow">
-                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB, Ganancias) y opciones de cuotas.
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de
+                  plataforma, impuestos (IIBB, Ganancias) y opciones de cuotas.
                 </p>
 
                 <a
@@ -349,7 +352,10 @@ export default function Home() {
       </section>
 
       {/* QUIÉNES SOMOS */}
-      <section id="nosotros" className="py-24 bg-white overflow-hidden scroll-mt-24">
+      <section
+        id="nosotros"
+        className="py-24 bg-white overflow-hidden scroll-mt-24"
+      >
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="flex-1">
@@ -370,37 +376,39 @@ export default function Home() {
                 <div className="space-y-6 text-lg text-textBody font-medium leading-relaxed">
                   <p>
                     No somos una agencia ni consultores de marketing. Somos un equipo
-                    que lleva 18 años vendiendo en MercadoLibre y Tiendanube. Después de
-                    perder tiempo con Excel y otros programas, construimos las
+                    que lleva 18 años vendiendo en MercadoLibre y Tiendanube. Después
+                    de perder tiempo con Excel y otros programas, construimos las
                     herramientas que nos faltaban.
                   </p>
-                  <p>
-                    Funcionaron tan bien que decidimos compartirlas. Simple.
-                  </p>
+                  <p>Funcionaron tan bien que decidimos compartirlas. Simple.</p>
                 </div>
               </Reveal>
 
-<Reveal delay={0.15}>
+              <Reveal delay={0.15}>
                 <div className="mt-10 space-y-4">
                   {[
                     {
                       title: "Datos que no mienten",
-                      subtitle: "Cálculos precisos con tarifas actualizadas"
+                      subtitle: "Cálculos precisos con tarifas actualizadas",
                     },
                     {
                       title: "Ganancia real, no vanity metrics",
-                      subtitle: "Rentabilidad neta, no ventas brutas"
+                      subtitle: "Rentabilidad neta, no ventas brutas",
                     },
                     {
                       title: "Soporte que entiende",
-                      subtitle: "Equipo local que vende como vos"
+                      subtitle: "Equipo local que vende como vos",
                     },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckCircle2 className="text-brand-600 w-6 h-6 flex-shrink-0 mt-0.5" />
                       <div>
-                        <span className="font-bold text-slate-800 block">{item.title}</span>
-                        <span className="text-textBody text-sm">{item.subtitle}</span>
+                        <span className="font-bold text-slate-800 block">
+                          {item.title}
+                        </span>
+                        <span className="text-textBody text-sm">
+                          {item.subtitle}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -414,7 +422,9 @@ export default function Home() {
                 <div className="text-6xl font-black mb-2 text-brand-400">100%</div>
                 <div className="text-2xl font-bold mb-8">Enfoque Analítico</div>
                 <p className="text-slate-300 leading-relaxed mb-8">
-                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas que eliminan el error humano y te muestran la realidad."
+                  "Vendemos todos los días. Sabemos que sin números claros, se pierde
+                  plata. Por eso creamos herramientas que eliminan el error humano y
+                  te muestran la realidad."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-slate-700 rounded-full" />
@@ -461,11 +471,15 @@ export default function Home() {
                       </div>
 
                       <div className="mt-5">
-                        <div className="text-xl font-black text-slate-900">{p.name}</div>
+                        <div className="text-xl font-black text-slate-900">
+                          {p.name}
+                        </div>
                         <div className="text-sm font-extrabold text-brand-600 uppercase tracking-wide mt-1">
                           {p.role}
                         </div>
-                        <p className="text-textBody font-medium mt-3 leading-relaxed">{p.bio}</p>
+                        <p className="text-textBody font-medium mt-3 leading-relaxed">
+                          {p.bio}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -484,7 +498,8 @@ export default function Home() {
               ¿Necesitás Otra Herramienta?
             </h2>
             <p className="text-textBody mb-8 max-w-xl mx-auto">
-              Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
+              Siempre estamos buscando nuevas formas de ayudar a los vendedores.
+              Escribinos y contanos qué necesitás.
             </p>
 
             <a
