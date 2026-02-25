@@ -25,7 +25,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="container border-t pt-8 text-center text-gray-400 text-xs font-medium uppercase tracking-widest">
+      <div className="container border-t pt-8 text-center text-textMuted text-xs font-medium uppercase tracking-widest">
         © {new Date().getFullYear()} Oriavision. Todos los derechos reservados.
       </div>
     </footer>
