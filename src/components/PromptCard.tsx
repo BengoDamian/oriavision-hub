@@ -35,7 +35,7 @@ export default function PromptCard({ item }: { item: PromptItem }) {
           <h3 className="mt-4 text-xl font-black text-slate-900 leading-tight">
             {item.title}
           </h3>
-          <p className="mt-2 text-slate-500 font-medium leading-relaxed">
+          <p className="mt-2 text-black font-medium leading-relaxed">
             {item.description}
           </p>
         </div>

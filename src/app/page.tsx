@@ -97,7 +97,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-xl md:text-2xl text-slate-500 mb-10 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
+            <p className="text-xl md:text-2xl text-textBody mb-10 max-w-3xl mx-auto font-medium leading-relaxed text-balance">
               Construimos lo que necesitábamos para vender mejor. Herramientas reales para problemas que vivimos todos los días. Ahora las compartimos con otros vendedores.
             </p>
           </Reveal>
@@ -114,14 +114,14 @@ export default function Home() {
 
               <a
                 href="#recursos"
-                className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
+                className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
               >
                 RECURSOS
               </a>
 
               <a
                 href="#prompts"
-                className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
+                className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
               >
                 PROMPTS
               </a>
@@ -129,7 +129,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="mt-6 text-sm text-slate-500 font-semibold">
+            <div className="mt-6 text-sm text-textBody font-semibold">
               ¿Querés ir directo al número?{" "}
               <a
                 href={calcHref}
@@ -155,7 +155,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
                 Herramientas
               </h2>
-              <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              <p className="text-lg text-textBody max-w-2xl mx-auto">
                 Nuestra Herramienta Principal.
               </p>
             </div>
@@ -176,7 +176,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">
                   Calculadora ML
                 </h3>
-                <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                <p className="text-textBody mb-8 font-medium leading-relaxed flex-grow">
                   Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB, Ganancias) y opciones de cuotas.
                 </p>
 
@@ -199,12 +199,12 @@ export default function Home() {
                   <BarChart3 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Analizador de Stock</h3>
-                <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                <p className="text-textBody mb-8 font-medium leading-relaxed flex-grow">
                   Predicciones de quiebre de stock basadas en tu historial de ventas real. Evitá pausar publicaciones.
                 </p>
                 <button
                   disabled
-                  className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+                  className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-textMuted font-bold uppercase text-sm cursor-not-allowed"
                 >
                   Próximamente
                 </button>
@@ -217,12 +217,12 @@ export default function Home() {
                   <Users className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-3">Auditor de Competencia</h3>
-                <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                <p className="text-textBody mb-8 font-medium leading-relaxed flex-grow">
                   Espiá legalmente a tus competidores. Descubrí qué títulos y fotos usan los que más venden.
                 </p>
                 <button
                   disabled
-                  className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+                  className="mt-auto w-full py-3 rounded-xl bg-slate-100 text-textMuted font-bold uppercase text-sm cursor-not-allowed"
                 >
                   En desarrollo
                 </button>
@@ -241,7 +241,7 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
           Recursos
         </h2>
-        <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+        <p className="text-lg text-textBody max-w-2xl mx-auto">
           Guías, plantillas y checklists para vender mejor (todo en un solo lugar).
         </p>
       </div>
@@ -254,12 +254,12 @@ export default function Home() {
             <ClipboardList className="w-8 h-8" />
           </div>
           <h3 className="text-2xl font-bold text-slate-900 mb-3">Checklists</h3>
-          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+          <p className="text-textBody font-medium leading-relaxed flex-grow">
             Listas rápidas para auditar publicaciones, títulos, fotos y conversiones.
           </p>
           <button
             disabled
-            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-textMuted font-bold uppercase text-sm cursor-not-allowed"
           >
             Próximamente
           </button>
@@ -272,12 +272,12 @@ export default function Home() {
             <FileText className="w-8 h-8" />
           </div>
           <h3 className="text-2xl font-bold text-slate-900 mb-3">Plantillas</h3>
-          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+          <p className="text-textBody font-medium leading-relaxed flex-grow">
             Plantillas para descripciones, preguntas frecuentes y mensajes automáticos.
           </p>
           <button
             disabled
-            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-textMuted font-bold uppercase text-sm cursor-not-allowed"
           >
             Próximamente
           </button>
@@ -290,12 +290,12 @@ export default function Home() {
             <BookOpen className="w-8 h-8" />
           </div>
           <h3 className="text-2xl font-bold text-slate-900 mb-3">Guías</h3>
-          <p className="text-slate-500 font-medium leading-relaxed flex-grow">
+          <p className="text-textBody font-medium leading-relaxed flex-grow">
             Guías simples y accionables (rentabilidad, estrategia, contenido).
           </p>
           <button
             disabled
-            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-slate-400 font-bold uppercase text-sm cursor-not-allowed"
+            className="mt-8 w-full py-3 rounded-xl bg-white border-2 border-slate-200 text-textMuted font-bold uppercase text-sm cursor-not-allowed"
           >
             Próximamente
           </button>
@@ -317,7 +317,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
                 Prompts listos para usar
               </h2>
-              <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              <p className="text-lg text-textBody max-w-2xl mx-auto">
                 Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre y
                 contenido.
               </p>
@@ -333,7 +333,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={0.12}>
-            <div className="mt-10 text-center text-sm text-slate-500 font-semibold">
+            <div className="mt-10 text-center text-sm text-textBody font-semibold">
               Tip: después de armar tu publicación, podés{" "}
               <a
                 href={calcHref}
@@ -367,7 +367,7 @@ export default function Home() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="space-y-6 text-lg text-slate-500 font-medium leading-relaxed">
+                <div className="space-y-6 text-lg text-textBody font-medium leading-relaxed">
                   <p>
                     No somos una agencia ni consultores de marketing. Somos un equipo
                     que lleva 18 años vendiendo en MercadoLibre y Tiendanube. Después de
@@ -400,7 +400,7 @@ export default function Home() {
                       <CheckCircle2 className="text-brand-600 w-6 h-6 flex-shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold text-slate-800 block">{item.title}</span>
-                        <span className="text-slate-500 text-sm">{item.subtitle}</span>
+                        <span className="text-textBody text-sm">{item.subtitle}</span>
                       </div>
                     </div>
                   ))}
@@ -420,7 +420,7 @@ export default function Home() {
                   <div className="w-12 h-12 bg-slate-700 rounded-full" />
                   <div>
                     <div className="font-bold">Equipo Oriavision</div>
-                    <div className="text-sm text-slate-400">Buenos Aires, AR</div>
+                    <div className="text-sm text-textMuted">Buenos Aires, AR</div>
                   </div>
                 </div>
               </div>
@@ -434,7 +434,7 @@ export default function Home() {
                 <h3 className="text-2xl md:text-3xl font-black text-slate-900">
                   Quiénes somos
                 </h3>
-                <p className="text-slate-500 mt-3 font-medium">
+                <p className="text-textBody mt-3 font-medium">
                   Un equipo chico, obsesionado con vender mejor y con menos errores.
                 </p>
               </div>
@@ -465,7 +465,7 @@ export default function Home() {
                         <div className="text-sm font-extrabold text-brand-600 uppercase tracking-wide mt-1">
                           {p.role}
                         </div>
-                        <p className="text-slate-500 font-medium mt-3 leading-relaxed">{p.bio}</p>
+                        <p className="text-textBody font-medium mt-3 leading-relaxed">{p.bio}</p>
                       </div>
                     </div>
                   </div>
@@ -483,7 +483,7 @@ export default function Home() {
             <h2 className="text-3xl font-black mb-6 text-slate-900">
               ¿Necesitás Otra Herramienta?
             </h2>
-            <p className="text-slate-500 mb-8 max-w-xl mx-auto">
+            <p className="text-textBody mb-8 max-w-xl mx-auto">
               Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
             </p>
 
