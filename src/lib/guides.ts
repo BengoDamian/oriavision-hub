@@ -14,7 +14,7 @@ export const guides: GuideItem[] = [
     {
         id: "logistica-flex-principiantes",
         title: "Cómo elegir logística Flex (principiantes)",
-        description: "Guía simple para elegir bien y cuidar tu reputación.",
+        description: "Guía práctica para no arruinar tu reputación en los primeros envíos.",
         category: "Logística",
         tags: ["Flex", "Reputación", "Cumplimiento"],
         featured: true,
