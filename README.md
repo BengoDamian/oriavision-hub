@@ -8,8 +8,6 @@ Landing + Hub de recursos para vendedores de **MercadoLibre Argentina**.
 - Publicar **Prompts** listos para usar
 - Captar mails con **Newsletter** (Brevo) y automatizar el **mail de bienvenida**
 
-**Demo:** https://oriavision-hub.pages.dev/
-
 ---
 
 ## ✨ Qué incluye
