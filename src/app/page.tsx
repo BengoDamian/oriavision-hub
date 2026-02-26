@@ -5,6 +5,7 @@ import { prompts } from "@/lib/prompts";
 import { guides } from "@/lib/guides";
 import Reveal from "@/components/Reveal";
 import Blob from "@/components/Blob";
+import Newsletter from "@/components/Newsletter";
 
 const TEAM = [
   {
@@ -290,6 +291,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEWSLETTER (captura de mails) */}
+      <Newsletter />
+
       {/* QUIÉNES SOMOS */}
       <section id="nosotros" className="py-24 bg-white overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4">
@@ -348,13 +352,7 @@ export default function Home() {
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white ring-2 ring-slate-700/40 shadow-sm">
-                    <Image
-                      src="/logo.png"
-                      alt="Oriavision"
-                      fill
-                      sizes="48px"
-                      className="object-contain p-1"
-                    />
+                    <Image src="/logo.png" alt="Oriavision" fill sizes="48px" className="object-contain p-1" />
                   </div>
                   <div>
                     <div className="font-bold">Equipo Oriavision</div>
