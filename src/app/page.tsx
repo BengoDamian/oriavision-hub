@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calculator, CheckCircle2, MessageCircle } from "lucide-react";
 import { prompts } from "@/lib/prompts";
+import { guides } from "@/lib/guides";
 import Reveal from "@/components/Reveal";
 import Blob from "@/components/Blob";
 
@@ -32,9 +33,13 @@ export default function Home() {
 
   const calcHref = "https://calculadoraml.oriavision.com.ar";
 
-  // Preview: solo destacados (o los primeros 3 si no hay)
-  const featured = prompts.filter((p) => p.featured);
-  const previewPrompts = (featured.length ? featured : prompts).slice(0, 3);
+  // Preview Prompts: solo destacados (o los primeros 3 si no hay)
+  const featuredPrompts = prompts.filter((p) => p.featured);
+  const previewPrompts = (featuredPrompts.length ? featuredPrompts : prompts).slice(0, 3);
+
+  // Preview Guías: solo destacadas (o las primeras 3 si no hay)
+  const featuredGuides = guides.filter((g) => g.featured);
+  const previewGuides = (featuredGuides.length ? featuredGuides : guides).slice(0, 3);
 
   return (
     <main className="flex flex-col min-h-screen pb-28">
@@ -100,12 +105,18 @@ export default function Home() {
                 <ArrowRight className="w-5 h-5" />
               </a>
 
-              {/* PROMPTS ahora va a página aparte */}
               <Link
                 href="/prompts"
                 className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
               >
                 VER PROMPTS
+              </Link>
+
+              <Link
+                href="/guias"
+                className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
+              >
+                VER GUÍAS
               </Link>
             </div>
           </Reveal>
@@ -137,7 +148,6 @@ export default function Home() {
           </Reveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Calculadora */}
             <Reveal delay={0.05}>
               <div className="group bg-white rounded-[2rem] p-8 border-2 border-blue-100 hover:border-brand-600 transition-all duration-300 shadow-lg shadow-blue-50 relative overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-xl">
                 <div className="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold px-4 py-2 rounded-bl-2xl">
@@ -214,13 +224,67 @@ export default function Home() {
                 Ver todos los prompts
               </Link>
 
-              {/* mini “spam” sutil a la calculadora */}
               <div className="mt-4 text-sm text-textBody font-semibold">
                 Después, cerrá el número en{" "}
-                <a href={calcHref} target="_blank" rel="noreferrer" className="text-brand-600 hover:text-brand-700 font-extrabold">
+                <a
+                  href={calcHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-brand-600 hover:text-brand-700 font-extrabold"
+                >
                   Calculadora ML →
                 </a>
               </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* GUIAS (preview) */}
+      <section id="guias-preview" className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Guías</h2>
+              <p className="text-lg text-textBody max-w-2xl mx-auto">
+                Guías claras y accionables. Entrás, leés y lo aplicás al toque.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {previewGuides.map((g, i) => (
+              <Reveal key={g.id} delay={0.05 + i * 0.05}>
+                <Link
+                  href={`/guias/${g.id}`}
+                  className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                  <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                    {g.category}
+                  </div>
+
+                  <h3 className="mt-4 text-2xl font-black text-slate-900 group-hover:text-brand-700 transition-colors">
+                    {g.title}
+                  </h3>
+
+                  <p className="mt-3 text-textBody font-medium leading-relaxed">{g.description}</p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 text-brand-600 font-extrabold">
+                    Ver guía <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.18}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/guias"
+                className="inline-flex items-center justify-center px-10 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-bold rounded-full transition-all shadow-xl shadow-blue-200"
+              >
+                Ver todas las guías
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -283,7 +347,15 @@ export default function Home() {
                   que eliminan el error humano y te muestran la realidad."
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-slate-700 rounded-full" />
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white ring-2 ring-slate-700/40 shadow-sm">
+                    <Image
+                      src="/logo.png"
+                      alt="Oriavision"
+                      fill
+                      sizes="48px"
+                      className="object-contain p-1"
+                    />
+                  </div>
                   <div>
                     <div className="font-bold">Equipo Oriavision</div>
                     <div className="text-sm text-slate-300">Buenos Aires, AR</div>
