@@ -291,9 +291,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEWSLETTER (captura de mails) */}
-      <Newsletter />
-
       {/* QUIÉNES SOMOS */}
       <section id="nosotros" className="py-24 bg-white overflow-hidden scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4">
@@ -363,7 +360,6 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {/* Equipo (3 personas) */}
           <div className="mt-16">
             <Reveal>
               <div className="text-center mb-10">
@@ -422,6 +418,9 @@ export default function Home() {
           </div>
         </Reveal>
       </section>
+
+      {/* NEWSLETTER (al final) */}
+      <Newsletter />
     </main>
   );
 }
