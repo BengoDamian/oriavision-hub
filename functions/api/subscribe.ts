@@ -3,6 +3,11 @@ export interface Env {
   BREVO_LIST_ID: string;
 }
 
+type CFContext = {
+  request: Request;
+  env: Env;
+};
+
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -10,7 +15,7 @@ function json(data: unknown, status = 200) {
   });
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestPost = async (context: CFContext): Promise<Response> => {
   try {
     const { BREVO_API_KEY, BREVO_LIST_ID } = context.env;
 
@@ -40,7 +45,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     if (!res.ok) {
       const txt = await res.text();
-      if (txt.toLowerCase().includes("duplicate") || txt.toLowerCase().includes("already exist")) {
+      const low = txt.toLowerCase();
+      if (low.includes("duplicate") || low.includes("already exist")) {
         return json({ ok: true });
       }
       return json({ ok: false, error: "No se pudo suscribir." }, 500);
