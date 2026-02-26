@@ -11,7 +11,7 @@ export default function GuiasPage() {
           Guías
         </h1>
         <p className="mt-2 text-slate-700">
-          Artículos prácticos para vender mejor (sin humo).
+          Aprendé rápido y aplicalo. Guías hechas por vendedores.
         </p>
       </div>
 
