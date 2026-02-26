@@ -321,8 +321,7 @@ export default function Home() {
                 Prompts listos para usar
               </h2>
               <p className="text-lg text-textBody max-w-2xl mx-auto">
-                Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre y
-                contenido.
+                Copiá, pegá y reemplazá los campos. Hechos para Mercado Libre.
               </p>
             </div>
           </Reveal>
