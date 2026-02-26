@@ -75,9 +75,9 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 text-center">
           <Reveal delay={0.05}>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8 text-balance">
-              Somos Vendedores que <br className="hidden md:block" />
+              Somos vendedores que <br className="hidden md:block" />
               <span className="text-brand-600 relative inline-block">
-                Creamos Herramientas.
+                Creamos herramientas.
                 <svg
                   className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10"
                   viewBox="0 0 100 10"
