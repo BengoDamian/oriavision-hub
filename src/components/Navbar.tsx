@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Herramientas", href: "/#herramientas" },
-  { label: "Prompts", href: "/#prompts" },
+  { label: "Prompts", href: "/prompts" },
 ];
 
 const PRIMARY_CTA = {
