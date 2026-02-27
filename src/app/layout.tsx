@@ -10,45 +10,25 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-
   title: {
-    default: "Oriavision | Hub de Herramientas E-commerce",
+    default: "Oriavision Hub",
     template: "%s | Oriavision",
   },
-
-  description: "Herramientas inteligentes para vendedores de Mercado Libre.",
-
-  alternates: {
-    canonical: SITE_URL,
-  },
-
+  description:
+    "Guías + prompts que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
   openGraph: {
     type: "website",
-    url: SITE_URL,
     siteName: "Oriavision",
-    locale: "es_AR",
-    title: "Oriavision | Hub de Herramientas E-commerce",
-    description: "Herramientas inteligentes para vendedores de Mercado Libre.",
-    images: [
-      {
-        url: `${SITE_URL}/og/home.png`,
-        width: 1200,
-        height: 630,
-        alt: "Oriavision Hub",
-      },
-    ],
+    title: "Oriavision Hub",
+    description:
+      "Guías + prompts que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Oriavision | Hub de Herramientas E-commerce",
-    description: "Herramientas inteligentes para vendedores de Mercado Libre.",
-    images: [`${SITE_URL}/og/home.png`],
+    title: "Oriavision Hub",
+    description:
+      "Guías + prompts que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
   },
 };
 
