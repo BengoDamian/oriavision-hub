@@ -410,7 +410,7 @@ export default function Home() {
             </p>
 
             <a
-              href="mailto:contacto@oriavision.com"
+              href="mailto:soporte@oriavision.com"
               className="inline-block px-8 py-3 bg-white border-2 border-slate-200 text-slate-900 font-bold rounded-full hover:border-brand-600 transition-colors"
             >
               CONTACTAR SOPORTE
