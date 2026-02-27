@@ -1,0 +1,5 @@
+/guias      /guias/      301
+/prompts    /prompts/    301
+/web        /web/        301
+/gracias    /gracias/    301
+/go/*       /go/:splat/  301

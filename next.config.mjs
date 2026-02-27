@@ -6,6 +6,7 @@ const nextConfig = {
     ? {
         output: "export",
         images: { unoptimized: true },
+        trailingSlash: true, // ✅ evita 404 en Cloudflare con rutas sin slash
       }
     : {}),
 };

@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Herramientas", href: "/#herramientas" },
-  { label: "Prompts", href: "/prompts" },
-  { label: "Guías", href: "/guias" },
+  { label: "Prompts", href: "/prompts/" },
+  { label: "Guías", href: "/guias/" },
 ];
 
 const PRIMARY_CTA = {
@@ -40,7 +40,14 @@ export default function Navbar() {
       <nav className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md border-b border-slate-100">
         <div className="mx-auto max-w-6xl px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3" aria-label="Oriavisión">
-            <Image src="/logo.png" alt="Oriavisión" width={220} height={60} priority className="h-10 sm:h-12 w-auto" />
+            <Image
+              src="/logo.png"
+              alt="Oriavisión"
+              width={220}
+              height={60}
+              priority
+              className="h-10 sm:h-12 w-auto"
+            />
           </Link>
 
           {/* DESKTOP */}
