@@ -11,39 +11,44 @@ const inter = Inter({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision-hub.pages.dev";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+
   title: {
-    default: "Oriavision Hub",
+    default: "Oriavision | Hub de Herramientas E-commerce",
     template: "%s | Oriavision",
   },
-  description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
+
+  description: "Herramientas inteligentes para vendedores de Mercado Libre.",
+
   alternates: {
     canonical: SITE_URL,
   },
+
   openGraph: {
     type: "website",
     url: SITE_URL,
     siteName: "Oriavision",
     locale: "es_AR",
-    title: "Oriavision Hub",
-    description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
+    title: "Oriavision | Hub de Herramientas E-commerce",
+    description: "Herramientas inteligentes para vendedores de Mercado Libre.",
     images: [
       {
-        url: "/og/home.png",
+        url: `${SITE_URL}/og/home.png`,
         width: 1200,
         height: 630,
         alt: "Oriavision Hub",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Oriavision Hub",
-    description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
-    images: ["/og/home.png"],
+    title: "Oriavision | Hub de Herramientas E-commerce",
+    description: "Herramientas inteligentes para vendedores de Mercado Libre.",
+    images: [`${SITE_URL}/og/home.png`],
   },
 };
 
