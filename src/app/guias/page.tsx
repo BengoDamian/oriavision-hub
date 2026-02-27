@@ -1,114 +1,61 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { guides } from "@/lib/guides";
-import GuideBody from "@/components/GuideBody";
+import Reveal from "@/components/Reveal";
 
-const CALC_URL = "https://calculadoraml.oriavision.com.ar";
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
+export const metadata: Metadata = {
+  title: "Guías",
+  description: "Guías claras, accionables y sin humo para vender mejor.",
+};
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
-export function generateStaticParams() {
-  return guides.map((g) => ({ id: g.id }));
-}
-
-export function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Metadata {
-  const item = guides.find((g) => g.id === params.id);
-
-  if (!item) {
-    return {
-      title: "Guía no encontrada",
-      robots: { index: false, follow: false },
-    };
-  }
-
-  const url = `${SITE_URL}/guias/${item.id}`;
-
-  return {
-    title: item.title,
-    description: item.description,
-    alternates: { canonical: url },
-    openGraph: {
-      type: "article",
-      url,
-      siteName: "Oriavision",
-      title: item.title,
-      description: item.description,
-      images: [
-        {
-          url: `${SITE_URL}/og/guia.png`,
-          width: 1200,
-          height: 630,
-          alt: item.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: item.title,
-      description: item.description,
-      images: [`${SITE_URL}/og/guia.png`],
-    },
-  };
-}
-
-export default function GuiaDetailPage({ params }: { params: { id: string } }) {
-  const item = guides.find((g) => g.id === params.id);
-  if (!item) return notFound();
-
+export default function GuiasPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12">
-      <div className="mb-6">
-        <Link
-          href="/guias"
-          className="text-sm font-semibold text-textBody hover:text-brand-600 transition-colors"
-        >
-          ← Volver a Guías
-        </Link>
-      </div>
+    <main className="min-h-screen bg-white">
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="text-center mb-14">
+              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
+                Guías
+              </h1>
+              <p className="mt-4 text-lg md:text-xl text-textBody font-medium max-w-2xl mx-auto">
+                Guías cortas, accionables y sin humo. Entrás, leés y lo aplicás al toque.
+              </p>
+            </div>
+          </Reveal>
 
-      <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
-        <div className="mb-8">
-          <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-            {item.category}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {guides.map((g, i) => (
+              <Reveal key={g.id} delay={0.05 + i * 0.04}>
+                <Link
+                  href={`/guias/${g.id}/`}
+                  className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                  <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                    {g.category}
+                  </div>
+
+                  <h2 className="mt-4 text-2xl font-black text-slate-900 group-hover:text-brand-700 transition-colors">
+                    {g.title}
+                  </h2>
+
+                  <p className="mt-3 text-textBody font-medium leading-relaxed">
+                    {g.description}
+                  </p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 text-brand-600 font-extrabold">
+                    Ver guía <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
-
-          <h1 className="mt-4 text-3xl md:text-5xl font-black tracking-tight text-slate-900">
-            {item.title}
-          </h1>
-
-          <p className="mt-3 text-textBody font-medium leading-relaxed">
-            {item.description}
-          </p>
         </div>
-
-        <GuideBody content={item.content} />
-      </div>
-
-      <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
-        <h2 className="text-lg font-extrabold text-slate-900">
-          ¿Querés calcular precios sin perder margen?
-        </h2>
-        <p className="mt-2 text-textBody font-medium">
-          Abrí la Calculadora ML y sacá el precio final en segundos (contado + cuotas).
-        </p>
-
-        <a
-          href={CALC_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 inline-flex items-center justify-center px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white text-sm font-extrabold rounded-full transition-colors"
-        >
-          Abrir Calculadora ML
-        </a>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

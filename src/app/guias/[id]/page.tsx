@@ -5,8 +5,7 @@ import { guides } from "@/lib/guides";
 import GuideBody from "@/components/GuideBody";
 
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision-hub.pages.dev";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
@@ -15,11 +14,7 @@ export function generateStaticParams() {
   return guides.map((g) => ({ id: g.id }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { id: string };
-}): Metadata {
+export function generateMetadata({ params }: { params: { id: string } }): Metadata {
   const item = guides.find((g) => g.id === params.id);
 
   if (!item) {
@@ -29,7 +24,7 @@ export function generateMetadata({
     };
   }
 
-  const url = `${SITE_URL}/guias/${item.id}`;
+  const url = `${SITE_URL}/guias/${item.id}/`;
 
   return {
     title: item.title,
@@ -38,12 +33,12 @@ export function generateMetadata({
     openGraph: {
       type: "article",
       url,
+      siteName: "Oriavision",
       title: item.title,
       description: item.description,
-      siteName: "Oriavision",
       images: [
         {
-          url: "/og/guia.png",
+          url: `${SITE_URL}/og/guia.png`,
           width: 1200,
           height: 630,
           alt: item.title,
@@ -54,7 +49,7 @@ export function generateMetadata({
       card: "summary_large_image",
       title: item.title,
       description: item.description,
-      images: ["/og/guia.png"],
+      images: [`${SITE_URL}/og/guia.png`],
     },
   };
 }
@@ -67,7 +62,7 @@ export default function GuiaDetailPage({ params }: { params: { id: string } }) {
     <div className="mx-auto max-w-4xl px-4 py-12">
       <div className="mb-6">
         <Link
-          href="/guias"
+          href="/guias/"
           className="text-sm font-semibold text-textBody hover:text-brand-600 transition-colors"
         >
           ← Volver a Guías
