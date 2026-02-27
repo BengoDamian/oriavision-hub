@@ -411,6 +411,20 @@ export default function Home() {
         </Reveal>
       </section>
 
+      {/* LINK SUTIL (al final) */}
+      <section className="py-10 bg-white border-t border-slate-200 px-4">
+        <Reveal>
+          <div className="mx-auto max-w-6xl flex items-center justify-center">
+            <Link
+              href="/web"
+              className="text-sm font-extrabold text-slate-600 hover:text-brand-600 transition-colors"
+            >
+              ¿Te gustó la página? Pedí una landing como esta →
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+
       {/* NEWSLETTER (al final) */}
       <Newsletter />
     </main>
