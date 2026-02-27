@@ -33,8 +33,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const token = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
+
   return (
     <html lang="es">
+      <head>
+        {token ? (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token,
+              spa: true, // ✅ cuenta navegación interna (Link) como pageviews
+            })}
+          />
+        ) : null}
+      </head>
+
       <body
         className={`${inter.variable} font-sans bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700 min-h-screen flex flex-col`}
       >
