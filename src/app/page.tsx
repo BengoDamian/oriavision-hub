@@ -6,6 +6,7 @@ import { guides } from "@/lib/guides";
 import Reveal from "@/components/Reveal";
 import Blob from "@/components/Blob";
 import Newsletter from "@/components/Newsletter";
+import LeadMagnet from "@/components/LeadMagnet";
 
 const TEAM = [
   {
@@ -122,18 +123,9 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.2}>
-            <div className="mt-6 text-sm text-textBody font-semibold">
-              ¿Querés ir directo al número?{" "}
-              <a
-                href={calcHref}
-                target="_blank"
-                rel="noreferrer"
-                className="text-brand-600 hover:text-brand-700 font-extrabold"
-              >
-                Abrir Calculadora ML →
-              </a>
-            </div>
+          {/* Lead Magnet (captura de email arriba del fold) */}
+          <Reveal delay={0.18}>
+            <LeadMagnet />
           </Reveal>
         </div>
       </section>
@@ -410,7 +402,7 @@ export default function Home() {
             </p>
 
             <a
-              href="mailto:soporte@oriavision.com"
+              href="mailto:soporte@oriavision.com.ar"
               className="inline-block px-8 py-3 bg-white border-2 border-slate-200 text-slate-900 font-bold rounded-full hover:border-brand-600 transition-colors"
             >
               CONTACTAR SOPORTE
