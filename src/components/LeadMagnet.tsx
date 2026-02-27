@@ -34,6 +34,11 @@ export default function LeadMagnet() {
       setState("ok");
       setMsg("Listo ✅ Te mandamos el contenido por mail.");
       setEmail("");
+
+      // ✅ Redirect infalible (mide conversiones)
+      setTimeout(() => {
+        window.location.assign("/gracias?src=leadmagnet");
+      }, 250);
     } catch {
       setState("error");
       setMsg("No se pudo suscribir.");
@@ -53,12 +58,10 @@ export default function LeadMagnet() {
               shakeClass,
             ].join(" ")}
           >
-            {/* Shine sweep */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[calc(2rem-2px)]">
               <div className="absolute -left-1/2 top-[-20%] h-[140%] w-1/2 rotate-12 bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-50 animate-[shine_3.2s_ease-in-out_infinite] motion-reduce:animate-none" />
             </div>
 
-            {/* Header */}
             <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="text-left">
                 <div className="flex flex-wrap items-center gap-2">
@@ -66,7 +69,6 @@ export default function LeadMagnet() {
                     Gratis
                   </span>
 
-                  {/* Badge flotante (sutil) */}
                   <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-extrabold text-slate-900 shadow-sm motion-reduce:shadow-none animate-[float_4.2s_ease-in-out_infinite] motion-reduce:animate-none">
                     <Sparkles className="w-4 h-4 text-brand-600" />
                     Guías + Prompts
@@ -93,7 +95,6 @@ export default function LeadMagnet() {
               </div>
             </div>
 
-            {/* Form */}
             <form onSubmit={onSubmit} className="relative mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="relative w-full sm:flex-1">
                 <input
@@ -125,7 +126,6 @@ export default function LeadMagnet() {
               </button>
             </form>
 
-            {/* Status */}
             <div className="relative mt-3 text-sm font-semibold">
               {state === "ok" && <span className="text-emerald-700">{msg}</span>}
               {state === "error" && <span className="text-red-600">{msg}</span>}
@@ -140,56 +140,27 @@ export default function LeadMagnet() {
 
       <style jsx global>{`
         @keyframes borderFlow {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
         @keyframes pulseSoft {
-          0%,
-          100% {
-            opacity: 0.45;
-          }
-          50% {
-            opacity: 0.75;
-          }
+          0%, 100% { opacity: 0.45; }
+          50% { opacity: 0.75; }
         }
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-4px);
-          }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-4px); }
         }
         @keyframes shine {
-          0% {
-            transform: translateX(-130%) rotate(12deg);
-          }
-          100% {
-            transform: translateX(130%) rotate(12deg);
-          }
+          0% { transform: translateX(-130%) rotate(12deg); }
+          100% { transform: translateX(130%) rotate(12deg); }
         }
         @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-4px);
-          }
-          50% {
-            transform: translateX(4px);
-          }
-          75% {
-            transform: translateX(-2px);
-          }
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-4px); }
+          50% { transform: translateX(4px); }
+          75% { transform: translateX(-2px); }
         }
       `}</style>
     </div>
