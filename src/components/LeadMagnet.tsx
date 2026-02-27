@@ -42,7 +42,6 @@ export default function LeadMagnet() {
 
   return (
     <div className="mx-auto mt-10 max-w-2xl">
-      {/* Ring animado (sutil) + glow */}
       <div className="relative">
         <div className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-r from-brand-600/20 via-yellow-200/20 to-brand-600/20 blur-2xl opacity-60 motion-reduce:opacity-40 animate-[pulseSoft_4.5s_ease-in-out_infinite] motion-reduce:animate-none" />
 
@@ -70,7 +69,7 @@ export default function LeadMagnet() {
                   {/* Badge flotante (sutil) */}
                   <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-extrabold text-slate-900 shadow-sm motion-reduce:shadow-none animate-[float_4.2s_ease-in-out_infinite] motion-reduce:animate-none">
                     <Sparkles className="w-4 h-4 text-brand-600" />
-                    Tips + prompts
+                    Guías + Prompts
                   </span>
                 </div>
 
@@ -84,10 +83,10 @@ export default function LeadMagnet() {
 
                   <div>
                     <div className="text-sm sm:text-base font-extrabold text-slate-900">
-                      Contenido semanal, corto y accionable
+                      Guías + Prompts que Usamos Todos los Días
                     </div>
                     <p className="mt-1 text-sm font-semibold text-textBody">
-                      Prompts, guías, checklists y novedades para vender mejor. Sin spam.
+                      Contenido semanal para vender mejor. Corto, accionable y sin humo.
                     </p>
                   </div>
                 </div>
@@ -105,7 +104,6 @@ export default function LeadMagnet() {
                   className="w-full rounded-full border-2 border-slate-200 px-5 py-3 text-slate-900 font-semibold outline-none focus:border-brand-600 bg-white"
                   required
                 />
-                {/* mini ring pulsante al foco */}
                 <div className="pointer-events-none absolute inset-0 rounded-full ring-0 ring-brand-600/20 transition-all focus-within:ring-4" />
               </div>
 
@@ -114,7 +112,6 @@ export default function LeadMagnet() {
                 disabled={state === "loading"}
                 className="group relative rounded-full bg-brand-600 hover:bg-brand-700 px-8 py-3 text-white font-extrabold transition-colors disabled:opacity-60 overflow-hidden"
               >
-                {/* micro-shimmer del botón */}
                 <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="absolute -left-1/2 top-0 h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shine_2.2s_ease-in-out_infinite] motion-reduce:animate-none" />
                 </span>
@@ -123,7 +120,7 @@ export default function LeadMagnet() {
                   {state === "loading" && (
                     <span className="inline-block w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
                   )}
-                  {state === "loading" ? "Sumando..." : "Quiero las guías"}
+                  {state === "loading" ? "Sumando..." : "Suscribirme Gratis"}
                 </span>
               </button>
             </form>
@@ -141,7 +138,6 @@ export default function LeadMagnet() {
         </div>
       </div>
 
-      {/* Keyframes (self-contained) */}
       <style jsx global>{`
         @keyframes borderFlow {
           0% {
