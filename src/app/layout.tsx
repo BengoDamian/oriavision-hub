@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Oriavision",
   },
   description:
-    "Guías + prompts que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
+    "Guías + prompts que usamos todos los días para vender mejor. Corto, accionable y sin humo.",
   openGraph: {
     type: "website",
     siteName: "Oriavision",
