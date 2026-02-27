@@ -1,15 +1,62 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { guides } from "@/lib/guides";
 import GuideBody from "@/components/GuideBody";
 
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision-hub.pages.dev";
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return guides.map((g) => ({ id: g.id }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Metadata {
+  const item = guides.find((g) => g.id === params.id);
+
+  if (!item) {
+    return {
+      title: "Guía no encontrada",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const url = `${SITE_URL}/guias/${item.id}`;
+
+  return {
+    title: item.title,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: item.title,
+      description: item.description,
+      siteName: "Oriavision",
+      images: [
+        {
+          url: "/og/guia.png",
+          width: 1200,
+          height: 630,
+          alt: item.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: ["/og/guia.png"],
+    },
+  };
 }
 
 export default function GuiaDetailPage({ params }: { params: { id: string } }) {
@@ -42,11 +89,9 @@ export default function GuiaDetailPage({ params }: { params: { id: string } }) {
           </p>
         </div>
 
-        {/* ✅ lectura agradable */}
         <GuideBody content={item.content} />
       </div>
 
-      {/* CTA sutil */}
       <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
         <h2 className="text-lg font-extrabold text-slate-900">
           ¿Querés calcular precios sin perder margen?

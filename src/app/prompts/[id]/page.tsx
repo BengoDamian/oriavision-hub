@@ -1,12 +1,62 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prompts } from "@/lib/prompts";
 import CopyPromptButton from "@/components/CopyPromptButton";
 
 const calcHref = "https://calculadoraml.oriavision.com.ar";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision-hub.pages.dev";
+
+export const dynamic = "error";
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return prompts.map((p) => ({ id: p.id }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Metadata {
+  const item = prompts.find((p) => p.id === params.id);
+
+  if (!item) {
+    return {
+      title: "Prompt no encontrado",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const url = `${SITE_URL}/prompts/${item.id}`;
+
+  return {
+    title: item.title,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: item.title,
+      description: item.description,
+      siteName: "Oriavision",
+      images: [
+        {
+          url: "/og/prompt.png",
+          width: 1200,
+          height: 630,
+          alt: item.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: ["/og/prompt.png"],
+    },
+  };
 }
 
 export default function PromptDetailPage({ params }: { params: { id: string } }) {
@@ -65,7 +115,7 @@ export default function PromptDetailPage({ params }: { params: { id: string } })
             </pre>
           </div>
 
-          {/* Spam / promo calculadora */}
+          {/* Promo calculadora */}
           <div className="mt-12 rounded-[2rem] border border-slate-200 bg-white p-8">
             <div className="text-sm font-extrabold text-brand-600 uppercase tracking-widest">
               Calculadora ML

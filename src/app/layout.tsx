@@ -10,15 +10,49 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision-hub.pages.dev";
+
 export const metadata: Metadata = {
-  title: "Oriavision | Hub de Herramientas E-commerce",
-  description: "Herramientas inteligentes para vendedores de Mercado Libre.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Oriavision Hub",
+    template: "%s | Oriavision",
+  },
+  description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Oriavision",
+    locale: "es_AR",
+    title: "Oriavision Hub",
+    description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "Oriavision Hub",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Oriavision Hub",
+    description: "Prompts, guías y herramientas para vender mejor en MercadoLibre y Tiendanube.",
+    images: ["/og/home.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} font-sans bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700 min-h-screen flex flex-col`}>
+      <body
+        className={`${inter.variable} font-sans bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700 min-h-screen flex flex-col`}
+      >
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
