@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import Blob from "@/components/Blob";
 import Newsletter from "@/components/Newsletter";
 import LeadMagnet from "@/components/LeadMagnet";
+import TrackLink from "@/components/TrackLink";
 
 const TEAM = [
   {
@@ -29,60 +30,47 @@ const TEAM = [
   },
 ];
 
-function track(e: string, p: string) {
-  // ✅ no bloquea navegación y sobrevive a target=_blank (keepalive)
-  try {
-    fetch(`/api/track?e=${encodeURIComponent(e)}&p=${encodeURIComponent(p)}`, {
-      method: "GET",
-      keepalive: true,
-      cache: "no-store",
-    }).catch(() => {});
-  } catch {
-    // no-op
-  }
-}
-
 export default function Home() {
   const whatsappHref =
     "https://wa.me/5491127575675?text=Hola%20OriaVisi%C3%B3n%21%20Vi%20el%20Hub%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20herramientas.%20%C2%BFMe%20ayudan%3F";
 
   const calcHref = "https://calculadoraml.oriavision.com.ar";
 
-  // Preview Prompts: solo destacados (o los primeros 3 si no hay)
   const featuredPrompts = prompts.filter((p) => p.featured);
   const previewPrompts = (featuredPrompts.length ? featuredPrompts : prompts).slice(0, 3);
 
-  // Preview Guías: solo destacadas (o las primeras 3 si no hay)
   const featuredGuides = guides.filter((g) => g.featured);
   const previewGuides = (featuredGuides.length ? featuredGuides : guides).slice(0, 3);
 
   return (
     <main className="flex flex-col min-h-screen pb-28">
       {/* Floating Calculadora ML (abajo izquierda) */}
-      <a
+      <TrackLink
         href={calcHref}
         target="_blank"
         rel="noreferrer"
         aria-label="Abrir Calculadora ML"
-        onClick={() => track("click_calc", "floating_home")}
+        event="click_calc"
+        place="floating_home"
         className="fixed left-4 sm:left-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 text-white font-extrabold shadow-2xl opacity-90 hover:opacity-100 active:opacity-100 transition-opacity bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <Calculator className="w-5 h-5" />
         <span className="hidden sm:inline">Calculadora ML</span>
-      </a>
+      </TrackLink>
 
       {/* Floating WhatsApp (abajo derecha) */}
-      <a
+      <TrackLink
         href={whatsappHref}
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
-        onClick={() => track("click_whatsapp", "floating_home")}
+        event="click_whatsapp"
+        place="floating_home"
         className="fixed right-4 sm:right-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 sm:px-5 sm:py-3 text-white font-extrabold shadow-2xl opacity-95 hover:opacity-100 active:opacity-100 transition-opacity bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <MessageCircle className="w-5 h-5" />
         <span className="hidden sm:inline">WhatsApp</span>
-      </a>
+      </TrackLink>
 
       {/* HERO */}
       <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-white">
@@ -138,7 +126,6 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Lead Magnet (captura de email arriba del fold) */}
           <Reveal delay={0.18}>
             <LeadMagnet />
           </Reveal>
@@ -172,15 +159,16 @@ export default function Home() {
                   Ganancias) y opciones de cuotas.
                 </p>
 
-                <a
+                <TrackLink
                   href={calcHref}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => track("click_calc", "tools_card_home")}
+                  event="click_calc"
+                  place="tools_card_home"
                   className="mt-auto w-full py-3 rounded-xl border-2 border-brand-600 text-brand-600 font-bold uppercase text-sm hover:bg-brand-600 hover:text-white transition-colors text-center block"
                 >
                   Abrir herramienta
-                </a>
+                </TrackLink>
               </div>
             </Reveal>
           </div>
@@ -235,15 +223,16 @@ export default function Home() {
 
               <div className="mt-4 text-sm text-textBody font-semibold">
                 Después, cerrá el número en{" "}
-                <a
+                <TrackLink
                   href={calcHref}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => track("click_calc", "prompts_preview_home")}
+                  event="click_calc"
+                  place="prompts_preview_home"
                   className="text-brand-600 hover:text-brand-700 font-extrabold"
                 >
                   Calculadora ML →
-                </a>
+                </TrackLink>
               </div>
             </div>
           </Reveal>
