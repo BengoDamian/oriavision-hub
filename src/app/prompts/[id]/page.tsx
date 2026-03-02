@@ -1,64 +1,141 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { notFound } from "next/navigation";
 import { prompts } from "@/lib/prompts";
-import Reveal from "@/components/Reveal";
+import CopyPromptButton from "@/components/CopyPromptButton";
 import Newsletter from "@/components/Newsletter";
 
-export const metadata: Metadata = {
-  title: "Prompts",
-  description: "Prompts listos para copiar y usar para vender mejor.",
-};
+const calcHref = "https://calculadoraml.oriavision.com.ar";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
-export default function PromptsPage() {
+// ✅ obligatorio para output: "export"
+export function generateStaticParams(): { id: string }[] {
+  return prompts.map((p) => ({ id: p.id }));
+}
+
+export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+  const item = prompts.find((p) => p.id === params.id);
+
+  if (!item) {
+    return {
+      title: "Prompt no encontrado",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const url = `${SITE_URL}/prompts/${item.id}/`;
+
+  return {
+    title: item.title,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      siteName: "Oriavision",
+      title: item.title,
+      description: item.description,
+      images: [
+        {
+          url: `${SITE_URL}/og/prompt.png`,
+          width: 1200,
+          height: 630,
+          alt: item.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: [`${SITE_URL}/og/prompt.png`],
+    },
+  };
+}
+
+export default function PromptDetailPage({ params }: { params: { id: string } }) {
+  const item = prompts.find((p) => p.id === params.id);
+  if (!item) notFound();
+
   return (
     <main className="min-h-screen bg-white">
       <section className="py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <Reveal>
-            <div className="text-center mb-14">
-              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
-                Prompts
-              </h1>
-              <p className="mt-4 text-lg md:text-xl text-textBody font-medium max-w-2xl mx-auto">
-                Entrás, leés el prompt completo y lo copiás con un botón. Listo para usar.
-              </p>
+        <div className="mx-auto max-w-4xl px-4">
+          <Link
+            href="/prompts/"
+            className="inline-flex font-extrabold text-sm text-slate-600 hover:text-brand-600 transition-colors"
+          >
+            ← Volver a Prompts
+          </Link>
+
+          <div className="mt-8">
+            <div className="text-xs font-extrabold uppercase tracking-widest text-brand-600">
+              {item.category}
             </div>
-          </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {prompts.map((p, i) => (
-              <Reveal key={p.id} delay={0.05 + i * 0.04}>
-                <Link
-                  href={`/prompts/${p.id}/`}
-                  className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
-                >
-                  <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                    {p.category}
-                  </div>
+            <h1 className="mt-3 text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+              {item.title}
+            </h1>
 
-                  <h2 className="mt-4 text-2xl font-black text-slate-900 group-hover:text-brand-700 transition-colors">
-                    {p.title}
-                  </h2>
+            <p className="mt-4 text-textBody font-medium leading-relaxed">
+              {item.description}
+            </p>
 
-                  <p className="mt-3 text-textBody font-medium leading-relaxed">
-                    {p.description}
-                  </p>
+            {item.tags?.length ? (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {item.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-700"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
 
-                  <div className="mt-6 inline-flex items-center gap-2 text-brand-600 font-extrabold">
-                    Ver prompt <ArrowRight className="w-4 h-4" />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+          <div className="mt-10 rounded-[2rem] border border-slate-200 bg-slate-50 p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="text-sm font-extrabold text-slate-900">
+                Prompt completo
+              </div>
+              <CopyPromptButton text={item.prompt} />
+            </div>
+
+            <pre className="mt-5 whitespace-pre-wrap text-[14px] leading-relaxed text-slate-900 font-medium">
+              {item.prompt}
+            </pre>
+          </div>
+
+          <div className="mt-12 rounded-[2rem] border border-slate-200 bg-white p-8">
+            <div className="text-sm font-extrabold text-brand-600 uppercase tracking-widest">
+              Calculadora ML
+            </div>
+            <div className="mt-2 text-2xl font-black text-slate-900">
+              Terminaste el prompt. Ahora cerrá el número.
+            </div>
+            <p className="mt-2 text-textBody font-medium">
+              Calculá costo, comisiones e impuestos y publicá con rentabilidad real.
+            </p>
+
+            <div className="mt-6">
+              <a
+                href={calcHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3 text-white font-extrabold hover:bg-brand-700 transition-colors"
+              >
+                Abrir Calculadora ML
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ✅ Newsletter también en listado de prompts */}
       <Newsletter />
     </main>
   );
