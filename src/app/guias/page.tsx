@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { guides } from "@/lib/guides";
 import Reveal from "@/components/Reveal";
+import Newsletter from "@/components/Newsletter";
 
 export const metadata: Metadata = {
   title: "Guías",
@@ -56,6 +57,9 @@ export default function GuiasPage() {
           </div>
         </div>
       </section>
+
+      {/* ✅ Newsletter también en listado de guías */}
+      <Newsletter />
     </main>
   );
 }
