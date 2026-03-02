@@ -166,7 +166,7 @@ Los botones a Calculadora/WhatsApp apuntan a rutas internas:
 - `/go/calculadora`
 - `/go/whatsapp`
 
-Esas páginas muestran un “abriendo…” y redirigen a los destinos reales, permitiendo registrar el pageview.
+Esas páginas muestran un “abriendo…” y redirigen a los destinos reales, permitiendo registrar el pageview..
 
 ---
 
