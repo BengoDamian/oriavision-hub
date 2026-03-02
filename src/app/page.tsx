@@ -29,11 +29,23 @@ const TEAM = [
   },
 ];
 
-export default function Home() {
-  // ✅ MEDICIÓN: clicks a WhatsApp pasan por /go/whatsapp
-  const whatsappHref = "https://wa.me/5491127575675?text=Hola%20OriaVisi%C3%B3n%21%20Vi%20el%20Hub%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20herramientas.%20%C2%BFMe%20ayudan%3F";
+function track(e: string, p: string) {
+  // ✅ no bloquea navegación y sobrevive a target=_blank (keepalive)
+  try {
+    fetch(`/api/track?e=${encodeURIComponent(e)}&p=${encodeURIComponent(p)}`, {
+      method: "GET",
+      keepalive: true,
+      cache: "no-store",
+    }).catch(() => {});
+  } catch {
+    // no-op
+  }
+}
 
-  // ✅ MEDICIÓN: clicks a Calculadora pasan por /go/calculadora
+export default function Home() {
+  const whatsappHref =
+    "https://wa.me/5491127575675?text=Hola%20OriaVisi%C3%B3n%21%20Vi%20el%20Hub%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20herramientas.%20%C2%BFMe%20ayudan%3F";
+
   const calcHref = "https://calculadoraml.oriavision.com.ar";
 
   // Preview Prompts: solo destacados (o los primeros 3 si no hay)
@@ -52,6 +64,7 @@ export default function Home() {
         target="_blank"
         rel="noreferrer"
         aria-label="Abrir Calculadora ML"
+        onClick={() => track("click_calc", "floating_home")}
         className="fixed left-4 sm:left-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 text-white font-extrabold shadow-2xl opacity-90 hover:opacity-100 active:opacity-100 transition-opacity bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <Calculator className="w-5 h-5" />
@@ -64,6 +77,7 @@ export default function Home() {
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
+        onClick={() => track("click_whatsapp", "floating_home")}
         className="fixed right-4 sm:right-6 z-[70] pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 sm:px-5 sm:py-3 text-white font-extrabold shadow-2xl opacity-95 hover:opacity-100 active:opacity-100 transition-opacity bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <MessageCircle className="w-5 h-5" />
@@ -109,14 +123,14 @@ export default function Home() {
               </a>
 
               <Link
-                href="/prompts"
+                href="/prompts/"
                 className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
               >
                 VER PROMPTS
               </Link>
 
               <Link
-                href="/guias"
+                href="/guias/"
                 className="w-full sm:w-auto px-10 py-4 bg-white border-2 border-slate-200 text-textBody hover:border-brand-600 hover:text-brand-600 text-lg font-bold rounded-full transition-all"
               >
                 VER GUÍAS
@@ -162,6 +176,7 @@ export default function Home() {
                   href={calcHref}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => track("click_calc", "tools_card_home")}
                   className="mt-auto w-full py-3 rounded-xl border-2 border-brand-600 text-brand-600 font-bold uppercase text-sm hover:bg-brand-600 hover:text-white transition-colors text-center block"
                 >
                   Abrir herramienta
@@ -188,7 +203,7 @@ export default function Home() {
             {previewPrompts.map((p, i) => (
               <Reveal key={p.id} delay={0.05 + i * 0.05}>
                 <Link
-                  href={`/prompts/${p.id}`}
+                  href={`/prompts/${p.id}/`}
                   className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
                 >
                   <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
@@ -212,7 +227,7 @@ export default function Home() {
           <Reveal delay={0.18}>
             <div className="mt-12 text-center">
               <Link
-                href="/prompts"
+                href="/prompts/"
                 className="inline-flex items-center justify-center px-10 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-bold rounded-full transition-all shadow-xl shadow-blue-200"
               >
                 Ver todos los prompts
@@ -224,6 +239,7 @@ export default function Home() {
                   href={calcHref}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => track("click_calc", "prompts_preview_home")}
                   className="text-brand-600 hover:text-brand-700 font-extrabold"
                 >
                   Calculadora ML →
@@ -250,7 +266,7 @@ export default function Home() {
             {previewGuides.map((g, i) => (
               <Reveal key={g.id} delay={0.05 + i * 0.05}>
                 <Link
-                  href={`/guias/${g.id}`}
+                  href={`/guias/${g.id}/`}
                   className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
                 >
                   <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
@@ -274,7 +290,7 @@ export default function Home() {
           <Reveal delay={0.18}>
             <div className="mt-12 text-center">
               <Link
-                href="/guias"
+                href="/guias/"
                 className="inline-flex items-center justify-center px-10 py-4 bg-brand-600 hover:bg-brand-700 text-white text-lg font-bold rounded-full transition-all shadow-xl shadow-blue-200"
               >
                 Ver todas las guías
@@ -416,14 +432,13 @@ export default function Home() {
       <section className="py-10 bg-white border-t border-slate-200 px-4">
         <Reveal>
           <div className="mx-auto max-w-6xl flex items-center justify-center">
-            <Link href="/web" className="text-sm font-extrabold text-slate-600 hover:text-brand-600 transition-colors">
+            <Link href="/web/" className="text-sm font-extrabold text-slate-600 hover:text-brand-600 transition-colors">
               ¿Te gustó la página? Pedí una landing como esta →
             </Link>
           </div>
         </Reveal>
       </section>
 
-      {/* NEWSLETTER (al final) */}
       <Newsletter />
     </main>
   );
