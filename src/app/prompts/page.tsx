@@ -11,8 +11,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com
 export const dynamic = "error";
 export const dynamicParams = false;
 
-// ✅ IMPORTANTE: en export estático, esto tiene que existir y ser exportado
-export function generateStaticParams() {
+// ✅ obligatorio para output: "export"
+export function generateStaticParams(): { id: string }[] {
   return prompts.map((p) => ({ id: p.id }));
 }
 
@@ -80,9 +80,7 @@ export default function PromptDetailPage({ params }: { params: { id: string } })
               {item.title}
             </h1>
 
-            <p className="mt-4 text-textBody font-medium leading-relaxed">
-              {item.description}
-            </p>
+            <p className="mt-4 text-textBody font-medium leading-relaxed">{item.description}</p>
 
             {item.tags?.length ? (
               <div className="mt-5 flex flex-wrap gap-2">
