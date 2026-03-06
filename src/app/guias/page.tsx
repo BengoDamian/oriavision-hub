@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { guides } from "@/lib/guides";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
+import { getAllGuidesMerged } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Guías",
@@ -14,6 +14,8 @@ export const dynamic = "error";
 export const dynamicParams = false;
 
 export default function GuiasPage() {
+  const guides = getAllGuidesMerged();
+
   return (
     <main className="min-h-screen bg-white">
       <section className="py-20">

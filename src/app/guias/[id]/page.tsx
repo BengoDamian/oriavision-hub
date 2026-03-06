@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { guides } from "@/lib/guides";
 import GuideBody from "@/components/GuideBody";
 import Newsletter from "@/components/Newsletter";
+import { getGuideByIdMerged, getGuideIdsMerged } from "@/lib/content";
 
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return guides.map((g) => ({ id: g.id }));
+  return getGuideIdsMerged().map((id) => ({ id }));
 }
 
 export function generateMetadata({ params }: { params: { id: string } }): Metadata {
-  const item = guides.find((g) => g.id === params.id);
+  const item = getGuideByIdMerged(params.id);
 
   if (!item) {
     return {
@@ -56,7 +56,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
 }
 
 export default function GuiaDetailPage({ params }: { params: { id: string } }) {
-  const item = guides.find((g) => g.id === params.id);
+  const item = getGuideByIdMerged(params.id);
   if (!item) return notFound();
 
   return (
@@ -89,6 +89,7 @@ export default function GuiaDetailPage({ params }: { params: { id: string } }) {
           <GuideBody content={item.content} />
         </div>
 
+        {/* ✅ CTA Calculadora ML */}
         <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-lg font-extrabold text-slate-900">
             ¿Querés calcular precios sin perder margen?
