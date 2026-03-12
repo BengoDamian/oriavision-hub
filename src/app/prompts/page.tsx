@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { prompts } from "@/lib/prompts";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
+import { getAllPromptsMerged } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Prompts",
@@ -14,6 +14,8 @@ export const dynamic = "error";
 export const dynamicParams = false;
 
 export default function PromptsPage() {
+  const prompts = getAllPromptsMerged();
+
   return (
     <main className="min-h-screen bg-white">
       <section className="py-20">
