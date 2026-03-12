@@ -1,14 +1,12 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
-
 const nextConfig = {
-  ...(isProd
-    ? {
-        output: "export",
-        images: { unoptimized: true },
-        trailingSlash: true, // ✅ evita 404 en Cloudflare con rutas sin slash
-      }
-    : {}),
+  // Cloudflare Pages: necesitamos export estático + imágenes sin optimizar
+  output: "export",
+  images: { unoptimized: true },
+
+  // ✅ Genera /ruta/index.html en vez de /ruta.html
+  // y evita 404 cuando navegás a /guias/algo/ o /prompts/algo/
+  trailingSlash: true,
 };
 
 export default nextConfig;
