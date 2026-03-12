@@ -60,7 +60,6 @@ export default function GuiasPage() {
         </div>
       </section>
 
-      {/* ✅ Newsletter también en listado de guías */}
       <Newsletter />
     </main>
   );

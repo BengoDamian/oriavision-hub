@@ -60,7 +60,6 @@ export default function PromptsPage() {
         </div>
       </section>
 
-      {/* ✅ Newsletter también en listado de prompts */}
       <Newsletter />
     </main>
   );

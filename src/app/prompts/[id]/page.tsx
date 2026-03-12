@@ -6,17 +6,21 @@ import Newsletter from "@/components/Newsletter";
 import { getPromptByIdMerged, getPromptIdsMerged } from "@/lib/content";
 
 const calcHref = "https://calculadoraml.oriavision.com.ar";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
-// ✅ obligatorio para output: "export"
 export function generateStaticParams(): { id: string }[] {
   return getPromptIdsMerged().map((id) => ({ id }));
 }
 
-export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+export function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Metadata {
   const item = getPromptByIdMerged(params.id);
 
   if (!item) {
@@ -111,7 +115,6 @@ export default function PromptDetailPage({ params }: { params: { id: string } })
             </pre>
           </div>
 
-          {/* ✅ CTA Calculadora ML */}
           <div className="mt-12 rounded-[2rem] border border-slate-200 bg-white p-8">
             <div className="text-sm font-extrabold text-brand-600 uppercase tracking-widest">
               Calculadora ML
@@ -137,7 +140,6 @@ export default function PromptDetailPage({ params }: { params: { id: string } })
         </div>
       </section>
 
-      {/* ✅ Newsletter también en detalle de prompt */}
       <Newsletter />
     </main>
   );
