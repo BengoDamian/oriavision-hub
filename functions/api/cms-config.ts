@@ -16,11 +16,14 @@ export async function onRequest(context: CFContext) {
   // ✅ En prod: commitea a main
   const branch = isPreviewHost(host) ? "cms-admin" : "main";
 
-  // 🔴 IMPORTANTE: reemplazá esto por tu repo real "OWNER/REPO"
-  // Ej: "BengoDamian/oriavision-hub"
   const REPO = "BengoDamian/oriavision-hub";
 
   const yaml = `
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 backend:
   name: github
   repo: ${REPO}

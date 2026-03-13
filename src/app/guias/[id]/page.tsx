@@ -7,21 +7,24 @@ import { getGuideByIdMerged, getGuideIdsMerged } from "@/lib/content";
 
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
 
-export function generateStaticParams() {
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export function generateStaticParams(): { id: string }[] {
   return getGuideIdsMerged().map((id) => ({ id }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Metadata {
-  const item = getGuideByIdMerged(params.id);
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const item = getGuideByIdMerged(id);
 
   if (!item) {
     return {
@@ -60,9 +63,11 @@ export function generateMetadata({
   };
 }
 
-export default function GuiaDetailPage({ params }: { params: { id: string } }) {
-  const item = getGuideByIdMerged(params.id);
-  if (!item) return notFound();
+export default async function GuiaDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const item = getGuideByIdMerged(id);
+
+  if (!item) notFound();
 
   return (
     <main className="min-h-screen bg-white">
@@ -99,7 +104,8 @@ export default function GuiaDetailPage({ params }: { params: { id: string } }) {
             ¿Querés calcular precios sin perder margen?
           </h2>
           <p className="mt-2 text-textBody font-medium">
-            Abrí la Calculadora ML y sacá el precio final en segundos (contado + cuotas).
+            Abrí la Calculadora ML y sacá el precio final en segundos (contado +
+            cuotas).
           </p>
 
           <a

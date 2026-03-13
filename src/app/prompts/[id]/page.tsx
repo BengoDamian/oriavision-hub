@@ -7,21 +7,24 @@ import { getPromptByIdMerged, getPromptIdsMerged } from "@/lib/content";
 
 const calcHref = "https://calculadoraml.oriavision.com.ar";
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
 
 export function generateStaticParams(): { id: string }[] {
   return getPromptIdsMerged().map((id) => ({ id }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Metadata {
-  const item = getPromptByIdMerged(params.id);
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const item = getPromptByIdMerged(id);
 
   if (!item) {
     return {
@@ -60,8 +63,10 @@ export function generateMetadata({
   };
 }
 
-export default function PromptDetailPage({ params }: { params: { id: string } }) {
-  const item = getPromptByIdMerged(params.id);
+export default async function PromptDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const item = getPromptByIdMerged(id);
+
   if (!item) notFound();
 
   return (
@@ -123,7 +128,8 @@ export default function PromptDetailPage({ params }: { params: { id: string } })
               Terminaste el prompt. Ahora cerrá el número.
             </div>
             <p className="mt-2 text-textBody font-medium">
-              Calculá costo, comisiones e impuestos y publicá con rentabilidad real.
+              Calculá costo, comisiones e impuestos y publicá con rentabilidad
+              real.
             </p>
 
             <div className="mt-6">

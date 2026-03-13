@@ -1,3 +1,5 @@
+// src/app/page.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calculator, CheckCircle2, MessageCircle } from "lucide-react";
@@ -35,6 +37,7 @@ export default function Home() {
 
   const calcHref = "https://calculadoraml.oriavision.com.ar";
 
+  // ✅ CMS + legacy (merge)
   const prompts = getAllPromptsMerged();
   const guides = getAllGuidesMerged();
 
