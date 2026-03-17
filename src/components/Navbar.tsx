@@ -3,18 +3,76 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
-const NAV_ITEMS = [
-  { label: "Herramientas", href: "/#herramientas" },
-  { label: "Prompts", href: "/prompts/" },
-  { label: "Guías", href: "/guias/" },
+type NavItem = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
+type NavGroup = {
+  label: string;
+  href: string;
+  items: NavItem[];
+};
+
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: "Servicios",
+    href: "/#servicios",
+    items: [
+      {
+        label: "Calculadora ML",
+        href: "https://calculadoraml.oriavision.com.ar",
+        external: true,
+      },
+    ],
+  },
+  {
+    label: "Recursos gratuitos",
+    href: "/#recursos-gratuitos",
+    items: [
+      { label: "Prompts", href: "/prompts/" },
+      { label: "Guías", href: "/guias/" },
+    ],
+  },
 ];
 
 const PRIMARY_CTA = {
   label: "Calculadora ML",
   href: "https://calculadoraml.oriavision.com.ar",
 };
+
+function NavItemLink({
+  item,
+  onClick,
+  className,
+}: {
+  item: NavItem;
+  onClick?: () => void;
+  className?: string;
+}) {
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+        onClick={onClick}
+        className={className}
+      >
+        {item.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={item.href} onClick={onClick} className={className}>
+      {item.label}
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,8 +95,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-md border-b border-slate-100">
-        <div className="mx-auto max-w-6xl px-4 h-20 flex items-center justify-between">
+      <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-3" aria-label="Oriavisión">
             <Image
               src="/logo.png"
@@ -46,40 +104,55 @@ export default function Navbar() {
               width={220}
               height={60}
               priority
-              className="h-10 sm:h-12 w-auto"
+              className="h-10 w-auto sm:h-12"
             />
           </Link>
 
           {/* DESKTOP */}
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-extrabold text-slate-600 hover:text-brand-600 transition-colors uppercase tracking-wide"
-              >
-                {item.label}
-              </Link>
+          <div className="hidden items-center gap-8 md:flex">
+            {NAV_GROUPS.map((group) => (
+              <div key={group.label} className="group relative">
+                <div className="flex items-center gap-1">
+                  <Link
+                    href={group.href}
+                    className="text-sm font-extrabold uppercase tracking-wide text-slate-600 transition-colors hover:text-brand-600"
+                  >
+                    {group.label}
+                  </Link>
+                  <ChevronDown className="h-4 w-4 text-slate-500 transition-colors group-hover:text-brand-600" />
+                </div>
+
+                <div className="pointer-events-none absolute left-0 top-full z-50 translate-y-1 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  <div className="min-w-[240px] rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
+                    {group.items.map((item) => (
+                      <NavItemLink
+                        key={item.href}
+                        item={item}
+                        className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50 hover:text-brand-600"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
             ))}
 
-            {/* CTA (sutil, siempre visible) */}
             <a
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-5 py-2.5 text-sm font-extrabold text-brand-700 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-5 py-2.5 text-sm font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
             >
               {PRIMARY_CTA.label}
             </a>
           </div>
 
           {/* MOBILE */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="flex items-center gap-2 md:hidden">
             <a
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-3 py-2 text-[11px] font-extrabold text-brand-700 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-3 py-2 text-[11px] font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
             >
               {PRIMARY_CTA.label}
             </a>
@@ -87,11 +160,11 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggle}
-              className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 text-slate-800 active:scale-95 transition"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-slate-800 transition active:scale-95"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={open}
             >
-              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
@@ -100,27 +173,54 @@ export default function Navbar() {
       {/* MOBILE DRAWER */}
       {open && (
         <div className="fixed inset-0 z-[60]">
-          <button aria-label="Cerrar menú" onClick={close} className="absolute inset-0 bg-black/30" />
+          <button
+            aria-label="Cerrar menú"
+            onClick={close}
+            className="absolute inset-0 bg-black/30"
+          />
 
-          <div className="absolute right-0 top-0 h-full w-[85vw] max-w-sm bg-white shadow-2xl p-6 flex flex-col">
+          <div className="absolute right-0 top-0 flex h-full w-[85vw] max-w-sm flex-col bg-white p-6 shadow-2xl">
             <div className="flex items-center justify-between">
               <Link href="/" onClick={close} className="flex items-center gap-3">
-                <Image src="/logo.png" alt="Oriavisión" width={180} height={50} className="h-10 w-auto" />
+                <Image
+                  src="/logo.png"
+                  alt="Oriavisión"
+                  width={180}
+                  height={50}
+                  className="h-10 w-auto"
+                />
               </Link>
               <button
                 onClick={close}
-                className="w-10 h-10 rounded-xl border border-slate-200 inline-flex items-center justify-center"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200"
                 aria-label="Cerrar"
               >
-                <X className="w-5 h-5" />
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="mt-8 flex flex-col gap-4">
-              {NAV_ITEMS.map((item) => (
-                <Link key={item.href} href={item.href} onClick={close} className="text-base font-extrabold text-slate-800">
-                  {item.label}
-                </Link>
+            <div className="mt-8 space-y-8">
+              {NAV_GROUPS.map((group) => (
+                <div key={group.label}>
+                  <Link
+                    href={group.href}
+                    onClick={close}
+                    className="block text-sm font-extrabold uppercase tracking-wide text-slate-500"
+                  >
+                    {group.label}
+                  </Link>
+
+                  <div className="mt-3 flex flex-col gap-3 pl-1">
+                    {group.items.map((item) => (
+                      <NavItemLink
+                        key={item.href}
+                        item={item}
+                        onClick={close}
+                        className="text-base font-extrabold text-slate-800"
+                      />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
 
@@ -129,14 +229,16 @@ export default function Navbar() {
                 href={PRIMARY_CTA.href}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-6 py-3 text-sm font-extrabold text-brand-700 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-colors"
+                className="inline-flex w-full items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-6 py-3 text-sm font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
                 onClick={close}
               >
                 {PRIMARY_CTA.label}
               </a>
             </div>
 
-            <div className="mt-auto pt-6 text-xs text-slate-400">© {new Date().getFullYear()} Oriavisión</div>
+            <div className="mt-auto pt-6 text-xs text-slate-400">
+              © {new Date().getFullYear()} Oriavisión
+            </div>
           </div>
         </div>
       )}

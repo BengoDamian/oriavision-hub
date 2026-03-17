@@ -1,13 +1,62 @@
-import { prompts } from "@/lib/prompts";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-export const dynamic = "error";
-export const dynamicParams = false;
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  variable: "--font-inter",
+});
 
-// ✅ Next export estático: esto lo hace “a prueba de balas”
-export function generateStaticParams(): { id: string }[] {
-  return prompts.map((p) => ({ id: p.id }));
-}
+export const metadata: Metadata = {
+  title: {
+    default: "Oriavision Hub",
+    template: "%s | Oriavision",
+  },
+  description:
+    "Servicios y recursos gratuitos que usamos todos los días para vender mejor. Corto, accionable y sin humo.",
+  openGraph: {
+    type: "website",
+    siteName: "Oriavision",
+    title: "Oriavision Hub",
+    description:
+      "Servicios y recursos gratuitos que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Oriavision Hub",
+    description:
+      "Servicios y recursos gratuitos que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
+  },
+};
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const token = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
+
+  return (
+    <html lang="es">
+      <head>
+        {token ? (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token,
+              spa: true,
+            })}
+          />
+        ) : null}
+      </head>
+
+      <body
+        className={`${inter.variable} min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700`}
+      >
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
 }

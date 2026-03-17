@@ -7,7 +7,7 @@ import { getAllGuidesMerged } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Guías",
-  description: "Guías claras, accionables y sin humo para vender mejor.",
+  description: "Recursos gratuitos: guías claras, accionables y sin humo para vender mejor.",
 };
 
 export const dynamic = "error";
@@ -21,37 +21,41 @@ export default function GuiasPage() {
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
-            <div className="text-center mb-14">
-              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
+            <div className="mb-14 text-center">
+              <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                Recursos gratuitos
+              </span>
+
+              <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
                 Guías
               </h1>
-              <p className="mt-4 text-lg md:text-xl text-textBody font-medium max-w-2xl mx-auto">
+              <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-textBody md:text-xl">
                 Guías cortas, accionables y sin humo. Entrás, leés y lo aplicás al toque.
               </p>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {guides.map((g, i) => (
               <Reveal key={g.id} delay={0.05 + i * 0.04}>
                 <Link
                   href={`/guias/${g.id}/`}
-                  className="group block bg-white rounded-[2rem] border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all"
+                  className="group block rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                  <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
                     {g.category}
                   </div>
 
-                  <h2 className="mt-4 text-2xl font-black text-slate-900 group-hover:text-brand-700 transition-colors">
+                  <h2 className="mt-4 text-2xl font-black text-slate-900 transition-colors group-hover:text-brand-700">
                     {g.title}
                   </h2>
 
-                  <p className="mt-3 text-textBody font-medium leading-relaxed">
+                  <p className="mt-3 font-medium leading-relaxed text-textBody">
                     {g.description}
                   </p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 text-brand-600 font-extrabold">
-                    Ver guía <ArrowRight className="w-4 h-4" />
+                  <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                    Ver guía <ArrowRight className="h-4 w-4" />
                   </div>
                 </Link>
               </Reveal>
