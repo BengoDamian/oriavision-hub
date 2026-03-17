@@ -206,45 +206,77 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="space-y-20">
-            {/* PROMPTS */}
-            <div>
-              <Reveal>
-                <div className="mb-10 text-center">
-                  <h3 className="text-2xl font-black text-slate-900 md:text-3xl">Prompts</h3>
+          <div className="space-y-10">
+            {/* BLOQUE PROMPTS */}
+            <Reveal delay={0.04}>
+              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                <div className="mx-auto max-w-3xl text-center">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                    Recursos para copiar y usar
+                  </span>
+
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Prompts</h3>
+
                   <p className="mt-3 font-medium text-textBody">
                     Entrás, leés el prompt completo y lo copiás con un botón. Listo para usar.
                   </p>
                 </div>
-              </Reveal>
 
-              <div className="flex flex-wrap justify-center gap-8">
-                {previewPrompts.map((p, i) => (
-                  <Reveal key={p.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[360px]">
-                    <Link
-                      href={`/prompts/${p.id}/`}
-                      className="group block h-full rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
-                    >
-                      <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                        {p.category}
+                {previewPrompts.length > 0 && (
+                  <div className="mt-10">
+                    <div className="mx-auto max-w-4xl">
+                      <Link
+                        href={`/prompts/${previewPrompts[0].id}/`}
+                        className="group block rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:p-10"
+                      >
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                          {previewPrompts[0].category}
+                        </div>
+
+                        <h4 className="mt-5 max-w-2xl text-2xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700 md:text-3xl">
+                          {previewPrompts[0].title}
+                        </h4>
+
+                        <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-textBody md:text-lg">
+                          {previewPrompts[0].description}
+                        </p>
+
+                        <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                          Ver prompt <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </Link>
+                    </div>
+
+                    {previewPrompts.length > 1 && (
+                      <div className="mt-6 grid gap-6 md:grid-cols-2">
+                        {previewPrompts.slice(1, 3).map((p, i) => (
+                          <Reveal key={p.id} delay={0.06 + i * 0.04}>
+                            <Link
+                              href={`/prompts/${p.id}/`}
+                              className="group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                            >
+                              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                                {p.category}
+                              </div>
+
+                              <h5 className="mt-4 text-xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700">
+                                {p.title}
+                              </h5>
+
+                              <p className="mt-3 font-medium leading-relaxed text-textBody">{p.description}</p>
+
+                              <div className="mt-5 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                                Ver prompt <ArrowRight className="h-4 w-4" />
+                              </div>
+                            </Link>
+                          </Reveal>
+                        ))}
                       </div>
+                    )}
+                  </div>
+                )}
 
-                      <h3 className="mt-4 text-2xl font-black text-slate-900 transition-colors group-hover:text-brand-700">
-                        {p.title}
-                      </h3>
-
-                      <p className="mt-3 font-medium leading-relaxed text-textBody">{p.description}</p>
-
-                      <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
-                        Ver prompt <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-
-              <Reveal delay={0.18}>
-                <div className="mt-12 text-center">
+                <div className="mt-10 text-center">
                   <Link
                     href="/prompts/"
                     className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
@@ -252,70 +284,59 @@ export default function Home() {
                     Ver todos los prompts
                   </Link>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
 
-            {/* GUÍAS */}
-            <div>
-              <Reveal>
-                <div className="mb-10 text-center">
-                  <h3 className="text-2xl font-black text-slate-900 md:text-3xl">Guías</h3>
+            {/* BLOQUE GUÍAS */}
+            <Reveal delay={0.08}>
+              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                <div className="mx-auto max-w-3xl text-center">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                    Recursos para aplicar al toque
+                  </span>
+
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Guías</h3>
+
                   <p className="mt-3 font-medium text-textBody">
                     Guías claras y accionables. Entrás, leés y lo aplicás al toque.
                   </p>
                 </div>
-              </Reveal>
 
-              <div className="flex flex-wrap justify-center gap-8">
-                {previewGuides.map((g, i) => (
-                  <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[360px]">
-                    <Link
-                      href={`/guias/${g.id}/`}
-                      className="group block h-full rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
-                    >
-                      <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                        {g.category}
-                      </div>
+                <div className="mt-10 flex flex-wrap justify-center gap-6">
+                  {previewGuides.map((g, i) => (
+                    <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[320px]">
+                      <Link
+                        href={`/guias/${g.id}/`}
+                        className="group block h-full rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                          {g.category}
+                        </div>
 
-                      <h3 className="mt-4 text-2xl font-black text-slate-900 transition-colors group-hover:text-brand-700">
-                        {g.title}
-                      </h3>
+                        <h4 className="mt-4 text-xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700">
+                          {g.title}
+                        </h4>
 
-                      <p className="mt-3 font-medium leading-relaxed text-textBody">{g.description}</p>
+                        <p className="mt-3 font-medium leading-relaxed text-textBody">{g.description}</p>
 
-                      <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
-                        Ver guía <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
+                        <div className="mt-5 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                          Ver guía <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
 
-              <Reveal delay={0.18}>
-                <div className="mt-12 text-center">
+                <div className="mt-10 text-center">
                   <Link
                     href="/guias/"
                     className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
                   >
                     Ver todas las guías
                   </Link>
-
-                  <div className="mt-4 text-sm font-semibold text-textBody">
-                    Y cuando quieras cerrar bien el número, abrí{" "}
-                    <TrackLink
-                      href={calcHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      event="click_calc"
-                      place="resources_home"
-                      className="font-extrabold text-brand-600 hover:text-brand-700"
-                    >
-                      Calculadora ML →
-                    </TrackLink>
-                  </div>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
