@@ -124,17 +124,17 @@ export default function Home() {
               </a>
 
               <a
-                href="#servicios"
-                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
-              >
-                VER SERVICIOS
-              </a>
-
-              <a
                 href="#recursos-gratuitos"
                 className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
                 VER RECURSOS GRATUITOS
+              </a>
+
+              <a
+                href="#servicios"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER SERVICIOS
               </a>
             </div>
           </Reveal>
@@ -186,67 +186,6 @@ export default function Home() {
                 >
                   Abrir calculadora
                 </TrackLink>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICIOS */}
-      <section id="servicios" className="scroll-mt-24 bg-white py-24">
-        <div className="mx-auto max-w-6xl px-4">
-          <Reveal>
-            <div className="mb-16 text-center">
-              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Servicios
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
-                También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
-                con lógica, login y base de datos.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            <Reveal delay={0.05}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
-                  <MonitorSmartphone className="h-8 w-8" />
-                </div>
-
-                <h3 className="mb-3 text-2xl font-black text-slate-900">Landing pages</h3>
-                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Páginas simples, rápidas y enfocadas en conversión. Ideales para presentar un servicio, captar leads
-                  o dirigir a WhatsApp, formulario o checkout.
-                </p>
-
-                <Link
-                  href="/web/"
-                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
-                >
-                  Ver servicio
-                </Link>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
-                  <Database className="h-8 w-8" />
-                </div>
-
-                <h3 className="mb-3 text-2xl font-black text-slate-900">Páginas web a medida</h3>
-                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Sitios y aplicaciones más completos, con registro, login, paneles, base de datos y funcionalidades
-                  específicas según lo que necesite tu proyecto.
-                </p>
-
-                <Link
-                  href="/web/"
-                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
-                >
-                  Ver servicio
-                </Link>
               </div>
             </Reveal>
           </div>
@@ -381,6 +320,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SERVICIOS */}
+      <section id="servicios" className="scroll-mt-24 bg-white py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Servicios
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-textBody">
+                También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
+                con lógica, login y base de datos.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <Reveal delay={0.05}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Landing pages</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Páginas simples, rápidas y enfocadas en conversión. Ideales para presentar un servicio, captar leads
+                  o dirigir a WhatsApp, formulario o checkout.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <Database className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Páginas web a medida</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Sitios y aplicaciones más completos, con registro, login, paneles, base de datos y funcionalidades
+                  específicas según lo que necesite tu proyecto.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* QUIÉNES SOMOS */}
       <section id="nosotros" className="scroll-mt-24 overflow-hidden bg-white py-24">
         <div className="mx-auto max-w-6xl px-4">
@@ -506,17 +506,6 @@ export default function Home() {
               className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
             >
               VER SERVICIO WEB
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* LINK SUTIL (al final) */}
-      <section className="border-t border-slate-200 bg-white px-4 py-10">
-        <Reveal>
-          <div className="mx-auto flex max-w-6xl items-center justify-center">
-            <Link href="/web/" className="text-sm font-extrabold text-slate-600 transition-colors hover:text-brand-600">
-              ¿Te gustó la página? Pedí una landing o una web a medida →
             </Link>
           </div>
         </Reveal>
