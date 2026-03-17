@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Calculator, CheckCircle2, MessageCircle } from "lucide-react";
+import {
+  ArrowRight,
+  Calculator,
+  CheckCircle2,
+  Database,
+  MessageCircle,
+  MonitorSmartphone,
+} from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Blob from "@/components/Blob";
 import Newsletter from "@/components/Newsletter";
@@ -85,7 +92,7 @@ export default function Home() {
             <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
               Somos vendedores que <br className="hidden md:block" />
               <span className="relative inline-block text-brand-600">
-                Creamos herramientas.
+                Creamos soluciones.
                 <svg
                   className="absolute -bottom-1 left-0 -z-10 h-3 w-full text-yellow-300"
                   viewBox="0 0 100 10"
@@ -99,19 +106,28 @@ export default function Home() {
 
           <Reveal delay={0.1}>
             <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-textBody text-balance md:text-2xl">
-              Construimos lo que necesitábamos para vender mejor. Servicios y recursos reales para problemas que vivimos
-              todos los días. Ahora los compartimos con otros vendedores.
+              Construimos lo que necesitábamos para vender mejor. Herramientas, landing pages, páginas web a medida y
+              recursos reales para problemas que vivimos todos los días.
             </p>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
               <a
-                href="#servicios"
+                href={calcHref}
+                target="_blank"
+                rel="noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700 sm:w-auto"
               >
-                VER SERVICIOS
+                ABRIR CALCULADORA ML
                 <ArrowRight className="h-5 w-5" />
+              </a>
+
+              <a
+                href="#servicios"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER SERVICIOS
               </a>
 
               <a
@@ -129,16 +145,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICIOS */}
-      <section id="servicios" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
+      {/* CALCULADORA ML */}
+      <section id="calculadora-ml" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
               <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Servicios
+                Calculadora ML
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-textBody">
-                Hoy nuestro servicio principal es la Calculadora ML.
+                Nuestra herramienta principal para calcular precios, costos, comisiones, impuestos y rentabilidad real.
               </p>
             </div>
           </Reveal>
@@ -147,7 +163,7 @@ export default function Home() {
             <Reveal delay={0.05}>
               <div className="group relative flex flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
                 <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
-                  MÁS USADO
+                  MÁS USADA
                 </div>
 
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600 transition-transform group-hover:scale-[1.06]">
@@ -156,8 +172,8 @@ export default function Home() {
 
                 <h3 className="mb-3 text-2xl font-bold text-slate-900">Calculadora ML</h3>
                 <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos (IIBB,
-                  Ganancias) y opciones de cuotas.
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos y opciones
+                  de cuotas para ver tu ganancia real.
                 </p>
 
                 <TrackLink
@@ -165,10 +181,10 @@ export default function Home() {
                   target="_blank"
                   rel="noreferrer"
                   event="click_calc"
-                  place="services_card_home"
+                  place="calculator_card_home"
                   className="mt-auto block w-full rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
                 >
-                  Abrir servicio
+                  Abrir calculadora
                 </TrackLink>
               </div>
             </Reveal>
@@ -176,8 +192,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SERVICIOS */}
+      <section id="servicios" className="scroll-mt-24 bg-white py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Servicios
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-textBody">
+                También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
+                con lógica, login y base de datos.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <Reveal delay={0.05}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Landing pages</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Páginas simples, rápidas y enfocadas en conversión. Ideales para presentar un servicio, captar leads
+                  o dirigir a WhatsApp, formulario o checkout.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <Database className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Páginas web a medida</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Sitios y aplicaciones más completos, con registro, login, paneles, base de datos y funcionalidades
+                  específicas según lo que necesite tu proyecto.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* RECURSOS GRATUITOS */}
-      <section id="recursos-gratuitos" className="scroll-mt-24 bg-white py-24">
+      <section id="recursos-gratuitos" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
@@ -417,17 +494,19 @@ export default function Home() {
       <section className="border-t border-brand-100 bg-brand-50 px-4 py-20 text-center">
         <Reveal>
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-6 text-3xl font-black text-slate-900">¿Necesitás otro servicio?</h2>
+            <h2 className="mb-6 text-3xl font-black text-slate-900">
+              ¿Necesitás una landing o una web a medida?
+            </h2>
             <p className="mx-auto mb-8 max-w-xl text-textBody">
-              Siempre estamos buscando nuevas formas de ayudar a los vendedores. Escribinos y contanos qué necesitás.
+              Si querés una página clara, rápida y pensada para vender, escribinos y vemos qué formato te conviene.
             </p>
 
-            <a
-              href="mailto:soporte@oriavision.com.ar"
+            <Link
+              href="/web/"
               className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
             >
-              CONTACTAR SOPORTE
-            </a>
+              VER SERVICIO WEB
+            </Link>
           </div>
         </Reveal>
       </section>
@@ -437,7 +516,7 @@ export default function Home() {
         <Reveal>
           <div className="mx-auto flex max-w-6xl items-center justify-center">
             <Link href="/web/" className="text-sm font-extrabold text-slate-600 transition-colors hover:text-brand-600">
-              ¿Te gustó la página? Pedí una landing como esta →
+              ¿Te gustó la página? Pedí una landing o una web a medida →
             </Link>
           </div>
         </Reveal>

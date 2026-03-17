@@ -22,11 +22,8 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Servicios",
     href: "/#servicios",
     items: [
-      {
-        label: "Calculadora ML",
-        href: "https://calculadoraml.oriavision.com.ar",
-        external: true,
-      },
+      { label: "Landing pages", href: "/web/" },
+      { label: "Páginas web a medida", href: "/web/" },
     ],
   },
   {
@@ -108,7 +105,6 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* DESKTOP */}
           <div className="hidden items-center gap-8 md:flex">
             {NAV_GROUPS.map((group) => (
               <div key={group.label} className="group relative">
@@ -123,10 +119,10 @@ export default function Navbar() {
                 </div>
 
                 <div className="pointer-events-none absolute left-0 top-full z-50 translate-y-1 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                  <div className="min-w-[240px] rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
+                  <div className="min-w-[260px] rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
                     {group.items.map((item) => (
                       <NavItemLink
-                        key={item.href}
+                        key={item.href + item.label}
                         item={item}
                         className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50 hover:text-brand-600"
                       />
@@ -146,7 +142,6 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* MOBILE */}
           <div className="flex items-center gap-2 md:hidden">
             <a
               href={PRIMARY_CTA.href}
@@ -170,7 +165,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE DRAWER */}
       {open && (
         <div className="fixed inset-0 z-[60]">
           <button
@@ -213,7 +207,7 @@ export default function Navbar() {
                   <div className="mt-3 flex flex-col gap-3 pl-1">
                     {group.items.map((item) => (
                       <NavItemLink
-                        key={item.href}
+                        key={item.href + item.label}
                         item={item}
                         onClick={close}
                         className="text-base font-extrabold text-slate-800"

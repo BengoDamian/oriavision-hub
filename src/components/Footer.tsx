@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white py-12">
-      <div className="container mb-10 grid gap-8 md:grid-cols-5">
+      <div className="container mb-10 grid gap-8 md:grid-cols-6">
         <div className="col-span-1 md:col-span-2">
           <h4 className="mb-4 text-xl font-black text-brand-600">ORIAVISION</h4>
 
@@ -14,7 +14,7 @@ export default function Footer() {
 
         <div>
           <h5 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-textStrong">
-            Servicios
+            Calculadora ML
           </h5>
           <ul className="space-y-2 text-sm font-semibold text-textBody">
             <li>
@@ -24,8 +24,32 @@ export default function Footer() {
                 rel="noreferrer"
                 className="text-textBody transition-colors hover:text-brand-600"
               >
-                Calculadora ML
+                Abrir calculadora
               </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-textStrong">
+            Servicios
+          </h5>
+          <ul className="space-y-2 text-sm font-semibold text-textBody">
+            <li>
+              <Link
+                href="/web/"
+                className="text-textBody transition-colors hover:text-brand-600"
+              >
+                Landing pages
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/web/"
+                className="text-textBody transition-colors hover:text-brand-600"
+              >
+                Páginas web a medida
+              </Link>
             </li>
           </ul>
         </div>
