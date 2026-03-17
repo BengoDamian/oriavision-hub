@@ -218,12 +218,12 @@ export default function Home() {
                 </div>
               </Reveal>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-wrap justify-center gap-8">
                 {previewPrompts.map((p, i) => (
-                  <Reveal key={p.id} delay={0.05 + i * 0.05}>
+                  <Reveal key={p.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[360px]">
                     <Link
                       href={`/prompts/${p.id}/`}
-                      className="group block rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                      className="group block h-full rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                     >
                       <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
                         {p.category}
@@ -266,12 +266,12 @@ export default function Home() {
                 </div>
               </Reveal>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-wrap justify-center gap-8">
                 {previewGuides.map((g, i) => (
-                  <Reveal key={g.id} delay={0.05 + i * 0.05}>
+                  <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[360px]">
                     <Link
                       href={`/guias/${g.id}/`}
-                      className="group block rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                      className="group block h-full rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                     >
                       <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
                         {g.category}
