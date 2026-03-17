@@ -1,53 +1,14 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Oriavision Hub",
-    template: "%s | Oriavision",
-  },
-  description:
-    "Servicios y recursos gratuitos que usamos todos los días para vender mejor. Corto, accionable y sin humo.",
-  openGraph: {
-    type: "website",
-    siteName: "Oriavision",
-    title: "Oriavision Hub",
-    description:
-      "Servicios y recursos gratuitos que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Oriavision Hub",
-    description:
-      "Servicios y recursos gratuitos que usamos todos los días para vender mejor en MercadoLibre y Tiendanube. Corto, accionable y sin humo.",
-  },
+  title: "Prompts",
+  description: "Recursos gratuitos: prompts listos para copiar y usar para vender mejor.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const token = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
-
-  return (
-    <html lang="es">
-      <head>
-        {token ? (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={JSON.stringify({
-              token,
-              spa: true,
-            })}
-          />
-        ) : null}
-      </head>
-
-      <body className="min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+export default function PromptsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
 }
