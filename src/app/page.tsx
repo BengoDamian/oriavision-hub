@@ -102,12 +102,12 @@ export default function Home() {
       </TrackLink>
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-white pb-20 pt-24 md:pb-32 md:pt-32">
+      <section className="relative overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
         <Blob />
 
         <div className="mx-auto max-w-6xl px-4 text-center">
           <Reveal delay={0.03}>
-            <div className="mx-auto mb-10 max-w-3xl">
+            <div className="mx-auto mb-8 max-w-3xl">
               <ResourceSearch items={searchItems} />
             </div>
           </Reveal>
@@ -231,7 +231,6 @@ export default function Home() {
           </Reveal>
 
           <div className="space-y-10">
-            {/* BLOQUE PROMPTS */}
             <Reveal delay={0.04}>
               <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
@@ -311,7 +310,6 @@ export default function Home() {
               </div>
             </Reveal>
 
-            {/* BLOQUE GUÍAS */}
             <Reveal delay={0.08}>
               <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
