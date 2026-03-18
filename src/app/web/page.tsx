@@ -1,15 +1,17 @@
+import type { Metadata } from "next";
 import WebRequestForm from "@/components/WebRequestForm";
 import Reveal from "@/components/Reveal";
 
-export const metadata = {
-  title: "Pedí tu landing",
-  description: "Pedí una landing como Oriavision: simple, rápida y enfocada a conversión.",
+export const metadata: Metadata = {
+  title: "Landing pages y páginas web a medida",
+  description:
+    "Pedí una landing o una página web a medida para tu proyecto. Simple, rápida y enfocada a conversión.",
 };
 
 export default function WebPage() {
   return (
     <main className="min-h-screen bg-white">
-      <section className="pt-24 pb-20 md:pt-28 md:pb-24 px-4">
+      <section className="px-4 pb-20 pt-24 md:pb-24 md:pt-28">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <WebRequestForm />
@@ -19,7 +21,7 @@ export default function WebPage() {
             Preferís escribir directo?{" "}
             <a
               href="mailto:soporte@oriavision.com.ar"
-              className="text-brand-600 hover:text-brand-700 font-extrabold"
+              className="font-extrabold text-brand-600 hover:text-brand-700"
             >
               soporte@oriavision.com.ar
             </a>
