@@ -106,6 +106,12 @@ export default function Home() {
         <Blob />
 
         <div className="mx-auto max-w-6xl px-4 text-center">
+          <Reveal delay={0.03}>
+            <div className="mx-auto mb-10 max-w-3xl">
+              <ResourceSearch items={searchItems} />
+            </div>
+          </Reveal>
+
           <Reveal delay={0.05}>
             <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
               Somos vendedores que <br className="hidden md:block" />
@@ -127,12 +133,6 @@ export default function Home() {
               Construimos lo que necesitábamos para vender mejor. Herramientas, landing pages, páginas web a medida y
               recursos reales para problemas que vivimos todos los días.
             </p>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <div className="mx-auto mb-8 max-w-3xl">
-              <ResourceSearch items={searchItems} />
-            </div>
           </Reveal>
 
           <Reveal delay={0.15}>

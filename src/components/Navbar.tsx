@@ -18,17 +18,17 @@ type NavGroup = {
 
 const NAV_GROUPS: NavGroup[] = [
   {
-    label: "Servicios",
-    items: [
-      { label: "Landing pages", href: "/web/" },
-      { label: "Páginas web a medida", href: "/web/" },
-    ],
-  },
-  {
     label: "Recursos gratuitos",
     items: [
       { label: "Prompts", href: "/prompts/" },
       { label: "Guías", href: "/guias/" },
+    ],
+  },
+  {
+    label: "Servicios",
+    items: [
+      { label: "Landing pages", href: "/web/" },
+      { label: "Páginas web a medida", href: "/web/" },
     ],
   },
 ];
