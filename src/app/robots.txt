@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://www.oriavision.com.ar/sitemap.xml
+Host: https://www.oriavision.com.ar
