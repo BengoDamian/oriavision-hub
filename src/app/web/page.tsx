@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     "Pedí una landing o una página web a medida para tu proyecto. Simple, rápida y enfocada a conversión.",
 };
 
+// trigger deploy
 export default function WebPage() {
   return (
     <main className="min-h-screen bg-white">
