@@ -15,6 +15,7 @@ import Blob from "@/components/Blob";
 import Newsletter from "@/components/Newsletter";
 import LeadMagnet from "@/components/LeadMagnet";
 import TrackLink from "@/components/TrackLink";
+import ResourceSearch from "@/components/ResourceSearch";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const TEAM = [
@@ -53,8 +54,25 @@ export default function Home() {
   const featuredGuides = guides.filter((g) => g.featured);
   const previewGuides = (featuredGuides.length ? featuredGuides : guides).slice(0, 3);
 
+  const searchItems = [
+    ...prompts.map((p) => ({
+      type: "Prompt" as const,
+      title: p.title,
+      description: p.description,
+      category: p.category,
+      href: `/prompts/${p.id}/`,
+    })),
+    ...guides.map((g) => ({
+      type: "Guía" as const,
+      title: g.title,
+      description: g.description,
+      category: g.category,
+      href: `/guias/${g.id}/`,
+    })),
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col pb-28">
+    <div className="flex min-h-screen flex-col pb-28">
       {/* Floating Calculadora ML (abajo izquierda) */}
       <TrackLink
         href={calcHref}
@@ -203,6 +221,12 @@ export default function Home() {
               <p className="mx-auto max-w-2xl text-lg text-textBody">
                 Contenido listo para leer, copiar y aplicar. Sin vueltas y sin humo.
               </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.02}>
+            <div className="mx-auto mb-10 max-w-3xl">
+              <ResourceSearch items={searchItems} />
             </div>
           </Reveal>
 
@@ -533,6 +557,6 @@ export default function Home() {
       </section>
 
       <Newsletter />
-    </main>
+    </div>
   );
 }
