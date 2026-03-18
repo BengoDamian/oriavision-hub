@@ -129,6 +129,12 @@ export default function Home() {
             </p>
           </Reveal>
 
+          <Reveal delay={0.12}>
+            <div className="mx-auto mb-8 max-w-3xl">
+              <ResourceSearch items={searchItems} />
+            </div>
+          </Reveal>
+
           <Reveal delay={0.15}>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
               <a
@@ -221,12 +227,6 @@ export default function Home() {
               <p className="mx-auto max-w-2xl text-lg text-textBody">
                 Contenido listo para leer, copiar y aplicar. Sin vueltas y sin humo.
               </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.02}>
-            <div className="mx-auto mb-10 max-w-3xl">
-              <ResourceSearch items={searchItems} />
             </div>
           </Reveal>
 
