@@ -114,49 +114,47 @@ export default function ResourceSearch({
         <Search className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
       </div>
 
-      {!query.trim() ? (
-        <p className="mt-4 text-sm font-medium text-slate-500">
-          Ejemplos: tienda oficial, logística, reclamos, promociones, ML
-        </p>
-      ) : results.length > 0 ? (
-        <div className="mt-4 space-y-3">
-          {results.map(({ item }) => (
-            <Link
-              key={`${item.type}-${item.href}`}
-              href={item.href}
-              className="block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-sm"
-            >
-              <div className="flex items-center gap-2">
-                {item.type === "Prompt" ? (
-                  <FileText className="h-4 w-4 text-brand-600" />
-                ) : (
-                  <BookOpen className="h-4 w-4 text-brand-600" />
-                )}
+      {query.trim() ? (
+        results.length > 0 ? (
+          <div className="mt-4 space-y-3">
+            {results.map(({ item }) => (
+              <Link
+                key={`${item.type}-${item.href}`}
+                href={item.href}
+                className="block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-sm"
+              >
+                <div className="flex items-center gap-2">
+                  {item.type === "Prompt" ? (
+                    <FileText className="h-4 w-4 text-brand-600" />
+                  ) : (
+                    <BookOpen className="h-4 w-4 text-brand-600" />
+                  )}
 
-                <span className="rounded-full border border-blue-100 bg-white px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
-                  {item.type}
-                </span>
+                  <span className="rounded-full border border-blue-100 bg-white px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                    {item.type}
+                  </span>
 
-                <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-600">
-                  {item.category}
-                </span>
-              </div>
+                  <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-600">
+                    {item.category}
+                  </span>
+                </div>
 
-              <h3 className="mt-3 text-lg font-black text-slate-900">
-                {item.title}
-              </h3>
+                <h3 className="mt-3 text-lg font-black text-slate-900">
+                  {item.title}
+                </h3>
 
-              <p className="mt-2 text-sm font-medium leading-relaxed text-textBody">
-                {item.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <p className="mt-4 text-sm font-medium text-slate-500">
-          No encontré resultados para “{query}”.
-        </p>
-      )}
+                <p className="mt-2 text-sm font-medium leading-relaxed text-textBody">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 text-sm font-medium text-slate-500">
+            No encontré resultados para “{query}”.
+          </p>
+        )
+      ) : null}
     </div>
   );
 }
