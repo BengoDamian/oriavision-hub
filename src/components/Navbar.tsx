@@ -13,14 +13,12 @@ type NavItem = {
 
 type NavGroup = {
   label: string;
-  href: string;
   items: NavItem[];
 };
 
 const NAV_GROUPS: NavGroup[] = [
   {
     label: "Servicios",
-    href: "/#servicios",
     items: [
       { label: "Landing pages", href: "/web/" },
       { label: "Páginas web a medida", href: "/web/" },
@@ -28,7 +26,6 @@ const NAV_GROUPS: NavGroup[] = [
   },
   {
     label: "Recursos gratuitos",
-    href: "/#recursos-gratuitos",
     items: [
       { label: "Prompts", href: "/prompts/" },
       { label: "Guías", href: "/guias/" },
@@ -108,15 +105,13 @@ export default function Navbar() {
           <div className="hidden items-center gap-8 md:flex">
             {NAV_GROUPS.map((group) => (
               <div key={group.label} className="group relative">
-                <div className="flex items-center gap-1">
-                  <Link
-                    href={group.href}
-                    className="text-sm font-extrabold uppercase tracking-wide text-slate-600 transition-colors hover:text-brand-600"
-                  >
-                    {group.label}
-                  </Link>
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-sm font-extrabold uppercase tracking-wide text-slate-600 transition-colors hover:text-brand-600"
+                >
+                  <span>{group.label}</span>
                   <ChevronDown className="h-4 w-4 text-slate-500 transition-colors group-hover:text-brand-600" />
-                </div>
+                </button>
 
                 <div className="pointer-events-none absolute left-0 top-full z-50 translate-y-1 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   <div className="min-w-[260px] rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
@@ -196,13 +191,9 @@ export default function Navbar() {
             <div className="mt-8 space-y-8">
               {NAV_GROUPS.map((group) => (
                 <div key={group.label}>
-                  <Link
-                    href={group.href}
-                    onClick={close}
-                    className="block text-sm font-extrabold uppercase tracking-wide text-slate-500"
-                  >
+                  <div className="block text-sm font-extrabold uppercase tracking-wide text-slate-500">
                     {group.label}
-                  </Link>
+                  </div>
 
                   <div className="mt-3 flex flex-col gap-3 pl-1">
                     {group.items.map((item) => (

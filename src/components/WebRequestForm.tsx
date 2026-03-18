@@ -65,15 +65,15 @@ export default function WebRequestForm() {
 
       <div className="relative">
         <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-          Landing a medida
+          Landing page o web a medida
         </div>
 
         <h1 className="mt-5 text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
-          ¿Querés una landing como esta?
+          ¿Querés una landing page o una web a medida?
         </h1>
 
         <p className="mt-4 text-lg text-textBody font-medium max-w-2xl">
-          Contanos qué necesitás y te respondemos por mail. Simple, rápida y enfocada a conversión.
+          Contanos qué necesitás y te respondemos por mail. Desde una landing simple hasta una web más completa con funcionalidades a medida.
         </p>
 
         <form onSubmit={onSubmit} className="mt-8 grid gap-4">
