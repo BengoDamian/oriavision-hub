@@ -7,7 +7,7 @@ import { getPromptByIdMerged, getPromptIdsMerged } from "@/lib/content";
 
 const calcHref = "https://calculadoraml.oriavision.com.ar";
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
@@ -38,7 +38,7 @@ export async function generateMetadata({
   return {
     title: item.title,
     description: item.description,
-    alternates: { canonical: url },
+    alternates: { canonical: `/prompts/${item.id}/` },
     openGraph: {
       type: "article",
       url,
@@ -69,13 +69,47 @@ export default async function PromptDetailPage({ params }: PageProps) {
 
   if (!item) notFound();
 
+  const url = `${SITE_URL}/prompts/${item.id}/`;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Prompts",
+        item: `${SITE_URL}/prompts/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: item.title,
+        item: url,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-4">
           <Link
             href="/prompts/"
-            className="inline-flex font-extrabold text-sm text-slate-600 hover:text-brand-600 transition-colors"
+            className="inline-flex text-sm font-extrabold text-slate-600 transition-colors hover:text-brand-600"
           >
             ← Volver a Prompts
           </Link>
@@ -85,11 +119,11 @@ export default async function PromptDetailPage({ params }: PageProps) {
               {item.category}
             </div>
 
-            <h1 className="mt-3 text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+            <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-900 md:text-5xl">
               {item.title}
             </h1>
 
-            <p className="mt-4 text-textBody font-medium leading-relaxed">
+            <p className="mt-4 font-medium leading-relaxed text-textBody">
               {item.description}
             </p>
 
@@ -98,7 +132,7 @@ export default async function PromptDetailPage({ params }: PageProps) {
                 {item.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-700"
+                    className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700"
                   >
                     {t}
                   </span>
@@ -108,26 +142,26 @@ export default async function PromptDetailPage({ params }: PageProps) {
           </div>
 
           <div className="mt-10 rounded-[2rem] border border-slate-200 bg-slate-50 p-6">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="text-sm font-extrabold text-slate-900">
                 Prompt completo
               </div>
               <CopyPromptButton text={item.prompt} />
             </div>
 
-            <pre className="mt-5 whitespace-pre-wrap text-[14px] leading-relaxed text-slate-900 font-medium">
+            <pre className="mt-5 whitespace-pre-wrap text-[14px] font-medium leading-relaxed text-slate-900">
               {item.prompt}
             </pre>
           </div>
 
           <div className="mt-12 rounded-[2rem] border border-slate-200 bg-white p-8">
-            <div className="text-sm font-extrabold text-brand-600 uppercase tracking-widest">
+            <div className="text-sm font-extrabold uppercase tracking-widest text-brand-600">
               Calculadora ML
             </div>
             <div className="mt-2 text-2xl font-black text-slate-900">
               Terminaste el prompt. Ahora cerrá el número.
             </div>
-            <p className="mt-2 text-textBody font-medium">
+            <p className="mt-2 font-medium text-textBody">
               Calculá costo, comisiones e impuestos y publicá con rentabilidad
               real.
             </p>
@@ -137,7 +171,7 @@ export default async function PromptDetailPage({ params }: PageProps) {
                 href={calcHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3 text-white font-extrabold hover:bg-brand-700 transition-colors"
+                className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3 font-extrabold text-white transition-colors hover:bg-brand-700"
               >
                 Abrir Calculadora ML
               </a>

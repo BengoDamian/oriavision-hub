@@ -7,7 +7,7 @@ import { getGuideByIdMerged, getGuideIdsMerged } from "@/lib/content";
 
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://oriavision.com.ar";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.oriavision.com.ar";
 
 export const dynamic = "error";
 export const dynamicParams = false;
@@ -38,7 +38,7 @@ export async function generateMetadata({
   return {
     title: item.title,
     description: item.description,
-    alternates: { canonical: url },
+    alternates: { canonical: `/guias/${item.id}/` },
     openGraph: {
       type: "article",
       url,
@@ -69,13 +69,76 @@ export default async function GuiaDetailPage({ params }: PageProps) {
 
   if (!item) notFound();
 
+  const url = `${SITE_URL}/guias/${item.id}/`;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Guías",
+        item: `${SITE_URL}/guias/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: item.title,
+        item: url,
+      },
+    ],
+  };
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.description,
+    mainEntityOfPage: url,
+    url,
+    author: {
+      "@type": "Organization",
+      name: "Oriavision",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Oriavision",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    image: [`${SITE_URL}/og/guia.png`],
+    inLanguage: "es-AR",
+  };
+
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd),
+        }}
+      />
+
       <div className="mx-auto max-w-4xl px-4 py-12">
         <div className="mb-6">
           <Link
             href="/guias/"
-            className="text-sm font-semibold text-textBody hover:text-brand-600 transition-colors"
+            className="text-sm font-semibold text-textBody transition-colors hover:text-brand-600"
           >
             ← Volver a Guías
           </Link>
@@ -83,15 +146,15 @@ export default async function GuiaDetailPage({ params }: PageProps) {
 
         <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
           <div className="mb-8">
-            <div className="inline-flex items-center rounded-full bg-blue-50 border border-blue-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+            <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
               {item.category}
             </div>
 
-            <h1 className="mt-4 text-3xl md:text-5xl font-black tracking-tight text-slate-900">
+            <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
               {item.title}
             </h1>
 
-            <p className="mt-3 text-textBody font-medium leading-relaxed">
+            <p className="mt-3 font-medium leading-relaxed text-textBody">
               {item.description}
             </p>
           </div>
@@ -103,7 +166,7 @@ export default async function GuiaDetailPage({ params }: PageProps) {
           <h2 className="text-lg font-extrabold text-slate-900">
             ¿Querés calcular precios sin perder margen?
           </h2>
-          <p className="mt-2 text-textBody font-medium">
+          <p className="mt-2 font-medium text-textBody">
             Abrí la Calculadora ML y sacá el precio final en segundos (contado +
             cuotas).
           </p>
@@ -112,7 +175,7 @@ export default async function GuiaDetailPage({ params }: PageProps) {
             href={CALC_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-flex items-center justify-center px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white text-sm font-extrabold rounded-full transition-colors"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3 text-sm font-extrabold text-white transition-colors hover:bg-brand-700"
           >
             Abrir Calculadora ML
           </a>
