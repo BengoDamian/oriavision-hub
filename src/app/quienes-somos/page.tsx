@@ -1,12 +1,29 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sobre Oriavision",
+  description: "Información general sobre Oriavision.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function QuienesSomos() {
   return (
-    <div className="container py-24 max-w-3xl text-center">
-      <h1 className="text-4xl font-black mb-8 text-primary">Sobre Oriavision</h1>
-      <p className="text-xl text-gray-600 leading-relaxed">
-        Somos un equipo de desarrolladores y vendedores expertos en Mercado Libre. 
-        Nuestra misión es democratizar la inteligencia de datos para que cualquier 
-        vendedor pueda competir con los grandes líderes del mercado.
-      </p>
-    </div>
-  )
+    <main className="min-h-screen bg-white">
+      <div className="container max-w-3xl py-24 text-center">
+        <h1 className="mb-8 text-4xl font-black text-brand-600">
+          Sobre Oriavision
+        </h1>
+
+        <p className="text-xl leading-relaxed text-textBody font-medium">
+          Somos un equipo que vende, prueba y construye herramientas para
+          trabajar mejor. Oriavision nace desde problemas reales de operación,
+          números y venta online, con foco en soluciones simples, claras y
+          útiles.
+        </p>
+      </div>
+    </main>
+  );
 }
