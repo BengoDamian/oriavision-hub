@@ -34,20 +34,25 @@ export async function generateMetadata({
   }
 
   const url = `${SITE_URL}/guias/${item.id}/`;
+  const title = item.seoTitle || item.title;
+  const description = item.seoDescription || item.description;
 
   return {
-    title: item.title,
-    description: item.description,
+    title,
+    description,
+    robots: item.noindex
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
     alternates: { canonical: `/guias/${item.id}/` },
     openGraph: {
       type: "article",
       url,
       siteName: "Oriavision",
-      title: item.title,
-      description: item.description,
+      title,
+      description,
       images: [
         {
-          url: `${SITE_URL}/og/guia.png`,
+          url: item.image || `${SITE_URL}/og/guia.png`,
           width: 1200,
           height: 630,
           alt: item.title,
@@ -56,9 +61,9 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: item.title,
-      description: item.description,
-      images: [`${SITE_URL}/og/guia.png`],
+      title,
+      description,
+      images: [item.image || `${SITE_URL}/og/guia.png`],
     },
   };
 }
@@ -103,9 +108,11 @@ export default async function GuiaDetailPage({ params }: PageProps) {
     description: item.description,
     mainEntityOfPage: url,
     url,
+    datePublished: item.publishedAt,
+    dateModified: item.updatedAt || item.publishedAt,
     author: {
-      "@type": "Organization",
-      name: "Oriavision",
+      "@type": item.author ? "Person" : "Organization",
+      name: item.author || "Oriavision",
     },
     publisher: {
       "@type": "Organization",
@@ -115,7 +122,7 @@ export default async function GuiaDetailPage({ params }: PageProps) {
         url: `${SITE_URL}/logo.png`,
       },
     },
-    image: [`${SITE_URL}/og/guia.png`],
+    image: [item.image || `${SITE_URL}/og/guia.png`],
     inLanguage: "es-AR",
   };
 

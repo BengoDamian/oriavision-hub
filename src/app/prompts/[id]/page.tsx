@@ -34,17 +34,22 @@ export async function generateMetadata({
   }
 
   const url = `${SITE_URL}/prompts/${item.id}/`;
+  const title = item.seoTitle || item.title;
+  const description = item.seoDescription || item.description;
 
   return {
-    title: item.title,
-    description: item.description,
+    title,
+    description,
+    robots: item.noindex
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
     alternates: { canonical: `/prompts/${item.id}/` },
     openGraph: {
       type: "article",
       url,
       siteName: "Oriavision",
-      title: item.title,
-      description: item.description,
+      title,
+      description,
       images: [
         {
           url: `${SITE_URL}/og/prompt.png`,
@@ -56,8 +61,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: item.title,
-      description: item.description,
+      title,
+      description,
       images: [`${SITE_URL}/og/prompt.png`],
     },
   };

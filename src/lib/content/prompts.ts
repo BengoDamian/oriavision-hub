@@ -13,6 +13,11 @@ export type PromptItem = {
   prompt: string;
   tags?: string[];
   featured?: boolean;
+  draft?: boolean;
+  noindex?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  updatedAt?: string;
 };
 
 const DIR = path.join(process.cwd(), "content", "prompts");
@@ -35,11 +40,18 @@ export function getAllPromptsFromContent(): PromptItem[] {
       prompt: content.trim(),
       tags: Array.isArray(data.tags) ? data.tags.map(String) : undefined,
       featured: Boolean(data.featured ?? false),
+      draft: Boolean(data.draft ?? false),
+      noindex: Boolean(data.noindex ?? false),
+      seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
+      seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
+      updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
     };
   });
 
   items.sort(
-    (a, b) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title)
+    (a, b) =>
+      Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
+      a.title.localeCompare(b.title)
   );
 
   return items;
@@ -60,5 +72,10 @@ export function getPromptByIdFromContent(id: string): PromptItem | null {
     prompt: content.trim(),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : undefined,
     featured: Boolean(data.featured ?? false),
+    draft: Boolean(data.draft ?? false),
+    noindex: Boolean(data.noindex ?? false),
+    seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
+    seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
+    updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
   };
 }
