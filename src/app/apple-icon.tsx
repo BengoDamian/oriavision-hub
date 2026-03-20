@@ -19,31 +19,48 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#0B3B8F",
-          borderRadius: "44px",
+          background: "white",
+          borderRadius: "40px",
+          position: "relative",
         }}
       >
         <div
           style={{
-            width: 96,
-            height: 96,
-            borderRadius: "999px",
-            border: "14px solid white",
+            width: 120,
+            height: 78,
+            borderRadius: 999,
+            border: "10px solid #0B3B8F",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             position: "relative",
             boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              width: 20,
-              height: 20,
+              width: 42,
+              height: 42,
               borderRadius: "999px",
-              background: "#7FDBFF",
-              position: "absolute",
-              top: 12,
-              left: 12,
+              background: "#0B3B8F",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
             }}
-          />
+          >
+            <div
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius: "999px",
+                background: "#7FDBFF",
+                position: "absolute",
+                top: 8,
+                left: 8,
+              }}
+            />
+          </div>
         </div>
       </div>
     ),
