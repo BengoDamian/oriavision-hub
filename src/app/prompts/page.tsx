@@ -5,19 +5,72 @@ import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
 import { getAllPromptsMerged } from "@/lib/content";
 
+const SITE_URL = "https://www.oriavision.com.ar";
+const PAGE_URL = `${SITE_URL}/prompts/`;
+
 export const metadata: Metadata = {
-  title: "Prompts",
-  description: "Recursos gratuitos: prompts listos para copiar y usar para vender mejor.",
+  title: "Prompts para MercadoLibre y e-commerce",
+  description:
+    "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+  alternates: {
+    canonical: "/prompts/",
+  },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Prompts para MercadoLibre y e-commerce | Oriavision",
+    description:
+      "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "Prompts de Oriavision",
+      },
+    ],
+  },
+  twitter: {
+    title: "Prompts para MercadoLibre y e-commerce | Oriavision",
+    description:
+      "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+    images: ["/og/home.png"],
+  },
 };
 
 export const dynamic = "error";
 export const dynamicParams = false;
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: SITE_URL,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Prompts",
+      item: PAGE_URL,
+    },
+  ],
+};
 
 export default function PromptsPage() {
   const prompts = getAllPromptsMerged();
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
