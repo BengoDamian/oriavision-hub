@@ -1,24 +1,32 @@
 export type GuideCategory = string;
 
 export type GuideItem = {
-    id: string;
-    title: string;
-    description: string;
-    category: GuideCategory;
-    content: string; // texto largo (la guía completa)
-    tags?: string[];
-    featured?: boolean;
+  id: string;
+  title: string;
+  description: string;
+  category: GuideCategory;
+  content: string;
+  tags?: string[];
+  featured?: boolean;
+  draft?: boolean;
+  noindex?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  image?: string;
+  author?: string;
 };
 
 export const guides: GuideItem[] = [
-    {
-        id: "logistica-flex-principiantes",
-        title: "Cómo elegir logística Flex (principiantes)",
-        description: "Guía práctica para no arruinar tu reputación en los primeros envíos.",
-        category: "Logística",
-        tags: ["Flex", "Reputación", "Cumplimiento"],
-        featured: true,
-        content: `Hola! 👋 Te dejo una guía simple para elegir tu logística de Mercado Envíos Flex cuando recién empezás (esto te ahorra problemas y, sobre todo, te cuida la reputación).
+  {
+    id: "logistica-flex-principiantes",
+    title: "Cómo elegir logística Flex (principiantes)",
+    description: "Guía práctica para no arruinar tu reputación en los primeros envíos.",
+    category: "Logística",
+    tags: ["Flex", "Reputación", "Cumplimiento"],
+    featured: true,
+    content: `Hola! 👋 Te dejo una guía simple para elegir tu logística de Mercado Envíos Flex cuando recién empezás (esto te ahorra problemas y, sobre todo, te cuida la reputación).
 
 ✅ 1) Priorizá que la logística te quede CERCA
 Al principio es clave porque si algún día no pasan a retirar o se complica, vos podés acercar los paquetes y salvar las entregas.
@@ -51,17 +59,17 @@ Después, cuando veas que cumplís bien, vas ampliando zona/horario/cupo.
 
 📌 Resumen corto:
 Elegí una logística cerca + que cumpla. El precio es secundario si te cuida la reputación.`,
-    },
+  },
 
-    {
-        id: "promociones-publicidad-politica-precios",
-        title: "Promociones, publicidad y política de precios: una buena idea... hasta que la operación te pasa factura",
-        description:
-            "Testear promociones y publicidad suena bárbaro, pero si multiplicás publicaciones y precios, la gestión se complica.",
-        category: "Precios & Promociones",
-        tags: ["Promociones", "Publicidad", "Precios", "Operación", "MercadoLibre", "Tiendanube"],
-        featured: true,
-        content: `Hola! 👋 Si estás pensando en dedicar parte del margen a promociones o publicidad (ej: un 10%), la idea es buena… pero ojo con el costo operativo cuando lo llevás a escala.
+  {
+    id: "promociones-publicidad-politica-precios",
+    title: "Promociones, publicidad y política de precios: una buena idea... hasta que la operación te pasa factura",
+    description:
+      "Testear promociones y publicidad suena bárbaro, pero si multiplicás publicaciones y precios, la gestión se complica.",
+    category: "Precios & Promociones",
+    tags: ["Promociones", "Publicidad", "Precios", "Operación", "MercadoLibre", "Tiendanube"],
+    featured: true,
+    content: `Hola! 👋 Si estás pensando en dedicar parte del margen a promociones o publicidad (ej: un 10%), la idea es buena… pero ojo con el costo operativo cuando lo llevás a escala.
 
 ✅ 1) La teoría cierra perfecto
 La lógica es simple:
@@ -107,17 +115,17 @@ Si sos pocos y además atendés ventas, stock, consultas, reclamos y precios… 
 
 📌 Resumen corto:
 Sirve para testear y aprender, pero a escala la operación manda. Lo que cierra en Excel muchas veces se vuelve difícil de sostener todos los días.`,
-    },
+  },
 
-    {
-        id: "tienda-oficial-mercadolibre-empeza-por-esto",
-        title: "¿Querés llegar a tener una Tienda Oficial en Mercado Libre? Empezá por esto",
-        description:
-            "Antes de pensar en Tienda Oficial, ordená tu marca: INPI, agente de marcas e identidad consistente.",
-        category: "MercadoLibre",
-        tags: ["Tienda Oficial", "Marca", "INPI", "Branding", "Identidad", "MercadoLibre"],
-        featured: true,
-        content: `Hola! 👋 Muchas personas me consultan qué hace falta para tener una Tienda Oficial en Mercado Libre. Y aunque la pregunta parece empezar en Mercado Libre, para mí hay algo más importante que conviene resolver antes: la marca.
+  {
+    id: "tienda-oficial-mercadolibre-empeza-por-esto",
+    title: "¿Querés llegar a tener una Tienda Oficial en Mercado Libre? Empezá por esto",
+    description:
+      "Antes de pensar en Tienda Oficial, ordená tu marca: INPI, agente de marcas e identidad consistente.",
+    category: "MercadoLibre",
+    tags: ["Tienda Oficial", "Marca", "INPI", "Branding", "Identidad", "MercadoLibre"],
+    featured: true,
+    content: `Hola! 👋 Muchas personas me consultan qué hace falta para tener una Tienda Oficial en Mercado Libre. Y aunque la pregunta parece empezar en Mercado Libre, para mí hay algo más importante que conviene resolver antes: la marca.
 
 Porque cuando un negocio quiere dar un paso más profesional, ya no alcanza con vender bien. También importa cómo está construida la identidad, si el nombre puede sostenerse en el tiempo y si está bien resguardado. Si eso se deja para más adelante, el problema aparece justo cuando más querés crecer.
 
@@ -167,5 +175,5 @@ Cuando esa base está bien hecha, todo lo demás queda mejor parado.
 
 Porque una Tienda Oficial no empieza el día que hablás con Mercado Libre.  
 Empieza mucho antes, cuando construís una marca sólida, ordenada y preparada para crecer.`,
-    }
+  },
 ];

@@ -14,6 +14,11 @@ export interface PromptItem {
   prompt: string;
   tags?: string[];
   featured?: boolean;
+  draft?: boolean;
+  noindex?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
+  updatedAt?: string;
 }
 
 export const prompts: PromptItem[] = [

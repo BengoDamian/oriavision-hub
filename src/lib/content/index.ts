@@ -1,47 +1,73 @@
-import { prompts as legacyPrompts } from "@/lib/prompts";
-import { guides as legacyGuides } from "@/lib/guides";
+import {
+  prompts as legacyPrompts,
+  type PromptItem as LegacyPromptItem,
+} from "@/lib/prompts";
+import {
+  guides as legacyGuides,
+  type GuideItem as LegacyGuideItem,
+} from "@/lib/guides";
 
 import {
   getAllPromptsFromContent,
-  type PromptItem,
+  type PromptItem as ContentPromptItem,
 } from "@/lib/content/prompts";
 
 import {
   getAllGuidesFromContent,
-  type GuideItem,
+  type GuideItem as ContentGuideItem,
 } from "@/lib/content/guides";
 
-function isDraftItem(item: unknown): boolean {
-  return Boolean(
-    item &&
-      typeof item === "object" &&
-      "draft" in item &&
-      (item as { draft?: boolean }).draft === true
-  );
+function normalizeLegacyPrompt(item: LegacyPromptItem): ContentPromptItem {
+  return {
+    id: item.id,
+    title: item.title,
+    description: item.description,
+    category: item.category,
+    prompt: item.prompt,
+    tags: item.tags,
+    featured: item.featured,
+    draft: item.draft,
+    noindex: item.noindex,
+    seoTitle: item.seoTitle,
+    seoDescription: item.seoDescription,
+    updatedAt: item.updatedAt,
+  };
 }
 
-function isNoindexItem(item: unknown): boolean {
-  return Boolean(
-    item &&
-      typeof item === "object" &&
-      "noindex" in item &&
-      (item as { noindex?: boolean }).noindex === true
-  );
+function normalizeLegacyGuide(item: LegacyGuideItem): ContentGuideItem {
+  return {
+    id: item.id,
+    title: item.title,
+    description: item.description,
+    category: item.category,
+    content: item.content,
+    tags: item.tags,
+    featured: item.featured,
+    draft: item.draft,
+    noindex: item.noindex,
+    seoTitle: item.seoTitle,
+    seoDescription: item.seoDescription,
+    publishedAt: item.publishedAt,
+    updatedAt: item.updatedAt,
+    image: item.image,
+    author: item.author,
+  };
 }
 
 // ===== PROMPTS =====
-export function getAllPromptsMerged(): PromptItem[] {
+export function getAllPromptsMerged(): ContentPromptItem[] {
   const cms = getAllPromptsFromContent();
-  const map = new Map<string, PromptItem>();
+  const map = new Map<string, ContentPromptItem>();
 
   for (const item of legacyPrompts) {
-    if (isDraftItem(item)) continue;
-    map.set(item.id, item);
+    const normalized = normalizeLegacyPrompt(item);
+    if (normalized.draft) continue;
+    map.set(normalized.id, normalized);
   }
 
   for (const item of cms) {
-    if (isDraftItem(item)) continue;
-    map.set(item.id, item); // CMS pisa legacy si coincide el id
+    if (item.draft) continue;
+    map.set(item.id, item);
   }
 
   return Array.from(map.values()).sort(
@@ -51,29 +77,30 @@ export function getAllPromptsMerged(): PromptItem[] {
   );
 }
 
-export function getPromptByIdMerged(id: string): PromptItem | null {
+export function getPromptByIdMerged(id: string): ContentPromptItem | null {
   return getAllPromptsMerged().find((item) => item.id === id) ?? null;
 }
 
 export function getPromptIdsMerged(): string[] {
   return getAllPromptsMerged()
-    .filter((item) => !isNoindexItem(item))
+    .filter((item) => !item.noindex)
     .map((item) => item.id);
 }
 
 // ===== GUIDES =====
-export function getAllGuidesMerged(): GuideItem[] {
+export function getAllGuidesMerged(): ContentGuideItem[] {
   const cms = getAllGuidesFromContent();
-  const map = new Map<string, GuideItem>();
+  const map = new Map<string, ContentGuideItem>();
 
   for (const item of legacyGuides) {
-    if (isDraftItem(item)) continue;
-    map.set(item.id, item);
+    const normalized = normalizeLegacyGuide(item);
+    if (normalized.draft) continue;
+    map.set(normalized.id, normalized);
   }
 
   for (const item of cms) {
-    if (isDraftItem(item)) continue;
-    map.set(item.id, item); // CMS pisa legacy si coincide el id
+    if (item.draft) continue;
+    map.set(item.id, item);
   }
 
   return Array.from(map.values()).sort(
@@ -83,12 +110,12 @@ export function getAllGuidesMerged(): GuideItem[] {
   );
 }
 
-export function getGuideByIdMerged(id: string): GuideItem | null {
+export function getGuideByIdMerged(id: string): ContentGuideItem | null {
   return getAllGuidesMerged().find((item) => item.id === id) ?? null;
 }
 
 export function getGuideIdsMerged(): string[] {
   return getAllGuidesMerged()
-    .filter((item) => !isNoindexItem(item))
+    .filter((item) => !item.noindex)
     .map((item) => item.id);
 }
