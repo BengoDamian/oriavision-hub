@@ -8,7 +8,7 @@ export default function Footer() {
           <h4 className="mb-4 text-xl font-black text-brand-600">Oriavision</h4>
 
           <p className="max-w-sm font-semibold leading-relaxed text-textBody">
-            Calculadora ML, recursos gratuitos y páginas web pensadas para vender mejor en MercadoLibre y e-commerce.
+            Servicios y recursos gratuitos para vender mejor en MercadoLibre, Tiendanube y e-commerce.
           </p>
         </div>
 
