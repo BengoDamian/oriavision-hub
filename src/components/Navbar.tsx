@@ -91,10 +91,15 @@ export default function Navbar() {
     <>
       <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-3" aria-label="Oriavisión">
+          <Link
+            href="/"
+            className="flex items-center gap-3"
+            aria-label="Ir al inicio de Oriavision"
+            title="Oriavision"
+          >
             <Image
               src="/logo.png"
-              alt="Oriavisión"
+              alt="Oriavision"
               width={220}
               height={60}
               priority
@@ -170,10 +175,10 @@ export default function Navbar() {
 
           <div className="absolute right-0 top-0 flex h-full w-[85vw] max-w-sm flex-col bg-white p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <Link href="/" onClick={close} className="flex items-center gap-3">
+              <Link href="/" onClick={close} className="flex items-center gap-3" title="Oriavision">
                 <Image
                   src="/logo.png"
-                  alt="Oriavisión"
+                  alt="Oriavision"
                   width={180}
                   height={50}
                   className="h-10 w-auto"
@@ -222,7 +227,7 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto pt-6 text-xs text-slate-400">
-              © {new Date().getFullYear()} Oriavisión
+              © {new Date().getFullYear()} Oriavision
             </div>
           </div>
         </div>

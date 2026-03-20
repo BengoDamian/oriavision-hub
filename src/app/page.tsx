@@ -1,5 +1,4 @@
-// src/app/page.tsx
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,6 +16,38 @@ import LeadMagnet from "@/components/LeadMagnet";
 import TrackLink from "@/components/TrackLink";
 import ResourceSearch from "@/components/ResourceSearch";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
+
+const SITE_URL = "https://www.oriavision.com.ar";
+const CALC_URL = "https://calculadoraml.oriavision.com.ar";
+
+export const metadata: Metadata = {
+  title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
+  description:
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce. Herramientas y recursos prácticos creados desde la experiencia real de venta.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: SITE_URL,
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
+    description:
+      "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "Oriavision",
+      },
+    ],
+  },
+  twitter: {
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
+    description:
+      "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
+    images: ["/og/home.png"],
+  },
+};
 
 const TEAM = [
   {
@@ -39,11 +70,19 @@ const TEAM = [
   },
 ];
 
+const homePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Oriavision",
+  url: SITE_URL,
+  description:
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
+  inLanguage: "es-AR",
+};
+
 export default function Home() {
   const whatsappHref =
-    "https://wa.me/5491127575675?text=Hola%20OriaVisi%C3%B3n%21%20Vi%20la%20p%C3%A1gina%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20recursos.%20%C2%BFMe%20ayudan%3F";
-
-  const calcHref = "https://calculadoraml.oriavision.com.ar";
+    "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Vi%20la%20p%C3%A1gina%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20recursos.%20%C2%BFMe%20ayudan%3F";
 
   const prompts = getAllPromptsMerged();
   const guides = getAllGuidesMerged();
@@ -73,9 +112,16 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col pb-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageJsonLd),
+        }}
+      />
+
       {/* Floating Calculadora ML (abajo izquierda) */}
       <TrackLink
-        href={calcHref}
+        href={CALC_URL}
         target="_blank"
         rel="noreferrer"
         aria-label="Abrir Calculadora ML"
@@ -113,10 +159,16 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
-              Somos vendedores que <br className="hidden md:block" />
+            <div className="mx-auto mb-4 inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+              Oriavision
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <h1 className="mb-8 text-5xl font-black leading-[1.05] tracking-tight text-slate-900 text-balance md:text-7xl">
+              Calculadora ML, recursos y <br className="hidden md:block" />
               <span className="relative inline-block text-brand-600">
-                Creamos soluciones.
+                páginas web para vender mejor
                 <svg
                   className="absolute -bottom-1 left-0 -z-10 h-3 w-full text-yellow-300"
                   viewBox="0 0 100 10"
@@ -128,17 +180,25 @@ export default function Home() {
             </h1>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-textBody text-balance md:text-2xl">
-              Construimos lo que necesitábamos para vender mejor. Herramientas, landing pages, páginas web a medida y
-              recursos reales para problemas que vivimos todos los días.
+          <Reveal delay={0.12}>
+            <p className="mx-auto mb-6 max-w-4xl text-xl font-medium leading-relaxed text-textBody text-balance md:text-2xl">
+              Oriavision reúne la Calculadora ML, prompts, guías prácticas y páginas web a medida para negocios que
+              quieren vender con más claridad, menos error y mejores decisiones.
             </p>
           </Reveal>
 
           <Reveal delay={0.15}>
+            <p className="mx-auto mb-10 max-w-3xl text-base font-medium leading-relaxed text-slate-600 md:text-lg">
+              Nuestro producto principal es la <strong>Calculadora ML</strong>. Además publicamos{" "}
+              <strong>recursos gratuitos</strong> y desarrollamos <strong>landing pages y páginas web a medida</strong>
+              {" "}para resolver problemas reales de venta, operación y conversión.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.18}>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
               <a
-                href={calcHref}
+                href={CALC_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700 sm:w-auto"
@@ -151,19 +211,19 @@ export default function Home() {
                 href="#recursos-gratuitos"
                 className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
-                VER RECURSOS GRATUITOS
+                VER PROMPTS Y GUÍAS
               </a>
 
               <a
                 href="#servicios"
                 className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
-                VER SERVICIOS
+                VER SERVICIOS WEB
               </a>
             </div>
           </Reveal>
 
-          <Reveal delay={0.18}>
+          <Reveal delay={0.22}>
             <LeadMagnet />
           </Reveal>
         </div>
@@ -177,8 +237,9 @@ export default function Home() {
               <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
                 Calculadora ML
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
-                Nuestra herramienta principal para calcular precios, costos, comisiones, impuestos y rentabilidad real.
+              <p className="mx-auto max-w-3xl text-lg text-textBody">
+                Es el producto principal de Oriavision: una herramienta pensada para calcular precios, costos,
+                comisiones, impuestos y rentabilidad real en MercadoLibre con más claridad y menos error.
               </p>
             </div>
           </Reveal>
@@ -187,7 +248,7 @@ export default function Home() {
             <Reveal delay={0.05}>
               <div className="group relative flex flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
                 <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
-                  MÁS USADA
+                  PRODUCTO PRINCIPAL
                 </div>
 
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600 transition-transform group-hover:scale-[1.06]">
@@ -196,12 +257,12 @@ export default function Home() {
 
                 <h3 className="mb-3 text-2xl font-bold text-slate-900">Calculadora ML</h3>
                 <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos y opciones
-                  de cuotas para ver tu ganancia real.
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones, impuestos, envío y opciones de
+                  cuotas para entender tu ganancia real y tomar mejores decisiones.
                 </p>
 
                 <TrackLink
-                  href={calcHref}
+                  href={CALC_URL}
                   target="_blank"
                   rel="noreferrer"
                   event="click_calc"
@@ -224,8 +285,9 @@ export default function Home() {
               <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
                 Recursos gratuitos
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
-                Contenido listo para leer, copiar y aplicar. Sin vueltas y sin humo.
+              <p className="mx-auto max-w-3xl text-lg text-textBody">
+                Prompts y guías creados desde la experiencia real de venta. Recursos listos para leer, copiar y aplicar
+                en MercadoLibre y e-commerce.
               </p>
             </div>
           </Reveal>
@@ -238,10 +300,13 @@ export default function Home() {
                     Recursos para copiar y usar
                   </span>
 
-                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Prompts</h3>
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">
+                    Prompts para MercadoLibre y e-commerce
+                  </h3>
 
                   <p className="mt-3 font-medium text-textBody">
-                    Entrás, leés el prompt completo y lo copiás con un botón. Listo para usar.
+                    Recursos listos para copiar, adaptar y usar en problemas reales de publicaciones, SEO, atención y
+                    operación diaria.
                   </p>
                 </div>
 
@@ -304,7 +369,7 @@ export default function Home() {
                     href="/prompts/"
                     className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
                   >
-                    Ver todos los prompts
+                    Ver prompts para MercadoLibre y e-commerce
                   </Link>
                 </div>
               </div>
@@ -314,13 +379,15 @@ export default function Home() {
               <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
                   <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
-                    Recursos para aplicar al toque
+                    Recursos para aplicar rápido
                   </span>
 
-                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Guías</h3>
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">
+                    Guías prácticas para MercadoLibre y e-commerce
+                  </h3>
 
                   <p className="mt-3 font-medium text-textBody">
-                    Guías claras y accionables. Entrás, leés y lo aplicás al toque.
+                    Guías claras y accionables para entender mejor logística, precios, marca y operación diaria.
                   </p>
                 </div>
 
@@ -354,7 +421,7 @@ export default function Home() {
                     href="/guias/"
                     className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
                   >
-                    Ver todas las guías
+                    Ver guías de MercadoLibre y e-commerce
                   </Link>
                 </div>
               </div>
@@ -369,11 +436,11 @@ export default function Home() {
           <Reveal>
             <div className="mb-16 text-center">
               <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Servicios
+                Landing pages y páginas web
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
-                También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
-                con lógica, login y base de datos.
+              <p className="mx-auto max-w-3xl text-lg text-textBody">
+                Además de nuestras herramientas y recursos, en Oriavision desarrollamos páginas pensadas para vender
+                mejor: desde una landing simple hasta una web completa con lógica, login y base de datos.
               </p>
             </div>
           </Reveal>
@@ -388,14 +455,14 @@ export default function Home() {
                 <h3 className="mb-3 text-2xl font-black text-slate-900">Landing pages</h3>
                 <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
                   Páginas simples, rápidas y enfocadas en conversión. Ideales para presentar un servicio, captar leads
-                  o dirigir a WhatsApp, formulario o checkout.
+                  o derivar a WhatsApp, formulario o checkout.
                 </p>
 
                 <Link
                   href="/web/"
                   className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
                 >
-                  Ver servicio
+                  Ver landing pages y webs
                 </Link>
               </div>
             </Reveal>
@@ -416,7 +483,7 @@ export default function Home() {
                   href="/web/"
                   className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
                 >
-                  Ver servicio
+                  Ver landing pages y webs
                 </Link>
               </div>
             </Reveal>
@@ -437,27 +504,30 @@ export default function Home() {
 
               <Reveal delay={0.05}>
                 <h2 className="mb-8 text-4xl font-black leading-tight text-slate-900 md:text-5xl">
-                  Vendedores Desde 2006. Herramientas Desde <span className="text-brand-600">2024.</span>
+                  Experiencia real de venta, convertida en herramientas y soluciones
                 </h2>
               </Reveal>
 
               <Reveal delay={0.1}>
                 <div className="space-y-6 text-lg font-medium leading-relaxed text-textBody">
                   <p>
-                    No somos una agencia ni consultores de marketing. Somos un equipo que lleva 18 años vendiendo en
-                    MercadoLibre y Tiendanube. Después de perder tiempo con Excel y otros programas, construimos las
-                    herramientas que nos faltaban.
+                    Oriavision nace desde la práctica. No somos una agencia que habla desde afuera: somos un equipo que
+                    lleva años vendiendo en MercadoLibre y Tiendanube, y que empezó a construir las herramientas que le
+                    faltaban para trabajar con más claridad.
                   </p>
-                  <p>Funcionaron tan bien que decidimos compartirlas. Simple.</p>
+                  <p>
+                    Primero resolvimos problemas propios. Después decidimos convertir esas soluciones en una calculadora,
+                    recursos gratuitos y servicios web que también puedan ayudar a otros negocios.
+                  </p>
                 </div>
               </Reveal>
 
               <Reveal delay={0.15}>
                 <div className="mt-10 space-y-4">
                   {[
-                    { title: "Datos que no mienten", subtitle: "Cálculos precisos con tarifas actualizadas" },
-                    { title: "Ganancia real, no vanity metrics", subtitle: "Rentabilidad neta, no ventas brutas" },
-                    { title: "Soporte que entiende", subtitle: "Equipo local que vende como vos" },
+                    { title: "Datos que no mienten", subtitle: "Cálculos más claros para tomar mejores decisiones" },
+                    { title: "Ganancia real", subtitle: "Menos intuición y más números concretos" },
+                    { title: "Soporte que entiende", subtitle: "Equipo local con experiencia real de venta" },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand-600" />
@@ -474,11 +544,11 @@ export default function Home() {
             <Reveal className="relative flex-1" delay={0.08}>
               <div className="absolute -inset-4 rotate-3 rounded-[3rem] bg-brand-600 opacity-10" />
               <div className="relative rounded-[2.5rem] bg-slate-900 p-10 text-white shadow-2xl md:p-14">
-                <div className="mb-2 text-6xl font-black text-brand-400">100%</div>
-                <div className="mb-8 text-2xl font-bold">Enfoque Analítico</div>
+                <div className="mb-2 text-6xl font-black text-brand-400">18+</div>
+                <div className="mb-8 text-2xl font-bold">Años de experiencia vendiendo</div>
                 <p className="mb-8 leading-relaxed text-slate-200">
-                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas
-                  que eliminan el error humano y te muestran la realidad."
+                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso construimos
+                  herramientas y recursos que buscan reducir el error y mostrar la realidad con más claridad."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white ring-2 ring-slate-700/40 shadow-sm">
@@ -498,7 +568,7 @@ export default function Home() {
               <div className="mb-10 text-center">
                 <h3 className="text-2xl font-black text-slate-900 md:text-3xl">Quiénes somos</h3>
                 <p className="mt-3 font-medium text-textBody">
-                  Un equipo chico, obsesionado con vender mejor y con menos errores.
+                  Un equipo chico, práctico y obsesionado con vender mejor y con menos errores.
                 </p>
               </div>
             </Reveal>
@@ -538,17 +608,18 @@ export default function Home() {
         <Reveal>
           <div className="mx-auto max-w-4xl">
             <h2 className="mb-6 text-3xl font-black text-slate-900">
-              ¿Necesitás una landing o una web a medida?
+              ¿Necesitás una landing page o una web a medida?
             </h2>
-            <p className="mx-auto mb-8 max-w-xl text-textBody">
-              Si querés una página clara, rápida y pensada para vender, escribinos y vemos qué formato te conviene.
+            <p className="mx-auto mb-8 max-w-2xl text-textBody">
+              Si querés una página clara, rápida y pensada para vender, en Oriavision podemos ayudarte a definir qué
+              formato te conviene y cómo encararlo.
             </p>
 
             <Link
               href="/web/"
               className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
             >
-              VER SERVICIO WEB
+              VER LANDING PAGES Y WEBS
             </Link>
           </div>
         </Reveal>

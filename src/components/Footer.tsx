@@ -5,10 +5,10 @@ export default function Footer() {
     <footer className="border-t border-slate-200 bg-white py-12">
       <div className="container mb-10 grid gap-8 md:grid-cols-6">
         <div className="col-span-1 md:col-span-2">
-          <h4 className="mb-4 text-xl font-black text-brand-600">ORIAVISION</h4>
+          <h4 className="mb-4 text-xl font-black text-brand-600">Oriavision</h4>
 
           <p className="max-w-sm font-semibold leading-relaxed text-textBody">
-            Servicios y recursos gratuitos para vender mejor en MercadoLibre, Tiendanube y e-commerce.
+            Calculadora ML, recursos gratuitos y páginas web pensadas para vender mejor en MercadoLibre y e-commerce.
           </p>
         </div>
 
