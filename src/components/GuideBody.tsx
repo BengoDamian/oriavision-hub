@@ -221,7 +221,7 @@ export default function GuideBody({ content }: { content: string }) {
   }
 
   return (
-    <article className="space-y-7 text-lg leading-8 text-slate-800 md:text-[19px] md:leading-9">
+    <article className="w-full max-w-none space-y-7 text-slate-800">
       {blocks.map((b, idx) => {
         if (b.type === "heading") {
           if (b.level === 1) {
@@ -272,7 +272,7 @@ export default function GuideBody({ content }: { content: string }) {
           return (
             <ul
               key={idx}
-              className="list-disc space-y-2 pl-6 text-base font-medium leading-7 text-textBody md:text-lg"
+              className="list-disc space-y-2 pl-6 text-base font-medium leading-7 text-textBody md:text-[18px] md:leading-8"
             >
               {b.items.map((it, j) => (
                 <li key={j}>{it}</li>
@@ -302,7 +302,7 @@ export default function GuideBody({ content }: { content: string }) {
         return (
           <p
             key={idx}
-            className="text-base font-medium leading-7 text-textBody md:text-lg md:leading-8"
+            className="text-base font-medium leading-8 text-textBody md:text-[18px]"
           >
             {b.text}
           </p>

@@ -141,7 +141,7 @@ export default async function GuiaDetailPage({ params }: PageProps) {
         }}
       />
 
-      <div className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-5xl px-4 py-10 md:px-6 md:py-12">
         <div className="mb-6">
           <Link
             href="/guias/"
@@ -151,17 +151,17 @@ export default async function GuiaDetailPage({ params }: PageProps) {
           </Link>
         </div>
 
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
           <div className="mb-8">
             <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
               {item.category}
             </div>
 
-            <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
               {item.title}
             </h1>
 
-            <p className="mt-3 font-medium leading-relaxed text-textBody">
+            <p className="mt-4 max-w-4xl text-base font-medium leading-7 text-textBody md:text-lg md:leading-8">
               {item.description}
             </p>
           </div>
@@ -169,13 +169,13 @@ export default async function GuiaDetailPage({ params }: PageProps) {
           <GuideBody content={item.content} />
         </div>
 
-        <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-lg font-extrabold text-slate-900">
             ¿Querés calcular precios sin perder margen?
           </h2>
-          <p className="mt-2 font-medium text-textBody">
-            Abrí la Calculadora ML y sacá el precio final en segundos (contado +
-            cuotas).
+          <p className="mt-2 text-base font-medium leading-7 text-textBody">
+            Abrí la Calculadora ML y sacá el precio final en segundos
+            (contado + cuotas).
           </p>
 
           <a
