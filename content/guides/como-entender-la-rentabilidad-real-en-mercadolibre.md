@@ -7,7 +7,7 @@ category: Rentabilidad en MercadoLibre
 tags:
   - mercadolibre rentabilidad margen neto comisiones capital de trabajo precios
 featured: true
-draft: false
+draft: true
 noindex: false
 seoTitle: Cómo entender la rentabilidad real en MercadoLibre
 seoDescription: Aprendé por qué vender más no siempre significa ganar más y qué
