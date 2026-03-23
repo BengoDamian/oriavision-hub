@@ -3,12 +3,23 @@ export default function GuideBody({ content }: { content: string }) {
 
   const blocks: Array<
     | { type: "p"; text: string }
-    | { type: "h3"; text: string; sub?: string }
+    | { type: "heading"; level: 1 | 2 | 3; text: string; sub?: string }
     | { type: "ul"; items: string[] }
     | { type: "callout"; title: string; body?: string }
   > = [];
 
   let i = 0;
+
+  const isListItem = (line: string) =>
+    line.startsWith("- ") || line.startsWith("* ");
+
+  const isHeadingLine = (line: string) =>
+    line.startsWith("# ") ||
+    line.startsWith("## ") ||
+    line.startsWith("### ") ||
+    line.startsWith("✅");
+
+  const isCalloutLine = (line: string) => line.startsWith("📌");
 
   const pushParagraph = (text: string) => {
     const t = text.trim();
@@ -19,98 +30,250 @@ export default function GuideBody({ content }: { content: string }) {
     const raw = lines[i];
     const line = raw.trim();
 
-    // saltar vacíos
     if (!line) {
       i++;
       continue;
     }
 
     // Callout 📌
-    if (line.startsWith("📌")) {
+    if (isCalloutLine(line)) {
       const title = line.replace(/^📌\s*/, "").trim();
-      // junta párrafos siguientes hasta que haya un "✅" o "📌" o lista
       i++;
+
       let body = "";
       while (i < lines.length) {
         const l = lines[i].trim();
+
         if (!l) {
-          body += "\n";
           i++;
-          continue;
+          break;
         }
-        if (l.startsWith("✅") || l.startsWith("📌") || l.startsWith("- ")) break;
+
+        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
         body += (body ? " " : "") + l;
         i++;
       }
-      blocks.push({ type: "callout", title, body: body.trim() || undefined });
+
+      blocks.push({
+        type: "callout",
+        title,
+        body: body.trim() || undefined,
+      });
+      continue;
+    }
+
+    // Headings markdown
+    if (line.startsWith("### ")) {
+      const text = line.replace(/^###\s+/, "").trim();
+      i++;
+
+      let sub = "";
+      while (i < lines.length) {
+        const l = lines[i].trim();
+
+        if (!l) {
+          i++;
+          break;
+        }
+
+        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
+        sub += (sub ? " " : "") + l;
+        i++;
+      }
+
+      blocks.push({
+        type: "heading",
+        level: 3,
+        text,
+        sub: sub.trim() || undefined,
+      });
+      continue;
+    }
+
+    if (line.startsWith("## ")) {
+      const text = line.replace(/^##\s+/, "").trim();
+      i++;
+
+      let sub = "";
+      while (i < lines.length) {
+        const l = lines[i].trim();
+
+        if (!l) {
+          i++;
+          break;
+        }
+
+        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
+        sub += (sub ? " " : "") + l;
+        i++;
+      }
+
+      blocks.push({
+        type: "heading",
+        level: 2,
+        text,
+        sub: sub.trim() || undefined,
+      });
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      const text = line.replace(/^#\s+/, "").trim();
+      i++;
+
+      let sub = "";
+      while (i < lines.length) {
+        const l = lines[i].trim();
+
+        if (!l) {
+          i++;
+          break;
+        }
+
+        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
+        sub += (sub ? " " : "") + l;
+        i++;
+      }
+
+      blocks.push({
+        type: "heading",
+        level: 1,
+        text,
+        sub: sub.trim() || undefined,
+      });
       continue;
     }
 
     // Heading ✅
     if (line.startsWith("✅")) {
-      const title = line.replace(/^✅\s*/, "").trim();
+      const text = line.replace(/^✅\s*/, "").trim();
       i++;
+
       let sub = "";
       while (i < lines.length) {
         const l = lines[i].trim();
+
         if (!l) {
           i++;
           break;
         }
-        if (l.startsWith("✅") || l.startsWith("📌") || l.startsWith("- ")) break;
+
+        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
         sub += (sub ? " " : "") + l;
         i++;
       }
-      blocks.push({ type: "h3", text: title, sub: sub.trim() || undefined });
+
+      blocks.push({
+        type: "heading",
+        level: 2,
+        text,
+        sub: sub.trim() || undefined,
+      });
       continue;
     }
 
-    // Listas "- "
-    if (line.startsWith("- ")) {
+    // Listas
+    if (isListItem(line)) {
       const items: string[] = [];
+
       while (i < lines.length) {
         const l = lines[i].trim();
+
         if (!l) {
           i++;
           continue;
         }
-        if (!l.startsWith("- ")) break;
-        items.push(l.replace(/^- /, "").trim());
+
+        if (!isListItem(l)) break;
+
+        items.push(l.replace(/^[-*]\s+/, "").trim());
         i++;
       }
+
       blocks.push({ type: "ul", items });
       continue;
     }
 
-    // Párrafo normal (junta líneas hasta vacío)
+    // Párrafo normal
     let p = line;
     i++;
-    while (i < lines.length && lines[i].trim()) {
+
+    while (i < lines.length) {
       const l = lines[i].trim();
-      if (l.startsWith("✅") || l.startsWith("📌") || l.startsWith("- ")) break;
+
+      if (!l) {
+        i++;
+        break;
+      }
+
+      if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+
       p += " " + l;
       i++;
     }
+
     pushParagraph(p);
   }
 
   return (
-    <article className="space-y-6 text-[17px] leading-8 text-slate-800">
+    <article className="space-y-7 text-lg leading-8 text-slate-800 md:text-[19px] md:leading-9">
       {blocks.map((b, idx) => {
-        if (b.type === "h3") {
+        if (b.type === "heading") {
+          if (b.level === 1) {
+            return (
+              <section key={idx} className="space-y-3 pt-2">
+                <h2 className="text-2xl font-black tracking-tight text-slate-900 md:text-4xl">
+                  {b.text}
+                </h2>
+                {b.sub ? (
+                  <p className="text-base font-medium leading-7 text-textBody md:text-lg">
+                    {b.sub}
+                  </p>
+                ) : null}
+              </section>
+            );
+          }
+
+          if (b.level === 2) {
+            return (
+              <section key={idx} className="space-y-3 pt-2">
+                <h3 className="text-xl font-black tracking-tight text-slate-900 md:text-3xl">
+                  {b.text}
+                </h3>
+                {b.sub ? (
+                  <p className="text-base font-medium leading-7 text-textBody md:text-lg">
+                    {b.sub}
+                  </p>
+                ) : null}
+              </section>
+            );
+          }
+
           return (
-            <section key={idx} className="space-y-2">
-              <h3 className="text-xl md:text-2xl font-black text-slate-900">
+            <section key={idx} className="space-y-2 pt-1">
+              <h4 className="text-lg font-extrabold tracking-tight text-slate-900 md:text-2xl">
                 {b.text}
-              </h3>
-              {b.sub ? <p className="font-medium text-textBody">{b.sub}</p> : null}
+              </h4>
+              {b.sub ? (
+                <p className="text-base font-medium leading-7 text-textBody md:text-lg">
+                  {b.sub}
+                </p>
+              ) : null}
             </section>
           );
         }
 
         if (b.type === "ul") {
           return (
-            <ul key={idx} className="list-disc pl-6 space-y-2 font-medium text-textBody">
+            <ul
+              key={idx}
+              className="list-disc space-y-2 pl-6 text-base font-medium leading-7 text-textBody md:text-lg"
+            >
               {b.items.map((it, j) => (
                 <li key={j}>{it}</li>
               ))}
@@ -122,16 +285,25 @@ export default function GuideBody({ content }: { content: string }) {
           return (
             <div
               key={idx}
-              className="rounded-[1.5rem] border border-brand-100 bg-brand-50 p-6"
+              className="rounded-[1.5rem] border border-brand-100 bg-brand-50 p-6 md:p-7"
             >
-              <div className="font-extrabold text-slate-900">{b.title}</div>
-              {b.body ? <p className="mt-2 font-medium text-textBody">{b.body}</p> : null}
+              <div className="text-lg font-extrabold text-slate-900 md:text-xl">
+                {b.title}
+              </div>
+              {b.body ? (
+                <p className="mt-2 text-base font-medium leading-7 text-textBody md:text-lg">
+                  {b.body}
+                </p>
+              ) : null}
             </div>
           );
         }
 
         return (
-          <p key={idx} className="font-medium text-textBody">
+          <p
+            key={idx}
+            className="text-base font-medium leading-7 text-textBody md:text-lg md:leading-8"
+          >
             {b.text}
           </p>
         );
