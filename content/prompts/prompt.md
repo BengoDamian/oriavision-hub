@@ -8,7 +8,7 @@ tags:
   - mercadolibre argentina analisis de publicaciones optimizacion de
     publicaciones precio de venta margen titulos de producto
 featured: true
-draft: false
+draft: true
 noindex: false
 seoTitle: Analizador de publicaciones de MercadoLibre Argentina
 seoDescription: Analizá una publicación de MercadoLibre antes de lanzarla o
