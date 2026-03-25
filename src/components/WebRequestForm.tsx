@@ -7,6 +7,8 @@ type State = "idle" | "loading" | "ok" | "error";
 export default function WebRequestForm() {
   const [state, setState] = useState<State>("idle");
   const [msg, setMsg] = useState("");
+  const [open, setOpen] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -65,115 +67,151 @@ export default function WebRequestForm() {
 
       <div className="relative">
         <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-          Landing page o web a medida
+          Pedido de página web
         </div>
 
-        <h1 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-          ¿Querés una landing page o una web a medida?
-        </h1>
+        <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+          ¿Querés pedir tu página web?
+        </h2>
 
         <p className="mt-4 max-w-2xl text-lg font-medium text-textBody">
-          Contanos qué necesitás y te respondemos por mail. Desde una landing simple hasta una web más completa con
-          funcionalidades a medida.
+          Tocá el botón, completá tus datos y contanos qué necesitás. Puede ser
+          una landing simple o una web más completa a medida.
         </p>
 
-        <form onSubmit={onSubmit} className="mt-8 grid gap-4">
-          <input
-            tabIndex={-1}
-            autoComplete="off"
-            value={form.website}
-            onChange={set("website")}
-            className="hidden"
-            aria-hidden="true"
-          />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <label className="text-sm font-extrabold text-slate-900">Nombre</label>
-              <input
-                value={form.name}
-                onChange={set("name")}
-                required
-                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-                placeholder="Tu nombre"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-extrabold text-slate-900">Email</label>
-              <input
-                value={form.email}
-                onChange={set("email")}
-                required
-                type="email"
-                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-                placeholder="tu@email.com"
-              />
-            </div>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <label className="text-sm font-extrabold text-slate-900">Rubro</label>
-              <input
-                value={form.niche}
-                onChange={set("niche")}
-                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-                placeholder="Ej: Insumos, tecnología, servicios…"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-extrabold text-slate-900">Link</label>
-              <input
-                value={form.link}
-                onChange={set("link")}
-                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-                placeholder="IG / MercadoLibre / Web (si tenés)"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="text-sm font-extrabold text-slate-900">Qué querés lograr</label>
-            <input
-              value={form.goal}
-              onChange={set("goal")}
-              className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-              placeholder="Ej: captar leads, vender, link en bio, etc."
-            />
-          </div>
-
-          <div>
-            <label className="text-sm font-extrabold text-slate-900">Detalles</label>
-            <textarea
-              value={form.details}
-              onChange={set("details")}
-              rows={5}
-              className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-              placeholder="Qué secciones querés, ejemplos, etc."
-            />
-          </div>
-
-          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+        {!open ? (
+          <div className="mt-8">
             <button
-              type="submit"
-              disabled={state === "loading"}
-              className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-colors hover:bg-brand-700 disabled:opacity-60"
+              type="button"
+              onClick={() => setOpen(true)}
+              className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
             >
-              {state === "loading" ? "Enviando..." : "Enviar pedido"}
+              Quiero pedir mi página web
             </button>
+
+            <p className="mt-4 text-sm font-semibold text-slate-500">
+              Te respondemos por mail desde soporte@oriavision.com.ar
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={onSubmit} className="mt-8 grid gap-4">
+            <input
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={set("website")}
+              className="hidden"
+              aria-hidden="true"
+            />
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <label className="text-sm font-extrabold text-slate-900">
+                  Nombre
+                </label>
+                <input
+                  value={form.name}
+                  onChange={set("name")}
+                  required
+                  className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                  placeholder="Tu nombre"
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-extrabold text-slate-900">
+                  Email
+                </label>
+                <input
+                  value={form.email}
+                  onChange={set("email")}
+                  required
+                  type="email"
+                  className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                  placeholder="tu@email.com"
+                />
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <label className="text-sm font-extrabold text-slate-900">
+                  Rubro
+                </label>
+                <input
+                  value={form.niche}
+                  onChange={set("niche")}
+                  className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                  placeholder="Ej: servicios, ecommerce, tecnología..."
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-extrabold text-slate-900">
+                  Link
+                </label>
+                <input
+                  value={form.link}
+                  onChange={set("link")}
+                  className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                  placeholder="Instagram / Web / MercadoLibre"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-extrabold text-slate-900">
+                Qué querés lograr
+              </label>
+              <input
+                value={form.goal}
+                onChange={set("goal")}
+                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                placeholder="Ej: recibir consultas, mostrar servicios, vender más..."
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-extrabold text-slate-900">
+                Detalles
+              </label>
+              <textarea
+                value={form.details}
+                onChange={set("details")}
+                rows={5}
+                className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
+                placeholder="Contanos qué te gustaría incluir, qué referencia tenés o qué necesitás resolver."
+              />
+            </div>
+
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="submit"
+                disabled={state === "loading"}
+                className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-colors hover:bg-brand-700 disabled:opacity-60"
+              >
+                {state === "loading" ? "Enviando..." : "Enviar pedido"}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
+              >
+                Ocultar formulario
+              </button>
+            </div>
 
             <div className="text-sm font-semibold">
               {state === "ok" && <span className="text-emerald-700">{msg}</span>}
               {state === "error" && <span className="text-red-600">{msg}</span>}
             </div>
-          </div>
 
-          <p className="text-xs font-semibold text-slate-500">
-            Respondemos desde soporte@oriavision.com.ar
-          </p>
-        </form>
+            <p className="text-xs font-semibold text-slate-500">
+              Respondemos desde soporte@oriavision.com.ar
+            </p>
+          </form>
+        )}
       </div>
     </div>
   );
