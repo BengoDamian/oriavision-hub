@@ -6,17 +6,17 @@ const SITE_URL = "https://www.oriavision.com.ar";
 const PAGE_URL = `${SITE_URL}/web/`;
 
 export const metadata: Metadata = {
-  title: "Landing pages y páginas web a medida | Oriavision",
+  title: "Landing pages, webs a medida y sistemas web | Oriavision",
   description:
-    "Creamos landing pages y páginas web a medida pensadas para mostrar mejor tu negocio, captar consultas y convertir más.",
+    "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
   alternates: {
     canonical: "/web/",
   },
   openGraph: {
     url: PAGE_URL,
-    title: "Landing pages y páginas web a medida | Oriavision",
+    title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Creamos landing pages y páginas web a medida pensadas para mostrar mejor tu negocio, captar consultas y convertir más.",
+      "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
     images: [
       {
         url: "/og/home.png",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Landing pages y páginas web a medida | Oriavision",
+    title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Creamos landing pages y páginas web a medida pensadas para mostrar mejor tu negocio, captar consultas y convertir más.",
+      "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
     images: ["/og/home.png"],
   },
 };
@@ -57,7 +57,7 @@ const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   serviceType: "Diseño y desarrollo web",
-  name: "Landing pages y páginas web a medida",
+  name: "Landing pages, páginas web a medida y sistemas web",
   provider: {
     "@type": "Organization",
     name: "Oriavision",
@@ -66,7 +66,7 @@ const serviceJsonLd = {
   areaServed: "AR",
   url: PAGE_URL,
   description:
-    "Landing pages y páginas web a medida para negocios, marcas y proyectos que necesitan verse mejor, comunicar con claridad y recibir más consultas.",
+    "Desarrollamos desde landing pages simples hasta sistemas web a medida con usuarios, base de datos, login, panel administrador y automatizaciones.",
 };
 
 const solutions = [
@@ -75,12 +75,12 @@ const solutions = [
     text: "Ideales para campañas, servicios, link en bio o presentar una propuesta de forma clara y profesional.",
   },
   {
-    title: "Webs a medida",
-    text: "Para negocios que necesitan más secciones, mejor estructura, formularios, recursos, servicios o páginas internas.",
+    title: "Páginas web a medida",
+    text: "Para negocios que necesitan más secciones, mejor estructura, formularios, contenido, recursos o páginas internas.",
   },
   {
-    title: "Sitios pensados para convertir",
-    text: "No solo diseñamos una web linda: buscamos que explique mejor, ordene la información y genere consultas.",
+    title: "Sistemas web con usuarios",
+    text: "También desarrollamos soluciones más completas con base de datos, registro de usuarios, login, panel admin y funcionalidades a medida.",
   },
 ];
 
@@ -88,22 +88,22 @@ const process = [
   {
     step: "01",
     title: "Nos contás qué necesitás",
-    text: "Completás el formulario con tu idea, tu rubro y el objetivo principal de la web.",
+    text: "Completás el formulario con tu idea, tu rubro y el objetivo principal del proyecto.",
   },
   {
     step: "02",
     title: "Definimos el enfoque",
-    text: "Vemos si conviene una landing simple, una web más completa o una solución a medida.",
+    text: "Vemos si conviene una landing simple, una web más completa o un sistema web con lógica propia.",
   },
   {
     step: "03",
     title: "Diseño y desarrollo",
-    text: "Armamos una propuesta clara, moderna y alineada a tu negocio.",
+    text: "Armamos una propuesta clara, moderna y alineada a tu negocio y a lo que necesitás resolver.",
   },
   {
     step: "04",
     title: "Entrega y ajustes",
-    text: "Revisamos el resultado final y dejamos todo listo para salir online.",
+    text: "Revisamos el resultado final y dejamos todo listo para salir online o continuar evolucionándolo.",
   },
 ];
 
@@ -111,17 +111,17 @@ const cases = [
   {
     title: "Calculadora ML",
     badge: "Herramienta digital",
-    text: "Una web pensada para resolver un problema concreto con una propuesta clara y foco en conversión.",
+    text: "Una web pensada para resolver un problema concreto con una propuesta clara, lógica propia y foco en conversión.",
   },
   {
     title: "Oriavision Hub",
     badge: "Contenido + servicios",
-    text: "Sitio orientado a captar tráfico, mostrar recursos y presentar servicios de forma ordenada.",
+    text: "Sitio orientado a captar tráfico, mostrar recursos y presentar servicios de forma ordenada y profesional.",
   },
   {
-    title: "Quirvo",
-    badge: "Producto / startup",
-    text: "Una propuesta digital donde el foco está en explicar bien el producto y transmitir confianza.",
+    title: "Sistemas con usuarios",
+    badge: "Web app a medida",
+    text: "También podemos desarrollar proyectos con base de datos, usuarios, login, paneles internos, formularios avanzados y automatizaciones.",
   },
 ];
 
@@ -151,12 +151,12 @@ export default function WebPage() {
               </div>
 
               <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Landing pages y páginas web a medida para mostrar mejor tu negocio
+                Landing pages, webs a medida y sistemas web para mostrar mejor tu negocio
               </h1>
 
               <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600 md:text-xl">
-                Creamos webs claras, modernas y pensadas para que tu proyecto se vea más profesional,
-                explique mejor lo que hacés y genere más consultas.
+                Creamos desde landing pages simples hasta webs y sistemas a medida con formularios,
+                base de datos, usuarios, panel admin y funcionalidades pensadas para tu negocio.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -183,10 +183,16 @@ export default function WebPage() {
                   Webs a medida
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Formularios y contacto
+                  Usuarios y login
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Diseño claro y moderno
+                  Base de datos
+                </span>
+                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
+                  Panel admin
+                </span>
+                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
+                  Automatizaciones
                 </span>
               </div>
             </div>
@@ -226,13 +232,13 @@ export default function WebPage() {
                 </div>
 
                 <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Una web no es solo diseño: tiene que explicar bien y hacerte quedar profesional
+                  Una web no es solo diseño: tiene que explicar bien, transmitir confianza y funcionar
                 </h2>
 
                 <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
                   Muchas veces el problema no es el producto o el servicio, sino cómo se presenta.
-                  Una buena web ordena tu propuesta, transmite confianza y hace más fácil que te
-                  contacten.
+                  Una buena web ordena tu propuesta, transmite confianza y hace más fácil que te contacten.
+                  Y cuando hace falta, también puede sumar usuarios, base de datos, paneles y automatizaciones.
                 </p>
               </div>
 
@@ -244,6 +250,7 @@ export default function WebPage() {
                     <li>• Marcas que necesitan una landing para campañas o redes</li>
                     <li>• Servicios que quieren recibir más consultas</li>
                     <li>• Proyectos que necesitan verse mejor y comunicar con claridad</li>
+                    <li>• Empresas que necesitan un sistema interno o una web con usuarios</li>
                   </ul>
                 </div>
 
@@ -252,8 +259,11 @@ export default function WebPage() {
                   <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
                     <li>• Presentación de servicios</li>
                     <li>• Formularios de contacto o pedido</li>
-                    <li>• Páginas para campañas o link en bio</li>
-                    <li>• Sitios más completos con varias secciones</li>
+                    <li>• Landing pages para campañas</li>
+                    <li>• Sitios con múltiples secciones</li>
+                    <li>• Registro e ingreso de usuarios</li>
+                    <li>• Base de datos y panel administrador</li>
+                    <li>• Funcionalidades e integraciones a medida</li>
                   </ul>
                 </div>
               </div>
@@ -272,7 +282,7 @@ export default function WebPage() {
                 </div>
 
                 <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Proyectos con foco en claridad, estructura y conversión
+                  Desde páginas de presentación hasta sistemas web con lógica propia
                 </h2>
               </div>
             </div>

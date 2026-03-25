@@ -76,7 +76,8 @@ export default function WebRequestForm() {
 
         <p className="mt-4 max-w-2xl text-lg font-medium text-textBody">
           Tocá el botón, completá tus datos y contanos qué necesitás. Puede ser
-          una landing simple o una web más completa a medida.
+          una landing, una web a medida o incluso un sistema con usuarios, base
+          de datos, panel admin y funcionalidades específicas.
         </p>
 
         {!open ? (
