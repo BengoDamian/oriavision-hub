@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}/web/`;
 export const metadata: Metadata = {
   title: "Landing pages, webs a medida y sistemas web | Oriavision",
   description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
+    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
   alternates: {
     canonical: "/web/",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
+      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
     images: [
       {
         url: "/og/home.png",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
+      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
     images: ["/og/home.png"],
   },
 };
@@ -66,7 +66,7 @@ const serviceJsonLd = {
   areaServed: "AR",
   url: PAGE_URL,
   description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y automatizaciones.",
+    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones, newsletters y paneles de gestión.",
 };
 
 type Project = {
@@ -90,8 +90,8 @@ const services = [
     text: "Para negocios que necesitan mejor estructura, más secciones, formularios, contenido y una presencia digital más sólida.",
   },
   {
-    title: "Sistemas web",
-    text: "También desarrollamos soluciones con usuarios, login, base de datos, panel admin y funcionalidades específicas.",
+    title: "Sistemas y automatizaciones",
+    text: "También desarrollamos soluciones con usuarios, login, base de datos, panel admin, newsletters, secuencias automáticas y funciones específicas.",
   },
 ];
 
@@ -156,7 +156,7 @@ const projects: Project[] = [
     href: "https://web-siempredeguardia.vercel.app/",
     domain: "web-siempredeguardia.vercel.app",
     description:
-      "Proyecto con estructura más completa, login, registro, usuarios y sector administrador.",
+      "Proyecto con login, usuarios, administración de servicios y carga interna de proveedores con sus datos.",
     stack: ["Login", "Usuarios", "Admin"],
   },
 ];
@@ -287,7 +287,7 @@ export default function WebPage() {
 
               <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600 md:text-xl">
                 Desarrollamos desde páginas simples hasta sistemas más completos con usuarios,
-                base de datos, login, panel admin y funcionalidades a medida.
+                base de datos, login, panel admin, automatizaciones y funciones a medida.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -323,7 +323,10 @@ export default function WebPage() {
                   Panel admin
                 </span>
                 <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Automatizaciones
+                  Automatización de emails
+                </span>
+                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
+                  Newsletters y secuencias
                 </span>
               </div>
             </div>
@@ -369,7 +372,7 @@ export default function WebPage() {
                 <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
                   Una buena web tiene que transmitir confianza, ordenar la propuesta y facilitar
                   la acción. Y cuando hace falta, también puede sumar lógica, usuarios, paneles,
-                  automatizaciones y herramientas propias.
+                  automatizaciones, newsletters, secuencias automáticas y herramientas propias.
                 </p>
               </div>
 
@@ -393,6 +396,10 @@ export default function WebPage() {
                     <li>• Formularios de contacto o pedido</li>
                     <li>• Registro e ingreso de usuarios</li>
                     <li>• Base de datos y panel administrador</li>
+                    <li>• Automatización de emails y respuestas</li>
+                    <li>• Newsletters y secuencias automáticas</li>
+                    <li>• Paneles para cargar productos, propiedades o servicios</li>
+                    <li>• Gestión de proveedores o catálogos internos</li>
                     <li>• Herramientas y funciones a medida</li>
                   </ul>
                 </div>
@@ -407,15 +414,15 @@ export default function WebPage() {
           <Reveal>
             <div className="max-w-3xl">
               <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Trabajos realizados
+                Trabajos destacados
               </div>
 
               <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                Algunas páginas, herramientas y desarrollos hechos por nosotros
+                Algunos trabajos destacados hechos por nosotros
               </h2>
 
               <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                Acá mostramos proyectos reales para que puedas ver distintos tipos de trabajo:
+                Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
                 landing pages, web apps, sitios de servicios y desarrollos más avanzados.
               </p>
             </div>
