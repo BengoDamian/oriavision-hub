@@ -189,9 +189,6 @@ function ProjectPreview({ project }: { project: Project }) {
             <div className="mt-4 text-2xl font-black leading-tight tracking-tight text-white">
               {project.title}
             </div>
-            <div className="mt-2 text-sm font-semibold text-white/80">
-              Vista previa preparada para mostrar capturas reales del proyecto.
-            </div>
           </div>
         </div>
       )}
