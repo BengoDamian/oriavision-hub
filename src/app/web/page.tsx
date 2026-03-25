@@ -107,22 +107,37 @@ const process = [
   },
 ];
 
-const cases = [
-  {
-    title: "Calculadora ML",
-    badge: "Herramienta digital",
-    text: "Una web pensada para resolver un problema concreto con una propuesta clara, lógica propia y foco en conversión.",
-  },
+const portfolioItems = [
   {
     title: "Oriavision Hub",
-    badge: "Contenido + servicios",
-    text: "Sitio orientado a captar tráfico, mostrar recursos y presentar servicios de forma ordenada y profesional.",
+    badge: "Sitio institucional + contenido",
+    text: "Hub principal de marca con recursos, servicios, SEO y estructura pensada para captar visitas y derivarlas a herramientas y servicios.",
+    href: "https://www.oriavision.com.ar/",
+    cta: "Ver proyecto",
   },
   {
-    title: "Sistemas con usuarios",
-    badge: "Web app a medida",
-    text: "También podemos desarrollar proyectos con base de datos, usuarios, login, paneles internos, formularios avanzados y automatizaciones.",
+    title: "Calculadora ML",
+    badge: "Herramienta web",
+    text: "Aplicación web enfocada en resolver cálculos reales de rentabilidad, comisiones, impuestos y precio de venta para MercadoLibre.",
+    href: "https://calculadoraml.oriavision.com.ar/",
+    cta: "Ver proyecto",
   },
+
+  // Cuando quieras sumar más ejemplos públicos, duplicá este bloque:
+  // {
+  //   title: "Quirvo",
+  //   badge: "Web app / producto",
+  //   text: "Breve descripción del proyecto.",
+  //   href: "https://tu-dominio.com/",
+  //   cta: "Ver proyecto",
+  // },
+  // {
+  //   title: "Siempre de Guardia",
+  //   badge: "Marketplace / plataforma",
+  //   text: "Breve descripción del proyecto.",
+  //   href: "https://tu-dominio.com/",
+  //   cta: "Ver proyecto",
+  // },
 ];
 
 export default function WebPage() {
@@ -168,10 +183,10 @@ export default function WebPage() {
                 </a>
 
                 <a
-                  href="mailto:soporte@oriavision.com.ar"
+                  href="#proyectos"
                   className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Escribir por mail
+                  Ver proyectos
                 </a>
               </div>
 
@@ -272,38 +287,59 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section className="px-4 py-10 md:py-14">
+      <section id="proyectos" className="px-4 py-10 md:py-14">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <div className="flex items-end justify-between gap-6">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Algunos ejemplos
-                </div>
-
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Desde páginas de presentación hasta sistemas web con lógica propia
-                </h2>
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                Proyectos destacados
               </div>
+
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+                Algunas páginas y herramientas que ya desarrollamos
+              </h2>
+
+              <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
+                Mostrar ejemplos reales genera mucha más confianza que solo describir servicios.
+                Acá podés dejar visibles tus proyectos para que la gente vea el nivel y el estilo de trabajo.
+              </p>
             </div>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {cases.map((item) => (
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {portfolioItems.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"
+                  className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
                     {item.badge}
                   </div>
+
                   <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
                     {item.title}
                   </h3>
+
                   <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
                     {item.text}
                   </p>
+
+                  <div className="mt-6">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-brand-700"
+                    >
+                      {item.cta}
+                    </a>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-6 text-sm font-semibold leading-relaxed text-slate-600">
+              Consejo: tratá de mostrar 3 a 5 proyectos públicos como máximo. Mejor pocos y buenos que una lista larga.
+              Si querés, en el próximo paso te lo dejo con capturas, rubro, tipo de proyecto y botón “Ver online”.
             </div>
           </Reveal>
         </div>
