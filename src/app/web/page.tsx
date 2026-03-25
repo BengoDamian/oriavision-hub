@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}/web/`;
 export const metadata: Metadata = {
   title: "Landing pages, webs a medida y sistemas web | Oriavision",
   description:
-    "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
+    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
   alternates: {
     canonical: "/web/",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
+      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
     images: [
       {
         url: "/og/home.png",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Landing pages, webs a medida y sistemas web | Oriavision",
     description:
-      "Desarrollamos desde landing pages simples hasta webs y sistemas a medida con usuarios, base de datos, login, panel admin y automatizaciones.",
+      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y funcionalidades personalizadas.",
     images: ["/og/home.png"],
   },
 };
@@ -66,21 +66,32 @@ const serviceJsonLd = {
   areaServed: "AR",
   url: PAGE_URL,
   description:
-    "Desarrollamos desde landing pages simples hasta sistemas web a medida con usuarios, base de datos, login, panel administrador y automatizaciones.",
+    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin y automatizaciones.",
 };
 
-const solutions = [
+type Project = {
+  title: string;
+  kind: string;
+  status?: string;
+  href: string;
+  domain: string;
+  description: string;
+  stack?: string[];
+  image?: string;
+};
+
+const services = [
   {
     title: "Landing pages",
     text: "Ideales para campañas, servicios, link en bio o presentar una propuesta de forma clara y profesional.",
   },
   {
     title: "Páginas web a medida",
-    text: "Para negocios que necesitan más secciones, mejor estructura, formularios, contenido, recursos o páginas internas.",
+    text: "Para negocios que necesitan mejor estructura, más secciones, formularios, contenido y una presencia digital más sólida.",
   },
   {
-    title: "Sistemas web con usuarios",
-    text: "También desarrollamos soluciones más completas con base de datos, registro de usuarios, login, panel admin y funcionalidades a medida.",
+    title: "Sistemas web",
+    text: "También desarrollamos soluciones con usuarios, login, base de datos, panel admin y funcionalidades específicas.",
   },
 ];
 
@@ -88,72 +99,179 @@ const process = [
   {
     step: "01",
     title: "Nos contás qué necesitás",
-    text: "Completás el formulario con tu idea, tu rubro y el objetivo principal del proyecto.",
+    text: "Completás el formulario con tu idea, rubro y objetivo principal.",
   },
   {
     step: "02",
     title: "Definimos el enfoque",
-    text: "Vemos si conviene una landing simple, una web más completa o un sistema web con lógica propia.",
+    text: "Vemos si conviene una landing, una web a medida o un sistema más completo.",
   },
   {
     step: "03",
     title: "Diseño y desarrollo",
-    text: "Armamos una propuesta clara, moderna y alineada a tu negocio y a lo que necesitás resolver.",
+    text: "Armamos una propuesta clara, moderna y alineada a tu negocio.",
   },
   {
     step: "04",
-    title: "Entrega y ajustes",
-    text: "Revisamos el resultado final y dejamos todo listo para salir online o continuar evolucionándolo.",
+    title: "Entrega y evolución",
+    text: "Dejamos todo listo para salir online y seguir mejorándolo si hace falta.",
   },
 ];
 
-const portfolioItems = [
+const projects: Project[] = [
   {
-    title: "Oriavision Hub",
-    badge: "Sitio institucional + contenido",
-    text: "Hub principal de marca con recursos, servicios, SEO y estructura pensada para captar visitas y derivarlas a herramientas y servicios.",
-    href: "https://www.oriavision.com.ar/",
-    cta: "Ver proyecto",
-  },
-  {
-    title: "Calculadora ML",
-    badge: "Herramienta web",
-    text: "Aplicación web enfocada en resolver cálculos reales de rentabilidad, comisiones, impuestos y precio de venta para MercadoLibre.",
+    title: "Calculadora ML — Landing",
+    kind: "Landing page",
     href: "https://calculadoraml.oriavision.com.ar/",
-    cta: "Ver proyecto",
+    domain: "calculadoraml.oriavision.com.ar",
+    description:
+      "Landing enfocada en presentar la propuesta, explicar beneficios y derivar a la herramienta principal.",
+    stack: ["Marketing", "Conversión", "CTA clara"],
+    // Cuando subas la captura, agregala acá:
+    // image: "/portfolio/calculadora-landing.jpg",
   },
-
-  // Cuando quieras sumar más ejemplos públicos, duplicá este bloque:
-  // {
-  //   title: "Quirvo",
-  //   badge: "Web app / producto",
-  //   text: "Breve descripción del proyecto.",
-  //   href: "https://tu-dominio.com/",
-  //   cta: "Ver proyecto",
-  // },
-  // {
-  //   title: "Siempre de Guardia",
-  //   badge: "Marketplace / plataforma",
-  //   text: "Breve descripción del proyecto.",
-  //   href: "https://tu-dominio.com/",
-  //   cta: "Ver proyecto",
-  // },
+  {
+    title: "Calculadora ML — Web App",
+    kind: "Web app",
+    href: "https://webapp.calculadoraml.oriavision.com.ar/",
+    domain: "webapp.calculadoraml.oriavision.com.ar",
+    description:
+      "Aplicación web con lógica propia para cálculos de precios, márgenes, impuestos, comisiones y escenarios de venta.",
+    stack: ["Lógica de negocio", "Usuarios", "Herramienta"],
+    // image: "/portfolio/calculadora-webapp.jpg",
+  },
+  {
+    title: "DBengoTech",
+    kind: "Web de servicios",
+    href: "https://dbengotech.com.ar/",
+    domain: "dbengotech.com.ar",
+    description:
+      "Sitio orientado a comunicar servicios, propuesta de valor y enfoque de trabajo de forma más profesional.",
+    stack: ["Servicios", "Presentación", "Marca"],
+    // image: "/portfolio/dbengotech.jpg",
+  },
+  {
+    title: "Siempre de Guardia",
+    kind: "Proyecto avanzado",
+    status: "En desarrollo",
+    href: "https://web-siempredeguardia.vercel.app/",
+    domain: "web-siempredeguardia.vercel.app",
+    description:
+      "Proyecto con estructura más completa, login, registro, usuarios y sector administrador.",
+    stack: ["Login", "Usuarios", "Admin"],
+    // image: "/portfolio/siempre-de-guardia.jpg",
+  },
 ];
+
+function ProjectPreview({ project }: { project: Project }) {
+  return (
+    <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+      <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3">
+        <span className="h-3 w-3 rounded-full bg-red-300" />
+        <span className="h-3 w-3 rounded-full bg-amber-300" />
+        <span className="h-3 w-3 rounded-full bg-emerald-300" />
+        <div className="ml-2 truncate rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-500">
+          {project.domain}
+        </div>
+      </div>
+
+      {project.image ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          className="h-64 w-full object-cover object-top md:h-72"
+        />
+      ) : (
+        <div className="relative flex h-64 w-full items-end overflow-hidden bg-gradient-to-br from-slate-900 via-brand-900 to-brand-600 p-6 md:h-72">
+          <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]" />
+          <div className="relative z-10 max-w-sm">
+            <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-white/90 backdrop-blur">
+              {project.kind}
+            </div>
+            <div className="mt-4 text-2xl font-black leading-tight tracking-tight text-white">
+              {project.title}
+            </div>
+            <div className="mt-2 text-sm font-semibold text-white/80">
+              Vista previa preparada para mostrar capturas reales del proyecto.
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:p-5">
+      <ProjectPreview project={project} />
+
+      <div className="mt-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+            {project.kind}
+          </span>
+
+          {project.status ? (
+            <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-amber-700">
+              {project.status}
+            </span>
+          ) : null}
+        </div>
+
+        <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
+          {project.title}
+        </h3>
+
+        <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
+          {project.description}
+        </p>
+
+        {project.stack?.length ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.stack.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-600"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-brand-700"
+          >
+            Ver online
+          </a>
+
+          <a
+            href="#pedido-web"
+            className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
+          >
+            Quiero algo así
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function WebPage() {
   return (
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceJsonLd),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
 
       <section className="relative overflow-hidden px-4 pb-16 pt-24 md:pb-20 md:pt-28">
@@ -170,23 +288,23 @@ export default function WebPage() {
               </h1>
 
               <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600 md:text-xl">
-                Creamos desde landing pages simples hasta webs y sistemas a medida con formularios,
-                base de datos, usuarios, panel admin y funcionalidades pensadas para tu negocio.
+                Desarrollamos desde páginas simples hasta sistemas más completos con usuarios,
+                base de datos, login, panel admin y funcionalidades a medida.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
-                  href="#pedido-web"
+                  href="#trabajos"
                   className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
                 >
-                  Pedir mi página web
+                  Ver trabajos
                 </a>
 
                 <a
-                  href="#proyectos"
+                  href="#pedido-web"
                   className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Ver proyectos
+                  Pedir mi página web
                 </a>
               </div>
 
@@ -219,7 +337,7 @@ export default function WebPage() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="grid gap-6 md:grid-cols-3">
-              {solutions.map((item) => (
+              {services.map((item) => (
                 <div
                   key={item.title}
                   className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"
@@ -243,17 +361,17 @@ export default function WebPage() {
             <div className="rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8 md:p-10">
               <div className="max-w-3xl">
                 <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Qué resolvemos
+                  Qué hacemos
                 </div>
 
                 <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Una web no es solo diseño: tiene que explicar bien, transmitir confianza y funcionar
+                  No solo hacemos páginas lindas: buscamos que expliquen bien y funcionen
                 </h2>
 
                 <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                  Muchas veces el problema no es el producto o el servicio, sino cómo se presenta.
-                  Una buena web ordena tu propuesta, transmite confianza y hace más fácil que te contacten.
-                  Y cuando hace falta, también puede sumar usuarios, base de datos, paneles y automatizaciones.
+                  Una buena web tiene que transmitir confianza, ordenar la propuesta y facilitar
+                  la acción. Y cuando hace falta, también puede sumar lógica, usuarios, paneles,
+                  automatizaciones y herramientas propias.
                 </p>
               </div>
 
@@ -265,20 +383,19 @@ export default function WebPage() {
                     <li>• Marcas que necesitan una landing para campañas o redes</li>
                     <li>• Servicios que quieren recibir más consultas</li>
                     <li>• Proyectos que necesitan verse mejor y comunicar con claridad</li>
-                    <li>• Empresas que necesitan un sistema interno o una web con usuarios</li>
+                    <li>• Empresas que necesitan un sistema interno o una herramienta web</li>
                   </ul>
                 </div>
 
                 <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
                   <h3 className="text-lg font-black text-slate-900">Podemos ayudarte con</h3>
                   <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
-                    <li>• Presentación de servicios</li>
-                    <li>• Formularios de contacto o pedido</li>
+                    <li>• Sitios de servicios e institucionales</li>
                     <li>• Landing pages para campañas</li>
-                    <li>• Sitios con múltiples secciones</li>
+                    <li>• Formularios de contacto o pedido</li>
                     <li>• Registro e ingreso de usuarios</li>
                     <li>• Base de datos y panel administrador</li>
-                    <li>• Funcionalidades e integraciones a medida</li>
+                    <li>• Herramientas y funciones a medida</li>
                   </ul>
                 </div>
               </div>
@@ -287,59 +404,36 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section id="proyectos" className="px-4 py-10 md:py-14">
+      <section id="trabajos" className="px-4 py-10 md:py-14">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <div className="max-w-3xl">
               <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Proyectos destacados
+                Trabajos realizados
               </div>
 
               <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                Algunas páginas y herramientas que ya desarrollamos
+                Algunas páginas, herramientas y desarrollos hechos por nosotros
               </h2>
 
               <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                Mostrar ejemplos reales genera mucha más confianza que solo describir servicios.
-                Acá podés dejar visibles tus proyectos para que la gente vea el nivel y el estilo de trabajo.
+                Acá mostramos proyectos reales para que puedas ver distintos tipos de trabajo:
+                landing pages, web apps, sitios de servicios y desarrollos más avanzados.
               </p>
             </div>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
-              {portfolioItems.map((item) => (
-                <div
-                  key={item.title}
-                  className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
-                    {item.badge}
-                  </div>
-
-                  <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-                    {item.text}
-                  </p>
-
-                  <div className="mt-6">
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-brand-700"
-                    >
-                      {item.cta}
-                    </a>
-                  </div>
-                </div>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
               ))}
             </div>
 
             <div className="mt-8 rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-6 text-sm font-semibold leading-relaxed text-slate-600">
-              Consejo: tratá de mostrar 3 a 5 proyectos públicos como máximo. Mejor pocos y buenos que una lista larga.
-              Si querés, en el próximo paso te lo dejo con capturas, rubro, tipo de proyecto y botón “Ver online”.
+              Si después querés mostrar capturas reales, solo subilas a
+              <span className="mx-1 font-black text-slate-900">/public/portfolio/</span>
+              y completá el campo
+              <span className="mx-1 font-black text-slate-900">image</span>
+              en cada proyecto.
             </div>
           </Reveal>
         </div>

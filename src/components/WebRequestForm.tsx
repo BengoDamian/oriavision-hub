@@ -71,7 +71,7 @@ export default function WebRequestForm() {
         </div>
 
         <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-          ¿Querés pedir tu página web?
+          ¿Querés una landing, una web a medida o un sistema más completo?
         </h2>
 
         <p className="mt-4 max-w-2xl text-lg font-medium text-textBody">
