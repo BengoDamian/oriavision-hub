@@ -140,7 +140,7 @@ const projects: Project[] = [
     image: "/portfolio/calculadora-webapp.png",
   },
   {
-    title: "DBengoTech",
+    title: "dbengotech",
     kind: "Web de servicios",
     href: "https://dbengotech.com.ar/",
     domain: "dbengotech.com.ar",
