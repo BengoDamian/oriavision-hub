@@ -158,7 +158,6 @@ const projects: Project[] = [
     description:
       "Proyecto con estructura más completa, login, registro, usuarios y sector administrador.",
     stack: ["Login", "Usuarios", "Admin"],
-    image: "/portfolio/siempre-de-guardia.png",
   },
 ];
 
