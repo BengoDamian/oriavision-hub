@@ -127,8 +127,7 @@ const projects: Project[] = [
     description:
       "Landing enfocada en presentar la propuesta, explicar beneficios y derivar a la herramienta principal.",
     stack: ["Marketing", "Conversión", "CTA clara"],
-    // Cuando subas la captura, agregala acá:
-    // image: "/portfolio/calculadora-landing.jpg",
+    image: "/portfolio/calculadora-landing.png",
   },
   {
     title: "Calculadora ML — Web App",
@@ -138,7 +137,7 @@ const projects: Project[] = [
     description:
       "Aplicación web con lógica propia para cálculos de precios, márgenes, impuestos, comisiones y escenarios de venta.",
     stack: ["Lógica de negocio", "Usuarios", "Herramienta"],
-    // image: "/portfolio/calculadora-webapp.jpg",
+    image: "/portfolio/calculadora-webapp.png",
   },
   {
     title: "DBengoTech",
@@ -148,7 +147,7 @@ const projects: Project[] = [
     description:
       "Sitio orientado a comunicar servicios, propuesta de valor y enfoque de trabajo de forma más profesional.",
     stack: ["Servicios", "Presentación", "Marca"],
-    // image: "/portfolio/dbengotech.jpg",
+    image: "/portfolio/dbengotech.png",
   },
   {
     title: "Siempre de Guardia",
@@ -159,7 +158,7 @@ const projects: Project[] = [
     description:
       "Proyecto con estructura más completa, login, registro, usuarios y sector administrador.",
     stack: ["Login", "Usuarios", "Admin"],
-    // image: "/portfolio/siempre-de-guardia.jpg",
+    image: "/portfolio/siempre-de-guardia.png",
   },
 ];
 
@@ -426,14 +425,6 @@ export default function WebPage() {
               {projects.map((project) => (
                 <ProjectCard key={project.title} project={project} />
               ))}
-            </div>
-
-            <div className="mt-8 rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-6 text-sm font-semibold leading-relaxed text-slate-600">
-              Si después querés mostrar capturas reales, solo subilas a
-              <span className="mx-1 font-black text-slate-900">/public/portfolio/</span>
-              y completá el campo
-              <span className="mx-1 font-black text-slate-900">image</span>
-              en cada proyecto.
             </div>
           </Reveal>
         </div>
