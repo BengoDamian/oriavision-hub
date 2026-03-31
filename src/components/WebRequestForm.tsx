@@ -87,7 +87,7 @@ export default function WebRequestForm() {
               onClick={() => setOpen(true)}
               className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
             >
-              Quiero pedir mi página web
+              Coordinar una consulta
             </button>
 
             <p className="mt-4 text-sm font-semibold text-slate-500">
