@@ -67,7 +67,7 @@ export default function WebRequestForm() {
 
       <div className="relative">
         <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-          Pedido de página web
+          Consulta de página web
         </div>
 
         <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
