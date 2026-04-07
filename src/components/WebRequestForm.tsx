@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type State = "idle" | "loading" | "ok" | "error";
 
@@ -8,6 +8,7 @@ export default function WebRequestForm() {
   const [state, setState] = useState<State>("idle");
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -18,6 +19,25 @@ export default function WebRequestForm() {
     details: "",
     website: "", // honeypot anti-bot
   });
+
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash.replace("#", "").toLowerCase();
+
+      if (hash === "formulario") {
+        setOpen(true);
+
+        window.setTimeout(() => {
+          nameRef.current?.focus();
+        }, 250);
+      }
+    };
+
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, []);
 
   const set =
     (k: keyof typeof form) =>
@@ -87,7 +107,7 @@ export default function WebRequestForm() {
               onClick={() => setOpen(true)}
               className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
             >
-              Coordinar una consulta
+              Quiero más info
             </button>
 
             <p className="mt-4 text-sm font-semibold text-slate-500">
@@ -111,6 +131,7 @@ export default function WebRequestForm() {
                   Nombre
                 </label>
                 <input
+                  ref={nameRef}
                   value={form.name}
                   onChange={set("name")}
                   required
@@ -191,7 +212,7 @@ export default function WebRequestForm() {
                 disabled={state === "loading"}
                 className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-colors hover:bg-brand-700 disabled:opacity-60"
               >
-                {state === "loading" ? "Enviando..." : "Enviar pedido"}
+                {state === "loading" ? "Enviando..." : "Enviar info"}
               </button>
 
               <button

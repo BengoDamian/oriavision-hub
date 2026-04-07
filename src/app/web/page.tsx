@@ -246,7 +246,7 @@ function ProjectCard({ project }: { project: Project }) {
           </a>
 
           <a
-            href="#pedido-web"
+            href="#formulario"
             className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
           >
             Quiero algo así
@@ -296,10 +296,10 @@ export default function WebPage() {
                 </a>
 
                 <a
-                  href="#pedido-web"
+                  href="#formulario"
                   className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Pedir mi página web
+                  Enviar info
                 </a>
               </div>
 
@@ -390,7 +390,7 @@ export default function WebPage() {
                   <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
                     <li>• Sitios de servicios e institucionales</li>
                     <li>• Landing pages para campañas</li>
-                    <li>• Formularios de contacto o pedido</li>
+                    <li>• Formularios de contacto o consulta</li>
                     <li>• Registro e ingreso de usuarios</li>
                     <li>• Base de datos y panel administrador</li>
                     <li>• Automatización de emails y respuestas</li>
@@ -466,7 +466,7 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section id="pedido-web" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
+      <section id="formulario" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <WebRequestForm />

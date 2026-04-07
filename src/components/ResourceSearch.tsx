@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BookOpen, FileText, Search } from "lucide-react";
 
 export type ResourceSearchItem = {
@@ -77,6 +78,33 @@ export default function ResourceSearch({
   items: ResourceSearchItem[];
 }) {
   const [query, setQuery] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const cleanQuery = normalizeText(query);
+    if (!cleanQuery) return;
+
+    const formTerms = [
+      "formulario",
+      "consulta",
+      "consulta web",
+      "pagina web",
+      "pagina",
+      "presupuesto",
+      "presupuesto web",
+      "landing",
+      "web",
+      "desarrollo web",
+    ];
+
+    const shouldGoToForm = formTerms.some(
+      (term) => cleanQuery === term || cleanQuery.includes(term)
+    );
+
+    if (shouldGoToForm) {
+      router.push("/web#formulario");
+    }
+  }, [query, router]);
 
   const results = useMemo(() => {
     const cleanQuery = query.trim();
@@ -109,7 +137,7 @@ export default function ResourceSearch({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscá por título, tema o categoría..."
-          className="w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-4 pr-12 text-slate-900 font-semibold outline-none focus:border-brand-600"
+          className="w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-4 pr-12 font-semibold text-slate-900 outline-none focus:border-brand-600"
         />
         <Search className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
       </div>
