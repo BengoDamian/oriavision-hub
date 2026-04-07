@@ -84,24 +84,7 @@ export default function ResourceSearch({
     const cleanQuery = normalizeText(query);
     if (!cleanQuery) return;
 
-    const formTerms = [
-      "formulario",
-      "consulta",
-      "consulta web",
-      "pagina web",
-      "pagina",
-      "presupuesto",
-      "presupuesto web",
-      "landing",
-      "web",
-      "desarrollo web",
-    ];
-
-    const shouldGoToForm = formTerms.some(
-      (term) => cleanQuery === term || cleanQuery.includes(term)
-    );
-
-    if (shouldGoToForm) {
+    if (cleanQuery === "formulario") {
       router.push("/web#formulario");
     }
   }, [query, router]);
