@@ -93,7 +93,10 @@ export default function ResourceSearch({
     const cleanQuery = query.trim();
     if (!cleanQuery) return [];
 
-    return items
+    const normalizedQuery = normalizeText(cleanQuery);
+    const tokens = normalizedQuery.split(" ").filter(Boolean);
+
+    const baseResults = items
       .map((item) => ({
         item,
         score: scoreItem(item, cleanQuery),
@@ -104,6 +107,31 @@ export default function ResourceSearch({
           b.score - a.score || a.item.title.localeCompare(b.item.title, "es")
       )
       .slice(0, 8);
+
+    const shouldShowWebSection =
+      tokens.includes("landing") || tokens.includes("web");
+
+    if (shouldShowWebSection) {
+      const webItem = {
+        item: {
+          type: "Guía" as const,
+          title: "Landing pages, webs a medida y sistemas web",
+          description:
+            "Ir a la sección de servicios web, landings, páginas a medida y sistemas desarrollados por Oriavision.",
+          category: "Servicios",
+          href: "/web/",
+        },
+        score: 9999,
+      };
+
+      const withoutDuplicate = baseResults.filter(
+        (entry) => entry.item.href !== "/web/"
+      );
+
+      return [webItem, ...withoutDuplicate].slice(0, 8);
+    }
+
+    return baseResults;
   }, [items, query]);
 
   return (
