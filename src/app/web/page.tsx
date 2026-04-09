@@ -95,6 +95,25 @@ const services = [
   },
 ];
 
+const visualServices = [
+  {
+    title: "Edición de video",
+    text: "Edición de reels, videos cortos, piezas para campañas y contenido pensado para redes o anuncios.",
+  },
+  {
+    title: "Edición y mejora de fotos",
+    text: "Ajustes visuales, recortes, limpieza, mejora de presentación y adaptación de imágenes para web o redes.",
+  },
+  {
+    title: "Flyers y piezas gráficas",
+    text: "Diseño de flyers, banners, placas promocionales y piezas visuales para comunicar ofertas, servicios o lanzamientos.",
+  },
+  {
+    title: "Contenido visual para campañas",
+    text: "Material visual pensado para redes, WhatsApp, promociones, anuncios y piezas que acompañen mejor la comunicación.",
+  },
+];
+
 const process = [
   {
     step: "01",
@@ -140,7 +159,7 @@ const projects: Project[] = [
     image: "/portfolio/calculadora-webapp.png",
   },
   {
-    title: "dbengotech",
+    title: "DBengoTech",
     kind: "Web de servicios",
     href: "https://dbengotech.com.ar/",
     domain: "dbengotech.com.ar",
@@ -178,6 +197,9 @@ function ProjectPreview({ project }: { project: Project }) {
             </div>
             <div className="mt-4 text-2xl font-black leading-tight tracking-tight text-white">
               {project.title}
+            </div>
+            <div className="mt-2 text-sm font-semibold text-white/80">
+              Vista previa preparada para mostrar capturas reales del proyecto.
             </div>
           </div>
         </div>
@@ -236,7 +258,7 @@ function ProjectCard({ project }: { project: Project }) {
           </a>
 
           <a
-            href="#formulario"
+            href="#pedido-web"
             className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
           >
             Quiero algo así
@@ -286,10 +308,10 @@ export default function WebPage() {
                 </a>
 
                 <a
-                  href="#formulario"
+                  href="#pedido-web"
                   className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
                 >
-                  Enviar info
+                  Pedir mi página web
                 </a>
               </div>
 
@@ -380,7 +402,7 @@ export default function WebPage() {
                   <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
                     <li>• Sitios de servicios e institucionales</li>
                     <li>• Landing pages para campañas</li>
-                    <li>• Formularios de contacto o consulta</li>
+                    <li>• Formularios de contacto o pedido</li>
                     <li>• Registro e ingreso de usuarios</li>
                     <li>• Base de datos y panel administrador</li>
                     <li>• Automatización de emails y respuestas</li>
@@ -390,6 +412,58 @@ export default function WebPage() {
                     <li>• Herramientas y funciones a medida</li>
                   </ul>
                 </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 md:py-14">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center rounded-full border border-emerald-100 bg-emerald-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-emerald-700">
+                  Servicio aparte
+                </div>
+
+                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+                  Edición y diseño visual
+                </h2>
+
+                <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
+                  Este es un servicio separado del desarrollo web. Está pensado para marcas,
+                  negocios y proyectos que necesitan mejorar videos, fotos, flyers o piezas
+                  visuales para comunicar mejor y verse más profesionales.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                {visualServices.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6"
+                  >
+                    <h3 className="text-lg font-black text-slate-900">{item.title}</h3>
+                    <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4 rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-6 md:flex-row md:items-center md:justify-between">
+                <p className="text-sm font-semibold leading-relaxed text-slate-600">
+                  Este servicio puede incluir reels, videos cortos, retoque de fotos, flyers,
+                  banners, placas promocionales y piezas para redes, campañas o WhatsApp.
+                </p>
+
+                <a
+                  href="mailto:soporte@oriavision.com.ar?subject=Consulta%20por%20edici%C3%B3n%20y%20dise%C3%B1o%20visual"
+                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-emerald-700"
+                >
+                  Consultar este servicio
+                </a>
               </div>
             </div>
           </Reveal>
@@ -410,7 +484,7 @@ export default function WebPage() {
 
               <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
                 Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
-                landing pages, web apps, sitios de servicios y desarrollos más avanzados.
+                landing pages, web apps y sitios de servicios.
               </p>
             </div>
 
@@ -456,7 +530,7 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section id="formulario" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
+      <section id="pedido-web" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <WebRequestForm />
