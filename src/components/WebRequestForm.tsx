@@ -170,13 +170,13 @@ export default function WebRequestForm() {
 
               <div>
                 <label className="text-sm font-extrabold text-slate-900">
-                  Link
+                  Web que ya estás utilizando
                 </label>
                 <input
                   value={form.link}
                   onChange={set("link")}
                   className="mt-2 w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-3 font-semibold text-slate-900 outline-none focus:border-brand-600"
-                  placeholder="Instagram / Web / MercadoLibre"
+                  placeholder="https://tuweb.com.ar"
                 />
               </div>
             </div>
