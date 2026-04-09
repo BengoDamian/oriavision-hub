@@ -149,16 +149,6 @@ const projects: Project[] = [
     stack: ["Servicios", "Presentación", "Marca"],
     image: "/portfolio/dbengotech.png",
   },
-  {
-    title: "Siempre de Guardia",
-    kind: "Proyecto avanzado",
-    status: "En desarrollo",
-    href: "https://web-siempredeguardia.vercel.app/",
-    domain: "web-siempredeguardia.vercel.app",
-    description:
-      "Proyecto con login, usuarios, administración de servicios y carga interna de proveedores con sus datos.",
-    stack: ["Login", "Usuarios", "Admin"],
-  },
 ];
 
 function ProjectPreview({ project }: { project: Project }) {
