@@ -1,22 +1,23 @@
 ---
-title: Courier en Argentina (2026): cuál sirve para revender y cuál no
-description: Guía clara para entender la diferencia entre el courier para uso personal y el courier simplificado en Argentina, qué límites tienen y por qué no son lo mismo que importar de manera formal.
-category: Importación / MercadoLibre
+title: "Courier en Argentina (2026): cuál sirve para revender y cuál no"
+description: "Guía clara para entender la diferencia entre el courier para uso personal y el courier simplificado en Argentina, qué límites tienen y por qué no son lo mismo que importar de manera formal."
+category: "Importación / MercadoLibre"
 tags:
-  - courier Argentina
-  - importación simplificada
-  - reventa
-  - MercadoLibre
-  - pequeños envíos
-  - importación
-  - AFIP
-  - ARCA
+  - "courier Argentina"
+  - "importación simplificada"
+  - "reventa"
+  - "MercadoLibre"
+  - "pequeños envíos"
+  - "importación"
+  - "AFIP"
+  - "ARCA"
 featured: false
 draft: false
 noindex: false
-seoTitle: Courier en Argentina 2026: cuál sirve para revender y cuál no
-seoDescription: Entendé la diferencia entre courier personal y courier simplificado en Argentina, sus límites reales y cuándo ya necesitás importación formal.
+seoTitle: "Courier en Argentina 2026: cuál sirve para revender y cuál no"
+seoDescription: "Entendé la diferencia entre courier personal y courier simplificado en Argentina, sus límites reales y cuándo ya necesitás importación formal."
 ---
+
 Si vendés o querés vender productos en Argentina, hay una confusión muy común: mucha gente mete todo en la misma bolsa y habla de “courier” como si fuera una sola cosa.
 
 Y no.
