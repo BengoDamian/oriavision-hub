@@ -6,6 +6,7 @@ export default function GuideBody({ content }: { content: string }) {
     | { type: "heading"; level: 1 | 2 | 3; text: string; sub?: string }
     | { type: "ul"; items: string[] }
     | { type: "callout"; title: string; body?: string }
+    | { type: "table"; headers: string[]; rows: string[][] }
   > = [];
 
   let i = 0;
@@ -21,6 +22,25 @@ export default function GuideBody({ content }: { content: string }) {
 
   const isCalloutLine = (line: string) => line.startsWith("📌");
 
+  const isTableLine = (line: string) => {
+    const trimmed = line.trim();
+    return trimmed.startsWith("|") && trimmed.includes("|");
+  };
+
+  const isTableDividerLine = (line: string) => {
+    const trimmed = line.trim();
+    return /^\|?(\s*:?-{3,}:?\s*\|)+\s*$/.test(trimmed);
+  };
+
+  const parseTableRow = (line: string) => {
+    return line
+      .trim()
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim());
+  };
+
   const pushParagraph = (text: string) => {
     const t = text.trim();
     if (t) blocks.push({ type: "p", text: t });
@@ -32,6 +52,40 @@ export default function GuideBody({ content }: { content: string }) {
 
     if (!line) {
       i++;
+      continue;
+    }
+
+    // Tabla markdown
+    if (
+      isTableLine(line) &&
+      i + 1 < lines.length &&
+      isTableDividerLine(lines[i + 1].trim())
+    ) {
+      const headers = parseTableRow(lines[i]);
+      i += 2; // salta header + divider
+
+      const rows: string[][] = [];
+
+      while (i < lines.length) {
+        const l = lines[i].trim();
+
+        if (!l) {
+          i++;
+          break;
+        }
+
+        if (!isTableLine(l)) break;
+
+        rows.push(parseTableRow(l));
+        i++;
+      }
+
+      blocks.push({
+        type: "table",
+        headers,
+        rows,
+      });
+
       continue;
     }
 
@@ -49,7 +103,16 @@ export default function GuideBody({ content }: { content: string }) {
           break;
         }
 
-        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+        if (
+          isHeadingLine(l) ||
+          isCalloutLine(l) ||
+          isListItem(l) ||
+          (isTableLine(l) &&
+            i + 1 < lines.length &&
+            isTableDividerLine(lines[i + 1].trim()))
+        ) {
+          break;
+        }
 
         body += (body ? " " : "") + l;
         i++;
@@ -77,7 +140,16 @@ export default function GuideBody({ content }: { content: string }) {
           break;
         }
 
-        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+        if (
+          isHeadingLine(l) ||
+          isCalloutLine(l) ||
+          isListItem(l) ||
+          (isTableLine(l) &&
+            i + 1 < lines.length &&
+            isTableDividerLine(lines[i + 1].trim()))
+        ) {
+          break;
+        }
 
         sub += (sub ? " " : "") + l;
         i++;
@@ -105,7 +177,16 @@ export default function GuideBody({ content }: { content: string }) {
           break;
         }
 
-        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+        if (
+          isHeadingLine(l) ||
+          isCalloutLine(l) ||
+          isListItem(l) ||
+          (isTableLine(l) &&
+            i + 1 < lines.length &&
+            isTableDividerLine(lines[i + 1].trim()))
+        ) {
+          break;
+        }
 
         sub += (sub ? " " : "") + l;
         i++;
@@ -133,7 +214,16 @@ export default function GuideBody({ content }: { content: string }) {
           break;
         }
 
-        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+        if (
+          isHeadingLine(l) ||
+          isCalloutLine(l) ||
+          isListItem(l) ||
+          (isTableLine(l) &&
+            i + 1 < lines.length &&
+            isTableDividerLine(lines[i + 1].trim()))
+        ) {
+          break;
+        }
 
         sub += (sub ? " " : "") + l;
         i++;
@@ -162,7 +252,16 @@ export default function GuideBody({ content }: { content: string }) {
           break;
         }
 
-        if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+        if (
+          isHeadingLine(l) ||
+          isCalloutLine(l) ||
+          isListItem(l) ||
+          (isTableLine(l) &&
+            i + 1 < lines.length &&
+            isTableDividerLine(lines[i + 1].trim()))
+        ) {
+          break;
+        }
 
         sub += (sub ? " " : "") + l;
         i++;
@@ -211,7 +310,16 @@ export default function GuideBody({ content }: { content: string }) {
         break;
       }
 
-      if (isHeadingLine(l) || isCalloutLine(l) || isListItem(l)) break;
+      if (
+        isHeadingLine(l) ||
+        isCalloutLine(l) ||
+        isListItem(l) ||
+        (isTableLine(l) &&
+          i + 1 < lines.length &&
+          isTableDividerLine(lines[i + 1].trim()))
+      ) {
+        break;
+      }
 
       p += " " + l;
       i++;
@@ -295,6 +403,44 @@ export default function GuideBody({ content }: { content: string }) {
                   {b.body}
                 </p>
               ) : null}
+            </div>
+          );
+        }
+
+        if (b.type === "table") {
+          return (
+            <div
+              key={idx}
+              className="overflow-x-auto rounded-[1.5rem] border border-slate-200 bg-white"
+            >
+              <table className="min-w-full border-collapse text-left">
+                <thead className="bg-slate-50">
+                  <tr>
+                    {b.headers.map((header, j) => (
+                      <th
+                        key={j}
+                        className="border-b border-slate-200 px-4 py-3 text-sm font-extrabold text-slate-900 md:px-5 md:py-4 md:text-[15px]"
+                      >
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.rows.map((row, rIdx) => (
+                    <tr key={rIdx} className="align-top">
+                      {b.headers.map((_, cIdx) => (
+                        <td
+                          key={cIdx}
+                          className="border-b border-slate-100 px-4 py-3 text-sm font-medium leading-6 text-textBody md:px-5 md:py-4 md:text-[15px]"
+                        >
+                          {row[cIdx] ?? ""}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           );
         }
