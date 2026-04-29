@@ -80,21 +80,6 @@ type Project = {
   image?: string;
 };
 
-type ToolAction = {
-  label: string;
-  href?: string;
-  external?: boolean;
-  variant?: "primary" | "secondary";
-};
-
-type OwnTool = {
-  title: string;
-  badge: string;
-  description: string;
-  status?: string;
-  actions?: ToolAction[];
-};
-
 const services = [
   {
     title: "Landing pages",
@@ -133,48 +118,6 @@ const process = [
   },
 ];
 
-const ownTools: OwnTool[] = [
-  {
-    title: "Calculadora ML",
-    badge: "Herramienta propia",
-    status: "Activa",
-    description:
-      "Herramienta pensada para calcular precios, márgenes, impuestos, comisiones y escenarios de venta en MercadoLibre.",
-    actions: [
-      {
-        label: "Usar herramienta",
-        href: "https://webapp.calculadoraml.oriavision.com.ar/",
-        external: true,
-        variant: "primary",
-      },
-      {
-        label: "Ver landing",
-        href: "https://calculadoraml.oriavision.com.ar/",
-        external: true,
-        variant: "secondary",
-      },
-    ],
-  },
-  {
-    title: "Orientador de precios ML",
-    badge: "Herramienta propia",
-    status: "Nuevo producto",
-    description:
-      "Nueva herramienta orientada a ayudar a definir y orientar precios de venta en MercadoLibre con una lógica práctica y enfocada en la toma de decisiones.",
-    actions: [
-      {
-        label: "Próximamente",
-        variant: "secondary",
-      },
-      {
-        label: "Consultar por esta herramienta",
-        href: "#formulario",
-        variant: "primary",
-      },
-    ],
-  },
-];
-
 const projects: Project[] = [
   {
     title: "Calculadora ML — Landing",
@@ -185,6 +128,16 @@ const projects: Project[] = [
       "Landing enfocada en presentar la propuesta, explicar beneficios y derivar a la herramienta principal.",
     stack: ["Marketing", "Conversión", "CTA clara"],
     image: "/portfolio/calculadora-landing.png",
+  },
+  {
+    title: "Calculadora ML — Web App",
+    kind: "Web app",
+    href: "https://webapp.calculadoraml.oriavision.com.ar/",
+    domain: "webapp.calculadoraml.oriavision.com.ar",
+    description:
+      "Aplicación web con lógica propia para cálculos de precios, márgenes, impuestos, comisiones y escenarios de venta.",
+    stack: ["Lógica de negocio", "Usuarios", "Herramienta"],
+    image: "/portfolio/calculadora-webapp.png",
   },
   {
     title: "dbengotech",
@@ -294,65 +247,6 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-function OwnToolCard({ tool }: { tool: OwnTool }) {
-  return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full border border-violet-100 bg-violet-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-violet-700">
-          {tool.badge}
-        </span>
-
-        {tool.status ? (
-          <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-amber-700">
-            {tool.status}
-          </span>
-        ) : null}
-      </div>
-
-      <h3 className="mt-5 text-3xl font-black tracking-tight text-slate-900">
-        {tool.title}
-      </h3>
-
-      <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-        {tool.description}
-      </p>
-
-      <div className="mt-6 flex flex-wrap gap-3">
-        {tool.actions?.map((action) => {
-          if (!action.href) {
-            return (
-              <span
-                key={action.label}
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-6 py-3 text-sm font-extrabold text-slate-500"
-              >
-                {action.label}
-              </span>
-            );
-          }
-
-          const isPrimary = action.variant !== "secondary";
-
-          return (
-            <a
-              key={action.label}
-              href={action.href}
-              target={action.external ? "_blank" : undefined}
-              rel={action.external ? "noreferrer" : undefined}
-              className={
-                isPrimary
-                  ? "inline-flex items-center justify-center rounded-full bg-violet-600 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-violet-700"
-                  : "inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-6 py-3 text-sm font-extrabold text-slate-800 transition hover:border-violet-200 hover:text-violet-700"
-              }
-            >
-              {action.label}
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 export default function WebPage() {
   return (
     <main className="min-h-screen bg-white">
@@ -385,10 +279,10 @@ export default function WebPage() {
 
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <a
-                  href="#herramientas"
+                  href="#trabajos"
                   className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
                 >
-                  Ver herramientas y trabajos
+                  Ver trabajos
                 </a>
 
                 <a
@@ -502,33 +396,6 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section id="herramientas" className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center rounded-full border border-violet-100 bg-violet-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-violet-700">
-                Herramientas
-              </div>
-
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                Algunas herramientas propias desarrolladas por nosotros
-              </h2>
-
-              <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                Además del trabajo para clientes, también desarrollamos herramientas propias
-                orientadas a resolver problemas concretos y aportar valor real.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              {ownTools.map((tool) => (
-                <OwnToolCard key={tool.title} tool={tool} />
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       <section id="trabajos" className="px-4 py-10 md:py-14">
         <div className="mx-auto max-w-6xl">
           <Reveal>
@@ -543,7 +410,7 @@ export default function WebPage() {
 
               <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
                 Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
-                landing pages y sitios de servicios.
+                landing pages, web apps, sitios de servicios y desarrollos más avanzados.
               </p>
             </div>
 
