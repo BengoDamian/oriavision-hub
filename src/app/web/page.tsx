@@ -125,7 +125,7 @@ const projects: Project[] = [
     href: "https://siempredeguardia.com.ar/",
     domain: "siempredeguardia.com.ar",
     description:
-      "Plataforma orientada a mostrar servicios y categorías, con acceso de usuarios y una estructura más completa de navegación.",
+      "Plataforma orientada a encontrar servicios disponibles de forma rápida, con categorías claras, acceso de usuarios y una navegación práctica.",
     stack: ["Directorio", "Servicios", "Login"],
     image: "/portfolio/siempredeguardia.png",
   },
