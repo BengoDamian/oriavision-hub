@@ -19,6 +19,7 @@ import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
+const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
 
 export const metadata: Metadata = {
   title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
@@ -119,7 +120,6 @@ export default function Home() {
         }}
       />
 
-      {/* Floating Calculadora ML (abajo izquierda) */}
       <TrackLink
         href={CALC_URL}
         target="_blank"
@@ -133,7 +133,6 @@ export default function Home() {
         <span className="hidden sm:inline">Calculadora ML</span>
       </TrackLink>
 
-      {/* Floating WhatsApp (abajo derecha) */}
       <TrackLink
         href={whatsappHref}
         target="_blank"
@@ -147,7 +146,6 @@ export default function Home() {
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
-      {/* HERO */}
       <section className="relative overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
         <Blob />
 
@@ -194,6 +192,13 @@ export default function Home() {
               </a>
 
               <a
+                href="#herramientas"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER HERRAMIENTAS
+              </a>
+
+              <a
                 href="#recursos-gratuitos"
                 className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
@@ -215,23 +220,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CALCULADORA ML */}
-      <section id="calculadora-ml" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
+      <section id="herramientas" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
               <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Calculadora ML
+                Herramientas
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-textBody">
-                Nuestra herramienta principal para calcular precios, costos, comisiones, impuestos y rentabilidad real.
+                Herramientas creadas para ayudarte a vender mejor, calcular más rápido y tomar decisiones con más claridad.
               </p>
             </div>
           </Reveal>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="group relative flex flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
                 <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
                   MÁS USADA
                 </div>
@@ -258,11 +262,39 @@ export default function Home() {
                 </TrackLink>
               </div>
             </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+                <div className="absolute right-0 top-0 rounded-bl-2xl bg-violet-600 px-4 py-2 text-xs font-bold text-white">
+                  NUEVA
+                </div>
+
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-violet-600 transition-transform group-hover:scale-[1.06]">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-bold text-slate-900">Orientador de precios ML</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Una herramienta pensada para orientarte rápidamente con tus precios de venta en MercadoLibre y detectar
+                  oportunidades de forma más simple.
+                </p>
+
+                <TrackLink
+                  href={ORIENTADOR_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  event="click_orientador"
+                  place="orientador_card_home"
+                  className="mt-auto block w-full rounded-xl border-2 border-violet-600 py-3 text-center text-sm font-bold uppercase text-violet-600 transition-colors hover:bg-violet-600 hover:text-white"
+                >
+                  Ver orientador
+                </TrackLink>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* RECURSOS GRATUITOS */}
       <section id="recursos-gratuitos" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
@@ -409,7 +441,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICIOS */}
       <section id="servicios" className="scroll-mt-24 bg-white py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
@@ -470,7 +501,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUIÉNES SOMOS */}
       <section id="nosotros" className="scroll-mt-24 overflow-hidden bg-white py-24">
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col items-center gap-16 md:flex-row">
@@ -579,7 +609,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA FINAL */}
       <section className="border-t border-brand-100 bg-brand-50 px-4 py-20 text-center">
         <Reveal>
           <div className="mx-auto max-w-4xl">
