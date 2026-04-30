@@ -120,6 +120,26 @@ const process = [
 
 const projects: Project[] = [
   {
+    title: "Siempre de Guardia",
+    kind: "Directorio / plataforma",
+    href: "https://siempredeguardia.com.ar/",
+    domain: "siempredeguardia.com.ar",
+    description:
+      "Plataforma orientada a mostrar servicios y categorías, con acceso de usuarios y una estructura más completa de navegación.",
+    stack: ["Directorio", "Servicios", "Login"],
+    image: "/portfolio/siempredeguardia.png",
+  },
+  {
+    title: "Quirvo",
+    kind: "Landing de producto",
+    href: "https://www.quirvo.com.ar/",
+    domain: "www.quirvo.com.ar",
+    description:
+      "Landing orientada a presentar el producto, explicar su propuesta de valor y comunicar una solución clara y moderna.",
+    stack: ["Producto", "Presentación", "Landing"],
+    image: "/portfolio/quirvo.png",
+  },
+  {
     title: "Calculadora ML — Landing",
     kind: "Landing page",
     href: "https://calculadoraml.oriavision.com.ar/",
@@ -130,16 +150,6 @@ const projects: Project[] = [
     image: "/portfolio/calculadora-landing.png",
   },
   {
-    title: "Calculadora ML — Web App",
-    kind: "Web app",
-    href: "https://webapp.calculadoraml.oriavision.com.ar/",
-    domain: "webapp.calculadoraml.oriavision.com.ar",
-    description:
-      "Aplicación web con lógica propia para cálculos de precios, márgenes, impuestos, comisiones y escenarios de venta.",
-    stack: ["Lógica de negocio", "Usuarios", "Herramienta"],
-    image: "/portfolio/calculadora-webapp.png",
-  },
-  {
     title: "dbengotech",
     kind: "Web de servicios",
     href: "https://dbengotech.com.ar/",
@@ -148,24 +158,6 @@ const projects: Project[] = [
       "Sitio orientado a comunicar servicios, propuesta de valor y enfoque de trabajo de forma más profesional.",
     stack: ["Servicios", "Presentación", "Marca"],
     image: "/portfolio/dbengotech.png",
-  },
-  {
-    title: "Siempre de Guardia",
-    kind: "Directorio / plataforma",
-    href: "https://siempredeguardia.com.ar/",
-    domain: "siempredeguardia.com.ar",
-    description:
-      "Plataforma orientada a mostrar servicios y categorías, con acceso de usuarios y una estructura más completa de navegación.",
-    stack: ["Directorio", "Servicios", "Login"],
-  },
-  {
-    title: "Quirvo",
-    kind: "Landing de producto",
-    href: "https://www.quirvo.com.ar/",
-    domain: "www.quirvo.com.ar",
-    description:
-      "Landing orientada a presentar el producto, explicar su propuesta de valor y comunicar una solución clara y moderna.",
-    stack: ["Producto", "Presentación", "Landing"],
   },
 ];
 
@@ -428,7 +420,7 @@ export default function WebPage() {
 
               <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
                 Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
-                landing pages, web apps, sitios de servicios y desarrollos más avanzados.
+                landing pages, sitios de servicios, directorios y desarrollos más completos.
               </p>
             </div>
 
