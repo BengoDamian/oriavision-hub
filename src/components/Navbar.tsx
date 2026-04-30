@@ -31,6 +31,21 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Páginas web a medida", href: "/web/" },
     ],
   },
+  {
+    label: "Herramientas",
+    items: [
+      {
+        label: "Calculadora ML",
+        href: "https://webapp.calculadoraml.oriavision.com.ar/",
+        external: true,
+      },
+      {
+        label: "Orientador de precios ML",
+        href: "https://www.orientadordepreciosml.oriavision.com.ar/",
+        external: true,
+      },
+    ],
+  },
 ];
 
 const PRIMARY_CTA = {
