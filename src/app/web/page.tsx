@@ -1,478 +1,642 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Calculator,
+  CheckCircle2,
+  Database,
+  MessageCircle,
+  MonitorSmartphone,
+} from "lucide-react";
 import Reveal from "@/components/Reveal";
-import WebRequestForm from "@/components/WebRequestForm";
+import Blob from "@/components/Blob";
+import Newsletter from "@/components/Newsletter";
+import LeadMagnet from "@/components/LeadMagnet";
+import TrackLink from "@/components/TrackLink";
+import ResourceSearch from "@/components/ResourceSearch";
+import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
-const PAGE_URL = `${SITE_URL}/web/`;
+const CALC_URL = "https://calculadoraml.oriavision.com.ar";
+const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
 
 export const metadata: Metadata = {
-  title: "Landing pages, webs a medida y sistemas web | Oriavision",
+  title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
   description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce. Herramientas y recursos prácticos creados desde la experiencia real de venta.",
   alternates: {
-    canonical: "/web/",
+    canonical: "/",
   },
   openGraph: {
-    url: PAGE_URL,
-    title: "Landing pages, webs a medida y sistemas web | Oriavision",
+    url: SITE_URL,
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
     description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
+      "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
     images: [
       {
         url: "/og/home.png",
         width: 1200,
         height: 630,
-        alt: "Servicios web de Oriavision",
+        alt: "Oriavision",
       },
     ],
   },
   twitter: {
-    title: "Landing pages, webs a medida y sistemas web | Oriavision",
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
     description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
+      "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
     images: ["/og/home.png"],
   },
 };
 
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Inicio",
-      item: SITE_URL,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Servicios web",
-      item: PAGE_URL,
-    },
-  ],
-};
-
-const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "Diseño y desarrollo web",
-  name: "Landing pages, páginas web a medida y sistemas web",
-  provider: {
-    "@type": "Organization",
-    name: "Oriavision",
-    url: SITE_URL,
+const TEAM = [
+  {
+    name: "Edgardo A. Díaz",
+    role: "Experto en MercadoLibre y Comercio Electrónico",
+    bio: "18 años vendiendo en MercadoLibre. Fundador de ERCAS, AVTECNO y VDS. Creó Oriavision porque le faltaban herramientas que no existían.",
+    img: "/team/persona-1.jpg",
   },
-  areaServed: "AR",
-  url: PAGE_URL,
+  {
+    name: "Analía L. Rodriguez",
+    role: "Operaciones & Customer Success Manager (CSM)",
+    bio: "Se encarga de que todo funcione sin complicaciones. Procesos simples, soporte rápido y cero fricción.",
+    img: "/team/persona-2.jpg",
+  },
+  {
+    name: "Damián E. Bengochea",
+    role: "Desarrollo & Producto (Full-stack)",
+    bio: "Convierte ideas en herramientas que funcionan. Obsesionado con que sean rápidas, simples y confiables.",
+    img: "/team/persona-3.jpg",
+  },
+];
+
+const homePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Oriavision",
+  url: SITE_URL,
   description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones, newsletters y paneles de gestión.",
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
+  inLanguage: "es-AR",
 };
 
-type Project = {
-  title: string;
-  kind: string;
-  status?: string;
-  href: string;
-  domain: string;
-  description: string;
-  stack?: string[];
-  image?: string;
-};
+export default function Home() {
+  const whatsappHref =
+    "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Vi%20la%20p%C3%A1gina%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20recursos.%20%C2%BFMe%20ayudan%3F";
 
-const services = [
-  {
-    title: "Landing pages",
-    text: "Ideales para campañas, servicios, link en bio o presentar una propuesta de forma clara y profesional.",
-  },
-  {
-    title: "Páginas web a medida",
-    text: "Para negocios que necesitan mejor estructura, más secciones, formularios, contenido y una presencia digital más sólida.",
-  },
-  {
-    title: "Sistemas y automatizaciones",
-    text: "También desarrollamos soluciones con usuarios, login, base de datos, panel admin, newsletters, secuencias automáticas y funciones específicas.",
-  },
-];
+  const prompts = getAllPromptsMerged();
+  const guides = getAllGuidesMerged();
 
-const process = [
-  {
-    step: "01",
-    title: "Nos contás qué necesitás",
-    text: "Completás el formulario con tu idea, rubro y objetivo principal.",
-  },
-  {
-    step: "02",
-    title: "Definimos el enfoque",
-    text: "Vemos si conviene una landing, una web a medida o un sistema más completo.",
-  },
-  {
-    step: "03",
-    title: "Diseño y desarrollo",
-    text: "Armamos una propuesta clara, moderna y alineada a tu negocio.",
-  },
-  {
-    step: "04",
-    title: "Entrega y evolución",
-    text: "Dejamos todo listo para salir online y seguir mejorándolo si hace falta.",
-  },
-];
+  const featuredPrompts = prompts.filter((p) => p.featured);
+  const previewPrompts = (featuredPrompts.length ? featuredPrompts : prompts).slice(0, 3);
 
-const projects: Project[] = [
-  {
-    title: "Calculadora ML — Landing",
-    kind: "Landing page",
-    href: "https://calculadoraml.oriavision.com.ar/",
-    domain: "calculadoraml.oriavision.com.ar",
-    description:
-      "Landing enfocada en presentar la propuesta, explicar beneficios y derivar a la herramienta principal.",
-    stack: ["Marketing", "Conversión", "CTA clara"],
-    image: "/portfolio/calculadora-landing.png",
-  },
-  {
-    title: "Calculadora ML — Web App",
-    kind: "Web app",
-    href: "https://webapp.calculadoraml.oriavision.com.ar/",
-    domain: "webapp.calculadoraml.oriavision.com.ar",
-    description:
-      "Aplicación web con lógica propia para cálculos de precios, márgenes, impuestos, comisiones y escenarios de venta.",
-    stack: ["Lógica de negocio", "Usuarios", "Herramienta"],
-    image: "/portfolio/calculadora-webapp.png",
-  },
-  {
-    title: "dbengotech",
-    kind: "Web de servicios",
-    href: "https://dbengotech.com.ar/",
-    domain: "dbengotech.com.ar",
-    description:
-      "Sitio orientado a comunicar servicios, propuesta de valor y enfoque de trabajo de forma más profesional.",
-    stack: ["Servicios", "Presentación", "Marca"],
-    image: "/portfolio/dbengotech.png",
-  },
-];
+  const featuredGuides = guides.filter((g) => g.featured);
+  const previewGuides = (featuredGuides.length ? featuredGuides : guides).slice(0, 3);
 
-function ProjectPreview({ project }: { project: Project }) {
+  const searchItems = [
+    ...prompts.map((p) => ({
+      type: "Prompt" as const,
+      title: p.title,
+      description: p.description,
+      category: p.category,
+      href: `/prompts/${p.id}/`,
+    })),
+    ...guides.map((g) => ({
+      type: "Guía" as const,
+      title: g.title,
+      description: g.description,
+      category: g.category,
+      href: `/guias/${g.id}/`,
+    })),
+  ];
+
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-red-300" />
-        <span className="h-3 w-3 rounded-full bg-amber-300" />
-        <span className="h-3 w-3 rounded-full bg-emerald-300" />
-        <div className="ml-2 truncate rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-500">
-          {project.domain}
-        </div>
-      </div>
+    <div className="flex min-h-screen flex-col pb-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageJsonLd),
+        }}
+      />
 
-      {project.image ? (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-64 w-full object-cover object-top md:h-72"
-        />
-      ) : (
-        <div className="relative flex h-64 w-full items-end overflow-hidden bg-gradient-to-br from-slate-900 via-brand-900 to-brand-600 p-6 md:h-72">
-          <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]" />
-          <div className="relative z-10 max-w-sm">
-            <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-white/90 backdrop-blur">
-              {project.kind}
+      {/* Floating Calculadora ML (abajo izquierda) */}
+      <TrackLink
+        href={CALC_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Abrir Calculadora ML"
+        event="click_calc"
+        place="floating_home"
+        className="pointer-events-auto fixed left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:left-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+      >
+        <Calculator className="h-5 w-5" />
+        <span className="hidden sm:inline">Calculadora ML</span>
+      </TrackLink>
+
+      {/* Floating WhatsApp (abajo derecha) */}
+      <TrackLink
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        event="click_whatsapp"
+        place="floating_home"
+        className="pointer-events-auto fixed right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white opacity-95 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:right-6 sm:px-5 sm:py-3 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+      >
+        <MessageCircle className="h-5 w-5" />
+        <span className="hidden sm:inline">WhatsApp</span>
+      </TrackLink>
+
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
+        <Blob />
+
+        <div className="mx-auto max-w-6xl px-4 text-center">
+          <Reveal delay={0.03}>
+            <div className="mx-auto mb-8 max-w-3xl">
+              <ResourceSearch items={searchItems} />
             </div>
-            <div className="mt-4 text-2xl font-black leading-tight tracking-tight text-white">
-              {project.title}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+          </Reveal>
 
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:p-5">
-      <ProjectPreview project={project} />
-
-      <div className="mt-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
-            {project.kind}
-          </span>
-
-          {project.status ? (
-            <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-amber-700">
-              {project.status}
-            </span>
-          ) : null}
-        </div>
-
-        <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
-          {project.title}
-        </h3>
-
-        <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-          {project.description}
-        </p>
-
-        {project.stack?.length ? (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.stack.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-600"
-              >
-                {item}
+          <Reveal delay={0.05}>
+            <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
+              Somos vendedores que <br className="hidden md:block" />
+              <span className="relative inline-block text-brand-600">
+                Creamos soluciones.
+                <svg
+                  className="absolute -bottom-1 left-0 -z-10 h-3 w-full text-yellow-300"
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                >
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                </svg>
               </span>
-            ))}
-          </div>
-        ) : null}
+            </h1>
+          </Reveal>
 
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-brand-700"
-          >
-            Ver online
-          </a>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-textBody text-balance md:text-2xl">
+              Construimos lo que necesitábamos para vender mejor. Herramientas, landing pages, páginas web a medida y
+              recursos reales para problemas que vivimos todos los días.
+            </p>
+          </Reveal>
 
-          <a
-            href="#formulario"
-            className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
-          >
-            Quiero algo así
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
+          <Reveal delay={0.15}>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+              <a
+                href={CALC_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700 sm:w-auto"
+              >
+                ABRIR CALCULADORA ML
+                <ArrowRight className="h-5 w-5" />
+              </a>
 
-export default function WebPage() {
-  return (
-    <main className="min-h-screen bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+              <a
+                href="#herramientas"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER HERRAMIENTAS
+              </a>
 
-      <section className="relative overflow-hidden px-4 pb-16 pt-24 md:pb-20 md:pt-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_36%)]" />
-        <div className="relative mx-auto max-w-6xl">
-          <Reveal>
-            <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Servicios web
-              </div>
+              <a
+                href="#recursos-gratuitos"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER RECURSOS GRATUITOS
+              </a>
 
-              <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Landing pages, webs a medida y sistemas web para mostrar mejor tu negocio
-              </h1>
-
-              <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600 md:text-xl">
-                Desarrollamos desde páginas simples hasta sistemas más completos con usuarios,
-                base de datos, login, panel admin, automatizaciones y funciones a medida.
-              </p>
-
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href="#trabajos"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
-                >
-                  Ver trabajos
-                </a>
-
-                <a
-                  href="#formulario"
-                  className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
-                >
-                  Enviar info
-                </a>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-slate-500">
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Landing pages
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Webs a medida
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Usuarios y login
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Base de datos
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Panel admin
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Automatización de emails
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Newsletters y secuencias
-                </span>
-              </div>
+              <a
+                href="#servicios"
+                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+              >
+                VER SERVICIOS
+              </a>
             </div>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <LeadMagnet />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
+      {/* HERRAMIENTAS */}
+      <section id="herramientas" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
+        <div className="mx-auto max-w-6xl px-4">
           <Reveal>
-            <div className="grid gap-6 md:grid-cols-3">
-              {services.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Herramientas
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-textBody">
+                Herramientas creadas para ayudarte a vender mejor, calcular más rápido y tomar decisiones con más claridad.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <Reveal delay={0.05}>
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+                <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
+                  MÁS USADA
+                </div>
+
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600 transition-transform group-hover:scale-[1.06]">
+                  <Calculator className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-bold text-slate-900">Calculadora ML</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos y opciones
+                  de cuotas para ver tu ganancia real.
+                </p>
+
+                <TrackLink
+                  href={CALC_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  event="click_calc"
+                  place="calculator_card_home"
+                  className="mt-auto block w-full rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
                 >
-                  <h2 className="text-xl font-black tracking-tight text-slate-900">
-                    {item.title}
-                  </h2>
-                  <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-                    {item.text}
+                  Abrir calculadora
+                </TrackLink>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+                <div className="absolute right-0 top-0 rounded-bl-2xl bg-violet-600 px-4 py-2 text-xs font-bold text-white">
+                  NUEVA
+                </div>
+
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-violet-600 transition-transform group-hover:scale-[1.06]">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-bold text-slate-900">Orientador de precios ML</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Una herramienta pensada para orientarte rápidamente con tus precios de venta en MercadoLibre y detectar
+                  oportunidades de forma más simple.
+                </p>
+
+                <TrackLink
+                  href={ORIENTADOR_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  event="click_orientador"
+                  place="orientador_card_home"
+                  className="mt-auto block w-full rounded-xl border-2 border-violet-600 py-3 text-center text-sm font-bold uppercase text-violet-600 transition-colors hover:bg-violet-600 hover:text-white"
+                >
+                  Ver orientador
+                </TrackLink>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* RECURSOS GRATUITOS */}
+      <section id="recursos-gratuitos" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Recursos gratuitos
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-textBody">
+                Contenido listo para leer, copiar y aplicar. Sin vueltas y sin humo.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="space-y-10">
+            <Reveal delay={0.04}>
+              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                <div className="mx-auto max-w-3xl text-center">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                    Recursos para copiar y usar
+                  </span>
+
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Prompts</h3>
+
+                  <p className="mt-3 font-medium text-textBody">
+                    Entrás, leés el prompt completo y lo copiás con un botón. Listo para usar.
                   </p>
                 </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      <section className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8 md:p-10">
-              <div className="max-w-3xl">
-                <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Qué hacemos
-                </div>
+                {previewPrompts.length > 0 && (
+                  <div className="mt-10">
+                    <div className="mx-auto max-w-4xl">
+                      <Link
+                        href={`/prompts/${previewPrompts[0].id}/`}
+                        className="group block rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:p-10"
+                      >
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                          {previewPrompts[0].category}
+                        </div>
 
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  No solo hacemos páginas lindas: buscamos que expliquen bien y funcionen
-                </h2>
+                        <h4 className="mt-5 max-w-2xl text-2xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700 md:text-3xl">
+                          {previewPrompts[0].title}
+                        </h4>
 
-                <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                  Una buena web tiene que transmitir confianza, ordenar la propuesta y facilitar
-                  la acción. Y cuando hace falta, también puede sumar lógica, usuarios, paneles,
-                  automatizaciones, newsletters, secuencias automáticas y herramientas propias.
-                </p>
-              </div>
+                        <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-textBody md:text-lg">
+                          {previewPrompts[0].description}
+                        </p>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-2">
-                <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-black text-slate-900">Ideal para</h3>
-                  <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
-                    <li>• Negocios que todavía no tienen una web sólida</li>
-                    <li>• Marcas que necesitan una landing para campañas o redes</li>
-                    <li>• Servicios que quieren recibir más consultas</li>
-                    <li>• Proyectos que necesitan verse mejor y comunicar con claridad</li>
-                    <li>• Empresas que necesitan un sistema interno o una herramienta web</li>
-                  </ul>
-                </div>
+                        <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                          Ver prompt <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </Link>
+                    </div>
 
-                <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-black text-slate-900">Podemos ayudarte con</h3>
-                  <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
-                    <li>• Sitios de servicios e institucionales</li>
-                    <li>• Landing pages para campañas</li>
-                    <li>• Formularios de contacto o consulta</li>
-                    <li>• Registro e ingreso de usuarios</li>
-                    <li>• Base de datos y panel administrador</li>
-                    <li>• Automatización de emails y respuestas</li>
-                    <li>• Newsletters y secuencias automáticas</li>
-                    <li>• Paneles para cargar productos, propiedades o servicios</li>
-                    <li>• Gestión de proveedores o catálogos internos</li>
-                    <li>• Herramientas y funciones a medida</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+                    {previewPrompts.length > 1 && (
+                      <div className="mt-6 grid gap-6 md:grid-cols-2">
+                        {previewPrompts.slice(1, 3).map((p, i) => (
+                          <Reveal key={p.id} delay={0.06 + i * 0.04}>
+                            <Link
+                              href={`/prompts/${p.id}/`}
+                              className="group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                            >
+                              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                                {p.category}
+                              </div>
 
-      <section id="trabajos" className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Trabajos destacados
-              </div>
+                              <h5 className="mt-4 text-xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700">
+                                {p.title}
+                              </h5>
 
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                Algunos trabajos destacados hechos por nosotros
-              </h2>
+                              <p className="mt-3 font-medium leading-relaxed text-textBody">{p.description}</p>
 
-              <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
-                landing pages, web apps, sitios de servicios y desarrollos más avanzados.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              {projects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Cómo trabajamos
-                </div>
-
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Un proceso simple para avanzar más rápido
-                </h2>
-              </div>
-
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                {process.map((item) => (
-                  <div
-                    key={item.step}
-                    className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6"
-                  >
-                    <div className="text-sm font-black text-brand-700">{item.step}</div>
-                    <h3 className="mt-3 text-lg font-black text-slate-900">{item.title}</h3>
-                    <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
-                      {item.text}
-                    </p>
+                              <div className="mt-5 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                                Ver prompt <ArrowRight className="h-4 w-4" />
+                              </div>
+                            </Link>
+                          </Reveal>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                ))}
+                )}
+
+                <div className="mt-10 text-center">
+                  <Link
+                    href="/prompts/"
+                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                  >
+                    Ver todos los prompts
+                  </Link>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+            </Reveal>
 
-      <section id="formulario" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <WebRequestForm />
-          </Reveal>
+            <Reveal delay={0.08}>
+              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                <div className="mx-auto max-w-3xl text-center">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                    Recursos para aplicar al toque
+                  </span>
 
-          <div className="mt-8 text-center text-sm font-semibold text-slate-500">
-            Preferís escribir directo?{" "}
-            <a
-              href="mailto:soporte@oriavision.com.ar"
-              className="font-extrabold text-brand-600 hover:text-brand-700"
-            >
-              soporte@oriavision.com.ar
-            </a>
+                  <h3 className="mt-5 text-2xl font-black text-slate-900 md:text-3xl">Guías</h3>
+
+                  <p className="mt-3 font-medium text-textBody">
+                    Guías claras y accionables. Entrás, leés y lo aplicás al toque.
+                  </p>
+                </div>
+
+                <div className="mt-10 flex flex-wrap justify-center gap-6">
+                  {previewGuides.map((g, i) => (
+                    <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[320px]">
+                      <Link
+                        href={`/guias/${g.id}/`}
+                        className="group block h-full rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                          {g.category}
+                        </div>
+
+                        <h4 className="mt-4 text-xl font-black leading-tight text-slate-900 transition-colors group-hover:text-brand-700">
+                          {g.title}
+                        </h4>
+
+                        <p className="mt-3 font-medium leading-relaxed text-textBody">{g.description}</p>
+
+                        <div className="mt-5 inline-flex items-center gap-2 font-extrabold text-brand-600">
+                          Ver guía <ArrowRight className="h-4 w-4" />
+                        </div>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                  <Link
+                    href="/guias/"
+                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                  >
+                    Ver todas las guías
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
-    </main>
+
+      {/* SERVICIOS */}
+      <section id="servicios" className="scroll-mt-24 bg-white py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <Reveal>
+            <div className="mb-16 text-center">
+              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Servicios
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-textBody">
+                También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
+                con lógica, login y base de datos.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <Reveal delay={0.05}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <MonitorSmartphone className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Landing pages</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Páginas simples, rápidas y enfocadas en conversión. Ideales para presentar un servicio, captar leads
+                  o dirigir a WhatsApp, formulario o checkout.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
+                  <Database className="h-8 w-8" />
+                </div>
+
+                <h3 className="mb-3 text-2xl font-black text-slate-900">Páginas web a medida</h3>
+                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                  Sitios y aplicaciones más completos, con registro, login, paneles, base de datos y funcionalidades
+                  específicas según lo que necesite tu proyecto.
+                </p>
+
+                <Link
+                  href="/web/"
+                  className="mt-auto inline-flex items-center justify-center rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
+                >
+                  Ver servicio
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* QUIÉNES SOMOS */}
+      <section id="nosotros" className="scroll-mt-24 overflow-hidden bg-white py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="flex flex-col items-center gap-16 md:flex-row">
+            <div className="flex-1">
+              <Reveal>
+                <span className="mb-2 block text-sm font-bold uppercase tracking-widest text-brand-600">
+                  Sobre Oriavision
+                </span>
+              </Reveal>
+
+              <Reveal delay={0.05}>
+                <h2 className="mb-8 text-4xl font-black leading-tight text-slate-900 md:text-5xl">
+                  Vendedores Desde 2006. Herramientas Desde <span className="text-brand-600">2024.</span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <div className="space-y-6 text-lg font-medium leading-relaxed text-textBody">
+                  <p>
+                    No somos una agencia ni consultores de marketing. Somos un equipo que lleva 18 años vendiendo en
+                    MercadoLibre y Tiendanube. Después de perder tiempo con Excel y otros programas, construimos las
+                    herramientas que nos faltaban.
+                  </p>
+                  <p>Funcionaron tan bien que decidimos compartirlas. Simple.</p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <div className="mt-10 space-y-4">
+                  {[
+                    { title: "Datos que no mienten", subtitle: "Cálculos precisos con tarifas actualizadas" },
+                    { title: "Ganancia real, no vanity metrics", subtitle: "Rentabilidad neta, no ventas brutas" },
+                    { title: "Soporte que entiende", subtitle: "Equipo local que vende como vos" },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-brand-600" />
+                      <div>
+                        <span className="block font-bold text-slate-900">{item.title}</span>
+                        <span className="text-sm text-textBody">{item.subtitle}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal className="relative flex-1" delay={0.08}>
+              <div className="absolute -inset-4 rotate-3 rounded-[3rem] bg-brand-600 opacity-10" />
+              <div className="relative rounded-[2.5rem] bg-slate-900 p-10 text-white shadow-2xl md:p-14">
+                <div className="mb-2 text-6xl font-black text-brand-400">100%</div>
+                <div className="mb-8 text-2xl font-bold">Enfoque Analítico</div>
+                <p className="mb-8 leading-relaxed text-slate-200">
+                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas
+                  que eliminan el error humano y te muestran la realidad."
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white ring-2 ring-slate-700/40 shadow-sm">
+                    <Image src="/logo.png" alt="Oriavision" fill sizes="48px" className="object-contain p-1" />
+                  </div>
+                  <div>
+                    <div className="font-bold">Equipo Oriavision</div>
+                    <div className="text-sm text-slate-300">Buenos Aires, AR</div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mt-16">
+            <Reveal>
+              <div className="mb-10 text-center">
+                <h3 className="text-2xl font-black text-slate-900 md:text-3xl">Quiénes somos</h3>
+                <p className="mt-3 font-medium text-textBody">
+                  Un equipo chico, obsesionado con vender mejor y con menos errores.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {TEAM.map((p, i) => (
+                <Reveal key={p.name} delay={0.05 + i * 0.06}>
+                  <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative h-28 w-28">
+                        <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/25 to-slate-200/60" />
+                        <div className="relative h-28 w-28 rounded-full bg-white p-1 shadow-lg">
+                          <div className="relative h-full w-full overflow-hidden rounded-full ring-4 ring-white">
+                            <Image src={p.img} alt={p.name} fill sizes="112px" className="object-cover" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-5">
+                        <div className="text-xl font-black text-slate-900">{p.name}</div>
+                        <div className="mt-1 text-sm font-extrabold uppercase tracking-wide text-brand-600">
+                          {p.role}
+                        </div>
+                        <p className="mt-3 font-medium leading-relaxed text-textBody">{p.bio}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-brand-100 bg-brand-50 px-4 py-20 text-center">
+        <Reveal>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-6 text-3xl font-black text-slate-900">
+              ¿Necesitás una landing o una web a medida?
+            </h2>
+            <p className="mx-auto mb-8 max-w-xl text-textBody">
+              Si querés una página clara, rápida y pensada para vender, escribinos y vemos qué formato te conviene.
+            </p>
+
+            <Link
+              href="/web/"
+              className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
+            >
+              VER SERVICIO WEB
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+
+      <Newsletter />
+    </div>
   );
 }
