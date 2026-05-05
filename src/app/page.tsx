@@ -112,7 +112,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col pb-28">
+    <div className="flex min-h-screen flex-col overflow-x-hidden pb-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -127,7 +127,7 @@ export default function Home() {
         aria-label="Abrir Calculadora ML"
         event="click_calc"
         place="floating_home"
-        className="pointer-events-auto fixed left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:left-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+        className="premium-button animate-float-soft pointer-events-auto fixed left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:left-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <Calculator className="h-5 w-5" />
         <span className="hidden sm:inline">Calculadora ML</span>
@@ -140,16 +140,17 @@ export default function Home() {
         aria-label="WhatsApp"
         event="click_whatsapp"
         place="floating_home"
-        className="pointer-events-auto fixed right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white opacity-95 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:right-6 sm:px-5 sm:py-3 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+        className="premium-button animate-float-soft-delay pointer-events-auto fixed right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white opacity-95 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:right-6 sm:px-5 sm:py-3 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <MessageCircle className="h-5 w-5" />
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
-      <section className="relative overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
+      <section className="relative isolate overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
         <Blob />
+        <div className="bg-grid-soft absolute inset-0 z-0 opacity-60" aria-hidden="true" />
 
-        <div className="mx-auto max-w-6xl px-4 text-center">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
           <Reveal delay={0.03}>
             <div className="mx-auto mb-8 max-w-3xl">
               <ResourceSearch items={searchItems} />
@@ -159,7 +160,7 @@ export default function Home() {
           <Reveal delay={0.05}>
             <h1 className="mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
               Somos vendedores que <br className="hidden md:block" />
-              <span className="relative inline-block text-brand-600">
+              <span className="animated-gradient-text relative inline-block">
                 Creamos soluciones.
                 <svg
                   className="absolute -bottom-1 left-0 -z-10 h-3 w-full text-yellow-300"
@@ -185,7 +186,7 @@ export default function Home() {
                 href={CALC_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700 sm:w-auto"
+                className="premium-button flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-brand-700 sm:w-auto"
               >
                 ABRIR CALCULADORA ML
                 <ArrowRight className="h-5 w-5" />
@@ -193,21 +194,21 @@ export default function Home() {
 
               <a
                 href="#herramientas"
-                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+                className="premium-button w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
                 VER HERRAMIENTAS
               </a>
 
               <a
                 href="#recursos-gratuitos"
-                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+                className="premium-button w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
                 VER RECURSOS GRATUITOS
               </a>
 
               <a
                 href="#servicios"
-                className="w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
+                className="premium-button w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:text-brand-600 sm:w-auto"
               >
                 VER SERVICIOS
               </a>
@@ -235,7 +236,7 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+              <div className="premium-card group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
                 <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
                   MÁS USADA
                 </div>
@@ -264,7 +265,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
+              <div className="premium-card group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
                 <div className="absolute right-0 top-0 rounded-bl-2xl bg-violet-600 px-4 py-2 text-xs font-bold text-white">
                   NUEVA
                 </div>
@@ -310,7 +311,7 @@ export default function Home() {
 
           <div className="space-y-10">
             <Reveal delay={0.04}>
-              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="premium-card rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
                   <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
                     Recursos para copiar y usar
@@ -328,7 +329,7 @@ export default function Home() {
                     <div className="mx-auto max-w-4xl">
                       <Link
                         href={`/prompts/${previewPrompts[0].id}/`}
-                        className="group block rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:p-10"
+                        className="premium-card group block rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:p-10"
                       >
                         <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
                           {previewPrompts[0].category}
@@ -354,7 +355,7 @@ export default function Home() {
                           <Reveal key={p.id} delay={0.06 + i * 0.04}>
                             <Link
                               href={`/prompts/${p.id}/`}
-                              className="group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                              className="premium-card group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                             >
                               <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
                                 {p.category}
@@ -380,7 +381,7 @@ export default function Home() {
                 <div className="mt-10 text-center">
                   <Link
                     href="/prompts/"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                    className="premium-button inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
                   >
                     Ver todos los prompts
                   </Link>
@@ -389,7 +390,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="premium-card rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
                   <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
                     Recursos para aplicar al toque
@@ -407,7 +408,7 @@ export default function Home() {
                     <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[320px]">
                       <Link
                         href={`/guias/${g.id}/`}
-                        className="group block h-full rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                        className="premium-card group block h-full rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                       >
                         <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
                           {g.category}
@@ -430,7 +431,7 @@ export default function Home() {
                 <div className="mt-10 text-center">
                   <Link
                     href="/guias/"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                    className="premium-button inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-brand-700"
                   >
                     Ver todas las guías
                   </Link>
@@ -457,7 +458,7 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="premium-card flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
                   <MonitorSmartphone className="h-8 w-8" />
                 </div>
@@ -478,7 +479,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="premium-card flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
                   <Database className="h-8 w-8" />
                 </div>
@@ -582,7 +583,7 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-3">
               {TEAM.map((p, i) => (
                 <Reveal key={p.name} delay={0.05 + i * 0.06}>
-                  <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                  <div className="premium-card rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
                     <div className="flex flex-col items-center text-center">
                       <div className="relative h-28 w-28">
                         <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/25 to-slate-200/60" />
@@ -621,7 +622,7 @@ export default function Home() {
 
             <Link
               href="/web/"
-              className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
+              className="premium-button inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-all hover:-translate-y-0.5 hover:border-brand-600"
             >
               VER SERVICIO WEB
             </Link>

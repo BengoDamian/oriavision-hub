@@ -104,7 +104,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 shadow-sm shadow-slate-900/[0.03] backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
           <Link
             href="/"
@@ -151,7 +151,7 @@ export default function Navbar() {
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-5 py-2.5 text-sm font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+              className="premium-button inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-5 py-2.5 text-sm font-extrabold text-brand-700 transition-all hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-600 hover:text-white"
             >
               {PRIMARY_CTA.label}
             </a>
@@ -162,7 +162,7 @@ export default function Navbar() {
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-3 py-2 text-[11px] font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+              className="premium-button inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-3 py-2 text-[11px] font-extrabold text-brand-700 transition-all hover:border-brand-600 hover:bg-brand-600 hover:text-white"
             >
               {PRIMARY_CTA.label}
             </a>
@@ -185,10 +185,10 @@ export default function Navbar() {
           <button
             aria-label="Cerrar menú"
             onClick={close}
-            className="absolute inset-0 bg-black/30"
+            className="animate-fade-in absolute inset-0 bg-black/30"
           />
 
-          <div className="absolute right-0 top-0 flex h-full w-[85vw] max-w-sm flex-col bg-white p-6 shadow-2xl">
+          <div className="animate-slide-panel absolute right-0 top-0 flex h-full w-[85vw] max-w-sm flex-col bg-white p-6 shadow-2xl">
             <div className="flex items-center justify-between">
               <Link href="/" onClick={close} className="flex items-center gap-3" title="Oriavision">
                 <Image
@@ -234,7 +234,7 @@ export default function Navbar() {
                 href={PRIMARY_CTA.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-6 py-3 text-sm font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+                className="premium-button inline-flex w-full items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-6 py-3 text-sm font-extrabold text-brand-700 transition-all hover:border-brand-600 hover:bg-brand-600 hover:text-white"
                 onClick={close}
               >
                 {PRIMARY_CTA.label}
