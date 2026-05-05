@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-
 const SITE_URL = "https://www.oriavision.com.ar";
 const SITE_NAME = "Oriavision";
 const DEFAULT_TITLE = "Oriavision";
@@ -116,7 +115,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className="min-h-screen flex flex-col overflow-x-hidden bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700"
+        className="min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700"
       >
         <Navbar />
         <main className="flex-grow">{children}</main>

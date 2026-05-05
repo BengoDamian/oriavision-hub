@@ -10,11 +10,11 @@ import {
   MonitorSmartphone,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import Blob from "@/components/Blob";
 import Newsletter from "@/components/Newsletter";
 import LeadMagnet from "@/components/LeadMagnet";
 import TrackLink from "@/components/TrackLink";
 import ResourceSearch from "@/components/ResourceSearch";
+import TechDemoPanel from "@/components/TechDemoPanel";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
@@ -112,7 +112,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col pb-28">
+    <div className="flex min-h-screen flex-col overflow-x-clip pb-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -127,7 +127,7 @@ export default function Home() {
         aria-label="Abrir Calculadora ML"
         event="click_calc"
         place="floating_home"
-        className="floating-action fixed bottom-4 left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-all hover:-translate-y-0.5 hover:opacity-100 active:opacity-100 sm:bottom-6 sm:left-6"
+        className="pointer-events-auto fixed left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:left-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <Calculator className="h-5 w-5" />
         <span className="hidden sm:inline">Calculadora ML</span>
@@ -140,81 +140,107 @@ export default function Home() {
         aria-label="WhatsApp"
         event="click_whatsapp"
         place="floating_home"
-        className="floating-action fixed bottom-4 right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white opacity-95 shadow-2xl transition-all hover:-translate-y-0.5 hover:opacity-100 active:opacity-100 sm:bottom-6 sm:right-6 sm:px-5 sm:py-3"
+        className="pointer-events-auto fixed right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white opacity-95 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:right-6 sm:px-5 sm:py-3 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
       >
         <MessageCircle className="h-5 w-5" />
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
-      <section className="hero-stage relative isolate overflow-hidden bg-white pb-20 pt-4 md:pb-28 md:pt-6">
-        <Blob />
+      <section className="relative isolate overflow-hidden bg-[#041A3D] py-16 text-white md:py-24">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-[-20rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-brand-500/20 blur-3xl" />
+          <div className="absolute bottom-[-18rem] right-[-12rem] h-[38rem] w-[38rem] rounded-full bg-cyan-300/10 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:44px_44px] opacity-35" />
+        </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
-          <Reveal delay={0.03}>
-            <div className="hero-search mx-auto mb-8 max-w-3xl">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-[minmax(0,1.03fr)_minmax(340px,0.97fr)]">
+          <div className="text-center md:text-left">
+            <Reveal delay={0.03}>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-sky-100 backdrop-blur">
+                Hub tecnológico para vendedores reales
+              </span>
+            </Reveal>
+
+            <Reveal delay={0.06}>
+              <h1 className="mt-7 text-5xl font-black leading-[1.04] tracking-tight text-white text-balance md:text-7xl">
+                Somos vendedores que <br className="hidden md:block" />
+                <span className="relative inline-block text-sky-200">
+                  crean soluciones.
+                  <svg
+                    className="absolute -bottom-2 left-0 h-3 w-full text-sky-300/65"
+                    viewBox="0 0 100 10"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="7" fill="none" />
+                  </svg>
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <p className="mx-auto mt-7 max-w-3xl text-xl font-medium leading-relaxed text-slate-200 text-balance md:mx-0 md:text-2xl">
+                Construimos herramientas, landing pages, páginas web a medida y recursos prácticos para resolver problemas
+                que vivimos todos los días vendiendo online.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap md:items-start">
+                <a
+                  href={CALC_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="premium-button flex w-full items-center justify-center gap-2 rounded-full bg-sky-300 px-9 py-4 text-base font-black uppercase tracking-wide text-brand-900 transition-all sm:w-auto"
+                >
+                  Abrir Calculadora ML
+                  <ArrowRight className="h-5 w-5" />
+                </a>
+
+                <a
+                  href="#herramientas"
+                  className="premium-button-outline w-full rounded-full border border-white/15 bg-white/8 px-9 py-4 text-center text-base font-black uppercase tracking-wide text-white transition-all hover:border-sky-200/70 hover:bg-white/12 sm:w-auto"
+                >
+                  Ver herramientas
+                </a>
+
+                <a
+                  href="#recursos-gratuitos"
+                  className="premium-button-outline w-full rounded-full border border-white/15 bg-white/8 px-9 py-4 text-center text-base font-black uppercase tracking-wide text-white transition-all hover:border-sky-200/70 hover:bg-white/12 sm:w-auto"
+                >
+                  Recursos gratis
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.18}>
+              <div className="mt-7 grid gap-3 text-left sm:grid-cols-3">
+                {[
+                  "Animaciones suaves",
+                  "Rápido en celulares",
+                  "Sin humo ni fricción",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur">
+                    <CheckCircle2 className="mb-2 h-5 w-5 text-emerald-300" />
+                    <span className="text-sm font-extrabold text-slate-100">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.12} y={20} className="md:justify-self-end">
+            <TechDemoPanel />
+          </Reveal>
+        </div>
+
+        <div className="mx-auto mt-12 max-w-6xl px-4 md:mt-14">
+          <Reveal delay={0.2}>
+            <div className="mx-auto max-w-3xl">
               <ResourceSearch items={searchItems} />
             </div>
           </Reveal>
 
-          <Reveal delay={0.05}>
-            <h1 className="hero-title mb-8 text-5xl font-black leading-[1.1] tracking-tight text-slate-900 text-balance md:text-7xl">
-              Somos vendedores que <br className="hidden md:block" />
-              <span className="brand-gradient-motion relative inline-block text-brand-600">
-                Creamos soluciones.
-                <svg
-                  className="draw-underline absolute -bottom-1 left-0 -z-10 h-3 w-full text-yellow-300"
-                  viewBox="0 0 100 10"
-                  preserveAspectRatio="none"
-                >
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                </svg>
-              </span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="mx-auto mb-10 max-w-3xl text-xl font-medium leading-relaxed text-textBody text-balance md:text-2xl">
-              Construimos lo que necesitábamos para vender mejor. Herramientas, landing pages, páginas web a medida y
-              recursos reales para problemas que vivimos todos los días.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-              <a
-                href={CALC_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-motion btn-shine flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700 sm:w-auto"
-              >
-                ABRIR CALCULADORA ML
-                <ArrowRight className="h-5 w-5" />
-              </a>
-
-              <a
-                href="#herramientas"
-                className="btn-motion w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
-              >
-                VER HERRAMIENTAS
-              </a>
-
-              <a
-                href="#recursos-gratuitos"
-                className="btn-motion w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
-              >
-                VER RECURSOS GRATUITOS
-              </a>
-
-              <a
-                href="#servicios"
-                className="btn-motion w-full rounded-full border-2 border-slate-200 bg-white px-10 py-4 text-lg font-bold text-textBody transition-all hover:border-brand-600 hover:text-brand-600 sm:w-auto"
-              >
-                VER SERVICIOS
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.18}>
+          <Reveal delay={0.24}>
             <LeadMagnet />
           </Reveal>
         </div>
@@ -224,10 +250,13 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
-              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Herramientas
+              <span className="inline-flex items-center rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-brand-700 shadow-sm">
+                Herramientas Oriavision
+              </span>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Calculá mejor. Decidí más rápido.
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
+              <p className="mx-auto mt-5 max-w-2xl text-lg text-textBody">
                 Herramientas creadas para ayudarte a vender mejor, calcular más rápido y tomar decisiones con más claridad.
               </p>
             </div>
@@ -235,74 +264,81 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="card-motion group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
-                <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
-                  MÁS USADA
+              <div className="tech-section-card card-hover-premium group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300">
+                <div className="relative z-10">
+                  <div className="absolute right-0 top-0 rounded-bl-2xl bg-brand-600 px-4 py-2 text-xs font-bold text-white">
+                    MÁS USADA
+                  </div>
+
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600 transition-transform group-hover:scale-[1.06]">
+                    <Calculator className="h-8 w-8" />
+                  </div>
+
+                  <h3 className="mb-3 text-2xl font-bold text-slate-900">Calculadora ML</h3>
+                  <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                    Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos y opciones
+                    de cuotas para ver tu ganancia real.
+                  </p>
+
+                  <TrackLink
+                    href={CALC_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    event="click_calc"
+                    place="calculator_card_home"
+                    className="premium-button mt-auto block w-full rounded-xl bg-brand-600 py-3 text-center text-sm font-bold uppercase text-white transition-all hover:bg-brand-700"
+                  >
+                    Abrir calculadora
+                  </TrackLink>
                 </div>
-
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600 transition-transform group-hover:scale-[1.06]">
-                  <Calculator className="h-8 w-8" />
-                </div>
-
-                <h3 className="mb-3 text-2xl font-bold text-slate-900">Calculadora ML</h3>
-                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Calculá tu precio exacto en segundos. Incluye costos, comisiones de plataforma, impuestos y opciones
-                  de cuotas para ver tu ganancia real.
-                </p>
-
-                <TrackLink
-                  href={CALC_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  event="click_calc"
-                  place="calculator_card_home"
-                  className="mt-auto block w-full rounded-xl border-2 border-brand-600 py-3 text-center text-sm font-bold uppercase text-brand-600 transition-colors hover:bg-brand-600 hover:text-white"
-                >
-                  Abrir calculadora
-                </TrackLink>
               </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="card-motion group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-8 shadow-lg shadow-blue-50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl">
-                <div className="absolute right-0 top-0 rounded-bl-2xl bg-violet-600 px-4 py-2 text-xs font-bold text-white">
-                  NUEVA
+              <div className="tech-section-card card-hover-premium group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-violet-100 bg-white p-8 shadow-lg shadow-violet-50 transition-all duration-300">
+                <div className="relative z-10">
+                  <div className="absolute right-0 top-0 rounded-bl-2xl bg-violet-600 px-4 py-2 text-xs font-bold text-white">
+                    NUEVA
+                  </div>
+
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-violet-600 transition-transform group-hover:scale-[1.06]">
+                    <MonitorSmartphone className="h-8 w-8" />
+                  </div>
+
+                  <h3 className="mb-3 text-2xl font-bold text-slate-900">Orientador de precios ML</h3>
+                  <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
+                    Una herramienta pensada para orientarte rápidamente con tus precios de venta en MercadoLibre y detectar
+                    oportunidades de forma más simple.
+                  </p>
+
+                  <TrackLink
+                    href={ORIENTADOR_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    event="click_orientador"
+                    place="orientador_card_home"
+                    className="premium-button mt-auto block w-full rounded-xl bg-violet-600 py-3 text-center text-sm font-bold uppercase text-white transition-all hover:bg-violet-700"
+                  >
+                    Ver orientador
+                  </TrackLink>
                 </div>
-
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-100 text-violet-600 transition-transform group-hover:scale-[1.06]">
-                  <MonitorSmartphone className="h-8 w-8" />
-                </div>
-
-                <h3 className="mb-3 text-2xl font-bold text-slate-900">Orientador de precios ML</h3>
-                <p className="mb-8 flex-grow font-medium leading-relaxed text-textBody">
-                  Una herramienta pensada para orientarte rápidamente con tus precios de venta en MercadoLibre y detectar
-                  oportunidades de forma más simple.
-                </p>
-
-                <TrackLink
-                  href={ORIENTADOR_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  event="click_orientador"
-                  place="orientador_card_home"
-                  className="mt-auto block w-full rounded-xl border-2 border-violet-600 py-3 text-center text-sm font-bold uppercase text-violet-600 transition-colors hover:bg-violet-600 hover:text-white"
-                >
-                  Ver orientador
-                </TrackLink>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section id="recursos-gratuitos" className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-24">
+      <section id="recursos-gratuitos" className="scroll-mt-24 border-y border-slate-200 bg-white py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
-              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+              <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-brand-700">
+                Biblioteca gratuita
+              </span>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
                 Recursos gratuitos
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
+              <p className="mx-auto mt-5 max-w-2xl text-lg text-textBody">
                 Contenido listo para leer, copiar y aplicar. Sin vueltas y sin humo.
               </p>
             </div>
@@ -310,9 +346,9 @@ export default function Home() {
 
           <div className="space-y-10">
             <Reveal delay={0.04}>
-              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
-                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
                     Recursos para copiar y usar
                   </span>
 
@@ -328,9 +364,9 @@ export default function Home() {
                     <div className="mx-auto max-w-4xl">
                       <Link
                         href={`/prompts/${previewPrompts[0].id}/`}
-                        className="card-motion group block rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl md:p-10"
+                        className="card-hover-premium group block rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all md:p-10"
                       >
-                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
                           {previewPrompts[0].category}
                         </div>
 
@@ -354,7 +390,7 @@ export default function Home() {
                           <Reveal key={p.id} delay={0.06 + i * 0.04}>
                             <Link
                               href={`/prompts/${p.id}/`}
-                              className="card-motion group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                              className="card-hover-premium group block rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all"
                             >
                               <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
                                 {p.category}
@@ -380,7 +416,7 @@ export default function Home() {
                 <div className="mt-10 text-center">
                   <Link
                     href="/prompts/"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                    className="premium-button inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-brand-700"
                   >
                     Ver todos los prompts
                   </Link>
@@ -389,9 +425,9 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+              <div className="rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8 shadow-sm md:p-10">
                 <div className="mx-auto max-w-3xl text-center">
-                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+                  <span className="inline-flex items-center rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
                     Recursos para aplicar al toque
                   </span>
 
@@ -407,9 +443,9 @@ export default function Home() {
                     <Reveal key={g.id} delay={0.05 + i * 0.05} className="w-full md:max-w-[320px]">
                       <Link
                         href={`/guias/${g.id}/`}
-                        className="card-motion group block h-full rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                        className="card-hover-premium group block h-full rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition-all"
                       >
-                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
+                        <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
                           {g.category}
                         </div>
 
@@ -430,7 +466,7 @@ export default function Home() {
                 <div className="mt-10 text-center">
                   <Link
                     href="/guias/"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition-all hover:bg-brand-700"
+                    className="premium-button inline-flex items-center justify-center rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white transition-all hover:bg-brand-700"
                   >
                     Ver todas las guías
                   </Link>
@@ -441,14 +477,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="servicios" className="scroll-mt-24 bg-white py-24">
+      <section id="servicios" className="scroll-mt-24 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-4">
           <Reveal>
             <div className="mb-16 text-center">
-              <h2 className="mb-6 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
-                Servicios
+              <span className="inline-flex items-center rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-brand-700 shadow-sm">
+                Servicios web
+              </span>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-5xl">
+                Páginas pensadas para vender
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-textBody">
+              <p className="mx-auto mt-5 max-w-2xl text-lg text-textBody">
                 También desarrollamos páginas orientadas a vender mejor: desde una landing simple hasta una web completa
                 con lógica, login y base de datos.
               </p>
@@ -457,7 +496,7 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal delay={0.05}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="card-hover-premium flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
                   <MonitorSmartphone className="h-8 w-8" />
                 </div>
@@ -478,7 +517,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="card-hover-premium flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-brand-600">
                   <Database className="h-8 w-8" />
                 </div>
@@ -553,8 +592,8 @@ export default function Home() {
                 <div className="mb-2 text-6xl font-black text-brand-400">100%</div>
                 <div className="mb-8 text-2xl font-bold">Enfoque Analítico</div>
                 <p className="mb-8 leading-relaxed text-slate-200">
-                  "Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas
-                  que eliminan el error humano y te muestran la realidad."
+                  &quot;Vendemos todos los días. Sabemos que sin números claros, se pierde plata. Por eso creamos herramientas
+                  que eliminan el error humano y te muestran la realidad.&quot;
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white ring-2 ring-slate-700/40 shadow-sm">
@@ -582,7 +621,7 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-3">
               {TEAM.map((p, i) => (
                 <Reveal key={p.name} delay={0.05 + i * 0.06}>
-                  <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
+                  <div className="card-hover-premium rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all">
                     <div className="flex flex-col items-center text-center">
                       <div className="relative h-28 w-28">
                         <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-brand-600/25 to-slate-200/60" />
@@ -621,7 +660,7 @@ export default function Home() {
 
             <Link
               href="/web/"
-              className="inline-block rounded-full border-2 border-slate-200 bg-white px-8 py-3 font-bold text-slate-900 transition-colors hover:border-brand-600"
+              className="premium-button inline-block rounded-full bg-white px-8 py-3 font-bold text-slate-900 transition-all hover:text-brand-700"
             >
               VER SERVICIO WEB
             </Link>
