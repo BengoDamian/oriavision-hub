@@ -135,7 +135,7 @@ export default function ResourceSearch({
   }, [items, query]);
 
   return (
-    <div className="card-animated rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+    <div className="resource-search-card rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Search className="h-4 w-4 text-brand-600" />
         <span className="text-sm font-extrabold uppercase tracking-wide text-brand-700">
@@ -160,7 +160,7 @@ export default function ResourceSearch({
               <Link
                 key={`${item.type}-${item.href}`}
                 href={item.href}
-                className="card-animated hover-lift block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-all hover:border-brand-200 hover:bg-white"
+                className="block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-sm"
               >
                 <div className="flex items-center gap-2">
                   {item.type === "Prompt" ? (

@@ -43,7 +43,7 @@ export default function Newsletter() {
   return (
     <section className="py-24 bg-white border-t border-slate-200">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="card-animated rounded-[2rem] border border-slate-200 bg-white p-10 shadow-sm">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-10 shadow-sm">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900">
             Newsletter Oriavision
           </h2>
@@ -63,7 +63,7 @@ export default function Newsletter() {
             <button
               type="submit"
               disabled={state === "loading"}
-              className="btn-shine rounded-full bg-brand-600 hover:bg-brand-700 px-8 py-3 text-white font-extrabold transition-all hover:-translate-y-0.5 disabled:opacity-60"
+              className="rounded-full bg-brand-600 hover:bg-brand-700 px-8 py-3 text-white font-extrabold transition-colors disabled:opacity-60"
             >
               {state === "loading" ? "Suscribiendo..." : "Suscribirme"}
             </button>

@@ -6,7 +6,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
   const isActive = tool.status === 'active';
 
   return (
-    <div className={`card-animated hover-lift group flex flex-col p-8 rounded-3xl border-2 transition-all duration-300 h-full ${
+    <div className={`group flex flex-col p-8 rounded-3xl border-2 transition-all duration-300 h-full ${
       tool.featured 
         ? 'border-primary/20 bg-blue-50/30 hover:border-primary hover:shadow-xl hover:shadow-blue-500/10' 
         : 'border-gray-100 bg-white hover:border-gray-300 hover:shadow-lg'

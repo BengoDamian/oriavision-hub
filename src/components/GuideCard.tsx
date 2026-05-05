@@ -5,7 +5,7 @@ export default function GuideCard({ item }: { item: GuideItem }) {
   return (
     <Link
       href={`/guias/${item.id}`}
-      className="card-animated hover-lift group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition"
+      className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition"
     >
       <div className="mb-3 flex items-center gap-2">
         <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-800">

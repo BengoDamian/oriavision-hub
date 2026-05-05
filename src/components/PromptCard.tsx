@@ -26,7 +26,7 @@ export default function PromptCard({ item }: { item: PromptItem }) {
   }
 
   return (
-    <div className="card-animated hover-lift group bg-white rounded-[2rem] p-7 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 shadow-sm flex flex-col">
+    <div className="group bg-white rounded-[2rem] p-7 border-2 border-slate-100 hover:border-slate-300 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
       <div className="flex items-start justify-between gap-4 mb-4">
         <div>
           <div className="text-[11px] font-extrabold uppercase tracking-widest text-brand-700 bg-blue-50 border border-blue-100 inline-flex px-3 py-1 rounded-full">
