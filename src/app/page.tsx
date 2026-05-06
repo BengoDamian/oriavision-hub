@@ -70,9 +70,9 @@ const TEAM = [
 ];
 
 const STATS = [
-  { value: "2006", label: "vendiendo online" },
-  { value: "3", label: "líneas de solución" },
-  { value: "100%", label: "enfoque práctico" },
+  { value: "18+", label: "años vendiendo online" },
+  { value: "3", label: "tiendas MercadoLibre" },
+  { value: "100%", label: "experiencia real" },
 ];
 
 const PATHS = [
@@ -259,34 +259,47 @@ export default function Home() {
                 </div>
 
                 <div className="grid gap-4">
-                  <div className="rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-5">
+                  <a href="#herramientas" className="group block rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-5 transition hover:-translate-y-0.5 hover:bg-cyan-300/15">
                     <div className="flex items-center gap-3">
                       <Calculator className="h-6 w-6 text-cyan-200" />
                       <div className="font-black text-white">Precio ML estimado</div>
                     </div>
                     <div className="mt-4 text-4xl font-black tracking-tight text-white">$ 48.920</div>
-                    <div className="mt-2 text-sm font-semibold text-cyan-100">Margen, comisión, impuestos y envío contemplados.</div>
-                  </div>
+                    <div className="mt-2 flex items-center justify-between gap-3 text-sm font-semibold text-cyan-100">
+                      <span>Margen, comisión, impuestos y envío contemplados.</span>
+                      <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
+                    </div>
+                  </a>
 
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
+                    <a href="#recursos-gratuitos" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
                       <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
                       <div className="text-2xl font-black text-white">+ orden</div>
-                      <div className="mt-1 text-sm font-semibold text-slate-400">decisiones simples</div>
-                    </div>
-                    <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
+                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
+                        <span>recursos gratuitos</span>
+                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
+                      </div>
+                    </a>
+                    <a href="#servicios" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
                       <Zap className="mb-4 h-6 w-6 text-yellow-200" />
                       <div className="text-2xl font-black text-white">+ velocidad</div>
-                      <div className="mt-1 text-sm font-semibold text-slate-400">menos Excel manual</div>
-                    </div>
+                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
+                        <span>páginas web y sistemas</span>
+                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
+                      </div>
+                    </a>
                   </div>
 
                   <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
-                    <div className="mb-4 text-sm font-black uppercase tracking-widest text-slate-400">Ecosistema</div>
-                    {PATHS.map((item) => (
-                      <div key={item.title} className="mb-3 flex items-center gap-3 last:mb-0">
+                    <div className="mb-4 text-sm font-black uppercase tracking-widest text-slate-400">Creado desde experiencia real</div>
+                    {[
+                      "Venta online desde 2006",
+                      "Uso diario de MercadoLibre",
+                      "Herramientas pensadas para operar mejor",
+                    ].map((item) => (
+                      <div key={item} className="mb-3 flex items-center gap-3 last:mb-0">
                         <CheckCircle2 className="h-5 w-5 text-emerald-300" />
-                        <span className="text-sm font-bold text-slate-200">{item.title}</span>
+                        <span className="text-sm font-bold text-slate-200">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -354,17 +367,17 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="group relative h-full overflow-hidden rounded-[2.4rem] border border-cyan-100 bg-slate-950 p-8 text-white shadow-xl shadow-slate-300/60 transition hover:-translate-y-1 md:p-10">
-                <div className="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-cyan-400/20 blur-2xl" />
-                <MonitorSmartphone className="relative h-12 w-12 text-cyan-200" />
-                <h3 className="relative mt-7 text-3xl font-black">Orientador de precios ML</h3>
-                <p className="relative mt-4 text-lg font-medium leading-relaxed text-slate-300">Para trabajar con listas, mirar rápido si hay margen y detectar productos que merecen análisis más profundo.</p>
+              <div className="group relative h-full overflow-hidden rounded-[2.4rem] border border-brand-100 bg-white p-8 shadow-xl shadow-brand-100/60 transition hover:-translate-y-1 md:p-10">
+                <div className="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-cyan-200/30 blur-2xl" />
+                <MonitorSmartphone className="relative h-12 w-12 text-brand-700" />
+                <h3 className="relative mt-7 text-3xl font-black text-slate-950">Orientador de precios ML</h3>
+                <p className="relative mt-4 text-lg font-medium leading-relaxed text-slate-600">Para trabajar con listas, mirar rápido si hay margen y detectar productos que merecen análisis más profundo.</p>
                 <ul className="relative mt-7 space-y-3">
                   {["Ideal para mirar muchos productos", "Enfoque estimativo y práctico", "Complementa a la Calculadora ML"].map((item) => (
-                    <li key={item} className="flex items-start gap-3 font-bold text-slate-200"><BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-cyan-200" /> {item}</li>
+                    <li key={item} className="flex items-start gap-3 font-bold text-slate-700"><BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-brand-600" /> {item}</li>
                   ))}
                 </ul>
-                <TrackLink href={ORIENTADOR_URL} target="_blank" rel="noreferrer" event="click_orientador" place="orientador_card_home" className="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 font-black text-slate-950 transition hover:bg-cyan-50 sm:w-auto">
+                <TrackLink href={ORIENTADOR_URL} target="_blank" rel="noreferrer" event="click_orientador" place="orientador_card_home" className="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-brand-200 bg-white px-6 py-4 font-black text-brand-700 transition hover:bg-brand-50 sm:w-auto">
                   Ver orientador <ArrowRight className="h-5 w-5" />
                 </TrackLink>
               </div>
