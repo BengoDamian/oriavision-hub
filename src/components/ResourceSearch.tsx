@@ -135,7 +135,7 @@ export default function ResourceSearch({
   }, [items, query]);
 
   return (
-    <div className="resource-search-card rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Search className="h-4 w-4 text-brand-600" />
         <span className="text-sm font-extrabold uppercase tracking-wide text-brand-700">

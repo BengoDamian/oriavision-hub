@@ -7,13 +7,13 @@ export default function Blob() {
 
   if (reduce) {
     return (
-      <div className="absolute left-1/2 top-0 -z-10 h-[520px] w-[min(1000px,92vw)] -translate-x-1/2 rounded-full bg-blue-50 opacity-50 blur-3xl" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10" />
     );
   }
 
   return (
     <motion.div
-      className="absolute left-1/2 top-0 -z-10 h-[520px] w-[min(1000px,92vw)] -translate-x-1/2 rounded-full bg-blue-50 opacity-50 blur-3xl"
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[520px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10"
       animate={{ y: [0, 18, 0], scale: [1, 1.04, 1] }}
       transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
     />

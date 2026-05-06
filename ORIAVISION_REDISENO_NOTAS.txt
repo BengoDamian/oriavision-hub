@@ -1,0 +1,25 @@
+Rediseño aplicado por ChatGPT
+
+Archivos modificados:
+- src/app/page.tsx
+- src/app/globals.css
+- src/app/layout.tsx
+- src/components/Navbar.tsx
+
+Qué cambia:
+- Home completamente reorganizada con hero oscuro premium, grilla tecnológica liviana y mensaje comercial más claro.
+- Tres caminos principales: herramientas, recursos gratuitos y servicios web.
+- Secciones renovadas de herramientas, recursos, servicios, portfolio, equipo y CTA final.
+- Navegación más ordenada: Herramientas, Recursos, Servicios, Portfolio, Nosotros y CTA a servicios web.
+- Se eliminó next/font/google del layout para evitar problemas de build en Cloudflare Pages.
+- CSS global con scroll suave, grilla visual del hero y soporte prefers-reduced-motion.
+
+Validación realizada:
+- npx tsc --noEmit: OK.
+- npm run build no pudo completarse en este entorno porque Next intentó descargar @next/swc-linux-x64-gnu y el entorno no permite resolver el registry. En tu máquina o Cloudflare debería compilar normalmente con npm install/build.
+
+Branch sugerida:
+- rediseño-home-oriavision-v2
+
+Commit sugerido:
+- Rediseña home y navegación de Oriavision
