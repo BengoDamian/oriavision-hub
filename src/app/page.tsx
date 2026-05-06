@@ -289,20 +289,6 @@ export default function Home() {
                       </div>
                     </a>
                   </div>
-
-                  <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
-                    <div className="mb-4 text-sm font-black uppercase tracking-widest text-slate-400">Creado desde experiencia real</div>
-                    {[
-                      "Venta online desde 2006",
-                      "Uso diario de MercadoLibre",
-                      "Herramientas pensadas para operar mejor",
-                    ].map((item) => (
-                      <div key={item} className="mb-3 flex items-center gap-3 last:mb-0">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-300" />
-                        <span className="text-sm font-bold text-slate-200">{item}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
