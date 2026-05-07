@@ -274,15 +274,15 @@ export default function Home() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <a href="#recursos-gratuitos" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
                       <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
-                      <div className="text-2xl font-black text-white">+ orden</div>
+                      <div className="text-2xl font-black text-white">Herramientas útiles</div>
                       <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>recursos gratuitos</span>
+                        <span>guías y prompts</span>
                         <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
                       </div>
                     </a>
                     <a href="#servicios" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
                       <Zap className="mb-4 h-6 w-6 text-yellow-200" />
-                      <div className="text-2xl font-black text-white">+ velocidad</div>
+                      <div className="text-2xl font-black text-white">Servicios</div>
                       <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
                         <span>páginas web y sistemas</span>
                         <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
