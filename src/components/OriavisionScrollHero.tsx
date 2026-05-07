@@ -114,6 +114,25 @@ export default function OriavisionScrollHero({
     };
   }, []);
 
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-ov-reveal]"));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        }
+      },
+      { threshold: 0.16 }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+
+    return () => observer.disconnect();
+  }, []);
+
   const results = useMemo(() => {
     const clean = query.trim();
 
@@ -133,14 +152,6 @@ export default function OriavisionScrollHero({
 
   const p = progress;
 
-  /*
-    Secuencia corregida:
-    - El texto principal desaparece completamente.
-    - El segundo bloque entra y queda visible.
-    - Las stats aparecen abajo sin quedar separadas del texto.
-    - El panel derecho se arma con scroll.
-  */
-
   const primaryFade = clamp(map(p, 0.22, 0.48, 0, 1));
   const primaryOpacity = 1 - primaryFade;
 
@@ -153,13 +164,25 @@ export default function OriavisionScrollHero({
   const speedReveal = clamp(map(p, 0.32, 0.44, 0, 1));
   const proofReveal = clamp(map(p, 0.46, 0.60, 0, 1));
 
-  const statsReveal = clamp(map(p, 0.84, 0.95, 0, 1));
+  const statOneReveal = clamp(map(p, 0.74, 0.91, 0, 1));
+  const statTwoReveal = clamp(map(p, 0.80, 0.96, 0, 1));
+  const statThreeReveal = clamp(map(p, 0.86, 1.0, 0, 1));
+
+  const statsReveal = Math.max(statOneReveal, statTwoReveal, statThreeReveal);
+  const statRevealValues = [statOneReveal, statTwoReveal, statThreeReveal];
 
   const revealStyle = (t: number, xOffset = 0): CSSProperties => ({
     opacity: t,
     visibility: t < 0.02 ? "hidden" : "visible",
     transform: `translate(${lerp(xOffset, 0, t)}px, ${lerp(22, 0, t)}px)`,
     pointerEvents: t > 0.35 ? "auto" : "none",
+  });
+
+  const statCardStyle = (t: number): CSSProperties => ({
+    opacity: t,
+    visibility: t < 0.02 ? "hidden" : "visible",
+    transform: `translateY(${lerp(36, 0, t)}px) scale(${lerp(0.94, 1, t)})`,
+    filter: `blur(${lerp(7, 0, t)}px)`,
   });
 
   return (
@@ -237,16 +260,15 @@ export default function OriavisionScrollHero({
 
               <p>
                 Creamos herramientas, recursos y páginas web para negocios que
-                necesitan verse profesionales, calcular mejor y convertir con más
-                claridad.
+                necesitan verse profesionales, calcular mejor y convertir con más claridad.
               </p>
 
               <div className="ov-hero-actions">
                 <a href="#herramientas">
-                  Ver herramientas <ArrowRight className="h-5 w-5" />
+                  Explorar herramientas <ArrowRight className="h-5 w-5" />
                 </a>
 
-                <a href="/web/">Quiero una web profesional</a>
+                <a href="/web/">Diseño web profesional</a>
               </div>
             </div>
 
@@ -268,8 +290,7 @@ export default function OriavisionScrollHero({
 
                 <p>
                   Calculadora, recursos gratuitos y páginas web en un mismo hub
-                  para ayudarte a vender mejor, con más claridad y una imagen más
-                  profesional.
+                  para ayudarte a vender mejor, con más claridad y una imagen más profesional.
                 </p>
 
                 <div className="ov-left-secondary-list">
@@ -331,7 +352,7 @@ export default function OriavisionScrollHero({
                     <span>Precio ML estimado</span>
                   </div>
 
-                  <strong>Calculadora y Orientador de precios</strong>
+                  <strong>$ 48.920</strong>
 
                   <div className="ov-dashboard-subline">
                     <span>Margen, comisión, impuestos y envío contemplados.</span>
@@ -342,12 +363,12 @@ export default function OriavisionScrollHero({
                 <div className="ov-dashboard-grid">
                   <a
                     className="ov-dashboard-mini"
-                    href="#recursos"
+                    href="#recursos-gratuitos"
                     style={revealStyle(orderReveal, -16)}
                   >
                     <BarChart3 className="h-5 w-5 text-emerald-300" />
-                    <strong>Herramientas útiles</strong>
-                    <span>guias y prompts</span>
+                    <strong>+ orden</strong>
+                    <span>recursos gratuitos</span>
                     <ArrowRight className="ov-dashboard-arrow h-4 w-4" />
                   </a>
 
@@ -357,7 +378,7 @@ export default function OriavisionScrollHero({
                     style={revealStyle(speedReveal, 16)}
                   >
                     <Zap className="h-5 w-5 text-yellow-300" />
-                    <strong>Servicios</strong>
+                    <strong>+ velocidad</strong>
                     <span>páginas web y sistemas</span>
                     <ArrowRight className="ov-dashboard-arrow h-4 w-4" />
                   </a>
@@ -384,15 +405,13 @@ export default function OriavisionScrollHero({
           <div
             className="ov-hero-stats"
             style={{
-              opacity: statsReveal,
               visibility: statsReveal < 0.02 ? "hidden" : "visible",
-              transform: `translateY(${lerp(38, 0, statsReveal)}px)`,
               pointerEvents: statsReveal > 0.35 ? "auto" : "none",
             }}
             aria-label="Experiencia Oriavision"
           >
-            {STATS.map((stat) => (
-              <div key={stat.label}>
+            {STATS.map((stat, index) => (
+              <div key={stat.label} style={statCardStyle(statRevealValues[index])}>
                 <strong>{stat.value}</strong>
                 <span>{stat.label}</span>
               </div>

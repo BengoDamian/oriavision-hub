@@ -17,7 +17,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Clases utilitarias personalizadas */
 .btn-primary {
   @apply bg-primary text-white font-bold uppercase tracking-wide py-4 px-8 rounded-xl transition-all hover:bg-blue-700 hover:scale-[1.02] shadow-lg shadow-blue-500/20;
 }
@@ -33,7 +32,7 @@ h4 {
   letter-spacing: -0.02em;
 }
 
-/* === Oriavision hero con animación por scroll corregida === */
+/* === Hero Oriavision === */
 
 .ov-hero-stage {
   position: relative;
@@ -95,8 +94,6 @@ h4 {
   gap: clamp(32px, 5vw, 66px);
   align-items: center;
 }
-
-/* Columna izquierda */
 
 .ov-left-stack {
   position: relative;
@@ -306,8 +303,6 @@ h4 {
   background: rgba(255, 255, 255, 0.16);
 }
 
-/* Segundo bloque izquierdo */
-
 .ov-left-secondary-card {
   width: min(500px, 100%);
   padding: 22px 22px 20px;
@@ -367,8 +362,6 @@ h4 {
   flex: 0 0 auto;
   color: #8eeeff;
 }
-
-/* Panel derecho */
 
 .ov-dashboard-preview {
   width: 100%;
@@ -618,20 +611,6 @@ h4 {
   animation: ovCheckPop 0.65s ease both;
 }
 
-.ov-dashboard-proof-list div:nth-child(1) svg {
-  animation-delay: 0.2s;
-}
-
-.ov-dashboard-proof-list div:nth-child(2) svg {
-  animation-delay: 0.35s;
-}
-
-.ov-dashboard-proof-list div:nth-child(3) svg {
-  animation-delay: 0.5s;
-}
-
-/* Stats */
-
 .ov-hero-stats {
   position: absolute;
   left: clamp(22px, 5vw, 72px);
@@ -688,8 +667,6 @@ h4 {
   text-transform: uppercase;
 }
 
-/* Barra de progreso */
-
 .ov-scroll-progress {
   position: absolute;
   right: 28px;
@@ -708,6 +685,19 @@ h4 {
   width: 100%;
   background: #08d9ff;
   box-shadow: 0 0 18px #08d9ff;
+}
+
+[data-ov-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+}
+
+[data-ov-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Animaciones */
@@ -801,7 +791,7 @@ h4 {
   }
 }
 
-/* === FIX TABLET / MOBILE HERO ORIAVISION === */
+/* Mobile / tablet */
 
 @media (max-width: 1050px) {
   .ov-hero-stage {
@@ -979,7 +969,13 @@ h4 {
   .ov-dashboard-mini,
   .ov-hero-results a,
   .ov-hero-actions a,
-  .ov-hero-stats div {
+  .ov-hero-stats div,
+  [data-ov-reveal] {
     transition: none !important;
+  }
+
+  [data-ov-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
