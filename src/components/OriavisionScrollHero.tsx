@@ -331,7 +331,7 @@ export default function OriavisionScrollHero({
                     <span>Precio ML estimado</span>
                   </div>
 
-                  <strong>$ 48.920</strong>
+                  <strong>Calculadora y Orientador de precios</strong>
 
                   <div className="ov-dashboard-subline">
                     <span>Margen, comisión, impuestos y envío contemplados.</span>
@@ -346,8 +346,8 @@ export default function OriavisionScrollHero({
                     style={revealStyle(orderReveal, -16)}
                   >
                     <BarChart3 className="h-5 w-5 text-emerald-300" />
-                    <strong>+ orden</strong>
-                    <span>recursos gratuitos</span>
+                    <strong>Herramientas útiles</strong>
+                    <span>guias y prompts</span>
                     <ArrowRight className="ov-dashboard-arrow h-4 w-4" />
                   </a>
 
@@ -357,7 +357,7 @@ export default function OriavisionScrollHero({
                     style={revealStyle(speedReveal, 16)}
                   >
                     <Zap className="h-5 w-5 text-yellow-300" />
-                    <strong>+ velocidad</strong>
+                    <strong>Servicios</strong>
                     <span>páginas web y sistemas</span>
                     <ArrowRight className="ov-dashboard-arrow h-4 w-4" />
                   </a>
