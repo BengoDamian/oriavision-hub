@@ -1,27 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BadgeCheck,
-  BarChart3,
-  BookOpen,
   Calculator,
   CheckCircle2,
-  Database,
   FileText,
-  Globe2,
-  LayoutTemplate,
-  MessageCircle,
+  LibraryBig,
   MonitorSmartphone,
   Sparkles,
-  Zap,
 } from "lucide-react";
-import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
-import LeadMagnet from "@/components/LeadMagnet";
 import TrackLink from "@/components/TrackLink";
-import ResourceSearch from "@/components/ResourceSearch";
+import OriavisionScrollHero, { type HomeSearchItem } from "@/components/OriavisionScrollHero";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
@@ -29,114 +19,33 @@ const CALC_URL = "https://calculadoraml.oriavision.com.ar";
 const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
 
 export const metadata: Metadata = {
-  title: "Oriavision | Soluciones digitales para vender mejor online",
+  title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
   description:
-    "Herramientas para MercadoLibre, recursos gratuitos y desarrollo de páginas web profesionales para negocios que quieren vender mejor online.",
-  alternates: { canonical: "/" },
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce. Herramientas y recursos prácticos creados desde la experiencia real de venta.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     url: SITE_URL,
-    title: "Oriavision | Soluciones digitales para vender mejor online",
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
     description:
-      "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
-    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Oriavision" }],
+      "Calculadora ML, recursos gratuitos y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "Oriavision",
+      },
+    ],
   },
   twitter: {
-    title: "Oriavision | Soluciones digitales para vender mejor online",
+    title: "Oriavision | Calculadora ML, prompts, guías y páginas web",
     description:
-      "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
+      "Calculadora ML, recursos gratuitos y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
     images: ["/og/home.png"],
   },
 };
-
-const TEAM = [
-  {
-    name: "Edgardo A. Díaz",
-    role: "E-commerce & MercadoLibre",
-    bio: "18 años vendiendo online. Oriavision nace de problemas reales: precios, procesos, páginas y decisiones comerciales.",
-    img: "/team/persona-1.jpg",
-  },
-  {
-    name: "Analía L. Rodriguez",
-    role: "Operaciones & Customer Success",
-    bio: "Procesos simples, seguimiento claro y soporte humano para que cada solución se pueda usar sin fricción.",
-    img: "/team/persona-2.jpg",
-  },
-  {
-    name: "Damián E. Bengochea",
-    role: "Desarrollo & Producto",
-    bio: "Convierte ideas en herramientas rápidas, estables y fáciles de mantener, desde landings hasta sistemas con lógica propia.",
-    img: "/team/persona-3.jpg",
-  },
-];
-
-const STATS = [
-  { value: "18+", label: "años vendiendo online" },
-  { value: "3", label: "tiendas MercadoLibre" },
-  { value: "100%", label: "experiencia real" },
-];
-
-const PATHS = [
-  {
-    icon: Calculator,
-    title: "Herramientas para MercadoLibre",
-    text: "Calculadoras y orientadores para estimar precios, márgenes y decisiones de venta con más claridad.",
-    href: "#herramientas",
-    label: "Ver herramientas",
-  },
-  {
-    icon: BookOpen,
-    title: "Recursos gratuitos",
-    text: "Prompts y guías accionables para publicar mejor, analizar productos y ordenar el negocio online.",
-    href: "#recursos-gratuitos",
-    label: "Ver recursos",
-  },
-  {
-    icon: LayoutTemplate,
-    title: "Páginas web y sistemas",
-    text: "Landings, webs a medida y soluciones digitales pensadas para presentar, captar clientes y operar mejor.",
-    href: "#servicios",
-    label: "Ver servicios",
-  },
-];
-
-const SERVICES = [
-  {
-    icon: LayoutTemplate,
-    title: "Landing pages",
-    text: "Una página enfocada en una oferta concreta: presentar, explicar, captar leads y llevar a WhatsApp o formulario.",
-  },
-  {
-    icon: Globe2,
-    title: "Webs profesionales",
-    text: "Sitios claros, modernos y rápidos para negocios que necesitan una carta de presentación sólida y confiable.",
-  },
-  {
-    icon: Database,
-    title: "Sistemas web simples",
-    text: "Soluciones con formularios, login, paneles, base de datos o automatizaciones cuando una web común queda corta.",
-  },
-];
-
-const PORTFOLIO = [
-  {
-    title: "Siempre de Guardia",
-    tag: "Servicios locales",
-    text: "Rediseño orientado a claridad, confianza y captación por especialidad.",
-    img: "/portfolio/siempredeguardia.png",
-  },
-  {
-    title: "Quirvo",
-    tag: "Producto digital",
-    text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
-    img: "/portfolio/quirvo.png",
-  },
-  {
-    title: "Calculadora ML",
-    tag: "Herramienta SaaS",
-    text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
-    img: "/portfolio/calculadora-landing.png",
-  },
-];
 
 const homePageJsonLd = {
   "@context": "https://schema.org",
@@ -144,397 +53,395 @@ const homePageJsonLd = {
   name: "Oriavision",
   url: SITE_URL,
   description:
-    "Herramientas para MercadoLibre, recursos gratuitos y páginas web profesionales para vender mejor online.",
+    "Calculadora ML, prompts, guías y páginas web a medida para vender mejor en MercadoLibre y e-commerce.",
   inLanguage: "es-AR",
 };
 
-function SectionHeader({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
-  return (
-    <Reveal>
-      <div className="mx-auto mb-14 max-w-3xl text-center">
-        <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-brand-700">
-          {eyebrow}
-        </span>
-        <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
-          {title}
-        </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-lg font-medium leading-relaxed text-slate-600">
-          {text}
-        </p>
-      </div>
-    </Reveal>
-  );
+function buildSearchItems(prompts: ReturnType<typeof getAllPromptsMerged>, guides: ReturnType<typeof getAllGuidesMerged>): HomeSearchItem[] {
+  return [
+    {
+      type: "Herramienta",
+      title: "Calculadora ML",
+      description: "Calculá precios contemplando margen, comisión, impuestos y envío.",
+      category: "Precio y margen",
+      href: CALC_URL,
+      external: true,
+    },
+    {
+      type: "Herramienta",
+      title: "Orientador de precios ML",
+      description: "Revisá productos por lote y tomá decisiones rápidas sin perder criterio comercial.",
+      category: "Precio por lote",
+      href: ORIENTADOR_URL,
+      external: true,
+    },
+    {
+      type: "Servicio",
+      title: "Landing pages",
+      description: "Una página clara para explicar una oferta y captar consultas.",
+      category: "Web",
+      href: "/web/",
+    },
+    {
+      type: "Servicio",
+      title: "Páginas web profesionales",
+      description: "Sitios ordenados para mostrar servicios, recursos, portfolio y contacto.",
+      category: "Web",
+      href: "/web/",
+    },
+    ...prompts.map((prompt) => ({
+      type: "Prompt" as const,
+      title: prompt.title,
+      description: prompt.description,
+      category: prompt.category,
+      href: `/prompts/${prompt.id}/`,
+    })),
+    ...guides.map((guide) => ({
+      type: "Guía" as const,
+      title: guide.title,
+      description: guide.description,
+      category: guide.category,
+      href: `/guias/${guide.id}/`,
+    })),
+  ];
 }
 
 export default function Home() {
   const whatsappHref =
-    "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Vi%20la%20p%C3%A1gina%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n.%20%C2%BFMe%20ayudan%3F";
+    "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Vi%20la%20p%C3%A1gina%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20recursos.%20%C2%BFMe%20ayudan%3F";
 
   const prompts = getAllPromptsMerged();
   const guides = getAllGuidesMerged();
-  const previewPrompts = (prompts.filter((p) => p.featured).length ? prompts.filter((p) => p.featured) : prompts).slice(0, 2);
-  const previewGuides = (guides.filter((g) => g.featured).length ? guides.filter((g) => g.featured) : guides).slice(0, 2);
 
-  const searchItems = [
-    ...prompts.map((p) => ({ type: "Prompt" as const, title: p.title, description: p.description, category: p.category, href: `/prompts/${p.id}/` })),
-    ...guides.map((g) => ({ type: "Guía" as const, title: g.title, description: g.description, category: g.category, href: `/guias/${g.id}/` })),
-  ];
+  const featuredPrompts = prompts.filter((prompt) => prompt.featured);
+  const previewPrompts = (featuredPrompts.length ? featuredPrompts : prompts).slice(0, 3);
+
+  const featuredGuides = guides.filter((guide) => guide.featured);
+  const previewGuides = (featuredGuides.length ? featuredGuides : guides).slice(0, 3);
+
+  const searchItems = buildSearchItems(prompts, guides);
 
   return (
-    <div className="flex min-h-screen flex-col overflow-hidden pb-28">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }} />
+    <div className="min-h-screen bg-slate-50 pb-28">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homePageJsonLd),
+        }}
+      />
 
-      <TrackLink href={CALC_URL} target="_blank" rel="noreferrer" aria-label="Abrir Calculadora ML" event="click_calc" place="floating_home" className="fixed bottom-[calc(env(safe-area-inset-bottom)+16px)] left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white shadow-2xl shadow-brand-900/20 transition hover:-translate-y-0.5 hover:bg-brand-700 sm:left-6 sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]">
+      <TrackLink
+        href={CALC_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Abrir Calculadora ML"
+        event="click_calc"
+        place="floating_home"
+        className="pointer-events-auto fixed left-4 z-[70] inline-flex items-center gap-2 rounded-full bg-brand-600 px-4 py-3 font-extrabold text-white opacity-90 shadow-2xl transition-opacity hover:opacity-100 active:opacity-100 sm:left-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+      >
         <Calculator className="h-5 w-5" />
         <span className="hidden sm:inline">Calculadora ML</span>
       </TrackLink>
 
-      <TrackLink href={whatsappHref} target="_blank" rel="noreferrer" aria-label="WhatsApp" event="click_whatsapp" place="floating_home" className="fixed bottom-[calc(env(safe-area-inset-bottom)+16px)] right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white shadow-2xl shadow-emerald-900/20 transition hover:-translate-y-0.5 sm:right-6 sm:bottom-[calc(env(safe-area-inset-bottom)+24px)] sm:px-5 sm:py-3">
-        <MessageCircle className="h-5 w-5" />
-        <span className="hidden sm:inline">WhatsApp</span>
+      <TrackLink
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        event="click_whatsapp"
+        place="floating_home"
+        className="pointer-events-auto fixed right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-3 font-extrabold text-white opacity-95 shadow-2xl transition-opacity hover:opacity-100 sm:right-6 bottom-[calc(env(safe-area-inset-bottom)+16px)] sm:bottom-[calc(env(safe-area-inset-bottom)+24px)]"
+      >
+        <span>WhatsApp</span>
       </TrackLink>
 
-      <section className="hero-grid relative bg-slate-950 px-4 pb-20 pt-12 text-white md:pb-28 md:pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.35),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(20,184,166,0.22),transparent_26%),linear-gradient(180deg,rgba(15,23,42,0),rgba(2,6,23,0.92))]" />
-        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
+      <OriavisionScrollHero items={searchItems} calcUrl={CALC_URL} />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <Reveal delay={0.03}>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100 backdrop-blur">
-                <Sparkles className="h-4 w-4" />
-                E-commerce · Web · Herramientas
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.06}>
-              <h1 className="mt-7 max-w-4xl text-5xl font-black leading-[0.98] tracking-tight text-white text-balance md:text-7xl">
-                Soluciones digitales para vender mejor online.
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <p className="mt-7 max-w-2xl text-lg font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.14}>
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-                <a href="#herramientas" className="premium-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-black text-slate-950 shadow-2xl shadow-cyan-950/30 transition hover:-translate-y-0.5">
-                  Ver herramientas <ArrowRight className="h-5 w-5" />
-                </a>
-                <Link href="/web/" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-4 text-base font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/15">
-                  Quiero una web profesional
-                </Link>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.18}>
-              <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
-                {STATS.map((stat) => (
-                  <div key={stat.label} className="rounded-3xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur">
-                    <div className="text-2xl font-black text-white">{stat.value}</div>
-                    <div className="mt-1 text-xs font-bold uppercase tracking-wide text-slate-400">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.1} className="relative">
-            <div className="absolute -inset-6 rounded-[3rem] bg-cyan-400/10 blur-2xl" />
-            <div className="relative rounded-[2.2rem] border border-white/12 bg-white/[0.07] p-4 shadow-2xl backdrop-blur-xl md:p-5">
-              <div className="rounded-[1.8rem] border border-white/10 bg-slate-950/70 p-5">
-                <div className="mb-5 flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-black text-white">Panel Oriavision</div>
-                    <div className="text-xs font-semibold text-slate-400">claridad para vender mejor</div>
-                  </div>
-                  <div className="flex gap-1.5">
-                    <span className="h-3 w-3 rounded-full bg-red-400" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-300" />
-                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                  </div>
-                </div>
-
-                <div className="grid gap-4">
-                  <a href="#herramientas" className="group block rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-5 transition hover:-translate-y-0.5 hover:bg-cyan-300/15">
-                    <div className="flex items-center gap-3">
-                      <Calculator className="h-6 w-6 text-cyan-200" />
-                      <div className="font-black text-white">Precio ML estimado</div>
-                    </div>
-                    <div className="mt-4 text-4xl font-black tracking-tight text-white">$ 48.920</div>
-                    <div className="mt-2 flex items-center justify-between gap-3 text-sm font-semibold text-cyan-100">
-                      <span>Margen, comisión, impuestos y envío contemplados.</span>
-                      <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
-                    </div>
-                  </a>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <a href="#recursos-gratuitos" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
-                      <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
-                      <div className="text-2xl font-black text-white">+ orden</div>
-                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>recursos gratuitos</span>
-                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
-                      </div>
-                    </a>
-                    <a href="#servicios" className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]">
-                      <Zap className="mb-4 h-6 w-6 text-yellow-200" />
-                      <div className="text-2xl font-black text-white">+ velocidad</div>
-                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>páginas web y sistemas</span>
-                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
-                      </div>
-                    </a>
-                  </div>
-
-                  <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
-                    <div className="mb-4 text-sm font-black uppercase tracking-widest text-slate-400">Creado desde experiencia real</div>
-                    {[
-                      "Venta online desde 2006",
-                      "Uso diario de MercadoLibre",
-                      "Herramientas pensadas para operar mejor",
-                    ].map((item) => (
-                      <div key={item} className="mb-3 flex items-center gap-3 last:mb-0">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-300" />
-                        <span className="text-sm font-bold text-slate-200">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+      <section className="mx-auto grid max-w-6xl gap-5 px-4 py-20 md:grid-cols-3" data-ov-reveal>
+        {[
+          {
+            icon: Calculator,
+            title: "Herramientas para MercadoLibre",
+            text: "Calculadoras y orientadores para revisar margen, comisión, impuestos y envío.",
+            href: "#herramientas",
+          },
+          {
+            icon: FileText,
+            title: "Prompts editables desde admin",
+            text: "Prompts gratuitos que podés agregar, destacar o modificar desde el CMS.",
+            href: "#prompts",
+          },
+          {
+            icon: LibraryBig,
+            title: "Guías editables desde admin",
+            text: "Guías claras para vender mejor online, también gestionadas desde el admin.",
+            href: "#guias",
+          },
+        ].map((item) => (
+          <Link
+            key={item.title}
+            href={item.href}
+            className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+          >
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700">
+              <item.icon className="h-6 w-6" />
             </div>
-          </Reveal>
-        </div>
+            <h2 className="text-xl font-black tracking-tight text-slate-950">{item.title}</h2>
+            <p className="mt-3 font-medium leading-relaxed text-slate-700">{item.text}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-brand-700">
+              Ver más <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </span>
+          </Link>
+        ))}
       </section>
 
-      <section className="relative bg-white py-10">
+      <section id="herramientas" className="bg-white py-24">
         <div className="mx-auto max-w-6xl px-4">
-          <Reveal>
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-xl shadow-slate-200/60 md:p-5">
-              <ResourceSearch items={searchItems} />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+          <div className="max-w-3xl" data-ov-reveal>
+            <span className="inline-flex rounded-full border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-cyan-800">
+              Herramientas
+            </span>
+            <h2 className="mt-5 text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+              Números claros antes de publicar.
+            </h2>
+            <p className="mt-5 text-lg font-semibold leading-relaxed text-slate-700">
+              Herramientas simples para decidir precios con más criterio antes de vender.
+            </p>
+          </div>
 
-      <section className="bg-white px-4 pb-20 pt-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-5 md:grid-cols-3">
-            {PATHS.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Reveal key={item.title} delay={0.04 + index * 0.04}>
-                  <a href={item.href} className="group block h-full rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-2xl hover:shadow-brand-100/70">
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:scale-105 group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-7 w-7" />
-                    </div>
-                    <h2 className="text-2xl font-black text-slate-950">{item.title}</h2>
-                    <p className="mt-3 font-medium leading-relaxed text-slate-600">{item.text}</p>
-                    <div className="mt-6 inline-flex items-center gap-2 font-black text-brand-700">
-                      {item.label} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                    </div>
-                  </a>
-                </Reveal>
-              );
-            })}
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <article className="rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white to-cyan-50 p-8 shadow-sm" data-ov-reveal>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white">
+                <Calculator className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-black tracking-tight text-slate-950">Calculadora ML</h3>
+              <p className="mt-3 font-medium leading-relaxed text-slate-700">
+                Calculá precio de venta contemplando margen, comisión, impuestos y envío antes de publicar.
+              </p>
+              <a href={CALC_URL} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-extrabold text-white">
+                Abrir calculadora <ArrowRight className="h-4 w-4" />
+              </a>
+            </article>
+
+            <article className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm" data-ov-reveal>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-800">
+                <MonitorSmartphone className="h-6 w-6" />
+              </div>
+              <h3 className="text-2xl font-black tracking-tight text-slate-950">Orientador de precios ML</h3>
+              <p className="mt-3 font-medium leading-relaxed text-slate-700">
+                Revisá productos por lote y tomá decisiones rápidas sin perder criterio comercial.
+              </p>
+              <a href={ORIENTADOR_URL} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-3 text-sm font-extrabold text-slate-800">
+                Ver orientador <ArrowRight className="h-4 w-4" />
+              </a>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="herramientas" className="scroll-mt-24 bg-slate-50 px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader eyebrow="Herramientas" title="Números claros antes de publicar." text="Dos productos propios pensados para vendedores de MercadoLibre: uno para calcular fino y otro para orientarte rápido con listas y oportunidades." />
-
-          <div className="grid gap-7 lg:grid-cols-2">
-            <Reveal delay={0.05}>
-              <div className="group relative h-full overflow-hidden rounded-[2.4rem] border border-brand-100 bg-white p-8 shadow-xl shadow-brand-100/60 transition hover:-translate-y-1 md:p-10">
-                <div className="absolute right-0 top-0 rounded-bl-3xl bg-brand-600 px-5 py-3 text-xs font-black uppercase tracking-widest text-white">Principal</div>
-                <Calculator className="h-12 w-12 text-brand-700" />
-                <h3 className="mt-7 text-3xl font-black text-slate-950">Calculadora ML</h3>
-                <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">Para calcular un precio de publicación contemplando costo, IVA, margen, comisión, IIBB, envío y cuotas.</p>
-                <ul className="mt-7 space-y-3">
-                  {["Cálculo más preciso producto por producto", "Desglose fácil de entender", "Pensada para vendedores argentinos"].map((item) => (
-                    <li key={item} className="flex items-start gap-3 font-bold text-slate-700"><BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-brand-600" /> {item}</li>
-                  ))}
-                </ul>
-                <TrackLink href={CALC_URL} target="_blank" rel="noreferrer" event="click_calc" place="calculator_card_home" className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-600 px-6 py-4 font-black text-white transition hover:bg-brand-700 sm:w-auto">
-                  Abrir calculadora <ArrowRight className="h-5 w-5" />
-                </TrackLink>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="group relative h-full overflow-hidden rounded-[2.4rem] border border-brand-100 bg-white p-8 shadow-xl shadow-brand-100/60 transition hover:-translate-y-1 md:p-10">
-                <div className="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-cyan-200/30 blur-2xl" />
-                <MonitorSmartphone className="relative h-12 w-12 text-brand-700" />
-                <h3 className="relative mt-7 text-3xl font-black text-slate-950">Orientador de precios ML</h3>
-                <p className="relative mt-4 text-lg font-medium leading-relaxed text-slate-600">Para trabajar con listas, mirar rápido si hay margen y detectar productos que merecen análisis más profundo.</p>
-                <ul className="relative mt-7 space-y-3">
-                  {["Ideal para mirar muchos productos", "Enfoque estimativo y práctico", "Complementa a la Calculadora ML"].map((item) => (
-                    <li key={item} className="flex items-start gap-3 font-bold text-slate-700"><BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-brand-600" /> {item}</li>
-                  ))}
-                </ul>
-                <TrackLink href={ORIENTADOR_URL} target="_blank" rel="noreferrer" event="click_orientador" place="orientador_card_home" className="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-brand-200 bg-white px-6 py-4 font-black text-brand-700 transition hover:bg-brand-50 sm:w-auto">
-                  Ver orientador <ArrowRight className="h-5 w-5" />
-                </TrackLink>
-              </div>
-            </Reveal>
+      <section id="recursos" className="bg-slate-50 py-24">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mx-auto max-w-3xl text-center" data-ov-reveal>
+            <span className="inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+              Recursos gratuitos
+            </span>
+            <h2 className="mt-5 text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+              Prompts y guías para aplicar hoy.
+            </h2>
+            <p className="mt-5 text-lg font-semibold leading-relaxed text-slate-700">
+              Se alimentan desde el contenido editable del proyecto. Lo que agregues desde el admin puede aparecer en estas secciones.
+            </p>
           </div>
-        </div>
-      </section>
 
-      <section id="recursos-gratuitos" className="scroll-mt-24 bg-white px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader eyebrow="Recursos gratuitos" title="Contenido útil para aplicar hoy." text="Prompts y guías creadas desde problemas reales de venta online, no desde teoría genérica." />
-
-          <div className="grid gap-7 lg:grid-cols-2">
-            <Reveal delay={0.05}>
-              <div className="h-full rounded-[2.4rem] border border-slate-200 bg-slate-50 p-8 md:p-10">
-                <FileText className="h-10 w-10 text-brand-700" />
-                <h3 className="mt-5 text-3xl font-black text-slate-950">Prompts</h3>
-                <p className="mt-3 font-medium leading-relaxed text-slate-600">Listos para copiar, adaptar y usar en análisis de productos, publicaciones y decisiones de MercadoLibre.</p>
-                <div className="mt-7 space-y-4">
-                  {previewPrompts.map((p) => (
-                    <Link key={p.id} href={`/prompts/${p.id}/`} className="group block rounded-3xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg">
-                      <span className="text-xs font-black uppercase tracking-widest text-brand-700">{p.category}</span>
-                      <h4 className="mt-2 text-lg font-black text-slate-950 group-hover:text-brand-700">{p.title}</h4>
-                      <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">{p.description}</p>
-                    </Link>
-                  ))}
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <section id="prompts" className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm" data-ov-reveal>
+              <div className="mb-7 flex items-start justify-between gap-4">
+                <div>
+                  <span className="inline-flex rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-cyan-800">
+                    Prompts
+                  </span>
+                  <h3 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+                    Prompts listos para usar
+                  </h3>
+                  <p className="mt-3 font-medium leading-relaxed text-slate-700">
+                    Para mejorar publicaciones, analizar competencia, crear contenido y ordenar decisiones.
+                  </p>
                 </div>
-                <Link href="/prompts/" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 font-black text-white transition hover:bg-brand-700">Ver todos los prompts <ArrowRight className="h-4 w-4" /></Link>
+                <Sparkles className="h-8 w-8 shrink-0 text-cyan-500" />
               </div>
-            </Reveal>
 
-            <Reveal delay={0.1}>
-              <div className="h-full rounded-[2.4rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
-                <BookOpen className="h-10 w-10 text-brand-700" />
-                <h3 className="mt-5 text-3xl font-black text-slate-950">Guías</h3>
-                <p className="mt-3 font-medium leading-relaxed text-slate-600">Artículos simples, directos y accionables para tomar mejores decisiones en e-commerce.</p>
-                <div className="mt-7 space-y-4">
-                  {previewGuides.map((g) => (
-                    <Link key={g.id} href={`/guias/${g.id}/`} className="group block rounded-3xl border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg">
-                      <span className="text-xs font-black uppercase tracking-widest text-brand-700">{g.category}</span>
-                      <h4 className="mt-2 text-lg font-black text-slate-950 group-hover:text-brand-700">{g.title}</h4>
-                      <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">{g.description}</p>
+              <div className="space-y-4">
+                {previewPrompts.length ? (
+                  previewPrompts.map((prompt) => (
+                    <Link
+                      key={prompt.id}
+                      href={`/prompts/${prompt.id}/`}
+                      className="block rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-brand-200 hover:bg-white hover:shadow-sm"
+                    >
+                      <div className="text-[11px] font-black uppercase tracking-wide text-brand-700">
+                        {prompt.category}
+                      </div>
+                      <h4 className="mt-2 text-lg font-black leading-tight text-slate-950">
+                        {prompt.title}
+                      </h4>
+                      <p className="mt-2 line-clamp-2 text-sm font-medium leading-relaxed text-slate-700">
+                        {prompt.description}
+                      </p>
                     </Link>
-                  ))}
-                </div>
-                <Link href="/guias/" className="mt-7 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-6 py-3 font-black text-brand-700 transition hover:bg-brand-600 hover:text-white">Ver todas las guías <ArrowRight className="h-4 w-4" /></Link>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-slate-300 p-5 text-sm font-semibold text-slate-600">
+                    Todavía no hay prompts publicados. Agregalos desde el admin.
+                  </div>
+                )}
               </div>
-            </Reveal>
-          </div>
 
-          <Reveal delay={0.14}>
-            <div className="mt-10"><LeadMagnet /></div>
-          </Reveal>
+              <Link href="/prompts/" className="mt-7 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-extrabold text-white">
+                Ver todos los prompts <ArrowRight className="h-4 w-4" />
+              </Link>
+            </section>
+
+            <section id="guias" className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm" data-ov-reveal>
+              <div className="mb-7 flex items-start justify-between gap-4">
+                <div>
+                  <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
+                    Guías
+                  </span>
+                  <h3 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+                    Guías simples y prácticas
+                  </h3>
+                  <p className="mt-3 font-medium leading-relaxed text-slate-700">
+                    Contenido claro para entender margen, publicaciones, herramientas y presencia digital.
+                  </p>
+                </div>
+                <LibraryBig className="h-8 w-8 shrink-0 text-brand-600" />
+              </div>
+
+              <div className="space-y-4">
+                {previewGuides.length ? (
+                  previewGuides.map((guide) => (
+                    <Link
+                      key={guide.id}
+                      href={`/guias/${guide.id}/`}
+                      className="block rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-brand-200 hover:bg-white hover:shadow-sm"
+                    >
+                      <div className="text-[11px] font-black uppercase tracking-wide text-brand-700">
+                        {guide.category}
+                      </div>
+                      <h4 className="mt-2 text-lg font-black leading-tight text-slate-950">
+                        {guide.title}
+                      </h4>
+                      <p className="mt-2 line-clamp-2 text-sm font-medium leading-relaxed text-slate-700">
+                        {guide.description}
+                      </p>
+                    </Link>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-slate-300 p-5 text-sm font-semibold text-slate-600">
+                    Todavía no hay guías publicadas. Agregalas desde el admin.
+                  </div>
+                )}
+              </div>
+
+              <Link href="/guias/" className="mt-7 inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-3 text-sm font-extrabold text-slate-800">
+                Ver todas las guías <ArrowRight className="h-4 w-4" />
+              </Link>
+            </section>
+          </div>
         </div>
       </section>
 
-      <section id="servicios" className="scroll-mt-24 bg-slate-950 px-4 py-24 text-white">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="mb-14 max-w-3xl">
-              <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100">Servicios web</span>
-              <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight md:text-5xl">No hacemos “una web más”. Armamos una presencia digital que se entienda y convierta.</h2>
-              <p className="mt-5 text-lg font-medium leading-relaxed text-slate-300">Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender.</p>
+      <section id="servicios" className="bg-slate-950 py-24 text-white">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div data-ov-reveal>
+              <span className="inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-wide text-cyan-100">
+                Servicios
+              </span>
+              <h2 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">
+                No hacemos una web más. Armamos una presencia digital que se entiende y convierte.
+              </h2>
+              <p className="mt-5 text-lg font-semibold leading-relaxed text-slate-300">
+                Diseño, estructura y claridad para que tu negocio se vea profesional y lleve a la acción.
+              </p>
+              <Link href="/web/" className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-extrabold text-slate-950">
+                Ver servicios <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
-          </Reveal>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {SERVICES.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <Reveal key={service.title} delay={0.05 + index * 0.05}>
-                  <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.09]">
-                    <Icon className="h-10 w-10 text-cyan-200" />
-                    <h3 className="mt-5 text-2xl font-black text-white">{service.title}</h3>
-                    <p className="mt-3 font-medium leading-relaxed text-slate-300">{service.text}</p>
+            <div className="grid gap-4" data-ov-reveal>
+              {[
+                ["Landing pages", "Una página clara para explicar una oferta y captar consultas."],
+                ["Web profesional", "Un sitio ordenado para mostrar servicios, portfolio, recursos y canales de contacto."],
+                ["Sistemas simples", "Herramientas internas, formularios y flujos para resolver tareas repetitivas."],
+              ].map(([title, text], index) => (
+                <article key={title} className="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+                  <div className="text-sm font-black uppercase tracking-wide text-cyan-200">
+                    0{index + 1}
                   </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <Reveal delay={0.16}>
-            <Link href="/web/" className="mt-10 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-50">Ver servicios web <ArrowRight className="h-5 w-5" /></Link>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="portfolio" className="scroll-mt-24 bg-white px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader eyebrow="Portfolio" title="Proyectos que muestran criterio real." text="Casos propios y trabajos donde lo importante no es solo verse moderno: es que el mensaje sea claro y funcional." />
-
-          <div className="grid gap-7 md:grid-cols-3">
-            {PORTFOLIO.map((project, index) => (
-              <Reveal key={project.title} delay={0.05 + index * 0.05}>
-                <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                    <Image src={project.img} alt={project.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="p-6">
-                    <span className="text-xs font-black uppercase tracking-widest text-brand-700">{project.tag}</span>
-                    <h3 className="mt-2 text-2xl font-black text-slate-950">{project.title}</h3>
-                    <p className="mt-3 font-medium leading-relaxed text-slate-600">{project.text}</p>
-                  </div>
+                  <h3 className="mt-4 text-2xl font-black tracking-tight">{title}</h3>
+                  <p className="mt-3 font-medium leading-relaxed text-slate-300">{text}</p>
                 </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="nosotros" className="scroll-mt-24 bg-slate-50 px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <Reveal>
-              <div className="sticky top-28 rounded-[2.4rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
-                <span className="text-sm font-black uppercase tracking-[0.22em] text-brand-700">Sobre Oriavision</span>
-                <h2 className="mt-5 text-3xl font-black leading-tight text-slate-950 md:text-5xl">Vendemos online. Por eso diseñamos distinto.</h2>
-                <p className="mt-5 text-lg font-medium leading-relaxed text-slate-600">La diferencia no está solo en saber diseñar o programar. Está en entender qué necesita ver una persona para confiar, consultar, comprar o tomar una decisión.</p>
-                <div className="mt-8 space-y-4">
-                  {["Experiencia real en MercadoLibre y e-commerce", "Diseño con foco comercial, no decorativo", "Soluciones simples, rápidas y mantenibles"].map((item) => (
-                    <div key={item} className="flex items-start gap-3 font-bold text-slate-700"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-brand-600" /> {item}</div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-1">
-              {TEAM.map((person, index) => (
-                <Reveal key={person.name} delay={0.05 + index * 0.05}>
-                  <article className="flex h-full flex-col gap-5 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:flex-row md:items-center">
-                    <div className="relative h-24 w-24 flex-none overflow-hidden rounded-3xl bg-slate-100">
-                      <Image src={person.img} alt={person.name} fill sizes="96px" className="object-cover" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-black text-slate-950">{person.name}</h3>
-                      <div className="mt-1 text-sm font-black uppercase tracking-wide text-brand-700">{person.role}</div>
-                      <p className="mt-2 font-medium leading-relaxed text-slate-600">{person.bio}</p>
-                    </div>
-                  </article>
-                </Reveal>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-brand-600 px-4 py-20 text-white">
-        <Reveal>
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-black leading-tight md:text-5xl">¿Querés que tu negocio se vea más profesional y funcione mejor?</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-lg font-medium leading-relaxed text-blue-50">Podemos empezar por una landing, mejorar tu sitio actual o pensar una herramienta simple que te ahorre tiempo.</p>
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link href="/web/" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-black text-brand-700 transition hover:-translate-y-0.5">Ver servicios <ArrowRight className="h-5 w-5" /></Link>
-              <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-7 py-4 font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10">Consultar por WhatsApp</a>
-            </div>
+      <section className="bg-white py-24">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <div data-ov-reveal>
+            <span className="inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-700">
+              Sobre Oriavision
+            </span>
+            <h2 className="mt-5 text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+              Vendemos online. Por eso diseñamos distinto.
+            </h2>
           </div>
-        </Reveal>
+
+          <div className="text-lg font-semibold leading-relaxed text-slate-700" data-ov-reveal>
+            <p>
+              Oriavision nace desde experiencia real vendiendo online: márgenes, publicaciones,
+              herramientas, logística, sistemas y clientes. La idea no es hacer diseño vacío, sino
+              soluciones digitales que ayuden a vender con más claridad.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {[
+                "Experiencia real en MercadoLibre",
+                "Prompts y guías editables desde admin",
+                "Diseño simple, claro y orientado a conversión",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-600" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-4 py-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] bg-gradient-to-br from-brand-600 to-slate-950 p-10 text-center text-white shadow-2xl" data-ov-reveal>
+          <span className="text-sm font-black uppercase tracking-wide text-cyan-100">
+            Próximo paso
+          </span>
+          <h2 className="mx-auto mt-4 max-w-3xl text-4xl font-black tracking-tight md:text-6xl">
+            ¿Querés que tu negocio se vea más profesional y funcione mejor?
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-relaxed text-blue-50">
+            Podemos ayudarte con una web, una landing o una herramienta simple para ordenar tu operación.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/web/" className="rounded-full bg-white px-6 py-3 font-extrabold text-slate-950">
+              Quiero una web
+            </Link>
+            <a href={CALC_URL} target="_blank" rel="noreferrer" className="rounded-full border border-white/20 px-6 py-3 font-extrabold text-white">
+              Abrir Calculadora ML
+            </a>
+          </div>
+        </div>
       </section>
 
       <Newsletter />
