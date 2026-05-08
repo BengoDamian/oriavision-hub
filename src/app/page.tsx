@@ -363,7 +363,7 @@ export default function Home() {
                     </div>
 
                     <div className="mt-4 text-2xl font-black leading-tight text-white">
-                      Páginas web y sistemas
+                      Desarrollo web y sistemas
                     </div>
 
                     <div className="mt-2 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
