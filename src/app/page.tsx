@@ -14,7 +14,6 @@ import {
   LayoutTemplate,
   MessageCircle,
   MonitorSmartphone,
-  Zap,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
@@ -81,20 +80,13 @@ const STATS = [
   { value: "100%", label: "experiencia real" },
 ];
 
-const PATHS = [
+const HOME_BLOCKS = [
   {
     icon: Calculator,
     title: "Herramientas ML",
     text: "Calculadoras, orientadores y soluciones prácticas para decidir precios y operar con más claridad.",
     href: "#herramientas",
     label: "Ver herramientas",
-  },
-  {
-    icon: BookOpen,
-    title: "Recursos gratuitos",
-    text: "Prompts, guías y contenido práctico para atraer tráfico, generar autoridad y ordenar ideas.",
-    href: "#recursos-gratuitos",
-    label: "Ver recursos",
   },
   {
     icon: LayoutTemplate,
@@ -258,7 +250,7 @@ export default function Home() {
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal delay={0.03}>
-              <div className="mb-7 max-w-2xl rounded-[2rem] border border-white/15 bg-white/10 p-4 shadow-2xl shadow-cyan-950/20 backdrop-blur md:p-5">
+              <div className="mb-7 max-w-2xl rounded-[2rem] border border-white/10 bg-white/[0.05] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl md:p-4">
                 <ResourceSearch items={searchItems} />
               </div>
             </Reveal>
@@ -348,7 +340,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="mt-4 text-4xl font-black tracking-tight text-white">
+                    <div className="mt-4 text-2xl font-black leading-tight text-white">
                       Calculadora y orientador de precios
                     </div>
 
@@ -366,8 +358,8 @@ export default function Home() {
                       className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
                     >
                       <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
-                      <div className="text-2xl font-black text-white">
-                        Herramientas ML
+                      <div className="text-2xl font-black leading-tight text-white">
+                        Operar mejor
                       </div>
 
                       <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
@@ -380,8 +372,8 @@ export default function Home() {
                       href="#servicios"
                       className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
                     >
-                      <Zap className="mb-4 h-6 w-6 text-yellow-200" />
-                      <div className="text-2xl font-black text-white">
+                      <LayoutTemplate className="mb-4 h-6 w-6 text-cyan-200" />
+                      <div className="text-2xl font-black leading-tight text-white">
                         Servicios
                       </div>
 
@@ -421,9 +413,9 @@ export default function Home() {
       </section>
 
       <section className="bg-white px-4 pb-20 pt-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-5 md:grid-cols-3">
-            {PATHS.map((item, index) => {
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-5 md:grid-cols-2">
+            {HOME_BLOCKS.map((item, index) => {
               const Icon = item.icon;
 
               return (
