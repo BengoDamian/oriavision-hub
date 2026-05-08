@@ -119,18 +119,21 @@ const PORTFOLIO = [
     tag: "Servicios locales",
     text: "Rediseño orientado a claridad, confianza y captación por especialidad.",
     img: "/portfolio/siempredeguardia.png",
+    href: "https://siempredeguardia.com.ar",
   },
   {
     title: "Quirvo",
     tag: "Producto digital",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
     img: "/portfolio/quirvo.png",
+    href: "https://quirvo.com.ar",
   },
   {
     title: "Calculadora ML",
     tag: "Herramienta SaaS",
     text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
     img: "/portfolio/calculadora-landing.png",
+    href: "https://calculadoraml.oriavision.com.ar",
   },
 ];
 
@@ -356,9 +359,7 @@ export default function Home() {
                   >
                     <div className="flex items-center gap-3">
                       <LayoutTemplate className="h-6 w-6 text-cyan-200" />
-                      <div className="font-black text-white">
-                        Servicios
-                      </div>
+                      <div className="font-black text-white">Servicios</div>
                     </div>
 
                     <div className="mt-4 text-2xl font-black leading-tight text-white">
@@ -604,14 +605,19 @@ export default function Home() {
           <div className="grid gap-7 md:grid-cols-3">
             {PORTFOLIO.map((project, index) => (
               <Reveal key={project.title} delay={0.05 + index * 0.05}>
-                <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                     <Image
                       src={project.img}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
+                      className="object-cover object-top transition duration-500 group-hover:scale-105"
                     />
                   </div>
 
@@ -628,7 +634,7 @@ export default function Home() {
                       {project.text}
                     </p>
                   </div>
-                </article>
+                </a>
               </Reveal>
             ))}
           </div>
