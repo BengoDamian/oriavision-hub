@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
-import LeadMagnet from "@/components/LeadMagnet";
 import TrackLink from "@/components/TrackLink";
 import ResourceSearch from "@/components/ResourceSearch";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
@@ -733,12 +732,6 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-
-          <Reveal delay={0.14}>
-            <div className="mt-10">
-              <LeadMagnet />
-            </div>
-          </Reveal>
         </div>
       </section>
 
