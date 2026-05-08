@@ -14,7 +14,6 @@ import {
   LayoutTemplate,
   MessageCircle,
   MonitorSmartphone,
-  Sparkles,
   Zap,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
@@ -252,16 +251,6 @@ export default function Home() {
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
-      <section className="relative z-10 bg-white px-4 py-5 md:py-6">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-xl shadow-slate-200/60 md:p-5">
-              <ResourceSearch items={searchItems} />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       <section className="hero-grid relative bg-slate-950 px-4 pb-20 pt-12 text-white md:pb-28 md:pt-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.35),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(20,184,166,0.22),transparent_26%),linear-gradient(180deg,rgba(15,23,42,0),rgba(2,6,23,0.92))]" />
         <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
@@ -269,9 +258,8 @@ export default function Home() {
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <Reveal delay={0.03}>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100 backdrop-blur">
-                <Sparkles className="h-4 w-4" />
-                E-commerce · Web · Herramientas
+              <div className="mb-7 max-w-2xl rounded-[2rem] border border-white/15 bg-white/10 p-4 shadow-2xl shadow-cyan-950/20 backdrop-blur md:p-5">
+                <ResourceSearch items={searchItems} />
               </div>
             </Reveal>
 
@@ -374,16 +362,16 @@ export default function Home() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <a
-                      href="#recursos-gratuitos"
+                      href="#herramientas"
                       className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
                     >
                       <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
                       <div className="text-2xl font-black text-white">
-                        Herramientas útiles
+                        Herramientas ML
                       </div>
 
                       <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>guías y prompts</span>
+                        <span>calculadora y orientador</span>
                         <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
                       </div>
                     </a>
