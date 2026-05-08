@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  BarChart3,
   BookOpen,
   Calculator,
   CheckCircle2,
@@ -251,7 +250,7 @@ export default function Home() {
           <div>
             <Reveal delay={0.03}>
               <div className="mb-7 max-w-2xl rounded-[2rem] border border-white/10 bg-white/[0.05] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl md:p-4">
-                <ResourceSearch items={searchItems} />
+                <ResourceSearch items={searchItems} variant="hero" />
               </div>
             </Reveal>
 
@@ -352,37 +351,28 @@ export default function Home() {
                     </div>
                   </a>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <a
-                      href="#herramientas"
-                      className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
-                    >
-                      <BarChart3 className="mb-4 h-6 w-6 text-emerald-300" />
-                      <div className="text-2xl font-black leading-tight text-white">
-                        Operar mejor
-                      </div>
-
-                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>calculadora y orientador</span>
-                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
-                      </div>
-                    </a>
-
-                    <a
-                      href="#servicios"
-                      className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
-                    >
-                      <LayoutTemplate className="mb-4 h-6 w-6 text-cyan-200" />
-                      <div className="text-2xl font-black leading-tight text-white">
+                  <a
+                    href="#servicios"
+                    className="group block rounded-3xl border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.09]"
+                  >
+                    <div className="flex items-center gap-3">
+                      <LayoutTemplate className="h-6 w-6 text-cyan-200" />
+                      <div className="font-black text-white">
                         Servicios
                       </div>
+                    </div>
 
-                      <div className="mt-1 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
-                        <span>páginas web y sistemas</span>
-                        <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
-                      </div>
-                    </a>
-                  </div>
+                    <div className="mt-4 text-2xl font-black leading-tight text-white">
+                      Páginas web y sistemas
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-between gap-3 text-sm font-semibold text-slate-400">
+                      <span>
+                        Landing pages, sitios profesionales y soluciones simples.
+                      </span>
+                      <ArrowRight className="h-4 w-4 flex-none transition group-hover:translate-x-1" />
+                    </div>
+                  </a>
 
                   <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5">
                     <div className="mb-4 text-sm font-black uppercase tracking-widest text-slate-400">
@@ -550,6 +540,102 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="servicios" className="scroll-mt-24 bg-slate-950 px-4 py-24 text-white">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <div className="mb-14 max-w-3xl">
+              <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100">
+                Servicios web
+              </span>
+
+              <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                No hacemos “una web más”. Armamos una presencia digital que se
+                entienda y convierta.
+              </h2>
+
+              <p className="mt-5 text-lg font-medium leading-relaxed text-slate-300">
+                Diseño, copy, estructura, SEO base y criterio comercial. La web
+                tiene que verse bien, pero también tiene que explicar, ordenar y
+                vender.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {SERVICES.map((service, index) => {
+              const Icon = service.icon;
+
+              return (
+                <Reveal key={service.title} delay={0.05 + index * 0.05}>
+                  <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.09]">
+                    <Icon className="h-10 w-10 text-cyan-200" />
+
+                    <h3 className="mt-5 text-2xl font-black text-white">
+                      {service.title}
+                    </h3>
+
+                    <p className="mt-3 font-medium leading-relaxed text-slate-300">
+                      {service.text}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <Reveal delay={0.16}>
+            <Link
+              href="/web/"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-50"
+            >
+              Ver servicios web <ArrowRight className="h-5 w-5" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="portfolio" className="scroll-mt-24 bg-white px-4 py-24">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeader
+            eyebrow="Portfolio"
+            title="Proyectos que muestran criterio real."
+            text="Casos propios y trabajos donde lo importante no es solo verse moderno: es que el mensaje sea claro y funcional."
+          />
+
+          <div className="grid gap-7 md:grid-cols-3">
+            {PORTFOLIO.map((project, index) => (
+              <Reveal key={project.title} delay={0.05 + index * 0.05}>
+                <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                    <Image
+                      src={project.img}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <span className="text-xs font-black uppercase tracking-widest text-brand-700">
+                      {project.tag}
+                    </span>
+
+                    <h3 className="mt-2 text-2xl font-black text-slate-950">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-3 font-medium leading-relaxed text-slate-600">
+                      {project.text}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="recursos-gratuitos" className="scroll-mt-24 bg-white px-4 py-24">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
@@ -653,102 +739,6 @@ export default function Home() {
               <LeadMagnet />
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section id="servicios" className="scroll-mt-24 bg-slate-950 px-4 py-24 text-white">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="mb-14 max-w-3xl">
-              <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100">
-                Servicios web
-              </span>
-
-              <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                No hacemos “una web más”. Armamos una presencia digital que se
-                entienda y convierta.
-              </h2>
-
-              <p className="mt-5 text-lg font-medium leading-relaxed text-slate-300">
-                Diseño, copy, estructura, SEO base y criterio comercial. La web
-                tiene que verse bien, pero también tiene que explicar, ordenar y
-                vender.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {SERVICES.map((service, index) => {
-              const Icon = service.icon;
-
-              return (
-                <Reveal key={service.title} delay={0.05 + index * 0.05}>
-                  <div className="h-full rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.09]">
-                    <Icon className="h-10 w-10 text-cyan-200" />
-
-                    <h3 className="mt-5 text-2xl font-black text-white">
-                      {service.title}
-                    </h3>
-
-                    <p className="mt-3 font-medium leading-relaxed text-slate-300">
-                      {service.text}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <Reveal delay={0.16}>
-            <Link
-              href="/web/"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-50"
-            >
-              Ver servicios web <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="portfolio" className="scroll-mt-24 bg-white px-4 py-24">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow="Portfolio"
-            title="Proyectos que muestran criterio real."
-            text="Casos propios y trabajos donde lo importante no es solo verse moderno: es que el mensaje sea claro y funcional."
-          />
-
-          <div className="grid gap-7 md:grid-cols-3">
-            {PORTFOLIO.map((project, index) => (
-              <Reveal key={project.title} delay={0.05 + index * 0.05}>
-                <article className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-200">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                    <Image
-                      src={project.img}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <span className="text-xs font-black uppercase tracking-widest text-brand-700">
-                      {project.tag}
-                    </span>
-
-                    <h3 className="mt-2 text-2xl font-black text-slate-950">
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-3 font-medium leading-relaxed text-slate-600">
-                      {project.text}
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
