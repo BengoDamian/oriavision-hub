@@ -1,72 +1,56 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { BookOpen, FileText, Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import { ArrowRight, Search } from "lucide-react";
 
 export type ResourceSearchItem = {
-  type: "Prompt" | "Guía";
+  type?: "Prompt" | "Guía" | "Herramienta" | "Servicio" | string;
   title: string;
-  description: string;
-  category: string;
+  description?: string;
+  category?: string;
   href: string;
+  external?: boolean;
 };
 
-function normalizeText(value: string) {
+type ResourceSearchProps = {
+  items: ResourceSearchItem[];
+  variant?: "light" | "hero";
+  placeholder?: string;
+};
+
+function normalize(value: string) {
   return value
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^\w\s]/g, " ")
-    .replace(/_/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-function scoreItem(item: ResourceSearchItem, rawQuery: string) {
-  const query = normalizeText(rawQuery);
-  if (!query) return 0;
+function scoreItem(item: ResourceSearchItem, query: string) {
+  const q = normalize(query);
+  if (!q) return 0;
 
-  const title = normalizeText(item.title);
-  const category = normalizeText(item.category);
-  const description = normalizeText(item.description);
-  const fullText = `${title} ${category} ${description}`;
+  const title = normalize(item.title);
+  const description = normalize(item.description || "");
+  const category = normalize(item.category || "");
+  const type = normalize(item.type || "");
+  const full = `${title} ${description} ${category} ${type}`;
 
   let score = 0;
 
-  if (title === query) score += 500;
-  if (title.startsWith(query)) score += 250;
-  if (title.includes(query)) score += 140;
-  if (category.includes(query)) score += 40;
-  if (description.includes(query)) score += 20;
+  if (title === q) score += 300;
+  if (title.startsWith(q)) score += 180;
+  if (title.includes(q)) score += 120;
+  if (category.includes(q)) score += 55;
+  if (type.includes(q)) score += 45;
+  if (description.includes(q)) score += 25;
 
-  const tokens = query.split(" ").filter(Boolean);
-  let matchedTokens = 0;
-
-  for (const token of tokens) {
-    if (title.includes(token)) {
-      score += 70;
-      matchedTokens += 1;
-      continue;
-    }
-
-    if (fullText.includes(token)) {
-      score += 25;
-      matchedTokens += 1;
-      continue;
-    }
-
-    const words = fullText.split(" ");
-    const startsWithMatch = words.some((word) => word.startsWith(token));
-    if (startsWithMatch) {
-      score += 18;
-      matchedTokens += 1;
-    }
-  }
-
-  if (tokens.length > 1 && matchedTokens === tokens.length) {
-    score += 80;
+  for (const token of q.split(" ").filter(Boolean)) {
+    if (title.includes(token)) score += 45;
+    else if (full.includes(token)) score += 18;
   }
 
   return score;
@@ -74,125 +58,160 @@ function scoreItem(item: ResourceSearchItem, rawQuery: string) {
 
 export default function ResourceSearch({
   items,
-}: {
-  items: ResourceSearchItem[];
-}) {
+  variant = "light",
+  placeholder = "Buscá por título, tema o categoría...",
+}: ResourceSearchProps) {
   const [query, setQuery] = useState("");
-  const router = useRouter();
+  const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    const cleanQuery = normalizeText(query);
-    if (!cleanQuery) return;
-
-    if (cleanQuery === "formulario") {
-      router.push("/web#formulario");
-    }
-  }, [query, router]);
+  const isHero = variant === "hero";
+  const cleanQuery = query.trim();
 
   const results = useMemo(() => {
-    const cleanQuery = query.trim();
-    if (!cleanQuery) return [];
+    if (cleanQuery.length < 2) return [];
 
-    const normalizedQuery = normalizeText(cleanQuery);
-    const tokens = normalizedQuery.split(" ").filter(Boolean);
-
-    const baseResults = items
+    return items
       .map((item) => ({
         item,
         score: scoreItem(item, cleanQuery),
       }))
       .filter((entry) => entry.score > 0)
-      .sort(
-        (a, b) =>
-          b.score - a.score || a.item.title.localeCompare(b.item.title, "es")
-      )
-      .slice(0, 8);
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6)
+      .map((entry) => entry.item);
+  }, [items, cleanQuery]);
 
-    const shouldShowWebSection =
-      tokens.includes("landing") || tokens.includes("web");
+  const showDropdown = focused && cleanQuery.length >= 2;
 
-    if (shouldShowWebSection) {
-      const webItem = {
-        item: {
-          type: "Guía" as const,
-          title: "Landing pages, webs a medida y sistemas web",
-          description:
-            "Ir a la sección de servicios web, landings, páginas a medida y sistemas desarrollados por Oriavision.",
-          category: "Servicios",
-          href: "/web/",
-        },
-        score: 9999,
-      };
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-      const withoutDuplicate = baseResults.filter(
-        (entry) => entry.item.href !== "/web/"
-      );
+    if (!results.length) return;
 
-      return [webItem, ...withoutDuplicate].slice(0, 8);
+    const first = results[0];
+
+    if (first.external) {
+      window.open(first.href, "_blank", "noopener,noreferrer");
+      return;
     }
 
-    return baseResults;
-  }, [items, query]);
+    window.location.href = first.href;
+  }
 
   return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-      <div className="mb-3 flex items-center gap-2">
-        <Search className="h-4 w-4 text-brand-600" />
-        <span className="text-sm font-extrabold uppercase tracking-wide text-brand-700">
-          Buscar recursos
-        </span>
-      </div>
+    <div className="relative w-full">
+      <form
+        onSubmit={handleSubmit}
+        className={
+          isHero
+            ? "flex items-center gap-3 rounded-2xl border border-white/15 bg-slate-950/35 px-4 py-3 shadow-inner shadow-black/20 backdrop-blur-xl transition focus-within:border-cyan-300/40 focus-within:bg-slate-950/50"
+            : "flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition focus-within:border-brand-200 focus-within:shadow-md"
+        }
+      >
+        <Search
+          className={
+            isHero
+              ? "h-5 w-5 shrink-0 text-cyan-200"
+              : "h-5 w-5 shrink-0 text-brand-700"
+          }
+        />
 
-      <div className="relative">
         <input
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscá por título, tema o categoría..."
-          className="w-full rounded-2xl border-2 border-slate-200 bg-white px-5 py-4 pr-12 font-semibold text-slate-900 outline-none focus:border-brand-600"
+          onChange={(event) => setQuery(event.target.value)}
+          onFocus={() => setFocused(true)}
+          onBlur={() => {
+            window.setTimeout(() => setFocused(false), 140);
+          }}
+          placeholder={placeholder}
+          className={
+            isHero
+              ? "min-w-0 flex-1 bg-transparent text-sm font-bold text-white outline-none placeholder:text-slate-400"
+              : "min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-900 outline-none placeholder:text-slate-400"
+          }
         />
-        <Search className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-      </div>
 
-      {query.trim() ? (
-        results.length > 0 ? (
-          <div className="mt-4 space-y-3">
-            {results.map(({ item }) => (
-              <Link
-                key={`${item.type}-${item.href}`}
-                href={item.href}
-                className="block rounded-2xl border border-slate-200 bg-slate-50 p-4 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-sm"
-              >
-                <div className="flex items-center gap-2">
-                  {item.type === "Prompt" ? (
-                    <FileText className="h-4 w-4 text-brand-600" />
-                  ) : (
-                    <BookOpen className="h-4 w-4 text-brand-600" />
-                  )}
+        <button
+          type="submit"
+          aria-label="Buscar"
+          className={
+            isHero
+              ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-cyan-100 transition hover:bg-white/15"
+              : "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-700 transition hover:bg-brand-50"
+          }
+        >
+          <ArrowRight className="h-4 w-4" />
+        </button>
+      </form>
 
-                  <span className="rounded-full border border-blue-100 bg-white px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
-                    {item.type}
-                  </span>
+      {showDropdown ? (
+        <div
+          className={
+            isHero
+              ? "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/95 p-2 shadow-2xl shadow-black/40 backdrop-blur-xl"
+              : "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
+          }
+        >
+          {results.length ? (
+            <div className="grid gap-1">
+              {results.map((item) => (
+                <Link
+                  key={`${item.href}-${item.title}`}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className={
+                    isHero
+                      ? "group rounded-xl px-4 py-3 transition hover:bg-white/10"
+                      : "group rounded-xl px-4 py-3 transition hover:bg-slate-50"
+                  }
+                >
+                  <div
+                    className={
+                      isHero
+                        ? "text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200"
+                        : "text-[10px] font-black uppercase tracking-[0.18em] text-brand-700"
+                    }
+                  >
+                    {[item.type, item.category].filter(Boolean).join(" · ")}
+                  </div>
 
-                  <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-600">
-                    {item.category}
-                  </span>
-                </div>
+                  <div
+                    className={
+                      isHero
+                        ? "mt-1 text-sm font-black leading-tight text-white"
+                        : "mt-1 text-sm font-black leading-tight text-slate-950"
+                    }
+                  >
+                    {item.title}
+                  </div>
 
-                <h3 className="mt-3 text-lg font-black text-slate-900">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 text-sm font-medium leading-relaxed text-textBody">
-                  {item.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <p className="mt-4 text-sm font-medium text-slate-500">
-            No encontré resultados para “{query}”.
-          </p>
-        )
+                  {item.description ? (
+                    <p
+                      className={
+                        isHero
+                          ? "mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-slate-400"
+                          : "mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-slate-600"
+                      }
+                    >
+                      {item.description}
+                    </p>
+                  ) : null}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div
+              className={
+                isHero
+                  ? "rounded-xl px-4 py-3 text-sm font-bold text-slate-300"
+                  : "rounded-xl px-4 py-3 text-sm font-bold text-slate-600"
+              }
+            >
+              No encontré resultados para esa búsqueda.
+            </div>
+          )}
+        </div>
       ) : null}
     </div>
   );
