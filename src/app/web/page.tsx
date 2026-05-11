@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
-  ArrowRight,
-  BadgeCheck,
+  ArrowUpRight,
+  Blocks,
   Bot,
   Braces,
-  Building2,
-  Check,
-  Database,
+  CheckCircle2,
+  DatabaseZap,
+  Fingerprint,
   Gauge,
   Layers3,
-  LockKeyhole,
-  MousePointerClick,
+  LineChart,
+  MousePointer2,
   PanelsTopLeft,
-  Rocket,
+  ShieldCheck,
   Sparkles,
   Workflow,
 } from "lucide-react";
@@ -25,19 +27,19 @@ const PAGE_URL = `${SITE_URL}/web/`;
 export const metadata: Metadata = {
   title: "Diseño web profesional, landings y automatizaciones | Oriavision",
   description:
-    "Landing pages, sitios web profesionales, sistemas web y automatizaciones para negocios que necesitan una presencia digital más premium y funcional.",
+    "Diseño web profesional, landing pages, sistemas web y automatizaciones para negocios que necesitan una presencia digital premium, clara y funcional.",
   alternates: { canonical: "/web/" },
   openGraph: {
     url: PAGE_URL,
     title: "Diseño web profesional, landings y automatizaciones | Oriavision",
     description:
-      "Landing pages, sitios web profesionales, sistemas web y automatizaciones para negocios que necesitan una presencia digital más premium y funcional.",
+      "Diseño web profesional, landing pages, sistemas web y automatizaciones para negocios que necesitan una presencia digital premium, clara y funcional.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Oriavision Web Studio" }],
   },
   twitter: {
     title: "Diseño web profesional, landings y automatizaciones | Oriavision",
     description:
-      "Landing pages, sitios web profesionales, sistemas web y automatizaciones para negocios que necesitan una presencia digital más premium y funcional.",
+      "Diseño web profesional, landing pages, sistemas web y automatizaciones para negocios que necesitan una presencia digital premium, clara y funcional.",
     images: ["/og/home.png"],
   },
 };
@@ -63,198 +65,233 @@ const serviceJsonLd = {
     "Diseño de landing pages, sitios web profesionales, sistemas web con login, paneles, base de datos, formularios y automatizaciones.",
 };
 
-type Project = {
-  title: string;
-  kind: string;
+type CaseStudy = {
+  name: string;
+  label: string;
   href: string;
-  description: string;
-  image?: string;
-  metrics: string[];
+  image: string;
+  line: string;
+  chips: string[];
+  number: string;
 };
 
-const services = [
+const caseStudies: CaseStudy[] = [
   {
-    title: "Landing pages",
-    subtitle: "Para campañas y consultas",
-    text: "Una página enfocada en explicar la oferta, generar confianza y llevar al visitante a consultar.",
-    icon: MousePointerClick,
-    bullets: ["Mensaje claro", "CTA fuerte", "Formulario / WhatsApp"],
-  },
-  {
-    title: "Webs profesionales",
-    subtitle: "Para marca y autoridad",
-    text: "Sitios con estética sólida, estructura comercial y una presencia digital que no parece improvisada.",
-    icon: Layers3,
-    bullets: ["Diseño premium", "SEO base", "Mobile first"],
-  },
-  {
-    title: "Sistemas web",
-    subtitle: "Para ordenar procesos",
-    text: "Herramientas internas, paneles, usuarios, bases de datos y automatizaciones conectadas al negocio.",
-    icon: Workflow,
-    bullets: ["Login", "Panel admin", "Automatizaciones"],
-  },
-];
-
-const capabilities = [
-  { label: "Diseño UI", icon: Sparkles },
-  { label: "Desarrollo web", icon: Braces },
-  { label: "Paneles", icon: PanelsTopLeft },
-  { label: "Usuarios", icon: LockKeyhole },
-  { label: "Datos", icon: Database },
-  { label: "Automatización", icon: Bot },
-  { label: "Performance", icon: Gauge },
-  { label: "Escalabilidad", icon: Rocket },
-];
-
-const projects: Project[] = [
-  {
-    title: "Siempre de Guardia",
-    kind: "Plataforma web",
+    name: "Siempre de Guardia",
+    label: "Plataforma de servicios",
     href: "https://siempredeguardia.com.ar/",
     image: "/portfolio/siempredeguardia.png",
-    description:
-      "Una experiencia orientada a encontrar servicios rápidamente, con categorías claras y lógica de plataforma.",
-    metrics: ["Directorio", "Usuarios", "Servicios"],
+    line: "Un sitio que no se siente folleto: organiza categorías, da contexto y se prepara para escalar como plataforma.",
+    chips: ["arquitectura", "servicios", "producto"],
+    number: "01",
   },
   {
-    title: "Quirvo",
-    kind: "Landing de producto",
+    name: "Quirvo",
+    label: "Producto digital",
     href: "https://www.quirvo.com.ar/",
     image: "/portfolio/quirvo.png",
-    description:
-      "Una propuesta técnica transformada en una historia simple: portero QR sin instalación, sin cables y con privacidad.",
-    metrics: ["Producto", "Storytelling", "Conversión"],
+    line: "Una idea técnica convertida en una propuesta simple: portero QR, privacidad y uso real sin fricción.",
+    chips: ["storytelling", "landing", "conversión"],
+    number: "02",
   },
   {
-    title: "Calculadora ML",
-    kind: "Landing SaaS",
+    name: "Calculadora ML",
+    label: "SaaS / herramienta",
     href: "https://calculadoraml.oriavision.com.ar/",
     image: "/portfolio/calculadora-landing.png",
-    description:
-      "Landing para vender una herramienta digital, explicar valor rápido y empujar al usuario hacia la acción.",
-    metrics: ["SaaS", "CTA", "MercadoLibre"],
+    line: "Una herramienta compleja explicada en minutos, con CTA claro, visual de producto y foco en decisión.",
+    chips: ["SaaS", "pricing", "mercadolibre"],
+    number: "03",
   },
 ];
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+const studioPillars: { icon: LucideIcon; title: string; text: string }[] = [
+  { icon: Fingerprint, title: "Identidad", text: "No armamos una web genérica. Diseñamos un sistema visual reconocible para tu negocio." },
+  { icon: MousePointer2, title: "Conversión", text: "Cada sección tiene una función: explicar, dar confianza, filtrar o llevar a consulta." },
+  { icon: Workflow, title: "Automatización", text: "Cuando corresponde, conectamos formularios, mails, paneles, datos y procesos internos." },
+  { icon: Gauge, title: "Performance", text: "Diseño visual fuerte, pero liviano, claro y preparado para mobile desde el inicio." },
+];
+
+const deliverables: [string, string][] = [
+  ["Landing de campaña", "Para vender una oferta concreta sin distraer al visitante."],
+  ["Web institucional premium", "Para que la marca se vea seria, actual y confiable."],
+  ["Sistema con usuarios", "Login, panel admin, base de datos y flujos internos."],
+  ["Automatizaciones", "Consultas, mails, seguimientos y datos conectados."],
+];
+
+function MiniLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/15 bg-cyan-200/[0.07] px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.24em] text-cyan-100">
-      <span className="h-1.5 w-1.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,.9)]" />
+    <span className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.28em] text-[#8bdcff]">
+      <span className="h-px w-8 bg-[#8bdcff]/60" />
       {children}
     </span>
   );
 }
 
-function StudioVisual() {
+function HeroConsole() {
+  const rows = [
+    ["Oferta", "definida", "100%"],
+    ["Mensaje", "depurado", "92%"],
+    ["Confianza", "visual", "alto"],
+    ["CTA", "directo", "listo"],
+  ];
+
   return (
-    <div className="relative min-h-[520px] lg:min-h-[640px]">
-      <div className="absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
-      <div className="absolute right-0 top-12 h-72 w-72 rounded-full bg-red-600/10 blur-3xl" />
+    <div className="relative min-h-[560px] md:min-h-[650px]">
+      <div className="absolute inset-0 rounded-[3rem] border border-white/10 bg-[radial-gradient(circle_at_18%_18%,rgba(21,112,239,.28),transparent_34%),radial-gradient(circle_at_82%_32%,rgba(112,17,31,.30),transparent_31%),linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.025))] shadow-[0_60px_180px_rgba(0,0,0,.50)]" />
+      <div className="absolute inset-3 rounded-[2.6rem] border border-white/10 bg-[#030711]/72 backdrop-blur-xl" />
 
-      <div className="absolute left-2 top-6 w-[76%] rotate-[-7deg] overflow-hidden rounded-[2.2rem] border border-white/12 bg-white/[0.075] p-4 shadow-[0_45px_120px_rgba(0,0,0,.48)] backdrop-blur-xl md:left-0 md:w-[70%]">
-        <div className="rounded-[1.6rem] border border-white/10 bg-[#051120] p-5">
-          <div className="mb-5 flex items-center justify-between">
-            <div className="flex gap-2"><span className="h-2.5 w-2.5 rounded-full bg-red-400" /><span className="h-2.5 w-2.5 rounded-full bg-amber-300" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-300" /></div>
-            <span className="text-[10px] font-black uppercase tracking-[.24em] text-cyan-100/70">Brand system</span>
-          </div>
-          <div className="h-32 rounded-[1.4rem] bg-[radial-gradient(circle_at_20%_20%,rgba(8,217,255,.35),transparent_26%),linear-gradient(135deg,#12213b,#040816)] p-5">
-            <p className="max-w-[12rem] text-2xl font-extrabold leading-none text-white [font-family:var(--font-space-grotesk)]">Diseño con dirección, no relleno visual.</p>
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-3">
-            <span className="h-16 rounded-2xl bg-cyan-300/12" />
-            <span className="h-16 rounded-2xl bg-white/10" />
-            <span className="h-16 rounded-2xl bg-red-400/12" />
-          </div>
+      <div className="absolute left-8 right-8 top-8 flex items-center justify-between border-b border-white/10 pb-5">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#e23b4b]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#e7c86f]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#66f0b6]" />
         </div>
+        <span className="text-[10px] font-black uppercase tracking-[0.26em] text-white/42">no-template build</span>
       </div>
 
-      <div className="absolute right-0 top-32 w-[72%] rotate-[5deg] rounded-[2.2rem] border border-white/12 bg-[#07101f]/90 p-4 shadow-[0_55px_140px_rgba(0,0,0,.6)] backdrop-blur-xl md:w-[62%]">
-        <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.045] p-5">
-          <div className="mb-5 flex items-center justify-between">
-            <span className="text-xs font-black uppercase tracking-[.2em] text-slate-400">Dashboard</span>
-            <span className="rounded-full bg-emerald-300/12 px-3 py-1 text-xs font-bold text-emerald-100">online</span>
-          </div>
-          <div className="space-y-3">
-            {["Lead recibido", "Email automático", "Tarea interna", "Seguimiento"].map((item, i) => (
-              <div key={item} className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/65 px-4 py-3">
-                <span className="text-sm font-bold text-white">{item}</span>
-                <span className="text-xs font-black text-cyan-100">0{i + 1}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-16 left-8 w-[78%] rotate-[2deg] rounded-[2rem] border border-white/12 bg-white/[0.08] p-5 shadow-[0_45px_120px_rgba(0,0,0,.48)] backdrop-blur-xl md:left-20 md:w-[64%]">
-        <p className="text-xs font-black uppercase tracking-[.24em] text-cyan-100/70">Conversion layer</p>
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          {[
-            ["+ claridad", "Mensaje"],
-            ["+ confianza", "Marca"],
-            ["+ consultas", "CTA"],
-            ["+ orden", "Sistema"],
-          ].map(([a, b]) => (
-            <div key={b} className="rounded-2xl border border-white/10 bg-slate-950/70 p-4">
-              <p className="text-xl font-black text-white [font-family:var(--font-space-grotesk)]">{a}</p>
-              <p className="mt-1 text-xs font-bold uppercase tracking-widest text-slate-400">{b}</p>
+      <div className="absolute left-8 right-8 top-28 md:left-10 md:right-10">
+        <div className="grid gap-4 md:grid-cols-[1fr_.72fr]">
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-[#8bdcff]">dirección visual</p>
+            <p className="mt-5 max-w-sm text-4xl font-black leading-[.9] tracking-[-0.08em] text-white md:text-5xl [font-family:var(--font-space-grotesk)]">
+              una web con criterio se nota antes de leer.
+            </p>
+            <div className="mt-8 h-28 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#050914] p-3">
+              <div className="h-full rounded-[1.1rem] bg-[linear-gradient(120deg,rgba(38,137,255,.52),rgba(255,255,255,.08)_42%,rgba(135,24,44,.55))]" />
             </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-[#050914] p-5">
+            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-white/45">diagnóstico</p>
+            <div className="mt-5 space-y-3">
+              {rows.map(([a, b, c]) => (
+                <div key={a} className="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
+                  <div>
+                    <p className="text-sm font-black text-white">{a}</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/35">{b}</p>
+                  </div>
+                  <p className="self-center text-sm font-black text-[#8bdcff]">{c}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-8 right-8 grid gap-4 md:grid-cols-3 md:left-10 md:right-10">
+        {[
+          ["01", "Diseño que vende"],
+          ["02", "Contenido con intención"],
+          ["03", "Tecnología útil"],
+        ].map(([n, t]) => (
+          <div key={n} className="rounded-[1.5rem] border border-white/10 bg-black/24 p-5 backdrop-blur">
+            <p className="text-[11px] font-black text-[#8bdcff]">{n}</p>
+            <p className="mt-2 text-base font-black text-white">{t}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ServiceBlueprint() {
+  return (
+    <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#050914] p-6 shadow-[0_40px_140px_rgba(0,0,0,.35)] md:p-10">
+      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(139,220,255,.38)_1px,transparent_1px),linear-gradient(90deg,rgba(139,220,255,.38)_1px,transparent_1px)] [background-size:44px_44px]" />
+      <div className="relative grid gap-4 lg:grid-cols-12">
+        <div className="rounded-[2.2rem] border border-white/10 bg-white/[0.055] p-7 lg:col-span-5 lg:row-span-2">
+          <MiniLabel>área web</MiniLabel>
+          <h2 className="mt-6 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">
+            Diseño, desarrollo y operación digital en una misma pieza.
+          </h2>
+          <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-slate-300">
+            La idea no es decorar una página. Es convertir tu servicio en una experiencia digital que se entienda, genere confianza y pueda trabajar por vos.
+          </p>
+        </div>
+
+        {deliverables.map(([title, text], index) => {
+          const Icon = [Layers3, PanelsTopLeft, DatabaseZap, Bot][index];
+          return (
+            <div key={title} className={`group rounded-[2rem] border border-white/10 bg-[#08101d]/86 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#8bdcff]/35 ${index === 0 ? "lg:col-span-4" : "lg:col-span-3"} ${index === 3 ? "lg:col-span-7" : ""}`}>
+              <div className="flex items-start justify-between gap-6">
+                <Icon className="h-7 w-7 text-[#8bdcff]" />
+                <span className="text-xs font-black text-white/28">0{index + 1}</span>
+              </div>
+              <h3 className="mt-10 text-2xl font-black tracking-[-0.04em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-slate-300">{text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Pillar({ icon: Icon, title, text }: (typeof studioPillars)[number]) {
+  return (
+    <div className="group relative border-t border-white/10 py-8 md:py-10">
+      <div className="absolute left-0 top-0 h-px w-0 bg-[#8bdcff] transition-all duration-500 group-hover:w-full" />
+      <div className="grid gap-5 md:grid-cols-[120px_1fr] md:items-start">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.055] text-[#8bdcff]">
+          <Icon className="h-6 w-6" />
+        </div>
+        <div>
+          <h3 className="text-3xl font-black tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
+          <p className="mt-3 max-w-2xl text-base font-medium leading-relaxed text-slate-300">{text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CasePanel({ item, flip }: { item: CaseStudy; flip?: boolean }) {
+  return (
+    <article className={`grid gap-0 overflow-hidden border-y border-white/10 lg:grid-cols-2 ${flip ? "lg:[&>a]:order-2" : ""}`}>
+      <a href={item.href} target="_blank" rel="noreferrer" className="group relative min-h-[360px] overflow-hidden bg-[#060b15] md:min-h-[520px]">
+        <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover object-top opacity-78 saturate-[.92] transition duration-700 group-hover:scale-[1.04] group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,5,13,.92),transparent_45%,rgba(2,5,13,.25)),linear-gradient(180deg,transparent_40%,rgba(2,5,13,.96))]" />
+        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-full border border-white/10 bg-black/42 px-5 py-4 backdrop-blur-xl">
+          <span className="text-xs font-black uppercase tracking-[.22em] text-white">abrir proyecto</span>
+          <ArrowUpRight className="h-5 w-5 text-[#8bdcff]" />
+        </div>
+      </a>
+      <div className="flex min-h-[430px] flex-col justify-between bg-[#030711] p-8 md:p-12 lg:p-14">
+        <div>
+          <div className="flex items-center justify-between gap-6">
+            <span className="text-sm font-black text-[#8bdcff]">{item.number}</span>
+            <span className="text-[11px] font-black uppercase tracking-[.26em] text-white/35">{item.label}</span>
+          </div>
+          <h3 className="mt-10 text-5xl font-black leading-[.9] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">{item.name}</h3>
+          <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300">{item.line}</p>
+        </div>
+        <div className="mt-10 flex flex-wrap gap-3">
+          {item.chips.map((chip) => (
+            <span key={chip} className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-black text-white/82">{chip}</span>
           ))}
         </div>
       </div>
-    </div>
-  );
-}
-
-function ServiceStrip() {
-  return (
-    <div className="grid gap-4 lg:grid-cols-3">
-      {services.map((item, index) => {
-        const Icon = item.icon;
-        return (
-          <article key={item.title} className="group relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[#07101d]/80 p-7 shadow-[0_35px_120px_rgba(0,0,0,.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-200/25">
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-300/0 via-cyan-200/55 to-red-300/0 opacity-0 transition group-hover:opacity-100" />
-            <div className="flex items-start justify-between gap-5">
-              <span className="text-sm font-black text-slate-500">0{index + 1}</span>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-cyan-100"><Icon className="h-6 w-6" /></div>
-            </div>
-            <p className="mt-10 text-xs font-black uppercase tracking-[.24em] text-cyan-100/65">{item.subtitle}</p>
-            <h3 className="mt-4 text-3xl font-extrabold tracking-tight text-white [font-family:var(--font-space-grotesk)]">{item.title}</h3>
-            <p className="mt-4 text-base font-medium leading-relaxed text-slate-300">{item.text}</p>
-            <div className="mt-8 space-y-3">
-              {item.bullets.map((bullet) => (
-                <div key={bullet} className="flex items-center gap-3 text-sm font-bold text-slate-200"><Check className="h-4 w-4 text-cyan-200" />{bullet}</div>
-              ))}
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-function ProjectFeature({ project, index }: { project: Project; index: number }) {
-  return (
-    <article className={`grid gap-8 rounded-[2.8rem] border border-white/10 bg-white/[0.045] p-4 shadow-[0_35px_110px_rgba(0,0,0,.24)] backdrop-blur-xl md:p-6 lg:grid-cols-2 ${index % 2 ? "lg:[&>div:first-child]:order-2" : ""}`}>
-      <a href={project.href} target="_blank" rel="noreferrer" className="group relative block min-h-[330px] overflow-hidden rounded-[2.2rem] border border-white/10 bg-slate-950">
-        {project.image ? (
-          <img src={project.image} alt={project.title} className="absolute inset-0 h-full w-full object-cover object-top opacity-86 transition duration-700 group-hover:scale-[1.04] group-hover:opacity-100" />
-        ) : null}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgba(2,6,23,.95))]" />
-        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/65 px-4 py-3 backdrop-blur">
-          <span className="text-sm font-black uppercase tracking-[.18em] text-cyan-100">Ver online</span>
-          <ArrowRight className="h-5 w-5 text-white" />
-        </div>
-      </a>
-      <div className="flex flex-col justify-center p-3 md:p-6">
-        <span className="w-fit rounded-full border border-cyan-200/15 bg-cyan-200/[0.07] px-4 py-2 text-[11px] font-black uppercase tracking-[.22em] text-cyan-100">{project.kind}</span>
-        <h3 className="mt-6 text-4xl font-extrabold tracking-tight text-white [font-family:var(--font-space-grotesk)] md:text-5xl">{project.title}</h3>
-        <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-slate-300">{project.description}</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          {project.metrics.map((m) => <span key={m} className="rounded-full border border-white/10 bg-slate-950/55 px-4 py-2 text-sm font-bold text-slate-200">{m}</span>)}
-        </div>
-      </div>
     </article>
+  );
+}
+
+function ProcessRibbon() {
+  const steps: [string, string, string][] = [
+    ["01", "Detectar", "Qué vendés, qué necesita entender el cliente y qué frena la consulta."],
+    ["02", "Diseñar", "Una dirección visual propia: no plantilla, no relleno, no efectos porque sí."],
+    ["03", "Construir", "Web, landing o sistema con base técnica, mobile, velocidad y formularios."],
+    ["04", "Conectar", "Mails, leads, paneles, bases de datos o automatizaciones cuando suman valor."],
+  ];
+  return (
+    <div className="grid border border-white/10 md:grid-cols-4">
+      {steps.map(([n, title, text]) => (
+        <div key={n} className="min-h-[310px] border-b border-white/10 bg-[#050914] p-7 md:border-b-0 md:border-r md:last:border-r-0">
+          <span className="text-xs font-black text-[#8bdcff]">{n}</span>
+          <h3 className="mt-16 text-3xl font-black tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
+          <p className="mt-4 text-sm font-medium leading-relaxed text-slate-300">{text}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -264,86 +301,132 @@ export default function WebPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
 
-      <section className="relative px-4 pb-20 pt-24 md:pb-28 md:pt-32">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_12%,rgba(8,217,255,.18),transparent_28%),radial-gradient(circle_at_80%_16%,rgba(160,24,40,.20),transparent_28%),linear-gradient(180deg,#02050d_0%,#061324_52%,#02050d_100%)]" />
-        <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:72px_72px]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="relative isolate px-4 pb-20 pt-24 md:pb-28 md:pt-32">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(14,165,233,.22),transparent_28%),radial-gradient(circle_at_84%_0%,rgba(120,20,36,.28),transparent_31%),linear-gradient(180deg,#02050d,#06101d_48%,#02050d)]" />
+        <div className="absolute inset-0 -z-10 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:88px_88px]" />
+
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
             <div>
-              <Eyebrow>Oriavision Web Studio</Eyebrow>
-              <h1 className="mt-8 max-w-4xl text-5xl font-extrabold leading-[0.92] tracking-[-0.06em] text-white [font-family:var(--font-space-grotesk)] md:text-7xl lg:text-8xl">
-                Diseño web con presencia de marca y lógica de negocio.
+              <MiniLabel>Oriavision web atelier</MiniLabel>
+              <h1 className="mt-8 max-w-5xl text-[clamp(3.7rem,9vw,8.6rem)] font-black leading-[0.82] tracking-[-0.09em] text-white [font-family:var(--font-space-grotesk)]">
+                Webs que no parecen de catálogo.
               </h1>
-              <p className="mt-7 max-w-2xl text-lg font-medium leading-relaxed text-slate-300 md:text-xl">
-                Landings, webs profesionales y sistemas a medida para negocios que no quieren parecer una plantilla más.
+              <p className="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
+                Diseño web, landings y automatizaciones con dirección visual propia. Para que tu marca se vea seria antes de que el cliente te escriba.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <a href="#formulario" className="premium-button inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-extrabold text-slate-950 shadow-[0_24px_90px_rgba(8,217,255,.22)] transition hover:-translate-y-0.5 hover:bg-cyan-50">
-                  Quiero una web profesional <ArrowRight className="h-5 w-5" />
+                <a href="#formulario" className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-black text-[#02050d] shadow-[0_24px_90px_rgba(139,220,255,.18)] transition hover:-translate-y-0.5 hover:bg-[#e9fbff]">
+                  Quiero algo así <ArrowUpRight className="h-5 w-5" />
                 </a>
-                <a href="#trabajos" className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.055] px-8 py-4 text-base font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-cyan-200/35 hover:bg-white/[0.09]">
-                  Ver proyectos
+                <a href="#casos" className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.055] px-8 py-4 text-base font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-[#8bdcff]/40">
+                  Ver trabajos
                 </a>
-              </div>
-              <div className="mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10">
-                {[
-                  ["01", "Diseño"],
-                  ["02", "Desarrollo"],
-                  ["03", "Automatización"],
-                ].map(([n, t]) => (
-                  <div key={n} className="bg-[#060c18]/80 p-5">
-                    <p className="text-xs font-black text-cyan-100">{n}</p>
-                    <p className="mt-2 text-sm font-extrabold text-white md:text-base">{t}</p>
-                  </div>
-                ))}
               </div>
             </div>
           </Reveal>
-
-          <Reveal><StudioVisual /></Reveal>
+          <Reveal>
+            <HeroConsole />
+          </Reveal>
         </div>
       </section>
 
-      <section className="relative px-4 py-20 md:py-28">
+      <section className="px-4 py-16 md:py-24">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
-              <div>
-                <Eyebrow>Servicios</Eyebrow>
-                <h2 className="mt-6 text-4xl font-extrabold tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)] md:text-6xl">No vendemos “una web”. Construimos una experiencia digital.</h2>
-              </div>
-              <p className="max-w-2xl text-lg font-medium leading-relaxed text-slate-300 lg:ml-auto">
-                La diferencia está en la dirección: qué decir, cómo mostrarlo, dónde llevar al usuario y qué proceso puede quedar automatizado detrás.
+            <ServiceBlueprint />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+          <Reveal>
+            <div className="sticky top-28 h-fit">
+              <MiniLabel>diferencial</MiniLabel>
+              <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
+                No es más decoración. Es mejor criterio.
+              </h2>
+              <p className="mt-8 max-w-xl text-lg font-medium leading-relaxed text-slate-300">
+                La estética premium aparece cuando hay una decisión detrás: qué mostrar, qué quitar, qué priorizar y cómo llevar al visitante a la acción.
               </p>
             </div>
-            <div className="mt-12"><ServiceStrip /></div>
+          </Reveal>
+          <Reveal>
+            <div>
+              {studioPillars.map((pillar) => (
+                <Pillar key={pillar.title} {...pillar} />
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="px-4 py-20 md:py-28">
+      <section id="casos" className="py-16 md:py-24">
+        <div className="mx-auto max-w-[1500px] px-4">
+          <Reveal>
+            <div className="mb-12 max-w-5xl px-0 md:px-8">
+              <MiniLabel>casos reales</MiniLabel>
+              <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
+                Cada proyecto tiene una lógica distinta. Por eso no deberían verse iguales.
+              </h2>
+            </div>
+          </Reveal>
+        </div>
+        <div className="mx-auto max-w-[1500px] border-t border-white/10">
+          {caseStudies.map((item, index) => (
+            <Reveal key={item.name}>
+              <CasePanel item={item} flip={index % 2 === 1} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-4 py-16 md:py-24">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[linear-gradient(135deg,rgba(8,217,255,.10),rgba(255,255,255,.035)_38%,rgba(120,22,38,.12))] p-8 shadow-[0_45px_140px_rgba(0,0,0,.32)] md:p-12">
-              <div className="absolute -right-24 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl" />
-              <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div className="mb-10 grid gap-8 md:grid-cols-[.9fr_1.1fr] md:items-end">
+              <div>
+                <MiniLabel>método</MiniLabel>
+                <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
+                  Así evitamos la web genérica.
+                </h2>
+              </div>
+              <p className="max-w-2xl text-lg font-medium leading-relaxed text-slate-300 md:ml-auto">
+                Antes de diseñar, ordenamos el mensaje. Antes de automatizar, entendemos el proceso. Así la web no solo se ve mejor: trabaja mejor.
+              </p>
+            </div>
+            <ProcessRibbon />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[3.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(139,220,255,.12),rgba(255,255,255,.035)_40%,rgba(120,20,36,.18))] p-8 md:p-12">
+              <div className="absolute -right-28 -top-28 h-96 w-96 rounded-full bg-[#8bdcff]/12 blur-3xl" />
+              <div className="relative grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-center">
                 <div>
-                  <Eyebrow>Lo que suma valor</Eyebrow>
-                  <h2 className="mt-6 text-4xl font-extrabold tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)] md:text-6xl">Visual premium, pero con base funcional.</h2>
-                  <p className="mt-6 text-lg font-medium leading-relaxed text-slate-300">
-                    La web tiene que verse bien, pero también captar consultas, ordenar información y ahorrar trabajo operativo cuando el negocio lo necesita.
-                  </p>
+                  <MiniLabel>para qué sirve</MiniLabel>
+                  <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
+                    Una buena web no grita. Hace que todo parezca más claro.
+                  </h2>
                 </div>
-                <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                  {capabilities.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.label} className="rounded-[1.6rem] border border-white/10 bg-[#030814]/70 p-5 text-center backdrop-blur">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-200/[0.08] text-cyan-100"><Icon className="h-5 w-5" /></div>
-                        <p className="mt-4 text-sm font-extrabold text-white">{item.label}</p>
-                      </div>
-                    );
-                  })}
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    { icon: Sparkles, text: "Más percepción de marca" },
+                    { icon: ShieldCheck, text: "Más confianza inicial" },
+                    { icon: LineChart, text: "Más foco en consultas" },
+                    { icon: Blocks, text: "Más orden operativo" },
+                    { icon: Braces, text: "Código a medida" },
+                    { icon: CheckCircle2, text: "Entrega prolija" },
+                  ].map(({ icon: Icon, text }) => (
+                    <div key={text} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#02050d]/55 p-4">
+                      <Icon className="h-5 w-5 text-[#8bdcff]" />
+                      <span className="text-sm font-black text-white">{text}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -351,55 +434,13 @@ export default function WebPage() {
         </div>
       </section>
 
-      <section id="trabajos" className="px-4 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="max-w-4xl">
-              <Eyebrow>Portfolio</Eyebrow>
-              <h2 className="mt-6 text-4xl font-extrabold tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)] md:text-6xl">Proyectos que parecen productos, no simples páginas armadas en serie.</h2>
-            </div>
-            <div className="mt-12 space-y-8">
-              {projects.map((project, index) => <ProjectFeature key={project.title} project={project} index={index} />)}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="grid overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.045] shadow-[0_45px_140px_rgba(0,0,0,.28)] backdrop-blur-xl lg:grid-cols-[1.05fr_.95fr]">
-              <div className="p-8 md:p-12">
-                <Eyebrow>Proceso</Eyebrow>
-                <h2 className="mt-6 text-4xl font-extrabold tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)] md:text-6xl">Primero estrategia. Después diseño. Después desarrollo.</h2>
-                <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-slate-300">
-                  Así evitamos que la página sea solo estética. Cada bloque tiene una intención: presentar, convencer, derivar o automatizar.
-                </p>
-              </div>
-              <div className="grid gap-px bg-white/10 lg:grid-cols-1">
-                {[
-                  ["01", "Dirección", "Objetivo, público, oferta y camino de conversión."],
-                  ["02", "Diseño", "Sistema visual, secciones, jerarquía y experiencia mobile."],
-                  ["03", "Implementación", "Desarrollo, formularios, performance y publicación."],
-                  ["04", "Evolución", "Ajustes, automatizaciones o nuevas funcionalidades."],
-                ].map(([n, title, text]) => (
-                  <div key={n} className="bg-[#06101d] p-6 md:p-8">
-                    <p className="text-xs font-black text-cyan-100">{n}</p>
-                    <h3 className="mt-3 text-2xl font-extrabold text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
-                    <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-300">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="formulario" className="px-4 pb-24 pt-10 md:pb-32">
+      <section id="formulario" className="px-4 pb-24 pt-8 md:pb-32">
         <div className="mx-auto max-w-6xl">
-          <Reveal><WebRequestForm /></Reveal>
+          <Reveal>
+            <WebRequestForm />
+          </Reveal>
           <div className="mt-8 text-center text-sm font-semibold text-slate-400">
-            También podés escribir a <a href="mailto:soporte@oriavision.com.ar" className="font-extrabold text-cyan-100 hover:text-white">soporte@oriavision.com.ar</a>
+            También podés escribir a <a href="mailto:soporte@oriavision.com.ar" className="font-extrabold text-[#8bdcff] hover:text-white">soporte@oriavision.com.ar</a>
           </div>
         </div>
       </section>
