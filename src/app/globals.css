@@ -324,3 +324,32 @@ h4 {
   .ov-float-card,
   .ov-float-card-delay { animation: none !important; }
 }
+
+/* === Web v9: imágenes limpias, sin recortes ni texto cortado === */
+.ov-visual-stage::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(from 90deg, transparent, rgba(56,189,248,.18), transparent, rgba(255,45,91,.16), transparent);
+  filter: blur(24px);
+  opacity: .85;
+  animation: ovSpin 18s linear infinite;
+}
+.ov-visual-slide {
+  opacity: 0;
+  transform: scale(.985) translateY(14px);
+  animation: ovCleanSlide 15s infinite ease-in-out;
+  will-change: opacity, transform;
+}
+@keyframes ovCleanSlide {
+  0% { opacity: 0; transform: scale(.985) translateY(16px); }
+  6% { opacity: 1; transform: scale(1) translateY(0); }
+  29% { opacity: 1; transform: scale(1.015) translateY(-4px); }
+  36% { opacity: 0; transform: scale(1.025) translateY(-12px); }
+  100% { opacity: 0; transform: scale(1.025) translateY(-12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ov-visual-stage::before,
+  .ov-visual-slide { animation: none !important; }
+  .ov-visual-slide:first-of-type { opacity: 1; transform: none; }
+}

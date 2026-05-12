@@ -1,0 +1,14 @@
+V9 - Corrección visual
+
+Cambios aplicados:
+- Reemplacé las imágenes problemáticas con composiciones limpias sin texto grande incrustado que pueda cortarse.
+- El texto principal ahora queda en HTML sobre la página, no quemado dentro de la imagen.
+- El hero usa un carrusel con object-contain para que la imagen no se recorte.
+- Las secciones de portfolio y automatizaciones usan imágenes completas + título superpuesto, evitando cortes raros.
+- Las 3 nuevas imágenes están en public/web-visuals/:
+  - oriavision-hero-clean.png
+  - oriavision-portfolio-clean.png
+  - oriavision-automation-clean.png
+
+Nota:
+No pude validar build en este entorno porque no están instaladas las dependencias de Next/React/lucide en node_modules. El cambio es de TSX/CSS/assets.
