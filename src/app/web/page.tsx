@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
 import {
   ArrowUpRight,
-  Blocks,
   Bot,
-  Braces,
   CheckCircle2,
   DatabaseZap,
   Fingerprint,
   Gauge,
   Layers3,
-  LineChart,
+  Mail,
   MousePointer2,
-  PanelsTopLeft,
+  PanelTop,
   ShieldCheck,
   Sparkles,
   Workflow,
@@ -36,223 +32,144 @@ export const metadata: Metadata = {
       "Diseño web profesional, landing pages, sistemas web y automatizaciones para negocios que necesitan una presencia digital premium, clara y funcional.",
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Oriavision Web Studio" }],
   },
-  twitter: {
-    title: "Diseño web profesional, landings y automatizaciones | Oriavision",
-    description:
-      "Diseño web profesional, landing pages, sistemas web y automatizaciones para negocios que necesitan una presencia digital premium, clara y funcional.",
-    images: ["/og/home.png"],
-  },
 };
 
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
-    { "@type": "ListItem", position: 2, name: "Servicios web", item: PAGE_URL },
-  ],
-};
-
-const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "Diseño web, desarrollo web y automatizaciones",
-  name: "Diseño web profesional, landing pages, sistemas web y automatizaciones",
-  provider: { "@type": "Organization", name: "Oriavision", url: SITE_URL },
-  areaServed: "AR",
-  url: PAGE_URL,
-  description:
-    "Diseño de landing pages, sitios web profesionales, sistemas web con login, paneles, base de datos, formularios y automatizaciones.",
-};
-
-type CaseStudy = {
-  name: string;
-  label: string;
-  href: string;
-  image: string;
-  line: string;
-  chips: string[];
-  number: string;
-};
-
-const caseStudies: CaseStudy[] = [
+const cases = [
   {
     name: "Siempre de Guardia",
-    label: "Plataforma de servicios",
-    href: "https://siempredeguardia.com.ar/",
-    image: "/portfolio/siempredeguardia.png",
-    line: "Un sitio que no se siente folleto: organiza categorías, da contexto y se prepara para escalar como plataforma.",
-    chips: ["arquitectura", "servicios", "producto"],
-    number: "01",
+    type: "Plataforma de servicios",
+    url: "https://siempredeguardia.com.ar/",
+    img: "/portfolio/siempredeguardia.png",
+    text: "Un directorio preparado para crecer: categorías, contacto directo y estructura clara para usuarios reales.",
   },
   {
     name: "Quirvo",
-    label: "Producto digital",
-    href: "https://www.quirvo.com.ar/",
-    image: "/portfolio/quirvo.png",
-    line: "Una idea técnica convertida en una propuesta simple: portero QR, privacidad y uso real sin fricción.",
-    chips: ["storytelling", "landing", "conversión"],
-    number: "02",
+    type: "Producto digital / QR access",
+    url: "https://www.quirvo.com.ar/",
+    img: "/portfolio/quirvo.png",
+    text: "Una solución técnica convertida en una experiencia simple, visual y fácil de entender desde el primer scroll.",
   },
   {
     name: "Calculadora ML",
-    label: "SaaS / herramienta",
-    href: "https://calculadoraml.oriavision.com.ar/",
-    image: "/portfolio/calculadora-landing.png",
-    line: "Una herramienta compleja explicada en minutos, con CTA claro, visual de producto y foco en decisión.",
-    chips: ["SaaS", "pricing", "mercadolibre"],
-    number: "03",
+    type: "Herramienta SaaS",
+    url: "https://calculadoraml.oriavision.com.ar/",
+    img: "/portfolio/calculadora-landing.png",
+    text: "Una herramienta compleja explicada con foco comercial: promesa clara, demo visual y llamado a probar.",
+  },
+  {
+    name: "DBengoTech",
+    type: "Sistema + estrategia e-commerce",
+    url: "https://www.dbengotech.com.ar/",
+    img: "/portfolio/dbengotech.png",
+    text: "Web con enfoque consultivo para explicar problemas, soluciones y procesos sin parecer una plantilla más.",
   },
 ];
 
-const studioPillars: { icon: LucideIcon; title: string; text: string }[] = [
-  { icon: Fingerprint, title: "Identidad", text: "No armamos una web genérica. Diseñamos un sistema visual reconocible para tu negocio." },
-  { icon: MousePointer2, title: "Conversión", text: "Cada sección tiene una función: explicar, dar confianza, filtrar o llevar a consulta." },
-  { icon: Workflow, title: "Automatización", text: "Cuando corresponde, conectamos formularios, mails, paneles, datos y procesos internos." },
-  { icon: Gauge, title: "Performance", text: "Diseño visual fuerte, pero liviano, claro y preparado para mobile desde el inicio." },
-];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Diseño web profesional, landing pages y automatizaciones",
+  provider: { "@type": "Organization", name: "Oriavision", url: SITE_URL },
+  areaServed: "AR",
+  url: PAGE_URL,
+};
 
-const deliverables: [string, string][] = [
-  ["Landing de campaña", "Para vender una oferta concreta sin distraer al visitante."],
-  ["Web institucional premium", "Para que la marca se vea seria, actual y confiable."],
-  ["Sistema con usuarios", "Login, panel admin, base de datos y flujos internos."],
-  ["Automatizaciones", "Consultas, mails, seguimientos y datos conectados."],
-];
-
-function MiniLabel({ children }: { children: ReactNode }) {
+function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.28em] text-[#8bdcff]">
-      <span className="h-px w-8 bg-[#8bdcff]/60" />
+    <span className="web-kicker inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.32em] text-[#8bdcff]">
+      <span className="h-px w-10 bg-[#8bdcff]/70" />
       {children}
     </span>
   );
 }
 
-const visualSlides = [
-  { image: "/web-visuals/mockup-slide-landing.png", alt: "Mockups de landing premium en desktop y mobile" },
-  { image: "/web-visuals/mockup-slide-system.png", alt: "Mockups de sistema web con dashboard y mobile" },
-  { image: "/web-visuals/mockup-slide-automation.png", alt: "Mockups de automatizaciones web conectadas" },
-  { image: "/web-visuals/mockup-slide-collage.png", alt: "Collage de mockups de proyectos web" },
-];
-
-function ImpactMachine() {
-  const slides = [
-    { src: "/web-visuals/oriavision-hero-focus.png", alt: "Mockups reales de proyectos Oriavision en desktop, tablet y mobile" },
-    { src: "/web-visuals/oriavision-portfolio-focus.png", alt: "Portfolio real de Oriavision en mockups premium" },
-    { src: "/web-visuals/oriavision-automation-focus.png", alt: "Automatizaciones web visualizadas como flujo conectado" },
-  ];
-
+function VisualStage() {
   return (
-    <div className="ov-visual-stage relative mx-auto aspect-[16/9] w-full max-w-[900px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#020712] shadow-[0_50px_180px_rgba(0,0,0,.58)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_12%,rgba(255,45,91,.20),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(56,189,248,.18),transparent_34%)]" />
-      {slides.map((slide, index) => (
-        <img
-          key={slide.src}
-          src={slide.src}
-          alt={slide.alt}
-          className="ov-visual-slide absolute inset-0 h-full w-full object-cover"
-          style={{ animationDelay: `${index * 5}s` }}
-        />
-      ))}
+    <div className="web-visual-stage-v11" aria-label="Mockups animados de trabajos reales de Oriavision">
+      <div className="web-stage-grid" />
+      <div className="web-orbit web-orbit-a" />
+      <div className="web-orbit web-orbit-b" />
 
-    </div>
-  );
-}
+      <div className="web-laptop web-float-main">
+        <div className="web-device-bar"><span /><span /><span /><b>SIEMPRE DE GUARDIA</b></div>
+        <img src="/portfolio/siempredeguardia.png" alt="Mockup de Siempre de Guardia" />
+      </div>
 
-function ServiceBlueprint() {
-  return (
-    <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#050914] p-6 shadow-[0_40px_140px_rgba(0,0,0,.35)] md:p-10">
-      <div className="absolute inset-0 opacity-[0.13] [background-image:linear-gradient(rgba(139,220,255,.38)_1px,transparent_1px),linear-gradient(90deg,rgba(139,220,255,.38)_1px,transparent_1px)] [background-size:44px_44px]" />
-      <div className="relative grid gap-4 lg:grid-cols-12">
-        <div className="rounded-[2.2rem] border border-white/10 bg-white/[0.055] p-7 lg:col-span-5 lg:row-span-2">
-          <MiniLabel>área web</MiniLabel>
-          <h2 className="mt-6 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">
-            Diseño, desarrollo y operación digital en una misma pieza.
-          </h2>
-          <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-slate-300">
-            La idea no es decorar una página. Es convertir tu servicio en una experiencia digital que se entienda, genere confianza y pueda trabajar por vos.
-          </p>
-        </div>
+      <div className="web-tablet web-float-secondary">
+        <div className="web-device-bar"><span /><span /><span /><b>QUIRVO</b></div>
+        <img src="/portfolio/quirvo.png" alt="Mockup de Quirvo" />
+      </div>
 
-        {deliverables.map(([title, text], index) => {
-          const Icon = [Layers3, PanelsTopLeft, DatabaseZap, Bot][index];
-          return (
-            <div key={title} className={`group rounded-[2rem] border border-white/10 bg-[#08101d]/86 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#8bdcff]/35 ${index === 0 ? "lg:col-span-4" : "lg:col-span-3"} ${index === 3 ? "lg:col-span-7" : ""}`}>
-              <div className="flex items-start justify-between gap-6">
-                <Icon className="h-7 w-7 text-[#8bdcff]" />
-                <span className="text-xs font-black text-white/28">0{index + 1}</span>
-              </div>
-              <h3 className="mt-10 text-2xl font-black tracking-[-0.04em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
-              <p className="mt-3 text-sm font-medium leading-relaxed text-slate-300">{text}</p>
-            </div>
-          );
-        })}
+      <div className="web-phone web-float-tertiary">
+        <div className="web-device-bar"><span /><span /><b>DBENGOTECH</b></div>
+        <img src="/portfolio/dbengotech.png" alt="Mockup de DBengoTech" />
+      </div>
+
+      <div className="web-card web-card-a">
+        <Sparkles className="h-5 w-5" />
+        <div><strong>Imagen propia</strong><small>No parece plantilla</small></div>
+      </div>
+      <div className="web-card web-card-b">
+        <Workflow className="h-5 w-5" />
+        <div><strong>Procesos conectados</strong><small>Formularios, mails y datos</small></div>
+      </div>
+      <div className="web-card web-card-c">
+        <Gauge className="h-5 w-5" />
+        <div><strong>Diseño que vende</strong><small>Claridad antes que ruido</small></div>
       </div>
     </div>
   );
 }
 
-function Pillar({ icon: Icon, title, text }: (typeof studioPillars)[number]) {
+function PortfolioWall() {
   return (
-    <div className="group relative border-t border-white/10 py-8 md:py-10">
-      <div className="absolute left-0 top-0 h-px w-0 bg-[#8bdcff] transition-all duration-500 group-hover:w-full" />
-      <div className="grid gap-5 md:grid-cols-[120px_1fr] md:items-start">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.055] text-[#8bdcff]">
-          <Icon className="h-6 w-6" />
-        </div>
-        <div>
-          <h3 className="text-3xl font-black tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
-          <p className="mt-3 max-w-2xl text-base font-medium leading-relaxed text-slate-300">{text}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CasePanel({ item, flip }: { item: CaseStudy; flip?: boolean }) {
-  return (
-    <article className={`grid gap-0 overflow-hidden border-y border-white/10 lg:grid-cols-2 ${flip ? "lg:[&>a]:order-2" : ""}`}>
-      <a href={item.href} target="_blank" rel="noreferrer" className="group relative min-h-[360px] overflow-hidden bg-[#060b15] md:min-h-[520px]">
-        <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover object-top opacity-78 saturate-[.92] transition duration-700 group-hover:scale-[1.04] group-hover:opacity-100" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,5,13,.92),transparent_45%,rgba(2,5,13,.25)),linear-gradient(180deg,transparent_40%,rgba(2,5,13,.96))]" />
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-full border border-white/10 bg-black/42 px-5 py-4 backdrop-blur-xl">
-          <span className="text-xs font-black uppercase tracking-[.22em] text-white">abrir proyecto</span>
-          <ArrowUpRight className="h-5 w-5 text-[#8bdcff]" />
-        </div>
-      </a>
-      <div className="flex min-h-[430px] flex-col justify-between bg-[#030711] p-8 md:p-12 lg:p-14">
-        <div>
-          <div className="flex items-center justify-between gap-6">
-            <span className="text-sm font-black text-[#8bdcff]">{item.number}</span>
-            <span className="text-[11px] font-black uppercase tracking-[.26em] text-white/35">{item.label}</span>
+    <div className="grid gap-5 lg:grid-cols-4">
+      {cases.map((item, index) => (
+        <a
+          key={item.name}
+          href={item.url}
+          target="_blank"
+          rel="noreferrer"
+          className={`web-case-card group ${index === 0 ? "lg:col-span-2 lg:row-span-2" : ""}`}
+        >
+          <div className="web-case-screen">
+            <img src={item.img} alt={item.name} />
           </div>
-          <h3 className="mt-10 text-5xl font-black leading-[.9] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">{item.name}</h3>
-          <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300">{item.line}</p>
-        </div>
-        <div className="mt-10 flex flex-wrap gap-3">
-          {item.chips.map((chip) => (
-            <span key={chip} className="rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-sm font-black text-white/82">{chip}</span>
-          ))}
-        </div>
-      </div>
-    </article>
+          <div className="relative z-10 mt-6">
+            <p className="text-[11px] font-black uppercase tracking-[0.26em] text-[#8bdcff]">{item.type}</p>
+            <h3 className="mt-3 flex items-center justify-between gap-4 text-2xl font-black tracking-[-0.04em] text-white [font-family:var(--font-space-grotesk)]">
+              {item.name}<ArrowUpRight className="h-5 w-5 opacity-55 transition group-hover:opacity-100" />
+            </h3>
+            <p className="mt-3 text-sm font-medium leading-relaxed text-slate-300">{item.text}</p>
+          </div>
+        </a>
+      ))}
+    </div>
   );
 }
 
-function ProcessRibbon() {
-  const steps: [string, string, string][] = [
-    ["01", "Detectar", "Qué vendés, qué necesita entender el cliente y qué frena la consulta."],
-    ["02", "Diseñar", "Una dirección visual propia: no plantilla, no relleno, no efectos porque sí."],
-    ["03", "Construir", "Web, landing o sistema con base técnica, mobile, velocidad y formularios."],
-    ["04", "Conectar", "Mails, leads, paneles, bases de datos o automatizaciones cuando suman valor."],
+function AutomationMap() {
+  const nodes = [
+    ["Formulario", "nuevo lead", "left-[4%] top-[18%]"],
+    ["Clasificar", "tipo de consulta", "left-[28%] top-[7%]"],
+    ["Enviar mail", "respuesta automática", "left-[56%] top-[18%]"],
+    ["Guardar dato", "Sheets / base de datos", "left-[35%] top-[55%]"],
+    ["Avisar equipo", "Slack / WhatsApp", "left-[66%] top-[58%]"],
+    ["Sí", "enviar info extra", "right-[4%] top-[24%]"],
   ];
   return (
-    <div className="grid border border-white/10 md:grid-cols-4">
-      {steps.map(([n, title, text]) => (
-        <div key={n} className="min-h-[310px] border-b border-white/10 bg-[#050914] p-7 md:border-b-0 md:border-r md:last:border-r-0">
-          <span className="text-xs font-black text-[#8bdcff]">{n}</span>
-          <h3 className="mt-16 text-3xl font-black tracking-[-0.05em] text-white [font-family:var(--font-space-grotesk)]">{title}</h3>
-          <p className="mt-4 text-sm font-medium leading-relaxed text-slate-300">{text}</p>
+    <div className="web-automation-map">
+      <svg viewBox="0 0 1000 520" className="absolute inset-0 h-full w-full" aria-hidden="true">
+        <path d="M170 155 C290 80 365 92 440 105 C525 118 560 138 640 160" />
+        <path d="M640 170 C695 230 730 280 760 340" />
+        <path d="M250 185 C300 270 360 325 450 330" />
+        <path d="M450 330 C570 324 640 350 760 360" />
+        <path d="M760 340 C840 285 870 230 920 210" />
+      </svg>
+      {nodes.map(([title, text, pos]) => (
+        <div key={title} className={`web-flow-node absolute ${pos}`}>
+          <span />
+          <div><strong>{title}</strong><small>{text}</small></div>
         </div>
       ))}
     </div>
@@ -261,181 +178,136 @@ function ProcessRibbon() {
 
 export default function WebPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#02050d] text-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+    <main className="web-page-shell min-h-screen overflow-hidden bg-[#02050d] text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative isolate px-4 pb-20 pt-24 md:pb-28 md:pt-32">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(14,165,233,.22),transparent_28%),radial-gradient(circle_at_84%_0%,rgba(120,20,36,.28),transparent_31%),linear-gradient(180deg,#02050d,#06101d_48%,#02050d)]" />
-        <div className="absolute inset-0 -z-10 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:88px_88px]" />
-
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+      <section className="web-hero relative isolate px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
+        <div className="web-bg-grid absolute inset-0 -z-10" />
+        <div className="mx-auto grid max-w-[1520px] items-center gap-12 xl:grid-cols-[0.55fr_0.95fr]">
           <Reveal>
-            <div>
-              <MiniLabel>Oriavision web atelier</MiniLabel>
-              <h1 className="mt-8 max-w-4xl text-[clamp(3rem,6.6vw,6.5rem)] font-black leading-[0.82] tracking-[-0.09em] text-white [font-family:var(--font-space-grotesk)]">
-                Webs con presencia propia.
+            <div className="relative z-20 max-w-2xl">
+              <Kicker>Oriavision web atelier</Kicker>
+              <h1 className="mt-7 text-[clamp(4rem,8.5vw,8.8rem)] font-black leading-[0.78] tracking-[-0.105em] text-white [font-family:var(--font-space-grotesk)]">
+                Webs que se sienten propias.
               </h1>
-              <p className="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Diseño web, landings y automatizaciones con imagen visual premium, mockups, movimiento y una estética que no parece plantilla.
+              <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
+                Diseño web, landings, sistemas y automatizaciones con dirección visual, criterio comercial y mockups reales de producto.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <a href="#formulario" className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-black text-[#02050d] shadow-[0_24px_90px_rgba(139,220,255,.18)] transition hover:-translate-y-0.5 hover:bg-[#e9fbff]">
-                  Quiero algo así <ArrowUpRight className="h-5 w-5" />
-                </a>
-                <a href="#casos" className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.055] px-8 py-4 text-base font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-[#8bdcff]/40">
-                  Ver trabajos
-                </a>
+                <a href="#formulario" className="web-btn-primary">Quiero una web así <ArrowUpRight className="h-5 w-5" /></a>
+                <a href="#casos" className="web-btn-secondary">Ver trabajos</a>
               </div>
             </div>
           </Reveal>
           <Reveal>
-            <ImpactMachine />
+            <VisualStage />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl">
+      <section className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-[1380px] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
-            <ServiceBlueprint />
-          </Reveal>
-        </div>
-      </section>
-
-
-
-      <section className="px-4 py-8 md:py-16">
-        <div className="mx-auto max-w-[1500px]">
-          <Reveal>
-            <div className="mb-8 max-w-4xl">
-              <MiniLabel>portfolio real</MiniLabel>
-              <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">Proyectos que se ven propios.</h2>
-            </div>
-            <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_80px_220px_rgba(0,0,0,.55)]">
-              <img src="/web-visuals/oriavision-portfolio-clean.png" alt="Collage premium de proyectos reales de Oriavision" className="block w-full" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
-          <Reveal>
-            <div className="sticky top-28 h-fit">
-              <MiniLabel>diferencial</MiniLabel>
-              <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
-                No es más decoración. Es mejor criterio.
+            <div className="web-panel-big">
+              <Kicker>no hacemos vitrinas genéricas</Kicker>
+              <h2 className="mt-6 text-5xl font-black leading-[.86] tracking-[-0.08em] md:text-7xl [font-family:var(--font-space-grotesk)]">
+                Una web tiene que explicar, impactar y trabajar.
               </h2>
-              <p className="mt-8 max-w-xl text-lg font-medium leading-relaxed text-slate-300">
-                La estética premium aparece cuando hay una decisión detrás: qué mostrar, qué quitar, qué priorizar y cómo llevar al visitante a la acción.
-              </p>
             </div>
           </Reveal>
+          <Reveal>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                [Fingerprint, "Identidad", "Una estética reconocible, alineada al negocio y no a una plantilla."],
+                [MousePointer2, "Conversión", "Jerarquía visual para guiar al usuario hacia la consulta."],
+                [DatabaseZap, "Sistemas", "Login, paneles, datos, bases y herramientas internas."],
+                [Bot, "Automatización", "Formularios, mails, seguimientos y procesos conectados."],
+              ].map(([Icon, title, text]) => {
+                const I = Icon as typeof Sparkles;
+                return (
+                  <div key={title as string} className="web-feature-card">
+                    <I className="h-7 w-7 text-[#8bdcff]" />
+                    <h3>{title as string}</h3>
+                    <p>{text as string}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="casos" className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-[1520px]">
+          <Reveal>
+            <div className="mb-10 max-w-4xl">
+              <Kicker>portfolio real</Kicker>
+              <h2 className="mt-6 text-5xl font-black leading-[.86] tracking-[-0.08em] md:text-7xl [font-family:var(--font-space-grotesk)]">
+                Proyectos con presencia visual, no capturas pegadas.
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal><PortfolioWall /></Reveal>
+        </div>
+      </section>
+
+      <section className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <Reveal>
             <div>
-              {studioPillars.map((pillar) => (
-                <Pillar key={pillar.title} {...pillar} />
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="casos" className="py-16 md:py-24">
-        <div className="mx-auto max-w-[1500px] px-4">
-          <Reveal>
-            <div className="mb-12 max-w-5xl px-0 md:px-8">
-              <MiniLabel>casos reales</MiniLabel>
-              <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
-                Cada proyecto tiene una lógica distinta. Por eso no deberían verse iguales.
+              <Kicker>automatizaciones</Kicker>
+              <h2 className="mt-6 text-5xl font-black leading-[.86] tracking-[-0.08em] md:text-7xl [font-family:var(--font-space-grotesk)]">
+                La web también puede trabajar por vos.
               </h2>
-            </div>
-          </Reveal>
-        </div>
-        <div className="mx-auto max-w-[1500px] border-t border-white/10">
-          {caseStudies.map((item, index) => (
-            <Reveal key={item.name}>
-              <CasePanel item={item} flip={index % 2 === 1} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="mb-10 grid gap-8 md:grid-cols-[.9fr_1.1fr] md:items-end">
-              <div>
-                <MiniLabel>método</MiniLabel>
-                <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
-                  Así evitamos la web genérica.
-                </h2>
-              </div>
-              <p className="max-w-2xl text-lg font-medium leading-relaxed text-slate-300 md:ml-auto">
-                Antes de diseñar, ordenamos el mensaje. Antes de automatizar, entendemos el proceso. Así la web no solo se ve mejor: trabaja mejor.
+              <p className="mt-7 max-w-xl text-lg font-medium leading-relaxed text-slate-300">
+                Una landing puede captar, clasificar, responder, guardar datos y avisar al equipo. No tiene que ser solo una vidriera.
               </p>
             </div>
-            <ProcessRibbon />
           </Reveal>
+          <Reveal><AutomationMap /></Reveal>
         </div>
       </section>
 
-      <section className="px-4 py-8 md:py-16">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-[1380px]">
           <Reveal>
-            <div className="mb-8 max-w-4xl">
-              <MiniLabel>automatizaciones</MiniLabel>
-              <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">La web también puede trabajar.</h2>
-            </div>
-            <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_70px_200px_rgba(0,0,0,.50)]">
-              <img src="/web-visuals/oriavision-automation-clean.png" alt="Mapa visual de automatizaciones web conectadas" className="block w-full" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-[3.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(139,220,255,.12),rgba(255,255,255,.035)_40%,rgba(120,20,36,.18))] p-8 md:p-12">
-              <div className="absolute -right-28 -top-28 h-96 w-96 rounded-full bg-[#8bdcff]/12 blur-3xl" />
-              <div className="relative grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-center">
-                <div>
-                  <MiniLabel>para qué sirve</MiniLabel>
-                  <h2 className="mt-6 text-5xl font-black leading-[.88] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">
-                    Una buena web no grita. Hace que todo parezca más claro.
-                  </h2>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {[
-                    { icon: Sparkles, text: "Más percepción de marca" },
-                    { icon: ShieldCheck, text: "Más confianza inicial" },
-                    { icon: LineChart, text: "Más foco en consultas" },
-                    { icon: Blocks, text: "Más orden operativo" },
-                    { icon: Braces, text: "Código a medida" },
-                    { icon: CheckCircle2, text: "Entrega prolija" },
-                  ].map(({ icon: Icon, text }) => (
-                    <div key={text} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#02050d]/55 p-4">
-                      <Icon className="h-5 w-5 text-[#8bdcff]" />
-                      <span className="text-sm font-black text-white">{text}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="web-process">
+              {[
+                [Layers3, "Descubrir", "Ordenamos objetivo, público, propuesta y diferencial."],
+                [PanelTop, "Diseñar", "Creamos una dirección visual propia antes de llenar de secciones."],
+                [Workflow, "Conectar", "Sumamos formularios, CRM, planillas, mails o paneles cuando aporta valor."],
+                [ShieldCheck, "Lanzar", "Dejamos una base prolija, rápida y preparada para crecer."],
+              ].map(([Icon, title, text]) => {
+                const I = Icon as typeof Sparkles;
+                return (
+                  <div key={title as string}>
+                    <I className="h-8 w-8 text-[#8bdcff]" />
+                    <h3>{title as string}</h3>
+                    <p>{text as string}</p>
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="formulario" className="px-4 pb-24 pt-8 md:pb-32">
+      <section id="formulario" className="px-5 pb-24 pt-8 md:px-8 md:pb-32">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <WebRequestForm />
+            <div className="web-form-wrap">
+              <div className="mb-8 max-w-3xl">
+                <Kicker>hablemos</Kicker>
+                <h2 className="mt-6 text-5xl font-black leading-[.86] tracking-[-0.08em] md:text-7xl [font-family:var(--font-space-grotesk)]">
+                  Contame qué querés lograr y vemos cómo hacerlo distinto.
+                </h2>
+              </div>
+              <WebRequestForm />
+              <p className="mt-7 text-center text-sm font-semibold text-slate-400">
+                También podés escribir a <a href="mailto:soporte@oriavision.com.ar" className="font-extrabold text-[#8bdcff] hover:text-white">soporte@oriavision.com.ar</a>
+              </p>
+            </div>
           </Reveal>
-          <div className="mt-8 text-center text-sm font-semibold text-slate-400">
-            También podés escribir a <a href="mailto:soporte@oriavision.com.ar" className="font-extrabold text-[#8bdcff] hover:text-white">soporte@oriavision.com.ar</a>
-          </div>
         </div>
       </section>
     </main>

@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Sora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-space-grotesk",
-});
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const SITE_NAME = "Oriavision";
@@ -128,7 +115,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700`}
+        className="min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700"
       >
         <Navbar />
         <main className="flex-grow">{children}</main>
