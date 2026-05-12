@@ -164,3 +164,73 @@ h4 {
     transition: none !important;
   }
 }
+
+/* === Web premium v4: motor visual con carrusel de impacto === */
+.ov-impact-machine {
+  transform-style: preserve-3d;
+}
+
+.ov-impact-machine::before {
+  content: "";
+  position: absolute;
+  inset: -28%;
+  background:
+    conic-gradient(from 90deg at 50% 50%, transparent 0deg, rgba(139,220,255,.18) 74deg, transparent 118deg, rgba(180,24,49,.18) 188deg, transparent 260deg, rgba(255,255,255,.11) 320deg, transparent 360deg);
+  filter: blur(24px);
+  animation: ovSpin 18s linear infinite;
+  opacity: .75;
+}
+
+.ov-hero-carousel {
+  width: max-content;
+  animation: ovCarousel 22s linear infinite;
+  will-change: transform;
+}
+
+.ov-impact-machine:hover .ov-hero-carousel {
+  animation-play-state: paused;
+}
+
+.ov-slide {
+  transform: translateZ(0) rotate(-.7deg);
+}
+
+.ov-slide:nth-child(even) {
+  transform: translateY(26px) rotate(.8deg);
+}
+
+.ov-orbit {
+  animation: ovFloatLayer 9s ease-in-out infinite alternate;
+}
+
+@keyframes ovCarousel {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(calc(-50% - 12px),0,0); }
+}
+
+@keyframes ovSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ovFloatLayer {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-18px, 20px, 0) scale(1.04); }
+}
+
+@media (max-width: 768px) {
+  .ov-hero-carousel {
+    animation-duration: 28s;
+  }
+
+  .ov-slide:nth-child(even) {
+    transform: translateY(18px) rotate(.8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-impact-machine::before,
+  .ov-hero-carousel,
+  .ov-orbit {
+    animation: none !important;
+  }
+}

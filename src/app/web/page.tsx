@@ -128,66 +128,81 @@ function MiniLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function HeroConsole() {
-  const rows = [
-    ["Oferta", "definida", "100%"],
-    ["Mensaje", "depurado", "92%"],
-    ["Confianza", "visual", "alto"],
-    ["CTA", "directo", "listo"],
-  ];
+const visualSlides = [
+  {
+    eyebrow: "LANDING DE CONVERSIÓN",
+    title: "Quirvo",
+    image: "/portfolio/quirvo.png",
+    color: "from-cyan-300/35 via-white/10 to-red-500/30",
+    metric: "+ claridad",
+    note: "producto técnico explicado como experiencia simple",
+  },
+  {
+    eyebrow: "PLATAFORMA WEB",
+    title: "Siempre de Guardia",
+    image: "/portfolio/siempredeguardia.png",
+    color: "from-blue-400/30 via-white/10 to-emerald-300/25",
+    metric: "sistema",
+    note: "estructura para servicios, usuarios y crecimiento",
+  },
+  {
+    eyebrow: "HERRAMIENTA DIGITAL",
+    title: "Calculadora ML",
+    image: "/portfolio/calculadora-webapp.png",
+    color: "from-sky-300/35 via-white/10 to-violet-400/25",
+    metric: "SaaS",
+    note: "números complejos convertidos en decisión visual",
+  },
+];
 
+function ImpactMachine() {
   return (
-    <div className="relative min-h-[560px] md:min-h-[650px]">
-      <div className="absolute inset-0 rounded-[3rem] border border-white/10 bg-[radial-gradient(circle_at_18%_18%,rgba(21,112,239,.28),transparent_34%),radial-gradient(circle_at_82%_32%,rgba(112,17,31,.30),transparent_31%),linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.025))] shadow-[0_60px_180px_rgba(0,0,0,.50)]" />
-      <div className="absolute inset-3 rounded-[2.6rem] border border-white/10 bg-[#030711]/72 backdrop-blur-xl" />
+    <div className="ov-impact-machine relative min-h-[620px] overflow-hidden rounded-[3.2rem] border border-white/10 bg-[#030711] shadow-[0_70px_220px_rgba(0,0,0,.62)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_16%,rgba(139,220,255,.22),transparent_28%),radial-gradient(circle_at_84%_22%,rgba(190,24,93,.22),transparent_30%),linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.015))]" />
+      <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:54px_54px]" />
 
-      <div className="absolute left-8 right-8 top-8 flex items-center justify-between border-b border-white/10 pb-5">
+      <div className="absolute left-6 right-6 top-6 z-20 flex items-center justify-between rounded-full border border-white/10 bg-black/28 px-5 py-3 backdrop-blur-xl">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-[#e23b4b]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#e7c86f]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#66f0b6]" />
         </div>
-        <span className="text-[10px] font-black uppercase tracking-[0.26em] text-white/42">no-template build</span>
+        <span className="text-[10px] font-black uppercase tracking-[0.28em] text-white/48">visual engine</span>
       </div>
 
-      <div className="absolute left-8 right-8 top-28 md:left-10 md:right-10">
-        <div className="grid gap-4 md:grid-cols-[1fr_.72fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
-            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-[#8bdcff]">dirección visual</p>
-            <p className="mt-5 max-w-sm text-4xl font-black leading-[.9] tracking-[-0.08em] text-white md:text-5xl [font-family:var(--font-space-grotesk)]">
-              una web con criterio se nota antes de leer.
-            </p>
-            <div className="mt-8 h-28 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#050914] p-3">
-              <div className="h-full rounded-[1.1rem] bg-[linear-gradient(120deg,rgba(38,137,255,.52),rgba(255,255,255,.08)_42%,rgba(135,24,44,.55))]" />
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-white/10 bg-[#050914] p-5">
-            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-white/45">diagnóstico</p>
-            <div className="mt-5 space-y-3">
-              {rows.map(([a, b, c]) => (
-                <div key={a} className="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
-                  <div>
-                    <p className="text-sm font-black text-white">{a}</p>
-                    <p className="text-xs font-bold uppercase tracking-widest text-white/35">{b}</p>
-                  </div>
-                  <p className="self-center text-sm font-black text-[#8bdcff]">{c}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div className="ov-orbit absolute inset-0 z-0">
+        <span className="absolute left-[10%] top-[22%] h-24 w-24 rounded-full border border-[#8bdcff]/25" />
+        <span className="absolute right-[12%] top-[16%] h-36 w-36 rounded-full border border-[#ff4968]/18" />
+        <span className="absolute bottom-[12%] left-[18%] h-44 w-44 rounded-full border border-white/10" />
       </div>
 
-      <div className="absolute bottom-8 left-8 right-8 grid gap-4 md:grid-cols-3 md:left-10 md:right-10">
+      <div className="absolute inset-x-0 top-[88px] z-10 flex gap-6 px-6 ov-hero-carousel">
+        {[...visualSlides, ...visualSlides].map((slide, index) => (
+          <div key={`${slide.title}-${index}`} className="ov-slide relative h-[410px] min-w-[82%] overflow-hidden rounded-[2.4rem] border border-white/12 bg-white/[0.055] shadow-[0_38px_140px_rgba(0,0,0,.52)] md:min-w-[72%]">
+            <img src={slide.image} alt={slide.title} className="absolute inset-0 h-full w-full object-cover object-top opacity-88 saturate-[.95]" />
+            <div className={`absolute inset-0 bg-gradient-to-br ${slide.color}`} />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,5,13,.98),rgba(2,5,13,.34)_48%,rgba(2,5,13,.82)),linear-gradient(180deg,transparent_44%,rgba(2,5,13,.95))]" />
+            <div className="absolute left-7 right-7 top-7 flex items-start justify-between gap-5">
+              <span className="rounded-full border border-white/14 bg-black/38 px-4 py-2 text-[10px] font-black uppercase tracking-[.24em] text-white/72 backdrop-blur">{slide.eyebrow}</span>
+              <span className="rounded-full bg-white px-4 py-2 text-xs font-black text-[#030711]">{slide.metric}</span>
+            </div>
+            <div className="absolute bottom-7 left-7 right-7">
+              <h3 className="text-5xl font-black leading-[.82] tracking-[-0.08em] text-white md:text-7xl [font-family:var(--font-space-grotesk)]">{slide.title}</h3>
+              <p className="mt-4 max-w-lg text-base font-semibold leading-relaxed text-white/72">{slide.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute bottom-6 left-6 right-6 z-20 grid gap-3 md:grid-cols-3">
         {[
-          ["01", "Diseño que vende"],
-          ["02", "Contenido con intención"],
-          ["03", "Tecnología útil"],
-        ].map(([n, t]) => (
-          <div key={n} className="rounded-[1.5rem] border border-white/10 bg-black/24 p-5 backdrop-blur">
-            <p className="text-[11px] font-black text-[#8bdcff]">{n}</p>
-            <p className="mt-2 text-base font-black text-white">{t}</p>
+          ["dirección", "visual propia"],
+          ["contenido", "pensado para convertir"],
+          ["motor", "animación + interacción"],
+        ].map(([a, b]) => (
+          <div key={a} className="rounded-[1.55rem] border border-white/10 bg-black/38 p-4 backdrop-blur-xl">
+            <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#8bdcff]">{a}</p>
+            <p className="mt-2 text-sm font-black text-white">{b}</p>
           </div>
         ))}
       </div>
@@ -326,7 +341,7 @@ export default function WebPage() {
             </div>
           </Reveal>
           <Reveal>
-            <HeroConsole />
+            <ImpactMachine />
           </Reveal>
         </div>
       </section>

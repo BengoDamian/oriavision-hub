@@ -1,0 +1,15 @@
+Versión v4 - Sección /web con motor visual
+
+Cambios principales:
+- Reemplacé el panel estático del hero por un carrusel visual animado con screenshots reales del portfolio.
+- Agregué un "visual engine" con movimiento continuo, glow, grilla, capas orbitales y cards inclinadas para que no parezca template.
+- El carrusel pausa al pasar el mouse y respeta prefers-reduced-motion.
+- Mantiene identidad Oriavision: oscuro, tech, azul/cyan + acento rojo, tipografía Sora.
+- No agregué librerías nuevas; solo TSX + CSS.
+
+Archivos modificados:
+- src/app/web/page.tsx
+- src/app/globals.css
+
+Nota:
+No pude validar build en este entorno porque el ZIP no trae node_modules y npm install no llegó a completarse dentro del tiempo disponible.
