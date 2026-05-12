@@ -234,3 +234,72 @@ h4 {
     animation: none !important;
   }
 }
+
+/* === Web v5: slides con imágenes/mockups propios === */
+.ov-stage {
+  transform-style: preserve-3d;
+}
+
+.ov-stage::before {
+  content: "";
+  position: absolute;
+  inset: -32%;
+  background:
+    conic-gradient(from 90deg at 50% 50%, transparent 0deg, rgba(139,220,255,.20) 72deg, transparent 124deg, rgba(180,24,49,.18) 190deg, transparent 266deg, rgba(255,255,255,.12) 322deg, transparent 360deg);
+  filter: blur(26px);
+  opacity: .72;
+  animation: ovSpin 20s linear infinite;
+}
+
+.ov-showcase-slide {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0) scale(.982);
+  animation: ovShowcase 18s infinite;
+  will-change: opacity, transform;
+}
+
+.ov-showcase-slide img {
+  transform: scale(1.045);
+  animation: ovImageDrift 18s infinite ease-in-out;
+}
+
+.ov-device-card {
+  animation: ovDeviceFloat 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes ovShowcase {
+  0% { opacity: 0; transform: translate3d(0, 28px, 0) scale(.975); }
+  5% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  24% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  30% { opacity: 0; transform: translate3d(0, -20px, 0) scale(1.018); }
+  100% { opacity: 0; transform: translate3d(0, -20px, 0) scale(1.018); }
+}
+
+@keyframes ovImageDrift {
+  0%, 100% { transform: scale(1.045) translate3d(0, 0, 0); }
+  50% { transform: scale(1.085) translate3d(-14px, -10px, 0); }
+}
+
+@keyframes ovDeviceFloat {
+  from { transform: translate3d(0, 0, 0) rotate(3deg); }
+  to { transform: translate3d(-10px, 18px, 0) rotate(1.5deg); }
+}
+
+@media (max-width: 768px) {
+  .ov-showcase-slide img {
+    object-position: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-stage::before,
+  .ov-showcase-slide,
+  .ov-showcase-slide img,
+  .ov-device-card {
+    animation: none !important;
+  }
+  .ov-showcase-slide:first-child {
+    opacity: 1;
+    transform: none;
+  }
+}
