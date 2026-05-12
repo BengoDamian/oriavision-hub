@@ -303,3 +303,24 @@ h4 {
     transform: none;
   }
 }
+
+/* === Web v7: escena hero cinematográfica con portfolio real === */
+.ov-hero-scene {
+  animation: ovSceneBreathe 7s ease-in-out infinite alternate;
+  transform-origin: 70% 50%;
+}
+.ov-float-card { animation: ovFloatSoft 5.8s ease-in-out infinite alternate; }
+.ov-float-card-delay { animation: ovFloatSoft 6.8s ease-in-out infinite alternate-reverse; }
+@keyframes ovSceneBreathe {
+  from { transform: translate3d(0, 0, 0) scale(1); filter: saturate(1.04) contrast(1.02); }
+  to { transform: translate3d(-14px, 10px, 0) scale(1.025); filter: saturate(1.12) contrast(1.04); }
+}
+@keyframes ovFloatSoft {
+  from { transform: translate3d(0, 0, 0) rotate(-1deg); }
+  to { transform: translate3d(0, 18px, 0) rotate(1deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ov-hero-scene,
+  .ov-float-card,
+  .ov-float-card-delay { animation: none !important; }
+}

@@ -137,35 +137,23 @@ const visualSlides = [
 
 function ImpactMachine() {
   return (
-    <div className="ov-stage relative min-h-[620px] overflow-hidden rounded-[2.8rem] border border-white/10 bg-[#030711] shadow-[0_90px_240px_rgba(0,0,0,.64)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(139,220,255,.22),transparent_30%),radial-gradient(circle_at_86%_8%,rgba(190,24,93,.20),transparent_34%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.015))]" />
-      <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.14)_1px,transparent_1px)] [background-size:56px_56px]" />
+    <div className="relative min-h-[560px] md:min-h-[680px] lg:min-h-[760px]">
+      <div className="absolute -inset-16 rounded-[4rem] bg-[radial-gradient(circle_at_72%_24%,rgba(72,150,255,.24),transparent_34%),radial-gradient(circle_at_92%_28%,rgba(190,24,93,.20),transparent_30%)] blur-2xl" />
 
-      <div className="absolute left-6 right-6 top-6 z-30 flex items-center justify-between rounded-full border border-white/10 bg-black/35 px-5 py-3 backdrop-blur-xl">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#e23b4b]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#e7c86f]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#66f0b6]" />
-        </div>
-        <span className="text-[10px] font-black uppercase tracking-[0.28em] text-white/48">mockup carousel</span>
+      <img
+        src="/web-visuals/oriavision-hero-devices-scene.png"
+        alt="Mockups premium de proyectos web reales realizados por Oriavision"
+        className="ov-hero-scene absolute -right-24 top-0 h-full w-[118%] max-w-none object-contain object-right drop-shadow-[0_80px_120px_rgba(0,0,0,.68)] md:-right-32 lg:-right-44"
+      />
+
+      <div className="ov-float-card absolute right-[8%] top-[12%] hidden rounded-3xl border border-white/12 bg-[#06101f]/70 px-5 py-4 shadow-[0_24px_90px_rgba(0,0,0,.45)] backdrop-blur-xl md:block">
+        <p className="text-[10px] font-black uppercase tracking-[.24em] text-[#8bdcff]">portfolio real</p>
+        <p className="mt-2 text-lg font-black text-white">mockups con tus proyectos</p>
       </div>
 
-      <div className="absolute -right-28 -top-24 h-[22rem] w-[22rem] rounded-full bg-[#8bdcff]/16 blur-3xl" />
-      <div className="absolute -bottom-32 -left-20 h-[24rem] w-[24rem] rounded-full bg-[#b41431]/16 blur-3xl" />
-
-      <div className="absolute inset-x-5 bottom-5 top-20 z-10 md:inset-x-7 md:bottom-7 md:top-20">
-        {visualSlides.map((slide, index) => (
-          <div key={slide.image} className="ov-showcase-slide absolute inset-0" style={{ animationDelay: `${index * 4.5}s` }}>
-            <div className="relative h-full overflow-hidden rounded-[2.15rem] border border-white/12 bg-white/[0.04] shadow-[0_38px_140px_rgba(0,0,0,.58)]">
-              <img src={slide.image} alt={slide.alt} className="absolute inset-0 h-full w-full object-cover object-center" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,13,.04),rgba(2,5,13,.16))]" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="absolute bottom-8 left-8 z-30 hidden rounded-full border border-white/10 bg-black/45 px-5 py-3 text-[11px] font-black uppercase tracking-[.22em] text-white/70 backdrop-blur-xl md:block">
-        imágenes reales + mockups propios
+      <div className="ov-float-card-delay absolute bottom-[18%] left-[8%] hidden max-w-[260px] rounded-[2rem] border border-white/12 bg-[#030711]/72 p-5 shadow-[0_24px_90px_rgba(0,0,0,.45)] backdrop-blur-xl lg:block">
+        <p className="text-[10px] font-black uppercase tracking-[.24em] text-[#ff4b71]">dirección visual</p>
+        <p className="mt-3 text-2xl font-black leading-none tracking-[-.04em] text-white [font-family:var(--font-space-grotesk)]">Una escena fuerte antes que diez tarjetas iguales.</p>
       </div>
     </div>
   );
@@ -281,11 +269,11 @@ export default function WebPage() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(14,165,233,.22),transparent_28%),radial-gradient(circle_at_84%_0%,rgba(120,20,36,.28),transparent_31%),linear-gradient(180deg,#02050d,#06101d_48%,#02050d)]" />
         <div className="absolute inset-0 -z-10 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:88px_88px]" />
 
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.72fr_1.28fr]">
           <Reveal>
             <div>
               <MiniLabel>Oriavision web atelier</MiniLabel>
-              <h1 className="mt-8 max-w-5xl text-[clamp(3.7rem,9vw,8.6rem)] font-black leading-[0.82] tracking-[-0.09em] text-white [font-family:var(--font-space-grotesk)]">
+              <h1 className="mt-8 max-w-4xl text-[clamp(3.5rem,7.6vw,7.4rem)] font-black leading-[0.82] tracking-[-0.09em] text-white [font-family:var(--font-space-grotesk)]">
                 Webs con presencia propia.
               </h1>
               <p className="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
@@ -311,6 +299,18 @@ export default function WebPage() {
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <ServiceBlueprint />
+          </Reveal>
+        </div>
+      </section>
+
+
+
+      <section className="px-4 py-8 md:py-16">
+        <div className="mx-auto max-w-[1500px]">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_80px_220px_rgba(0,0,0,.55)]">
+              <img src="/web-visuals/oriavision-portfolio-wall.png" alt="Collage premium de proyectos reales de Oriavision" className="w-full object-cover" />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -373,6 +373,16 @@ export default function WebPage() {
               </p>
             </div>
             <ProcessRibbon />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="px-4 py-8 md:py-16">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_70px_200px_rgba(0,0,0,.50)]">
+              <img src="/web-visuals/oriavision-automation-map.png" alt="Mapa visual de automatizaciones web conectadas" className="w-full object-cover" />
+            </div>
           </Reveal>
         </div>
       </section>
