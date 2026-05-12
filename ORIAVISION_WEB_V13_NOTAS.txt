@@ -1,0 +1,18 @@
+ORIAVISION WEB V13 – WOW / MOCKUPS POR CAPAS
+
+Base usada: v11.
+La v12 queda descartada.
+
+Cambios principales:
+- Hero con nuevo mensaje: “Páginas que no parecen una plantilla.”
+- Bajada más comercial: “Creamos webs que se ven mejor, explican mejor y ayudan a vender mejor.”
+- Mockup principal más grande con Siempre de Guardia.
+- Quirvo queda como mockup secundario.
+- Calculadora ML queda como pieza mini de apoyo.
+- Menos elementos compitiendo visualmente.
+- Nueva escena con grilla, halo, líneas técnicas y animación floating suave.
+- Mobile ajustado con composición propia para evitar recortes raros.
+
+Archivos modificados:
+- src/app/web/page.tsx
+- src/app/globals.css
