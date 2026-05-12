@@ -235,7 +235,7 @@ h4 {
   }
 }
 
-/* === Web v5: slides con imágenes/mockups propios === */
+/* === Web v6: carrusel visual con mockups propios === */
 .ov-stage {
   transform-style: preserve-3d;
 }
@@ -276,8 +276,8 @@ h4 {
 }
 
 @keyframes ovImageDrift {
-  0%, 100% { transform: scale(1.045) translate3d(0, 0, 0); }
-  50% { transform: scale(1.085) translate3d(-14px, -10px, 0); }
+  0%, 100% { transform: scale(1.01) translate3d(0, 0, 0); }
+  50% { transform: scale(1.035) translate3d(-8px, -6px, 0); }
 }
 
 @keyframes ovDeviceFloat {

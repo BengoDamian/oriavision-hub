@@ -129,41 +129,17 @@ function MiniLabel({ children }: { children: ReactNode }) {
 }
 
 const visualSlides = [
-  {
-    eyebrow: "LANDING PREMIUM",
-    title: "Campañas que entran por los ojos",
-    image: "/web-visuals/slide-landing-premium.png",
-    accent: "#8bdcff",
-    note: "Mockups, jerarquía, CTA y una escena visual propia para vender mejor.",
-  },
-  {
-    eyebrow: "SISTEMA WEB",
-    title: "Paneles que ordenan el negocio",
-    image: "/web-visuals/slide-dashboard-admin.png",
-    accent: "#66f0b6",
-    note: "Login, dashboard, datos, roles y seguimiento para que la web no sea solo vidriera.",
-  },
-  {
-    eyebrow: "AUTOMATIZACIÓN",
-    title: "Procesos que trabajan solos",
-    image: "/web-visuals/slide-automatizacion.png",
-    accent: "#ff4968",
-    note: "Formularios, mails, CRM, alertas y bases conectadas con lógica real.",
-  },
-  {
-    eyebrow: "E-COMMERCE / ML",
-    title: "Herramientas para decidir más rápido",
-    image: "/web-visuals/slide-ecommerce.png",
-    accent: "#8bdcff",
-    note: "Interfaces para calcular, comparar, analizar y convertir datos en decisiones.",
-  },
+  { image: "/web-visuals/mockup-slide-landing.png", alt: "Mockups de landing premium en desktop y mobile" },
+  { image: "/web-visuals/mockup-slide-system.png", alt: "Mockups de sistema web con dashboard y mobile" },
+  { image: "/web-visuals/mockup-slide-automation.png", alt: "Mockups de automatizaciones web conectadas" },
+  { image: "/web-visuals/mockup-slide-collage.png", alt: "Collage de mockups de proyectos web" },
 ];
 
 function ImpactMachine() {
   return (
-    <div className="ov-stage relative min-h-[640px] overflow-hidden rounded-[2.8rem] border border-white/10 bg-[#030711] shadow-[0_90px_240px_rgba(0,0,0,.64)]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(139,220,255,.28),transparent_30%),radial-gradient(circle_at_86%_8%,rgba(190,24,93,.24),transparent_34%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.015))]" />
-      <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.14)_1px,transparent_1px)] [background-size:56px_56px]" />
+    <div className="ov-stage relative min-h-[620px] overflow-hidden rounded-[2.8rem] border border-white/10 bg-[#030711] shadow-[0_90px_240px_rgba(0,0,0,.64)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(139,220,255,.22),transparent_30%),radial-gradient(circle_at_86%_8%,rgba(190,24,93,.20),transparent_34%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.015))]" />
+      <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.14)_1px,transparent_1px)] [background-size:56px_56px]" />
 
       <div className="absolute left-6 right-6 top-6 z-30 flex items-center justify-between rounded-full border border-white/10 bg-black/35 px-5 py-3 backdrop-blur-xl">
         <div className="flex items-center gap-2">
@@ -171,45 +147,25 @@ function ImpactMachine() {
           <span className="h-2.5 w-2.5 rounded-full bg-[#e7c86f]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#66f0b6]" />
         </div>
-        <span className="text-[10px] font-black uppercase tracking-[0.28em] text-white/48">visual engine</span>
+        <span className="text-[10px] font-black uppercase tracking-[0.28em] text-white/48">mockup carousel</span>
       </div>
 
       <div className="absolute -right-28 -top-24 h-[22rem] w-[22rem] rounded-full bg-[#8bdcff]/16 blur-3xl" />
       <div className="absolute -bottom-32 -left-20 h-[24rem] w-[24rem] rounded-full bg-[#b41431]/16 blur-3xl" />
 
-      <div className="absolute inset-x-6 top-24 z-10 h-[400px] md:inset-x-10 md:h-[430px]">
+      <div className="absolute inset-x-5 bottom-5 top-20 z-10 md:inset-x-7 md:bottom-7 md:top-20">
         {visualSlides.map((slide, index) => (
-          <div key={slide.title} className="ov-showcase-slide absolute inset-0" style={{ animationDelay: `${index * 4.5}s` }}>
+          <div key={slide.image} className="ov-showcase-slide absolute inset-0" style={{ animationDelay: `${index * 4.5}s` }}>
             <div className="relative h-full overflow-hidden rounded-[2.15rem] border border-white/12 bg-white/[0.04] shadow-[0_38px_140px_rgba(0,0,0,.58)]">
-              <img src={slide.image} alt={slide.title} className="absolute inset-0 h-full w-full object-cover object-center" />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,5,13,.93),rgba(2,5,13,.24)_48%,rgba(2,5,13,.72)),linear-gradient(180deg,rgba(2,5,13,.08),rgba(2,5,13,.90))]" />
-              <div className="absolute bottom-8 left-8 right-8 max-w-[560px]">
-                <span className="rounded-full border border-white/15 bg-black/45 px-4 py-2 text-[10px] font-black uppercase tracking-[.24em] text-white/74 backdrop-blur">{slide.eyebrow}</span>
-                <h3 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">{slide.title}</h3>
-                <p className="mt-4 text-base font-semibold leading-relaxed text-white/72 md:text-lg">{slide.note}</p>
-              </div>
+              <img src={slide.image} alt={slide.alt} className="absolute inset-0 h-full w-full object-cover object-center" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,13,.04),rgba(2,5,13,.16))]" />
             </div>
           </div>
         ))}
       </div>
 
-      <div className="absolute bottom-6 left-6 right-6 z-20 grid gap-3 md:grid-cols-3">
-        {[
-          ["imagen", "mockups propios"],
-          ["movimiento", "slide animado"],
-          ["resultado", "no parece plantilla"],
-        ].map(([a, b]) => (
-          <div key={a} className="rounded-[1.55rem] border border-white/10 bg-black/42 p-4 backdrop-blur-xl">
-            <p className="text-[10px] font-black uppercase tracking-[.22em] text-[#8bdcff]">{a}</p>
-            <p className="mt-2 text-sm font-black text-white">{b}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="ov-device-card absolute right-10 top-[210px] z-20 hidden w-[180px] rotate-3 rounded-[2rem] border border-white/14 bg-[#050914]/80 p-3 shadow-[0_36px_90px_rgba(0,0,0,.55)] backdrop-blur-xl lg:block">
-        <div className="h-[260px] overflow-hidden rounded-[1.55rem] border border-white/10 bg-black/30">
-          <img src="/web-visuals/slide-landing-premium.png" alt="Mockup mobile" className="h-full w-full object-cover object-left" />
-        </div>
+      <div className="absolute bottom-8 left-8 z-30 hidden rounded-full border border-white/10 bg-black/45 px-5 py-3 text-[11px] font-black uppercase tracking-[.22em] text-white/70 backdrop-blur-xl md:block">
+        imágenes reales + mockups propios
       </div>
     </div>
   );
@@ -330,10 +286,10 @@ export default function WebPage() {
             <div>
               <MiniLabel>Oriavision web atelier</MiniLabel>
               <h1 className="mt-8 max-w-5xl text-[clamp(3.7rem,9vw,8.6rem)] font-black leading-[0.82] tracking-[-0.09em] text-white [font-family:var(--font-space-grotesk)]">
-                Webs que no parecen de catálogo.
+                Webs con presencia propia.
               </h1>
               <p className="mt-8 max-w-2xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Diseño web, landings y automatizaciones con dirección visual propia. Para que tu marca se vea seria antes de que el cliente te escriba.
+                Diseño web, landings y automatizaciones con imagen visual premium, mockups, movimiento y una estética que no parece plantilla.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a href="#formulario" className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-base font-black text-[#02050d] shadow-[0_24px_90px_rgba(139,220,255,.18)] transition hover:-translate-y-0.5 hover:bg-[#e9fbff]">
