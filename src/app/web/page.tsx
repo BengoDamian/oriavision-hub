@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import WebRequestForm from "@/components/WebRequestForm";
+import WebHeroStage from "@/components/WebHeroStage";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const PAGE_URL = `${SITE_URL}/web/`;
@@ -83,54 +84,6 @@ function Kicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-function VisualStage() {
-  return (
-    <div className="web-visual-stage-v13" aria-label="Escena visual con proyectos reales de Oriavision">
-      <div className="web-v13-grid" />
-      <div className="web-v13-halo web-v13-halo-a" />
-      <div className="web-v13-halo web-v13-halo-b" />
-      <div className="web-v13-line web-v13-line-a" />
-      <div className="web-v13-line web-v13-line-b" />
-
-      <div className="web-v13-main web-v13-float-main">
-        <div className="web-v13-browser">
-          <span /><span /><span />
-          <strong>plataforma real</strong>
-        </div>
-        <img src="/portfolio/siempredeguardia.png" alt="Mockup de Siempre de Guardia" />
-      </div>
-
-      <div className="web-v13-phone web-v13-float-phone">
-        <div className="web-v13-browser compact">
-          <span /><span />
-          <strong>quirvo</strong>
-        </div>
-        <img src="/portfolio/quirvo.png" alt="Mockup de Quirvo" />
-      </div>
-
-      <div className="web-v13-card web-v13-card-left">
-        <p>Dirección visual</p>
-        <strong>Diseño que se reconoce.</strong>
-        <small>Sin depender de plantillas iguales al resto.</small>
-      </div>
-
-      <div className="web-v13-card web-v13-card-right">
-        <p>Web + operación</p>
-        <strong>Lead → Mail → Dato → Equipo</strong>
-        <small>La página también puede trabajar por vos.</small>
-      </div>
-
-      <div className="web-v13-mini web-v13-float-mini">
-        <img src="/portfolio/calculadora-landing.png" alt="Mockup de Calculadora ML" />
-        <div>
-          <b>Landing + producto</b>
-          <span>mensaje claro, CTA y conversión</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function PortfolioWall() {
   return (
     <div className="grid gap-5 lg:grid-cols-4">
@@ -193,30 +146,24 @@ export default function WebPage() {
 
       <section className="web-hero relative isolate px-5 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
         <div className="web-bg-grid absolute inset-0 -z-10" />
-        <div className="mx-auto grid max-w-[1520px] items-center gap-12 xl:grid-cols-[0.46fr_1fr]">
+        <div className="mx-auto grid max-w-[1520px] items-center gap-12 xl:grid-cols-[0.55fr_0.95fr]">
           <Reveal>
             <div className="relative z-20 max-w-2xl">
               <Kicker>Oriavision web atelier</Kicker>
-              <h1 className="mt-7 text-[clamp(3.5rem,6.4vw,7.05rem)] font-black leading-[0.78] tracking-[-0.105em] text-white [font-family:var(--font-space-grotesk)]">
-                Páginas que no parecen una plantilla.
+              <h1 className="mt-7 text-[clamp(4rem,8.5vw,8.8rem)] font-black leading-[0.78] tracking-[-0.105em] text-white [font-family:var(--font-space-grotesk)]">
+                Webs que se sienten propias.
               </h1>
               <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Creamos webs que se ven mejor, explican mejor y ayudan a vender mejor.
+                Diseño web, landings, sistemas y automatizaciones con dirección visual, criterio comercial y mockups reales de producto.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a href="#formulario" className="web-btn-primary">Quiero una web así <ArrowUpRight className="h-5 w-5" /></a>
                 <a href="#casos" className="web-btn-secondary">Ver trabajos</a>
               </div>
-              <div className="web-hero-proof">
-                <span>Webs a medida</span>
-                <span>Landings</span>
-                <span>Automatizaciones</span>
-                <span>Sistemas</span>
-              </div>
             </div>
           </Reveal>
           <Reveal>
-            <VisualStage />
+            <WebHeroStage />
           </Reveal>
         </div>
       </section>
@@ -225,9 +172,9 @@ export default function WebPage() {
         <div className="mx-auto grid max-w-[1380px] gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <div className="web-panel-big">
-              <Kicker>criterio antes que decoración</Kicker>
+              <Kicker>no hacemos vitrinas genéricas</Kicker>
               <h2 className="mt-6 text-5xl font-black leading-[.86] tracking-[-0.08em] md:text-7xl [font-family:var(--font-space-grotesk)]">
-                No hacemos webs para rellenar espacio.
+                Una web tiene que explicar, impactar y trabajar.
               </h2>
             </div>
           </Reveal>
