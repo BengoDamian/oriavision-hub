@@ -58,10 +58,14 @@ export default function WebHeroStage() {
         <div className="web-screen-sheen" />
       </div>
 
-      <div className="web-phone web-float-tertiary web-parallax-tertiary">
-        <div className="web-device-bar"><span /><span /><b>CALCULADORA ML</b></div>
-        <img src="/portfolio/calculadora-landing.png" alt="Mockup de Calculadora ML" />
-        <div className="web-screen-sheen" />
+      <div className="web-ops-mini web-float-tertiary web-parallax-tertiary" aria-label="Flujo de automatización web">
+        <div className="web-ops-mini-head">WEB + OPERACIÓN</div>
+        <div className="web-ops-row"><span />Lead captado</div>
+        <div className="web-ops-line" />
+        <div className="web-ops-row"><span />Mail automático</div>
+        <div className="web-ops-line web-ops-line-alt" />
+        <div className="web-ops-row"><span />Dato guardado</div>
+        <strong>La página también trabaja.</strong>
       </div>
 
       <div className="web-card web-card-a web-card-float-a">

@@ -1,0 +1,5 @@
+V15 correcciones:
+- Se quitó Calculadora ML del hero porque se veía mal como mockup chico en desktop y mobile.
+- Hero visual ahora usa Siempre de Guardia como mockup principal + Quirvo como apoyo + mini panel técnico.
+- Mobile compactado: menos alto, menos elementos, sin recortes grandes ni apilado pesado.
+- Se mantiene animación: floating, glow, orbits, spotlight y parallax en desktop.
