@@ -353,3 +353,20 @@ h4 {
   .ov-visual-slide { animation: none !important; }
   .ov-visual-slide:first-of-type { opacity: 1; transform: none; }
 }
+
+/* === Web v10: visuales sin recorte + mobile limpio === */
+.web-cinematic-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 767px) {
+  .ov-visual-stage {
+    border-radius: 1.35rem !important;
+    aspect-ratio: 4 / 5 !important;
+    max-width: 100% !important;
+  }
+  .ov-visual-slide {
+    object-position: center center;
+  }
+}

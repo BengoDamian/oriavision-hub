@@ -137,27 +137,24 @@ const visualSlides = [
 
 function ImpactMachine() {
   const slides = [
-    { src: "/web-visuals/oriavision-hero-clean.png", alt: "Escena visual con mockups reales de Oriavision" },
-    { src: "/web-visuals/oriavision-portfolio-clean.png", alt: "Portfolio visual con proyectos reales de Oriavision" },
-    { src: "/web-visuals/oriavision-automation-clean.png", alt: "Mapa visual de automatizaciones para páginas web" },
+    { src: "/web-visuals/oriavision-hero-focus.png", alt: "Mockups reales de proyectos Oriavision en desktop, tablet y mobile" },
+    { src: "/web-visuals/oriavision-portfolio-focus.png", alt: "Portfolio real de Oriavision en mockups premium" },
+    { src: "/web-visuals/oriavision-automation-focus.png", alt: "Automatizaciones web visualizadas como flujo conectado" },
   ];
 
   return (
-    <div className="ov-visual-stage relative mx-auto aspect-[16/10] w-full max-w-[820px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#020712] shadow-[0_50px_180px_rgba(0,0,0,.58)]">
+    <div className="ov-visual-stage relative mx-auto aspect-[16/9] w-full max-w-[900px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#020712] shadow-[0_50px_180px_rgba(0,0,0,.58)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_12%,rgba(255,45,91,.20),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(56,189,248,.18),transparent_34%)]" />
       {slides.map((slide, index) => (
         <img
           key={slide.src}
           src={slide.src}
           alt={slide.alt}
-          className="ov-visual-slide absolute inset-0 h-full w-full object-contain p-2 md:p-3"
+          className="ov-visual-slide absolute inset-0 h-full w-full object-cover"
           style={{ animationDelay: `${index * 5}s` }}
         />
       ))}
-      <div className="pointer-events-none absolute inset-x-5 bottom-5 flex items-center justify-between rounded-full border border-white/10 bg-black/45 px-4 py-3 backdrop-blur-xl">
-        <span className="text-[10px] font-black uppercase tracking-[.24em] text-[#8bdcff]">mockups reales</span>
-        <span className="text-[10px] font-black uppercase tracking-[.24em] text-white/55">visual engine</span>
-      </div>
+
     </div>
   );
 }
@@ -311,12 +308,12 @@ export default function WebPage() {
       <section className="px-4 py-8 md:py-16">
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
+            <div className="mb-8 max-w-4xl">
+              <MiniLabel>portfolio real</MiniLabel>
+              <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">Proyectos que se ven propios.</h2>
+            </div>
             <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_80px_220px_rgba(0,0,0,.55)]">
-              <img src="/web-visuals/oriavision-portfolio-clean.png" alt="Collage premium de proyectos reales de Oriavision" className="w-full object-contain" />
-              <div className="absolute left-6 top-6 max-w-[380px] md:left-10 md:top-10">
-                <MiniLabel>portfolio real</MiniLabel>
-                <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">Proyectos que se ven propios.</h2>
-              </div>
+              <img src="/web-visuals/oriavision-portfolio-clean.png" alt="Collage premium de proyectos reales de Oriavision" className="block w-full" />
             </div>
           </Reveal>
         </div>
@@ -387,12 +384,12 @@ export default function WebPage() {
       <section className="px-4 py-8 md:py-16">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
+            <div className="mb-8 max-w-4xl">
+              <MiniLabel>automatizaciones</MiniLabel>
+              <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">La web también puede trabajar.</h2>
+            </div>
             <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-[#030711] shadow-[0_70px_200px_rgba(0,0,0,.50)]">
-              <img src="/web-visuals/oriavision-automation-clean.png" alt="Mapa visual de automatizaciones web conectadas" className="w-full object-contain" />
-              <div className="absolute left-6 top-6 max-w-[420px] md:left-10 md:top-10">
-                <MiniLabel>automatizaciones</MiniLabel>
-                <h2 className="mt-5 text-4xl font-black leading-[.9] tracking-[-0.07em] text-white md:text-6xl [font-family:var(--font-space-grotesk)]">La web también puede trabajar.</h2>
-              </div>
+              <img src="/web-visuals/oriavision-automation-clean.png" alt="Mapa visual de automatizaciones web conectadas" className="block w-full" />
             </div>
           </Reveal>
         </div>
