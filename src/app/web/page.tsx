@@ -151,10 +151,10 @@ export default function WebPage() {
             <div className="relative z-20 max-w-2xl">
               <Kicker>Oriavision web atelier</Kicker>
               <h1 className="mt-7 text-[clamp(4rem,8.5vw,8.8rem)] font-black leading-[0.78] tracking-[-0.105em] text-white [font-family:var(--font-space-grotesk)]">
-                Webs que se sienten propias.
+                Páginas que no parecen una plantilla.
               </h1>
               <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Diseño web, landings, sistemas y automatizaciones con dirección visual, criterio comercial y mockups reales de producto.
+                Creamos webs que se ven mejor, explican mejor y ayudan a vender mejor.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a href="#formulario" className="web-btn-primary">Quiero una web así <ArrowUpRight className="h-5 w-5" /></a>

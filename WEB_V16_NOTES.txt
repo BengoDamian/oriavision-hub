@@ -1,0 +1,5 @@
+V16 - Hero conceptual
+- El hero deja de usar capturas de los sitios del portfolio.
+- Se agregan imágenes conceptuales de profesionalismo, diseño, experiencia, automatización y habilidad visual.
+- Los proyectos reales quedan solo en la sección Portfolio.
+- Hero con slider/crossfade, glow, líneas, badges y versión mobile compacta.
