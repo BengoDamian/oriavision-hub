@@ -83,39 +83,13 @@ function Kicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-function VisualStage() {
+function HeroVisual() {
   return (
-    <div className="web-visual-stage-v11" aria-label="Mockups animados de trabajos reales de Oriavision">
-      <div className="web-stage-grid" />
-      <div className="web-orbit web-orbit-a" />
-      <div className="web-orbit web-orbit-b" />
-
-      <div className="web-laptop web-float-main">
-        <div className="web-device-bar"><span /><span /><span /><b>SIEMPRE DE GUARDIA</b></div>
-        <img src="/portfolio/siempredeguardia.png" alt="Mockup de Siempre de Guardia" />
-      </div>
-
-      <div className="web-tablet web-float-secondary">
-        <div className="web-device-bar"><span /><span /><span /><b>QUIRVO</b></div>
-        <img src="/portfolio/quirvo.png" alt="Mockup de Quirvo" />
-      </div>
-
-      <div className="web-phone web-float-tertiary">
-        <div className="web-device-bar"><span /><span /><b>DBENGOTECH</b></div>
-        <img src="/portfolio/dbengotech.png" alt="Mockup de DBengoTech" />
-      </div>
-
-      <div className="web-card web-card-a">
-        <Sparkles className="h-5 w-5" />
-        <div><strong>Imagen propia</strong><small>No parece plantilla</small></div>
-      </div>
-      <div className="web-card web-card-b">
-        <Workflow className="h-5 w-5" />
-        <div><strong>Procesos conectados</strong><small>Formularios, mails y datos</small></div>
-      </div>
-      <div className="web-card web-card-c">
-        <Gauge className="h-5 w-5" />
-        <div><strong>Diseño que vende</strong><small>Claridad antes que ruido</small></div>
+    <div className="web-hero-visual-wrap">
+      <div className="web-hero-visual-glow web-hero-visual-glow-a" />
+      <div className="web-hero-visual-glow web-hero-visual-glow-b" />
+      <div className="web-hero-visual-card">
+        <img src="/web-visuals/hero-premium-v12.png" alt="Hero premium de Oriavision con mockup de proyectos y dirección visual" className="web-hero-visual-image" />
       </div>
     </div>
   );
@@ -188,10 +162,10 @@ export default function WebPage() {
             <div className="relative z-20 max-w-2xl">
               <Kicker>Oriavision web atelier</Kicker>
               <h1 className="mt-7 text-[clamp(4rem,8.5vw,8.8rem)] font-black leading-[0.78] tracking-[-0.105em] text-white [font-family:var(--font-space-grotesk)]">
-                Webs que se sienten propias.
+                Webs que impulsan negocios.
               </h1>
               <p className="mt-8 max-w-xl text-xl font-medium leading-relaxed text-slate-300 md:text-2xl">
-                Diseño web, landings, sistemas y automatizaciones con dirección visual, criterio comercial y mockups reales de producto.
+                Diseño web, landing pages y automatizaciones con una imagen más sólida, una propuesta más clara y una experiencia pensada para convertir.
               </p>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a href="#formulario" className="web-btn-primary">Quiero una web así <ArrowUpRight className="h-5 w-5" /></a>
@@ -200,7 +174,7 @@ export default function WebPage() {
             </div>
           </Reveal>
           <Reveal>
-            <VisualStage />
+            <HeroVisual />
           </Reveal>
         </div>
       </section>
