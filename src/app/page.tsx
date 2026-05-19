@@ -97,6 +97,25 @@ const HOME_BLOCKS = [
   },
 ];
 
+const SHOWCASE_VISUALS = [
+  {
+    title: "Siempre de Guardia",
+    caption: "Proyecto web real",
+    img: "/portfolio/siempredeguardia.png",
+    large: true,
+  },
+  {
+    title: "Calculadora ML",
+    caption: "Herramienta propia",
+    img: "/portfolio/calculadora-webapp.png",
+  },
+  {
+    title: "Quirvo",
+    caption: "Producto digital",
+    img: "/portfolio/quirvo.png",
+  },
+];
+
 const SERVICES = [
   {
     icon: LayoutTemplate,
@@ -635,6 +654,89 @@ const pageStyles = `
     pointer-events: none;
   }
 
+  .ov-showcase-grid {
+    display: grid;
+    grid-template-columns: 1.18fr .82fr;
+    gap: 1rem;
+    margin-top: 1.1rem;
+  }
+
+  .ov-showcase-stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .ov-showcase-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 230px;
+    border-radius: 1.9rem;
+    border: 1px solid rgba(20,86,200,.12);
+    background: #dfeeff;
+    box-shadow: 0 24px 60px rgba(10,31,110,.10);
+  }
+
+  .ov-showcase-card.is-large {
+    min-height: 478px;
+  }
+
+  .ov-showcase-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 35%, rgba(8,24,88,.84) 100%);
+    pointer-events: none;
+  }
+
+  .ov-showcase-badge {
+    position: absolute;
+    left: 1.2rem;
+    right: 1.2rem;
+    bottom: 1.15rem;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .ov-showcase-badge span {
+    display: inline-flex;
+    padding: .4rem .7rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.22);
+    backdrop-filter: blur(12px);
+    font-size: .68rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .ov-showcase-badge strong {
+    display: block;
+    margin-top: .7rem;
+    font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    line-height: .95;
+    font-weight: 900;
+  }
+
+  .ov-tool-media {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    margin-bottom: 1.25rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(20,86,200,.10);
+    background: linear-gradient(135deg, rgba(20,86,200,.10), rgba(30,200,240,.16));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+  }
+
+  .ov-tool-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(7,26,79,.14) 100%);
+    pointer-events: none;
+  }
 
   .ov-services-layout {
     display: grid;
@@ -1130,6 +1232,38 @@ const pageStyles = `
       display: none;
     }
 
+    .ov-showcase-grid {
+      grid-template-columns: 1fr;
+      gap: .8rem;
+      margin-top: .9rem;
+    }
+
+    .ov-showcase-stack {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ov-showcase-card,
+    .ov-showcase-card.is-large {
+      min-height: 220px;
+      border-radius: 1.35rem;
+    }
+
+    .ov-showcase-badge {
+      left: .95rem;
+      right: .95rem;
+      bottom: .95rem;
+    }
+
+    .ov-showcase-badge strong {
+      font-size: 1.15rem;
+    }
+
+    .ov-tool-media {
+      height: 176px;
+      margin-bottom: 1rem;
+      border-radius: 1.2rem;
+    }
+
     .ov-photo-frame-main {
       height: 190px;
     }
@@ -1518,6 +1652,54 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="ov-section">
+        <div className="ov-wrap">
+          <SectionHeader
+            eyebrow="Proyectos y herramientas"
+            title="Un home con más imagen y menos monotonía."
+            text="Una muestra rápida de proyectos, herramientas y productos para que la home tenga más impacto visual sin perder claridad."
+          />
+
+          <div className="ov-showcase-grid">
+            <Reveal delay={0.04}>
+              <div className="ov-showcase-card is-large">
+                <Image
+                  src={SHOWCASE_VISUALS[0].img}
+                  alt={SHOWCASE_VISUALS[0].title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 58vw"
+                  className="object-cover"
+                />
+                <div className="ov-showcase-badge">
+                  <span>{SHOWCASE_VISUALS[0].caption}</span>
+                  <strong>{SHOWCASE_VISUALS[0].title}</strong>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="ov-showcase-stack">
+              {SHOWCASE_VISUALS.slice(1).map((item, index) => (
+                <Reveal key={item.title} delay={0.08 + index * 0.05}>
+                  <div className="ov-showcase-card">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 26vw"
+                      className="object-cover"
+                    />
+                    <div className="ov-showcase-badge">
+                      <span>{item.caption}</span>
+                      <strong>{item.title}</strong>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="herramientas" className="ov-section scroll-mt-24">
         <div className="ov-wrap">
           <SectionHeader
@@ -1529,6 +1711,15 @@ export default function Home() {
           <div className="grid gap-7 lg:grid-cols-2">
             <Reveal delay={0.05}>
               <div className="ov-card ov-card-pad">
+                <div className="ov-tool-media">
+                  <Image
+                    src="/portfolio/calculadora-webapp.png"
+                    alt="Calculadora ML"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="ov-tool-badge">Principal</div>
                 <div className="ov-icon">
                   <Calculator className="h-8 w-8" />
@@ -1567,6 +1758,15 @@ export default function Home() {
 
             <Reveal delay={0.1}>
               <div className="ov-card ov-card-pad">
+                <div className="ov-tool-media">
+                  <Image
+                    src="/web-visuals/mockup-slide-automation.png"
+                    alt="Orientador de precios ML"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
                 <div className="absolute -right-14 -top-14 h-48 w-48 rounded-full bg-cyan-200/30 blur-2xl" />
                 <div className="ov-icon relative">
                   <MonitorSmartphone className="h-8 w-8" />
