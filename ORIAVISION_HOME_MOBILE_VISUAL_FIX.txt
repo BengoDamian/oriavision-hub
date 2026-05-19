@@ -1,0 +1,5 @@
+Corrección mobile home:
+- El hero visual ya no queda debajo del texto en celular: se integra como fondo lateral del bloque principal.
+- En la sección Servicios web del home, el visual aparece primero y el texto queda montado encima, para que no se vea texto por un lado e imagen separada después.
+- Se mantiene el header global del hub y no se toca la página /web/.
+- Cambios aplicados en src/app/page.tsx y page.tsx de raíz.

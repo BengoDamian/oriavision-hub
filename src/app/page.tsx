@@ -1009,11 +1009,24 @@ const pageStyles = `
     }
 
     .ov-hero {
-      padding: 36px 0 48px;
+      padding: 30px 0 48px;
+    }
+
+    .ov-hero-inner {
+      display: block;
+    }
+
+    .ov-hero-inner > div:first-child {
+      position: relative;
+      z-index: 3;
     }
 
     .ov-hero h1 {
-      font-size: clamp(2.65rem, 16vw, 4.4rem);
+      font-size: clamp(2.55rem, 15vw, 4.25rem);
+    }
+
+    .ov-hero-copy {
+      font-size: 1rem;
     }
 
     .ov-actions,
@@ -1029,29 +1042,58 @@ const pageStyles = `
       grid-template-columns: 1fr;
     }
 
-    .ov-hero-visual,
+    /* En mobile el hero visual no baja después del texto: queda integrado como fondo lateral. */
+    .ov-hero-visual {
+      position: absolute;
+      z-index: 1;
+      inset: 118px -76px auto auto;
+      width: 330px;
+      height: 330px;
+      min-height: 330px;
+      opacity: .44;
+      pointer-events: none;
+    }
+
     .ov-mockup-stack {
-      min-height: 420px;
+      min-height: 330px;
+      transform: scale(.78);
+      transform-origin: top right;
+    }
+
+    .ov-hero-glow {
+      inset: 4% -6% auto auto;
+      height: 280px;
+      width: 280px;
+      opacity: .75;
     }
 
     .ov-mockup-main {
-      top: 22px;
-      width: 100%;
+      top: 8px;
+      right: 0;
+      width: 285px;
+      padding: .72rem;
+      border-radius: 1.45rem;
       transform: rotate(.8deg);
     }
 
     .ov-mockup-small {
-      width: 78%;
-      bottom: 78px;
+      display: none;
     }
 
     .ov-mockup-card {
       right: 0;
-      width: 86%;
+      bottom: 4px;
+      width: 220px;
+      border-radius: 1.45rem;
+      padding: .85rem;
+    }
+
+    .ov-mockup-card .mt-3 {
+      font-size: 1.45rem;
     }
 
     .ov-photo-frame-main {
-      height: 260px;
+      height: 190px;
     }
 
     .ov-photo-frame-small {
@@ -1062,42 +1104,104 @@ const pageStyles = `
       min-height: 300px;
     }
 
+    /* En Servicios web, la imagen y el texto quedan juntos: primero visual, luego texto montado encima. */
+    .ov-services-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 2rem;
+    }
+
+    .ov-services-layout > *:first-child {
+      order: 2;
+    }
+
+    .ov-services-layout > *:last-child {
+      order: 1;
+    }
+
     .ov-services-visual {
-      min-height: 460px;
+      min-height: 330px;
+      width: 100%;
+      margin-bottom: -76px;
+    }
+
+    .ov-service-copy {
+      position: relative;
+      z-index: 5;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 1.75rem;
+      background: rgba(7,26,79,.74);
+      padding: 1.1rem;
+      box-shadow: 0 26px 70px rgba(0,0,0,.28);
+      backdrop-filter: blur(16px);
+    }
+
+    .ov-service-copy .ov-eyebrow {
+      padding: .52rem .72rem;
+      font-size: .61rem;
     }
 
     .ov-service-copy h2 {
-      font-size: clamp(2rem, 11vw, 3.2rem);
-      line-height: 1;
+      font-size: clamp(1.82rem, 9.6vw, 3rem);
+      line-height: 1.02;
+      margin-top: .85rem;
+    }
+
+    .ov-service-copy p {
+      font-size: .94rem;
+      line-height: 1.55;
+    }
+
+    .ov-service-chip-row {
+      gap: .45rem;
+      margin-top: 1rem;
+    }
+
+    .ov-service-chip {
+      padding: .52rem .66rem;
+      font-size: .64rem;
     }
 
     .ov-service-preview-main {
       inset: 8px 0 auto 0;
-      height: 250px;
+      height: 230px;
       transform: none;
+      border-radius: 1.45rem;
     }
 
     .ov-service-preview-secondary {
       right: 0;
-      bottom: 42px;
-      width: 64%;
-      height: 190px;
+      bottom: 32px;
+      width: 62%;
+      height: 150px;
       transform: rotate(1.5deg);
+      border-radius: 1.25rem;
     }
 
     .ov-service-preview-tertiary {
       left: 0;
-      bottom: 6px;
-      width: 52%;
-      height: 165px;
+      bottom: 18px;
+      width: 50%;
+      height: 135px;
       transform: rotate(-1.5deg);
+      border-radius: 1.25rem;
     }
 
     .ov-service-mini-panel {
-      top: 262px;
-      right: 10px;
-      width: 188px;
-      padding: .85rem;
+      top: 208px;
+      right: 8px;
+      width: 174px;
+      padding: .75rem;
+      border-radius: 1.1rem;
+    }
+
+    .ov-service-mini-panel strong {
+      font-size: .92rem;
+    }
+
+    .ov-service-mini-panel span {
+      font-size: .68rem;
     }
 
     .ov-section {
