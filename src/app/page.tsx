@@ -85,6 +85,7 @@ const HOME_BLOCKS = [
     text: "Calculadoras, orientadores y soluciones prácticas para decidir precios y operar con más claridad.",
     href: "#herramientas",
     label: "Ver herramientas",
+    img: "/web-visuals/mockup-slide-system.png",
   },
   {
     icon: LayoutTemplate,
@@ -92,6 +93,7 @@ const HOME_BLOCKS = [
     text: "Landing pages, sistemas simples, branding visual y páginas profesionales para convertir mejor.",
     href: "#servicios",
     label: "Ver servicios",
+    img: "/web-exact/web-exact-04.jpg",
   },
 ];
 
@@ -565,6 +567,66 @@ const pageStyles = `
     padding: clamp(1.5rem, 3vw, 2.25rem);
   }
 
+  .ov-card-media {
+    position: relative;
+    height: clamp(190px, 24vw, 275px);
+    overflow: hidden;
+    border-radius: 1.65rem 1.65rem 0 0;
+    background: linear-gradient(135deg, rgba(20,86,200,.12), rgba(30,200,240,.16));
+  }
+
+  .ov-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,.82) 100%);
+    pointer-events: none;
+  }
+
+  .ov-card-media img,
+  .ov-photo-frame img,
+  .ov-wide-photo img {
+    transition: transform .65s ease;
+  }
+
+  .ov-card:hover .ov-card-media img,
+  .ov-mockup:hover .ov-photo-frame img,
+  .ov-wide-photo:hover img {
+    transform: scale(1.045);
+  }
+
+  .ov-photo-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    background: #eaf3ff;
+  }
+
+  .ov-photo-frame-main {
+    height: 340px;
+  }
+
+  .ov-photo-frame-small {
+    height: 185px;
+  }
+
+  .ov-wide-photo {
+    position: relative;
+    min-height: 430px;
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 34px 90px rgba(0,0,0,.22);
+  }
+
+  .ov-wide-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(7,26,79,.12), rgba(30,200,240,.08));
+    pointer-events: none;
+  }
+
   .ov-icon {
     display: inline-flex;
     align-items: center;
@@ -848,6 +910,18 @@ const pageStyles = `
       width: 86%;
     }
 
+    .ov-photo-frame-main {
+      height: 260px;
+    }
+
+    .ov-photo-frame-small {
+      height: 150px;
+    }
+
+    .ov-wide-photo {
+      min-height: 300px;
+    }
+
     .ov-section {
       padding: 72px 0;
     }
@@ -1026,22 +1100,15 @@ export default function Home() {
                   <span className="ov-url" />
                 </div>
 
-                <div className="ov-panel-screen">
-                  <div className="ov-panel-line is-dark mb-4 w-8/12" />
-                  <div className="ov-panel-line mb-6 w-10/12" />
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="ov-panel-box h-28" />
-                    <div className="ov-panel-box h-28" />
-                    <div className="ov-panel-box h-28" />
-                  </div>
-                  <div className="mt-4 grid grid-cols-[1fr_.7fr] gap-3">
-                    <div className="ov-panel-box h-32" />
-                    <div className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-                      <div className="ov-panel-line is-dark w-10/12" />
-                      <div className="ov-panel-line w-full" />
-                      <div className="ov-panel-line w-8/12" />
-                    </div>
-                  </div>
+                <div className="ov-photo-frame ov-photo-frame-main">
+                  <Image
+                    src="/web-visuals/oriavision-hero-focus.png"
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 980px) 92vw, 470px"
+                    className="object-cover"
+                  />
                 </div>
               </div>
 
@@ -1051,13 +1118,14 @@ export default function Home() {
                   <span className="ov-dot" />
                   <span className="ov-url" />
                 </div>
-                <div className="space-y-3 rounded-[1.25rem] bg-[#f7fbff] p-4">
-                  <div className="ov-panel-line is-dark w-8/12" />
-                  <div className="ov-panel-line w-full" />
-                  <div className="grid grid-cols-2 gap-3 pt-2">
-                    <div className="ov-panel-box h-20" />
-                    <div className="ov-panel-box h-20" />
-                  </div>
+                <div className="ov-photo-frame ov-photo-frame-small">
+                  <Image
+                    src="/web-exact/web-exact-05.jpg"
+                    alt=""
+                    fill
+                    sizes="(max-width: 980px) 78vw, 300px"
+                    className="object-cover"
+                  />
                 </div>
               </div>
 
@@ -1112,6 +1180,15 @@ export default function Home() {
               return (
                 <Reveal key={item.title} delay={0.04 + index * 0.04}>
                   <a href={item.href} className="ov-card block">
+                    <div className="ov-card-media">
+                      <Image
+                        src={item.img}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
                     <div className="ov-card-pad">
                       <div className="ov-icon">
                         <Icon className="h-7 w-7" />
@@ -1227,6 +1304,18 @@ export default function Home() {
             text="Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender."
             align="left"
           />
+
+          <Reveal delay={0.04}>
+            <div className="ov-wide-photo mb-8">
+              <Image
+                src="/web-visuals/oriavision-web-hero-cinematic.png"
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 1160px"
+                className="object-cover"
+              />
+            </div>
+          </Reveal>
 
           <div className="grid gap-6 md:grid-cols-3">
             {SERVICES.map((service, index) => {

@@ -1,0 +1,11 @@
+Cambio aplicado:
+- Se mantuvo el header/footer global del hub.
+- Se agregaron imágenes reales al home para que no quede solo texto.
+- El hero ahora incluye capturas/visuales con estética del HTML de /web.
+- Los bloques principales del home ahora tienen imagen superior.
+- La sección Servicios web incluye una imagen panorámica con el mismo estilo visual.
+- No se modificaron textos principales ni navegación.
+
+Validación:
+- Se validó sintaxis TSX con transpileModule de TypeScript.
+- No se ejecutó build completo porque el ZIP no incluye node_modules.
