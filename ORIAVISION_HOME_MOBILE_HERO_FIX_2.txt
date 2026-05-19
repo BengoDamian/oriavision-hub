@@ -1,0 +1,6 @@
+Corrección mobile home:
+- Se eliminó el mockup absoluto/traslúcido que se metía detrás del título en celular.
+- Se agregó una tarjeta visual mobile limpia después del buscador y antes del título.
+- Se redujo el tamaño del H1 en mobile para evitar cortes y superposición.
+- Se compactó el buscador en mobile.
+- No se modificó /web/ ni el header global.

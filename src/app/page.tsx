@@ -360,6 +360,10 @@ const pageStyles = `
     min-height: 560px;
   }
 
+  .ov-mobile-hero-card {
+    display: none;
+  }
+
   .ov-hero-glow {
     position: absolute;
     inset: 6% 0 auto 10%;
@@ -1009,7 +1013,9 @@ const pageStyles = `
     }
 
     .ov-hero {
-      padding: 30px 0 48px;
+      min-height: auto;
+      padding: 24px 0 44px;
+      align-items: flex-start;
     }
 
     .ov-hero-inner {
@@ -1021,75 +1027,119 @@ const pageStyles = `
       z-index: 3;
     }
 
+    .ov-search-shell {
+      margin-bottom: 1rem;
+      border-radius: 1.25rem;
+      padding: .45rem;
+      box-shadow: 0 14px 36px rgba(10,31,110,.08);
+    }
+
+    .ov-search-shell form {
+      gap: .65rem !important;
+      border-radius: 1rem !important;
+      padding: .72rem .78rem !important;
+    }
+
+    .ov-search-shell input {
+      font-size: .88rem !important;
+    }
+
+    .ov-mobile-hero-card {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      min-height: 232px;
+      margin: 1rem 0 1.15rem;
+      border: 1px solid rgba(20,86,200,.14);
+      border-radius: 1.55rem;
+      background: linear-gradient(135deg, rgba(20,86,200,.1), rgba(30,200,240,.16));
+      box-shadow: 0 20px 55px rgba(10,31,110,.12);
+    }
+
+    .ov-mobile-hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(10,31,110,.78) 100%);
+      pointer-events: none;
+    }
+
+    .ov-mobile-hero-caption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .ov-mobile-hero-caption span {
+      display: inline-flex;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      padding: .45rem .65rem;
+      font-size: .62rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .ov-mobile-hero-caption strong {
+      display: block;
+      max-width: 14rem;
+      margin-top: .65rem;
+      font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 1.5rem;
+      line-height: .98;
+      font-weight: 950;
+      letter-spacing: -.04em;
+    }
+
+    .ov-hero .ov-eyebrow {
+      padding: .58rem .78rem;
+      font-size: .62rem;
+      letter-spacing: .12em;
+    }
+
     .ov-hero h1 {
-      font-size: clamp(2.55rem, 15vw, 4.25rem);
+      margin-top: 1rem;
+      font-size: clamp(2.35rem, 10.8vw, 3.1rem);
+      line-height: .96;
+      letter-spacing: -.055em;
     }
 
     .ov-hero-copy {
-      font-size: 1rem;
+      margin-top: 1rem;
+      font-size: .98rem;
+      line-height: 1.55;
     }
 
     .ov-actions,
     .ov-final .ov-actions {
       flex-direction: column;
+      gap: .8rem;
+      margin-top: 1.45rem;
     }
 
     .ov-btn {
       width: 100%;
+      padding: .9rem 1.1rem;
     }
 
     .ov-stats {
       grid-template-columns: 1fr;
+      gap: .65rem;
+      margin-top: 1.25rem;
     }
 
-    /* En mobile el hero visual no baja después del texto: queda integrado como fondo lateral. */
-    .ov-hero-visual {
-      position: absolute;
-      z-index: 1;
-      inset: 118px -76px auto auto;
-      width: 330px;
-      height: 330px;
-      min-height: 330px;
-      opacity: .44;
-      pointer-events: none;
-    }
-
-    .ov-mockup-stack {
-      min-height: 330px;
-      transform: scale(.78);
-      transform-origin: top right;
-    }
-
-    .ov-hero-glow {
-      inset: 4% -6% auto auto;
-      height: 280px;
-      width: 280px;
-      opacity: .75;
-    }
-
-    .ov-mockup-main {
-      top: 8px;
-      right: 0;
-      width: 285px;
-      padding: .72rem;
-      border-radius: 1.45rem;
-      transform: rotate(.8deg);
-    }
-
-    .ov-mockup-small {
-      display: none;
-    }
-
-    .ov-mockup-card {
-      right: 0;
-      bottom: 4px;
-      width: 220px;
-      border-radius: 1.45rem;
+    .ov-stat {
+      border-radius: 1rem;
       padding: .85rem;
     }
 
-    .ov-mockup-card .mt-3 {
-      font-size: 1.45rem;
+    .ov-hero-visual {
+      display: none;
     }
 
     .ov-photo-frame-main {
@@ -1334,6 +1384,23 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.05}>
+              <div className="ov-mobile-hero-card" aria-hidden="true">
+                <Image
+                  src="/web-visuals/oriavision-hero-focus.png"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover"
+                />
+                <div className="ov-mobile-hero-caption">
+                  <span>Oriavision</span>
+                  <strong>Herramientas y páginas listas para vender mejor</strong>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.06}>
               <span className="ov-eyebrow">E-commerce · Web · Herramientas</span>
             </Reveal>
 
