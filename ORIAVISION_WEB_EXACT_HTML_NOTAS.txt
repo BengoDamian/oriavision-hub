@@ -1,0 +1,3 @@
+Se reemplazó src/app/web/page.tsx por una adaptación directa del HTML de referencia.
+Se extrajeron las imágenes embebidas a public/web-exact/ sin modificar su contenido visual.
+La ruta /web/ oculta el navbar/footer global del hub para que la página web use la estética completa del HTML provisto.
