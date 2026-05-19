@@ -627,6 +627,141 @@ const pageStyles = `
     pointer-events: none;
   }
 
+
+  .ov-services-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    margin-bottom: 2.4rem;
+  }
+
+  .ov-service-copy h2 {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: clamp(2.1rem, 4.8vw, 4.8rem);
+    line-height: .96;
+    font-weight: 900;
+  }
+
+  .ov-service-copy p {
+    margin-top: 1.15rem;
+    color: rgba(226,242,255,.78);
+    font-size: 1.12rem;
+    line-height: 1.68;
+    font-weight: 700;
+  }
+
+  .ov-services-visual {
+    position: relative;
+    min-height: 520px;
+  }
+
+  .ov-services-visual::before {
+    content: "";
+    position: absolute;
+    inset: 12% 4% 10% 8%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(30,200,240,.26), transparent 68%);
+    filter: blur(30px);
+  }
+
+  .ov-service-preview {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 30px 90px rgba(0,0,0,.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .ov-service-preview-main {
+    inset: 20px 10px auto 0;
+    height: 315px;
+    transform: rotate(-1.2deg);
+  }
+
+  .ov-service-preview-secondary {
+    width: 52%;
+    right: 0;
+    bottom: 18px;
+    height: 255px;
+    z-index: 2;
+    transform: rotate(2.4deg);
+  }
+
+  .ov-service-preview-tertiary {
+    width: 42%;
+    left: 28px;
+    bottom: 0;
+    height: 210px;
+    z-index: 3;
+    transform: rotate(-3deg);
+  }
+
+  .ov-service-preview .ov-chrome {
+    margin: 0;
+    padding: .8rem 1rem;
+    border-bottom-color: rgba(255,255,255,.1);
+    background: rgba(4,13,35,.72);
+  }
+
+  .ov-service-preview-screen {
+    position: relative;
+    height: calc(100% - 42px);
+    overflow: hidden;
+  }
+
+  .ov-service-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+    margin-top: 1.4rem;
+  }
+
+  .ov-service-chip {
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.82);
+    padding: .68rem .9rem;
+    font-size: .78rem;
+    font-weight: 950;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .ov-service-mini-panel {
+    position: absolute;
+    right: 34px;
+    top: 330px;
+    z-index: 4;
+    width: 220px;
+    border: 1px solid rgba(30,200,240,.28);
+    border-radius: 1.35rem;
+    background: rgba(4,13,35,.82);
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 0 20px 55px rgba(0,0,0,.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .ov-service-mini-panel strong {
+    display: block;
+    font-size: 1.1rem;
+    line-height: 1.05;
+  }
+
+  .ov-service-mini-panel span {
+    display: block;
+    margin-top: .45rem;
+    color: rgba(226,242,255,.72);
+    font-size: .78rem;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
   .ov-icon {
     display: inline-flex;
     align-items: center;
@@ -848,8 +983,13 @@ const pageStyles = `
     }
 
     .ov-hero-inner,
-    .ov-team-grid {
+    .ov-team-grid,
+    .ov-services-layout {
       grid-template-columns: 1fr;
+    }
+
+    .ov-services-visual {
+      min-height: 500px;
     }
 
     .ov-hero-visual,
@@ -920,6 +1060,44 @@ const pageStyles = `
 
     .ov-wide-photo {
       min-height: 300px;
+    }
+
+    .ov-services-visual {
+      min-height: 460px;
+    }
+
+    .ov-service-copy h2 {
+      font-size: clamp(2rem, 11vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .ov-service-preview-main {
+      inset: 8px 0 auto 0;
+      height: 250px;
+      transform: none;
+    }
+
+    .ov-service-preview-secondary {
+      right: 0;
+      bottom: 42px;
+      width: 64%;
+      height: 190px;
+      transform: rotate(1.5deg);
+    }
+
+    .ov-service-preview-tertiary {
+      left: 0;
+      bottom: 6px;
+      width: 52%;
+      height: 165px;
+      transform: rotate(-1.5deg);
+    }
+
+    .ov-service-mini-panel {
+      top: 262px;
+      right: 10px;
+      width: 188px;
+      padding: .85rem;
     }
 
     .ov-section {
@@ -1298,24 +1476,85 @@ export default function Home() {
 
       <section id="servicios" className="ov-section ov-section-dark scroll-mt-24">
         <div className="ov-wrap relative z-10">
-          <SectionHeader
-            eyebrow="Servicios web"
-            title="No hacemos “una web más”. Armamos una presencia digital que se entienda y convierta."
-            text="Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender."
-            align="left"
-          />
+          <div className="ov-services-layout">
+            <Reveal delay={0.04}>
+              <div className="ov-service-copy">
+                <span className="ov-eyebrow">Servicios web</span>
+                <h2>No hacemos “una web más”. Armamos una presencia digital que se entienda y convierta.</h2>
+                <p>
+                  Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender.
+                </p>
 
-          <Reveal delay={0.04}>
-            <div className="ov-wide-photo mb-8">
-              <Image
-                src="/web-visuals/oriavision-web-hero-cinematic.png"
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 1160px"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
+                <div className="ov-service-chip-row" aria-hidden="true">
+                  <span className="ov-service-chip">Estrategia</span>
+                  <span className="ov-service-chip">Diseño</span>
+                  <span className="ov-service-chip">Tecnología</span>
+                </div>
+
+                <Link href="/web/" className="ov-btn ov-btn-primary mt-8">
+                  Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08} className="ov-services-visual">
+              <div className="ov-service-preview ov-service-preview-main">
+                <div className="ov-chrome">
+                  <span className="ov-dot" />
+                  <span className="ov-dot" />
+                  <span className="ov-dot" />
+                  <span className="ov-url" />
+                </div>
+                <div className="ov-service-preview-screen">
+                  <Image
+                    src="/portfolio/siempredeguardia.png"
+                    alt=""
+                    fill
+                    sizes="(max-width: 980px) 100vw, 620px"
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
+
+              <div className="ov-service-mini-panel">
+                <strong>Diseño con criterio comercial</strong>
+                <span>Menos decoración suelta. Más claridad para que el cliente entienda y consulte.</span>
+              </div>
+
+              <div className="ov-service-preview ov-service-preview-secondary">
+                <div className="ov-chrome">
+                  <span className="ov-dot" />
+                  <span className="ov-dot" />
+                  <span className="ov-url" />
+                </div>
+                <div className="ov-service-preview-screen">
+                  <Image
+                    src="/portfolio/quirvo.png"
+                    alt=""
+                    fill
+                    sizes="(max-width: 980px) 62vw, 330px"
+                    className="object-cover object-left-top"
+                  />
+                </div>
+              </div>
+
+              <div className="ov-service-preview ov-service-preview-tertiary">
+                <div className="ov-chrome">
+                  <span className="ov-dot" />
+                  <span className="ov-url" />
+                </div>
+                <div className="ov-service-preview-screen">
+                  <Image
+                    src="/portfolio/calculadora-landing.png"
+                    alt=""
+                    fill
+                    sizes="(max-width: 980px) 52vw, 270px"
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {SERVICES.map((service, index) => {
@@ -1334,12 +1573,6 @@ export default function Home() {
               );
             })}
           </div>
-
-          <Reveal delay={0.16}>
-            <Link href="/web/" className="ov-btn ov-btn-primary mt-10">
-              Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
-            </Link>
-          </Reveal>
         </div>
       </section>
 
