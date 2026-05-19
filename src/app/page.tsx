@@ -1154,12 +1154,12 @@ const pageStyles = `
       min-height: 300px;
     }
 
-    /* En Servicios web, la imagen y el texto quedan juntos: primero visual, luego texto montado encima. */
+    /* Servicios web mobile: visual limpio y texto legible, sin montajes superpuestos. */
     .ov-services-layout {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      margin-bottom: 2rem;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
     }
 
     .ov-services-layout > *:first-child {
@@ -1171,87 +1171,87 @@ const pageStyles = `
     }
 
     .ov-services-visual {
-      min-height: 330px;
+      min-height: 184px;
       width: 100%;
-      margin-bottom: -76px;
+      margin: 0;
+    }
+
+    .ov-services-visual::before {
+      inset: 4% 8% 10%;
+      opacity: .55;
+      filter: blur(22px);
+    }
+
+    .ov-service-preview {
+      position: relative;
+      transform: none !important;
+      box-shadow: 0 18px 48px rgba(0,0,0,.22);
+      backdrop-filter: none;
+    }
+
+    .ov-service-preview-main {
+      inset: auto;
+      width: 100%;
+      height: 184px;
+      border-radius: 1.35rem;
+    }
+
+    .ov-service-preview-main .ov-chrome {
+      padding: .55rem .7rem;
+    }
+
+    .ov-service-preview-main .ov-service-preview-screen {
+      height: calc(100% - 34px);
+    }
+
+    .ov-service-preview-secondary,
+    .ov-service-preview-tertiary,
+    .ov-service-mini-panel {
+      display: none;
     }
 
     .ov-service-copy {
       position: relative;
       z-index: 5;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 1.75rem;
-      background: rgba(7,26,79,.74);
-      padding: 1.1rem;
-      box-shadow: 0 26px 70px rgba(0,0,0,.28);
-      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 1.45rem;
+      background: rgba(255,255,255,.06);
+      padding: 1.05rem;
+      box-shadow: 0 18px 48px rgba(0,0,0,.16);
+      backdrop-filter: blur(12px);
     }
 
     .ov-service-copy .ov-eyebrow {
-      padding: .52rem .72rem;
-      font-size: .61rem;
+      padding: .48rem .68rem;
+      font-size: .59rem;
+      letter-spacing: .12em;
     }
 
     .ov-service-copy h2 {
-      font-size: clamp(1.82rem, 9.6vw, 3rem);
-      line-height: 1.02;
+      font-size: clamp(1.85rem, 8vw, 2.42rem);
+      line-height: 1.03;
       margin-top: .85rem;
+      letter-spacing: -.045em;
     }
 
     .ov-service-copy p {
+      margin-top: .85rem;
       font-size: .94rem;
       line-height: 1.55;
     }
 
-    .ov-service-chip-row {
-      gap: .45rem;
+    .ov-service-copy .ov-btn {
       margin-top: 1rem;
     }
 
+    .ov-service-chip-row {
+      gap: .45rem;
+      margin-top: .95rem;
+    }
+
     .ov-service-chip {
-      padding: .52rem .66rem;
-      font-size: .64rem;
-    }
-
-    .ov-service-preview-main {
-      inset: 8px 0 auto 0;
-      height: 230px;
-      transform: none;
-      border-radius: 1.45rem;
-    }
-
-    .ov-service-preview-secondary {
-      right: 0;
-      bottom: 32px;
-      width: 62%;
-      height: 150px;
-      transform: rotate(1.5deg);
-      border-radius: 1.25rem;
-    }
-
-    .ov-service-preview-tertiary {
-      left: 0;
-      bottom: 18px;
-      width: 50%;
-      height: 135px;
-      transform: rotate(-1.5deg);
-      border-radius: 1.25rem;
-    }
-
-    .ov-service-mini-panel {
-      top: 208px;
-      right: 8px;
-      width: 174px;
-      padding: .75rem;
-      border-radius: 1.1rem;
-    }
-
-    .ov-service-mini-panel strong {
-      font-size: .92rem;
-    }
-
-    .ov-service-mini-panel span {
-      font-size: .68rem;
+      padding: .48rem .62rem;
+      font-size: .62rem;
     }
 
     .ov-section {
