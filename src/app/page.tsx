@@ -1098,6 +1098,15 @@ const pageStyles = `
       grid-template-columns: 1fr;
     }
 
+    .ov-team-grid .sticky {
+      position: relative !important;
+      top: auto !important;
+    }
+
+    .ov-team-list {
+      margin-top: 1rem;
+    }
+
     .ov-services-visual {
       min-height: 500px;
     }
@@ -1380,8 +1389,48 @@ const pageStyles = `
       padding: 72px 0;
     }
 
-    .ov-person {
-      grid-template-columns: 1fr;
+    #nosotros .ov-card.sticky {
+      position: relative !important;
+      top: auto !important;
+      z-index: 1;
+    }
+
+    #nosotros .ov-team-list {
+      position: relative;
+      z-index: 2;
+      margin-top: 1.25rem;
+      gap: .85rem;
+    }
+
+    #nosotros .ov-person {
+      grid-template-columns: 74px 1fr;
+      gap: .9rem;
+      align-items: center;
+      border-radius: 1.35rem;
+      padding: 1rem !important;
+    }
+
+    #nosotros .ov-person-image {
+      width: 74px;
+      height: 74px;
+      border-radius: 1.05rem;
+      box-shadow: 0 10px 26px rgba(10,31,110,.10);
+    }
+
+    #nosotros .ov-person h3 {
+      font-size: 1.15rem !important;
+      line-height: 1.05;
+    }
+
+    #nosotros .ov-person p {
+      margin-top: .45rem;
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+
+    #nosotros .ov-person .text-xs {
+      font-size: .62rem;
+      letter-spacing: .12em;
     }
   }
 
