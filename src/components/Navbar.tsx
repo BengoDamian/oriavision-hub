@@ -36,7 +36,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       {
         label: "Calculadora ML",
-        href: "https://webapp.calculadoraml.oriavision.com.ar/",
+        href: "https://calculadoraml.oriavision.com.ar/",
         external: true,
       },
       {
