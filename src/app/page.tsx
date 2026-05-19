@@ -360,6 +360,10 @@ const pageStyles = `
     min-height: 560px;
   }
 
+  .ov-mobile-hero-row {
+    display: block;
+  }
+
   .ov-mobile-hero-card {
     display: none;
   }
@@ -1044,56 +1048,40 @@ const pageStyles = `
       font-size: .88rem !important;
     }
 
+    .ov-mobile-hero-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+      gap: .85rem;
+      align-items: end;
+      margin: .95rem 0 .95rem;
+    }
+
+    .ov-mobile-hero-row > * {
+      min-width: 0;
+    }
+
     .ov-mobile-hero-card {
       position: relative;
       display: block;
       overflow: hidden;
-      min-height: 232px;
-      margin: 1rem 0 1.15rem;
+      min-height: 168px;
+      margin: 0;
       border: 1px solid rgba(20,86,200,.14);
-      border-radius: 1.55rem;
-      background: linear-gradient(135deg, rgba(20,86,200,.1), rgba(30,200,240,.16));
-      box-shadow: 0 20px 55px rgba(10,31,110,.12);
+      border-radius: 1.3rem;
+      background: linear-gradient(135deg, rgba(20,86,200,.08), rgba(30,200,240,.12));
+      box-shadow: 0 18px 40px rgba(10,31,110,.12);
     }
 
     .ov-mobile-hero-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(10,31,110,.78) 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,.04) 0%, rgba(10,31,110,.10) 100%);
       pointer-events: none;
     }
 
-    .ov-mobile-hero-caption {
-      position: absolute;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 2;
-      color: #fff;
-    }
-
-    .ov-mobile-hero-caption span {
-      display: inline-flex;
-      border-radius: 999px;
-      background: rgba(255,255,255,.18);
-      padding: .45rem .65rem;
-      font-size: .62rem;
-      font-weight: 950;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-    }
-
-    .ov-mobile-hero-caption strong {
-      display: block;
-      max-width: 14rem;
-      margin-top: .65rem;
-      font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
-      font-size: 1.5rem;
-      line-height: .98;
-      font-weight: 950;
-      letter-spacing: -.04em;
+    .ov-mobile-hero-card img {
+      object-position: center center;
     }
 
     .ov-hero .ov-eyebrow {
@@ -1103,14 +1091,14 @@ const pageStyles = `
     }
 
     .ov-hero h1 {
-      margin-top: 1rem;
-      font-size: clamp(2.35rem, 10.8vw, 3.1rem);
-      line-height: .96;
+      margin-top: 0;
+      font-size: clamp(2rem, 9.8vw, 2.7rem);
+      line-height: .93;
       letter-spacing: -.055em;
     }
 
     .ov-hero-copy {
-      margin-top: 1rem;
+      margin-top: .8rem;
       font-size: .98rem;
       line-height: 1.55;
     }
@@ -1383,22 +1371,24 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.05}>
-              <div className="ov-mobile-hero-card" aria-hidden="true">
-                <Image
-                  src="/web-visuals/oriavision-hero-focus.png"
-                  alt=""
-                  fill
-                  priority
-                  sizes="100vw"
-                  className="object-cover"
-                />
-              </div>
-            </Reveal>
+            <div className="ov-mobile-hero-row">
+              <Reveal delay={0.08} className="ov-mobile-hero-title">
+                <h1>Soluciones digitales para vender mejor online.</h1>
+              </Reveal>
 
-            <Reveal delay={0.08}>
-              <h1>Soluciones digitales para vender mejor online.</h1>
-            </Reveal>
+              <Reveal delay={0.05}>
+                <div className="ov-mobile-hero-card" aria-hidden="true">
+                  <Image
+                    src="/web-visuals/hero-web-responsive-clean.png"
+                    alt=""
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 40vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </Reveal>
+            </div>
 
             <Reveal delay={0.11}>
               <p className="ov-hero-copy">
