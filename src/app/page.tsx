@@ -1393,15 +1393,7 @@ export default function Home() {
                   sizes="100vw"
                   className="object-cover"
                 />
-                <div className="ov-mobile-hero-caption">
-                  <span>Oriavision</span>
-                  <strong>Herramientas y páginas listas para vender mejor</strong>
-                </div>
               </div>
-            </Reveal>
-
-            <Reveal delay={0.06}>
-              <span className="ov-eyebrow">E-commerce · Web · Herramientas</span>
             </Reveal>
 
             <Reveal delay={0.08}>
@@ -1498,27 +1490,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
-      <div className="ov-ticker" aria-hidden="true">
-        <div className="ov-ticker-track">
-          {[
-            "Herramientas ML",
-            "Recursos gratuitos",
-            "Landing pages",
-            "Sistemas web simples",
-            "Diseño web profesional",
-            "E-commerce",
-            "Herramientas ML",
-            "Recursos gratuitos",
-            "Landing pages",
-            "Sistemas web simples",
-            "Diseño web profesional",
-            "E-commerce",
-          ].map((item, index) => (
-            <span key={`${item}-${index}`}>{item}</span>
-          ))}
-        </div>
-      </div>
 
       <section className="ov-section ov-section-off">
         <div className="ov-wrap">
@@ -1656,12 +1627,6 @@ export default function Home() {
                   Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender.
                 </p>
 
-                <div className="ov-service-chip-row" aria-hidden="true">
-                  <span className="ov-service-chip">Estrategia</span>
-                  <span className="ov-service-chip">Diseño</span>
-                  <span className="ov-service-chip">Tecnología</span>
-                </div>
-
                 <Link href="/web/" className="ov-btn ov-btn-primary mt-8">
                   Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
                 </Link>
@@ -1685,11 +1650,6 @@ export default function Home() {
                     className="object-cover object-top"
                   />
                 </div>
-              </div>
-
-              <div className="ov-service-mini-panel">
-                <strong>Diseño con criterio comercial</strong>
-                <span>Menos decoración suelta. Más claridad para que el cliente entienda y consulte.</span>
               </div>
 
               <div className="ov-service-preview ov-service-preview-secondary">
