@@ -9,3 +9,4 @@ Cambio aplicado:
 Validación:
 - Se validó sintaxis TSX con transpileModule de TypeScript.
 - No se ejecutó build completo porque el ZIP no incluye node_modules.
+- prueba texto
