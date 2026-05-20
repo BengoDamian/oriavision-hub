@@ -1839,9 +1839,20 @@ export default function Home() {
                   Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender.
                 </p>
 
-                <Link href="/web/" className="ov-btn ov-btn-primary mt-8">
-                  Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
-                </Link>
+                <div className="flex flex-wrap gap-4 mt-8">
+                  <Link href="/web/" className="ov-btn ov-btn-primary">
+                    Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
+                  </Link>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="ov-btn border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/15"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                    Consultar por WhatsApp
+                  </a>
+                </div>
               </div>
             </Reveal>
 
