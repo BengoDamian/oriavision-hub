@@ -4,7 +4,8 @@
       "Read(//mnt/c/Users/Usuario/Downloads/oriavision-hub_clean/**)",
       "Bash(npm run *)",
       "Bash(curl -s http://localhost:3000)",
-      "Bash(curl -s -I http://localhost:3000)"
+      "Bash(curl -s -I http://localhost:3000)",
+      "Bash(git checkout *)"
     ]
   }
 }
