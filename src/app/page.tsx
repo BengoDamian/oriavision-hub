@@ -18,6 +18,7 @@ import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
 import TrackLink from "@/components/TrackLink";
 import ResourceSearch from "@/components/ResourceSearch";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
@@ -1561,7 +1562,7 @@ export default function Home() {
         place="floating_home"
         className="fixed bottom-6 right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white shadow-2xl shadow-emerald-900/30 transition hover:-translate-y-1 sm:right-6 sm:bottom-8 sm:px-5 sm:py-3 hover:shadow-emerald-900/50"
       >
-        <MessageCircle className="h-5 w-5" />
+        <WhatsAppIcon className="h-5 w-5" />
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
@@ -1849,7 +1850,7 @@ export default function Home() {
                     rel="noreferrer"
                     className="ov-btn border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/15"
                   >
-                    <MessageCircle className="h-5 w-5" />
+                    <WhatsAppIcon className="h-5 w-5" />
                     Consultar por WhatsApp
                   </a>
                 </div>
