@@ -9,17 +9,17 @@ const SITE_URL = "https://www.oriavision.com.ar";
 const PAGE_URL = `${SITE_URL}/prompts/`;
 
 export const metadata: Metadata = {
-  title: "Prompts para MercadoLibre y e-commerce",
+  title: "Prompts gratis para MercadoLibre y e-commerce | Oriavision",
   description:
-    "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+    "Prompts gratis listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
   alternates: {
     canonical: "/prompts/",
   },
   openGraph: {
     url: PAGE_URL,
-    title: "Prompts para MercadoLibre y e-commerce | Oriavision",
+    title: "Prompts gratis para MercadoLibre y e-commerce | Oriavision",
     description:
-      "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+      "Prompts gratis listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
     images: [
       {
         url: "/og/home.png",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Prompts para MercadoLibre y e-commerce | Oriavision",
+    title: "Prompts gratis para MercadoLibre y e-commerce | Oriavision",
     description:
-      "Prompts listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
+      "Prompts gratis listos para leer, copiar y usar. Recursos gratuitos de Oriavision para vender mejor en MercadoLibre y e-commerce.",
     images: ["/og/home.png"],
   },
 };
@@ -80,7 +80,7 @@ export default function PromptsPage() {
               </span>
 
               <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Prompts
+                Prompts gratis
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-textBody md:text-xl">
                 Prompts listos para leer, copiar y usar. Sin vueltas y sin humo.

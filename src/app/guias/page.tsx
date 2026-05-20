@@ -9,17 +9,17 @@ const SITE_URL = "https://www.oriavision.com.ar";
 const PAGE_URL = `${SITE_URL}/guias/`;
 
 export const metadata: Metadata = {
-  title: "Guías de MercadoLibre y e-commerce",
+  title: "Guías gratuitas de MercadoLibre y e-commerce | Oriavision",
   description:
-    "Guías claras, accionables y sin humo para vender mejor. Recursos gratuitos de Oriavision sobre MercadoLibre y e-commerce.",
+    "Guías gratuitas, claras, accionables y sin humo para vender mejor. Recursos gratis de Oriavision sobre MercadoLibre y e-commerce.",
   alternates: {
     canonical: "/guias/",
   },
   openGraph: {
     url: PAGE_URL,
-    title: "Guías de MercadoLibre y e-commerce | Oriavision",
+    title: "Guías gratuitas de MercadoLibre y e-commerce | Oriavision",
     description:
-      "Guías claras, accionables y sin humo para vender mejor. Recursos gratuitos de Oriavision sobre MercadoLibre y e-commerce.",
+      "Guías gratuitas, claras, accionables y sin humo para vender mejor. Recursos gratis de Oriavision sobre MercadoLibre y e-commerce.",
     images: [
       {
         url: "/og/home.png",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Guías de MercadoLibre y e-commerce | Oriavision",
+    title: "Guías gratuitas de MercadoLibre y e-commerce | Oriavision",
     description:
-      "Guías claras, accionables y sin humo para vender mejor. Recursos gratuitos de Oriavision sobre MercadoLibre y e-commerce.",
+      "Guías gratuitas, claras, accionables y sin humo para vender mejor. Recursos gratis de Oriavision sobre MercadoLibre y e-commerce.",
     images: ["/og/home.png"],
   },
 };
@@ -80,7 +80,7 @@ export default function GuiasPage() {
               </span>
 
               <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Guías
+                Guías gratuitas
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-textBody md:text-xl">
                 Guías cortas, accionables y sin humo. Entrás, leés y lo aplicás al toque.

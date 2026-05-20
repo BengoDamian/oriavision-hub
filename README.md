@@ -1,11 +1,11 @@
 # ORIAVISION HUB 🚀
 
-Landing + hub de recursos para vendedores de **MercadoLibre Argentina** (y Tiendanube), con captación de leads y medición.
+Landing + hub de recursos **gratuitos** para vendedores de **MercadoLibre Argentina** (y Tiendanube), con captación de leads y medición.
 
 **Oriavision Hub** es una web tipo SaaS (clean, rápida y mobile-first) pensada para:
 - Mostrar nuestra herramienta principal (**Calculadora ML**)
-- Publicar **Guías** prácticas (para leer y aplicar)
-- Publicar **Prompts** listos para usar (copiar con 1 click)
+- Publicar **Guías gratuitas** prácticas (para leer y aplicar)
+- Publicar **Prompts gratis** listos para usar (copiar con 1 click)
 - Captar mails con **Newsletter** (Brevo) y automatizar **Welcome email**
 - Recibir pedidos de **landing a medida** desde `/web`
 - Medir **visitas + clicks + conversiones** con Cloudflare Web Analytics
@@ -18,25 +18,27 @@ Landing + hub de recursos para vendedores de **MercadoLibre Argentina** (y Tiend
 - Hero + CTA claros
 - **LeadMagnet** arriba del fold (animado)
 - Sección Herramientas (hoy: **Calculadora ML**)
-- Preview de **Prompts** (cards → detalle)
-- Preview de **Guías** (cards → detalle)
+- Preview de **Prompts gratis** (cards → detalle)
+- Preview de **Guías gratuitas** (cards → detalle)
 - Sección “Quiénes somos”
 - CTA final de contacto
-- Link sutil al final: **“Pedí una landing como esta →”** (`/web`)
+- Link sutil al final: **”Pedí una landing como esta →”** (`/web`)
 - Botones flotantes:
   - **Calculadora ML** (abajo izquierda)
   - **WhatsApp** (abajo derecha)
 
-### ✅ Prompts
+### ✅ Prompts gratis
 - Listado: `/prompts`
 - Detalle: `/prompts/[id]`
 - En el detalle se muestra el prompt completo y **se puede copiar** (`CopyPromptButton`)
+- Acceso gratuito a decenas de prompts listos para IA
 - Datos en `src/lib/prompts.ts`
 
-### ✅ Guías
+### ✅ Guías gratuitas
 - Listado: `/guias`
 - Detalle: `/guias/[id]`
-- Guías pensadas para **leer**, con estética tipo artículo (`GuideBody`)
+- Guías prácticas y gratuitas pensadas para **leer**, con estética tipo artículo (`GuideBody`)
+- Contenido de valor para vendedores de Mercado Libre
 - Datos en `src/lib/guides.ts`
 
 ### ✅ Newsletter (Brevo)

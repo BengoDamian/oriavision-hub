@@ -2037,7 +2037,7 @@ export default function Home() {
                 <div className="ov-icon">
                   <FileText className="h-7 w-7" />
                 </div>
-                <h3>Prompts</h3>
+                <h3>Prompts gratis</h3>
                 <p>
                   Listos para copiar, adaptar y usar en análisis de productos, publicaciones y decisiones de MercadoLibre.
                 </p>
@@ -2057,7 +2057,7 @@ export default function Home() {
                 </div>
 
                 <Link href="/prompts/" className="ov-btn ov-btn-primary mt-7">
-                  Ver todos los prompts <ArrowRight className="relative z-10 h-4 w-4" />
+                  Ver todos los prompts gratis <ArrowRight className="relative z-10 h-4 w-4" />
                 </Link>
               </div>
             </Reveal>
@@ -2067,7 +2067,7 @@ export default function Home() {
                 <div className="ov-icon">
                   <BookOpen className="h-7 w-7" />
                 </div>
-                <h3>Guías</h3>
+                <h3>Guías gratuitas</h3>
                 <p>
                   Artículos simples, directos y accionables para tomar mejores decisiones en e-commerce.
                 </p>
@@ -2087,7 +2087,7 @@ export default function Home() {
                 </div>
 
                 <Link href="/guias/" className="ov-btn ov-btn-secondary mt-7">
-                  Ver todas las guías <ArrowRight className="h-4 w-4" />
+                  Ver todas las guías gratuitas <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </Reveal>

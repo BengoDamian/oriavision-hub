@@ -20,8 +20,8 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Recursos gratuitos",
     items: [
-      { label: "Prompts", href: "/prompts/" },
-      { label: "Guías", href: "/guias/" },
+      { label: "Prompts gratis", href: "/prompts/" },
+      { label: "Guías gratuitas", href: "/guias/" },
     ],
   },
   {
