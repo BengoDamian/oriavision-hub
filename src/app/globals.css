@@ -154,6 +154,213 @@ h4 {
   }
 }
 
+/* === Refinamientos sutiles: premium visual sin excesos === */
+
+/* Microinteracciones en cards: hover suave con profundidad */
+.ov-card,
+.ov-portfolio-card,
+.web-case-card,
+.web-feature-card {
+  transition: transform 0.28s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.28s cubic-bezier(0, 0, 1, 1),
+              border-color 0.28s cubic-bezier(0, 0, 1, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+/* Zoom microscópico en imágenes (1.01–1.03) */
+.ov-card img,
+.ov-portfolio-card img,
+.ov-showcase-card img,
+.ov-showcase-card::after,
+.ov-wide-photo img,
+.ov-photo-frame img,
+.ov-tool-media img,
+.web-case-screen img,
+.web-v16-slide {
+  transition: transform 0.65s cubic-bezier(0, 0, 1, 1),
+              filter 0.65s cubic-bezier(0, 0, 1, 1);
+}
+
+/* Hover con profundidad: sombra dinámica suave */
+.ov-card:hover,
+.ov-portfolio-card:hover {
+  --shadow-amt: 1;
+  box-shadow: 0 28px 80px rgba(10, 31, 110, calc(0.08 * var(--shadow-amt))),
+              0 0 1px rgba(20, 86, 200, calc(0.15 * var(--shadow-amt))),
+              inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+.web-case-card:hover,
+.web-feature-card:hover {
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.35),
+              0 0 40px rgba(139, 220, 255, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Border glow elegante y mínimo */
+.ov-card {
+  border-color: rgba(20, 86, 200, 0.12);
+}
+
+.ov-card:hover {
+  border-color: rgba(30, 200, 240, 0.35);
+  box-shadow: 0 28px 80px rgba(10, 31, 110, 0.08),
+              0 0 20px rgba(30, 200, 240, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Mini parallax MUITO sutil en scroll */
+.ov-hero-visual,
+.ov-showcase-card.is-large {
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Blur → sharp muy leve: apenas perceptible pero elegante */
+.ov-section-head h2,
+.ov-hero h1,
+.ov-card h3 {
+  filter: saturate(1.02);
+  transition: filter 0.65s cubic-bezier(0, 0, 1, 1);
+}
+
+/* Sombras dinámicas sutiles para botones */
+.ov-btn {
+  transition: transform 0.22s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.22s cubic-bezier(0, 0, 1, 1),
+              background 0.22s cubic-bezier(0, 0, 1, 1),
+              color 0.22s cubic-bezier(0, 0, 1, 1) !important;
+}
+
+.ov-btn:hover {
+  box-shadow: 0 20px 60px rgba(20, 86, 200, 0.28),
+              0 0 20px rgba(30, 200, 240, 0.12);
+}
+
+.ov-btn-secondary:hover {
+  box-shadow: 0 18px 50px rgba(10, 31, 110, 0.12),
+              0 0 15px rgba(20, 86, 200, 0.08);
+}
+
+/* Imágenes: zoom muy contenido + sharpness */
+.ov-card:hover img,
+.ov-portfolio-card:hover img,
+.ov-showcase-card:hover img,
+.ov-wide-photo:hover img {
+  transform: scale(1.025);
+  filter: brightness(1.02) contrast(1.01);
+}
+
+.web-case-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Cards oscuras con glow sutil */
+.ov-dark-card {
+  transition: transform 0.28s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.28s cubic-bezier(0, 0, 1, 1),
+              border-color 0.28s cubic-bezier(0, 0, 1, 1);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.ov-dark-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.24),
+              0 0 30px rgba(30, 200, 240, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  border-color: rgba(139, 220, 255, 0.25);
+}
+
+/* Stat cards: sombra elegante */
+.ov-stat {
+  transition: transform 0.28s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.28s cubic-bezier(0, 0, 1, 1),
+              border-color 0.28s cubic-bezier(0, 0, 1, 1);
+}
+
+.ov-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(10, 31, 110, 0.11),
+              0 0 15px rgba(20, 86, 200, 0.08);
+  border-color: rgba(30, 200, 240, 0.25);
+}
+
+/* Mockup cards con profundidad */
+.ov-mockup {
+  transition: transform 0.28s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.28s cubic-bezier(0, 0, 1, 1);
+}
+
+.ov-mockup:hover {
+  box-shadow: 0 40px 100px rgba(10, 31, 110, 0.16),
+              0 0 30px rgba(30, 200, 240, 0.1);
+  transform: translateY(-4px) rotate(var(--rotation, 0deg));
+}
+
+/* Eyebrow: glow muy sutil */
+.ov-eyebrow {
+  transition: all 0.28s cubic-bezier(0, 0, 1, 1);
+  border-color: rgba(20, 86, 200, 0.14);
+  box-shadow: 0 16px 46px rgba(10, 31, 110, 0.08),
+              0 0 12px rgba(30, 200, 240, 0.04);
+}
+
+.ov-eyebrow:hover {
+  border-color: rgba(30, 200, 240, 0.28);
+  box-shadow: 0 18px 50px rgba(10, 31, 110, 0.1),
+              0 0 20px rgba(30, 200, 240, 0.08);
+}
+
+/* Links con transición smooth */
+.ov-card-link {
+  transition: color 0.22s cubic-bezier(0, 0, 1, 1),
+              transform 0.22s cubic-bezier(0, 0, 1, 1);
+}
+
+.ov-card-link:hover {
+  color: var(--ov-bright);
+}
+
+.ov-card-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Showcase cards: subtle glow en hover */
+.ov-showcase-card {
+  transition: transform 0.28s cubic-bezier(0, 0, 1, 1),
+              box-shadow 0.28s cubic-bezier(0, 0, 1, 1);
+}
+
+.ov-showcase-card:hover {
+  box-shadow: 0 32px 90px rgba(10, 31, 110, 0.12),
+              0 0 25px rgba(30, 200, 240, 0.06);
+  transform: translateY(-4px);
+}
+
+/* Service cards oscuras */
+.ov-dark-card {
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.18),
+              0 0 20px rgba(30, 200, 240, 0.04);
+}
+
+.ov-dark-card:hover {
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.24),
+              0 0 35px rgba(30, 200, 240, 0.1);
+}
+
+/* Transiciones suaves en elementos del hero */
+.ov-hero h1,
+.ov-hero-copy {
+  transition: all 0.65s cubic-bezier(0, 0, 1, 1) 0.1s;
+}
+
+/* Focus states accesibles pero elegantes */
+.ov-btn:focus-visible,
+.ov-card:focus-visible {
+  outline: 2px solid rgba(20, 86, 200, 0.3);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-grid::before,
   .hero-grid::after,
@@ -164,6 +371,25 @@ h4 {
   .hero-grid .relative.rounded-\[2\.2rem\],
   [data-ov-reveal] {
     transition: none !important;
+  }
+
+  .ov-card,
+  .ov-portfolio-card,
+  .web-case-card,
+  .web-feature-card,
+  .ov-card img,
+  .ov-portfolio-card img,
+  .ov-btn,
+  .ov-dark-card,
+  .ov-stat,
+  .ov-mockup,
+  .ov-eyebrow,
+  .ov-card-link,
+  .ov-showcase-card,
+  .ov-hero h1,
+  .ov-hero-copy {
+    transition: none !important;
+    transform: none !important;
   }
 }
 

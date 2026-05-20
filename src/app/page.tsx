@@ -212,8 +212,14 @@ const pageStyles = `
     font-weight: 900;
     letter-spacing: .16em;
     text-transform: uppercase;
-    box-shadow: 0 16px 46px rgba(10,31,110,.08);
+    box-shadow: 0 16px 46px rgba(10,31,110,.08), 0 0 12px rgba(30,200,240,.05);
     backdrop-filter: blur(16px);
+    transition: all .28s cubic-bezier(0,0,1,1);
+  }
+
+  .ov-eyebrow:hover {
+    border-color: rgba(30,200,240,.25);
+    box-shadow: 0 18px 50px rgba(10,31,110,.1), 0 0 18px rgba(30,200,240,.08);
   }
 
   .ov-hero {
@@ -297,14 +303,18 @@ const pageStyles = `
     border-radius: 999px;
     padding: 1rem 1.35rem;
     font-weight: 950;
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    transition: transform .22s cubic-bezier(0,0,1,1), box-shadow .22s cubic-bezier(0,0,1,1), background .22s cubic-bezier(0,0,1,1), color .22s cubic-bezier(0,0,1,1);
   }
 
   .ov-btn-primary {
     color: #fff;
     background: var(--ov-grad);
-    box-shadow: 0 18px 44px rgba(20,86,200,.26);
+    box-shadow: 0 18px 44px rgba(20,86,200,.22), 0 0 20px rgba(30,200,240,.08);
     overflow: hidden;
+  }
+
+  .ov-btn-primary:hover {
+    box-shadow: 0 22px 56px rgba(20,86,200,.28), 0 0 32px rgba(30,200,240,.12);
   }
 
   .ov-btn-primary::after {
@@ -321,12 +331,17 @@ const pageStyles = `
     color: var(--ov-navy);
     background: rgba(255,255,255,.72);
     border: 1px solid rgba(20,86,200,.16);
-    box-shadow: 0 16px 44px rgba(10,31,110,.08);
+    box-shadow: 0 16px 44px rgba(10,31,110,.08), 0 0 15px rgba(20,86,200,.04);
     backdrop-filter: blur(12px);
   }
 
+  .ov-btn-secondary:hover {
+    box-shadow: 0 18px 50px rgba(10,31,110,.1), 0 0 20px rgba(20,86,200,.08);
+    border-color: rgba(30,200,240,.25);
+  }
+
   .ov-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
 
   .ov-stats {
@@ -342,8 +357,15 @@ const pageStyles = `
     background: rgba(255,255,255,.72);
     border-radius: 1.35rem;
     padding: 1rem;
-    box-shadow: 0 16px 42px rgba(10,31,110,.07);
+    box-shadow: 0 16px 42px rgba(10,31,110,.07), 0 0 12px rgba(30,200,240,.03);
     backdrop-filter: blur(10px);
+    transition: transform .28s cubic-bezier(0,0,1,1), box-shadow .28s cubic-bezier(0,0,1,1), border-color .28s cubic-bezier(0,0,1,1);
+  }
+
+  .ov-stat:hover {
+    transform: translateY(-3px);
+    border-color: rgba(30,200,240,.22);
+    box-shadow: 0 20px 56px rgba(10,31,110,.09), 0 0 18px rgba(30,200,240,.06);
   }
 
   .ov-stat strong {
@@ -580,14 +602,14 @@ const pageStyles = `
     border-radius: 2rem;
     border: 1px solid rgba(20,86,200,.12);
     background: rgba(255,255,255,.82);
-    box-shadow: 0 22px 60px rgba(10,31,110,.08);
-    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    box-shadow: 0 22px 60px rgba(10,31,110,.08), 0 0 20px rgba(30,200,240,.04);
+    transition: transform .28s cubic-bezier(0,0,1,1), box-shadow .28s cubic-bezier(0,0,1,1), border-color .28s cubic-bezier(0,0,1,1);
   }
 
   .ov-card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(30,200,240,.55);
-    box-shadow: 0 32px 80px rgba(10,31,110,.14);
+    transform: translateY(-6px);
+    border-color: rgba(30,200,240,.4);
+    box-shadow: 0 32px 90px rgba(10,31,110,.12), 0 0 32px rgba(30,200,240,.1);
   }
 
   .ov-card-pad {
@@ -613,13 +635,14 @@ const pageStyles = `
   .ov-card-media img,
   .ov-photo-frame img,
   .ov-wide-photo img {
-    transition: transform .65s ease;
+    transition: transform .65s cubic-bezier(0,0,1,1), filter .65s cubic-bezier(0,0,1,1);
   }
 
   .ov-card:hover .ov-card-media img,
   .ov-mockup:hover .ov-photo-frame img,
   .ov-wide-photo:hover img {
-    transform: scale(1.045);
+    transform: scale(1.025);
+    filter: brightness(1.01) contrast(1.01);
   }
 
   .ov-photo-frame {
@@ -673,7 +696,14 @@ const pageStyles = `
     border-radius: 1.9rem;
     border: 1px solid rgba(20,86,200,.12);
     background: #dfeeff;
-    box-shadow: 0 24px 60px rgba(10,31,110,.10);
+    box-shadow: 0 24px 60px rgba(10,31,110,.10), 0 0 20px rgba(30,200,240,.05);
+    transition: transform .28s cubic-bezier(0,0,1,1), box-shadow .28s cubic-bezier(0,0,1,1), border-color .28s cubic-bezier(0,0,1,1);
+  }
+
+  .ov-showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 32px 80px rgba(10,31,110,.12), 0 0 30px rgba(30,200,240,.08);
+    border-color: rgba(30,200,240,.25);
   }
 
   .ov-showcase-card.is-large {
@@ -911,8 +941,15 @@ const pageStyles = `
   .ov-dark-card {
     border: 1px solid rgba(255,255,255,.13);
     background: rgba(255,255,255,.08);
-    box-shadow: 0 25px 80px rgba(0,0,0,.18);
+    box-shadow: 0 25px 80px rgba(0,0,0,.18), 0 0 25px rgba(30,200,240,.04);
     backdrop-filter: blur(18px);
+    transition: transform .28s cubic-bezier(0,0,1,1), box-shadow .28s cubic-bezier(0,0,1,1), border-color .28s cubic-bezier(0,0,1,1);
+  }
+
+  .ov-dark-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 32px 100px rgba(0,0,0,.24), 0 0 40px rgba(30,200,240,.08);
+    border-color: rgba(139,220,255,.22);
   }
 
   .ov-dark-card h3,
@@ -962,13 +999,14 @@ const pageStyles = `
     border-radius: 2rem;
     border: 1px solid rgba(20,86,200,.12);
     background: #fff;
-    box-shadow: 0 22px 60px rgba(10,31,110,.08);
-    transition: transform .28s ease, box-shadow .28s ease;
+    box-shadow: 0 22px 60px rgba(10,31,110,.08), 0 0 20px rgba(30,200,240,.04);
+    transition: transform .28s cubic-bezier(0,0,1,1), box-shadow .28s cubic-bezier(0,0,1,1), border-color .28s cubic-bezier(0,0,1,1);
   }
 
   .ov-portfolio-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 34px 86px rgba(10,31,110,.15);
+    transform: translateY(-6px);
+    box-shadow: 0 32px 90px rgba(10,31,110,.12), 0 0 32px rgba(30,200,240,.08);
+    border-color: rgba(30,200,240,.3);
   }
 
   .ov-portfolio-image {
@@ -979,11 +1017,12 @@ const pageStyles = `
   }
 
   .ov-portfolio-card img {
-    transition: transform .55s ease;
+    transition: transform .65s cubic-bezier(0,0,1,1), filter .65s cubic-bezier(0,0,1,1);
   }
 
   .ov-portfolio-card:hover img {
-    transform: scale(1.055);
+    transform: scale(1.03);
+    filter: brightness(1.02) contrast(1.01);
   }
 
   .ov-tag {
@@ -1084,6 +1123,11 @@ const pageStyles = `
   @keyframes ovShine {
     0%, 62% { transform: translateX(-160%) skewX(-18deg); }
     100% { transform: translateX(230%) skewX(-18deg); }
+  }
+
+  @keyframes ovRevealBlur {
+    from { filter: blur(8px); opacity: 0; }
+    to { filter: blur(0px); opacity: 1; }
   }
 
   @media (max-width: 980px) {
