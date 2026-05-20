@@ -80,7 +80,7 @@ export default function GuiasPage() {
               </span>
 
               <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Guías <span className="text-[#FF3333]">gratuitas</span>
+                Guías gratuitas
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-textBody md:text-xl">
                 Guías cortas, accionables y sin humo. Entrás, leés y lo aplicás al toque.

@@ -80,7 +80,7 @@ export default function PromptsPage() {
               </span>
 
               <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Prompts <span className="text-[#FF3333]">gratis</span>
+                Prompts gratis
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-textBody md:text-xl">
                 Prompts listos para leer, copiar y usar. Sin vueltas y sin humo.
