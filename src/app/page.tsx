@@ -1125,11 +1125,6 @@ const pageStyles = `
     100% { transform: translateX(230%) skewX(-18deg); }
   }
 
-  @keyframes ovRevealBlur {
-    from { filter: blur(8px); opacity: 0; }
-    to { filter: blur(0px); opacity: 1; }
-  }
-
   @media (max-width: 980px) {
     .ov-hero {
       min-height: auto;
