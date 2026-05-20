@@ -97,25 +97,6 @@ const HOME_BLOCKS = [
   },
 ];
 
-const SHOWCASE_VISUALS = [
-  {
-    title: "Siempre de Guardia",
-    caption: "Proyecto web real",
-    img: "/portfolio/siempredeguardia.png",
-    large: true,
-  },
-  {
-    title: "Calculadora ML",
-    caption: "Herramienta propia",
-    img: "/portfolio/calculadora-webapp.png",
-  },
-  {
-    title: "Quirvo",
-    caption: "Producto digital",
-    img: "/portfolio/quirvo.png",
-  },
-];
-
 const SERVICES = [
   {
     icon: LayoutTemplate,
@@ -1740,53 +1721,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ov-section">
-        <div className="ov-wrap">
-          <SectionHeader
-            eyebrow="Proyectos y herramientas"
-            title="Un home con más imagen y menos monotonía."
-            text="Una muestra rápida de proyectos, herramientas y productos para que la home tenga más impacto visual sin perder claridad."
-          />
-
-          <div className="ov-showcase-grid">
-            <Reveal delay={0.04}>
-              <div className="ov-showcase-card is-large">
-                <Image
-                  src={SHOWCASE_VISUALS[0].img}
-                  alt={SHOWCASE_VISUALS[0].title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 58vw"
-                  className="object-cover"
-                />
-                <div className="ov-showcase-badge">
-                  <span>{SHOWCASE_VISUALS[0].caption}</span>
-                  <strong>{SHOWCASE_VISUALS[0].title}</strong>
-                </div>
-              </div>
-            </Reveal>
-
-            <div className="ov-showcase-stack">
-              {SHOWCASE_VISUALS.slice(1).map((item, index) => (
-                <Reveal key={item.title} delay={0.08 + index * 0.05}>
-                  <div className="ov-showcase-card">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 26vw"
-                      className="object-cover"
-                    />
-                    <div className="ov-showcase-badge">
-                      <span>{item.caption}</span>
-                      <strong>{item.title}</strong>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="herramientas" className="ov-section scroll-mt-24">
         <div className="ov-wrap">
