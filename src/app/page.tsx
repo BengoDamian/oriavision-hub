@@ -1559,7 +1559,7 @@ export default function Home() {
         aria-label="WhatsApp"
         event="click_whatsapp"
         place="floating_home"
-        className="fixed bottom-[calc(env(safe-area-inset-bottom)+16px)] right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white shadow-2xl shadow-emerald-900/20 transition hover:-translate-y-0.5 sm:right-6 sm:bottom-[calc(env(safe-area-inset-bottom)+24px)] sm:px-5 sm:py-3"
+        className="fixed bottom-6 right-4 z-[70] inline-flex items-center gap-2 rounded-full bg-[#25D366] p-4 font-extrabold text-white shadow-2xl shadow-emerald-900/30 transition hover:-translate-y-1 sm:right-6 sm:bottom-8 sm:px-5 sm:py-3 hover:shadow-emerald-900/50"
       >
         <MessageCircle className="h-5 w-5" />
         <span className="hidden sm:inline">WhatsApp</span>
