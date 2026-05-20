@@ -89,6 +89,7 @@ export default function RootLayout({
   return (
     <html lang="es-AR">
       <head>
+        <meta charSet="utf-8" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
