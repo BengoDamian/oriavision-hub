@@ -64,7 +64,7 @@ export default function Footer() {
                 href="/prompts/"
                 className="text-slate-400 transition-colors hover:text-cyan-100"
               >
-                Prompts gratis
+                Prompts <span className="text-[#FF3333]">gratis</span>
               </Link>
             </li>
             <li>
@@ -72,7 +72,7 @@ export default function Footer() {
                 href="/guias/"
                 className="text-slate-400 transition-colors hover:text-cyan-100"
               >
-                Guías gratuitas
+                Guías <span className="text-[#FF3333]">gratuitas</span>
               </Link>
             </li>
           </ul>
