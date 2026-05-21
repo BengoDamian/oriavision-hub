@@ -1300,37 +1300,52 @@ const pageStyles = `
     }
 
     .ov-hero-mobile-top {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(118px, .78fr);
-      gap: .75rem;
-      align-items: center;
+      position: relative;
+      display: block;
+      min-height: 405px;
       margin-top: .85rem;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .ov-hero-mobile-title {
+      position: relative;
+      z-index: 3;
+      width: 58%;
+      padding-top: 1.15rem;
     }
 
     .ov-hero-integrated .ov-hero-mobile-title h1 {
-      font-size: clamp(2rem, 9vw, 3.05rem);
-      line-height: .9;
-      letter-spacing: -.058em;
+      font-size: clamp(2.55rem, 11.4vw, 3.85rem);
+      line-height: .86;
+      letter-spacing: -.064em;
+      text-shadow: 0 1px 0 rgba(255,255,255,.62);
     }
 
     .ov-hero-mobile-visual {
-      position: relative;
-      min-height: 210px;
-      transform: rotate(-3deg) translateX(.2rem);
-      filter: drop-shadow(0 18px 28px rgba(10,31,110,.16));
+      position: absolute;
+      z-index: 1;
+      right: -56%;
+      top: .35rem;
+      width: 116%;
+      height: 360px;
+      min-height: 0;
+      transform: rotate(-2deg);
+      filter: drop-shadow(0 22px 34px rgba(10,31,110,.18));
+      pointer-events: none;
     }
 
     .ov-hero-mobile-visual::before {
       content: "";
       position: absolute;
-      inset: 16% 0 12%;
+      inset: 18% 6% 16% 2%;
       border-radius: 999px;
-      background: rgba(30,200,240,.16);
-      filter: blur(24px);
+      background: rgba(30,200,240,.18);
+      filter: blur(26px);
     }
 
     .ov-hero-mobile-visual img {
-      object-position: center;
+      object-position: center right;
     }
 
     .ov-hero {
@@ -1415,7 +1430,7 @@ const pageStyles = `
     }
 
     .ov-hero-copy {
-      margin-top: .8rem;
+      margin-top: .35rem;
       font-size: .98rem;
       line-height: 1.55;
     }
@@ -1847,7 +1862,7 @@ export default function Home() {
                     alt=""
                     fill
                     priority
-                    sizes="44vw"
+                    sizes="(max-width: 640px) 116vw, 44vw"
                     className="object-contain"
                   />
                 </div>
