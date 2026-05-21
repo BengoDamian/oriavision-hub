@@ -1170,8 +1170,8 @@ const pageStyles = `
     position: relative;
     z-index: 2;
     min-height: 560px;
-    transform: translateX(1.5rem) rotate(-2deg);
-    filter: drop-shadow(0 34px 54px rgba(10,31,110,.18));
+    transform: translateX(1.15rem);
+    filter: drop-shadow(0 34px 54px rgba(10,31,110,.14));
   }
 
   .ov-hero-device::before {
@@ -1234,6 +1234,10 @@ const pageStyles = `
   .ov-hero-float-bottom {
     right: 1.8rem;
     bottom: 14%;
+  }
+
+  .ov-hero-integrated .ov-hero-float {
+    display: none;
   }
 
   .ov-hero-combo-mobile {
@@ -1302,7 +1306,7 @@ const pageStyles = `
     .ov-hero-mobile-top {
       position: relative;
       display: block;
-      min-height: 405px;
+      min-height: 352px;
       margin-top: .85rem;
       overflow: hidden;
       isolation: isolate;
@@ -1311,41 +1315,41 @@ const pageStyles = `
     .ov-hero-mobile-title {
       position: relative;
       z-index: 3;
-      width: 58%;
-      padding-top: 1.15rem;
+      width: 59%;
+      padding-top: 1.05rem;
     }
 
     .ov-hero-integrated .ov-hero-mobile-title h1 {
-      font-size: clamp(2.55rem, 11.4vw, 3.85rem);
+      font-size: clamp(2.4rem, 10.65vw, 3.6rem);
       line-height: .86;
       letter-spacing: -.064em;
-      text-shadow: 0 1px 0 rgba(255,255,255,.62);
+      text-shadow: 0 1px 0 rgba(255,255,255,.72);
     }
 
     .ov-hero-mobile-visual {
       position: absolute;
       z-index: 1;
-      right: -56%;
-      top: .35rem;
-      width: 116%;
-      height: 360px;
+      right: -58%;
+      top: -.15rem;
+      width: 126%;
+      height: 330px;
       min-height: 0;
-      transform: rotate(-2deg);
-      filter: drop-shadow(0 22px 34px rgba(10,31,110,.18));
+      transform: none;
+      filter: drop-shadow(0 20px 32px rgba(10,31,110,.13));
       pointer-events: none;
     }
 
     .ov-hero-mobile-visual::before {
       content: "";
       position: absolute;
-      inset: 18% 6% 16% 2%;
+      inset: 22% 4% 18% 8%;
       border-radius: 999px;
-      background: rgba(30,200,240,.18);
-      filter: blur(26px);
+      background: rgba(30,200,240,.12);
+      filter: blur(22px);
     }
 
     .ov-hero-mobile-visual img {
-      object-position: center right;
+      object-position: center center;
     }
 
     .ov-hero {
@@ -1813,7 +1817,7 @@ export default function Home() {
 
             <Reveal delay={0.1} className="ov-hero-device">
               <Image
-                src="/web-visuals/hero-web-responsive-clean.png"
+                src="/web-visuals/hero-dashboard-oriavision.png"
                 alt=""
                 fill
                 priority
@@ -1858,11 +1862,11 @@ export default function Home() {
               <Reveal delay={0.09}>
                 <div className="ov-hero-mobile-visual" aria-hidden="true">
                   <Image
-                    src="/web-visuals/hero-web-responsive-clean.png"
+                    src="/web-visuals/hero-dashboard-oriavision.png"
                     alt=""
                     fill
                     priority
-                    sizes="(max-width: 640px) 116vw, 44vw"
+                    sizes="(max-width: 640px) 126vw, 44vw"
                     className="object-contain"
                   />
                 </div>
