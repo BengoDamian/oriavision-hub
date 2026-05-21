@@ -1696,6 +1696,21 @@ const pageStyles = `
     }
   }
 
+
+  @media (max-width: 640px) {
+    .ov-hero-integrated {
+      padding-bottom: .75rem;
+    }
+
+    .ov-hero-integrated + .ov-section {
+      padding-top: .75rem;
+    }
+
+    .ov-hero-integrated + .ov-section .ov-wrap {
+      margin-top: 0;
+    }
+  }
+
 `;
 
 function SectionHeader({
@@ -1899,7 +1914,7 @@ export default function Home() {
               const Icon = item.icon;
 
               return (
-                <Reveal key={item.title} delay={0.04 + index * 0.04}>
+                <div key={item.title}>
                   <a href={item.href} className="ov-card block">
                     <div className="ov-card-media">
                       <Image
@@ -1922,7 +1937,7 @@ export default function Home() {
                       </div>
                     </div>
                   </a>
-                </Reveal>
+                </div>
               );
             })}
           </div>
