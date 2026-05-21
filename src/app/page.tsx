@@ -1306,10 +1306,11 @@ const pageStyles = `
     .ov-hero-mobile-art {
       position: relative;
       width: 100%;
-      aspect-ratio: 1180 / 425;
-      margin-top: .75rem;
-      overflow: visible;
-      filter: drop-shadow(0 18px 34px rgba(10,31,110,.08));
+      aspect-ratio: 1180 / 560;
+      margin-top: .65rem;
+      overflow: hidden;
+      border-radius: .9rem;
+      filter: drop-shadow(0 16px 28px rgba(10,31,110,.08));
     }
 
     .ov-hero-mobile-art img {
@@ -1653,6 +1654,45 @@ const pageStyles = `
       margin-top: 1rem;
       font-size: .98rem;
       line-height: 1.55;
+    }
+
+    .ov-hero-combo-mobile .ov-actions {
+      flex-direction: row;
+      align-items: stretch;
+      gap: .35rem;
+      margin-top: 1.05rem;
+      padding: .32rem;
+      border: 1px solid rgba(20,86,200,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 18px 42px rgba(10,31,110,.10);
+      backdrop-filter: blur(14px);
+    }
+
+    .ov-hero-combo-mobile .ov-btn {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+      justify-content: center;
+      border-radius: 999px;
+      padding: .78rem .52rem;
+      font-size: .68rem;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: none;
+    }
+
+    .ov-hero-combo-mobile .ov-btn-primary {
+      box-shadow: none;
+    }
+
+    .ov-hero-combo-mobile .ov-btn-secondary {
+      background: rgba(255,255,255,.82);
+    }
+
+    .ov-hero-combo-mobile .ov-btn svg {
+      width: 1rem;
+      height: 1rem;
     }
   }
 
