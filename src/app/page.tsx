@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  BarChart3,
   BadgeCheck,
   BookOpen,
   Calculator,
@@ -13,6 +14,7 @@ import {
   LayoutTemplate,
   MessageCircle,
   MonitorSmartphone,
+  TrendingUp,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
@@ -1107,6 +1109,137 @@ const pageStyles = `
     100% { transform: translateX(230%) skewX(-18deg); }
   }
 
+
+
+  /* Hero integrado: desktop y mobile tienen composiciones distintas para que texto e imagen convivan. */
+  .ov-hero-integrated {
+    min-height: auto;
+    padding: 2.2rem 0 4.6rem;
+    background:
+      radial-gradient(circle at 8% 10%, rgba(30, 200, 240, .18), transparent 32%),
+      radial-gradient(circle at 90% 18%, rgba(20, 86, 200, .12), transparent 34%),
+      linear-gradient(180deg, #f7fbff 0%, #edf6ff 100%);
+  }
+
+  .ov-hero-integrated .ov-search-shell {
+    width: min(100%, 520px);
+    margin: 0 auto 1.35rem;
+    border-color: rgba(255,255,255,.78);
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 20px 60px rgba(10,31,110,.08);
+  }
+
+  .ov-hero-combo-desktop {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
+    gap: clamp(1.25rem, 2.5vw, 3rem);
+    align-items: center;
+    min-height: 600px;
+    overflow: hidden;
+    border-radius: 2.3rem;
+  }
+
+  .ov-hero-copybox {
+    position: relative;
+    z-index: 3;
+    max-width: 620px;
+  }
+
+  .ov-hero-integrated .ov-hero-copybox h1,
+  .ov-hero-integrated .ov-hero-mobile-title h1 {
+    margin: 0;
+    font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+    font-weight: 950;
+    text-transform: uppercase;
+    color: #04356A;
+    letter-spacing: -.06em;
+  }
+
+  .ov-hero-integrated .ov-hero-copybox h1 {
+    font-size: clamp(4.25rem, 7.2vw, 6.8rem);
+    line-height: .86;
+  }
+
+  .ov-hero-integrated .ov-hero-copybox h1 span,
+  .ov-hero-integrated .ov-hero-mobile-title h1 span {
+    color: #1293ff;
+  }
+
+  .ov-hero-device {
+    position: relative;
+    z-index: 2;
+    min-height: 560px;
+    transform: translateX(1.5rem) rotate(-2deg);
+    filter: drop-shadow(0 34px 54px rgba(10,31,110,.18));
+  }
+
+  .ov-hero-device::before {
+    content: "";
+    position: absolute;
+    inset: 12% 2% 8% 10%;
+    border-radius: 999px;
+    background: rgba(30,200,240,.18);
+    filter: blur(40px);
+  }
+
+  .ov-hero-device img {
+    object-position: center;
+  }
+
+  .ov-hero-float {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    border: 1px solid rgba(255,255,255,.82);
+    border-radius: 1.15rem;
+    background: rgba(255,255,255,.86);
+    padding: .95rem 1.05rem;
+    box-shadow: 0 20px 45px rgba(10,31,110,.12);
+    backdrop-filter: blur(18px);
+    color: #071A4F;
+  }
+
+  .ov-hero-float svg {
+    color: #1293ff;
+  }
+
+  .ov-hero-float strong {
+    display: block;
+    font-size: 1.45rem;
+    line-height: 1;
+    color: #04356A;
+  }
+
+  .ov-hero-float span {
+    display: block;
+    margin-top: .25rem;
+    font-size: .78rem;
+    font-weight: 800;
+    color: #61708c;
+  }
+
+  .ov-hero-float-left {
+    left: 43%;
+    top: 20%;
+  }
+
+  .ov-hero-float-right {
+    right: .7rem;
+    top: 30%;
+  }
+
+  .ov-hero-float-bottom {
+    right: 1.8rem;
+    bottom: 14%;
+  }
+
+  .ov-hero-combo-mobile {
+    display: none;
+  }
+
   @media (max-width: 980px) {
     .ov-hero {
       min-height: auto;
@@ -1146,6 +1279,58 @@ const pageStyles = `
   @media (max-width: 640px) {
     .ov-wrap {
       width: min(100% - 28px, 1160px);
+    }
+
+
+    .ov-hero-integrated {
+      padding: 1.25rem 0 2.8rem;
+    }
+
+    .ov-hero-integrated .ov-search-shell {
+      width: 100%;
+      margin: 0 0 1rem;
+    }
+
+    .ov-hero-combo-desktop {
+      display: none;
+    }
+
+    .ov-hero-combo-mobile {
+      display: block;
+    }
+
+    .ov-hero-mobile-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(118px, .78fr);
+      gap: .75rem;
+      align-items: center;
+      margin-top: .85rem;
+    }
+
+    .ov-hero-integrated .ov-hero-mobile-title h1 {
+      font-size: clamp(2rem, 9vw, 3.05rem);
+      line-height: .9;
+      letter-spacing: -.058em;
+    }
+
+    .ov-hero-mobile-visual {
+      position: relative;
+      min-height: 210px;
+      transform: rotate(-3deg) translateX(.2rem);
+      filter: drop-shadow(0 18px 28px rgba(10,31,110,.16));
+    }
+
+    .ov-hero-mobile-visual::before {
+      content: "";
+      position: absolute;
+      inset: 16% 0 12%;
+      border-radius: 999px;
+      background: rgba(30,200,240,.16);
+      filter: blur(24px);
+    }
+
+    .ov-hero-mobile-visual img {
+      object-position: center;
     }
 
     .ov-hero {
@@ -1472,6 +1657,22 @@ const pageStyles = `
       transform: none !important;
     }
   }
+
+  @media (max-width: 640px) {
+    .ov-hero-integrated .ov-hero-mobile-title h1 {
+      margin-top: 0;
+      font-size: clamp(2rem, 9vw, 3.05rem);
+      line-height: .9;
+      letter-spacing: -.058em;
+    }
+
+    .ov-hero-integrated .ov-hero-copy {
+      margin-top: 1rem;
+      font-size: .98rem;
+      line-height: 1.55;
+    }
+  }
+
 `;
 
 function SectionHeader({
@@ -1566,41 +1767,24 @@ export default function Home() {
         <span className="hidden sm:inline">WhatsApp</span>
       </TrackLink>
 
-      <section className="ov-hero">
-        <div className="ov-wrap ov-hero-inner">
-          <div>
-            <Reveal delay={0.02}>
-              <div className="ov-search-shell">
-                <ResourceSearch items={searchItems} variant="hero" />
-              </div>
-            </Reveal>
-
-            <div className="ov-mobile-hero-row">
-              <Reveal delay={0.08} className="ov-mobile-hero-title">
-                <h1>Soluciones digitales para vender mejor online.</h1>
-              </Reveal>
-
-              <Reveal delay={0.05}>
-                <div className="ov-mobile-hero-card" aria-hidden="true">
-                  <Image
-                    src="/web-visuals/hero-web-responsive-clean.png"
-                    alt=""
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 40vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </Reveal>
+      <section className="ov-hero ov-hero-integrated">
+        <div className="ov-wrap">
+          <Reveal delay={0.02}>
+            <div className="ov-search-shell">
+              <ResourceSearch items={searchItems} variant="hero" />
             </div>
+          </Reveal>
 
-            <Reveal delay={0.11}>
+          <div className="ov-hero-combo-desktop">
+            <Reveal delay={0.06} className="ov-hero-copybox">
+              <h1>
+                Soluciones <span>digitales</span> para vender mejor online.
+              </h1>
+
               <p className="ov-hero-copy">
                 Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.
               </p>
-            </Reveal>
 
-            <Reveal delay={0.14}>
               <div className="ov-actions">
                 <a href="#herramientas" className="ov-btn ov-btn-primary">
                   Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
@@ -1612,76 +1796,82 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.17}>
-              <div className="ov-stats">
-                {STATS.map((stat) => (
-                  <div key={stat.label} className="ov-stat">
-                    <strong>{stat.value}</strong>
-                    <span>{stat.label}</span>
-                  </div>
-                ))}
-              </div>
+            <Reveal delay={0.1} className="ov-hero-device">
+              <Image
+                src="/web-visuals/hero-web-responsive-clean.png"
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 1200px) 54vw, 720px"
+                className="object-contain"
+              />
             </Reveal>
+
+            <div className="ov-hero-float ov-hero-float-left" aria-hidden="true">
+              <TrendingUp className="h-7 w-7" />
+              <div>
+                <strong>+32%</strong>
+                <span>Crecimiento</span>
+              </div>
+            </div>
+
+            <div className="ov-hero-float ov-hero-float-right" aria-hidden="true">
+              <BarChart3 className="h-7 w-7" />
+              <div>
+                <strong>3,62%</strong>
+                <span>Conversión</span>
+              </div>
+            </div>
+
+            <div className="ov-hero-float ov-hero-float-bottom" aria-hidden="true">
+              <CheckCircle2 className="h-7 w-7" />
+              <div>
+                <strong>100%</strong>
+                <span>Claridad</span>
+              </div>
+            </div>
           </div>
 
-          <Reveal delay={0.12} className="ov-hero-visual">
-            <div className="ov-hero-glow" />
-            <div className="ov-mockup-stack" aria-hidden="true">
-              <div className="ov-mockup ov-mockup-main">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
+          <div className="ov-hero-combo-mobile">
+            <div className="ov-hero-mobile-top">
+              <Reveal delay={0.06} className="ov-hero-mobile-title">
+                <h1>
+                  Soluciones <span>digitales</span> para vender mejor online.
+                </h1>
+              </Reveal>
 
-                <div className="ov-photo-frame ov-photo-frame-main">
+              <Reveal delay={0.09}>
+                <div className="ov-hero-mobile-visual" aria-hidden="true">
                   <Image
-                    src="/web-visuals/oriavision-hero-focus.png"
+                    src="/web-visuals/hero-web-responsive-clean.png"
                     alt=""
                     fill
                     priority
-                    sizes="(max-width: 980px) 92vw, 470px"
-                    className="object-cover"
+                    sizes="44vw"
+                    className="object-contain"
                   />
                 </div>
-              </div>
-
-              <div className="ov-mockup ov-mockup-small">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
-                <div className="ov-photo-frame ov-photo-frame-small">
-                  <Image
-                    src="/web-exact/web-exact-05.jpg"
-                    alt=""
-                    fill
-                    sizes="(max-width: 980px) 78vw, 300px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="ov-mockup ov-mockup-card">
-                <div className="text-xs font-black uppercase tracking-[.18em] text-white/70">
-                  Panel Oriavision
-                </div>
-                <div className="mt-3 text-3xl font-black leading-none">
-                  claridad para vender mejor
-                </div>
-                <div className="mt-5 grid gap-3 text-sm font-extrabold text-white/85">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4" /> Venta online desde 2006
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4" /> Uso diario de MercadoLibre
-                  </div>
-                </div>
-              </div>
+              </Reveal>
             </div>
-          </Reveal>
+
+            <Reveal delay={0.12}>
+              <p className="ov-hero-copy">
+                Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <div className="ov-actions">
+                <a href="#herramientas" className="ov-btn ov-btn-primary">
+                  Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
+                </a>
+
+                <Link href="/web/" className="ov-btn ov-btn-secondary">
+                  Diseño web profesional
+                </Link>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
