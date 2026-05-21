@@ -174,12 +174,13 @@ const pageStyles = `
     font-family: var(--ov-font-body);
   }
 
+  /* Resto del sitio en Inter. Anton queda reservado para el hero principal. */
   .ov-home h1,
   .ov-home h2,
   .ov-home h3,
   .ov-home .ov-display {
-    font-family: var(--ov-font-hero);
-    letter-spacing: -.045em;
+    font-family: var(--ov-font-body);
+    letter-spacing: -.035em;
   }
 
   .ov-wrap {
@@ -567,8 +568,10 @@ const pageStyles = `
   .ov-section-head h2 {
     margin-top: 1rem;
     color: var(--ov-navy);
-    font-size: clamp(2.25rem, 5vw, 4.7rem);
-    line-height: .95;
+    font-family: var(--ov-font-body);
+    font-size: clamp(2.1rem, 4.2vw, 4.15rem);
+    line-height: 1.02;
+    letter-spacing: -.055em;
     font-weight: 900;
   }
 
@@ -736,7 +739,7 @@ const pageStyles = `
   .ov-showcase-badge strong {
     display: block;
     margin-top: .7rem;
-    font-family: var(--ov-font-hero);
+    font-family: var(--ov-font-body);
     font-size: clamp(1.25rem, 2vw, 2rem);
     line-height: .95;
     font-weight: 900;
