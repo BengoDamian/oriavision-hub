@@ -153,6 +153,8 @@ const homePageJsonLd = {
 };
 
 const pageStyles = `
+  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
   .ov-home {
     --ov-navy: #0A1F6E;
     --ov-royal: #1456C8;
@@ -165,16 +167,18 @@ const pageStyles = `
     --ov-line: #DCE8F6;
     --ov-grad: linear-gradient(120deg, #0A1F6E 0%, #1456C8 52%, #1EC8F0 100%);
     --ov-grad-soft: linear-gradient(135deg, rgba(10,31,110,.08), rgba(30,200,240,.12));
+    --ov-font-hero: "Anton", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --ov-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: #fff;
     color: var(--ov-text);
-    font-family: Nunito, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--ov-font-body);
   }
 
   .ov-home h1,
   .ov-home h2,
   .ov-home h3,
   .ov-home .ov-display {
-    font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--ov-font-hero);
     letter-spacing: -.045em;
   }
 
@@ -732,7 +736,7 @@ const pageStyles = `
   .ov-showcase-badge strong {
     display: block;
     margin-top: .7rem;
-    font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--ov-font-hero);
     font-size: clamp(1.25rem, 2vw, 2rem);
     line-height: .95;
     font-weight: 900;
@@ -1154,7 +1158,7 @@ const pageStyles = `
   .ov-hero-integrated .ov-hero-copybox h1,
   .ov-hero-integrated .ov-hero-mobile-title h1 {
     margin: 0;
-    font-family: "Exo 2", Inter, ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--ov-font-hero);
     font-weight: 950;
     text-transform: uppercase;
     color: #04356A;
