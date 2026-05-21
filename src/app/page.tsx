@@ -242,6 +242,7 @@ const pageStyles = `
     background: radial-gradient(circle, rgba(30,200,240,.28), transparent 66%);
     filter: blur(24px);
     animation: ovPulse 8s ease-in-out infinite alternate;
+    pointer-events: none;
   }
 
   .ov-hero-inner {
@@ -272,6 +273,8 @@ const pageStyles = `
   }
 
   .ov-actions {
+    position: relative;
+    z-index: 30;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -280,6 +283,8 @@ const pageStyles = `
 
   .ov-btn {
     position: relative;
+    z-index: 31;
+    pointer-events: auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1311,6 +1316,7 @@ const pageStyles = `
       overflow: hidden;
       border-radius: .9rem;
       filter: drop-shadow(0 16px 28px rgba(10,31,110,.08));
+      pointer-events: none;
     }
 
     .ov-hero-mobile-art img {
@@ -1824,13 +1830,13 @@ export default function Home() {
               </p>
 
               <div className="ov-actions">
-                <a href="#herramientas" className="ov-btn ov-btn-primary">
+                <a href="/#herramientas" className="ov-btn ov-btn-primary">
                   Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
                 </a>
 
-                <Link href="/web/" className="ov-btn ov-btn-secondary">
+                <a href="/web/" className="ov-btn ov-btn-secondary">
                   Diseño web profesional
-                </Link>
+                </a>
               </div>
             </Reveal>
 
@@ -1894,13 +1900,13 @@ export default function Home() {
 
             <Reveal delay={0.15}>
               <div className="ov-actions">
-                <a href="#herramientas" className="ov-btn ov-btn-primary">
+                <a href="/#herramientas" className="ov-btn ov-btn-primary">
                   Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
                 </a>
 
-                <Link href="/web/" className="ov-btn ov-btn-secondary">
+                <a href="/web/" className="ov-btn ov-btn-secondary">
                   Diseño web profesional
-                </Link>
+                </a>
               </div>
             </Reveal>
           </div>
