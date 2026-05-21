@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,7 @@
   --primary: #2563eb;
   --font-inter: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-space-grotesk: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-hero: "Anton", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-hero: var(--font-inter);
 }
 
 html {
@@ -33,28 +33,18 @@ body {
 
 
 /* Tipografías globales Oriavision
-   HERO principal: Anton
-   Resto del sitio: Inter */
-.font-hero,
-.hero h1,
-.web-hero h1,
-.hero-title {
-  font-family: var(--font-hero);
-}
-
+   Misma línea visual que la sección Diseño Web: Inter en todo el sitio. */
 h1,
 h2,
 h3,
-h4 {
-  font-family: var(--font-inter);
-  letter-spacing: -0.02em;
-}
-
+h4,
 .font-hero,
 .hero h1,
 .web-hero h1,
 .hero-title {
-  font-family: var(--font-hero);
+  font-family: var(--font-inter);
+  font-weight: 900;
+  letter-spacing: -0.045em;
 }
 
 /* === Fusión Oriavision: base clara + ADN visual PRO controlado === */

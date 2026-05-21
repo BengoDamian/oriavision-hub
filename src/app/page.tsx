@@ -153,7 +153,7 @@ const homePageJsonLd = {
 };
 
 const pageStyles = `
-  @import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
   .ov-home {
     --ov-navy: #0A1F6E;
@@ -167,20 +167,22 @@ const pageStyles = `
     --ov-line: #DCE8F6;
     --ov-grad: linear-gradient(120deg, #0A1F6E 0%, #1456C8 52%, #1EC8F0 100%);
     --ov-grad-soft: linear-gradient(135deg, rgba(10,31,110,.08), rgba(30,200,240,.12));
-    --ov-font-hero: "Anton", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --ov-font-hero: var(--ov-font-body);
     --ov-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: #fff;
     color: var(--ov-text);
     font-family: var(--ov-font-body);
   }
 
-  /* Resto del sitio en Inter. Anton queda reservado para el hero principal. */
+  /* Misma tipografía que la sección Diseño Web: Inter en todo el home. */
   .ov-home h1,
   .ov-home h2,
   .ov-home h3,
+  .ov-home h4,
   .ov-home .ov-display {
     font-family: var(--ov-font-body);
-    letter-spacing: -.035em;
+    font-weight: 900;
+    letter-spacing: -.045em;
   }
 
   .ov-wrap {
@@ -569,9 +571,9 @@ const pageStyles = `
     margin-top: 1rem;
     color: var(--ov-navy);
     font-family: var(--ov-font-body);
-    font-size: clamp(2.1rem, 4.2vw, 4.15rem);
-    line-height: 1.02;
-    letter-spacing: -.055em;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: .98;
+    letter-spacing: -.05em;
     font-weight: 900;
   }
 
@@ -1161,11 +1163,11 @@ const pageStyles = `
   .ov-hero-integrated .ov-hero-copybox h1,
   .ov-hero-integrated .ov-hero-mobile-title h1 {
     margin: 0;
-    font-family: var(--ov-font-hero);
-    font-weight: 950;
-    text-transform: uppercase;
+    font-family: var(--ov-font-body);
+    font-weight: 900;
+    text-transform: none;
     color: #04356A;
-    letter-spacing: -.06em;
+    letter-spacing: -.055em;
   }
 
   .ov-hero-integrated .ov-hero-copybox h1 {
