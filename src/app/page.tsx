@@ -1303,52 +1303,16 @@ const pageStyles = `
       display: block;
     }
 
-    .ov-hero-mobile-top {
+    .ov-hero-mobile-art {
       position: relative;
-      display: block;
-      min-height: 352px;
-      margin-top: .85rem;
-      overflow: hidden;
-      isolation: isolate;
+      width: 100%;
+      aspect-ratio: 1180 / 425;
+      margin-top: .75rem;
+      overflow: visible;
+      filter: drop-shadow(0 18px 34px rgba(10,31,110,.08));
     }
 
-    .ov-hero-mobile-title {
-      position: relative;
-      z-index: 3;
-      width: 59%;
-      padding-top: 1.05rem;
-    }
-
-    .ov-hero-integrated .ov-hero-mobile-title h1 {
-      font-size: clamp(2.4rem, 10.65vw, 3.6rem);
-      line-height: .86;
-      letter-spacing: -.064em;
-      text-shadow: 0 1px 0 rgba(255,255,255,.72);
-    }
-
-    .ov-hero-mobile-visual {
-      position: absolute;
-      z-index: 1;
-      right: -58%;
-      top: -.15rem;
-      width: 126%;
-      height: 330px;
-      min-height: 0;
-      transform: none;
-      filter: drop-shadow(0 20px 32px rgba(10,31,110,.13));
-      pointer-events: none;
-    }
-
-    .ov-hero-mobile-visual::before {
-      content: "";
-      position: absolute;
-      inset: 22% 4% 18% 8%;
-      border-radius: 999px;
-      background: rgba(30,200,240,.12);
-      filter: blur(22px);
-    }
-
-    .ov-hero-mobile-visual img {
+    .ov-hero-mobile-art img {
       object-position: center center;
     }
 
@@ -1852,26 +1816,20 @@ export default function Home() {
           </div>
 
           <div className="ov-hero-combo-mobile">
-            <div className="ov-hero-mobile-top">
-              <Reveal delay={0.06} className="ov-hero-mobile-title">
-                <h1>
-                  Soluciones <span>digitales</span> para vender mejor online.
-                </h1>
-              </Reveal>
+            <h1 className="sr-only">Soluciones digitales para vender mejor online.</h1>
 
-              <Reveal delay={0.09}>
-                <div className="ov-hero-mobile-visual" aria-hidden="true">
-                  <Image
-                    src="/web-visuals/hero-dashboard-oriavision.png"
-                    alt=""
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 126vw, 44vw"
-                    className="object-contain"
-                  />
-                </div>
-              </Reveal>
-            </div>
+            <Reveal delay={0.06}>
+              <div className="ov-hero-mobile-art" aria-hidden="true">
+                <Image
+                  src="/web-visuals/hero-mobile-composite.png"
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-contain"
+                />
+              </div>
+            </Reveal>
 
             <Reveal delay={0.12}>
               <p className="ov-hero-copy">
