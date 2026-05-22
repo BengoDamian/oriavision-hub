@@ -2326,44 +2326,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="portfolio" className="ov-section scroll-mt-24">
-        <div className="ov-wrap">
-          <SectionHeader
-            eyebrow="Portfolio"
-            title="Proyectos que muestran criterio real."
-            text="Casos propios y trabajos donde lo importante no es solo verse moderno: es que el mensaje sea claro y funcional."
-          />
-
-          <div className="grid gap-7 md:grid-cols-3">
-            {PORTFOLIO.map((project, index) => (
-              <Reveal key={project.title} delay={0.05 + index * 0.05}>
-                <a href={project.href} target="_blank" rel="noreferrer" className="ov-portfolio-card">
-                  <div className="ov-portfolio-image">
-                    <Image
-                      src={project.img}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover object-top"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <span className="ov-tag">{project.tag}</span>
-                    <h3 className="mt-4 text-2xl font-black leading-tight text-[#0A1F6E]">
-                      {project.title}
-                    </h3>
-                    <p className="mt-3 font-bold leading-relaxed text-[#5A6E8C]">
-                      {project.text}
-                    </p>
-                  </div>
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="recursos-gratuitos" className="ov-section ov-section-off scroll-mt-24">
         <div className="ov-wrap">
           <SectionHeader
