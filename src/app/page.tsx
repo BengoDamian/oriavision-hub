@@ -1,3 +1,158 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  BadgeCheck,
+  BookOpen,
+  Calculator,
+  CheckCircle2,
+  Database,
+  FileText,
+  Globe2,
+  LayoutTemplate,
+  MessageCircle,
+  MonitorSmartphone,
+  TrendingUp,
+} from "lucide-react";
+import Reveal from "@/components/Reveal";
+import Newsletter from "@/components/Newsletter";
+import TrackLink from "@/components/TrackLink";
+import ResourceSearch from "@/components/ResourceSearch";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
+
+const SITE_URL = "https://www.oriavision.com.ar";
+const CALC_URL = "https://calculadoraml.oriavision.com.ar";
+const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
+
+export const metadata: Metadata = {
+  title: "Oriavision | Soluciones digitales para vender mejor online",
+  description:
+    "Herramientas para MercadoLibre, recursos gratuitos y desarrollo de páginas web profesionales para negocios que quieren vender mejor online.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: SITE_URL,
+    title: "Oriavision | Soluciones digitales para vender mejor online",
+    description:
+      "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
+    images: [
+      {
+        url: "/og/home.png",
+        width: 1200,
+        height: 630,
+        alt: "Oriavision",
+      },
+    ],
+  },
+  twitter: {
+    title: "Oriavision | Soluciones digitales para vender mejor online",
+    description:
+      "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
+    images: ["/og/home.png"],
+  },
+};
+
+const TEAM = [
+  {
+    name: "Edgardo A. Díaz",
+    role: "E-commerce & MercadoLibre",
+    bio: "18 años vendiendo online. Oriavision nace de problemas reales: precios, procesos, páginas y decisiones comerciales.",
+    img: "/team/persona-1.jpg",
+  },
+  {
+    name: "Analía L. Rodriguez",
+    role: "Operaciones & Customer Success",
+    bio: "Procesos simples, seguimiento claro y soporte humano para que cada solución se pueda usar sin fricción.",
+    img: "/team/persona-2.jpg",
+  },
+  {
+    name: "Damián E. Bengochea",
+    role: "Desarrollo & Producto",
+    bio: "Convierte ideas en herramientas rápidas, estables y fáciles de mantener, desde landings hasta sistemas con lógica propia.",
+    img: "/team/persona-3.jpg",
+  },
+];
+
+const STATS = [
+  { value: "18+", label: "años vendiendo online" },
+  { value: "3", label: "tiendas MercadoLibre" },
+  { value: "100%", label: "experiencia real" },
+];
+
+const HOME_BLOCKS = [
+  {
+    icon: Calculator,
+    title: "Herramientas ML",
+    text: "Calculadoras, orientadores y soluciones prácticas para decidir precios y operar con más claridad.",
+    href: "#herramientas",
+    label: "Ver herramientas",
+    img: "/web-visuals/mockup-slide-system.png",
+  },
+  {
+    icon: LayoutTemplate,
+    title: "Desarrollo web",
+    text: "Landing pages, sistemas simples, branding visual y páginas profesionales para convertir mejor.",
+    href: "#servicios",
+    label: "Ver servicios",
+    img: "/web-exact/web-exact-04.jpg",
+  },
+];
+
+const SERVICES = [
+  {
+    icon: LayoutTemplate,
+    title: "Landing pages",
+    text: "Una página enfocada en una oferta concreta: presentar, explicar, captar leads y llevar a WhatsApp o formulario.",
+  },
+  {
+    icon: Globe2,
+    title: "Webs profesionales",
+    text: "Sitios claros, modernos y rápidos para negocios que necesitan una carta de presentación sólida y confiable.",
+  },
+  {
+    icon: Database,
+    title: "Sistemas web simples",
+    text: "Soluciones con formularios, login, paneles, base de datos o automatizaciones cuando una web común queda corta.",
+  },
+];
+
+const PORTFOLIO = [
+  {
+    title: "Siempre de Guardia",
+    tag: "Servicios locales",
+    text: "Rediseño orientado a claridad, confianza y captación por especialidad.",
+    img: "/portfolio/siempredeguardia.png",
+    href: "https://siempredeguardia.com.ar",
+  },
+  {
+    title: "Quirvo",
+    tag: "Producto digital",
+    text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
+    img: "/portfolio/quirvo.png",
+    href: "https://quirvo.com.ar",
+  },
+  {
+    title: "Calculadora ML",
+    tag: "Herramienta SaaS",
+    text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
+    img: "/portfolio/calculadora-landing.png",
+    href: "https://calculadoraml.oriavision.com.ar",
+  },
+];
+
+const homePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Oriavision",
+  url: SITE_URL,
+  description:
+    "Herramientas para MercadoLibre, recursos gratuitos y páginas web profesionales para vender mejor online.",
+  inLanguage: "es-AR",
+};
+
+
 const pageStyles = `
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
