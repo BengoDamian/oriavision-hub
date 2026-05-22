@@ -1734,6 +1734,92 @@ const pageStyles = `
     }
   }
 
+
+  /* Ajuste final hero: notebook más protagonista y botones en una sola línea. */
+  .ov-hero-integrated .ov-hero-device {
+    width: min(108%, 850px) !important;
+    min-height: 625px !important;
+    transform: translateY(-32px) scale(1.06) !important;
+    transform-origin: center right !important;
+  }
+
+  .ov-hero-integrated .ov-hero-combo-desktop .ov-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: .75rem !important;
+  }
+
+  .ov-hero-integrated .ov-hero-combo-desktop .ov-btn {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+
+  @media (min-width: 641px) and (max-width: 980px) {
+    .ov-hero-integrated {
+      padding-bottom: 3.2rem !important;
+    }
+
+    .ov-hero-integrated .ov-hero-combo-desktop {
+      grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr) !important;
+      gap: .75rem !important;
+      min-height: 560px !important;
+      align-items: center !important;
+    }
+
+    .ov-hero-integrated .ov-hero-copybox {
+      max-width: 360px !important;
+    }
+
+    .ov-hero-integrated .ov-hero-copybox h1 {
+      font-size: clamp(3.6rem, 8.7vw, 5.15rem) !important;
+      line-height: .88 !important;
+    }
+
+    .ov-hero-integrated .ov-hero-copy {
+      max-width: 340px !important;
+      margin-top: 1rem !important;
+      font-size: .96rem !important;
+      line-height: 1.48 !important;
+    }
+
+    .ov-hero-integrated .ov-hero-device {
+      width: min(132%, 610px) !important;
+      min-height: 455px !important;
+      justify-self: end !important;
+      transform: translate(38px, -72px) scale(1.18) !important;
+    }
+
+    .ov-hero-integrated .ov-hero-combo-desktop .ov-actions {
+      margin-top: 1.25rem !important;
+      gap: .42rem !important;
+    }
+
+    .ov-hero-integrated .ov-hero-combo-desktop .ov-btn {
+      padding: .78rem .84rem !important;
+      font-size: .68rem !important;
+      line-height: 1 !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ov-hero-integrated .ov-actions {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      align-items: stretch !important;
+    }
+
+    .ov-hero-integrated .ov-actions .ov-btn {
+      width: auto !important;
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      white-space: nowrap !important;
+    }
+  }
+
 `;
 
 function SectionHeader({
