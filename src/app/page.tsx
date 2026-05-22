@@ -21,6 +21,7 @@ import Newsletter from "@/components/Newsletter";
 import TrackLink from "@/components/TrackLink";
 import ResourceSearch from "@/components/ResourceSearch";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
+import WebProjectsCarousel from "@/components/WebProjectsCarousel";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
@@ -121,24 +122,31 @@ const SERVICES = [
 const PORTFOLIO = [
   {
     title: "Siempre de Guardia",
-    tag: "Servicios locales",
-    text: "Rediseño orientado a claridad, confianza y captación por especialidad.",
+    tag: "Sistema web",
+    text: "Directorio de servicios con categorías, registro de usuarios y contacto rápido.",
     img: "/portfolio/siempredeguardia.png",
-    href: "https://siempredeguardia.com.ar",
+    href: "https://web-siempredeguardia.vercel.app/",
   },
   {
     title: "Quirvo",
-    tag: "Producto digital",
+    tag: "Landing",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
     img: "/portfolio/quirvo.png",
-    href: "https://quirvo.com.ar",
+    href: "https://quirvo.com.ar/",
   },
   {
     title: "Calculadora ML",
-    tag: "Herramienta SaaS",
+    tag: "Herramienta",
     text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
     img: "/portfolio/calculadora-landing.png",
-    href: "https://calculadoraml.oriavision.com.ar",
+    href: "https://calculadoraml.oriavision.com.ar/",
+  },
+  {
+    title: "dbengotech",
+    tag: "Web de servicios",
+    text: "Sitio profesional de servicios tecnológicos con propuesta clara y visual comercial.",
+    img: "/portfolio/dbengotech.png",
+    href: "https://dbengotech.com.ar/",
   },
 ];
 
@@ -850,6 +858,94 @@ const pageStyles = `
     position: relative;
     height: calc(100% - 42px);
     overflow: hidden;
+  }
+
+  .ov-project-carousel {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .ov-project-carousel-viewport {
+    overflow: hidden;
+    border-radius: 1.9rem;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 30px 90px rgba(0,0,0,.28);
+    backdrop-filter: blur(18px);
+  }
+
+  .ov-project-carousel-track {
+    display: flex;
+    transition: transform .7s cubic-bezier(.22,1,.36,1);
+    will-change: transform;
+  }
+
+  .ov-project-slide {
+    min-width: 100%;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ov-project-slide-media {
+    position: relative;
+    height: 335px;
+    background: rgba(4,13,35,.72);
+  }
+
+  .ov-project-slide-copy {
+    padding: 1.1rem 1.15rem 1.2rem;
+    background: linear-gradient(180deg, rgba(7,19,59,.88), rgba(6,16,44,.96));
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+
+  .ov-project-slide-copy h3 {
+    margin-top: .8rem;
+    color: #fff;
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+
+  .ov-project-slide-copy p {
+    margin-top: .65rem;
+    color: rgba(226,242,255,.8);
+    font-size: .96rem;
+    line-height: 1.55;
+    font-weight: 700;
+  }
+
+  .ov-project-slide-link {
+    display: inline-flex;
+    margin-top: .95rem;
+    color: #6fd9ff;
+    font-size: .78rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .ov-project-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: .55rem;
+  }
+
+  .ov-project-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255,255,255,.24);
+    transition: all .25s ease;
+  }
+
+  .ov-project-carousel-dot.is-active {
+    width: 34px;
+    background: linear-gradient(120deg, #1456C8 0%, #1EC8F0 100%);
   }
 
   .ov-service-chip-row {
@@ -2206,56 +2302,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={0.08} className="ov-services-visual">
-              <div className="ov-service-preview ov-service-preview-main">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
-                <div className="ov-service-preview-screen">
-                  <Image
-                    src="/portfolio/siempredeguardia.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 980px) 100vw, 620px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </div>
-
-              <div className="ov-service-preview ov-service-preview-secondary">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
-                <div className="ov-service-preview-screen">
-                  <Image
-                    src="/portfolio/quirvo.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 980px) 62vw, 330px"
-                    className="object-cover object-left-top"
-                  />
-                </div>
-              </div>
-
-              <div className="ov-service-preview ov-service-preview-tertiary">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
-                <div className="ov-service-preview-screen">
-                  <Image
-                    src="/portfolio/calculadora-landing.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 980px) 52vw, 270px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </div>
+              <WebProjectsCarousel projects={PORTFOLIO} />
             </Reveal>
           </div>
 
