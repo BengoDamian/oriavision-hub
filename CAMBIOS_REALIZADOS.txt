@@ -1,0 +1,27 @@
+CAMBIOS REALIZADOS - ORIAVISION HUB
+
+1) Home / hero desktop
+- Se limpió el hero desktop para que no muestre tarjetas/callouts flotantes.
+- Se reemplazó la imagen usada por el hero desktop en public/web-visuals/hero-dashboard-oriavision.png por una versión limpia de notebook con dashboard Oriavision, sin textos ni badges flotantes.
+- Se ajustó src/app/page.tsx para que el contenedor desktop del hero use overflow visible, no recorte la notebook y mantenga object-contain/object-right.
+- Se mantuvo el hero mobile existente para no romper la composición aprobada en celular.
+
+2) Header / navbar
+- Se ajustó src/components/Navbar.tsx para que la barra superior use todo el ancho disponible de pantalla.
+- Se conservaron los links globales y el botón Calculadora ML.
+
+3) Links revisados en código
+- Explorar herramientas -> #herramientas
+- Diseño web profesional -> /web/
+- Calculadora ML -> https://calculadoraml.oriavision.com.ar
+- Orientador de precios ML -> https://www.orientadordepreciosml.oriavision.com.ar/
+
+4) Validación realizada
+- Se ejecutó TypeScript: ./node_modules/.bin/tsc --noEmit, sin errores.
+- No se pudo completar npm run build dentro del sandbox porque el ZIP trae node_modules de Windows y falta el binario Linux de Next/SWC; el entorno no tiene acceso a registry.npmjs.org para descargarlo. En una PC normal, ejecutar npm install y luego npm run build.
+
+IMPORTANTE
+Este ZIP está limpio: no incluye node_modules, .next, out ni .git. Para usarlo:
+1. npm install
+2. npm run build
+3. deploy a Cloudflare Pages

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BarChart3,
   BadgeCheck,
   BookOpen,
   Calculator,
@@ -12,9 +11,7 @@ import {
   FileText,
   Globe2,
   LayoutTemplate,
-  MessageCircle,
   MonitorSmartphone,
-  TrendingUp,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
@@ -1146,12 +1143,12 @@ const pageStyles = `
   .ov-hero-combo-desktop {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
-    gap: clamp(1.25rem, 2.5vw, 3rem);
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.18fr);
+    gap: clamp(1.5rem, 3.8vw, 4.5rem);
     align-items: center;
-    min-height: 600px;
-    overflow: hidden;
-    border-radius: 2.3rem;
+    min-height: 620px;
+    overflow: visible;
+    border-radius: 0;
   }
 
   .ov-hero-copybox {
@@ -1182,75 +1179,37 @@ const pageStyles = `
 
   .ov-hero-device {
     position: relative;
-    z-index: 2;
-    min-height: 560px;
-    transform: translateX(1.15rem);
+    z-index: 1;
+    justify-self: end;
+    width: min(100%, 760px);
+    min-height: 575px;
+    overflow: visible;
+    transform: none;
     filter: drop-shadow(0 34px 54px rgba(10,31,110,.14));
+    pointer-events: none;
   }
 
   .ov-hero-device::before {
     content: "";
     position: absolute;
-    inset: 12% 2% 8% 10%;
+    inset: 13% 5% 10% 8%;
     border-radius: 999px;
-    background: rgba(30,200,240,.18);
-    filter: blur(40px);
+    background: rgba(30,200,240,.16);
+    filter: blur(42px);
+    pointer-events: none;
   }
 
   .ov-hero-device img {
-    object-position: center;
+    object-position: center right;
   }
 
   .ov-hero-float {
-    position: absolute;
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    gap: .85rem;
-    border: 1px solid rgba(255,255,255,.82);
-    border-radius: 1.15rem;
-    background: rgba(255,255,255,.86);
-    padding: .95rem 1.05rem;
-    box-shadow: 0 20px 45px rgba(10,31,110,.12);
-    backdrop-filter: blur(18px);
-    color: #071A4F;
+    display: none !important;
   }
 
-  .ov-hero-float svg {
-    color: #1293ff;
-  }
-
-  .ov-hero-float strong {
-    display: block;
-    font-size: 1.45rem;
-    line-height: 1;
-    color: #04356A;
-  }
-
+  .ov-hero-float svg,
+  .ov-hero-float strong,
   .ov-hero-float span {
-    display: block;
-    margin-top: .25rem;
-    font-size: .78rem;
-    font-weight: 800;
-    color: #61708c;
-  }
-
-  .ov-hero-float-left {
-    left: 43%;
-    top: 20%;
-  }
-
-  .ov-hero-float-right {
-    right: .7rem;
-    top: 30%;
-  }
-
-  .ov-hero-float-bottom {
-    right: 1.8rem;
-    bottom: 14%;
-  }
-
-  .ov-hero-integrated .ov-hero-float {
     display: none;
   }
 
@@ -1839,7 +1798,7 @@ export default function Home() {
               </p>
 
               <div className="ov-actions">
-                <a href="/#herramientas" className="ov-btn ov-btn-primary">
+                <a href="#herramientas" className="ov-btn ov-btn-primary">
                   Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
                 </a>
 
@@ -1855,34 +1814,10 @@ export default function Home() {
                 alt=""
                 fill
                 priority
-                sizes="(max-width: 1200px) 54vw, 720px"
-                className="object-contain"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-contain object-right"
               />
             </Reveal>
-
-            <div className="ov-hero-float ov-hero-float-left" aria-hidden="true">
-              <TrendingUp className="h-7 w-7" />
-              <div>
-                <strong>+32%</strong>
-                <span>Crecimiento</span>
-              </div>
-            </div>
-
-            <div className="ov-hero-float ov-hero-float-right" aria-hidden="true">
-              <BarChart3 className="h-7 w-7" />
-              <div>
-                <strong>3,62%</strong>
-                <span>Conversión</span>
-              </div>
-            </div>
-
-            <div className="ov-hero-float ov-hero-float-bottom" aria-hidden="true">
-              <CheckCircle2 className="h-7 w-7" />
-              <div>
-                <strong>100%</strong>
-                <span>Claridad</span>
-              </div>
-            </div>
           </div>
 
           <div className="ov-hero-combo-mobile">
@@ -1909,7 +1844,7 @@ export default function Home() {
 
             <Reveal delay={0.15}>
               <div className="ov-actions">
-                <a href="/#herramientas" className="ov-btn ov-btn-primary">
+                <a href="#herramientas" className="ov-btn ov-btn-primary">
                   Explorar herramientas <ArrowRight className="relative z-10 h-5 w-5" />
                 </a>
 
