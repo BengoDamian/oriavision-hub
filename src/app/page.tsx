@@ -2060,7 +2060,6 @@ export default function Home() {
                       <p>{item.text}</p>
                       <div className="ov-card-link">
                         {item.label}
-                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                       </div>
                     </div>
                   </a>
