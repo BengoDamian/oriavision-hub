@@ -1638,6 +1638,46 @@ const pageStyles = `
       margin: 0;
     }
 
+    /* Mobile only: mostrar las capturas completas del carrousel.
+       En desktop queda igual; en celular evita que las imágenes se recorten hacia los costados. */
+    .ov-project-carousel {
+      min-height: auto;
+      gap: .75rem;
+    }
+
+    .ov-project-carousel-viewport {
+      border-radius: 1.35rem;
+      box-shadow: 0 18px 48px rgba(0,0,0,.22);
+      backdrop-filter: none;
+    }
+
+    .ov-project-slide-media {
+      height: clamp(205px, 58vw, 250px);
+      background: linear-gradient(180deg, rgba(244,248,255,.98), rgba(227,239,255,.94));
+      overflow: hidden;
+    }
+
+    .ov-project-slide-media img {
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: .45rem !important;
+      transform: none !important;
+    }
+
+    .ov-project-slide-copy {
+      padding: 1.05rem 1.05rem 1.15rem;
+    }
+
+    .ov-project-slide-copy h3 {
+      font-size: 1.7rem;
+      line-height: 1.02;
+    }
+
+    .ov-project-slide-copy p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
     .ov-services-visual::before {
       inset: 4% 8% 10%;
       opacity: .55;
