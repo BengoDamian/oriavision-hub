@@ -1185,10 +1185,11 @@ const pageStyles = `
     position: relative;
     z-index: 1;
     justify-self: end;
-    width: min(100%, 760px);
-    min-height: 575px;
+    width: min(100%, 790px);
+    min-height: 595px;
     overflow: visible;
-    transform: none;
+    transform: translateY(-10px);
+    transform-origin: center right;
     filter: drop-shadow(0 34px 54px rgba(10,31,110,.14));
     pointer-events: none;
   }
@@ -1225,6 +1226,47 @@ const pageStyles = `
     .ov-hero {
       min-height: auto;
       padding-top: 56px;
+    }
+
+    .ov-hero-combo-desktop {
+      grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+      gap: 1.25rem;
+      min-height: 520px;
+    }
+
+    .ov-hero-copybox {
+      max-width: 470px;
+    }
+
+    .ov-hero-integrated .ov-hero-copybox h1 {
+      font-size: clamp(3.6rem, 9vw, 5.2rem);
+      line-height: .88;
+    }
+
+    .ov-hero-copy {
+      max-width: 460px;
+      font-size: clamp(.96rem, 1.95vw, 1.1rem);
+      line-height: 1.5;
+    }
+
+    .ov-hero-combo-desktop .ov-actions {
+      flex-wrap: nowrap;
+      gap: .55rem;
+      margin-top: 1.25rem;
+    }
+
+    .ov-hero-combo-desktop .ov-btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: .9rem 1rem;
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+    .ov-hero-device {
+      width: min(100%, 570px);
+      min-height: 440px;
+      transform: translateY(-24px) scale(1.08);
     }
 
     .ov-hero-inner,
