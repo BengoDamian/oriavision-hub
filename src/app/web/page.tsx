@@ -1,488 +1,193 @@
-import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
+"use client";
+
+import { useEffect } from "react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import WebRequestForm from "@/components/WebRequestForm";
 
-const SITE_URL = "https://www.oriavision.com.ar";
-const PAGE_URL = `${SITE_URL}/web/`;
+const WEB_CSS = "\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');\n\n.oriavision-web-exact {\n  min-height: 100vh;\n  background: #fff;\n}\n\n\n    /* â”€â”€ RESET â”€â”€ */\n    .oriavision-web-exact, .oriavision-web-exact *, .oriavision-web-exact *::before, .oriavision-web-exact *::after { box-sizing: border-box; }\n    .oriavision-web-exact * { margin: 0; padding: 0; }\n    html { scroll-behavior: smooth; }\n\n    :root {\n      --navy:     #0A1F6E;\n      --royal:    #1456C8;\n      --bright:   #0091D5;\n      --cyan:     #1EC8F0;\n      --bg:       #FFFFFF;\n      --off:      #F2F8FF;\n      --text:     #0A1F6E;\n      --muted:    #5A6E8C;\n      --line:     #DCE8F6;\n      --white:    #FFFFFF;\n      --grad:     linear-gradient(120deg, #0A1F6E 0%, #1456C8 52%, #1EC8F0 100%);\n      --grad-h:   linear-gradient(120deg, #1456C8 0%, #0091D5 60%, #1EC8F0 100%);\n    }\n\n    .oriavision-web-exact {\n      font-family: 'Inter', system-ui, sans-serif;\n      color: var(--text);\n      background: var(--bg);\n      overflow-x: hidden;\n      -webkit-font-smoothing: antialiased;\n    }\n\n    .oriavision-web-exact a { color: inherit; text-decoration: none; }\n    .oriavision-web-exact img { max-width: 100%; display: block; }\n\n    .wrap {\n      width: min(1160px, calc(100% - 40px));\n      margin-inline: auto;\n    }\n\n    /* â”€â”€ LOADER â”€â”€ */\n    #loader {\n      position: fixed;\n      inset: 0;\n      background: var(--white);\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      z-index: 9999;\n      transition: opacity .55s ease, visibility .55s;\n    }\n\n    #loader.out { opacity: 0; visibility: hidden; }\n\n    .loader-inner { text-align: center; }\n\n    .loader-logo {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 30px;\n      font-weight: 800;\n      letter-spacing: -.03em;\n      text-transform: uppercase;\n      background: var(--grad);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      animation: logoPulse .9s ease-in-out infinite alternate;\n    }\n\n    .loader-track {\n      margin: 24px auto 0;\n      width: 180px;\n      height: 2px;\n      background: var(--line);\n      border-radius: 2px;\n      overflow: hidden;\n    }\n\n    .loader-fill {\n      height: 100%;\n      background: var(--grad);\n      border-radius: 2px;\n      animation: loaderFill .85s cubic-bezier(.4,0,.2,1) forwards;\n    }\n\n    @keyframes logoPulse {\n      from { opacity: .3; }\n      to   { opacity: 1; }\n    }\n\n    @keyframes loaderFill {\n      from { width: 0%; }\n      to   { width: 100%; }\n    }\n\n    /* â”€â”€ SCROLL PROGRESS â”€â”€ */\n    #progress {\n      position: fixed;\n      top: 0; left: 0;\n      height: 3px;\n      width: 0%;\n      background: var(--grad);\n      z-index: 200;\n      transition: width .1s linear;\n    }\n\n    /* â”€â”€ CUSTOM CURSOR â”€â”€ */\n    #cursor {\n      position: fixed;\n      width: 16px; height: 16px;\n      border-radius: 50%;\n      border: 1.5px solid var(--bright);\n      background: rgba(0,145,213,.08);\n      pointer-events: none;\n      z-index: 8000;\n      top: 0; left: 0;\n      transform: translate(-50%, -50%);\n      transition: width .22s, height .22s, background .22s, opacity .3s;\n    }\n\n    #cursor.big {\n      width: 46px; height: 46px;\n      background: rgba(0,145,213,.06);\n    }\n\n    @media (hover: none) { #cursor { display: none; } }\n\n    /* â”€â”€ NAV â”€â”€ */\n    .nav-wrap {\n      position: sticky;\n      top: 0;\n      z-index: 100;\n      background: rgba(255,255,255,.96);\n      backdrop-filter: blur(20px);\n      -webkit-backdrop-filter: blur(20px);\n      border-bottom: 1px solid var(--line);\n      transition: box-shadow .3s;\n    }\n\n    .nav-wrap.scrolled { box-shadow: 0 4px 24px rgba(10,31,110,.07); }\n\n    .nav {\n      height: 66px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n    }\n\n    .nav-logo {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-weight: 800;\n      font-size: 19px;\n      letter-spacing: .03em;\n      text-transform: uppercase;\n      background: var(--grad);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n    }\n\n    .nav-links { display: flex; gap: 2px; }\n\n    .nav-links a {\n      font-family: 'Inter', sans-serif;\n      font-size: 14px;\n      font-weight: 600;\n      color: var(--muted);\n      padding: 8px 14px;\n      border-radius: 7px;\n      transition: color .18s, background .18s;\n    }\n\n    .nav-links a:hover { color: var(--navy); background: var(--off); }\n\n    .nav-btn {\n      display: inline-flex;\n      align-items: center;\n      height: 40px;\n      padding: 0 20px;\n      border-radius: 8px;\n      background: var(--grad);\n      color: #ffffff !important;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 13.5px;\n      font-weight: 800;\n      letter-spacing: .02em;\n      text-transform: uppercase;\n      transition: opacity .18s, transform .18s, box-shadow .18s;\n    }\n\n    .nav-btn:hover { opacity: .90; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(20,86,200,.30); }\n\n    .nav-ham {\n      display: none;\n      flex-direction: column;\n      gap: 5px;\n      width: 40px; height: 40px;\n      align-items: center;\n      justify-content: center;\n      cursor: pointer;\n      border-radius: 8px;\n      background: var(--off);\n      border: 1px solid var(--line);\n    }\n\n    .nav-ham span {\n      display: block;\n      width: 17px; height: 1.5px;\n      background: var(--navy);\n      border-radius: 2px;\n      transition: transform .3s, opacity .3s;\n    }\n\n    /* â”€â”€ REVEAL SYSTEM â”€â”€ */\n    .rv {\n      opacity: 0;\n      transform: translateY(32px);\n      transition: opacity .72s cubic-bezier(.25,.46,.45,.94),\n                  transform .72s cubic-bezier(.25,.46,.45,.94);\n    }\n\n    .rv.rl { transform: translateX(-36px); }\n    .rv.rr { transform: translateX(36px); }\n    .rv.rs { transform: scale(.95) translateY(14px); }\n\n    .rv.in { opacity: 1; transform: none !important; }\n\n    .d1 { transition-delay: .08s !important; }\n    .d2 { transition-delay: .16s !important; }\n    .d3 { transition-delay: .24s !important; }\n    .d4 { transition-delay: .32s !important; }\n    .d5 { transition-delay: .40s !important; }\n    .d6 { transition-delay: .48s !important; }\n\n    /* â”€â”€ WIPE REVEAL â”€â”€ */\n    .wipe { position: relative; overflow: hidden; }\n\n    .wipe::after {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background: var(--bright);\n      transform: translateX(0%);\n      transition: transform .9s cubic-bezier(.77,0,.175,1);\n      z-index: 2;\n    }\n\n    .wipe img {\n      transform: scale(1.07);\n      transition: transform .9s cubic-bezier(.25,.46,.45,.94) .1s;\n    }\n\n    .wipe.in::after { transform: translateX(101%); }\n    .wipe.in img    { transform: scale(1); }\n\n    /* â”€â”€ HERO â”€â”€ */\n    .hero {\n      position: relative;\n      padding: clamp(72px, 8vw, 112px) 0 clamp(72px, 8vw, 104px);\n      background: var(--white);\n      overflow: hidden;\n      isolation: isolate;\n    }\n\n    /* Imagen integrada al encabezado sobre fondo blanco */\n    .hero::before {\n      content: '';\n      position: absolute;\n      top: clamp(44px, 6vw, 76px);\n      right: max(20px, calc((100vw - 1160px) / 2));\n      bottom: clamp(38px, 5vw, 70px);\n      width: min(54vw, 660px);\n      border-radius: 34px;\n      background-image: url('/web-visuals/hero-web-responsive-clean.png');\n      background-size: cover;\n      background-position: center center;\n      box-shadow: 0 34px 90px rgba(10,31,110,.16);\n      z-index: 0;\n    }\n\n    /* Fundido blanco: une texto e imagen sin que parezcan dos bloques separados */\n    .hero::after {\n      content: '';\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      width: 72%;\n      background:\n        linear-gradient(90deg, #fff 0%, rgba(255,255,255,.98) 28%, rgba(255,255,255,.78) 48%, rgba(255,255,255,.18) 72%, rgba(255,255,255,0) 100%);\n      pointer-events: none;\n      z-index: 1;\n    }\n\n    .hero-eye-deco {\n      position: absolute;\n      top: 50%;\n      right: -5%;\n      transform: translateY(-50%);\n      width: 680px; height: 340px;\n      border-radius: 50%;\n      border: 1px solid rgba(20,86,200,.055);\n      pointer-events: none;\n      z-index: 0;\n    }\n\n    .hero-eye-deco::before {\n      content: '';\n      position: absolute;\n      top: 50%; left: 50%;\n      transform: translate(-50%, -50%);\n      width: 460px; height: 230px;\n      border-radius: 50%;\n      border: 1px solid rgba(20,86,200,.04);\n    }\n\n    .hero-eye-deco::after {\n      content: '';\n      position: absolute;\n      top: 50%; left: 50%;\n      transform: translate(-50%, -50%);\n      width: 240px; height: 120px;\n      border-radius: 50%;\n      border: 1px solid rgba(20,86,200,.04);\n    }\n\n    .hero-glow {\n      position: absolute;\n      width: 640px; height: 640px;\n      top: 50%; right: -120px;\n      transform: translateY(-50%);\n      background: radial-gradient(circle, rgba(30,200,240,.10) 0%, rgba(20,86,200,.05) 40%, transparent 70%);\n      pointer-events: none;\n      z-index: 0;\n      border-radius: 50%;\n    }\n\n    .hero-inner {\n      position: relative;\n      z-index: 2;\n      display: grid;\n      grid-template-columns: minmax(0, 620px);\n      gap: 0;\n      align-items: center;\n      min-height: 560px;\n    }\n\n    .hero-copy {\n      max-width: 620px;\n      padding: 0;\n      background: transparent;\n      border: 0;\n      box-shadow: none;\n    }\n\n    .hero-label {\n      display: inline-flex;\n      align-items: center;\n      gap: 10px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11px;\n      font-weight: 700;\n      letter-spacing: .14em;\n      text-transform: uppercase;\n      color: var(--bright);\n      margin-bottom: 28px;\n      opacity: 0;\n      animation: fadeUp .7s .5s cubic-bezier(.25,.46,.45,.94) forwards;\n    }\n\n    .hero-label::before {\n      content: '';\n      width: 22px; height: 2px;\n      background: var(--grad-h);\n      border-radius: 2px;\n    }\n\n    .hero-h1 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(44px, 5.6vw, 80px);\n      font-weight: 800;\n      line-height: .94;\n      letter-spacing: -.03em;\n      color: var(--navy);\n      margin-bottom: 26px;\n      overflow: hidden;\n    }\n\n    .h1-line { display: block; overflow: hidden; }\n\n    .h1-inner {\n      display: block;\n      transform: translateY(110%);\n      animation: slideUp .88s cubic-bezier(.25,.46,.45,.94) forwards;\n    }\n\n    .h1-line:nth-child(1) .h1-inner { animation-delay: .58s; }\n    .h1-line:nth-child(2) .h1-inner { animation-delay: .70s; }\n    .h1-line:nth-child(3) .h1-inner { animation-delay: .82s; }\n\n    .hero-h1 mark {\n      background: var(--grad);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      background-size: 200% auto;\n      animation: gradShift 4s linear infinite;\n    }\n\n    @keyframes gradShift {\n      0%   { background-position: 0% center; }\n      50%  { background-position: 100% center; }\n      100% { background-position: 0% center; }\n    }\n\n    .hero-p {\n      font-size: 17px;\n      color: var(--muted);\n      line-height: 1.70;\n      max-width: 460px;\n      margin-bottom: 42px;\n      font-weight: 500;\n      opacity: 0;\n      animation: fadeUp .7s 1.0s cubic-bezier(.25,.46,.45,.94) forwards;\n    }\n\n    .hero-actions {\n      display: flex;\n      gap: 12px;\n      flex-wrap: wrap;\n      opacity: 0;\n      animation: fadeUp .7s 1.12s cubic-bezier(.25,.46,.45,.94) forwards;\n    }\n\n    /* â”€â”€ BUTTONS â”€â”€ */\n    .btn-blue {\n      display: inline-flex;\n      align-items: center;\n      gap: 9px;\n      height: 52px;\n      padding: 0 26px;\n      border-radius: 10px;\n      background: var(--grad);\n      color: #ffffff !important;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 14.5px;\n      font-weight: 700;\n      letter-spacing: .02em;\n      text-transform: uppercase;\n      box-shadow: 0 8px 24px rgba(20,86,200,.28);\n      transition: transform .22s, box-shadow .22s, opacity .22s;\n      white-space: nowrap;\n      position: relative;\n      overflow: hidden;\n    }\n\n    .btn-blue::after {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background: rgba(255,255,255,.12);\n      opacity: 0;\n      transition: opacity .2s;\n    }\n\n    .btn-blue:hover::after { opacity: 1; }\n    .btn-blue svg {\n      color: #ffffff !important;\n      opacity: 1;\n      flex-shrink: 0;\n    }\n\n    .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(20,86,200,.36); }\n\n    .btn-outline {\n      display: inline-flex;\n      align-items: center;\n      height: 52px;\n      padding: 0 24px;\n      border-radius: 10px;\n      background: transparent;\n      border: 1.5px solid var(--line);\n      color: var(--navy);\n      font-family: 'Inter', sans-serif;\n      font-size: 14px;\n      font-weight: 700;\n      transition: border-color .2s, background .2s, transform .2s;\n      white-space: nowrap;\n    }\n\n    .btn-outline:hover {\n      border-color: var(--bright);\n      background: var(--off);\n      transform: translateY(-1px);\n    }\n\n    /* â”€â”€ HERO VISUAL â”€â”€ */\n    .hero-visual {\n      display: none;\n    }\n\n    .mockups-stack { position: relative; height: auto; }\n\n    .mockup {\n      position: relative;\n      border-radius: 22px;\n      overflow: hidden;\n      border: 1px solid var(--line);\n      background: #fff;\n      box-shadow: 0 24px 60px rgba(10,31,110,.14);\n    }\n\n    .mockup-2 { display: none; }\n\n    .mockup-chrome { display: none; }\n\n    .mockup-screen {\n      height: 280px;\n      overflow: hidden;\n    }\n\n    .mockup-screen img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      object-position: center;\n      transition: transform .5s ease;\n    }\n\n    .mockup:hover .mockup-screen img { transform: scale(1.03); }\n\n    /* â”€â”€ TICKER â”€â”€ */\n    .ticker-wrap {\n      background: var(--cyan);\n      overflow: hidden;\n      padding: 13px 0;\n    }\n\n    .ticker-track {\n      display: flex;\n      animation: tickerScroll 24s linear infinite;\n      white-space: nowrap;\n    }\n\n    .ticker-item {\n      display: inline-flex;\n      align-items: center;\n      gap: 28px;\n      padding: 0 18px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11.5px;\n      font-weight: 800;\n      letter-spacing: .12em;\n      text-transform: uppercase;\n      color: var(--navy);\n    }\n\n    .ticker-item .t-sep {\n      display: inline-block;\n      width: 20px; height: 1.5px;\n      background: var(--navy);\n      opacity: .25;\n    }\n\n    @keyframes tickerScroll {\n      from { transform: translateX(0); }\n      to   { transform: translateX(-50%); }\n    }\n\n    /* â”€â”€ STATS â”€â”€ */\n    .stats-band {\n      background: var(--navy);\n      padding: 64px 0 68px;\n    }\n\n    .stats-row {\n      display: flex;\n      justify-content: space-around;\n      align-items: center;\n      flex-wrap: wrap;\n      gap: 32px;\n    }\n\n    .stat-divider {\n      width: 1px;\n      height: 64px;\n      background: rgba(255,255,255,.10);\n    }\n\n    .stat-item { text-align: center; }\n\n    .stat-num {\n      display: block;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(42px, 5vw, 68px);\n      font-weight: 800;\n      color: #ffffff !important;\n      letter-spacing: -.04em;\n      line-height: 1;\n    }\n\n    .stat-num .accent {\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n    }\n\n    .stat-item small {\n      display: block;\n      font-size: 12.5px;\n      color: rgba(255,255,255,.40);\n      font-weight: 600;\n      margin-top: 8px;\n      letter-spacing: .04em;\n      text-transform: uppercase;\n    }\n\n    /* â”€â”€ SECTION HELPERS â”€â”€ */\n    .section { padding: 100px 0; }\n    .section-off { background: var(--off); }\n\n    .eyebrow {\n      display: inline-flex;\n      align-items: center;\n      gap: 9px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11px;\n      font-weight: 700;\n      letter-spacing: .14em;\n      text-transform: uppercase;\n      color: var(--bright);\n      margin-bottom: 14px;\n    }\n\n    .eyebrow::before {\n      content: '';\n      width: 18px; height: 2px;\n      background: var(--grad-h);\n      border-radius: 2px;\n    }\n\n    .eyebrow-light { color: #ffffff !important; opacity: .75; }\n    .eyebrow-light::before { background: rgba(255,255,255,.4); }\n\n    .sec-h2 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(36px, 5vw, 64px);\n      font-weight: 800;\n      line-height: .94;\n      letter-spacing: -.03em;\n      color: var(--navy);\n    }\n\n    .sec-h2-white { color: #ffffff !important; }\n\n    .portfolio-mobile-space { display: none; }\n\n    .sec-p {\n      font-size: 16.5px;\n      color: var(--muted);\n      line-height: 1.70;\n      max-width: 480px;\n      margin-top: 16px;\n      font-weight: 500;\n    }\n\n    .sec-header {\n      display: flex;\n      justify-content: space-between;\n      align-items: flex-end;\n      gap: 24px;\n      margin-bottom: 56px;\n      flex-wrap: wrap;\n    }\n\n    /* â”€â”€ PORTFOLIO â”€â”€ */\n    .port-featured {\n      position: relative;\n      overflow: hidden;\n      border-radius: 22px;\n      height: 420px;\n      margin-bottom: 14px;\n      border: 1px solid var(--line);\n    }\n\n\n\n    .port-featured img {\n      width: 100%; height: 100%;\n      object-fit: cover; object-position: top center;\n      transition: transform .8s ease;\n    }\n\n\n\n    .port-featured:hover img { transform: scale(1.04); }\n\n    .port-overlay {\n      position: absolute;\n      inset: 0;\n      background: linear-gradient(to top, rgba(10,31,110,.88) 0%, rgba(10,31,110,.25) 50%, transparent 100%);\n      z-index: 1;\n    }\n\n    .port-featured-info {\n      position: absolute;\n      bottom: 32px; left: 32px;\n      z-index: 2;\n    }\n\n    .port-tag {\n      display: inline-flex;\n      align-items: center;\n      height: 24px;\n      padding: 0 11px;\n      background: var(--cyan);\n      color: var(--navy);\n      border-radius: 4px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 10.5px;\n      font-weight: 800;\n      letter-spacing: .10em;\n      text-transform: uppercase;\n      margin-bottom: 10px;\n    }\n\n    .port-featured-info h3 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 28px;\n      font-weight: 800;\n      color: #ffffff !important;\n      letter-spacing: -.02em;\n      margin-bottom: 6px;\n    }\n\n    .port-featured-info p { font-size: 14px; color: rgba(255,255,255,.65); max-width: 380px; }\n\n    .port-grid-4 {\n      display: grid;\n      grid-template-columns: repeat(4, 1fr);\n      gap: 12px;\n    }\n\n    .port-card {\n      position: relative;\n      border-radius: 16px;\n      overflow: hidden;\n      height: 218px;\n      border: 1px solid var(--line);\n      cursor: pointer;\n    }\n\n    .port-card img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      object-position: top center;\n      transition: transform .65s ease;\n    }\n\n    .port-card:hover img { transform: scale(1.08); }\n\n    .port-card-info {\n      position: absolute;\n      bottom: 14px; left: 14px;\n      z-index: 2;\n    }\n\n    .port-card-info h3 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 15px;\n      font-weight: 700;\n      color: #ffffff !important;\n      letter-spacing: -.01em;\n    }\n\n    /* â”€â”€ SERVICES â”€â”€ */\n    .svc-rows { margin-top: 60px; }\n\n    .svc-row {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n      gap: 64px;\n      align-items: center;\n      padding: 60px 0;\n      border-top: 1px solid var(--line);\n      position: relative;\n    }\n\n    .svc-row.rev { direction: rtl; }\n    .svc-row.rev > * { direction: ltr; }\n\n    /* Ghost number decorative */\n    .svc-ghost-num {\n      position: absolute;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(130px, 15vw, 210px);\n      font-weight: 900;\n      letter-spacing: -.06em;\n      color: rgba(20,86,200,.035);\n      top: 50%;\n      transform: translateY(-50%);\n      right: 0;\n      pointer-events: none;\n      user-select: none;\n      line-height: 1;\n    }\n\n    .svc-num-label {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11px;\n      font-weight: 700;\n      letter-spacing: .14em;\n      text-transform: uppercase;\n      color: var(--bright);\n      margin-bottom: 14px;\n    }\n\n    .svc-text h3 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(24px, 2.8vw, 38px);\n      font-weight: 800;\n      color: var(--navy);\n      letter-spacing: -.03em;\n      line-height: 1.06;\n      margin-bottom: 14px;\n    }\n\n    .svc-text p {\n      font-size: 15.5px;\n      color: var(--muted);\n      line-height: 1.70;\n      margin-bottom: 22px;\n      font-weight: 500;\n    }\n\n    .svc-list {\n      list-style: none;\n      display: flex;\n      flex-direction: column;\n      gap: 7px;\n      margin-bottom: 24px;\n    }\n\n    .svc-list li {\n      display: flex;\n      align-items: flex-start;\n      gap: 10px;\n      font-size: 12px;\n      color: var(--muted);\n      font-weight: 500;\n    }\n\n    .svc-list li::before {\n      content: '→';\n      color: var(--bright);\n      flex-shrink: 0;\n      margin-top: 1px;\n      font-weight: 700;\n    }\n\n    .svc-link {\n      display: inline-flex;\n      align-items: center;\n      gap: 8px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 13.5px;\n      font-weight: 700;\n      letter-spacing: .04em;\n      text-transform: uppercase;\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      border-bottom: 1.5px solid rgba(0,145,213,.25);\n      padding-bottom: 3px;\n      transition: border-color .2s, gap .2s;\n    }\n\n    .svc-link:hover { border-color: var(--bright); gap: 12px; }\n\n    .svc-img-wrap {\n      border-radius: 20px;\n      overflow: hidden;\n      height: 360px;\n      border: 1px solid var(--line);\n    }\n\n    .svc-img-wrap img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      transition: transform .7s ease;\n    }\n\n    .svc-img-wrap:hover img { transform: scale(1.04); }\n\n    /* â”€â”€ WHY US â”€â”€ */\n    .why-inner {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n      gap: 80px;\n      align-items: center;\n    }\n\n    .why-img {\n      border-radius: 22px;\n      overflow: hidden;\n      aspect-ratio: 4/5;\n      max-height: 520px;\n      border: 1px solid var(--line);\n    }\n\n    .why-img img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      object-position: center;\n      transition: transform .7s ease;\n    }\n\n    .why-img:hover img { transform: scale(1.04); }\n\n    .why-points { margin-top: 38px; display: flex; flex-direction: column; gap: 26px; }\n\n    .why-point {\n      display: grid;\n      grid-template-columns: 44px 1fr;\n      gap: 14px;\n      align-items: flex-start;\n    }\n\n    .why-num {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 13px;\n      font-weight: 800;\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      padding-top: 2px;\n      letter-spacing: .04em;\n    }\n\n    .why-point h4 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 16px;\n      font-weight: 700;\n      color: var(--navy);\n      letter-spacing: -.02em;\n      margin-bottom: 5px;\n    }\n\n    .why-point p { font-size: 14px; color: var(--muted); line-height: 1.65; font-weight: 500; }\n\n    /* â”€â”€ TRUST STRIP â”€â”€ */\n    .trust-strip {\n      background: var(--grad);\n      padding: 52px 0;\n      position: relative;\n      overflow: hidden;\n    }\n\n    .trust-strip::before {\n      content: '';\n      position: absolute;\n      top: -80px; right: -120px;\n      width: 400px; height: 400px;\n      border-radius: 50%;\n      background: rgba(30,200,240,.12);\n      pointer-events: none;\n    }\n\n    .trust-row {\n      position: relative;\n      z-index: 1;\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      flex-wrap: wrap;\n      gap: 28px;\n    }\n\n    .trust-item {\n      display: flex;\n      align-items: center;\n      gap: 14px;\n    }\n\n    .trust-icon {\n      width: 46px; height: 46px;\n      border-radius: 12px;\n      background: rgba(255,255,255,.14);\n      border: 1px solid rgba(255,255,255,.18);\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      flex-shrink: 0;\n      font-size: 20px;\n    }\n\n    .trust-text strong {\n      display: block;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 15px;\n      font-weight: 700;\n      color: #ffffff !important;\n      letter-spacing: -.01em;\n    }\n\n    .trust-text span {\n      font-size: 12.5px;\n      color: rgba(255,255,255,.60);\n      font-weight: 500;\n      margin-top: 2px;\n      display: block;\n    }\n\n    .trust-divider {\n      width: 1px;\n      height: 40px;\n      background: rgba(255,255,255,.15);\n    }\n\n    /* â”€â”€ GALLERY â”€â”€ */\n    .img-gallery {\n      display: grid;\n      grid-template-columns: 1.35fr 1fr 1fr;\n      grid-template-rows: 240px 240px;\n      gap: 10px;\n      margin-top: 56px;\n    }\n\n    .gallery-item {\n      position: relative;\n      overflow: hidden;\n      border-radius: 14px;\n      border: 1px solid var(--line);\n    }\n\n    .gallery-item.tall { grid-row: span 2; }\n\n    .gallery-item img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      transition: transform .75s ease;\n    }\n\n    .gallery-item:hover img { transform: scale(1.07); }\n\n    .gallery-caption {\n      position: absolute;\n      bottom: 0; left: 0; right: 0;\n      padding: 24px 14px 12px;\n      background: linear-gradient(transparent, rgba(10,31,110,.65));\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11px;\n      font-weight: 700;\n      color: rgba(255,255,255,.7);\n      letter-spacing: .08em;\n      text-transform: uppercase;\n      opacity: 0;\n      transition: opacity .3s;\n    }\n\n    .gallery-item:hover .gallery-caption { opacity: 1; }\n\n    /* â”€â”€ SERVICE CARDS (3-col) â”€â”€ */\n    .svc-grid {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 20px;\n      margin-top: 52px;\n    }\n\n    .svc-card {\n      background: var(--bg);\n      border: 1px solid var(--line);\n      border-radius: 20px;\n      padding: 0 28px 28px;\n      position: relative;\n      overflow: hidden;\n      display: flex;\n      flex-direction: column;\n      transition: transform .32s cubic-bezier(.25,.46,.45,.94), box-shadow .32s, border-color .25s;\n    }\n\n    .svc-card-img {\n      width: calc(100% + 56px);\n      margin: 0 -28px 20px;\n      height: 190px;\n      object-fit: cover;\n      object-position: center;\n      flex-shrink: 0;\n      border-radius: 19px 19px 0 0;\n      transition: transform .4s ease;\n    }\n\n    .svc-card:hover .svc-card-img { transform: scale(1.04); }\n\n    .svc-card:hover {\n      transform: translateY(-6px);\n      box-shadow: 0 24px 56px rgba(10,31,110,.11);\n      border-color: rgba(20,86,200,.28);\n    }\n\n    .svc-card-bar {\n      width: calc(100% + 56px);\n      margin: 0 -28px 0 -28px;\n      padding: 24px 28px;\n      height: auto;\n      background: var(--grad);\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 18px;\n      font-weight: 700;\n      letter-spacing: .08em;\n      text-transform: uppercase;\n      color: #ffffff !important;\n      display: flex;\n      align-items: center;\n      margin-bottom: 20px;\n      transition: padding .3s ease;\n    }\n\n    .svc-card:hover .svc-card-bar { padding: 28px 28px; }\n\n    .svc-card.card-1 .svc-card-bar { background: #2C3E50; }\n    .svc-card.card-2 .svc-card-bar { background: #E74C3C; }\n    .svc-card.card-3 .svc-card-bar { background: #1ABC9C; }\n\n    .svc-card-ghost {\n      display: none;\n    }\n\n    .svc-card-label {\n      display: none;\n    }\n\n    .svc-card h3 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 14px;\n      font-weight: 800;\n      color: var(--navy);\n      letter-spacing: -.02em;\n      line-height: 1.2;\n      margin-bottom: 9px;\n    }\n\n    .svc-card > p {\n      font-size: 12px;\n      color: var(--muted);\n      line-height: 1.58;\n      margin-bottom: 16px;\n      font-weight: 500;\n    }\n\n    .svc-card .svc-list { flex: 1; margin-bottom: 28px; }\n\n    .svc-card-cta {\n      display: inline-flex;\n      align-items: center;\n      gap: 8px;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 11px;\n      font-weight: 700;\n      letter-spacing: .04em;\n      text-transform: uppercase;\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      border-bottom: 1.5px solid rgba(0,145,213,.25);\n      padding-bottom: 3px;\n      transition: border-color .2s, gap .2s;\n      margin-top: auto;\n    }\n\n    .svc-card-cta:hover { border-color: var(--bright); gap: 12px; }\n\n    /* â”€â”€ PROCESS â”€â”€ */\n    .process-grid {\n      display: grid;\n      grid-template-columns: repeat(4, 1fr);\n      gap: 18px;\n      margin-top: 60px;\n    }\n\n    .proc {\n      position: relative;\n      border-radius: 20px;\n      overflow: hidden;\n      height: 340px;\n      border: 1px solid var(--line);\n    }\n\n    .proc-img {\n      position: absolute;\n      inset: 0;\n    }\n\n    .proc-img img {\n      width: 100%; height: 100%;\n      object-fit: cover;\n      transition: transform .7s ease;\n    }\n\n    .proc:hover .proc-img img { transform: scale(1.08); }\n\n    .proc::after {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background: linear-gradient(to top, rgba(10,31,110,.94) 0%, rgba(10,31,110,.55) 50%, rgba(10,31,110,.10) 100%);\n      z-index: 1;\n    }\n\n    .proc-body {\n      position: absolute;\n      bottom: 0; left: 0; right: 0;\n      padding: 22px 20px 24px;\n      z-index: 2;\n    }\n\n    .proc-step {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 13px;\n      font-weight: 800;\n      letter-spacing: .14em;\n      text-transform: uppercase;\n      color: var(--cyan);\n      margin-bottom: 8px;\n    }\n\n    .proc-body h3 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 17px;\n      font-weight: 700;\n      letter-spacing: -.02em;\n      color: #ffffff !important;\n      margin-bottom: 6px;\n    }\n\n    .proc-body p { font-size: 13px; color: rgba(255,255,255,.62); line-height: 1.60; font-weight: 400; }\n\n    /* â”€â”€ BIG QUOTE â”€â”€ */\n    .bigquote {\n      background: var(--navy);\n      padding: 100px 0;\n      position: relative;\n      overflow: hidden;\n    }\n\n    .bigquote::before {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background: linear-gradient(135deg, rgba(20,86,200,.45) 0%, transparent 60%),\n                  linear-gradient(315deg, rgba(30,200,240,.12) 0%, transparent 50%);\n      pointer-events: none;\n    }\n\n    .bigquote-inner {\n      max-width: 880px;\n      margin: 0 auto;\n      text-align: center;\n      position: relative;\n      z-index: 1;\n    }\n\n    .bq-mark {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 96px;\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n      line-height: .75;\n      margin-bottom: 28px;\n      opacity: .65;\n    }\n\n    .bq-text {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(21px, 3vw, 34px);\n      font-weight: 600;\n      color: #ffffff !important;\n      line-height: 1.32;\n      letter-spacing: -.02em;\n      margin-bottom: 48px;\n    }\n\n    .bq-author { display: flex; align-items: center; gap: 14px; justify-content: center; }\n\n    .bq-avatar {\n      width: 50px; height: 50px;\n      border-radius: 50%;\n      overflow: hidden;\n      border: 2px solid rgba(255,255,255,.15);\n      flex-shrink: 0;\n    }\n\n    .bq-avatar img { width: 100%; height: 100%; object-fit: cover; }\n\n    .bq-name strong { display: block; color: #ffffff !important; font-size: 15px; font-weight: 700; }\n    .bq-name span { color: rgba(255,255,255,.42); font-size: 13px; }\n\n    /* â”€â”€ TESTIMONIALS â”€â”€ */\n    .testi-grid {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 18px;\n      margin-top: 56px;\n    }\n\n    .testi {\n      border-radius: 20px;\n      background: var(--bg);\n      border: 1px solid var(--line);\n      padding: 28px;\n      box-shadow: 0 4px 20px rgba(10,31,110,.04);\n      transition: transform .35s cubic-bezier(.25,.46,.45,.94), box-shadow .35s, border-color .25s;\n    }\n\n    .testi:hover {\n      transform: translateY(-5px);\n      box-shadow: 0 20px 52px rgba(10,31,110,.10);\n      border-color: rgba(20,86,200,.20);\n    }\n\n    .testi-stars {\n      font-size: 14px;\n      letter-spacing: 2px;\n      margin-bottom: 16px;\n      background: var(--grad-h);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n    }\n\n    .testi-text { font-size: 14.5px; color: var(--text); line-height: 1.72; font-weight: 500; margin-bottom: 24px; }\n\n    .testi-author { display: flex; align-items: center; gap: 12px; }\n\n    .testi-ava {\n      width: 42px; height: 42px;\n      border-radius: 50%;\n      overflow: hidden;\n      background: var(--off);\n      flex-shrink: 0;\n    }\n\n    .testi-ava img { width: 100%; height: 100%; object-fit: cover; }\n\n    .testi-name { font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -.01em; }\n    .testi-role { font-size: 12px; color: var(--muted); margin-top: 2px; }\n\n    /* â”€â”€ FAQ â”€â”€ */\n    .faq-grid {\n      display: grid;\n      grid-template-columns: 1fr 1fr;\n      gap: 9px;\n      margin-top: 56px;\n    }\n\n    .faq-item {\n      border-radius: 14px;\n      background: var(--bg);\n      border: 1px solid var(--line);\n      overflow: hidden;\n      transition: border-color .25s, box-shadow .25s;\n    }\n\n    .faq-item:hover { border-color: rgba(20,86,200,.22); }\n\n    .faq-item.open {\n      border-color: rgba(20,86,200,.32);\n      box-shadow: 0 4px 20px rgba(20,86,200,.07);\n    }\n\n    .faq-btn {\n      width: 100%;\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      padding: 20px 22px;\n      background: none;\n      border: none;\n      cursor: pointer;\n      text-align: left;\n      gap: 14px;\n    }\n\n    .faq-btn span {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 14.5px;\n      font-weight: 700;\n      color: var(--navy);\n      letter-spacing: -.01em;\n    }\n\n    .faq-ico {\n      width: 26px; height: 26px;\n      border-radius: 50%;\n      background: var(--off);\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      flex-shrink: 0;\n      color: var(--bright);\n      font-size: 20px;\n      line-height: 1;\n      transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .25s;\n    }\n\n    .faq-item.open .faq-ico {\n      background: rgba(20,86,200,.10);\n      transform: rotate(45deg);\n    }\n\n    .faq-ans {\n      max-height: 0;\n      overflow: hidden;\n      transition: max-height .4s cubic-bezier(.25,.46,.45,.94), padding .3s;\n      font-size: 14px;\n      color: var(--muted);\n      line-height: 1.70;\n      padding: 0 22px;\n      font-weight: 500;\n    }\n\n    .faq-item.open .faq-ans { max-height: 200px; padding: 0 22px 20px; }\n\n    /* â”€â”€ FINAL CTA â”€â”€ */\n    .final-cta {\n      position: relative;\n      background: linear-gradient(120deg, #0A1F6E 0%, #1456C8 62%, #1EC8F0 100%);\n      overflow: hidden;\n      isolation: isolate;\n    }\n\n    .cta-img-wrap {\n      position: relative;\n      min-height: 520px;\n      background: linear-gradient(120deg, #0A1F6E 0%, #1456C8 62%, #1EC8F0 100%);\n    }\n\n    .cta-img-wrap::before {\n      content: '';\n      position: absolute;\n      inset: 0;\n      background:\n        radial-gradient(circle at 18% 20%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 28%),\n        radial-gradient(circle at 82% 18%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 24%),\n        linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),\n        linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);\n      background-size: auto, auto, 38px 38px, 38px 38px;\n      background-position: center;\n      opacity: .38;\n      z-index: 0;\n    }\n\n    .cta-img-wrap img {\n      display: none;\n    }\n\n    .cta-overlay {\n      position: absolute;\n      inset: 0;\n      background: linear-gradient(120deg, rgba(10,31,110,.08) 0%, rgba(20,86,200,.10) 55%, rgba(30,200,240,.06) 100%);\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      z-index: 1;\n    }\n\n    .cta-content {\n      text-align: center;\n      padding: 0 24px;\n      max-width: 720px;\n    }\n\n    .cta-content .eyebrow { color: var(--cyan); }\n    .cta-content .eyebrow::before { background: var(--cyan); opacity: .6; }\n\n    .cta-content h2 {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: clamp(32px, 4.5vw, 60px);\n      font-weight: 800;\n      color: #ffffff !important;\n      letter-spacing: -.03em;\n      line-height: .96;\n      margin-bottom: 20px;\n    }\n\n    .cta-content p {\n      font-size: 16px;\n      color: rgba(255,255,255,.72);\n      max-width: 460px;\n      margin: 0 auto 40px;\n      line-height: 1.68;\n      font-weight: 500;\n    }\n\n    .cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }\n\n    .btn-wsp {\n      display: inline-flex;\n      align-items: center;\n      gap: 10px;\n      height: 56px;\n      padding: 0 28px;\n      border-radius: 12px;\n      background: #25D366;\n      color: #ffffff !important;\n      font-family: 'Inter', system-ui, sans-serif;\n      font-size: 14px;\n      font-weight: 700;\n      letter-spacing: .04em;\n      text-transform: uppercase;\n      box-shadow: 0 8px 28px rgba(37,211,102,.30);\n      transition: transform .22s, box-shadow .22s;\n      white-space: nowrap;\n      animation: wsppulse 2.5s 3s ease-in-out infinite;\n    }\n\n    .btn-wsp:hover {\n      transform: translateY(-3px);\n      box-shadow: 0 18px 44px rgba(37,211,102,.40);\n      animation: none;\n    }\n\n    @keyframes wsppulse {\n      0%, 100% { box-shadow: 0 8px 28px rgba(37,211,102,.30); }\n      50%       { box-shadow: 0 8px 28px rgba(37,211,102,.30), 0 0 0 8px rgba(37,211,102,.10); }\n    }\n\n    .btn-light {\n      display: inline-flex;\n      align-items: center;\n      height: 56px;\n      padding: 0 26px;\n      border-radius: 12px;\n      background: rgba(255,255,255,.12);\n      border: 1px solid rgba(255,255,255,.22);\n      color: rgba(255,255,255,.85);\n      font-size: 14px;\n      font-weight: 600;\n      transition: background .2s, transform .2s;\n      white-space: nowrap;\n    }\n\n    .btn-light:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }\n\n    /* â”€â”€ FOOTER â”€â”€ */\n    .footer { padding: 36px 0 44px; border-top: 1px solid var(--line); background: var(--bg); }\n\n    .footer-inner {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n      flex-wrap: wrap;\n      gap: 18px;\n    }\n\n    .footer-logo {\n      font-family: 'Inter', system-ui, sans-serif;\n      font-weight: 800;\n      font-size: 17px;\n      letter-spacing: .04em;\n      text-transform: uppercase;\n      background: var(--grad);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      background-clip: text;\n    }\n\n    .footer-nav { display: flex; gap: 22px; }\n\n    .footer-nav a {\n      font-family: 'Inter', sans-serif;\n      font-size: 14px;\n      font-weight: 600;\n      color: var(--muted);\n      transition: color .18s;\n    }\n\n    .footer-nav a:hover { color: var(--royal); }\n\n    .footer-copy { font-size: 13px; color: var(--muted); }\n\n    /* â”€â”€ KEYFRAMES â”€â”€ */\n    @keyframes fadeUp {\n      from { opacity: 0; transform: translateY(22px); }\n      to   { opacity: 1; transform: translateY(0); }\n    }\n\n    @keyframes slideUp {\n      from { transform: translateY(110%); }\n      to   { transform: translateY(0); }\n    }\n\n    @keyframes slideInRight {\n      from { opacity: 0; transform: translateX(44px); }\n      to   { opacity: 1; transform: translateX(0); }\n    }\n\n    /* â”€â”€ RESPONSIVE â”€â”€ */\n    @media (max-width: 1024px) {\n      .hero::before {\n        width: min(56vw, 590px);\n        right: 20px;\n        background-position: 52% center;\n      }\n      .hero-inner { min-height: 520px; }\n      .hero-eye-deco { display: none; }\n      .port-grid-4 { grid-template-columns: 1fr 1fr; }\n      .svc-grid { grid-template-columns: 1fr; }\n      .process-grid { grid-template-columns: 1fr 1fr; }\n      .why-inner { grid-template-columns: 1fr; }\n      .why-img { aspect-ratio: 16/9; max-height: none; }\n\n      .why-img img {\n        object-position: center top;\n      }\n      .process-grid { grid-template-columns: 1fr 1fr; }\n      .testi-grid { grid-template-columns: 1fr 1fr; }\n      .faq-grid { grid-template-columns: 1fr; }\n\n      .why-img {\n        aspect-ratio: 4/3;\n      }\n      .why-img img {\n        object-position: center top;\n      }\n      .img-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }\n      .gallery-item.tall { grid-row: span 1; }\n      .stats-row { justify-content: space-around; flex-wrap: nowrap; }\n      .stat-item { flex: 1; min-width: 0; }\n      .stat-num { font-size: clamp(32px, 8vw, 48px); }\n      .stat-item small { font-size: 10px; }\n      .stat-divider { display: none; }\n    }\n\n    @media (max-width: 768px) {\n      .ticker-wrap { display: none; }\n      .trust-row { flex-direction: column; align-items: flex-start; }\n      .trust-divider { display: none; }\n      .nav-links, .nav-btn { display: none; }\n      .nav-ham { display: flex; }\n\n      /* HERO MOBILE: imagen visible + texto limpio sobre blanco */\n      .hero {\n        padding: 0 0 58px;\n        background: #fff;\n        min-height: auto;\n      }\n\n      .hero::before {\n        display: block;\n        top: 24px;\n        left: 18px;\n        right: 18px;\n        bottom: auto;\n        width: auto;\n        height: clamp(270px, 40vh, 360px);\n        border-radius: 30px;\n        background-size: cover;\n        background-position: 50% center;\n        box-shadow: 0 26px 64px rgba(10,31,110,.14);\n        opacity: 1;\n      }\n\n      .hero::after {\n        display: block;\n        top: 180px;\n        left: 0;\n        right: 0;\n        bottom: auto;\n        width: auto;\n        height: 230px;\n        background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.92) 48%, #fff 82%);\n        pointer-events: none;\n        z-index: 1;\n      }\n\n      .hero-glow {\n        display: block;\n        width: 340px;\n        height: 340px;\n        top: 180px;\n        right: -150px;\n        opacity: .55;\n      }\n\n      .hero-inner {\n        display: block;\n        min-height: auto;\n        padding-top: clamp(255px, 39vh, 340px);\n      }\n\n      .hero-visual { display: none !important; }\n\n      .hero-copy {\n        position: relative;\n        z-index: 3;\n        width: 100%;\n        max-width: 620px;\n        margin-top: -46px;\n        padding: 30px 2px 0;\n        background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, #fff 58%);\n        border-radius: 28px 28px 0 0;\n      }\n\n      .hero-h1 {\n        font-size: clamp(35px, 9.7vw, 47px);\n        line-height: .98;\n        letter-spacing: -.045em;\n        margin-bottom: 19px;\n        max-width: 690px;\n      }\n\n      .hero-p {\n        font-size: 15.5px;\n        line-height: 1.55;\n        margin-bottom: 24px;\n        max-width: 95%;\n      }\n\n      .section { padding: 68px 0; }\n      .port-featured { height: 280px; }\n      .port-grid-4 { grid-template-columns: 1fr 1fr; }\n      .port-card { height: 160px; }\n      .svc-grid { grid-template-columns: 1fr; }\n      .process-grid { grid-template-columns: 1fr; }\n      .testi-grid { grid-template-columns: 1fr; }\n      .img-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }\n      .sec-header { flex-direction: column; align-items: flex-start; }\n      .cta-img-wrap { height: 580px; }\n    }\n\n    @media (max-width: 480px) {\n      .wrap { width: min(100% - 28px, 1160px); }\n      .hero { padding-bottom: 52px; }\n      .hero::before {\n        top: 18px;\n        left: 12px;\n        right: 12px;\n        height: clamp(250px, 36vh, 315px);\n        border-radius: 24px;\n        background-position: 50% center;\n      }\n      .hero::after {\n        top: 160px;\n        height: 220px;\n      }\n      .hero-inner { padding-top: clamp(238px, 37vh, 306px); }\n      .hero-copy {\n        margin-top: -38px;\n        padding-top: 28px;\n      }\n      .hero-h1 { font-size: clamp(34px, 9.9vw, 44px); }\n      .hero-actions { flex-direction: row; gap: 8px; flex-wrap: wrap; justify-content: center; }\n      .hero-actions .btn-blue,\n      .hero-actions .btn-outline { white-space: nowrap; font-size: 13px; }\n      .port-grid-4 { grid-template-columns: 1fr; }\n\n      #portfolio .portfolio-title-mobile-one {\n        font-size: clamp(20px, 5.55vw, 24px);\n        line-height: 1.08;\n        letter-spacing: -.045em;\n        white-space: nowrap;\n        max-width: calc(100vw - 56px);\n      }\n\n      #portfolio .portfolio-title-mobile-one .portfolio-desktop-break {\n        display: none;\n      }\n\n      #portfolio .portfolio-title-mobile-one .portfolio-mobile-space {\n        display: inline;\n      }\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n      .oriavision-web-exact *, .oriavision-web-exact *::before, .oriavision-web-exact *::after {\n        animation-duration: .01ms !important;\n        animation-iteration-count: 1 !important;\n        transition-duration: .01ms !important;\n      }\n      .rv { opacity: 1 !important; transform: none !important; }\n      .wipe::after { display: none; }\n      .wipe img { transform: none !important; }\n      .ticker-track { animation: none !important; }\n    }\n  .wsp-icon { width: 20px; height: 20px; flex-shrink: 0; }\n\n/* LEGIBILITY FIX /web only: mejora contraste y lectura sin tocar el resto del sitio */\n.oriavision-web-exact {\n  --muted: #334B68;\n  --text: #071B52;\n  color: var(--text);\n  text-rendering: geometricPrecision;\n}\n\n.oriavision-web-exact .hero-h1,\n.oriavision-web-exact .sec-h2,\n.oriavision-web-exact .svc-card h3,\n.oriavision-web-exact .svc-text h3,\n.oriavision-web-exact .why-point h4,\n.oriavision-web-exact .faq-btn span {\n  color: #071B52 !important;\n}\n\n.oriavision-web-exact .hero-p,\n.oriavision-web-exact .sec-p,\n.oriavision-web-exact .svc-card > p,\n.oriavision-web-exact .svc-list li,\n.oriavision-web-exact .svc-text p,\n.oriavision-web-exact .why-point p,\n.oriavision-web-exact .testi-text,\n.oriavision-web-exact .faq-ans,\n.oriavision-web-exact .footer-copy,\n.oriavision-web-exact .footer-nav a {\n  color: #334B68 !important;\n  opacity: 1 !important;\n  font-weight: 600;\n}\n\n.oriavision-web-exact .hero-label,\n.oriavision-web-exact .eyebrow,\n.oriavision-web-exact .svc-card-cta,\n.oriavision-web-exact .svc-link {\n  color: #005EB8 !important;\n  opacity: 1 !important;\n}\n\n.oriavision-web-exact .stat-item small,\n.oriavision-web-exact .trust-text span,\n.oriavision-web-exact .port-featured-info p,\n.oriavision-web-exact .proc-body p,\n.oriavision-web-exact .bq-name span,\n.oriavision-web-exact .cta-content p,\n.oriavision-web-exact .btn-light {\n  color: rgba(255,255,255,.88) !important;\n  opacity: 1 !important;\n}\n\n.oriavision-web-exact .proc-body h3,\n.oriavision-web-exact .port-featured-info h3,\n.oriavision-web-exact .port-card-info h3,\n.oriavision-web-exact .trust-text strong,\n.oriavision-web-exact .cta-content h2,\n.oriavision-web-exact .sec-h2-white {\n  color: #ffffff !important;\n  opacity: 1 !important;\n}\n\n@media (max-width: 768px) {\n  .oriavision-web-exact .hero-copy {\n    background: #ffffff;\n    box-shadow: 0 -18px 42px rgba(255,255,255,.95);\n  }\n\n  .oriavision-web-exact .hero-p {\n    max-width: 100%;\n  }\n}\n";
 
-export const metadata: Metadata = {
-  title: "Landing pages, webs a medida y sistemas web | Oriavision",
-  description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
-  alternates: {
-    canonical: "/web/",
-  },
-  openGraph: {
-    url: PAGE_URL,
-    title: "Landing pages, webs a medida y sistemas web | Oriavision",
-    description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
-    images: [
-      {
-        url: "/og/home.png",
-        width: 1200,
-        height: 630,
-        alt: "Servicios web de Oriavision",
-      },
-    ],
-  },
-  twitter: {
-    title: "Landing pages, webs a medida y sistemas web | Oriavision",
-    description:
-      "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones y funcionalidades personalizadas.",
-    images: ["/og/home.png"],
-  },
-};
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Inicio",
-      item: SITE_URL,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Servicios web",
-      item: PAGE_URL,
-    },
-  ],
-};
-
-const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "Diseño y desarrollo web",
-  name: "Landing pages, páginas web a medida y sistemas web",
-  provider: {
-    "@type": "Organization",
-    name: "Oriavision",
-    url: SITE_URL,
-  },
-  areaServed: "AR",
-  url: PAGE_URL,
-  description:
-    "Desarrollamos landing pages, páginas web a medida y sistemas web con usuarios, base de datos, login, panel admin, automatizaciones, newsletters y paneles de gestión.",
-};
-
-type Project = {
-  title: string;
-  kind: string;
-  status?: string;
-  href: string;
-  domain: string;
-  description: string;
-  stack?: string[];
-  image?: string;
-};
-
-const services = [
-  {
-    title: "Landing pages",
-    text: "Ideales para campañas, servicios, link en bio o presentar una propuesta de forma clara y profesional.",
-  },
-  {
-    title: "Páginas web a medida",
-    text: "Para negocios que necesitan mejor estructura, más secciones, formularios, contenido y una presencia digital más sólida.",
-  },
-  {
-    title: "Sistemas y automatizaciones",
-    text: "También desarrollamos soluciones con usuarios, login, base de datos, panel admin, newsletters, secuencias automáticas y funciones específicas.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    title: "Nos contás qué necesitás",
-    text: "Completás el formulario con tu idea, rubro y objetivo principal.",
-  },
-  {
-    step: "02",
-    title: "Definimos el enfoque",
-    text: "Vemos si conviene una landing, una web a medida o un sistema más completo.",
-  },
-  {
-    step: "03",
-    title: "Diseño y desarrollo",
-    text: "Armamos una propuesta clara, moderna y alineada a tu negocio.",
-  },
-  {
-    step: "04",
-    title: "Entrega y evolución",
-    text: "Dejamos todo listo para salir online y seguir mejorándolo si hace falta.",
-  },
-];
-
-const projects: Project[] = [
-  {
-    title: "Siempre de Guardia",
-    kind: "Directorio / plataforma",
-    href: "https://siempredeguardia.com.ar/",
-    domain: "siempredeguardia.com.ar",
-    description:
-      "Plataforma orientada a encontrar servicios disponibles de forma rápida, con categorías claras, acceso de usuarios y una navegación práctica.",
-    stack: ["Directorio", "Servicios", "Login"],
-    image: "/portfolio/siempredeguardia.png",
-  },
-  {
-    title: "Quirvo",
-    kind: "Landing de producto",
-    href: "https://www.quirvo.com.ar/",
-    domain: "www.quirvo.com.ar",
-    description:
-      "Landing orientada a presentar el producto, explicar su propuesta de valor y comunicar una solución clara y moderna.",
-    stack: ["Producto", "Presentación", "Landing"],
-    image: "/portfolio/quirvo.png",
-  },
-  {
-    title: "Calculadora ML — Landing",
-    kind: "Landing page",
-    href: "https://calculadoraml.oriavision.com.ar/",
-    domain: "calculadoraml.oriavision.com.ar",
-    description:
-      "Landing enfocada en presentar la propuesta, explicar beneficios y derivar a la herramienta principal.",
-    stack: ["Marketing", "Conversión", "CTA clara"],
-    image: "/portfolio/calculadora-landing.png",
-  },
-  {
-    title: "dbengotech",
-    kind: "Web de servicios",
-    href: "https://dbengotech.com.ar/",
-    domain: "dbengotech.com.ar",
-    description:
-      "Sitio orientado a comunicar servicios, propuesta de valor y enfoque de trabajo de forma más profesional.",
-    stack: ["Servicios", "Presentación", "Marca"],
-    image: "/portfolio/dbengotech.png",
-  },
-];
-
-function ProjectPreview({ project }: { project: Project }) {
-  return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-red-300" />
-        <span className="h-3 w-3 rounded-full bg-amber-300" />
-        <span className="h-3 w-3 rounded-full bg-emerald-300" />
-        <div className="ml-2 truncate rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold text-slate-500">
-          {project.domain}
-        </div>
-      </div>
-
-      {project.image ? (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="h-64 w-full object-cover object-top md:h-72"
-        />
-      ) : (
-        <div className="relative flex h-64 w-full items-end overflow-hidden bg-gradient-to-br from-slate-900 via-brand-900 to-brand-600 p-6 md:h-72">
-          <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]" />
-          <div className="relative z-10 max-w-sm">
-            <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-white/90 backdrop-blur">
-              {project.kind}
-            </div>
-            <div className="mt-4 text-2xl font-black leading-tight tracking-tight text-white">
-              {project.title}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg md:p-5">
-      <ProjectPreview project={project} />
-
-      <div className="mt-5">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-brand-700">
-            {project.kind}
-          </span>
-
-          {project.status ? (
-            <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-amber-700">
-              {project.status}
-            </span>
-          ) : null}
-        </div>
-
-        <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
-          {project.title}
-        </h3>
-
-        <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-          {project.description}
-        </p>
-
-        {project.stack?.length ? (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.stack.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-600"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        ) : null}
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-100 transition hover:bg-brand-700"
-          >
-            Ver online
-          </a>
-
-          <a
-            href="#formulario"
-            className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
-          >
-            Quiero algo así
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
+const WEB_HTML = "\n\n\n<div id=\"loader\">\n<div class=\"loader-inner\">\n<div class=\"loader-logo\">Oriavision</div>\n<div class=\"loader-track\"><div class=\"loader-fill\"></div></div>\n</div>\n</div>\n\n<div id=\"progress\"></div>\n\n<div id=\"cursor\"></div>\n\n<section class=\"hero\">\n<div aria-hidden=\"true\" class=\"hero-eye-deco\"></div>\n<div aria-hidden=\"true\" class=\"hero-glow\"></div>\n<div class=\"wrap\">\n<div class=\"hero-inner\">\n<div class=\"hero-copy\">\n<span class=\"hero-label\">Diseño web estratégico ·</span>\n<h1 class=\"hero-h1\">\n<span class=\"h1-line\"><span class=\"h1-inner\">Tu negocio merece</span></span>\n<span class=\"h1-line\"><span class=\"h1-inner\">una web que <mark>genere resultados.</mark></span></span>\n</h1>\n<p class=\"hero-p\">Diseñamos páginas web modernas, rápidas y estratégicas para emprendedores y empresas que quieren verse profesionales, transmitir confianza y convertir visitas en clientes reales.</p>\n<div class=\"hero-actions\">\n<a class=\"btn-blue\" data-magnetic=\"\" href=\"#contacto\">\n<svg fill=\"none\" height=\"18\" viewbox=\"0 0 24 24\" width=\"18\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\" fill=\"currentColor\"></path></svg>\n            Hablemos de tu proyecto\n          </a>\n<a class=\"btn-outline\" href=\"#portfolio\">Ver proyectos y planes</a>\n</div>\n</div>\n<div aria-hidden=\"true\" class=\"hero-visual\">\n<div class=\"mockups-stack\">\n<div class=\"mockup mockup-1\">\n<div class=\"mockup-chrome\">\n<div class=\"m-dots\"><span></span><span></span><span></span></div>\n<div class=\"m-url\"></div>\n</div>\n<div class=\"mockup-screen\">\n<img alt=\"Proyecto web Oriavision\" loading=\"eager\" src=\"/web-exact/web-exact-01.jpg\"/>\n</div>\n</div>\n<div class=\"mockup mockup-2\">\n<div class=\"mockup-chrome\">\n<div class=\"m-dots\"><span></span><span></span><span></span></div>\n<div class=\"m-url\"></div>\n</div>\n<div class=\"mockup-screen\">\n<img alt=\"Collage de proyectos web\" loading=\"eager\" src=\"/web-visuals/mockup-slide-collage.png\"/>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<div aria-hidden=\"true\" class=\"ticker-wrap\">\n<div class=\"ticker-track\">\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n</div>\n</div>\n\n<div class=\"stats-band\">\n<div class=\"wrap\">\n<div class=\"stats-row\">\n<div class=\"stat-item rv d1\">\n<span class=\"stat-num\"><span data-count=\"7\">7</span></span>\n<small>Días para una landing</small>\n</div>\n<div class=\"stat-divider\"></div>\n<div class=\"stat-item rv d2\">\n<span class=\"stat-num\"><span data-count=\"100\" data-suffix=\"%\">100%</span></span>\n<small>Entregados en fecha</small>\n</div>\n<div class=\"stat-divider\"></div>\n<div class=\"stat-item rv d3\">\n<span class=\"stat-num\">0</span>\n<small>Sorpresas en el precio</small>\n</div>\n</div>\n</div>\n</div>\n\n<section class=\"section section-off\" id=\"servicios\">\n<div class=\"wrap\">\n<h2 class=\"sec-h2 rv\">Servicios de diseño web<br/>para negocios.</h2>\n<div class=\"svc-grid\">\n<div class=\"svc-card card-1 rv d1\">\n<img alt=\"Landing page\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-exact/web-exact-03.jpg\"/>\n<div class=\"svc-card-bar\">Landing page</div>\n<h3>La forma más directa de conseguir consultas de clientes.</h3>\n<p>Una sola página que explica qué hacés, por qué elegirte y convierte a cada visita en un mensaje.</p>\n<ul class=\"svc-list\">\n<li>Diseño personalizado para tu rubro</li>\n<li>Texto optimizado para convertir</li>\n<li>Botón de WhatsApp y formulario</li>\n<li>Optimizada para Google desde el día uno</li>\n<li>Lista en 3 a 7 días hábiles</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#contacto\">Consultá el precio →</a>\n</div>\n<div class=\"svc-card card-2 rv d2\">\n<img alt=\"Web completa\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-steps/paso-03-diseno.png\"/>\n<div class=\"svc-card-bar\">Web completa</div>\n<h3>Para presentar tu negocio completo en la web.</h3>\n<p>Servicios, sobre vos, portfolio y testimonios. Todo organizado para que tu cliente confíe y te elija antes de contactarte.</p>\n<ul class=\"svc-list\">\n<li>Varias páginas y secciones</li>\n<li>Catálogo o portfolio de servicios</li>\n<li>Panel para editar el contenido</li>\n<li>Integración con redes sociales</li>\n<li>Optimizada para celular y Google</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#contacto\">Consultá el precio →</a>\n</div>\n<div class=\"svc-card card-3 rv d3\">\n<img alt=\"Sistema simple\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-steps/paso-04-online.png\"/>\n<div class=\"svc-card-bar\">Sistema simple</div>\n<h3>Para digitalizar tu gestión sin depender de plataformas caras.</h3>\n<p>Un sistema a medida para gestionar usuarios, datos o tareas internas. Sin licencias, sin tecnicismos, sin complicaciones.</p>\n<ul class=\"svc-list\">\n<li>Panel de administración propio</li>\n<li>Carga y edición de datos</li>\n<li>Acceso con usuario y contraseña</li>\n<li>Adaptado exactamente a tu flujo</li>\n<li>Sin licencias mensuales</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#contacto\">Consultá el precio →</a>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\" id=\"portfolio\">\n<div class=\"wrap\">\n<div class=\"sec-header\">\n<div>\n<h2 class=\"sec-h2 portfolio-title-mobile-one rv\">Proyectos que<br class=\"portfolio-desktop-break\"/><span class=\"portfolio-mobile-space\"> </span>ya están online.</h2>\n</div>\n<a class=\"btn-outline rv d2\" href=\"#contacto\">Quiero algo parecido →</a>\n</div>\n<div class=\"rv rs\">\n<div class=\"port-featured wipe\">\n<img alt=\"Siempre de Guardia\" loading=\"lazy\" src=\"/web-exact/web-exact-06.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-featured-info\">\n<div class=\"port-tag\">Sistema web</div>\n<h3>Siempre de Guardia</h3>\n<p>Directorio de servicios con categorías, registro de usuarios y contacto rápido.</p>\n</div>\n</div>\n</div>\n<div class=\"port-grid-4\">\n<div class=\"port-card rv d1 wipe\">\n<img alt=\"Quirvo\" loading=\"lazy\" src=\"/web-exact/web-exact-07.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Landing</div>\n<h3>Quirvo</h3>\n</div>\n</div>\n<div class=\"port-card rv d2 wipe\">\n<img alt=\"Calculadora MELI\" loading=\"lazy\" src=\"/web-exact/web-exact-05.jpg\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Herramienta</div>\n<h3>Calculadora MELI</h3>\n</div>\n</div>\n<div class=\"port-card rv d3 wipe\">\n<img alt=\"Orientador de precios ML\" loading=\"lazy\" src=\"/web-exact/web-exact-09.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Herramienta</div>\n<h3>Orientador de precios ML</h3>\n</div>\n</div>\n<div class=\"port-card rv d4 wipe\">\n<img alt=\"dbengotech\" loading=\"lazy\" src=\"/web-exact/web-exact-10.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Web de servicios</div>\n<h3>dbengotech</h3>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\">\n<div class=\"wrap\">\n<div class=\"why-inner\">\n<div class=\"why-img wipe rv rl\">\n<img alt=\"Equipo Oriavision\" loading=\"lazy\" src=\"/web-exact/web-exact-11.jpg\"/>\n</div>\n<div>\n<h2 class=\"sec-h2 rv\">Por qué nuestros clientes<br/>vuelven a elegirnos.</h2>\n<p class=\"sec-p rv d2\">No prometemos \"transformación digital\". Prometemos lo que podemos cumplir, con plazos reales y precios claros.</p>\n<div class=\"why-points\">\n<div class=\"why-point rv d1\">\n<div class=\"why-num\">01</div>\n<div>\n<h4>Respondemos y entregamos</h4>\n<p>No desaparecemos después del primer mensaje. Respondemos rápido y respetamos los plazos.</p>\n</div>\n</div>\n<div class=\"why-point rv d2\">\n<div class=\"why-num\">02</div>\n<div>\n<h4>Diseño que comunica, no que impresiona</h4>\n<p>Cada página se piensa para tu cliente específico. No hacemos webs genéricas.</p>\n</div>\n</div>\n<div class=\"why-point rv d3\">\n<div class=\"why-num\">03</div>\n<div>\n<h4>Simple y justo, sin vender de más</h4>\n<p>Si con una landing alcanza, te lo decimos. La idea es que funcione, no que sea cara.</p>\n</div>\n</div>\n<div class=\"why-point rv d4\">\n<div class=\"why-num\">04</div>\n<div>\n<h4>Seguimos después del lanzamiento</h4>\n<p>Si algo falla o querés mejorarlo, estamos. Tu web crece con tu negocio.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<div class=\"trust-strip\">\n<div class=\"wrap\">\n<div class=\"trust-row\">\n<div class=\"trust-item rv d1\">\n<div class=\"trust-icon\">⚡</div>\n<div class=\"trust-text\">\n<strong>Entrega en 3 a 7 días</strong>\n<span>Landings listas sin demoras</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d2\">\n<div class=\"trust-icon\">🎯</div>\n<div class=\"trust-text\">\n<strong>Diseño para convertir</strong>\n<span>Cada página pensada para tu cliente</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d3\">\n<div class=\"trust-icon\">📱</div>\n<div class=\"trust-text\">\n<strong>100% mobile-first</strong>\n<span>Optimizada para celular y Google</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d4\">\n<div class=\"trust-icon\">💬</div>\n<div class=\"trust-text\">\n<strong>Soporte post-lanzamiento</strong>\n<span>No desaparecemos al entregar</span>\n</div>\n</div>\n</div>\n</div>\n</div>\n\n<section class=\"section\" id=\"proceso\">\n<div class=\"wrap\">\n<h2 class=\"sec-h2 rv\">De la idea<br/>a la web online en 4 pasos.</h2>\n<div class=\"process-grid\">\n<div class=\"proc rv d1\">\n<div class=\"proc-img\">\n<img alt=\"Idea inicial del proyecto enviada por WhatsApp o formulario\" loading=\"lazy\" src=\"/web-steps/paso-01-idea.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 01</div>\n<h3>Nos contás tu idea</h3>\n<p>Por WhatsApp o mail. Nos decís qué hacés, qué querés lograr y te hacemos las preguntas correctas.</p>\n</div>\n</div>\n<div class=\"proc rv d2\">\n<div class=\"proc-img\">\n<img alt=\"Análisis y recomendación de la mejor opción para el proyecto\" loading=\"lazy\" src=\"/web-steps/paso-02-recomendacion.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 02</div>\n<h3>Te decimos qué conviene</h3>\n<p>Te explicamos qué opción tiene más sentido, con precio y plazo claro antes de arrancar.</p>\n</div>\n</div>\n<div class=\"proc rv d3\">\n<div class=\"proc-img\">\n<img alt=\"Diseño y armado de una página web profesional\" loading=\"lazy\" src=\"/web-steps/paso-03-diseno.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 03</div>\n<h3>Diseñamos y armamos</h3>\n<p>Te mostramos avances para pedir cambios durante el proceso, no al final.</p>\n</div>\n</div>\n<div class=\"proc rv d4\">\n<div class=\"proc-img\">\n<img alt=\"Sitio web publicado online y verificado en distintos dispositivos\" loading=\"lazy\" src=\"/web-steps/paso-04-online.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 04</div>\n<h3>La dejamos online</h3>\n<p>Publicamos, verificamos en celular y computadora, y te enseñamos a manejarte.</p>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<div class=\"bigquote\">\n<div class=\"wrap\">\n<div class=\"bigquote-inner\">\n<div class=\"bq-mark rv\">\"</div>\n<p class=\"bq-text rv d1\">Lo que más valoro es que entendieron qué necesitaba sin que yo supiera explicarlo bien. La web quedó mejor de lo que imaginaba y ya me llegaron consultas.</p>\n<div class=\"bq-author rv d2\">\n<div class=\"bq-avatar\">\n<img alt=\"Valentina R.\" loading=\"lazy\" src=\"/web-exact/web-exact-16.svg\"/>\n</div>\n<div class=\"bq-name\">\n<strong>Valentina R.</strong>\n<span>Nutricionista · La Plata</span>\n</div>\n</div>\n</div>\n</div>\n</div>\n\n<section class=\"section section-off\">\n<div class=\"wrap\">\n<h2 class=\"sec-h2 rv\">Negocios que arrancaron<br/>con Oriavision.</h2>\n<div class=\"testi-grid\">\n<div class=\"testi rv d1\">\n<div class=\"testi-stars\">★★★★★</div>\n<p class=\"testi-text\">\"Tenía miedo de que fuera complicado. Me explicaron todo sin rodeos, entregaron en tiempo y ya me llegaron tres consultas la primera semana.\"</p>\n<div class=\"testi-author\">\n<div class=\"testi-ava\"><img alt=\"Marcos D.\" loading=\"lazy\" src=\"/web-exact/web-exact-17.svg\"/></div>\n<div>\n<div class=\"testi-name\">Marcos D.</div>\n<div class=\"testi-role\">Electricista · CABA</div>\n</div>\n</div>\n</div>\n<div class=\"testi rv d2\">\n<div class=\"testi-stars\">★★★★★</div>\n<p class=\"testi-text\">\"Arrancamos con una landing y después les pedí el sistema de gestión. Van dos proyectos y los dos funcionan exactamente como necesito.\"</p>\n<div class=\"testi-author\">\n<div class=\"testi-ava\"><img alt=\"Santiago P.\" loading=\"lazy\" src=\"/web-exact/web-exact-18.svg\"/></div>\n<div>\n<div class=\"testi-name\">Santiago P.</div>\n<div class=\"testi-role\">Consultor · Córdoba</div>\n</div>\n</div>\n</div>\n<div class=\"testi rv d3\">\n<div class=\"testi-stars\">★★★★★</div>\n<p class=\"testi-text\">\"Antes no tenía nada online. Ahora la gente llega desde Google y me escribe. No sabía que tanta diferencia podía hacer una buena landing.\"</p>\n<div class=\"testi-author\">\n<div class=\"testi-ava\"><img alt=\"Laura G.\" loading=\"lazy\" src=\"/web-exact/web-exact-19.svg\"/></div>\n<div>\n<div class=\"testi-name\">Laura G.</div>\n<div class=\"testi-role\">Psicóloga · Rosario</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\">\n<div class=\"wrap\">\n<div style=\"text-align:center;\">\n<h2 class=\"sec-h2 rv\" style=\"text-align:center;\">Preguntas frecuentes<br/>antes de arrancar.</h2>\n</div>\n<div class=\"faq-grid\">\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿Cuánto tarda en estar lista?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Una landing: 3 a 7 días hábiles. Una web completa: 2 a 4 semanas. En todos los casos te damos un plazo claro antes de arrancar y lo respetamos.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Necesito saber de tecnología?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Para nada. Nos contás qué hacés y qué querés lograr, nosotros nos encargamos del resto. Si algo no se entiende, lo explicamos sin tecnicismos.</div>\n</div>\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿Qué pasa si quiero cambiar algo después?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Incluimos ajustes durante el desarrollo. Una vez entregada, podemos acordar soporte mensual o cambios puntuales. No te dejamos solo.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Cómo es el proceso de pago?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Generalmente: mitad al confirmar, mitad al entregar. Los detalles los hablamos puntualmente según el proyecto.</div>\n</div>\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿La web aparece en Google?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Sí, todas las webs están configuradas correctamente para que Google las indexe desde el primer día. El posicionamiento orgánico lleva tiempo, pero arrancás bien hecho.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Puedo ver el trabajo antes de pagar todo?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Sí. Te mostramos avances durante el proceso y podés pedir cambios. No te mostramos algo terminado al final y te pedimos que aceptes: trabajamos en conjunto.</div>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"final-cta\" id=\"contacto\">\n<div class=\"cta-img-wrap\">\n<img alt=\"Presentación profesional de servicios web\" loading=\"lazy\" src=\"/web-visuals/hero-premium-v12.png\"/>\n<div class=\"cta-overlay\">\n<div class=\"cta-content\">\n<h2 class=\"rv\">¿Querés una página web<br/>que consiga clientes?</h2>\n<p class=\"rv d2\">Contanos tu proyecto. Te respondemos con una propuesta clara y un precio concreto en menos de 24 horas. Sin costos ocultos, sin rodeos.</p>\n<div class=\"cta-btns rv d3\">\n<a class=\"btn-wsp\" data-magnetic=\"\" href=\"https://wa.me/5491154748899?text=Hola%2C%20vi%20la%20p%C3%A1gina%20y%20quiero%20consultar%20sobre%20una%20web\" rel=\"noopener noreferrer\" target=\"_blank\">\n<svg fill=\"none\" height=\"20\" viewbox=\"0 0 24 24\" width=\"20\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\" fill=\"currentColor\"></path></svg>\n            Consultar por WhatsApp\n          </a>\n<a class=\"btn-light\" href=\"mailto:contacto@oriavision.com.ar\">contacto@oriavision.com.ar</a>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n";
 
 export default function WebPage() {
+  useEffect(() => {
+    const root = document.querySelector<HTMLElement>(".oriavision-web-exact");
+    if (!root) return;
+
+    const loader = root.querySelector("#loader");
+    const loaderTimer = window.setTimeout(() => loader?.classList.add("out"), 520);
+
+    const progress = root.querySelector("#progress") as HTMLElement | null;
+    const onScroll = () => {
+      if (progress) {
+        const max = document.body.scrollHeight - window.innerHeight;
+        progress.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : "0%";
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const revealObserver = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              revealObserver?.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 })
+      : null;
+
+    root.querySelectorAll(".rv, .wipe").forEach((el) => {
+      if (revealObserver) revealObserver.observe(el);
+      else el.classList.add("in");
+    });
+
+    const animatedCounters = new WeakSet<Element>();
+    const animateCount = (el: Element) => {
+      if (animatedCounters.has(el)) return;
+      animatedCounters.add(el);
+      const target = parseInt((el as HTMLElement).dataset.count || "0", 10);
+      const prefix = (el as HTMLElement).dataset.prefix || "";
+      const suffix = (el as HTMLElement).dataset.suffix || "";
+      const duration = 1800;
+      const step = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+      const timer = window.setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          window.clearInterval(timer);
+        }
+        el.textContent = prefix + Math.floor(current).toString() + suffix;
+      }, step);
+    };
+
+    const counterObserver = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCount(entry.target);
+              counterObserver?.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 })
+      : null;
+
+    root.querySelectorAll("[data-count]").forEach((el) => {
+      if (counterObserver) counterObserver.observe(el);
+      else animateCount(el);
+    });
+
+    const cursor = root.querySelector("#cursor") as HTMLElement | null;
+    let cx = 0;
+    let cy = 0;
+    let tx = 0;
+    let ty = 0;
+    let raf = 0;
+
+    const onMouseMove = (event: MouseEvent) => {
+      tx = event.clientX;
+      ty = event.clientY;
+    };
+
+    const animateCursor = () => {
+      if (cursor) {
+        cx += (tx - cx) * 0.12;
+        cy += (ty - cy) * 0.12;
+        cursor.style.left = `${cx}px`;
+
+        cursor.style.top = `${cy}px`;
+
+      }
+      raf = window.requestAnimationFrame(animateCursor);
+    };
+
+    document.addEventListener("mousemove", onMouseMove);
+    raf = window.requestAnimationFrame(animateCursor);
+
+    const cursorTargets = Array.from(root.querySelectorAll("a, button, [data-magnetic], .port-card, .testi, .proc, .faq-item"));
+    const cursorEnter = () => cursor?.classList.add("big");
+    const cursorLeave = () => cursor?.classList.remove("big");
+    cursorTargets.forEach((el) => {
+      el.addEventListener("mouseenter", cursorEnter);
+      el.addEventListener("mouseleave", cursorLeave);
+    });
+
+    const magneticButtons = Array.from(root.querySelectorAll<HTMLElement>("[data-magnetic]"));
+    const magneticHandlers = magneticButtons.map((btn) => {
+      const move = (event: Event) => {
+        const mouse = event as MouseEvent;
+        const rect = btn.getBoundingClientRect();
+        btn.style.transform = `translate(${(mouse.clientX - rect.left - rect.width / 2) * 0.22}px, ${(mouse.clientY - rect.top - rect.height / 2) * 0.22}px)`;
+
+      };
+      const leave = () => {
+        btn.style.transform = "";
+      };
+      btn.addEventListener("mousemove", move);
+      btn.addEventListener("mouseleave", leave);
+      return { btn, move, leave };
+    });
+
+    const faqButtons = Array.from(root.querySelectorAll<HTMLElement>(".faq-item button, .faq-q"));
+    const onFaqClick = (event: Event) => {
+      const btn = event.currentTarget as HTMLElement;
+      const item = btn.closest(".faq-item");
+      if (!item) return;
+      const isOpen = item.classList.contains("open");
+      root.querySelectorAll(".faq-item.open").forEach((openItem) => openItem.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    };
+    faqButtons.forEach((btn) => btn.addEventListener("click", onFaqClick));
+
+
+    return () => {
+      window.clearTimeout(loaderTimer);
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mousemove", onMouseMove);
+      if (raf) window.cancelAnimationFrame(raf);
+      revealObserver?.disconnect();
+      counterObserver?.disconnect();
+      cursorTargets.forEach((el) => {
+        el.removeEventListener("mouseenter", cursorEnter);
+        el.removeEventListener("mouseleave", cursorLeave);
+      });
+      magneticHandlers.forEach(({ btn, move, leave }) => {
+        btn.removeEventListener("mousemove", move);
+        btn.removeEventListener("mouseleave", leave);
+      });
+      faqButtons.forEach((btn) => btn.removeEventListener("click", onFaqClick));
+    };
+  }, []);
+
+  const whatsappHref =
+    "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Vi%20la%20p%C3%A1gina%20de%20servicios%20web%20y%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n.%20%C2%BFMe%20ayudan%3F";
+
   return (
-    <main className="min-h-screen bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+    <>
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS }} />
+      <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
-      <section className="relative overflow-hidden px-4 pb-16 pt-24 md:pb-20 md:pt-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_36%)]" />
-        <div className="relative mx-auto max-w-6xl">
-          <Reveal>
-            <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Servicios web
-              </div>
-
-              <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-900 md:text-6xl">
-                Landing pages, webs a medida y sistemas web para mostrar mejor tu negocio
-              </h1>
-
-              <p className="mx-auto mt-5 max-w-3xl text-lg font-medium leading-relaxed text-slate-600 md:text-xl">
-                Desarrollamos desde páginas simples hasta sistemas más completos con usuarios,
-                base de datos, login, panel admin, automatizaciones y funciones a medida.
-              </p>
-
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a
-                  href="#trabajos"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-4 text-base font-extrabold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
-                >
-                  Ver trabajos
-                </a>
-
-                <a
-                  href="#formulario"
-                  className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-base font-extrabold text-slate-800 transition hover:border-brand-200 hover:text-brand-700"
-                >
-                  Enviar info
-                </a>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-slate-500">
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Landing pages
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Webs a medida
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Usuarios y login
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Base de datos
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Panel admin
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Automatización de emails
-                </span>
-                <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
-                  Newsletters y secuencias
-                </span>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 md:py-14">
+      <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="grid gap-6 md:grid-cols-3">
-              {services.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm"
-                >
-                  <h2 className="text-xl font-black tracking-tight text-slate-900">
-                    {item.title}
-                  </h2>
-                  <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+          <WebRequestForm />
         </div>
       </section>
 
-      <section className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="rounded-[2.5rem] border border-slate-200 bg-slate-50 p-8 md:p-10">
-              <div className="max-w-3xl">
-                <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Qué hacemos
-                </div>
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        className="fixed bottom-[calc(env(safe-area-inset-bottom)+16px)] right-4 z-[9999] inline-flex items-center justify-center rounded-full bg-[#25D366] p-4 font-extrabold text-white shadow-2xl shadow-emerald-900/30 transition hover:-translate-y-1 hover:shadow-emerald-900/50 sm:right-6 sm:bottom-[calc(env(safe-area-inset-bottom)+24px)] sm:gap-2 sm:px-5 sm:py-3"
+      >
+        <WhatsAppIcon className="h-6 w-6" />
 
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  No solo hacemos páginas lindas: buscamos que expliquen bien y funcionen
-                </h2>
-
-                <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                  Una buena web tiene que transmitir confianza, ordenar la propuesta y facilitar
-                  la acción. Y cuando hace falta, también puede sumar lógica, usuarios, paneles,
-                  automatizaciones, newsletters, secuencias automáticas y herramientas propias.
-                </p>
-              </div>
-
-              <div className="mt-8 grid gap-4 md:grid-cols-2">
-                <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-black text-slate-900">Ideal para</h3>
-                  <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
-                    <li>• Negocios que todavía no tienen una web sólida</li>
-                    <li>• Marcas que necesitan una landing para campañas o redes</li>
-                    <li>• Servicios que quieren recibir más consultas</li>
-                    <li>• Proyectos que necesitan verse mejor y comunicar con claridad</li>
-                    <li>• Empresas que necesitan un sistema interno o una herramienta web</li>
-                  </ul>
-                </div>
-
-                <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-black text-slate-900">Podemos ayudarte con</h3>
-                  <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-600">
-                    <li>• Sitios de servicios e institucionales</li>
-                    <li>• Landing pages para campañas</li>
-                    <li>• Formularios de contacto o consulta</li>
-                    <li>• Registro e ingreso de usuarios</li>
-                    <li>• Base de datos y panel administrador</li>
-                    <li>• Automatización de emails y respuestas</li>
-                    <li>• Newsletters y secuencias automáticas</li>
-                    <li>• Paneles para cargar productos, propiedades o servicios</li>
-                    <li>• Gestión de proveedores o catálogos internos</li>
-                    <li>• Herramientas y funciones a medida</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="trabajos" className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                Trabajos destacados
-              </div>
-
-              <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                Algunos trabajos destacados hechos por nosotros
-              </h2>
-
-              <p className="mt-4 text-lg font-medium leading-relaxed text-slate-600">
-                Acá mostramos una selección de proyectos para que puedas ver distintos tipos de trabajo:
-                landing pages, sitios de servicios, directorios y desarrollos más completos.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              {projects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
-              <div className="max-w-2xl">
-                <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
-                  Cómo trabajamos
-                </div>
-
-                <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
-                  Un proceso simple para avanzar más rápido
-                </h2>
-              </div>
-
-              <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                {process.map((item) => (
-                  <div
-                    key={item.step}
-                    className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6"
-                  >
-                    <div className="text-sm font-black text-brand-700">{item.step}</div>
-                    <h3 className="mt-3 text-lg font-black text-slate-900">{item.title}</h3>
-                    <p className="mt-3 text-sm font-semibold leading-relaxed text-slate-600">
-                      {item.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="formulario" className="px-4 pb-20 pt-10 md:pb-24 md:pt-14">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <WebRequestForm />
-          </Reveal>
-
-          <div className="mt-8 text-center text-sm font-semibold text-slate-500">
-            Preferís escribir directo?{" "}
-            <a
-              href="mailto:soporte@oriavision.com.ar"
-              className="font-extrabold text-brand-600 hover:text-brand-700"
-            >
-              soporte@oriavision.com.ar
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
+        <span className="hidden sm:inline">WhatsApp</span>
+      </a>
+    </>
   );
 }
+
