@@ -625,7 +625,7 @@ const pageStyles = `
 
   .ov-card-media {
     position: relative;
-    height: clamp(190px, 24vw, 275px);
+    height: clamp(220px, 27vw, 340px);
     overflow: hidden;
     border-radius: 1.65rem 1.65rem 0 0;
     background: linear-gradient(135deg, rgba(20,86,200,.12), rgba(30,200,240,.16));
@@ -2145,7 +2145,7 @@ export default function Home() {
                         alt=""
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover"
+                        className="object-cover md:object-contain md:p-5"
                       />
                     </div>
                     <div className="ov-card-pad">
