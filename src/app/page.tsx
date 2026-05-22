@@ -2123,7 +2123,7 @@ export default function Home() {
                   place="calculator_card_home"
                   className="ov-btn ov-btn-primary mt-8 w-full sm:w-auto"
                 >
-                  Abrir calculadora <ArrowRight className="relative z-10 h-5 w-5" />
+                  Abrir calculadora
                 </TrackLink>
               </div>
             </Reveal>
@@ -2168,9 +2168,9 @@ export default function Home() {
                   rel="noreferrer"
                   event="click_orientador"
                   place="orientador_card_home"
-                  className="ov-btn ov-btn-secondary relative mt-8 w-full sm:w-auto"
+                  className="ov-btn ov-btn-primary relative mt-8 w-full sm:w-auto"
                 >
-                  Ver orientador <ArrowRight className="h-5 w-5" />
+                  Ver orientador
                 </TrackLink>
               </div>
             </Reveal>
