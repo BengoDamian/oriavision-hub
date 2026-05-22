@@ -645,6 +645,24 @@ const pageStyles = `
     transition: transform .65s cubic-bezier(0,0,1,1), filter .65s cubic-bezier(0,0,1,1);
   }
 
+  @media (min-width: 768px) {
+    .ov-card-media {
+      height: clamp(280px, 30vw, 390px);
+      background: #f4f8ff;
+    }
+
+    .ov-card-media::after {
+      background: linear-gradient(180deg, rgba(255,255,255,0) 62%, rgba(255,255,255,.35) 100%);
+    }
+
+    .ov-card-media img {
+      object-fit: contain !important;
+      object-position: center center !important;
+      padding: 1.1rem !important;
+      filter: none;
+    }
+  }
+
   .ov-card:hover .ov-card-media img,
   .ov-mockup:hover .ov-photo-frame img,
   .ov-wide-photo:hover img {
@@ -2145,7 +2163,7 @@ export default function Home() {
                         alt=""
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover md:object-contain md:p-5"
+                        className="object-cover"
                       />
                     </div>
                     <div className="ov-card-pad">
