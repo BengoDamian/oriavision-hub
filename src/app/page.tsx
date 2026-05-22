@@ -2351,7 +2351,7 @@ export default function Home() {
                 </div>
 
                 <Link href="/prompts/" className="ov-btn ov-btn-primary mt-7">
-                  Ver todos los prompts gratis <ArrowRight className="relative z-10 h-4 w-4" />
+                  Ver todos los prompts gratis
                 </Link>
               </div>
             </Reveal>
@@ -2380,8 +2380,8 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Link href="/guias/" className="ov-btn ov-btn-secondary mt-7">
-                  Ver todas las guías gratuitas <ArrowRight className="h-4 w-4" />
+                <Link href="/guias/" className="ov-btn ov-btn-primary mt-7">
+                  Ver todas las guías gratuitas
                 </Link>
               </div>
             </Reveal>
