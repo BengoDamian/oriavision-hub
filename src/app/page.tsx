@@ -1133,8 +1133,12 @@ const pageStyles = `
   }
 
   .ov-hero-integrated .ov-search-shell {
-    width: min(100%, 520px);
+    width: min(calc(100vw - 24px), 1360px);
+    max-width: none;
     margin: 0 auto 1.35rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     border-color: rgba(255,255,255,.78);
     background: rgba(255,255,255,.78);
     box-shadow: 0 20px 60px rgba(10,31,110,.08);
@@ -1265,7 +1269,10 @@ const pageStyles = `
 
     .ov-hero-integrated .ov-search-shell {
       width: 100%;
+      max-width: none;
       margin: 0 0 1rem;
+      left: auto;
+      transform: none;
     }
 
     .ov-hero-combo-desktop {
