@@ -1638,8 +1638,8 @@ const pageStyles = `
       margin: 0;
     }
 
-    /* Mobile only: mostrar las capturas completas del carrousel.
-       En desktop queda igual; en celular evita que las imágenes se recorten hacia los costados. */
+    /* Mobile only: integrar imagen + texto del carrousel en una sola card.
+       En desktop queda igual. */
     .ov-project-carousel {
       min-height: auto;
       gap: .75rem;
@@ -1647,25 +1647,43 @@ const pageStyles = `
 
     .ov-project-carousel-viewport {
       border-radius: 1.35rem;
+      background: linear-gradient(180deg, rgba(7,19,59,.96), rgba(6,16,44,.98));
       box-shadow: 0 18px 48px rgba(0,0,0,.22);
       backdrop-filter: none;
     }
 
     .ov-project-slide-media {
-      height: clamp(205px, 58vw, 250px);
-      background: linear-gradient(180deg, rgba(244,248,255,.98), rgba(227,239,255,.94));
+      height: clamp(190px, 52vw, 230px);
+      background: rgba(6,16,44,.96);
       overflow: hidden;
     }
 
+    .ov-project-slide-media::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 54px;
+      background: linear-gradient(180deg, rgba(6,16,44,0), rgba(7,19,59,.98));
+      pointer-events: none;
+      z-index: 2;
+    }
+
     .ov-project-slide-media img {
-      object-fit: contain !important;
-      object-position: center center !important;
-      padding: .45rem !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      padding: 0 !important;
       transform: none !important;
     }
 
     .ov-project-slide-copy {
-      padding: 1.05rem 1.05rem 1.15rem;
+      position: relative;
+      z-index: 3;
+      margin-top: -18px;
+      padding: 1.15rem 1.05rem 1.15rem;
+      border-top: 0;
+      background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.99));
     }
 
     .ov-project-slide-copy h3 {
