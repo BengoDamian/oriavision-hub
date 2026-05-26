@@ -6,7 +6,9 @@
       "Bash(curl -s http://localhost:3000)",
       "Bash(curl -s -I http://localhost:3000)",
       "Bash(git checkout *)",
-      "Bash(code \"c:\\\\Users\\\\Usuario\\\\Downloads\\\\oriavision-hub_clean\\\\oriavision-hub\\\\src\\\\app\\\\web\\\\page.tsx\")"
+      "Bash(code \"c:\\\\Users\\\\Usuario\\\\Downloads\\\\oriavision-hub_clean\\\\oriavision-hub\\\\src\\\\app\\\\web\\\\page.tsx\")",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(start http://localhost:3001)"
     ]
   }
 }
