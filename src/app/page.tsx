@@ -121,6 +121,13 @@ const SERVICES = [
 
 const PORTFOLIO = [
   {
+    title: "Ercas",
+    tag: "E-commerce",
+    text: "Tienda online de tecnología, celulares, tintas y accesorios.",
+    img: "/portfolio/ercas.png",
+    href: "https://ercas.com.ar/",
+  },
+  {
     title: "Siempre de Guardia",
     tag: "Sistema web",
     text: "Directorio de servicios con categorías, registro de usuarios y contacto rápido.",
@@ -147,13 +154,6 @@ const PORTFOLIO = [
     text: "Sitio profesional de servicios tecnológicos con propuesta clara y visual comercial.",
     img: "/portfolio/dbengotech.png",
     href: "https://dbengotech.com.ar/",
-  },
-  {
-    title: "Ercas",
-    tag: "E-commerce",
-    text: "Tienda online de tecnología, celulares, tintas y accesorios.",
-    img: "/portfolio/ercas.png",
-    href: "https://ercas.com.ar/",
   },
 ];
 
