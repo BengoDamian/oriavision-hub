@@ -29,13 +29,13 @@ const CALC_URL = "https://calculadoraml.oriavision.com.ar";
 const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
 
 export const metadata: Metadata = {
-  title: "Oriavision | Soluciones digitales para vender mejor online",
+  title: "Oriavision | Soluciones digitales para vender mejor",
   description:
     "Herramientas para MercadoLibre, recursos gratuitos y desarrollo de páginas web profesionales para negocios que quieren vender mejor online.",
   alternates: { canonical: "/" },
   openGraph: {
     url: SITE_URL,
-    title: "Oriavision | Soluciones digitales para vender mejor online",
+    title: "Oriavision | Soluciones digitales para vender mejor",
     description:
       "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Oriavision | Soluciones digitales para vender mejor online",
+    title: "Oriavision | Soluciones digitales para vender mejor",
     description:
       "Herramientas, recursos y páginas web pensadas desde la experiencia real de venta online.",
     images: ["/og/home.png"],
@@ -2156,7 +2156,7 @@ export default function Home() {
           <div className="ov-hero-combo-desktop">
             <Reveal delay={0.06} className="ov-hero-copybox">
               <h1>
-                Soluciones <span>digitales</span> para vender mejor online.
+                Soluciones <span>digitales</span> para vender mejor.
               </h1>
 
               <p className="ov-hero-copy">
@@ -2187,7 +2187,7 @@ export default function Home() {
           </div>
 
           <div className="ov-hero-combo-mobile">
-            <h1 className="sr-only">Soluciones digitales para vender mejor online.</h1>
+            <h1 className="sr-only">Soluciones digitales para vender mejor.</h1>
 
             <Reveal delay={0.06}>
               <div className="ov-hero-mobile-art" aria-hidden="true">
