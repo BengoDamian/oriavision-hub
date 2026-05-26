@@ -148,6 +148,13 @@ const PORTFOLIO = [
     img: "/portfolio/dbengotech.png",
     href: "https://dbengotech.com.ar/",
   },
+  {
+    title: "Ercas",
+    tag: "E-commerce",
+    text: "Tienda online de tecnología, celulares, tintas y accesorios.",
+    img: "/portfolio/ercas.png",
+    href: "https://ercas.com.ar/",
+  },
 ];
 
 const homePageJsonLd = {
