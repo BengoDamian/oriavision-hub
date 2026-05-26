@@ -21,6 +21,17 @@ export default function WebProjectsCarousel({
   useEffect(() => {
     if (projects.length <= 1) return;
 
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 640px)").matches;
+
+    // En celular arranca fijo en el segundo proyecto del home:
+    // 1) Siempre de Guardia, 2) Ercas. En desktop sigue pasando solo.
+    if (isMobile) {
+      setActiveIndex(1);
+      return;
+    }
+
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % projects.length);
     }, 3600);
