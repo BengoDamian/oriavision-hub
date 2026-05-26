@@ -131,6 +131,13 @@ const PORTFOLIO = [
     href: "https://quirvo.com.ar",
   },
   {
+    title: "Ercas",
+    tag: "E-commerce Tiendanube",
+    text: "Tienda online de electrónica con navegación intuitiva y proceso de compra sin fricción.",
+    img: "/portfolio/ercas.png",
+    href: "https://ercas.com.ar",
+  },
+  {
     title: "Calculadora ML",
     tag: "Herramienta SaaS",
     text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
