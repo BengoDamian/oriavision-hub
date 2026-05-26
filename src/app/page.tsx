@@ -121,18 +121,18 @@ const SERVICES = [
 
 const PORTFOLIO = [
   {
-    title: "Ercas",
-    tag: "E-commerce",
-    text: "Tienda online de tecnología, celulares, tintas y accesorios.",
-    img: "/portfolio/ercas.png",
-    href: "https://ercas.com.ar/",
-  },
-  {
     title: "Siempre de Guardia",
     tag: "Sistema web",
     text: "Directorio de servicios con categorías, registro de usuarios y contacto rápido.",
     img: "/portfolio/siempredeguardia.png",
     href: "https://web-siempredeguardia.vercel.app/",
+  },
+  {
+    title: "Ercas",
+    tag: "E-commerce",
+    text: "Tienda online de tecnología, celulares, tintas y accesorios.",
+    img: "/portfolio/ercas.png",
+    href: "https://ercas.com.ar/",
   },
   {
     title: "Quirvo",
