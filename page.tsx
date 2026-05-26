@@ -1676,21 +1676,6 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="ov-service-preview ov-service-preview-tertiary">
-                <div className="ov-chrome">
-                  <span className="ov-dot" />
-                  <span className="ov-url" />
-                </div>
-                <div className="ov-service-preview-screen">
-                  <Image
-                    src="/portfolio/calculadora-landing.png"
-                    alt=""
-                    fill
-                    sizes="(max-width: 980px) 52vw, 270px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </div>
             </Reveal>
           </div>
 
