@@ -922,6 +922,16 @@ const pageStyles = `
     background: rgba(4,13,35,.72);
   }
 
+  .ov-project-slide.is-ercas .ov-project-slide-media {
+    background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98));
+  }
+
+  .ov-project-slide.is-ercas .ov-project-slide-media img {
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: .65rem !important;
+  }
+
   .ov-project-slide-copy {
     padding: 1.1rem 1.15rem 1.2rem;
     background: linear-gradient(180deg, rgba(7,19,59,.88), rgba(6,16,44,.96));

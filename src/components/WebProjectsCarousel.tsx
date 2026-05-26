@@ -41,7 +41,7 @@ export default function WebProjectsCarousel({
               href={project.href}
               target="_blank"
               rel="noreferrer"
-              className="ov-project-slide"
+              className={`ov-project-slide ${project.title === "Ercas" ? "is-ercas" : ""}`}
             >
               <div className="ov-project-slide-media">
                 <Image
@@ -49,7 +49,7 @@ export default function WebProjectsCarousel({
                   alt={project.title}
                   fill
                   sizes="(max-width: 980px) 100vw, 620px"
-                  className="object-cover object-top"
+                  className={project.title === "Ercas" ? "object-contain object-center p-2" : "object-cover object-top"}
                 />
               </div>
 
