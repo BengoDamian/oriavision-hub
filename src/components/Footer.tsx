@@ -32,7 +32,7 @@ export default function Footer() {
 
         <div>
           <h5 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-slate-100">
-            Servicios
+            Diseño web
           </h5>
           <ul className="space-y-2 text-sm font-semibold text-slate-400">
             <li>
