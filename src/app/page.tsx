@@ -31,7 +31,7 @@ const ORIENTADOR_URL = "https://www.orientadordepreciosml.oriavision.com.ar/";
 export const metadata: Metadata = {
   title: "Oriavision | Soluciones digitales para vender mejor",
   description:
-    "Herramientas para MercadoLibre, recursos gratuitos y desarrollo de páginas web profesionales para negocios que quieren vender mejor online.",
+    "Herramientas para MercadoLibre, recursos gratuitos y desarrollo de páginas web profesionales para marcas, profesionales y proyectos.",
   alternates: { canonical: "/" },
   openGraph: {
     url: SITE_URL,
@@ -110,7 +110,7 @@ const SERVICES = [
   {
     icon: Globe2,
     title: "Webs profesionales",
-    text: "Sitios claros, modernos y rápidos para negocios que necesitan una carta de presentación sólida y confiable.",
+    text: "Sitios claros, modernos y rápidos para marcas, profesionales y proyectos que necesitan una carta de presentación sólida y confiable.",
   },
   {
     icon: Database,
@@ -2160,7 +2160,7 @@ export default function Home() {
               </h1>
 
               <p className="ov-hero-copy">
-                Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.
+                Creamos herramientas, recursos y páginas web para marcas, profesionales y proyectos que necesitan verse mejor, calcular con claridad y convertir más.
               </p>
 
               <div className="ov-actions">
@@ -2204,7 +2204,7 @@ export default function Home() {
 
             <Reveal delay={0.12}>
               <p className="ov-hero-copy">
-                Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.
+                Creamos herramientas, recursos y páginas web para marcas, profesionales y proyectos que necesitan verse mejor, calcular con claridad y convertir más.
               </p>
             </Reveal>
 

@@ -25,7 +25,7 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Servicios",
+    label: "Diseño web",
     items: [
       { label: "Landing pages", href: "/web/" },
       { label: "Páginas web a medida", href: "/web/" },

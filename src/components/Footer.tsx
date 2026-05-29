@@ -8,7 +8,7 @@ export default function Footer() {
           <h4 className="mb-4 text-xl font-black text-cyan-100">Oriavision</h4>
 
           <p className="max-w-sm font-semibold leading-relaxed text-slate-400">
-            Servicios y recursos gratuitos para vender mejor en MercadoLibre, Tiendanube y e-commerce.
+            Diseño web, herramientas y recursos gratuitos para vender mejor en MercadoLibre, Tiendanube y e-commerce.
           </p>
         </div>
 
