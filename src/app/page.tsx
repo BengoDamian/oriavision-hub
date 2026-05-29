@@ -93,10 +93,10 @@ const HOME_BLOCKS = [
   },
   {
     icon: LayoutTemplate,
-    title: "Desarrollo web",
-    text: "Landing pages, sistemas simples, branding visual y páginas profesionales para convertir mejor.",
+    title: "Diseño web",
+    text: "Landing pages, sistemas web, branding visual y páginas profesionales para convertir mejor.",
     href: "#servicios",
-    label: "Ver servicios",
+    label: "Ver opciones",
     img: "/web-exact/web-exact-04.jpg",
   },
 ];
@@ -114,7 +114,7 @@ const SERVICES = [
   },
   {
     icon: Database,
-    title: "Sistemas web simples",
+    title: "Sistemas web",
     text: "Soluciones con formularios, login, paneles, base de datos o automatizaciones cuando una web común queda corta.",
   },
 ];
@@ -123,7 +123,7 @@ const PORTFOLIO = [
   {
     title: "Siempre de Guardia",
     tag: "Sistema web",
-    text: "Directorio de servicios con categorías, registro de usuarios y contacto rápido.",
+    text: "Directorio de profesionales con categorías, registro de usuarios y contacto rápido.",
     img: "/portfolio/siempredeguardia.png",
     href: "https://web-siempredeguardia.vercel.app/",
   },
@@ -150,8 +150,8 @@ const PORTFOLIO = [
   },
   {
     title: "dbengotech",
-    tag: "Web de servicios",
-    text: "Sitio profesional de servicios tecnológicos con propuesta clara y visual comercial.",
+    tag: "Web profesional",
+    text: "Sitio profesional de soluciones tecnológicas con propuesta clara y visual comercial.",
     img: "/portfolio/dbengotech.png",
     href: "https://dbengotech.com.ar/",
   },
@@ -1633,7 +1633,7 @@ const pageStyles = `
       min-height: 300px;
     }
 
-    /* Servicios web mobile: visual limpio y texto legible, sin montajes superpuestos. */
+    /* Diseño web mobile: visual limpio y texto legible, sin montajes superpuestos. */
     .ov-services-layout {
       display: flex;
       flex-direction: column;
@@ -2371,15 +2371,15 @@ export default function Home() {
           <div className="ov-services-layout">
             <Reveal delay={0.04}>
               <div className="ov-service-copy">
-                <span className="ov-eyebrow">Servicios web</span>
-                <h2>No hacemos “una web más”. Armamos una presencia digital que se entienda y convierta.</h2>
+                <span className="ov-eyebrow">Diseño web</span>
+                <h2>Presencia digital que comunica, convierte y ordena.</h2>
                 <p>
-                  Diseño, copy, estructura, SEO base y criterio comercial. La web tiene que verse bien, pero también tiene que explicar, ordenar y vender.
+                  La web tiene que verse bien y también tiene que explicar, ordenar y vender.
                 </p>
 
                 <div className="flex flex-wrap gap-4 mt-8">
                   <Link href="/web/" className="ov-btn ov-btn-primary">
-                    Ver servicios web <ArrowRight className="relative z-10 h-5 w-5" />
+                    Ver opciones <ArrowRight className="relative z-10 h-5 w-5" />
                   </Link>
                   <a
                     href={whatsappHref}
@@ -2424,7 +2424,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Recursos gratuitos"
             title="Contenido útil para aplicar hoy."
-            text="Prompts y guías creadas desde problemas reales de venta online, no desde teoría genérica."
+            text="Prompts y guías creadas por vendedores de MercadoLibre para solucionar problemas reales."
           />
 
           <div className="grid gap-7 lg:grid-cols-2">
@@ -2501,14 +2501,14 @@ export default function Home() {
                   Vendemos online. Por eso diseñamos distinto.
                 </h2>
                 <p className="mt-5 text-lg font-bold leading-relaxed text-[#5A6E8C]">
-                  La diferencia no está solo en saber diseñar o programar. Está en entender qué necesita ver una persona para confiar, consultar, comprar o tomar una decisión.
+                  Sabemos cómo hacer que tu sitio genere confianza y atraiga contactos de valor.
                 </p>
 
                 <div className="mt-8 grid gap-4">
                   {[
-                    "Experiencia real en MercadoLibre y e-commerce",
-                    "Diseño con foco comercial, no decorativo",
-                    "Soluciones simples, rápidas y mantenibles",
+                    "Experiencia real en e-commerce y MercadoLibre",
+                    "Diseño con foco comercial",
+                    "Soluciones concretas, rápidas y sostenibles",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3 font-extrabold text-[#324966]">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-[#1456C8]" />
@@ -2556,7 +2556,7 @@ export default function Home() {
 
             <div className="ov-actions justify-center">
               <Link href="/web/" className="ov-btn bg-white text-[#0A1F6E] shadow-2xl shadow-blue-950/20">
-                Ver servicios <ArrowRight className="h-5 w-5" />
+                Ver opciones <ArrowRight className="h-5 w-5" />
               </Link>
 
               <a href={whatsappHref} target="_blank" rel="noreferrer" className="ov-btn border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/15">
