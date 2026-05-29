@@ -95,7 +95,7 @@ const HOME_BLOCKS = [
     icon: LayoutTemplate,
     title: "Diseño web",
     text: "Landing pages, sistemas web, branding visual y páginas profesionales para convertir mejor.",
-    href: "#servicios",
+    href: "#diseno-web",
     label: "Ver opciones",
     img: "/web-exact/web-exact-04.jpg",
   },
@@ -2366,7 +2366,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="servicios" className="ov-section ov-section-dark scroll-mt-24">
+      <section id="diseno-web" className="ov-section ov-section-dark scroll-mt-24">
         <div className="ov-wrap relative z-10">
           <div className="ov-services-layout">
             <Reveal delay={0.04}>
