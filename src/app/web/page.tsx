@@ -9,70 +9,131 @@ const WEB_CSS = "\n@import url('https://fonts.googleapis.com/css2?family=Inter:w
 const WEB_HTML = "\n\n\n<div id=\"loader\">\n<div class=\"loader-inner\">\n<div class=\"loader-logo\">Oriavision</div>\n<div class=\"loader-track\"><div class=\"loader-fill\"></div></div>\n</div>\n</div>\n\n<div id=\"progress\"></div>\n\n<div id=\"cursor\"></div>\n\n<section class=\"hero\">\n<div aria-hidden=\"true\" class=\"hero-eye-deco\"></div>\n<div aria-hidden=\"true\" class=\"hero-glow\"></div>\n<div class=\"wrap\">\n<div class=\"hero-inner\">\n<div class=\"hero-copy\">\n<h1 class=\"hero-h1\">\n<span class=\"h1-line\"><span class=\"h1-inner\">Presencia digital que</span></span>\n<span class=\"h1-line\"><span class=\"h1-inner\"><mark>comunica, convierte y ordena.</mark></span></span>\n</h1>\n<p class=\"hero-p\">Diseño web y herramientas pensadas para resultados reales. La web tiene que verse bien y también tiene que explicar, ordenar y vender.</p>\n<div class=\"hero-actions\">\n<a class=\"btn-blue\" data-magnetic=\"\" href=\"#opciones\">\n            Ver opciones\n          </a>\n<a class=\"btn-outline\" href=\"https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Quiero%20consultar%20por%20dise%C3%B1o%20web.\" target=\"_blank\" rel=\"noreferrer\">Consultar por WhatsApp</a>\n</div>\n</div>\n<div aria-hidden=\"true\" class=\"hero-visual\">\n<div class=\"mockups-stack\">\n<div class=\"mockup mockup-1\">\n<div class=\"mockup-chrome\">\n<div class=\"m-dots\"><span></span><span></span><span></span></div>\n<div class=\"m-url\"></div>\n</div>\n<div class=\"mockup-screen\">\n<img alt=\"Proyecto web Oriavision\" loading=\"eager\" src=\"/web-exact/web-exact-01.jpg\"/>\n</div>\n</div>\n<div class=\"mockup mockup-2\">\n<div class=\"mockup-chrome\">\n<div class=\"m-dots\"><span></span><span></span><span></span></div>\n<div class=\"m-url\"></div>\n</div>\n<div class=\"mockup-screen\">\n<img alt=\"Collage de proyectos web\" loading=\"eager\" src=\"/web-visuals/mockup-slide-collage.png\"/>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<div aria-hidden=\"true\" class=\"ticker-wrap\">\n<div class=\"ticker-track\">\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n<div class=\"ticker-item\">Diseño web profesional<span class=\"t-sep\"></span>Landing pages<span class=\"t-sep\"></span>Entrega en 7 días<span class=\"t-sep\"></span>Optimizado para Google<span class=\"t-sep\"></span>Tu presencia online<span class=\"t-sep\"></span></div>\n</div>\n</div>\n\n<div class=\"stats-band\">\n<div class=\"wrap\">\n<div class=\"stats-row\">\n<div class=\"stat-item rv d1\">\n<span class=\"stat-num\"><span data-count=\"7\">7</span></span>\n<small>Días para una landing</small>\n</div>\n<div class=\"stat-divider\"></div>\n<div class=\"stat-item rv d2\">\n<span class=\"stat-num\"><span data-count=\"100\" data-suffix=\"%\">100%</span></span>\n<small>Entregados en fecha</small>\n</div>\n<div class=\"stat-divider\"></div>\n<div class=\"stat-item rv d3\">\n<span class=\"stat-num\">0</span>\n<small>Sorpresas en el precio</small>\n</div>\n</div>\n</div>\n</div>\n\n<section class=\"section section-off\" id=\"opciones\">\n<div class=\"wrap\">\n<h2 class=\"sec-h2 rv\">Diseño web para marcas,<br/>profesionales y proyectos.</h2>\n<div class=\"svc-grid\">\n<div class=\"svc-card card-1 rv d1\">\n<img alt=\"Landing page\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-exact/web-exact-03.jpg\"/>\n<div class=\"svc-card-bar\">Landing page</div>\n<h3>La forma más directa de conseguir consultas de clientes.</h3>\n<p>Una sola página que explica qué hacés, por qué elegirte y convierte a cada visita en un mensaje.</p>\n<ul class=\"svc-list\">\n<li>Diseño personalizado para tu rubro</li>\n<li>Texto optimizado para convertir</li>\n<li>Botón de WhatsApp y formulario</li>\n<li>Optimizada para Google desde el día uno</li>\n<li>Lista en 3 a 7 días hábiles</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#formulario\">Consultá el precio →</a>\n</div>\n<div class=\"svc-card card-2 rv d2\">\n<img alt=\"Web completa\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-steps/paso-03-diseno.png\"/>\n<div class=\"svc-card-bar\">Web completa</div>\n<h3>Para presentar tu marca, actividad o proyecto en la web.</h3>\n<p>Información sobre vos, portfolio y opiniones reales. Todo organizado para que tu cliente confíe y te elija antes de contactarte.</p>\n<ul class=\"svc-list\">\n<li>Varias páginas y secciones</li>\n<li>Catálogo o portfolio de propuestas</li>\n<li>Panel para editar el contenido</li>\n<li>Integración con redes sociales</li>\n<li>Optimizada para celular y Google</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#formulario\">Consultá el precio →</a>\n</div>\n<div class=\"svc-card card-3 rv d3\">\n<img alt=\"Sistema simple\" class=\"svc-card-img\" loading=\"lazy\" src=\"/web-steps/paso-04-online.png\"/>\n<div class=\"svc-card-bar\">Sistema simple</div>\n<h3>Para digitalizar tu gestión sin depender de plataformas caras.</h3>\n<p>Un sistema a medida para gestionar usuarios, datos o tareas internas. Sin licencias, sin tecnicismos, sin complicaciones.</p>\n<ul class=\"svc-list\">\n<li>Panel de administración propio</li>\n<li>Carga y edición de datos</li>\n<li>Acceso con usuario y contraseña</li>\n<li>Adaptado exactamente a tu flujo</li>\n<li>Sin licencias mensuales</li>\n</ul>\n<a class=\"svc-card-cta\" href=\"#formulario\">Consultá el precio →</a>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\" id=\"portfolio\">\n<div class=\"wrap\">\n<div class=\"sec-header\">\n<div>\n<h2 class=\"sec-h2 portfolio-title-mobile-one rv\">Proyectos que<br class=\"portfolio-desktop-break\"/><span class=\"portfolio-mobile-space\"> </span>ya están online.</h2>\n</div>\n<a class=\"btn-outline rv d2\" href=\"#formulario\">Quiero algo parecido →</a>\n</div>\n<div class=\"rv rs\">\n<div class=\"port-featured wipe\">\n<img alt=\"Ercas\" loading=\"lazy\" src=\"/portfolio/ercas.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-featured-info\">\n<div class=\"port-tag\">E-commerce</div>\n<h3>Ercas</h3>\n<p>Tienda online de tecnología, celulares, tintas y accesorios.</p>\n</div>\n</div>\n</div>\n<div class=\"port-grid-4\">\n<a class=\"port-card rv d1 wipe\" href=\"https://web-siempredeguardia.vercel.app/\" rel=\"noopener noreferrer\" target=\"_blank\">\n<img alt=\"Siempre de Guardia\" loading=\"lazy\" src=\"/web-exact/web-exact-06.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Sistema web</div>\n<h3>Siempre de Guardia</h3>\n</div>\n</a>\n<div class=\"port-card rv d1 wipe\">\n<img alt=\"Quirvo\" loading=\"lazy\" src=\"/web-exact/web-exact-07.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Landing</div>\n<h3>Quirvo</h3>\n</div>\n</div>\n<div class=\"port-card rv d2 wipe\">\n<img alt=\"Calculadora ML\" loading=\"lazy\" src=\"/web-exact/web-exact-05.jpg\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Herramienta</div>\n<h3>Calculadora ML</h3>\n</div>\n</div>\n<div class=\"port-card rv d3 wipe\">\n<img alt=\"Orientador de precios ML\" loading=\"lazy\" src=\"/web-exact/web-exact-09.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Herramienta</div>\n<h3>Orientador de precios ML</h3>\n</div>\n</div>\n<div class=\"port-card rv d4 wipe\">\n<img alt=\"dbengotech\" loading=\"lazy\" src=\"/web-exact/web-exact-10.png\"/>\n<div class=\"port-overlay\"></div>\n<div class=\"port-card-info\">\n<div class=\"port-tag\">Web profesional</div>\n<h3>dbengotech</h3>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\">\n<div class=\"wrap\">\n<div class=\"why-inner\">\n<div class=\"why-img wipe rv rl\">\n<img alt=\"Equipo Oriavision\" loading=\"lazy\" src=\"/web-exact/web-exact-11.jpg\"/>\n</div>\n<div>\n<h2 class=\"sec-h2 rv\">Por qué elegirnos.</h2>\n<p class=\"sec-p rv d2\">Diseñamos soluciones claras, con criterio comercial, plazos reales y precios transparentes.</p>\n<div class=\"why-points\">\n<div class=\"why-point rv d1\">\n<div class=\"why-num\">01</div>\n<div>\n<h4>Respondemos y entregamos</h4>\n<p>Respondemos rápido, ordenamos el proceso y respetamos los plazos.</p>\n</div>\n</div>\n<div class=\"why-point rv d2\">\n<div class=\"why-num\">02</div>\n<div>\n<h4>Diseño que comunica</h4>\n<p>Cada página se piensa para tu cliente específico y para el objetivo real del proyecto.</p>\n</div>\n</div>\n<div class=\"why-point rv d3\">\n<div class=\"why-num\">03</div>\n<div>\n<h4>Claro, ordenado y justo</h4>\n<p>Buscamos la opción adecuada para empezar, con una propuesta clara y fácil de entender.</p>\n</div>\n</div>\n<div class=\"why-point rv d4\">\n<div class=\"why-num\">04</div>\n<div>\n<h4>Seguimos después del lanzamiento</h4>\n<p>Si algo falla o querés mejorarlo, estamos. Tu web crece con tu negocio.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<div class=\"trust-strip\">\n<div class=\"wrap\">\n<div class=\"trust-row\">\n<div class=\"trust-item rv d1\">\n<div class=\"trust-icon\">⚡</div>\n<div class=\"trust-text\">\n<strong>Entrega en 3 a 7 días</strong>\n<span>Landings listas sin demoras</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d2\">\n<div class=\"trust-icon\">🎯</div>\n<div class=\"trust-text\">\n<strong>Diseño para convertir</strong>\n<span>Cada página pensada para tu cliente</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d3\">\n<div class=\"trust-icon\">📱</div>\n<div class=\"trust-text\">\n<strong>100% mobile-first</strong>\n<span>Optimizada para celular y Google</span>\n</div>\n</div>\n<div class=\"trust-divider\"></div>\n<div class=\"trust-item rv d4\">\n<div class=\"trust-icon\">💬</div>\n<div class=\"trust-text\">\n<strong>Soporte post-lanzamiento</strong>\n<span>Acompañamos después de entregar</span>\n</div>\n</div>\n</div>\n</div>\n</div>\n\n<section class=\"section\" id=\"proceso\">\n<div class=\"wrap\">\n<h2 class=\"sec-h2 rv\">De la idea<br/>a la web online en 4 pasos.</h2>\n<div class=\"process-grid\">\n<div class=\"proc rv d1\">\n<div class=\"proc-img\">\n<img alt=\"Idea inicial del proyecto enviada por WhatsApp o formulario\" loading=\"lazy\" src=\"/web-steps/paso-01-idea.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 01</div>\n<h3>Nos contás tu idea</h3>\n<p>Por WhatsApp o mail. Nos decís qué hacés, qué querés lograr y te hacemos las preguntas correctas.</p>\n</div>\n</div>\n<div class=\"proc rv d2\">\n<div class=\"proc-img\">\n<img alt=\"Análisis y recomendación de la mejor opción para el proyecto\" loading=\"lazy\" src=\"/web-steps/paso-02-recomendacion.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 02</div>\n<h3>Definimos juntos el proyecto</h3>\n<p>Analizamos qué necesitás, qué objetivo querés lograr y cuál es la opción más conveniente para empezar.</p>\n</div>\n</div>\n<div class=\"proc rv d3\">\n<div class=\"proc-img\">\n<img alt=\"Diseño y armado de una página web profesional\" loading=\"lazy\" src=\"/web-steps/paso-03-diseno.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 03</div>\n<h3>Diseñamos y armamos</h3>\n<p>Te mostramos avances para pedir cambios durante el proceso, no al final.</p>\n</div>\n</div>\n<div class=\"proc rv d4\">\n<div class=\"proc-img\">\n<img alt=\"Sitio web publicado online y verificado en distintos dispositivos\" loading=\"lazy\" src=\"/web-steps/paso-04-online.png\"/>\n</div>\n<div class=\"proc-body\">\n<div class=\"proc-step\">Paso 04</div>\n<h3>La dejamos online</h3>\n<p>Publicamos, verificamos en celular y computadora, y te enseñamos a manejarte.</p>\n</div>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section section-off\">\n<div class=\"wrap\">\n<div style=\"text-align:center; max-width:760px; margin:0 auto;\">\n<h2 class=\"sec-h2 rv\" style=\"text-align:center;\">Opiniones reales.</h2>\n<p class=\"sec-p rv d2\" style=\"margin-left:auto; margin-right:auto;\">Podés ver las reseñas de nuestros clientes en nuestro perfil de Google.</p>\n<div class=\"hero-actions rv d3\" style=\"justify-content:center; margin-top:28px;\">\n<a class=\"btn-blue\" href=\"https://www.google.com/search?q=Oriavision+opiniones+Google\" target=\"_blank\" rel=\"noreferrer\">Ver opiniones en Google</a>\n</div>\n</div>\n</div>\n</section>\n\n<section class=\"section\">\n<div class=\"wrap\">\n<div style=\"text-align:center;\">\n<h2 class=\"sec-h2 rv\" style=\"text-align:center;\">Preguntas frecuentes<br/>antes de arrancar.</h2>\n</div>\n<div class=\"faq-grid\">\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿Cuánto tarda en estar lista?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Una landing: 3 a 7 días hábiles. Una web completa: 2 a 4 semanas. En todos los casos te damos un plazo claro antes de arrancar y lo respetamos.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Necesito saber de tecnología?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Para nada. Nos contás qué hacés y qué querés lograr, nosotros nos encargamos del resto. Si algo no se entiende, lo explicamos sin tecnicismos.</div>\n</div>\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿Qué pasa si quiero cambiar algo después?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Incluimos ajustes durante el desarrollo. Una vez entregada, podemos acordar soporte mensual o cambios puntuales. No te dejamos solo.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Cómo es el proceso de pago?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Generalmente: mitad al confirmar, mitad al entregar. Los detalles los hablamos puntualmente según el proyecto.</div>\n</div>\n<div class=\"faq-item rv d1\">\n<button class=\"faq-btn\">\n<span>¿La web aparece en Google?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Sí, todas las webs están configuradas correctamente para que Google las indexe desde el primer día. El posicionamiento orgánico lleva tiempo, pero arrancás bien hecho.</div>\n</div>\n<div class=\"faq-item rv d2\">\n<button class=\"faq-btn\">\n<span>¿Puedo ver el trabajo antes de pagar todo?</span>\n<div class=\"faq-ico\">+</div>\n</button>\n<div class=\"faq-ans\">Sí. Te mostramos avances durante el proceso y podés pedir cambios. No te mostramos algo terminado al final y te pedimos que aceptes: trabajamos en conjunto.</div>\n</div>\n</div>\n</div>\n</section>\n\n";
 
 const WEB_CSS_MOBILE_FIX = `
-/* MOBILE IMAGE FIT FIX /web: solo celular */
+/* MOBILE IMAGE SIZE FIX /web: solo celular. No afecta desktop. */
 @media (max-width: 768px) {
-  .oriavision-web-exact #opciones .svc-card-img {
-    width: calc(100% + 48px) !important;
-    margin: 0 -24px 0 !important;
-    min-height: 210px !important;
-    height: auto !important;
-    aspect-ratio: 16 / 10 !important;
-    object-fit: cover !important;
-    object-position: center 28% !important;
-    background: #EEF5FF !important;
-    padding: 0 !important;
-    border-radius: 24px 24px 0 0 !important;
-  }
-
-  .oriavision-web-exact #opciones .svc-card-img[alt='Web completa'],
-  .oriavision-web-exact #opciones .svc-card-img[alt='Sistema simple'] {
-    object-fit: contain !important;
-    object-position: center center !important;
-    background: linear-gradient(180deg, #071B52 0%, #0A2E86 100%) !important;
-    padding: 10px 10px 0 !important;
+  .oriavision-web-exact #opciones .svc-grid {
+    gap: 26px !important;
   }
 
   .oriavision-web-exact #opciones .svc-card {
     overflow: hidden !important;
+    border-radius: 24px !important;
+  }
+
+  /* Las imágenes de las 3 opciones estaban quedando bajas y recortadas.
+     En celular les damos alto real para que el contenido entre. */
+  .oriavision-web-exact #opciones .svc-card-img {
+    display: block !important;
+    width: calc(100% + 48px) !important;
+    height: clamp(250px, 72vw, 330px) !important;
+    max-height: none !important;
+    margin: 0 -24px 0 !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: #071B52 !important;
+    padding: 0 !important;
+    border-radius: 24px 24px 0 0 !important;
+    transform: none !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img[alt='Landing page'] {
+    object-position: center center !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img[alt='Web completa'] {
+    height: clamp(285px, 82vw, 380px) !important;
+    object-fit: cover !important;
+    object-position: center 42% !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img[alt='Sistema simple'] {
+    height: clamp(285px, 82vw, 380px) !important;
+    object-fit: cover !important;
+    object-position: center 45% !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card:hover .svc-card-img {
+    transform: none !important;
   }
 
   .oriavision-web-exact #opciones .svc-card-bar {
     width: calc(100% + 48px) !important;
-    margin: 0 -24px 18px !important;
+    margin: 0 -24px 20px !important;
+    padding: 20px 24px !important;
+    min-height: 68px !important;
+    border-radius: 0 !important;
+  }
+
+  /* Portfolio mobile: thumbnails más altos para que los screenshots no queden cortados. */
+  .oriavision-web-exact #portfolio .port-featured,
+  .oriavision-web-exact #portfolio .port-card {
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    background: #ffffff !important;
   }
 
   .oriavision-web-exact #portfolio .port-featured img {
+    display: block !important;
     width: 100% !important;
-    min-height: 210px !important;
-    height: auto !important;
-    aspect-ratio: 16 / 10 !important;
-    object-fit: contain !important;
-    object-position: center top !important;
-    background: #091B57 !important;
-    padding: 6px !important;
+    height: clamp(225px, 64vw, 310px) !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: #071B52 !important;
+    padding: 0 !important;
+    transform: none !important;
   }
 
   .oriavision-web-exact #portfolio .port-featured img[alt='Ercas'] {
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center center !important;
-    background: #071B52 !important;
-    padding: 8px !important;
   }
 
   .oriavision-web-exact #portfolio .port-card img {
+    display: block !important;
     width: 100% !important;
-    min-height: 190px !important;
-    height: auto !important;
-    aspect-ratio: 16 / 10 !important;
-    object-fit: contain !important;
+    height: clamp(210px, 60vw, 285px) !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
     object-position: center top !important;
-    background: #091B57 !important;
-    padding: 6px !important;
+    background: #071B52 !important;
+    padding: 0 !important;
+    transform: none !important;
   }
 
+  .oriavision-web-exact #portfolio .port-card img[alt='Siempre de Guardia'],
+  .oriavision-web-exact #portfolio .port-card img[alt='Quirvo'] {
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='Calculadora ML'],
+  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'],
   .oriavision-web-exact #portfolio .port-card img[alt='dbengotech'] {
+    object-fit: cover !important;
     object-position: center center !important;
-    background: #071744 !important;
+  }
+
+  .oriavision-web-exact #portfolio .wipe::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .oriavision-web-exact #opciones .svc-card-img[alt='Web completa'],
+  .oriavision-web-exact #opciones .svc-card-img[alt='Sistema simple'] {
+    height: clamp(300px, 88vw, 390px) !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured img {
+    height: clamp(230px, 68vw, 315px) !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img {
+    height: clamp(220px, 66vw, 300px) !important;
   }
 }
 `;

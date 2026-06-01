@@ -2054,34 +2054,55 @@ const pageStyles = `
 `;
 
 const pageStylesMobileFix = `
-/* MOBILE IMAGE FIT FIX / home: solo celular */
+/* MOBILE IMAGE SIZE FIX / home: solo celular. No afecta desktop. */
 @media (max-width: 980px) {
+  .ov-project-carousel {
+    gap: .9rem !important;
+  }
+
+  .ov-project-carousel-viewport {
+    overflow: hidden !important;
+    border-radius: 1.35rem !important;
+  }
+
+  /* El problema era que las capturas quedaban muy bajas y se cortaban.
+     En mobile el frame ahora es más alto y la imagen ocupa mejor el espacio. */
   .ov-project-slide-media {
-    height: clamp(220px, 58vw, 270px);
-    background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98));
+    height: clamp(240px, 66vw, 330px) !important;
+    min-height: 240px !important;
+    background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
+    overflow: hidden !important;
   }
 
   .ov-project-slide-media::after {
-    display: none;
+    display: none !important;
   }
 
   .ov-project-slide-media img {
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: center top !important;
-    padding: .35rem .35rem 0 !important;
+    padding: 0 !important;
     transform: none !important;
   }
 
-  .ov-project-slide.is-ercas .ov-project-slide-media img {
-    object-fit: contain !important;
+  .ov-project-slide.is-ercas .ov-project-slide-media img,
+  .ov-project-slide:has(img[alt='Calculadora ML']) .ov-project-slide-media img,
+  .ov-project-slide:has(img[alt='dbengotech']) .ov-project-slide-media img {
+    object-fit: cover !important;
     object-position: center center !important;
-    padding: .45rem !important;
   }
 
   .ov-project-slide-copy {
-    margin-top: 0;
-    border-top: 1px solid rgba(255,255,255,.08);
-    background: linear-gradient(180deg, rgba(7,19,59,.96), rgba(6,16,44,.99));
+    margin-top: 0 !important;
+    padding: 1.15rem 1.05rem 1.2rem !important;
+    border-top: 1px solid rgba(255,255,255,.08) !important;
+    background: linear-gradient(180deg, rgba(7,19,59,.97), rgba(6,16,44,.99)) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ov-project-slide-media {
+    height: clamp(250px, 72vw, 340px) !important;
   }
 }
 `;
