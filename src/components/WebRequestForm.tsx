@@ -81,9 +81,9 @@ export default function WebRequestForm() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-blue-100 bg-slate-50 p-8 shadow-sm md:p-10">
-      <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-600/10 blur-2xl" />
-      <div className="absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-yellow-200/20 blur-2xl" />
+    <div className="relative overflow-hidden rounded-[2.25rem] border-2 border-blue-100 bg-white p-8 shadow-sm md:rounded-[2.5rem] md:bg-slate-50 md:p-10">
+      <div className="absolute -right-24 -top-24 hidden h-80 w-80 rounded-full bg-brand-600/10 blur-2xl md:block" />
+      <div className="absolute -bottom-28 -left-28 hidden h-80 w-80 rounded-full bg-yellow-200/20 blur-2xl md:block" />
 
       <div className="relative">
         <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
