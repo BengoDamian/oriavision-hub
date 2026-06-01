@@ -12,7 +12,8 @@
       "Bash(Get-ChildItem -Path \".\" -Recurse -Include \"*.png\", \"*.jpg\", \"*.jpeg\", \"*.webp\" -ErrorAction SilentlyContinue)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(timeout 30 bash -c 'until curl -s http://localhost:3000 > /dev/null 2>&1; do sleep 1; done; echo \"Server ready\"')",
-      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3000)"
+      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(timeout 30 bash -c 'until curl -s http://localhost:3000 > /dev/null 2>&1; do sleep 1; done; echo \"Server ready\"; curl -s http://localhost:3000 | grep \"height: clamp\\(380px\" | head -3')"
     ]
   }
 }

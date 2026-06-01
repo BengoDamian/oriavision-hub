@@ -2065,11 +2065,11 @@ const pageStylesMobileFix = `
     border-radius: 1.35rem !important;
   }
 
-  /* En mobile: altura significativamente aumentada para que las imágenes rellenen mejor.
-     Usar cover para que todas las imágenes ocupen el espacio de manera uniforme. */
+  /* En mobile: altura mucho más grande para que todas las imágenes se vean con la misma resolución.
+     Todos los proyectos rellenan el espacio de manera uniforme. */
   .ov-project-slide-media {
-    height: clamp(320px, 85vw, 420px) !important;
-    min-height: 320px !important;
+    height: clamp(380px, 95vw, 500px) !important;
+    min-height: 380px !important;
     background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
     overflow: hidden !important;
   }
@@ -2103,8 +2103,8 @@ const pageStylesMobileFix = `
 
 @media (max-width: 480px) {
   .ov-project-slide-media {
-    height: clamp(300px, 80vw, 380px) !important;
-    min-height: 300px !important;
+    height: clamp(340px, 90vw, 440px) !important;
+    min-height: 340px !important;
   }
 }
 `;
