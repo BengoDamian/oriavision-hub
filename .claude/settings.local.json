@@ -8,7 +8,11 @@
       "Bash(git checkout *)",
       "Bash(code \"c:\\\\Users\\\\Usuario\\\\Downloads\\\\oriavision-hub_clean\\\\oriavision-hub\\\\src\\\\app\\\\web\\\\page.tsx\")",
       "Bash(curl -s http://localhost:3001)",
-      "Bash(start http://localhost:3001)"
+      "Bash(start http://localhost:3001)",
+      "Bash(Get-ChildItem -Path \".\" -Recurse -Include \"*.png\", \"*.jpg\", \"*.jpeg\", \"*.webp\" -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(timeout 30 bash -c 'until curl -s http://localhost:3000 > /dev/null 2>&1; do sleep 1; done; echo \"Server ready\"')",
+      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3000)"
     ]
   }
 }

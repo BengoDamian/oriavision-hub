@@ -2065,11 +2065,11 @@ const pageStylesMobileFix = `
     border-radius: 1.35rem !important;
   }
 
-  /* El problema era que las capturas quedaban muy bajas y se cortaban.
-     En mobile el frame ahora es más alto y la imagen ocupa mejor el espacio. */
+  /* En mobile: altura aumentada para que las imágenes se vean mejor.
+     Las imágenes ahora ocupan más espacio y se ven menos comprimidas. */
   .ov-project-slide-media {
-    height: clamp(240px, 66vw, 330px) !important;
-    min-height: 240px !important;
+    height: clamp(280px, 75vw, 360px) !important;
+    min-height: 280px !important;
     background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
     overflow: hidden !important;
   }
@@ -2079,16 +2079,18 @@ const pageStylesMobileFix = `
   }
 
   .ov-project-slide-media img {
-    object-fit: cover !important;
-    object-position: center top !important;
-    padding: 0 !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: 0.5rem !important;
     transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .ov-project-slide.is-ercas .ov-project-slide-media img,
   .ov-project-slide:has(img[alt='Calculadora ML']) .ov-project-slide-media img,
   .ov-project-slide:has(img[alt='dbengotech']) .ov-project-slide-media img {
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: center center !important;
   }
 
@@ -2102,7 +2104,7 @@ const pageStylesMobileFix = `
 
 @media (max-width: 480px) {
   .ov-project-slide-media {
-    height: clamp(250px, 72vw, 340px) !important;
+    height: clamp(260px, 70vw, 320px) !important;
   }
 }
 `;
