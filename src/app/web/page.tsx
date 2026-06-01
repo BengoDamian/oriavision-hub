@@ -139,6 +139,118 @@ const WEB_CSS_MOBILE_FIX = `
 `;
 
 
+const WEB_CSS_MOBILE_FIX_V3 = `
+/* MOBILE FIX V3 /web: tamaños y colores reales para celular */
+@media (max-width: 768px) {
+  .oriavision-web-exact #opciones .svc-card {
+    padding: 0 18px 24px !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img {
+    display: block !important;
+    width: calc(100% + 36px) !important;
+    margin: 0 -18px 0 !important;
+    height: clamp(210px, 58vw, 260px) !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: #0B215F !important;
+    padding: 0 !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img[alt='Web completa'] {
+    object-position: center 34% !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img[alt='Sistema simple'] {
+    object-position: center 38% !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-bar {
+    width: calc(100% + 36px) !important;
+    margin: 0 -18px 18px !important;
+    padding: 20px 18px !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured,
+  .oriavision-web-exact #portfolio .port-card {
+    height: auto !important;
+    min-height: 0 !important;
+    background: #FFFFFF !important;
+    overflow: hidden !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured img,
+  .oriavision-web-exact #portfolio .port-card img {
+    display: block !important;
+    width: 100% !important;
+    height: clamp(200px, 54vw, 270px) !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured img[alt='Ercas'] {
+    object-position: center top !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-overlay {
+    display: none !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured-info,
+  .oriavision-web-exact #portfolio .port-card-info {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    background: #FFFFFF !important;
+    padding: 16px 16px 20px !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured-info h3,
+  .oriavision-web-exact #portfolio .port-card-info h3 {
+    color: #071B52 !important;
+    opacity: 1 !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured-info h3 {
+    font-size: 1.75rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card-info h3 {
+    font-size: 1.05rem !important;
+    margin-top: 8px !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured-info p,
+  .oriavision-web-exact #portfolio .port-card-info p {
+    color: #334B68 !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-tag {
+    margin-bottom: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .oriavision-web-exact #portfolio .port-grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+`;
+
+
 export default function WebPage() {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".oriavision-web-exact");
@@ -298,7 +410,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
