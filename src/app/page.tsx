@@ -2053,6 +2053,40 @@ const pageStyles = `
 
 `;
 
+const pageStylesMobileFix = `
+/* MOBILE IMAGE FIT FIX / home: solo celular */
+@media (max-width: 980px) {
+  .ov-project-slide-media {
+    height: clamp(220px, 58vw, 270px);
+    background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98));
+  }
+
+  .ov-project-slide-media::after {
+    display: none;
+  }
+
+  .ov-project-slide-media img {
+    object-fit: contain !important;
+    object-position: center top !important;
+    padding: .35rem .35rem 0 !important;
+    transform: none !important;
+  }
+
+  .ov-project-slide.is-ercas .ov-project-slide-media img {
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: .45rem !important;
+  }
+
+  .ov-project-slide-copy {
+    margin-top: 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    background: linear-gradient(180deg, rgba(7,19,59,.96), rgba(6,16,44,.99));
+  }
+}
+`;
+
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2117,7 +2151,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + pageStylesMobileFix }} />
 
       <TrackLink
         href={CALC_URL}
