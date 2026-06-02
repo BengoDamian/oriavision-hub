@@ -2088,6 +2088,22 @@ const HOME_MOBILE_HERO_ART_FIX_V16 = `
 `;
 
 
+const HOME_MOBILE_HERO_ART_FIX_V18 = `
+/* HOME MOBILE HERO ART V18: vuelve a proporción original, sin logo y sin espacio vacío. */
+@media (max-width: 980px) {
+  .ov-hero-mobile-art {
+    aspect-ratio: 1180 / 560 !important;
+    margin-top: .65rem !important;
+  }
+
+  .ov-hero-mobile-art img {
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
+`;
+
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2152,7 +2168,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 + HOME_MOBILE_HERO_ART_FIX_V18 }} />
 
       <TrackLink
         href={CALC_URL}
@@ -2227,7 +2243,7 @@ export default function Home() {
             <Reveal delay={0.06}>
               <div className="ov-hero-mobile-art" aria-hidden="true">
                 <Image
-                  src="/web-visuals/hero-mobile-composite-v17.jpg?v=17"
+                  src="/web-visuals/hero-mobile-composite-v18.png?v=18"
                   alt=""
                   fill
                   priority
