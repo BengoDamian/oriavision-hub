@@ -2070,6 +2070,7 @@ const pageStylesMobileFix = `
   .ov-project-slide-media {
     height: clamp(380px, 95vw, 500px) !important;
     min-height: 380px !important;
+    aspect-ratio: 16 / 9 !important;
     background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
     overflow: hidden !important;
   }
@@ -2105,6 +2106,7 @@ const pageStylesMobileFix = `
   .ov-project-slide-media {
     height: clamp(340px, 90vw, 440px) !important;
     min-height: 340px !important;
+    aspect-ratio: 16 / 9 !important;
   }
 }
 `;
