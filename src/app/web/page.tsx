@@ -547,6 +547,59 @@ const WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 = `
 `;
 
 
+
+
+const WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 = `
+/* V34: ajustar tamaño y centrado de imágenes del portfolio en celular sin agrandarlas de más */
+@media (max-width: 768px) {
+  .oriavision-web-exact #portfolio .port-featured picture,
+  .oriavision-web-exact #portfolio .port-card picture {
+    display: block !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured picture > img,
+  .oriavision-web-exact #portfolio .port-card picture > img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    transform: none !important;
+    background: #ffffff !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured picture > img[alt='Ercas'] {
+    object-position: center 24% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card picture > img[alt='Siempre de Guardia'] {
+    object-position: center 20% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card picture > img[alt='Quirvo'] {
+    object-position: center 18% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card picture > img[alt='Calculadora ML'] {
+    object-position: center 22% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card picture > img[alt='Orientador de precios ML'] {
+    object-position: 34% 18% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card picture > img[alt='dbengotech'] {
+    object-position: 38% 18% !important;
+  }
+}
+`;
+
 const WEB_PORTFOLIO_LINK_FIX_V20 = `
 /* V20: todas las cards del portfolio son links reales sin cambiar diseño. */
 .oriavision-web-exact #portfolio a.port-featured,
@@ -682,7 +735,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
