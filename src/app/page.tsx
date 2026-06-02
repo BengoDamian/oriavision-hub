@@ -2058,6 +2058,20 @@ const pageStyles = `
 
 `;
 
+const HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 = `
+/* HOME MOBILE V15: solo Ercas en carrusel mobile.
+   Fuerza que la imagen llene el rectángulo y no quede chica centrada. */
+@media (max-width: 980px) {
+  .ov-project-slide.is-ercas .ov-project-slide-media img {
+    object-fit: cover !important;
+    object-position: center center !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+}
+`;
+
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2122,7 +2136,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 }} />
 
       <TrackLink
         href={CALC_URL}
