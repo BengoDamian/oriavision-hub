@@ -2072,6 +2072,22 @@ const HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 = `
 `;
 
 
+const HOME_MOBILE_HERO_ART_FIX_V16 = `
+/* HOME MOBILE HERO ART V16: imagen superior solo mobile, más legible y mejor encuadrada */
+@media (max-width: 980px) {
+  .ov-hero-mobile-art {
+    aspect-ratio: 4 / 3 !important;
+    margin-top: .55rem !important;
+  }
+
+  .ov-hero-mobile-art img {
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
+`;
+
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2136,7 +2152,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 }} />
 
       <TrackLink
         href={CALC_URL}
@@ -2211,12 +2227,12 @@ export default function Home() {
             <Reveal delay={0.06}>
               <div className="ov-hero-mobile-art" aria-hidden="true">
                 <Image
-                  src="/web-visuals/hero-mobile-composite.png"
+                  src="/web-visuals/hero-mobile-composite-v16.jpg?v=16"
                   alt=""
                   fill
                   priority
                   sizes="100vw"
-                  className="object-contain"
+                  className="object-cover"
                 />
               </div>
             </Reveal>
