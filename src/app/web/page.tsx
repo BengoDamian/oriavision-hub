@@ -422,6 +422,33 @@ const WEB_CSS_DESKTOP_OPTIONS_FIX_V7 = `
 `;
 
 
+const WEB_CSS_MOBILE_RECT_FIX_V9 = `
+/* MOBILE RECT FIX V9 /web: mismo tamaño de rectángulo en las 3 cards */
+@media (max-width: 768px) {
+  .oriavision-web-exact #opciones .svc-card-picture {
+    width: 100% !important;
+    height: clamp(250px, 72vw, 340px) !important;
+    min-height: clamp(250px, 72vw, 340px) !important;
+    max-height: clamp(250px, 72vw, 340px) !important;
+    display: block !important;
+    overflow: hidden !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .oriavision-web-exact #opciones .svc-card-img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+  }
+}
+`;
+
+
 export default function WebPage() {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".oriavision-web-exact");
@@ -581,7 +608,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
