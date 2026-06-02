@@ -600,6 +600,36 @@ const WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 = `
 }
 `;
 
+
+
+const WEB_CSS_MOBILE_PORTFOLIO_CONTAIN_V35 = `
+/* V35: en celular mostrar completas las capturas del portfolio dentro del rectángulo, sin corte */
+@media (max-width: 768px) {
+  .oriavision-web-exact #portfolio .port-featured picture,
+  .oriavision-web-exact #portfolio .port-card picture {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    background: #f4f7fb !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-featured picture > img,
+  .oriavision-web-exact #portfolio .port-card picture > img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center top !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+}
+`;
+
 const WEB_PORTFOLIO_LINK_FIX_V20 = `
 /* V20: todas las cards del portfolio son links reales sin cambiar diseño. */
 .oriavision-web-exact #portfolio a.port-featured,
@@ -735,7 +765,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 + WEB_CSS_MOBILE_PORTFOLIO_CONTAIN_V35 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
