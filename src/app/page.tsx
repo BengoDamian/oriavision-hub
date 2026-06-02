@@ -125,6 +125,7 @@ const PORTFOLIO = [
     tag: "Sistema web",
     text: "Directorio de profesionales con categorías, registro de usuarios y contacto rápido.",
     img: "/portfolio/siempredeguardia.png",
+    mobileImg: "/portfolio-home-mobile/siempredeguardia-mobile-home.jpg?v=14",
     href: "https://web-siempredeguardia.vercel.app/",
   },
   {
@@ -132,6 +133,7 @@ const PORTFOLIO = [
     tag: "E-commerce",
     text: "Tienda online de tecnología, celulares, tintas y accesorios.",
     img: "/portfolio/ercas.png",
+    mobileImg: "/portfolio-home-mobile/ercas-mobile-home.jpg?v=14",
     href: "https://ercas.com.ar/",
   },
   {
@@ -139,6 +141,7 @@ const PORTFOLIO = [
     tag: "Landing",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
     img: "/portfolio/quirvo.png",
+    mobileImg: "/portfolio-home-mobile/quirvo-mobile-home.jpg?v=14",
     href: "https://quirvo.com.ar/",
   },
   {
@@ -146,6 +149,7 @@ const PORTFOLIO = [
     tag: "Herramienta",
     text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
     img: "/portfolio/calculadora-landing.png",
+    mobileImg: "/portfolio-home-mobile/calculadora-landing-mobile-home.jpg?v=14",
     href: "https://calculadoraml.oriavision.com.ar/",
   },
   {
@@ -153,6 +157,7 @@ const PORTFOLIO = [
     tag: "Web profesional",
     text: "Sitio profesional de soluciones tecnológicas con propuesta clara y visual comercial.",
     img: "/portfolio/dbengotech.png",
+    mobileImg: "/portfolio-home-mobile/dbengotech-mobile-home.jpg?v=14",
     href: "https://dbengotech.com.ar/",
   },
 ];
@@ -2053,65 +2058,6 @@ const pageStyles = `
 
 `;
 
-const pageStylesMobileFix = `
-/* MOBILE IMAGE SIZE FIX / home: solo celular. No afecta desktop. */
-@media (max-width: 980px) {
-  .ov-project-carousel {
-    gap: .9rem !important;
-  }
-
-  .ov-project-carousel-viewport {
-    overflow: hidden !important;
-    border-radius: 1.35rem !important;
-  }
-
-  /* En mobile: altura mucho más grande para que todas las imágenes se vean con la misma resolución.
-     Todos los proyectos rellenan el espacio de manera uniforme. */
-  .ov-project-slide-media {
-    height: clamp(320px, 85vw, 420px) !important;
-    min-height: 320px !important;
-    aspect-ratio: 4 / 3 !important;
-    background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
-    overflow: hidden !important;
-  }
-
-  .ov-project-slide-media::after {
-    display: none !important;
-  }
-
-  .ov-project-slide-media img {
-    object-fit: cover !important;
-    object-position: center center !important;
-    padding: 0 !important;
-    transform: none !important;
-  }
-
-  .ov-project-slide.is-ercas .ov-project-slide-media img,
-  .ov-project-slide:has(img[alt='Calculadora ML']) .ov-project-slide-media img,
-  .ov-project-slide:has(img[alt='dbengotech']) .ov-project-slide-media img {
-    object-fit: cover !important;
-    object-position: center center !important;
-    padding: 0 !important;
-  }
-
-  .ov-project-slide-copy {
-    margin-top: 0 !important;
-    padding: 1.15rem 1.05rem 1.2rem !important;
-    border-top: 1px solid rgba(255,255,255,.08) !important;
-    background: linear-gradient(180deg, rgba(7,19,59,.97), rgba(6,16,44,.99)) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .ov-project-slide-media {
-    height: clamp(280px, 80vw, 360px) !important;
-    min-height: 280px !important;
-    aspect-ratio: 4 / 3 !important;
-  }
-}
-`;
-
-
 function SectionHeader({
   eyebrow,
   title,
@@ -2176,7 +2122,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles + pageStylesMobileFix }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles }} />
 
       <TrackLink
         href={CALC_URL}

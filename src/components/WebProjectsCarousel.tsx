@@ -8,6 +8,7 @@ export type WebProjectCarouselItem = {
   tag: string;
   text: string;
   img: string;
+  mobileImg?: string;
   href: string;
 };
 
@@ -17,6 +18,25 @@ export default function WebProjectsCarousel({
   projects: WebProjectCarouselItem[];
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const media = window.matchMedia("(max-width: 768px)");
+    const sync = () => setIsMobile(media.matches);
+
+    sync();
+
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", sync);
+      return () => media.removeEventListener("change", sync);
+    }
+
+    media.addListener(sync);
+    return () => media.removeListener(sync);
+  }, []);
 
   useEffect(() => {
     if (projects.length <= 1) return;
@@ -56,11 +76,15 @@ export default function WebProjectsCarousel({
             >
               <div className="ov-project-slide-media">
                 <Image
-                  src={project.img}
+                  src={isMobile && project.mobileImg ? project.mobileImg : project.img}
                   alt={project.title}
                   fill
                   sizes="(max-width: 980px) 100vw, 620px"
-                  className={project.title === "Ercas" ? "object-contain object-center p-2" : "object-cover object-top"}
+                  className={isMobile
+                    ? "object-cover object-center"
+                    : project.title === "Ercas"
+                      ? "object-contain object-center p-2"
+                      : "object-cover object-top"}
                 />
               </div>
 
