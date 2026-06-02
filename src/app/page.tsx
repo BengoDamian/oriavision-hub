@@ -2104,6 +2104,29 @@ const HOME_MOBILE_HERO_ART_FIX_V18 = `
 `;
 
 
+const HOME_MOBILE_TOOL_MEDIA_FIX_V19 = `
+/* HOME MOBILE TOOL MEDIA V19: mostrar completa la imagen de Calculadora ML y Orientador sin tanto fondo. */
+@media (max-width: 980px) {
+  .ov-tool-media {
+    height: auto !important;
+    aspect-ratio: 1672 / 941 !important;
+    background: #ffffff !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .ov-tool-media::after {
+    display: none !important;
+  }
+
+  .ov-tool-media img {
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: 0 !important;
+  }
+}
+`;
+
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2168,7 +2191,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 + HOME_MOBILE_HERO_ART_FIX_V18 }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 + HOME_MOBILE_HERO_ART_FIX_V18 + HOME_MOBILE_TOOL_MEDIA_FIX_V19 }} />
 
       <TrackLink
         href={CALC_URL}
