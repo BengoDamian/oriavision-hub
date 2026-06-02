@@ -2068,9 +2068,9 @@ const pageStylesMobileFix = `
   /* En mobile: altura mucho más grande para que todas las imágenes se vean con la misma resolución.
      Todos los proyectos rellenan el espacio de manera uniforme. */
   .ov-project-slide-media {
-    height: clamp(380px, 95vw, 500px) !important;
-    min-height: 380px !important;
-    aspect-ratio: 16 / 9 !important;
+    height: clamp(320px, 85vw, 420px) !important;
+    min-height: 320px !important;
+    aspect-ratio: 4 / 3 !important;
     background: linear-gradient(180deg, rgba(7,19,59,.98), rgba(6,16,44,.98)) !important;
     overflow: hidden !important;
   }
@@ -2104,9 +2104,9 @@ const pageStylesMobileFix = `
 
 @media (max-width: 480px) {
   .ov-project-slide-media {
-    height: clamp(340px, 90vw, 440px) !important;
-    min-height: 340px !important;
-    aspect-ratio: 16 / 9 !important;
+    height: clamp(280px, 80vw, 360px) !important;
+    min-height: 280px !important;
+    aspect-ratio: 4 / 3 !important;
   }
 }
 `;
