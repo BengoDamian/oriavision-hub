@@ -539,11 +539,26 @@ const WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 = `
   .oriavision-web-exact #portfolio .port-card img[alt='Siempre de Guardia'],
   .oriavision-web-exact #portfolio .port-card img[alt='Quirvo'],
   .oriavision-web-exact #portfolio .port-card img[alt='Calculadora ML'],
+  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'],
   .oriavision-web-exact #portfolio .port-card img[alt='dbengotech'] {
     object-position: center center !important;
   }
+}
+`;
 
-  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'] {
+
+const WEB_ORIENTADOR_MOBILE_RATIO_FIX_V25 = `
+/* V25: Orientador /web en celular usa ratio propio para evitar espacios en blanco. */
+@media (max-width: 768px) {
+  .oriavision-web-exact #portfolio .port-card.rv.d3 picture {
+    aspect-ratio: 1328 / 580 !important;
+    background: #eef3f8 !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card.rv.d3 picture > img,
+  .oriavision-web-exact #portfolio .port-card.rv.d3 img[alt='Orientador de precios ML'] {
+    width: 100% !important;
+    height: 100% !important;
     object-fit: contain !important;
     object-position: center center !important;
     background: #eef3f8 !important;
@@ -728,7 +743,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_ORIENTADOR_MOBILE_RATIO_FIX_V25 + WEB_ORIENTADOR_MOBILE_RATIO_FIX_V25 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
