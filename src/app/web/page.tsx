@@ -449,6 +449,46 @@ const WEB_CSS_MOBILE_RECT_FIX_V9 = `
 `;
 
 
+const WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 = `
+/* MOBILE PORTFOLIO FIT V10 /web: mejorar encuadre de cards del portfolio solo en celular */
+@media (max-width: 768px) {
+  .oriavision-web-exact #portfolio .port-card {
+    overflow: hidden !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img {
+    width: 100% !important;
+    height: clamp(235px, 68vw, 300px) !important;
+    min-height: clamp(235px, 68vw, 300px) !important;
+    max-height: clamp(235px, 68vw, 300px) !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='Siempre de Guardia'] {
+    object-position: center 16% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='Quirvo'] {
+    object-position: center 14% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='Calculadora ML'] {
+    object-position: center 18% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'] {
+    object-position: center 12% !important;
+  }
+
+  .oriavision-web-exact #portfolio .port-card img[alt='dbengotech'] {
+    object-position: 34% 18% !important;
+  }
+}
+`;
+
+
 export default function WebPage() {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".oriavision-web-exact");
@@ -608,7 +648,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
