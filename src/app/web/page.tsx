@@ -539,17 +539,10 @@ const WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 = `
   .oriavision-web-exact #portfolio .port-card img[alt='Siempre de Guardia'],
   .oriavision-web-exact #portfolio .port-card img[alt='Quirvo'],
   .oriavision-web-exact #portfolio .port-card img[alt='Calculadora ML'],
-  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'],
   .oriavision-web-exact #portfolio .port-card img[alt='dbengotech'] {
     object-position: center center !important;
   }
-}
-`;
 
-
-const WEB_MOBILE_ORIENTADOR_ONLY_FIX_V23 = `
-/* V23: solo Orientador de precios ML en /web se ve completo en celular. Desktop no cambia. */
-@media (max-width: 768px) {
   .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'] {
     object-fit: contain !important;
     object-position: center center !important;
