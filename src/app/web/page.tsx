@@ -547,6 +547,18 @@ const WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 = `
 `;
 
 
+const WEB_MOBILE_ORIENTADOR_ONLY_FIX_V23 = `
+/* V23: solo Orientador de precios ML en /web se ve completo en celular. Desktop no cambia. */
+@media (max-width: 768px) {
+  .oriavision-web-exact #portfolio .port-card img[alt='Orientador de precios ML'] {
+    object-fit: contain !important;
+    object-position: center center !important;
+    background: #eef3f8 !important;
+  }
+}
+`;
+
+
 const WEB_PORTFOLIO_LINK_FIX_V20 = `
 /* V20: todas las cards del portfolio son links reales sin cambiar diseño. */
 .oriavision-web-exact #portfolio a.port-featured,
