@@ -84,7 +84,9 @@ export default function WebProjectsCarousel({
                     ? "object-cover object-center"
                     : project.title === "Ercas"
                       ? "object-contain object-center p-2"
-                      : "object-cover object-top"}
+                      : project.title === "Quirvo"
+                        ? "object-contain object-center p-2"
+                        : "object-cover object-top"}
                 />
               </div>
 
