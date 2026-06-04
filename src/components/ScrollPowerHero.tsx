@@ -56,7 +56,7 @@ export default function ScrollPowerHero() {
 
           <div className="osp-copy" style={{ opacity: introOut, transform: `translateX(${lerp(0, -95, zoom)}px) scale(${lerp(1, 0.94, zoom)})` }}>
             <div className="osp-pill"><Sparkles className="h-4 w-4" />E-commerce · Web · Herramientas</div>
-            <h1>Soluciones digitales para vender mejor online.</h1>
+            <h1>Soluciones digitales para vender mejor.</h1>
             <p>Creamos herramientas, recursos y páginas web para negocios que necesitan verse profesionales, calcular mejor y convertir con más claridad.</p>
             <div className="osp-actions">
               <a href="#herramientas">Ver herramientas <ArrowRight className="h-5 w-5" /></a>

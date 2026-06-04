@@ -256,7 +256,7 @@ export default function OriavisionScrollHero({
                 ) : null}
               </div>
 
-              <h1>Soluciones digitales para vender mejor online.</h1>
+              <h1>Soluciones digitales para vender mejor.</h1>
 
               <p>
                 Creamos herramientas, recursos y páginas web para negocios que

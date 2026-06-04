@@ -1,0 +1,13 @@
+ORIAVISION WEB V12 – HERO PREMIUM REAL
+
+Cambios aplicados:
+- Reemplazo del hero de /web/ por una imagen grande tipo mockup premium debajo del header.
+- Se usó el asset: /public/web-visuals/hero-premium-v12.png
+- Se simplificó la cabecera visual para evitar recortes raros y composiciones confusas.
+- Se mantiene la estética Oriavision: fondo oscuro, azul/bordó sutil, look tech/premium.
+- El resto de la página conserva portfolio, automatizaciones y formulario.
+
+Archivos tocados:
+- src/app/web/page.tsx
+- src/app/globals.css
+- public/web-visuals/hero-premium-v12.png

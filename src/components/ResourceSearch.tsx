@@ -104,14 +104,14 @@ export default function ResourceSearch({
         onSubmit={handleSubmit}
         className={
           isHero
-            ? "flex items-center gap-3 rounded-2xl border border-white/15 bg-slate-950/35 px-4 py-3 shadow-inner shadow-black/20 backdrop-blur-xl transition focus-within:border-cyan-300/40 focus-within:bg-slate-950/50"
+            ? "flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition focus-within:border-brand-200 focus-within:shadow-md"
             : "flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition focus-within:border-brand-200 focus-within:shadow-md"
         }
       >
         <Search
           className={
             isHero
-              ? "h-5 w-5 shrink-0 text-cyan-200"
+              ? "h-5 w-5 shrink-0 text-brand-700"
               : "h-5 w-5 shrink-0 text-brand-700"
           }
         />
@@ -126,7 +126,7 @@ export default function ResourceSearch({
           placeholder={placeholder}
           className={
             isHero
-              ? "min-w-0 flex-1 bg-transparent text-sm font-bold text-white outline-none placeholder:text-slate-400"
+              ? "min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-900 outline-none placeholder:text-slate-400"
               : "min-w-0 flex-1 bg-transparent text-sm font-bold text-slate-900 outline-none placeholder:text-slate-400"
           }
         />
@@ -136,7 +136,7 @@ export default function ResourceSearch({
           aria-label="Buscar"
           className={
             isHero
-              ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-cyan-100 transition hover:bg-white/15"
+              ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-700 transition hover:bg-brand-50"
               : "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-700 transition hover:bg-brand-50"
           }
         >
@@ -148,7 +148,7 @@ export default function ResourceSearch({
         <div
           className={
             isHero
-              ? "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/95 p-2 shadow-2xl shadow-black/40 backdrop-blur-xl"
+              ? "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
               : "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
           }
         >
@@ -162,14 +162,14 @@ export default function ResourceSearch({
                   rel={item.external ? "noreferrer" : undefined}
                   className={
                     isHero
-                      ? "group rounded-xl px-4 py-3 transition hover:bg-white/10"
+                      ? "group rounded-xl px-4 py-3 transition hover:bg-slate-50"
                       : "group rounded-xl px-4 py-3 transition hover:bg-slate-50"
                   }
                 >
                   <div
                     className={
                       isHero
-                        ? "text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200"
+                        ? "text-[10px] font-black uppercase tracking-[0.18em] text-brand-700"
                         : "text-[10px] font-black uppercase tracking-[0.18em] text-brand-700"
                     }
                   >
@@ -179,7 +179,7 @@ export default function ResourceSearch({
                   <div
                     className={
                       isHero
-                        ? "mt-1 text-sm font-black leading-tight text-white"
+                        ? "mt-1 text-sm font-black leading-tight text-slate-950"
                         : "mt-1 text-sm font-black leading-tight text-slate-950"
                     }
                   >
@@ -190,7 +190,7 @@ export default function ResourceSearch({
                     <p
                       className={
                         isHero
-                          ? "mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-slate-400"
+                          ? "mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-slate-600"
                           : "mt-1 line-clamp-2 text-xs font-medium leading-relaxed text-slate-600"
                       }
                     >
@@ -204,7 +204,7 @@ export default function ResourceSearch({
             <div
               className={
                 isHero
-                  ? "rounded-xl px-4 py-3 text-sm font-bold text-slate-300"
+                  ? "rounded-xl px-4 py-3 text-sm font-bold text-slate-600"
                   : "rounded-xl px-4 py-3 text-sm font-bold text-slate-600"
               }
             >

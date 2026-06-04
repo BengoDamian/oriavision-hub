@@ -1,0 +1,6 @@
+Corrección aplicada:
+- Se corrigió la sección oscura de servicios del home.
+- Se eliminó la imagen panorámica con texto incrustado que quedaba mal y repetía visualmente el título.
+- Se reemplazó por una composición de mockups con capturas reales: Siempre de Guardia, Quirvo y Calculadora ML.
+- Se mantuvo el texto del home y el header global del hub.
+- Se mantuvo /web/ con header global.

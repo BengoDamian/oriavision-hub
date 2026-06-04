@@ -1,0 +1,7 @@
+Corrección aplicada:
+- src/app/web/page.tsx mantiene la estética del HTML de referencia en el contenido de /web/.
+- Se eliminó el header interno copiado del HTML.
+- Se eliminó el footer interno copiado del HTML.
+- Se quitaron las reglas CSS que ocultaban el Navbar/Footer globales del hub.
+- El header y footer vuelven a ser los de src/app/layout.tsx, iguales al home.
+- Los scripts de animación/FAQ quedan limitados al contenido de .oriavision-web-exact para no alterar el header global.

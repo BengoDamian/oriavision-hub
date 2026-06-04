@@ -20,12 +20,12 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Recursos gratuitos",
     items: [
-      { label: "Prompts", href: "/prompts/" },
-      { label: "Guías", href: "/guias/" },
+      { label: "Prompts gratis", href: "/prompts/" },
+      { label: "Guías gratuitas", href: "/guias/" },
     ],
   },
   {
-    label: "Servicios",
+    label: "Diseño web",
     items: [
       { label: "Landing pages", href: "/web/" },
       { label: "Páginas web a medida", href: "/web/" },
@@ -50,7 +50,7 @@ const NAV_GROUPS: NavGroup[] = [
 
 const PRIMARY_CTA = {
   label: "Calculadora ML",
-  href: "https://calculadoraml.oriavision.com.ar",
+  href: "https://calculadoraml.oriavision.com.ar/",
 };
 
 function NavItemLink({
@@ -105,7 +105,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
+        <div className="flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-10">
           <Link
             href="/"
             className="flex items-center gap-3"

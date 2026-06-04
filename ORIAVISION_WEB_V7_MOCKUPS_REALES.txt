@@ -1,0 +1,19 @@
+Versión v7 - Sección /web/
+
+Cambios principales:
+- Reemplacé el carrusel chico por una escena hero visual grande con mockups basados en proyectos reales del portfolio.
+- Agregué assets nuevos en /public/web-visuals/:
+  - oriavision-hero-devices-scene.png
+  - oriavision-web-hero-cinematic.png
+  - oriavision-portfolio-wall.png
+  - oriavision-automation-map.png
+- Ajusté el layout del hero a más visual / menos texto.
+- Agregué dos bloques full visuales para que la página tenga más dirección de arte y no parezca solo tarjetas de texto.
+- Agregué animaciones suaves en globals.css: ov-hero-scene, ov-float-card, ov-float-card-delay.
+
+Notas:
+- No pude validar build completo en este entorno porque el ZIP no trae node_modules instalados.
+- En tu equipo, correr:
+  npm install
+  npm run dev
+  npm run build

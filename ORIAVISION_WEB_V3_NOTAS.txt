@@ -1,0 +1,9 @@
+Rediseño /web/ v3
+- Se reemplazó la estética de tarjetas repetidas por una composición más editorial y distintiva.
+- Nuevo hero: mensaje más fuerte, visual tipo consola/briefing y claim menos genérico.
+- Nueva sección blueprint de servicios para landing, web, sistemas y automatizaciones.
+- Portfolio convertido en casos de pantalla completa, más grandes y con narrativa por proyecto.
+- Nuevo bloque de diferencial basado en criterio, identidad, conversión, automatización y performance.
+- Formulario rediseñado como briefing creativo, menos genérico y más coherente con el estilo premium.
+- Se mantuvo la identidad oscura/tech de Oriavision y los colores azul/rojo, pero con composición más propia.
+Validación: npx tsc --noEmit OK.

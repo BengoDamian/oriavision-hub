@@ -81,11 +81,11 @@ export default function WebRequestForm() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-blue-100 bg-slate-50 p-8 shadow-sm md:p-10">
-      <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-600/10 blur-2xl" />
-      <div className="absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-yellow-200/20 blur-2xl" />
+    <div className="relative isolate overflow-hidden rounded-[2rem] border-2 border-blue-100 bg-white p-6 shadow-[0_18px_50px_rgba(10,31,110,0.08)] sm:p-8 md:rounded-[2.5rem] md:bg-slate-50 md:p-10 md:shadow-sm">
+      <div className="pointer-events-none absolute -right-24 -top-24 z-0 hidden h-80 w-80 rounded-full bg-brand-600/10 blur-2xl md:block" />
+      <div className="pointer-events-none absolute -bottom-28 -left-28 z-0 hidden h-80 w-80 rounded-full bg-yellow-200/20 blur-2xl md:block" />
 
-      <div className="relative">
+      <div className="relative z-10">
         <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-4 py-1 text-xs font-black uppercase tracking-wide text-brand-700">
           Consulta de página web
         </div>
@@ -105,7 +105,7 @@ export default function WebRequestForm() {
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-xl shadow-blue-200 transition hover:bg-brand-700"
+              className="w-full rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-xl shadow-blue-100 transition hover:bg-brand-700 sm:w-auto sm:px-10 sm:text-lg"
             >
               Quiero más info
             </button>
