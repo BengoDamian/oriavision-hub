@@ -141,7 +141,7 @@ const PORTFOLIO = [
     tag: "Landing",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
     img: "/portfolio/quirvo.png",
-    mobileImg: "/portfolio-home-mobile/quirvo-mobile-home.jpg?v=14",
+    mobileImg: "/portfolio-mobile/quirvo-mobile.jpg?v=12",
     href: "https://quirvo.com.ar/",
   },
   {
@@ -2127,6 +2127,20 @@ const HOME_MOBILE_TOOL_MEDIA_FIX_V19 = `
 `;
 
 
+
+const HOME_MOBILE_QUIRVO_CONTAIN_FIX_V20 = `
+/* HOME MOBILE QUIRVO V20: mostrar completa la imagen de Quirvo sin cambiar el tamaño del rectángulo */
+@media (max-width: 980px) {
+  .ov-project-slide-media img[alt="Quirvo"] {
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: #06102c !important;
+  }
+}
+`;
+
 function SectionHeader({
   eyebrow,
   title,
@@ -2191,7 +2205,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageJsonLd) }}
       />
-      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 + HOME_MOBILE_HERO_ART_FIX_V18 + HOME_MOBILE_TOOL_MEDIA_FIX_V19 }} />
+      <style dangerouslySetInnerHTML={{ __html: pageStyles + HOME_MOBILE_ERCAS_CAROUSEL_FIX_V15 + HOME_MOBILE_HERO_ART_FIX_V16 + HOME_MOBILE_HERO_ART_FIX_V18 + HOME_MOBILE_TOOL_MEDIA_FIX_V19 + HOME_MOBILE_QUIRVO_CONTAIN_FIX_V20 }} />
 
       <TrackLink
         href={CALC_URL}
