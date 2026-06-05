@@ -140,7 +140,7 @@ const PORTFOLIO = [
     title: "Quirvo",
     tag: "Landing",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
-    img: "/portfolio/quirvo.png",
+    img: "/portfolio/quirvo-home-desktop-v22.png?v=22",
     mobileImg: "/portfolio-mobile/quirvo-mobile.jpg?v=12",
     href: "https://quirvo.com.ar/",
   },
