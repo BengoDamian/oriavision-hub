@@ -141,7 +141,7 @@ const PORTFOLIO = [
     tag: "Landing",
     text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
     img: "/portfolio/quirvo.png",
-    mobileImg: "/portfolio-home-mobile/quirvo-mobile-home-v17.jpg?v=17",
+    mobileImg: "/portfolio-home-mobile/quirvo-mobile-home.jpg?v=14",
     href: "https://quirvo.com.ar/",
   },
   {
@@ -2266,7 +2266,7 @@ export default function Home() {
             <Reveal delay={0.06}>
               <div className="ov-hero-mobile-art" aria-hidden="true">
                 <Image
-                  src="/web-visuals/hero-mobile-composite-v18.png?v=18"
+                  src="/web-visuals/hero-mobile-composite-v20.png?v=20"
                   alt=""
                   fill
                   priority
