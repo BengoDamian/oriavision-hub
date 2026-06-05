@@ -2266,7 +2266,7 @@ export default function Home() {
             <Reveal delay={0.06}>
               <div className="ov-hero-mobile-art" aria-hidden="true">
                 <Image
-                  src="/web-visuals/hero-mobile-composite-v32.png?v=32"
+                  src="/web-visuals/hero-mobile-composite-v34.png?v=34"
                   alt=""
                   fill
                   priority
