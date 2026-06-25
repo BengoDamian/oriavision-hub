@@ -1,60 +1,70 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import InboxHeroMockup from "./components/InboxHeroMockup";
+import InboxFlowVisual from "./components/InboxFlowVisual";
+import InboxPreviewMockup from "./components/InboxPreviewMockup";
+import InboxSecurityVisual from "./components/InboxSecurityVisual";
 import {
-  MessageSquare,
-  Zap,
-  Bell,
-  Clock,
-  ShieldCheck,
-  LineChart,
   Send,
-  Lock,
-  EyeOff,
-  KeyRound,
-  Server,
-  CheckCircle2,
   ArrowRight,
+  ShieldCheck,
+  Lock,
+  MessageSquare,
+  AlertTriangle,
+  PackageCheck,
+  Bell,
+  Zap,
+  Users,
+  Play,
+  CheckCircle2,
 } from "lucide-react";
 
 /* ── CTA principal: Solicitar / Coordinar demo ──
-   (No existe botón público de "Conectar MercadoLibre".) */
+   (No existe CTA público de conexión directa.) */
 const DEMO_WA =
   "https://wa.me/5491127575675?text=Hola%20Oriavision%21%20Quiero%20coordinar%20una%20demo%20de%20Oriavision%20Inbox%20%28bot%20de%20Telegram%20para%20vendedores%20de%20MercadoLibre%29.";
 const DEMO_MAIL =
   "mailto:soporte@oriavision.com.ar?subject=Demo%20Oriavision%20Inbox&body=Hola%2C%20quiero%20coordinar%20una%20demo%20de%20Oriavision%20Inbox.";
 
-const FEATURES = [
+/* Qué centraliza el bot — cada card lleva un micro-mockup de chat. */
+const CENTRALIZA = [
   {
     icon: MessageSquare,
-    title: "Todo en Telegram",
-    text: "Recibí y respondé las consultas de tus compras y ventas desde un chat que ya usás todos los días, sin instalar nada nuevo.",
+    tag: "Pregunta",
+    preview: "¿Tienen stock para retirar hoy?",
+    accent: "brand",
+  },
+  {
+    icon: AlertTriangle,
+    tag: "Reclamo",
+    preview: "El cartucho llegó sin sellar.",
+    accent: "amber",
+  },
+  {
+    icon: PackageCheck,
+    tag: "Mensaje postventa",
+    preview: "¿Cómo coordino la devolución?",
+    accent: "brand",
   },
   {
     icon: Bell,
-    title: "Avisos al instante",
-    text: "Te notifica cada pregunta o mensaje nuevo apenas entra, para que no se te escape ninguna oportunidad de venta.",
+    tag: "Alerta",
+    preview: "Pregunta sin responder hace 2 h.",
+    accent: "amber",
   },
   {
     icon: Zap,
-    title: "Respuestas más rápidas",
-    text: "Plantillas y respuestas guardadas para contestar en segundos las preguntas que más se repiten.",
+    tag: "Respuesta rápida",
+    preview: "/stock · /envio · /horario",
+    accent: "brand",
   },
   {
-    icon: Clock,
-    title: "Menos tiempo perdido",
-    text: "Dejá de saltar entre pestañas y notificaciones. Todo el flujo de mensajes llega ordenado a un solo lugar.",
+    icon: Users,
+    tag: "Equipo",
+    preview: "3 agentes respondiendo en el grupo.",
+    accent: "brand",
   },
-  {
-    icon: LineChart,
-    title: "Más ventas cerradas",
-    text: "Responder a tiempo mejora tu reputación y tu posición. Contestar rápido vende más.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Pensado para vendedores",
-    text: "Hecho por y para vendedores que manejan volumen y no quieren perder ni una consulta.",
-  },
-];
+] as const;
 
 const STEPS = [
   {
@@ -71,29 +81,6 @@ const STEPS = [
     n: "3",
     title: "Recibís todo en Telegram",
     text: "Las preguntas y mensajes de tus ventas empiezan a llegarte al bot, listos para responder al toque.",
-  },
-];
-
-const SECURITY = [
-  {
-    icon: Lock,
-    title: "Conexión cifrada",
-    text: "La comunicación viaja cifrada de punta a punta entre la plataforma y Telegram.",
-  },
-  {
-    icon: EyeOff,
-    title: "No vendemos tus datos",
-    text: "Tu información se usa solo para que la herramienta funcione. Nunca la comercializamos.",
-  },
-  {
-    icon: KeyRound,
-    title: "Accesos controlados",
-    text: "El bot solo accede a lo necesario para mostrarte mensajes y preguntas de tu operación.",
-  },
-  {
-    icon: Server,
-    title: "Podés revocar cuando quieras",
-    text: "Vos mantenés el control: podés desconectar y solicitar la baja del servicio en cualquier momento.",
   },
 ];
 
@@ -116,17 +103,13 @@ const FAQ = [
   },
   {
     q: "¿Es seguro?",
-    a: "Sí. Usamos conexiones cifradas, accesos limitados a lo necesario y no vendemos tu información. Podés revisar más en nuestra página de Seguridad.",
+    a: "Sí. La conexión usa OAuth: nunca pedimos tu contraseña, autorizás vos y podés revocar el acceso cuando quieras. Podés revisar más en nuestra página de Seguridad.",
   },
 ];
 
 function CtaButtons({ center = false }: { center?: boolean }) {
   return (
-    <div
-      className={`flex flex-col gap-3 sm:flex-row ${
-        center ? "justify-center" : ""
-      }`}
-    >
+    <div className={`flex flex-col gap-3 sm:flex-row ${center ? "justify-center" : ""}`}>
       <a
         href={DEMO_WA}
         target="_blank"
@@ -154,41 +137,49 @@ export default function InboxLanding() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 via-white to-white" />
         <div className="pointer-events-none absolute -top-24 right-0 -z-10 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl" />
 
-        <div className="container py-20 sm:py-28">
-          <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-600/15 bg-brand-50 px-4 py-1.5 text-sm font-extrabold uppercase tracking-wide text-brand-700">
-              <Send className="h-4 w-4" />
-              Bot de Telegram para vendedores
-            </span>
-          </Reveal>
+        <div className="container grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:gap-10">
+          {/* Texto */}
+          <div>
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-600/15 bg-brand-50 px-4 py-1.5 text-sm font-extrabold uppercase tracking-wide text-brand-700">
+                <Send className="h-4 w-4" />
+                Bot de Telegram para vendedores
+              </span>
+            </Reveal>
 
-          <Reveal delay={0.05}>
-            <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-textStrong sm:text-6xl">
-              Oriavision Inbox
-            </h1>
-          </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-textStrong sm:text-6xl">
+                Oriavision Inbox
+              </h1>
+            </Reveal>
 
-          <Reveal delay={0.1}>
-            <p className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-textBody sm:text-xl">
-              El bot de Telegram que ayuda a los{" "}
-              <strong className="text-textStrong">vendedores de MercadoLibre</strong>{" "}
-              a responder más rápido, no perder consultas y cerrar más ventas — todo
-              desde un chat que ya usás.
-            </p>
-          </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-textBody sm:text-xl">
+                El bot de Telegram que ayuda a los{" "}
+                <strong className="text-textStrong">vendedores de MercadoLibre</strong>{" "}
+                a responder más rápido, no perder consultas y cerrar más ventas — todo
+                desde un chat que ya usás.
+              </p>
+            </Reveal>
 
-          <Reveal delay={0.15}>
-            <div className="mt-8">
-              <CtaButtons />
-            </div>
-          </Reveal>
+            <Reveal delay={0.15}>
+              <div className="mt-8">
+                <CtaButtons />
+              </div>
+            </Reveal>
 
-          <Reveal delay={0.2}>
-            <p className="mt-6 max-w-2xl text-sm font-semibold leading-relaxed text-textMuted">
-              Herramienta <strong>independiente</strong> de Oriavision. No somos
-              MercadoLibre ni un partner oficial (todavía). “MercadoLibre” se usa
-              solo de forma descriptiva.
-            </p>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-xl text-sm font-semibold leading-relaxed text-textMuted">
+                Herramienta <strong>independiente</strong> de Oriavision. No somos
+                MercadoLibre ni un partner oficial (todavía). “MercadoLibre” y
+                “Telegram” se usan solo de forma descriptiva.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Mockup */}
+          <Reveal delay={0.1} y={24}>
+            <InboxHeroMockup />
           </Reveal>
         </div>
       </section>
@@ -200,43 +191,62 @@ export default function InboxLanding() {
             <ShieldCheck className="h-7 w-7 shrink-0 text-brand-600" />
             <p className="text-sm font-semibold leading-relaxed text-textBody sm:text-base">
               Oriavision Inbox es una herramienta independiente. No está afiliada,
-              asociada ni respaldada oficialmente por MercadoLibre. La marca se
-              menciona únicamente para describir a qué vendedores está orientada.
+              asociada ni respaldada oficialmente por MercadoLibre. Las marcas se
+              mencionan únicamente para describir a qué vendedores está orientada.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURES ── */}
+      {/* ── QUÉ CENTRALIZA ── */}
       <section className="container py-20 sm:py-24">
         <Reveal>
           <h2 className="max-w-2xl text-3xl font-black tracking-tight text-textStrong sm:text-4xl">
             Todo tu flujo de mensajes, ordenado en un solo lugar
           </h2>
           <p className="mt-4 max-w-2xl text-lg font-medium text-textBody">
-            Dejá de perder ventas por responder tarde. Oriavision Inbox lleva las
-            preguntas y mensajes de tu operación directo a Telegram.
+            Oriavision Inbox centraliza en Telegram lo que hoy se te dispersa entre
+            pestañas y notificaciones.
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group h-full rounded-3xl border border-slate-200 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-xl hover:shadow-brand-600/5">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
-                  <f.icon className="h-6 w-6" />
+          {CENTRALIZA.map((c, i) => {
+            const amber = c.accent === "amber";
+            return (
+              <Reveal key={c.tag} delay={i * 0.05}>
+                <div className="group h-full rounded-3xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand-600/30 hover:shadow-xl hover:shadow-brand-600/5">
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${
+                        amber
+                          ? "bg-amber-100 text-amber-600"
+                          : "bg-brand-50 text-brand-600"
+                      }`}
+                    >
+                      <c.icon className="h-5 w-5" />
+                    </span>
+                    <p className="text-base font-black text-textStrong">{c.tag}</p>
+                  </div>
+
+                  {/* micro-mockup de chat */}
+                  <div
+                    className={`mt-4 rounded-2xl rounded-tl-sm border px-3.5 py-2.5 text-sm font-medium ${
+                      amber
+                        ? "border-amber-100 bg-amber-50 text-amber-900"
+                        : "border-slate-100 bg-slate-50 text-textBody"
+                    }`}
+                  >
+                    {c.preview}
+                  </div>
                 </div>
-                <h3 className="mt-5 text-lg font-black text-textStrong">{f.title}</h3>
-                <p className="mt-2 text-sm font-medium leading-relaxed text-textBody">
-                  {f.text}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
-      {/* ── PASOS ── */}
+      {/* ── CÓMO FUNCIONA ── */}
       <section className="bg-slate-50/70 py-20 sm:py-24">
         <div className="container">
           <Reveal>
@@ -248,7 +258,15 @@ export default function InboxLanding() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {/* Diagrama de flujo */}
+          <Reveal delay={0.05}>
+            <div className="mt-10">
+              <InboxFlowVisual />
+            </div>
+          </Reveal>
+
+          {/* Pasos escritos */}
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {STEPS.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.08}>
                 <div className="relative h-full rounded-3xl border border-slate-200 bg-white p-8">
@@ -274,9 +292,35 @@ export default function InboxLanding() {
         </div>
       </section>
 
-      {/* ── SEGURIDAD ── */}
+      {/* ── NO RESPONDE SOLO ── */}
       <section className="container py-20 sm:py-24">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <Reveal>
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-600/15 bg-brand-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-brand-700">
+                <ShieldCheck className="h-4 w-4" />
+                Vos tenés la última palabra
+              </span>
+              <h2 className="mt-5 text-3xl font-black tracking-tight text-textStrong sm:text-4xl">
+                No responde solo
+              </h2>
+              <p className="mt-4 text-lg font-medium leading-relaxed text-textBody">
+                Oriavision Inbox te prepara la respuesta y te la muestra como vista
+                previa. <strong className="text-textStrong">Nada se envía sin tu confirmación.</strong>{" "}
+                Revisás, editás y recién ahí enviás.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08} y={24}>
+            <InboxPreviewMockup />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── SEGURIDAD ── */}
+      <section className="bg-slate-50/70 py-20 sm:py-24">
+        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-brand-600/15 bg-brand-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-brand-700">
@@ -284,11 +328,11 @@ export default function InboxLanding() {
                 Seguridad
               </span>
               <h2 className="mt-5 text-3xl font-black tracking-tight text-textStrong sm:text-4xl">
-                Tus datos, bajo control
+                Conexión segura con OAuth
               </h2>
               <p className="mt-4 text-lg font-medium leading-relaxed text-textBody">
-                Tratamos tu información con criterios de seguridad y privacidad
-                claros. Vos siempre mantenés el control de tu cuenta.
+                Te conectás autorizando el acceso, sin entregar tu contraseña. Vos
+                mantenés el control y podés revocar los permisos cuando quieras.
               </p>
               <Link
                 href="/inbox/seguridad/"
@@ -300,22 +344,39 @@ export default function InboxLanding() {
             </div>
           </Reveal>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            {SECURITY.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.06}>
-                <div className="h-full rounded-3xl border border-slate-200 bg-white p-6">
-                  <s.icon className="h-7 w-7 text-brand-600" />
-                  <h3 className="mt-4 text-base font-black text-textStrong">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-sm font-medium leading-relaxed text-textBody">
-                    {s.text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.08} y={24}>
+            <InboxSecurityVisual />
+          </Reveal>
         </div>
+      </section>
+
+      {/* ── DEMO / VIDEO ── */}
+      <section className="container py-20 sm:py-24">
+        <Reveal>
+          <h2 className="mx-auto max-w-2xl text-center text-3xl font-black tracking-tight text-textStrong sm:text-4xl">
+            Mirá Oriavision Inbox en acción
+          </h2>
+        </Reveal>
+
+        <Reveal delay={0.06}>
+          <div className="relative mx-auto mt-10 aspect-video w-full max-w-3xl overflow-hidden rounded-4xl border border-brand-700/20 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 shadow-2xl shadow-brand-900/20">
+            {/* textura suave */}
+            <div className="pointer-events-none absolute -top-16 -left-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -right-10 h-64 w-64 rounded-full bg-brand-400/20 blur-3xl" />
+
+            <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-brand-700 shadow-xl ring-8 ring-white/15 transition-transform hover:scale-105">
+                <Play className="h-8 w-8 translate-x-0.5 fill-current" />
+              </span>
+              <h3 className="mt-6 text-2xl font-black text-white sm:text-3xl">
+                Demo guiada de Oriavision Inbox
+              </h3>
+              <p className="mt-2 text-sm font-semibold text-brand-100 sm:text-base">
+                Próximamente video de funcionamiento real
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* ── FAQ ── */}
