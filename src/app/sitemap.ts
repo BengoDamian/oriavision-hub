@@ -56,6 +56,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/inbox/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/inbox/terminos/`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    },
+    {
+      url: `${SITE_URL}/inbox/privacidad/`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    },
+    {
+      url: `${SITE_URL}/inbox/seguridad/`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    },
+    {
       url: `${SITE_URL}/legal/privacidad/`,
       lastModified: now,
       changeFrequency: "yearly" as const,

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls *.config.*)",
+      "Bash(ls *.json)",
+      "PowerShell(npm install 2>&1)",
+      "PowerShell(npm run build 2>&1)"
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#02050d] py-12">
-      <div className="container mb-10 grid gap-8 md:grid-cols-6">
+      <div className="container mb-10 grid gap-8 md:grid-cols-7">
         <div className="col-span-1 md:col-span-2">
           <h4 className="mb-4 text-xl font-black text-cyan-100">Oriavision</h4>
 
@@ -49,6 +49,30 @@ export default function Footer() {
                 className="text-slate-400 transition-colors hover:text-cyan-100"
               >
                 Páginas web a medida
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-slate-100">
+            Oriavision Inbox
+          </h5>
+          <ul className="space-y-2 text-sm font-semibold text-slate-400">
+            <li>
+              <Link
+                href="/inbox/"
+                className="text-slate-400 transition-colors hover:text-cyan-100"
+              >
+                Bot de Telegram
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/inbox/seguridad/"
+                className="text-slate-400 transition-colors hover:text-cyan-100"
+              >
+                Seguridad
               </Link>
             </li>
           </ul>
