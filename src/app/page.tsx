@@ -2214,6 +2214,7 @@ export default function Home() {
       tags: p.tags,
       keywords: p.tags,
       slug: p.id,
+      featured: p.featured,
     })),
     ...guides.map((g) => ({
       type: "Guía" as const,
@@ -2224,6 +2225,7 @@ export default function Home() {
       tags: g.tags,
       keywords: g.tags,
       slug: g.id,
+      featured: g.featured,
     })),
     ...tools
       .filter((t) => t.status === "active")
@@ -2236,6 +2238,7 @@ export default function Home() {
         external: Boolean(t.externalUrl),
         slug: t.slug,
         keywords: toolKeywords[t.slug],
+        featured: t.featured,
       })),
   ];
 

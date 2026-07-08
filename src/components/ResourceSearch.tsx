@@ -17,6 +17,7 @@ export type ResourceSearchItem = {
   keywords?: string[];
   synonyms?: string[];
   slug?: string;
+  featured?: boolean;
 };
 
 type ResourceSearchProps = {
@@ -106,17 +107,66 @@ export default function ResourceSearch({
       .slice(0, 6);
   }, [fuse, cleanQuery]);
 
+  // Recursos recomendados por defecto (fallback cuando la búsqueda no arroja nada).
+  // Prioridad: featured -> herramientas activas -> MercadoLibre -> guías -> prompts.
+  // Se deduplica por href y se limita a 6.
+  const recommendedItems = useMemo(() => {
+    const priority = (item: ResourceSearchItem) => {
+      if (item.featured) return 0;
+      if (item.type === "Herramienta") return 1;
+      const haystack = normalize(
+        `${item.category ?? ""} ${(item.tags ?? []).join(" ")}`
+      );
+      if (haystack.includes("mercado libre") || haystack.includes("mercadolibre"))
+        return 2;
+      if (item.type === "Guía") return 3;
+      if (item.type === "Prompt") return 4;
+      return 5;
+    };
+
+    const ordered = items
+      .map((item, index) => ({ item, index }))
+      .sort(
+        (a, b) =>
+          priority(a.item) - priority(b.item) || a.index - b.index
+      )
+      .map((entry) => entry.item);
+
+    // La Calculadora ML es la herramienta principal del portal:
+    // si existe, se fuerza al primer lugar del listado de recomendados.
+    const calcIndex = ordered.findIndex(
+      (item) => normalize(item.title) === normalize("Calculadora Mercado Libre")
+    );
+    if (calcIndex > 0) {
+      const [calc] = ordered.splice(calcIndex, 1);
+      ordered.unshift(calc);
+    }
+
+    const seen = new Set<string>();
+
+    return ordered
+      .filter((item) => {
+        if (seen.has(item.href)) return false;
+        seen.add(item.href);
+        return true;
+      })
+      .slice(0, 6);
+  }, [items]);
+
   const hasStrongMatch = scored.some((entry) => entry.score <= STRONG_MATCH);
-  // "results" = coincidencias claras | "fuzzy" = solo sugerencias relacionadas | "empty" = nada
-  const mode: "results" | "fuzzy" | "empty" = !scored.length
-    ? "empty"
+  // "results" = coincidencias claras | "fuzzy" = solo sugerencias relacionadas
+  // "recommended" = sin resultados -> mostramos recursos recomendados (nunca vacío seco)
+  const mode: "results" | "fuzzy" | "recommended" = !scored.length
+    ? "recommended"
     : hasStrongMatch
       ? "results"
       : "fuzzy";
 
   const results = scored.map((entry) => entry.item);
+  const displayItems = mode === "recommended" ? recommendedItems : results;
 
-  const showDropdown = focused && cleanQuery.length >= 2;
+  const showDropdown =
+    focused && cleanQuery.length >= 2 && displayItems.length > 0;
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -163,20 +213,21 @@ export default function ResourceSearch({
 
       {showDropdown ? (
         <div className="absolute left-0 right-0 top-[calc(100%+10px)] z-[9999] max-h-[70vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40">
-          {mode === "empty" ? (
-            <div className="rounded-xl px-4 py-3 text-sm font-bold text-slate-600">
-              No encontramos recursos relacionados por ahora.
-            </div>
-          ) : (
-            <div className="grid gap-1">
-              {mode === "fuzzy" ? (
-                <div className="px-4 pt-2 pb-1 text-xs font-bold leading-snug text-slate-500">
-                  No encontramos una coincidencia exacta, pero estos recursos
-                  pueden ayudarte.
-                </div>
-              ) : null}
+          <div className="grid gap-1">
+            {mode === "fuzzy" ? (
+              <div className="px-4 pt-2 pb-1 text-xs font-bold leading-snug text-slate-500">
+                No encontramos una coincidencia exacta, pero estos recursos
+                pueden ayudarte.
+              </div>
+            ) : null}
 
-              {results.map((item) => (
+            {mode === "recommended" ? (
+              <div className="px-4 pt-2 pb-1 text-xs font-bold leading-snug text-slate-500">
+                Tal vez estos recursos pueden servirte para empezar.
+              </div>
+            ) : null}
+
+            {displayItems.map((item) => (
                 <Link
                   key={`${item.href}-${item.title}`}
                   href={item.href}
@@ -199,8 +250,7 @@ export default function ResourceSearch({
                   ) : null}
                 </Link>
               ))}
-            </div>
-          )}
+          </div>
         </div>
       ) : null}
     </div>
