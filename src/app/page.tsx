@@ -23,6 +23,8 @@ import ResourceSearch from "@/components/ResourceSearch";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import WebProjectsCarousel from "@/components/WebProjectsCarousel";
 import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
+import { tools } from "@/lib/tools";
+import type { ResourceSearchItem } from "@/components/ResourceSearch";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const CALC_URL = "https://calculadoraml.oriavision.com.ar";
@@ -2182,13 +2184,36 @@ export default function Home() {
       : guides
   ).slice(0, 2);
 
-  const searchItems = [
+  // Palabras clave / sinónimos por herramienta para que la búsqueda difusa
+  // encuentre la herramienta aunque no se escriba el título exacto.
+  const toolKeywords: Record<string, string[]> = {
+    "calculadora-ml": [
+      "calculadora",
+      "calcular",
+      "comisiones",
+      "costos",
+      "impuestos",
+      "ganancia",
+      "rentabilidad",
+      "margen",
+      "iibb",
+      "envio",
+      "precio",
+      "mercado libre",
+      "ml",
+    ],
+  };
+
+  const searchItems: ResourceSearchItem[] = [
     ...prompts.map((p) => ({
       type: "Prompt" as const,
       title: p.title,
       description: p.description,
       category: p.category,
       href: `/prompts/${p.id}/`,
+      tags: p.tags,
+      keywords: p.tags,
+      slug: p.id,
     })),
     ...guides.map((g) => ({
       type: "Guía" as const,
@@ -2196,7 +2221,22 @@ export default function Home() {
       description: g.description,
       category: g.category,
       href: `/guias/${g.id}/`,
+      tags: g.tags,
+      keywords: g.tags,
+      slug: g.id,
     })),
+    ...tools
+      .filter((t) => t.status === "active")
+      .map((t) => ({
+        type: "Herramienta" as const,
+        title: t.title,
+        description: t.fullDescription ?? t.shortDescription,
+        category: "Herramientas",
+        href: t.externalUrl ?? t.href,
+        external: Boolean(t.externalUrl),
+        slug: t.slug,
+        keywords: toolKeywords[t.slug],
+      })),
   ];
 
   return (
