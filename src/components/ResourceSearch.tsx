@@ -148,8 +148,8 @@ export default function ResourceSearch({
         <div
           className={
             isHero
-              ? "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
-              : "absolute left-0 right-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
+              ? "absolute left-0 right-0 top-[calc(100%+10px)] z-[9999] max-h-[70vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
+              : "absolute left-0 right-0 top-[calc(100%+10px)] z-[9999] max-h-[70vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-300/40"
           }
         >
           {results.length ? (

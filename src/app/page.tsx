@@ -2235,7 +2235,7 @@ export default function Home() {
 
       <section className="ov-hero ov-hero-integrated">
         <div className="ov-wrap">
-          <Reveal delay={0.02}>
+          <Reveal delay={0.02} className="relative z-40">
             <div className="ov-search-shell">
               <ResourceSearch items={searchItems} variant="hero" />
             </div>
