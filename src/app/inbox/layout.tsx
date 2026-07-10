@@ -5,7 +5,7 @@ const PAGE_URL = `${SITE_URL}/inbox/`;
 
 const TITLE = "Bot Telegram para MercadoLibre | Oriavision";
 const DESCRIPTION =
-  "Recibí y respondé mensajes de MercadoLibre desde Telegram, sin tener que entrar a cada cuenta.";
+  "Recibí alertas de MercadoLibre en Telegram (mensajes, preguntas, reclamos, facturación y stock) y respondé preguntas desde Telegram.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },

@@ -2254,7 +2254,7 @@ export default function Home() {
       type: "Herramienta" as const,
       title: "Bot Telegram ML",
       description:
-        "Bot para recibir y responder mensajes de MercadoLibre desde Telegram.",
+        "Bot para recibir alertas de MercadoLibre en Telegram y responder preguntas desde Telegram.",
       category: "Herramientas",
       href: "/inbox/",
       keywords: [
@@ -2265,6 +2265,12 @@ export default function Home() {
         "mensajes mercado libre",
         "responder mensajes",
         "preguntas mercado libre",
+        "responder preguntas mercado libre",
+        "alertas mercado libre",
+        "reclamos mercado libre",
+        "facturacion mercado libre",
+        "stock bajo",
+        "sin stock",
         "vendedores mercado libre",
         "varias cuentas mercado libre",
         "inbox",
@@ -2574,19 +2580,19 @@ export default function Home() {
                   </div>
                   <h3>Bot Telegram ML</h3>
                   <p className="!mt-2 text-lg font-black leading-snug text-[#0A1F6E]">
-                    Respondé mensajes de MercadoLibre desde Telegram.
+                    Recibí alertas de MercadoLibre en Telegram.
                   </p>
                   <p>
-                    Una herramienta para recibir y responder mensajes de MercadoLibre sin tener que entrar a cada cuenta.
+                    Te avisa mensajes, preguntas, reclamos, facturación y productos sin stock. Además, podés responder preguntas directamente desde Telegram.
                   </p>
                 </div>
 
                 <ul className="ov-list md:mt-0">
                   {[
-                    "Ideal para vendedores con varias cuentas",
-                    "Respuestas más rápidas",
-                    "Todo desde Telegram",
-                    "Pensado para MercadoLibre",
+                    "Alertas de mensajes y reclamos",
+                    "Respondé preguntas desde Telegram",
+                    "Control de facturación",
+                    "Avisos de stock bajo",
                   ].map((item) => (
                     <li key={item}>
                       <BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-[#1456C8]" />

@@ -154,9 +154,10 @@ export default function InboxLanding() {
 
             <Reveal delay={0.1}>
               <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-textBody sm:text-xl">
-                Recibí y respondé mensajes de{" "}
-                <strong className="text-textStrong">MercadoLibre</strong> desde
-                Telegram, sin tener que entrar a cada cuenta.
+                Recibí alertas de{" "}
+                <strong className="text-textStrong">MercadoLibre</strong> en
+                Telegram — mensajes, preguntas, reclamos, facturación y stock — y
+                respondé las preguntas directamente desde ahí.
               </p>
             </Reveal>
 
