@@ -234,21 +234,22 @@ export default function Navbar() {
                         className="text-base font-extrabold text-slate-800"
                       />
                     ))}
+
+                    {/* Solo en mobile: Quirvo va como ítem dentro de "Diseño web". */}
+                    {group.label === "Diseño web" ? (
+                      <a
+                        href="https://quirvo.com.ar"
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={close}
+                        className="text-base font-extrabold text-slate-800"
+                      >
+                        Portero QR Quirvo
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               ))}
-
-              <div>
-                <a
-                  href="https://quirvo.com.ar"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={close}
-                  className="block text-base font-extrabold uppercase tracking-wide text-slate-800"
-                >
-                  Portero QR
-                </a>
-              </div>
             </div>
 
             <div className="mt-8">
