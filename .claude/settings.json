@@ -10,7 +10,8 @@
       "Bash(rm -f _tmp-test-fallback.mjs)",
       "Bash(npm run *)",
       "Bash(node _tmp-calc.mjs)",
-      "Bash(rm -f _tmp-calc.mjs)"
+      "Bash(rm -f _tmp-calc.mjs)",
+      "Bash(npx next *)"
     ]
   }
 }
