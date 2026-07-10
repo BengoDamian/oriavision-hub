@@ -15,7 +15,6 @@ import {
   Bell,
   Zap,
   Users,
-  Play,
   CheckCircle2,
 } from "lucide-react";
 
@@ -347,35 +346,6 @@ export default function InboxLanding() {
             <InboxSecurityVisual />
           </Reveal>
         </div>
-      </section>
-
-      {/* ── DEMO / VIDEO ── */}
-      <section className="container py-20 sm:py-24">
-        <Reveal>
-          <h2 className="mx-auto max-w-2xl text-center text-3xl font-black tracking-tight text-textStrong sm:text-4xl">
-            Mirá Oriavision Inbox en acción
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.06}>
-          <div className="relative mx-auto mt-10 aspect-video w-full max-w-3xl overflow-hidden rounded-4xl border border-brand-700/20 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 shadow-2xl shadow-brand-900/20">
-            {/* textura suave */}
-            <div className="pointer-events-none absolute -top-16 -left-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 -right-10 h-64 w-64 rounded-full bg-brand-400/20 blur-3xl" />
-
-            <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-brand-700 shadow-xl ring-8 ring-white/15 transition-transform hover:scale-105">
-                <Play className="h-8 w-8 translate-x-0.5 fill-current" />
-              </span>
-              <h3 className="mt-6 text-2xl font-black text-white sm:text-3xl">
-                Demo guiada de Oriavision Inbox
-              </h3>
-              <p className="mt-2 text-sm font-semibold text-brand-100 sm:text-base">
-                Próximamente video de funcionamiento real
-              </p>
-            </div>
-          </div>
-        </Reveal>
       </section>
 
       {/* ── FAQ ── */}
