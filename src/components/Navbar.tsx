@@ -167,14 +167,24 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1.5 md:hidden">
             <a
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-brand-600/20 bg-brand-50 px-3 py-2 text-[11px] font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-brand-600/20 bg-brand-50 px-2.5 py-2 text-[11px] font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
             >
-              {PRIMARY_CTA.label}
+              <span className="min-[400px]:hidden">Calc. ML</span>
+              <span className="hidden min-[400px]:inline">{PRIMARY_CTA.label}</span>
+            </a>
+
+            <a
+              href="https://quirvo.com.ar"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-brand-600/20 bg-brand-50 px-2.5 py-2 text-[11px] font-extrabold text-brand-700 transition-colors hover:border-brand-600 hover:bg-brand-600 hover:text-white"
+            >
+              Portero QR
             </a>
 
             <button
@@ -234,19 +244,6 @@ export default function Navbar() {
                         className="text-base font-extrabold text-slate-800"
                       />
                     ))}
-
-                    {/* Solo en mobile: Quirvo va como ítem dentro de "Diseño web". */}
-                    {group.label === "Diseño web" ? (
-                      <a
-                        href="https://quirvo.com.ar"
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={close}
-                        className="text-base font-extrabold text-slate-800"
-                      >
-                        Portero QR Quirvo
-                      </a>
-                    ) : null}
                   </div>
                 </div>
               ))}
