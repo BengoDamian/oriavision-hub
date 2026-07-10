@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 const SITE_URL = "https://www.oriavision.com.ar";
 const PAGE_URL = `${SITE_URL}/inbox/`;
 
-const TITLE = "Oriavision Inbox | Bot de Telegram para vendedores de MercadoLibre";
+const TITLE = "Bot Telegram para MercadoLibre | Oriavision";
 const DESCRIPTION =
-  "Oriavision Inbox es un bot de Telegram, independiente, que ayuda a vendedores de MercadoLibre a responder más rápido y no perder ventas. Solicitá una demo.";
+  "Recibí y respondé mensajes de MercadoLibre desde Telegram, sin tener que entrar a cada cuenta.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/inbox/" },
   openGraph: {

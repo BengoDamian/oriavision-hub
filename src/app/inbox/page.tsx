@@ -149,16 +149,15 @@ export default function InboxLanding() {
 
             <Reveal delay={0.05}>
               <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-textStrong sm:text-6xl">
-                Oriavision Inbox
+                Bot Telegram para MercadoLibre
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
               <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-textBody sm:text-xl">
-                El bot de Telegram que ayuda a los{" "}
-                <strong className="text-textStrong">vendedores de MercadoLibre</strong>{" "}
-                a responder más rápido, no perder consultas y cerrar más ventas — todo
-                desde un chat que ya usás.
+                Recibí y respondé mensajes de{" "}
+                <strong className="text-textStrong">MercadoLibre</strong> desde
+                Telegram, sin tener que entrar a cada cuenta.
               </p>
             </Reveal>
 
