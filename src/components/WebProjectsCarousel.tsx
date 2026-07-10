@@ -17,10 +17,16 @@ export default function WebProjectsCarousel({
 }: {
   projects: WebProjectCarouselItem[];
 }) {
-  // Quirvo es el proyecto que queremos destacar: arranca visible y permanece
-  // más tiempo en pantalla que el resto de las slides.
+  // Quirvo queda como segunda slide: arrancamos en la slide anterior a Quirvo
+  // para que la primera visible sea otro proyecto y Quirvo aparezca segundo.
+  // Además permanece un poco más de tiempo en pantalla que el resto.
   const quirvoIndex = projects.findIndex((p) => p.title === "Quirvo");
-  const startIndex = quirvoIndex >= 0 ? quirvoIndex : 0;
+  const startIndex =
+    quirvoIndex >= 1
+      ? quirvoIndex - 1
+      : quirvoIndex === 0
+        ? projects.length - 1
+        : 0;
 
   const [activeIndex, setActiveIndex] = useState(startIndex);
   const [isMobile, setIsMobile] = useState(false);
@@ -43,19 +49,20 @@ export default function WebProjectsCarousel({
     return () => media.removeListener(sync);
   }, []);
 
-  // Al entrar a la sección, dejamos Quirvo como primera slide visible.
+  // Al entrar a la sección arrancamos en la slide previa a Quirvo, para que
+  // Quirvo sea la segunda slide en aparecer.
   useEffect(() => {
     setActiveIndex(startIndex);
   }, [startIndex]);
 
   // Autoplay solo en desktop. Duración por slide: Quirvo permanece más tiempo
-  // (9 s) para que se llegue a leer y reconocer; el resto usa ~5,5 s.
+  // (10 s) para que se llegue a leer y reconocer; el resto usa 8 s.
   useEffect(() => {
     if (projects.length <= 1) return;
     if (isMobile) return;
 
     const isQuirvo = projects[activeIndex]?.title === "Quirvo";
-    const dwell = isQuirvo ? 9000 : 5500;
+    const dwell = isQuirvo ? 10000 : 8000;
 
     const timer = window.setTimeout(() => {
       setActiveIndex((current) => (current + 1) % projects.length);

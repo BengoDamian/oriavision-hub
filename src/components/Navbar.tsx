@@ -154,7 +154,7 @@ export default function Navbar() {
               rel="noreferrer"
               className="text-sm font-extrabold uppercase tracking-wide text-slate-600 transition-colors hover:text-brand-600"
             >
-              Quirvo
+              Portero QR
             </a>
 
             <a
@@ -246,7 +246,7 @@ export default function Navbar() {
                   onClick={close}
                   className="block text-base font-extrabold uppercase tracking-wide text-slate-800"
                 >
-                  Quirvo
+                  Portero QR
                 </a>
               </div>
             </div>

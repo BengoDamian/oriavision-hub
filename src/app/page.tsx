@@ -141,7 +141,7 @@ const PORTFOLIO = [
   {
     title: "Quirvo",
     tag: "Landing",
-    text: "Landing para explicar un sistema QR de acceso simple, moderno y sin fricción.",
+    text: "Portero QR simple, seguro y sin cables.",
     img: "/portfolio/quirvo-home-desktop-v22.png?v=22",
     mobileImg: "/portfolio-mobile/quirvo-mobile.jpg?v=12",
     href: "https://quirvo.com.ar/",
@@ -2208,7 +2208,7 @@ export default function Home() {
     {
       type: "Proyecto" as const,
       title: "Quirvo",
-      description: "Landing web para un timbre QR sin cables ni obra.",
+      description: "Landing web para un portero QR sin cables ni obra.",
       category: "Desarrollo",
       href: "https://quirvo.com.ar",
       external: true,
