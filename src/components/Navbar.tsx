@@ -149,6 +149,15 @@ export default function Navbar() {
             ))}
 
             <a
+              href="https://quirvo.com.ar"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm font-extrabold uppercase tracking-wide text-slate-600 transition-colors hover:text-brand-600"
+            >
+              Quirvo
+            </a>
+
+            <a
               href={PRIMARY_CTA.href}
               target="_blank"
               rel="noreferrer"
@@ -228,6 +237,18 @@ export default function Navbar() {
                   </div>
                 </div>
               ))}
+
+              <div>
+                <a
+                  href="https://quirvo.com.ar"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={close}
+                  className="block text-base font-extrabold uppercase tracking-wide text-slate-800"
+                >
+                  Quirvo
+                </a>
+              </div>
             </div>
 
             <div className="mt-8">

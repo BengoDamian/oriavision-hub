@@ -2209,7 +2209,7 @@ export default function Home() {
       type: "Proyecto" as const,
       title: "Quirvo",
       description: "Landing web para un timbre QR sin cables ni obra.",
-      category: "Proyectos destacados",
+      category: "Desarrollo",
       href: "https://quirvo.com.ar",
       external: true,
       tags: ["Landing web", "Timbre QR", "Portero digital", "Proyecto web"],
@@ -2592,68 +2592,6 @@ export default function Home() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      <section id="proyectos-destacados" className="ov-section scroll-mt-24">
-        <div className="ov-wrap">
-          <SectionHeader
-            eyebrow="Proyectos destacados"
-            title="Trabajos reales donde diseño y estrategia hacen la diferencia."
-            text="Algunos trabajos reales donde aplicamos diseño, estrategia y tecnología para comunicar mejor una idea, producto o servicio."
-          />
-
-          <Reveal>
-            <article className="ov-card overflow-hidden md:grid md:grid-cols-2 md:items-stretch">
-              <div className="relative min-h-[230px] bg-[#eaf3ff] md:min-h-[430px]">
-                <Image
-                  src="/portfolio/quirvo-home-desktop-v22.png?v=22"
-                  alt="Landing web para Quirvo realizada por Oriavision"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top"
-                />
-              </div>
-
-              <div className="ov-card-pad flex flex-col">
-                <span className="ov-tag">Landing web</span>
-                <h3>Quirvo</h3>
-                <p className="!mt-2 text-lg font-black leading-snug text-[#0A1F6E]">
-                  Página web para un timbre QR sin cables ni obra.
-                </p>
-                <p>
-                  Creamos una landing clara, moderna y orientada a explicar el producto, mostrar sus beneficios principales y facilitar el contacto por WhatsApp.
-                </p>
-
-                <ul className="ov-list">
-                  {[
-                    "Landing de producto",
-                    "Diseño responsive",
-                    "Comunicación simple",
-                    "CTA hacia WhatsApp",
-                  ].map((item) => (
-                    <li key={item}>
-                      <BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-[#1456C8]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="https://quirvo.com.ar"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="ov-btn ov-btn-primary mt-8 w-full sm:w-auto sm:self-start"
-                >
-                  Ver sitio <ArrowRight className="relative z-10 h-5 w-5" />
-                </a>
-
-                <div className="mt-4 text-xs font-black uppercase tracking-[.14em] text-[#1456C8]">
-                  Sitio web creado por Oriavision
-                </div>
-              </div>
-            </article>
-          </Reveal>
         </div>
       </section>
 

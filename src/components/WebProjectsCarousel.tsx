@@ -17,7 +17,12 @@ export default function WebProjectsCarousel({
 }: {
   projects: WebProjectCarouselItem[];
 }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Quirvo es el proyecto que queremos destacar: arranca visible y permanece
+  // más tiempo en pantalla que el resto de las slides.
+  const quirvoIndex = projects.findIndex((p) => p.title === "Quirvo");
+  const startIndex = quirvoIndex >= 0 ? quirvoIndex : 0;
+
+  const [activeIndex, setActiveIndex] = useState(startIndex);
   const [isMobile, setIsMobile] = useState(false);
 
 
@@ -38,26 +43,26 @@ export default function WebProjectsCarousel({
     return () => media.removeListener(sync);
   }, []);
 
+  // Al entrar a la sección, dejamos Quirvo como primera slide visible.
+  useEffect(() => {
+    setActiveIndex(startIndex);
+  }, [startIndex]);
+
+  // Autoplay solo en desktop. Duración por slide: Quirvo permanece más tiempo
+  // (9 s) para que se llegue a leer y reconocer; el resto usa ~5,5 s.
   useEffect(() => {
     if (projects.length <= 1) return;
+    if (isMobile) return;
 
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 640px)").matches;
+    const isQuirvo = projects[activeIndex]?.title === "Quirvo";
+    const dwell = isQuirvo ? 9000 : 5500;
 
-    // En celular arranca fijo en el segundo proyecto del home:
-    // 1) Siempre de Guardia, 2) Ercas. En desktop sigue pasando solo.
-    if (isMobile) {
-      setActiveIndex(1);
-      return;
-    }
-
-    const timer = window.setInterval(() => {
+    const timer = window.setTimeout(() => {
       setActiveIndex((current) => (current + 1) % projects.length);
-    }, 3600);
+    }, dwell);
 
-    return () => window.clearInterval(timer);
-  }, [projects.length]);
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, isMobile, projects]);
 
   return (
     <div className="ov-project-carousel" aria-label="Portfolio destacado de Oriavision">
