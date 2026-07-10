@@ -11,7 +11,13 @@
       "Bash(npm run *)",
       "Bash(node _tmp-calc.mjs)",
       "Bash(rm -f _tmp-calc.mjs)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(node -e \"console.log\\(require\\('sharp'\\).format ? 'sharp OK' : 'no'\\)\")",
+      "Bash(ls -d node_modules/puppeteer* node_modules/playwright*)",
+      "Bash(ls \"/c/Program Files/Google/Chrome/Application/chrome.exe\" \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\")",
+      "Bash(ls \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\")",
+      "Bash(node -e ' *)",
+      "Bash(awk '{print $5, $9}')"
     ]
   }
 }

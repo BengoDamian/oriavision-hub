@@ -147,6 +147,14 @@ const PORTFOLIO = [
     href: "https://quirvo.com.ar/",
   },
   {
+    title: "Myriam Rodríguez Inmuebles",
+    tag: "Web inmobiliaria",
+    text: "Web inmobiliaria con propiedades, tasaciones y servicios jurídicos.",
+    img: "/portfolio/myriam-rodriguez.jpg",
+    mobileImg: "/portfolio-mobile/myriam-rodriguez-mobile.jpg",
+    href: "https://www.myriamrodriguez.com.ar/",
+  },
+  {
     title: "Calculadora ML",
     tag: "Herramienta",
     text: "Producto propio para estimar precios de MercadoLibre contemplando costos reales.",
