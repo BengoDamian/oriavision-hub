@@ -34,7 +34,6 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Herramientas",
     items: [
-      { label: "Bot Telegram ML", href: "/inbox/" },
       {
         label: "Calculadora ML",
         href: "https://calculadoraml.oriavision.com.ar/",
@@ -45,6 +44,7 @@ const NAV_GROUPS: NavGroup[] = [
         href: "https://www.orientadordepreciosml.oriavision.com.ar/",
         external: true,
       },
+      { label: "Bot Telegram ML", href: "/inbox/" },
     ],
   },
 ];
