@@ -2250,6 +2250,31 @@ export default function Home() {
         "contacto por whatsapp",
       ],
     },
+    {
+      type: "Herramienta" as const,
+      title: "Bot Telegram ML",
+      description:
+        "Bot para recibir y responder mensajes de MercadoLibre desde Telegram.",
+      category: "Herramientas",
+      href: "/inbox/",
+      keywords: [
+        "bot telegram ml",
+        "bot telegram",
+        "telegram mercado libre",
+        "telegram mercadolibre",
+        "mensajes mercado libre",
+        "responder mensajes",
+        "preguntas mercado libre",
+        "vendedores mercado libre",
+        "varias cuentas mercado libre",
+        "inbox",
+        "oriavision inbox",
+        "atencion al cliente",
+        "respuestas rapidas",
+        "mercado libre",
+        "mercadolibre",
+      ],
+    },
     ...prompts.map((p) => ({
       type: "Prompt" as const,
       title: p.title,
@@ -2441,7 +2466,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Herramientas"
             title="Números claros antes de publicar."
-            text="Dos productos propios pensados para vendedores de MercadoLibre: uno para calcular fino y otro para orientarte rápido con listas y oportunidades."
+            text="Herramientas propias pensadas para vendedores de MercadoLibre: calcular fino, orientarte rápido con listas y responder tus mensajes sin salir de Telegram."
           />
 
           <div className="grid gap-7 lg:grid-cols-2">
@@ -2539,6 +2564,43 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
+
+          <Reveal delay={0.15}>
+            <div className="ov-card ov-card-pad mt-7">
+              <div className="md:grid md:grid-cols-2 md:items-center md:gap-8">
+                <div>
+                  <div className="ov-icon">
+                    <MessageCircle className="h-8 w-8" />
+                  </div>
+                  <h3>Bot Telegram ML</h3>
+                  <p className="!mt-2 text-lg font-black leading-snug text-[#0A1F6E]">
+                    Respondé mensajes de MercadoLibre desde Telegram.
+                  </p>
+                  <p>
+                    Una herramienta para recibir y responder mensajes de MercadoLibre sin tener que entrar a cada cuenta.
+                  </p>
+                </div>
+
+                <ul className="ov-list md:mt-0">
+                  {[
+                    "Ideal para vendedores con varias cuentas",
+                    "Respuestas más rápidas",
+                    "Todo desde Telegram",
+                    "Pensado para MercadoLibre",
+                  ].map((item) => (
+                    <li key={item}>
+                      <BadgeCheck className="mt-0.5 h-5 w-5 flex-none text-[#1456C8]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Link href="/inbox/" className="ov-btn ov-btn-primary mt-8 w-full sm:w-auto">
+                Ver herramienta
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
