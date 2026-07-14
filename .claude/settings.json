@@ -17,7 +17,12 @@
       "Bash(ls \"/c/Program Files/Google/Chrome/Application/chrome.exe\" \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\")",
       "Bash(ls \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\")",
       "Bash(node -e ' *)",
-      "Bash(awk '{print $5, $9}')"
+      "Bash(awk '{print $5, $9}')",
+      "Bash(grep -oP 'trabajamos en conjunto.{0,120}' src/app/web/page.tsx)",
+      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; $m = [regex]::Matches\\($c, 'data-wa-loc=\"\\([a-z_]+\\)\"'\\); \"total data-wa-loc: $\\($m.Count\\)\"; $m | ForEach-Object { $_.Groups[1].Value } | Group-Object | ForEach-Object { \"  $\\($_.Name\\): $\\($_.Count\\)\" }; \"wa.me/541127575675 count: $\\(\\([regex]::Matches\\($c,'wa\\\\.me/541127575675'\\)\\).Count\\)\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\DAMIAN\\.claude\\projects\\c--Users-DAMIAN-Documents-GitHub-oriavision-hub\\memory"
     ]
   }
 }
