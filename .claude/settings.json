@@ -20,7 +20,12 @@
       "Bash(awk '{print $5, $9}')",
       "Bash(grep -oP 'trabajamos en conjunto.{0,120}' src/app/web/page.tsx)",
       "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; $m = [regex]::Matches\\($c, 'data-wa-loc=\"\\([a-z_]+\\)\"'\\); \"total data-wa-loc: $\\($m.Count\\)\"; $m | ForEach-Object { $_.Groups[1].Value } | Group-Object | ForEach-Object { \"  $\\($_.Name\\): $\\($_.Count\\)\" }; \"wa.me/541127575675 count: $\\(\\([regex]::Matches\\($c,'wa\\\\.me/541127575675'\\)\\).Count\\)\")",
-      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; \"Consulta el precio restantes: $\\(\\([regex]::Matches\\($c,'Consult.{0,3} el precio'\\)\\).Count\\)\"; \"Consultar que opcion me conviene: $\\(\\([regex]::Matches\\($c,'Consultar qu. opci.n me conviene'\\)\\).Count\\)\"; \"svc-card-cta href #formulario: $\\(\\([regex]::Matches\\($c,'svc-card-cta\"\" href=\"\"#formulario'\\)\\).Count\\)\")"
+      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; \"Consulta el precio restantes: $\\(\\([regex]::Matches\\($c,'Consult.{0,3} el precio'\\)\\).Count\\)\"; \"Consultar que opcion me conviene: $\\(\\([regex]::Matches\\($c,'Consultar qu. opci.n me conviene'\\)\\).Count\\)\"; \"svc-card-cta href #formulario: $\\(\\([regex]::Matches\\($c,'svc-card-cta\"\" href=\"\"#formulario'\\)\\).Count\\)\")",
+      "Bash(grep -oaP '\\(svc-card-img|svc-card-bar|svc-card-picture|#opciones\\)[^;{]{0,40}\\\\{[^}]{0,120}' src/app/web/page.tsx)",
+      "Bash(grep -oaP 'Por qu[^<]{0,20}elegir[^<]{0,12}' src/app/web/page.tsx)",
+      "Bash(grep -oaP \"#opciones \\\\.svc-card > \\(p|h3|\\\\.svc-list|\\\\.svc-card-cta\\) \\\\{[^}]{0,90}\\\\}\" src/app/web/page.tsx)",
+      "Bash(grep -oaP \"#opciones \\\\.svc-list li \\\\{[^}]{0,90}\\\\}\" src/app/web/page.tsx)",
+      "Bash(grep -oaP \"MOBILE FIX V[46][^*]{0,60}\" src/app/web/page.tsx)"
     ],
     "additionalDirectories": [
       "c:\\Users\\DAMIAN\\.claude\\projects\\c--Users-DAMIAN-Documents-GitHub-oriavision-hub\\memory"

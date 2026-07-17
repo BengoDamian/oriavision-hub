@@ -822,11 +822,45 @@ const WEB_CSS_CONVERSION_V37 = `
 @media (max-width: 768px) {
   .oriavision-web-exact .hero-support { margin-top: 14px; font-size: 13px; max-width: 95%; }
   .oriavision-web-exact .conv-trust { padding: 18px 0; }
-  .oriavision-web-exact .conv-cta-wrap { padding: 34px 0; }
+  .oriavision-web-exact .conv-cta-wrap { padding: 20px 0; }
   .oriavision-web-exact .conv-cta { flex-direction: column; align-items: flex-start; padding: 22px; }
   .oriavision-web-exact .conv-cta-action { max-width: 100%; width: 100%; align-items: stretch; }
   .oriavision-web-exact .conv-cta .btn-wa { width: 100%; }
   .oriavision-web-exact .conv-cta-note { text-align: left; }
+}
+`;
+
+const WEB_CSS_MOBILE_COMPACT_V38 = `
+/* MOBILE COMPACT V38 /web: acorta el recorrido hasta el portfolio en celular. Solo mobile; no altera desktop. */
+@media (max-width: 768px) {
+  /* Banda navy de claims más compacta */
+  .oriavision-web-exact .stats-band { padding: 38px 0 40px; }
+  .oriavision-web-exact .stats-band .stats-row { gap: 14px; }
+  .oriavision-web-exact .stats-band .stat-claim small { margin-top: 6px; }
+
+  /* Sección de opciones más liviana */
+  .oriavision-web-exact #opciones.section { padding: 44px 0; }
+  .oriavision-web-exact #opciones .svc-grid { gap: 14px; margin-top: 30px; }
+  .oriavision-web-exact #opciones .sec-p { margin-top: 12px; }
+
+  /* Imagen de card mucho más baja en mobile (antes 250–340px de alto) */
+  .oriavision-web-exact #opciones .svc-card-picture {
+    height: clamp(150px, 40vw, 190px) !important;
+    min-height: clamp(150px, 40vw, 190px) !important;
+    max-height: clamp(150px, 40vw, 190px) !important;
+  }
+
+  /* Card compacta: menos padding y menos separación interna */
+  .oriavision-web-exact #opciones .svc-card { padding: 0 28px 20px; }
+  .oriavision-web-exact #opciones .svc-card-bar { padding: 14px 28px; font-size: 15px; margin-bottom: 15px; }
+  .oriavision-web-exact #opciones .svc-card > h3 { margin-bottom: 8px; }
+  .oriavision-web-exact #opciones .svc-card > p { margin-bottom: 12px; }
+  .oriavision-web-exact #opciones .svc-card .svc-list { gap: 6px; margin-bottom: 16px; }
+  /* Mostrar como máximo 3 bullets en mobile */
+  .oriavision-web-exact #opciones .svc-card .svc-list li:nth-child(n+4) { display: none; }
+
+  /* El portfolio arranca antes: menos aire arriba */
+  .oriavision-web-exact #portfolio.section { padding-top: 40px; }
 }
 `;
 
@@ -987,7 +1021,7 @@ export default function WebPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 + WEB_CSS_MOBILE_PORTFOLIO_CONTAIN_V35 + WEB_CSS_MOBILE_HERO_TITLE_V36 + WEB_CSS_CONVERSION_V37 }} />
+      <style dangerouslySetInnerHTML={{ __html: WEB_CSS + WEB_PORTFOLIO_LINK_FIX_V20 + WEB_CSS_MOBILE_FIX + WEB_CSS_MOBILE_FIX_V3 + WEB_CSS_MOBILE_FIX_V4 + WEB_CSS_MOBILE_FIX_V6 + WEB_CSS_DESKTOP_OPTIONS_FIX_V7 + WEB_CSS_MOBILE_RECT_FIX_V9 + WEB_CSS_MOBILE_PORTFOLIO_FIT_V10 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V11 + WEB_CSS_MOBILE_PORTFOLIO_IMAGES_V12 + WEB_CSS_MOBILE_PORTFOLIO_CENTER_V34 + WEB_CSS_MOBILE_PORTFOLIO_CONTAIN_V35 + WEB_CSS_MOBILE_HERO_TITLE_V36 + WEB_CSS_CONVERSION_V37 + WEB_CSS_MOBILE_COMPACT_V38 }} />
       <div className="oriavision-web-exact" dangerouslySetInnerHTML={{ __html: WEB_HTML }} />
 
       <section id="formulario" className="bg-white px-4 py-16 sm:px-6">
