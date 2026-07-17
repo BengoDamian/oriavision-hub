@@ -19,7 +19,8 @@
       "Bash(node -e ' *)",
       "Bash(awk '{print $5, $9}')",
       "Bash(grep -oP 'trabajamos en conjunto.{0,120}' src/app/web/page.tsx)",
-      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; $m = [regex]::Matches\\($c, 'data-wa-loc=\"\\([a-z_]+\\)\"'\\); \"total data-wa-loc: $\\($m.Count\\)\"; $m | ForEach-Object { $_.Groups[1].Value } | Group-Object | ForEach-Object { \"  $\\($_.Name\\): $\\($_.Count\\)\" }; \"wa.me/541127575675 count: $\\(\\([regex]::Matches\\($c,'wa\\\\.me/541127575675'\\)\\).Count\\)\")"
+      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; $m = [regex]::Matches\\($c, 'data-wa-loc=\"\\([a-z_]+\\)\"'\\); \"total data-wa-loc: $\\($m.Count\\)\"; $m | ForEach-Object { $_.Groups[1].Value } | Group-Object | ForEach-Object { \"  $\\($_.Name\\): $\\($_.Count\\)\" }; \"wa.me/541127575675 count: $\\(\\([regex]::Matches\\($c,'wa\\\\.me/541127575675'\\)\\).Count\\)\")",
+      "PowerShell($f = Get-ChildItem -Recurse -Path \".next\" -Filter \"web.html\" -ErrorAction SilentlyContinue | Select-Object -First 1; $c = Get-Content $f.FullName -Raw -Encoding UTF8; \"Consulta el precio restantes: $\\(\\([regex]::Matches\\($c,'Consult.{0,3} el precio'\\)\\).Count\\)\"; \"Consultar que opcion me conviene: $\\(\\([regex]::Matches\\($c,'Consultar qu. opci.n me conviene'\\)\\).Count\\)\"; \"svc-card-cta href #formulario: $\\(\\([regex]::Matches\\($c,'svc-card-cta\"\" href=\"\"#formulario'\\)\\).Count\\)\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\DAMIAN\\.claude\\projects\\c--Users-DAMIAN-Documents-GitHub-oriavision-hub\\memory"
