@@ -632,12 +632,14 @@ const WEB_CSS_MOBILE_PORTFOLIO_CONTAIN_V35 = `
 
 
 const WEB_CSS_MOBILE_HERO_TITLE_V36 = `
-/* MOBILE HERO TITLE V36 /web: forzar 3 líneas correctas solo en celular */
+/* MOBILE HERO TITLE V36 /web: forzar 3 líneas correctas solo en celular.
+   Tamaño ajustado para que las líneas más largas del título nuevo
+   ("negocios que quieren" / "vender mejor online") entren completas sin recortarse. */
 @media (max-width: 768px) {
   .oriavision-web-exact .hero-h1 {
-    font-size: clamp(44px, 8.8vw, 64px) !important;
-    line-height: 0.98 !important;
-    letter-spacing: -0.045em !important;
+    font-size: clamp(26px, 8vw, 38px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.035em !important;
     margin-bottom: 18px !important;
   }
 
