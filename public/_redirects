@@ -1,7 +1,9 @@
 /guias      /guias/      301
 /prompts    /prompts/    301
 /gracias    /gracias/    301
-/go/*       /go/:splat/  301
+# Solo la forma sin barra: el comodín /go/* también capturaba /go/x/ y generaba un bucle.
+/go/calculadora  /go/calculadora/  301
+/go/whatsapp     /go/whatsapp/     301
 
 # Rediseño de agencia (2026-09): páginas institucionales anteriores con reemplazo equivalente en la portada.
 # Landing de diseño web anterior -> portada nueva (mismo servicio, nueva presentación).
