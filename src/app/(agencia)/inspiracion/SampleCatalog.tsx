@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { RUBROS, SAMPLES } from "../samples";
+import { waLink } from "../shared";
 
 type Filter = "todos" | (typeof RUBROS)[number]["id"];
 const KNOWN = ["todos", ...RUBROS.map((r) => r.id)];
@@ -40,28 +41,64 @@ export default function SampleCatalog() {
           </select>
         </div>
         <p id="catalog-status" role="status">
-          {visible.length === 1 ? "1 propuesta disponible" : `${visible.length} propuestas disponibles`}
+          {visible.length === 1 ? "1 diseño en el catálogo" : `${visible.length} diseños en el catálogo`}
         </p>
       </div>
       <div className="demo-grid">
         {SAMPLES.map((s, i) => (
           <article className="demo-card" data-rubro={s.rubro} hidden={!visible.includes(s)} key={s.href}>
+            {s.preview ? (
+              <div className="demo-preview">
+                <img src={s.preview} alt={s.previewAlt ?? `Vista previa de ${s.title}`} />
+              </div>
+            ) : (
+              <div className="demo-preview demo-preview-pending" aria-label="Vista previa pendiente de publicación">
+                <div className="demo-preview-mark" aria-hidden="true">
+                  {s.title.split(" · ")[1]?.slice(0, 1) ?? s.title.slice(0, 1)}
+                </div>
+                <span>Vista previa disponible al publicar la demo</span>
+              </div>
+            )}
             <div className="demo-card-top">
-              <span>MUESTRA {String(i + 1).padStart(2, "0")}</span>
+              <span>DISEÑO {String(i + 1).padStart(2, "0")}</span>
               <div className="swatches" aria-hidden="true">
                 {s.swatches.map((c) => (
                   <span style={{ background: c }} key={c} />
                 ))}
               </div>
             </div>
+            <span className={`demo-status ${s.public ? "is-public" : "is-pending"}`}>
+              {s.public ? "Disponible para explorar" : "Publicación pendiente"}
+            </span>
             <h2>{s.title}</h2>
             <p>{s.text}</p>
-            <a className="btn btn-dark edge-light" href={s.href} target="_blank" rel="noopener noreferrer">
-              <span>Explorar sitio</span>
-              <svg aria-hidden="true">
-                <use href="#external" />
-              </svg>
-            </a>
+            <div className="demo-card-actions">
+              {s.public ? (
+                <a className="btn btn-dark edge-light" href={s.href} target="_blank" rel="noopener noreferrer">
+                  <span>Explorar diseño</span>
+                  <svg aria-hidden="true">
+                    <use href="#external" />
+                  </svg>
+                </a>
+              ) : (
+                <span className="btn btn-disabled" aria-disabled="true" title="La demo todavía requiere publicación pública">
+                  <span>Exploración pendiente</span>
+                </span>
+              )}
+              <a
+                className="btn btn-contact"
+                href={waLink(
+                  `Hola, ORIAVISION. Me interesa el diseño ${s.contactName} para mi negocio. Lo vi acá: ${s.href}`,
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Quiero este diseño</span>
+                <svg aria-hidden="true">
+                  <use href="#arrow" />
+                </svg>
+              </a>
+            </div>
           </article>
         ))}
       </div>
