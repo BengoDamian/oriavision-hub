@@ -1,5 +1,16 @@
 /guias      /guias/      301
 /prompts    /prompts/    301
-/web        /web/        301
 /gracias    /gracias/    301
 /go/*       /go/:splat/  301
+
+# Rediseño de agencia (2026-09): páginas institucionales anteriores con reemplazo equivalente en la portada.
+# Landing de diseño web anterior -> portada nueva (mismo servicio, nueva presentación).
+/web        /            301
+/web/       /            301
+/web/*      /            301
+# Contacto por mail -> sección de contacto por WhatsApp de la portada.
+/contacto   /#contacto   301
+/contacto/  /#contacto   301
+# "Quiénes somos" (texto anterior, noindex) -> portada.
+/quienes-somos   /       301
+/quienes-somos/  /       301
