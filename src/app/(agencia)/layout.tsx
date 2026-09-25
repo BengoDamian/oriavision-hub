@@ -4,9 +4,8 @@ import "./agencia.css";
 import { WHATSAPP_NUMBER } from "./shared";
 
 const SITE_URL = "https://www.oriavision.com.ar";
-const TITLE = "ORIAVISION · Diseño web y presencia digital";
 const DESCRIPTION =
-  "Diseño web con identidad propia. Sitios personalizados, presencia en Google, marketing digital y mantenimiento para negocios y profesionales.";
+  "Diseño web con identidad propia. Sitios personalizados, posicionamiento SEO, campañas en Meta y Google Ads para negocios y profesionales.";
 const OG_IMAGE = {
   url: "/og/oriavision-agencia.png",
   width: 1200,
@@ -17,24 +16,7 @@ const OG_IMAGE = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: "ORIAVISION",
-  title: { absolute: TITLE },
-  description: DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "es_AR",
-    url: `${SITE_URL}/`,
-    siteName: "ORIAVISION",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [OG_IMAGE],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: [OG_IMAGE.url],
-  },
+  // Título, descripción, canonical y Open Graph los define cada página con pageMetadata().
   robots: {
     index: true,
     follow: true,
@@ -53,12 +35,12 @@ export const viewport: Viewport = {
 };
 
 const SERVICES = [
-  ["Diseño web", "Landing pages y sitios profesionales que presentan tus servicios con claridad y facilitan las consultas."],
-  ["Presencia en Google", "Preparamos tu sitio para que Google pueda encontrarlo y trabajamos la información de tu negocio en búsquedas y mapas."],
-  ["Marketing y medición", "Conectamos tu propuesta, tus campañas y tu web. Medimos visitas y consultas para entender qué mejorar."],
-  ["Contenido e imagen", "Textos, imágenes y piezas para comunicar mejor lo que hacés, con una identidad consistente en cada punto de contacto."],
-  ["Mantenimiento", "Actualizaciones de contenido, nuevas secciones y mejoras para que tu sitio acompañe la evolución de tu negocio."],
-  ["Funciones a medida", "Cuando necesitás algo más: reservas, paneles, formularios especiales e integraciones que simplifican tu trabajo."],
+  ["Diseño web", "Sitios que presentan tu negocio con claridad, funcionan bien en el celular y hacen más simple recibir consultas."],
+  ["Posicionamiento SEO", "Trabajamos la estructura, el contenido y los aspectos técnicos de tu sitio para mejorar su presencia en los buscadores."],
+  ["Campañas en Meta", "Planificamos anuncios en Instagram y Facebook para acercar tu propuesta a las personas que pueden interesarse en ella."],
+  ["Campañas en Google Ads", "Conectamos tu negocio con búsquedas relacionadas con tus productos o servicios, con anuncios y páginas de destino alineados."],
+  ["Contenido e identidad", "Textos, imágenes y piezas digitales que explican lo que hacés y mantienen una identidad consistente en tu web y tus campañas."],
+  ["Evolución de tu sitio", "Actualizamos contenidos, revisamos mejoras y sumamos las funciones que tu negocio necesita: reservas, formularios e integraciones."],
 ];
 
 const jsonLd = {
@@ -117,7 +99,7 @@ export default function AgenciaLayout({ children }: { children: React.ReactNode 
           />
         ) : null}
       </head>
-      <body id="inicio" className="agency-home">{children}</body>
+      <body id="inicio">{children}</body>
     </html>
   );
 }

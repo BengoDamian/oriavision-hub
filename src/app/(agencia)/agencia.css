@@ -341,7 +341,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 @media(max-width:380px){.photo-hero .hero-actions .btn svg{display:none}}
 @media(prefers-reduced-motion:reduce){.photo-hero .hero-actions .btn::before{animation:none;opacity:0}}
 
-/* Adaptación del contenido conservado: aquí los casos de éxito siguen a la banda verde de
-   personalización, así que llevan la misma separación que las secciones de la referencia. */
-.agency-home .success-section{padding-top:64px}
-@media(max-width:640px){.agency-home .success-section{padding-top:42px}}
+/* Adaptación: la referencia deja /proyectos/ como "Próximamente". Aquí esa página muestra los casos reales
+   con el formato de styles-casos.css, con el mismo espaciado que las secciones de catálogo de la referencia. */
+.success-section.projects-section{padding:58px 0 70px}
+.case-group-heading h2{font-size:1.25rem;line-height:1.4;letter-spacing:-.025em;margin:0}
+@media(max-width:640px){.success-section.projects-section{padding:34px 0 45px}}

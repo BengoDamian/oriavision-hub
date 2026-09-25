@@ -1,209 +1,98 @@
-import AgencyHeader from "./AgencyHeader";
 import HeroPhotos from "./HeroPhotos";
-import { BrandLogo, waLink } from "./shared";
+import { AgencyPage, Arrow, EXT, pageMetadata } from "./chrome";
+import { waLink } from "./shared";
+
+export const metadata = pageMetadata({
+  path: "/",
+  title: "ORIAVISION · Diseño web y presencia digital",
+  description:
+    "Diseño web con identidad propia. Sitios personalizados, posicionamiento SEO, campañas en Meta y Google Ads para negocios y profesionales.",
+});
 
 // Los seis servicios se presentan en tres franjas de dos (verde, blanca y negra), como en la referencia.
-const SERVICES = [
+const SERVICE_BANDS = [
   {
-    id: "diseno-web",
-    icon: "web",
-    title: "Diseño web",
-    text: "Landing pages y sitios profesionales que presentan tus servicios con claridad y facilitan las consultas.",
-    detail: "Sitios nuevos · Rediseño · Personalización",
+    band: "band-green",
+    label: "Diseño web y posicionamiento",
+    services: [
+      {
+        id: "diseno-web",
+        icon: "web",
+        title: "Diseño web",
+        text: "Sitios que presentan tu negocio con claridad, funcionan bien en el celular y hacen más simple recibir consultas.",
+        detail: "Sitios institucionales · Landing pages · Rediseño",
+      },
+      {
+        id: "seo",
+        icon: "search",
+        title: "Posicionamiento SEO",
+        text: "Trabajamos la estructura, el contenido y los aspectos técnicos de tu sitio para mejorar su presencia en los buscadores.",
+        detail: "SEO técnico · Contenidos · Presencia local en Google",
+      },
+    ],
   },
   {
-    id: "presencia-google",
-    icon: "search",
-    title: "Presencia en Google",
-    text: "Preparamos tu sitio para que Google pueda encontrarlo y trabajamos la información de tu negocio en búsquedas y mapas.",
-    detail: "SEO inicial · Search Console · Perfil de Empresa",
+    band: "band-white",
+    label: "Campañas publicitarias",
+    services: [
+      {
+        id: "meta",
+        icon: "chart",
+        title: "Campañas en Meta",
+        text: "Planificamos anuncios en Instagram y Facebook para acercar tu propuesta a las personas que pueden interesarse en ella.",
+        detail: "Estrategia · Creatividades · Medición de consultas",
+      },
+      {
+        id: "google-ads",
+        icon: "search",
+        title: "Campañas en Google Ads",
+        text: "Conectamos tu negocio con búsquedas relacionadas con tus productos o servicios, con anuncios y páginas de destino alineados.",
+        detail: "Búsqueda · Páginas para campañas · Conversiones",
+      },
+    ],
   },
   {
-    id: "marketing",
-    icon: "chart",
-    title: "Marketing y medición",
-    text: "Conectamos tu propuesta, tus campañas y tu web. Medimos visitas y consultas para entender qué mejorar.",
-    detail: "Páginas para campañas · Analytics · Conversiones",
-  },
-  {
-    id: "contenido-imagen",
-    icon: "image",
-    title: "Contenido e imagen",
-    text: "Textos, imágenes y piezas para comunicar mejor lo que hacés, con una identidad consistente en cada punto de contacto.",
-    detail: "Edición de imágenes · Textos web · Piezas digitales",
-  },
-  {
-    id: "mantenimiento",
-    icon: "tools",
-    title: "Mantenimiento",
-    text: "Actualizaciones de contenido, nuevas secciones y mejoras para que tu sitio acompañe la evolución de tu negocio.",
-    detail: "Cambios puntuales · Seguimiento · Auditorías web",
-  },
-  {
-    id: "funciones-a-medida",
-    icon: "code",
-    title: "Funciones a medida",
-    text: "Cuando necesitás algo más: reservas, paneles, formularios especiales e integraciones que simplifican tu trabajo.",
-    detail: "Turnos · Sistemas web · Automatizaciones",
+    band: "band-black",
+    label: "Contenido y evolución de tu sitio",
+    services: [
+      {
+        id: "contenido-marca",
+        icon: "image",
+        title: "Contenido e identidad",
+        text: "Textos, imágenes y piezas digitales que explican lo que hacés y mantienen una identidad consistente en tu web y tus campañas.",
+        detail: "Textos web · Edición de imágenes · Piezas digitales",
+      },
+      {
+        id: "mantenimiento",
+        icon: "tools",
+        title: "Evolución de tu sitio",
+        text: "Actualizamos contenidos, revisamos mejoras y sumamos las funciones que tu negocio necesita: reservas, formularios e integraciones.",
+        detail: "Mantenimiento · Auditorías · Funciones a medida",
+      },
+    ],
   },
 ];
 
-const SERVICE_BANDS = ["band-green", "band-white", "band-black"].map((band, i) => ({
-  band,
-  services: SERVICES.slice(i * 2, i * 2 + 2),
-}));
-
-type SuccessCase = {
-  id: string;
-  href: string;
-  img: string;
-  width: number;
-  height: number;
-  alt: string;
-  imageClass?: string;
-  category: string;
-  title: string;
-  headline: string;
-  text: string;
-  facts?: [string, string][];
-  cta: string;
-};
-
-const SUCCESS_CASES: SuccessCase[] = [
+const EXPLORE = [
   {
-    id: "caso-calculadora",
-    href: "https://calculadora.edgardoadiaz.com.ar/",
-    img: "/assets/edgardo-calculadora-miniatura.jpg",
-    width: 1200,
-    height: 750,
-    alt: "Vista de la página de Calculadora ML de Edgardo A. Díaz",
-    category: "Precios · Producto por producto",
-    title: "Calculadora ML",
-    headline: "Del costo al precio de publicación.",
-    text: "Nació de una necesidad de nuestra operación: contemplar los costos de vender en Mercado Libre antes de definir un precio.",
-    facts: [
-      ["La propuesta", "Reúne costo neto, IVA, margen, comisión, IIBB, envío y cuotas en un mismo cálculo."],
-      ["Qué permite", "Revisar el precio de un producto y comparar escenarios al contado y en cuotas."],
-    ],
-    cta: "Conocé la calculadora",
+    title: "Proyectos realizados",
+    text: "Un espacio para conocer los proyectos, sus objetivos y las soluciones que desarrollamos.",
+    href: "/proyectos/",
+    cta: "Ver proyectos",
   },
   {
-    id: "caso-orientador",
-    href: "https://orientador.edgardoadiaz.com.ar/",
-    img: "/assets/edgardo-orientador-miniatura.jpg",
-    width: 1200,
-    height: 750,
-    alt: "Vista de la página de Orientador de precios ML de Edgardo A. Díaz",
-    category: "Precios · Listas de mayoristas",
-    title: "Orientador de precios ML",
-    headline: "Una lista completa. Una primera orientación.",
-    text: "Para analizar muchos productos en conjunto y elegir cuáles merecen una revisión más detallada.",
-    facts: [
-      ["La propuesta", "Cargás la planilla de tu mayorista, configurás las variables y obtenés referencias al contado y en cuotas."],
-      ["Qué permite", "Descargar un Excel para filtrar, comparar y evaluar oportunidades de compra."],
-    ],
-    cta: "Conocé el orientador",
+    title: "Inspiración para tu sitio",
+    text: "Propuestas de muestra para imaginar estilos, recorridos y funciones que podemos adaptar a tu negocio.",
+    href: "/inspiracion/",
+    cta: "Explorar ideas",
   },
   {
-    id: "caso-programa",
-    href: "https://programa.edgardoadiaz.com.ar/",
-    img: "/assets/edgardo-programa-miniatura.jpg",
-    width: 1200,
-    height: 750,
-    alt: "Vista de la página de Programa de Transformación de Edgardo A. Díaz",
-    category: "Formación · Producto digital",
-    title: "Programa de Transformación",
-    headline: "Una forma de pensar Mercado Libre.",
-    text: "Capacitación práctica en PDF de Edgardo A. Díaz para revisar publicaciones, ordenar la cuenta y aplicar inteligencia artificial al trabajo diario.",
-    facts: [
-      ["La propuesta", "Una página que presenta el contenido del programa, su alcance y el acceso a la compra."],
-      ["Qué permite", "Conocer la propuesta y trabajar el material a tu ritmo. No incluye asesoría personalizada."],
-    ],
-    cta: "Conocé el programa",
-  },
-  {
-    id: "caso-asesoria",
-    href: "https://asesoria.edgardoadiaz.com.ar/",
-    img: "/assets/edgardo-asesoria-miniatura.jpg",
-    width: 1200,
-    height: 750,
-    alt: "Vista de la página de Asesoría personalizada de Edgardo A. Díaz",
-    category: "Servicios · Acompañamiento profesional",
-    title: "Asesoría personalizada",
-    headline: "Una segunda mirada para tu operación.",
-    text: "La propuesta de Edgardo A. Díaz para trabajar sobre consultas, problemas y decisiones concretas de una cuenta de Mercado Libre.",
-    facts: [
-      ["La propuesta", "Una presentación clara de la modalidad: 30 días, tres reuniones individuales y consultas puntuales por WhatsApp con su equipo."],
-      ["Qué permite", "Entender el alcance del servicio y consultar cómo empezar a trabajar sobre tu negocio."],
-    ],
-    cta: "Conocé la asesoría",
-  },
-  {
-    id: "caso-bot",
-    href: "https://bot.edgardoadiaz.com.ar/",
-    img: "/assets/edgardo-bot-miniatura.jpg",
-    width: 1200,
-    height: 750,
-    alt: "Vista de la página de Bot de Telegram para Mercado Libre de Edgardo A. Díaz",
-    category: "Integración · Atención y seguimiento",
-    title: "Bot de Telegram para Mercado Libre",
-    headline: "Tu cuenta, más cerca.",
-    text: "Preguntas, mensajes, reclamos y alertas de tus cuentas en Telegram para acompañar la atención cotidiana.",
-    facts: [
-      ["La propuesta", "Una herramienta que reúne avisos de la operación y permite preparar respuestas a las preguntas de compradores."],
-      ["Qué permite", "Revisar la respuesta y confirmar antes de enviarla. Vos mantenés el control."],
-    ],
-    cta: "Conocé el bot",
-  },
-  {
-    id: "caso-quirvo",
-    href: "https://quirvo.com.ar/",
-    img: "/assets/quirvo.webp",
-    width: 1200,
-    height: 900,
-    alt: "Quirvo, sistema de portero QR",
-    imageClass: "quirvo-image",
-    category: "Portero QR · Desarrollo propio",
-    title: "Quirvo",
-    headline: "De una necesidad cotidiana a una solución.",
-    text: "Un portero QR que conecta a visitantes y residentes desde el celular. Identidad, presentación web y tecnología reunidas en un producto propio.",
-    cta: "Conocé Quirvo",
-  },
-];
-
-const REAL_PROJECTS = [
-  {
-    href: "https://www.myriamrodriguez.com.ar/",
-    name: "Myriam Rodríguez Inmuebles",
-    img: "/assets/myriam-rodriguez.jpg",
-    width: 1100,
-    height: 990,
-    alt: "Presentación del sitio Myriam Rodríguez Inmuebles en el portfolio de Oriavision",
-    category: "Web inmobiliaria",
-    text: "Propiedades, tasaciones y servicios jurídicos en una web con buscador y canales de consulta.",
-    cta: "Visitá el sitio",
-  },
-  {
-    href: "https://web-siempredeguardia.vercel.app/",
-    name: "Siempre de Guardia",
-    img: "/assets/siempre-de-guardia.webp",
-    width: 1200,
-    height: 1180,
-    alt: "Presentación del directorio Siempre de Guardia en el portfolio de Oriavision",
-    category: "Sistema web",
-    text: "Directorio de prestadores de servicios, organizado por rubros, con registro de usuarios y contacto directo.",
-    cta: "Explorá el directorio",
-  },
-  {
-    href: "https://dbengotech.com.ar/",
-    name: "dbengotech",
-    img: "/assets/dbengotech.webp",
-    width: 1200,
-    height: 1180,
-    alt: "Presentación del sitio profesional dbengotech en el portfolio de Oriavision",
-    category: "Web profesional",
-    text: "Una presentación de servicios tecnológicos para e-commerce, con propuesta de trabajo, portfolio y contacto.",
-    cta: "Visitá el sitio",
+    title: "Buscá por rubro",
+    // La referencia agrega "desde un comercio hasta un estudio profesional"; se omite porque hoy
+    // solo hay muestras de barbería y de bienestar.
+    text: "Encontrá un punto de partida pensado para tu actividad.",
+    href: "/rubros/",
+    cta: "Ver rubros",
   },
 ];
 
@@ -235,536 +124,205 @@ const FAQ = [
     "¿Cómo se define el presupuesto?",
     "Según las páginas, el contenido, la personalización y las funciones que necesites. Primero conversamos y después recibís una propuesta con el alcance, el plazo y el precio, antes de avanzar.",
   ],
+  [
+    "¿Pueden gestionar campañas en Meta y Google?",
+    "Sí. Definimos el objetivo, preparamos los anuncios y la página de destino, configuramos la medición y revisamos los resultados. El presupuesto publicitario se acuerda por separado de la gestión.",
+  ],
 ];
-
-const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
-
-function Arrow() {
-  return (
-    <svg aria-hidden="true">
-      <use href="#arrow" />
-    </svg>
-  );
-}
-
-function IconSprite() {
-  return (
-    <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}>
-      <defs>
-        <symbol id="arrow" viewBox="0 0 24 24">
-          <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        </symbol>
-        <symbol id="external" viewBox="0 0 24 24">
-          <path d="M6 18 18 6M6 6h12v12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        </symbol>
-        <symbol id="web" viewBox="0 0 24 24">
-          <rect x="3" y="4" width="18" height="16" rx="2" />
-          <path d="M3 9h18M7 6.5h.01M10 6.5h.01M7 13h4M7 16h7" />
-        </symbol>
-        <symbol id="search" viewBox="0 0 24 24">
-          <circle cx="10" cy="10" r="6" />
-          <path d="m15 15 6 6M7 10h6M10 7v6" />
-        </symbol>
-        <symbol id="chart" viewBox="0 0 24 24">
-          <path d="M4 4v16h17M8 16v-4M13 16V9M18 16V5" />
-        </symbol>
-        <symbol id="image" viewBox="0 0 24 24">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <circle cx="8" cy="8" r="1.5" />
-          <path d="m3 17 5-5 4 4 4-6 5 7" />
-        </symbol>
-        <symbol id="tools" viewBox="0 0 24 24">
-          <path d="m14 6 4 4M4 20l3-7L18 2l4 4-11 11-7 3ZM5 13l6 4" />
-        </symbol>
-        <symbol id="code" viewBox="0 0 24 24">
-          <path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 3l-4 18" />
-        </symbol>
-        <symbol id="whatsapp" viewBox="0 0 24 24">
-          <path d="M20.5 11.5a9 9 0 0 1-13.3 7.9L2 21l1.6-5.2a9 9 0 1 1 16.9-4.3Z" />
-          <path d="m8 7-1 2c1 4 3 6 7 7l2-1-2-3-2 1-2-2 1-2-3-2Z" />
-        </symbol>
-      </defs>
-    </svg>
-  );
-}
 
 export default function Home() {
   return (
-    <>
-      <IconSprite />
-      <a className="skip" href="#contenido">
-        Saltar al contenido
-      </a>
-      <AgencyHeader />
-      <main id="contenido">
-        <section className="hero photo-hero" aria-labelledby="hero-title">
-          <HeroPhotos>
-            <div className="wrap hero-inner">
-              <div className="eyebrow">Diseño web &amp; presencia digital</div>
-              <h1 id="hero-title">
-                Tu marca.
-                <br />
-                <span>Otra dimensión.</span>
-              </h1>
-              <p className="lead">
-                Sitios con identidad, hechos para tu negocio.
-                <br />
-                Diseño, tecnología y una mirada comercial.
-              </p>
-              <nav className="hero-actions" aria-label="Explorar nuestros proyectos">
-                <a className="btn" href="#proyectos">
-                  <span>Casos de éxito</span>
-                  <Arrow />
-                </a>
-                <a className="btn btn-outline" href="#sitios">
-                  <span>Inspiración</span>
-                  <Arrow />
-                </a>
-              </nav>
-            </div>
-          </HeroPhotos>
-        </section>
-
-        <nav className="intro-strip" aria-label="Áreas de trabajo">
-          <div className="wrap">
-            <a href="#diseno-web">Diseño web</a>
-            <a href="#contenido-imagen">Identidad digital</a>
-            <a href="#presencia-google">Presencia en Google</a>
-            <a href="#marketing">Marketing</a>
-          </div>
-        </nav>
-
-        <section className="agency-intro" id="servicios">
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Cómo podemos ayudarte</div>
-                <h2>
-                  Tu web es el comienzo.
-                  <br />
-                  Hagamos que funcione.
-                </h2>
-              </div>
-              <div className="intro-copy">
-                <p>
-                  Desde una primera página hasta una presencia digital más completa. Definimos los servicios según la
-                  etapa de tu negocio.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        {SERVICE_BANDS.map(({ band, services }, b) => (
-          <section className={`service-band ${band}`} aria-label={services.map((s) => s.title).join(" y ")} key={band}>
-            <div className="wrap">
-              <div className="services-grid">
-                {services.map((s, i) => (
-                  <article className="service" id={s.id} key={s.id}>
-                    <div className="service-num">
-                      {String(b * 2 + i + 1).padStart(2, "0")}
-                      <svg fill="none" strokeWidth="1.4" aria-hidden="true">
-                        <use href={`#${s.icon}`} />
-                      </svg>
-                    </div>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
-                    <span className="service-detail">{s.detail}</span>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
-        <section id="sitios">
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Inspiración · Sitios de ejemplo</div>
-                <h2>
-                  Una web que
-                  <br />
-                  hable de vos.
-                </h2>
-              </div>
-              <p>
-                Explorá distintas propuestas. Si una te gusta, la adaptamos a tu identidad, tu actividad y lo que
-                necesitás resolver.
-              </p>
-            </div>
-            <div className="portfolio-grid">
-              <article className="project-card">
-                <a
-                  className="project-visual warm"
-                  href="https://peluqueria.oriavision.com.ar"
-                  {...EXT}
-                  aria-label="Explorar Próceres, ejemplo para barberías"
-                >
-                  <div className="portfolio-sample barber-sample">
-                    <div className="sample-nav">
-                      <strong>PRÓCERES</strong>
-                      <span>BARBERÍA PORTEÑA</span>
-                    </div>
-                    <div className="barber-layout">
-                      <div>
-                        <small>EL ARTE DEL BUEN CORTE</small>
-                        <strong>
-                          El buen corte
-                          <br />
-                          no pasa
-                          <br />
-                          de <em>moda.</em>
-                        </strong>
-                        <span className="barber-cta">Descubrí el estilo ↗</span>
-                      </div>
-                      <img
-                        src="/assets/proceres.webp"
-                        alt="Propuesta visual de Próceres, barbería de estética clásica"
-                        width={1254}
-                        height={1254}
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                </a>
-                <div className="project-info">
-                  <div>
-                    <h3>Próceres</h3>
-                    <p>Barbería · Servicios y reservas online</p>
-                  </div>
-                  <a
-                    className="project-link"
-                    href="https://peluqueria.oriavision.com.ar"
-                    {...EXT}
-                    aria-label="Abrir sitio de ejemplo Próceres"
-                  >
-                    <svg aria-hidden="true">
-                      <use href="#external" />
-                    </svg>
-                  </a>
-                </div>
-              </article>
-              <article className="project-card">
-                <a
-                  className="project-visual"
-                  href="https://pilates.oriavision.com.ar"
-                  {...EXT}
-                  aria-label="Explorar Aluna, ejemplo para estudios de Pilates"
-                >
-                  <div className="portfolio-sample aluna-sample">
-                    <img
-                      src="/assets/pilates.webp"
-                      alt="Propuesta visual de Aluna Pilates con estética natural y luminosa"
-                      width={1536}
-                      height={1024}
-                      loading="lazy"
-                    />
-                    <div className="sample-overlay">
-                      <span className="sample-brand">
-                        aluna<span>PILATES &amp; MOVIMIENTO</span>
-                      </span>
-                      <span className="sample-title">
-                        Volvé a<br />
-                        tu centro.
-                      </span>
-                      <span className="sample-cta">Conocé el estudio ↗</span>
-                    </div>
-                  </div>
-                </a>
-                <div className="project-info">
-                  <div>
-                    <h3>Aluna Pilates</h3>
-                    <p>Bienestar · Clases y agenda de turnos</p>
-                  </div>
-                  <a
-                    className="project-link"
-                    href="https://pilates.oriavision.com.ar"
-                    {...EXT}
-                    aria-label="Abrir sitio de ejemplo Aluna Pilates"
-                  >
-                    <svg aria-hidden="true">
-                      <use href="#external" />
-                    </svg>
-                  </a>
-                </div>
-              </article>
-            </div>
-            <div className="portfolio-foot">
-              <p>
-                Son propuestas de diseño para explorar posibilidades. Tu sitio lleva tu nombre, tu contenido y las
-                funciones de tu negocio.
-              </p>
-              <a
-                className="text-link"
-                href={waLink("Mi actividad es diferente de los ejemplos. Quiero consultar por una web para mi negocio.")}
-                {...EXT}
-              >
-                ¿Tu actividad es otra? Conversemos ↗
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="personalize" id="personalizacion">
-          <div className="wrap">
-            <div>
-              <div className="eyebrow">Hecho para tu negocio</div>
-              <h2>
-                Elegís una dirección.
-                <br />
-                <span>La hacemos tuya.</span>
-              </h2>
-              <p>
-                Podemos partir de un sitio que te guste o diseñar una propuesta desde cero. Lo importante es que tu
-                web se sienta tuya y sea útil para tus clientes.
-              </p>
-              <a className="btn btn-glow" href={waLink("Quiero personalizar un sitio para mi marca.")} {...EXT}>
-                <span>Personalizá tu sitio</span> <Arrow />
-              </a>
-            </div>
-            <div className="custom-list">
-              <div className="custom-item">
-                <span className="custom-number">01</span>
-                <div>
-                  <h3>Tu identidad, en cada detalle</h3>
-                  <p>Logo, colores, tipografías, fotos y textos que representan a tu negocio.</p>
-                </div>
-              </div>
-              <div className="custom-item">
-                <span className="custom-number">02</span>
-                <div>
-                  <h3>Las funciones que te hacen falta</h3>
-                  <p>WhatsApp, formularios, turnos, mapas, galerías, promociones e integración con tus redes.</p>
-                </div>
-              </div>
-              <div className="custom-item">
-                <span className="custom-number">03</span>
-                <div>
-                  <h3>Tu lugar, con nombre propio</h3>
-                  <p>Dominio, correo profesional y una experiencia cuidada en celulares y computadoras.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="case-section success-section" id="proyectos" aria-labelledby="proyectos-title">
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Casos de éxito</div>
-                <h2 id="proyectos-title">
-                  Proyectos reales.
-                  <br />
-                  Soluciones en marcha.
-                </h2>
-              </div>
-              <p>
-                Herramientas, formación, asesoría, tiendas online y sitios profesionales. Cada proyecto parte de una
-                necesidad concreta y tiene su propia identidad.
-              </p>
-            </div>
-            <div className="case-group-heading">
-              <h3>Herramientas y propuestas propias</h3>
-              <p>Tecnología, formación y acompañamiento.</p>
-            </div>
-            <div className="success-grid">
-              {SUCCESS_CASES.map((c) => (
-                <article className="success-card" id={c.id} key={c.id}>
-                  <a
-                    className={c.imageClass ? `success-image ${c.imageClass}` : "success-image"}
-                    href={c.href}
-                    {...EXT}
-                    aria-label={c.cta}
-                  >
-                    <img
-                      src={c.img}
-                      width={c.width}
-                      height={c.height}
-                      alt={c.alt}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
-                  <div className="success-copy">
-                    <span className="case-category">{c.category}</span>
-                    <h3>{c.title}</h3>
-                    <p className="case-headline">{c.headline}</p>
-                    <p>{c.text}</p>
-                    {c.facts ? (
-                      <dl className="case-facts">
-                        {c.facts.map(([dt, dd]) => (
-                          <div key={dt}>
-                            <dt>{dt}</dt>
-                            <dd>{dd}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    ) : null}
-                    <a className="text-link" href={c.href} {...EXT}>
-                      {c.cta} <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-            <p className="case-note">
-              Las herramientas de precios brindan estimaciones según los datos cargados y las condiciones de cada
-              operación. Las propuestas son independientes, sin afiliación oficial con Mercado Libre.
+    <AgencyPage home>
+      <section className="hero photo-hero" aria-labelledby="hero-title">
+        <HeroPhotos>
+          <div className="wrap hero-inner">
+            <div className="eyebrow">Diseño web &amp; marketing digital</div>
+            <h1 id="hero-title">
+              Tu marca.
+              <br />
+              <span>Otra dimensión.</span>
+            </h1>
+            <p className="lead">
+              Una web que te represente.
+              <br />
+              Una estrategia para que te encuentren.
             </p>
-            <div className="case-group-heading websites-heading">
-              <h3>Sitios y sistemas online</h3>
-              <p>Distintos rubros. Una presencia propia.</p>
-            </div>
-            <div className="real-projects-grid">
-              <article className="real-project real-project-featured">
-                <a className="real-project-image" href="https://ercas.com.ar/" {...EXT} aria-label="Visitar ERCAS">
-                  <img
-                    src="/assets/ercas.webp"
-                    width={1800}
-                    height={600}
-                    alt="Presentación de la tienda online ERCAS en el portfolio de Oriavision"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </a>
-                <div className="real-project-copy">
-                  <div>
-                    <span className="case-category">E-commerce</span>
-                    <h3>ERCAS</h3>
-                    <p>
-                      Tienda online de tecnología e insumos de impresión, con catálogo de productos, búsqueda y
-                      carrito de compras.
-                    </p>
-                  </div>
-                  <a className="text-link" href="https://ercas.com.ar/" {...EXT}>
-                    Visitá la tienda <span aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-              {REAL_PROJECTS.map((p) => (
-                <article className="real-project" key={p.name}>
-                  <a className="real-project-image" href={p.href} {...EXT} aria-label={`Visitar ${p.name}`}>
-                    <img
-                      src={p.img}
-                      width={p.width}
-                      height={p.height}
-                      alt={p.alt}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
-                  <div className="real-project-copy">
-                    <span className="case-category">{p.category}</span>
-                    <h3>{p.name}</h3>
-                    <p>{p.text}</p>
-                    <a className="text-link" href={p.href} {...EXT}>
-                      {p.cta} <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="process" id="proceso">
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Cómo trabajamos</div>
-                <h2>
-                  Una buena web empieza
-                  <br />
-                  por escucharte.
-                </h2>
-              </div>
-              <p>Avanzamos por etapas, con una propuesta clara y espacio para revisar cada decisión.</p>
-            </div>
-            <div className="steps">
-              {STEPS.map(([label, title, text]) => (
-                <article className="step" key={label}>
-                  <span>{label}</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="faq" id="preguntas">
-          <div className="wrap faq-grid">
-            <div className="faq-head">
-              <div className="eyebrow">Antes de empezar</div>
-              <h2>Hablemos claro.</h2>
-              <p>Algunas respuestas para que puedas imaginar tu próximo sitio.</p>
-            </div>
-            <div className="questions">
-              {FAQ.map(([q, a]) => (
-                <details key={q}>
-                  <summary>{q}</summary>
-                  <p>{a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="contact" id="contacto">
-          <div className="wrap">
-            <div>
-              <div className="eyebrow">Demos el primer paso</div>
-              <h2>
-                Hagamos lugar
-                <br />a tu próxima idea.
-              </h2>
-              <p>
-                Contanos qué hacés y qué te gustaría lograr. Te ayudamos a encontrar una propuesta para tu negocio.
-              </p>
-            </div>
-            <div className="contact-action">
+            <div className="hero-actions">
               <a
-                className="btn btn-dark"
-                href={waLink("Hola, Oriavision. Quiero conversar sobre una web para mi negocio.")}
+                className="btn"
+                aria-label="Hablemos de tu proyecto"
+                href={waLink("Hola, Oriavision. Quiero conversar sobre mi proyecto web.")}
                 {...EXT}
               >
-                <span>Hablemos por WhatsApp</span> <Arrow />
+                <span className="hero-cta-long">Hablemos de tu proyecto</span>
+                <span className="hero-cta-short" aria-hidden="true">
+                  Hablemos
+                </span>
+                <Arrow />
               </a>
-              <span>Directo. Simple. Con personas.</span>
+              <a className="btn btn-outline" href="#servicios">
+                <span>Qué hacemos</span>
+                <Arrow />
+              </a>
             </div>
           </div>
-        </section>
-      </main>
+        </HeroPhotos>
+      </section>
 
-      <footer className="footer">
+      <nav className="intro-strip" aria-label="Áreas de trabajo">
         <div className="wrap">
-          <div className="footer-top">
+          <a href="#diseno-web">Diseño web</a>
+          <a href="#seo">Posicionamiento SEO</a>
+          <a href="#meta">Meta Ads</a>
+          <a href="#google-ads">Google Ads</a>
+        </div>
+      </nav>
+
+      <section className="agency-intro" id="servicios">
+        <div className="wrap">
+          <div className="section-head">
             <div>
-              <a href="#inicio" className="brand" aria-label="ORIAVISION, volver al inicio">
-                <BrandLogo />
-              </a>
-              <p>Diseño web con una mirada propia.</p>
+              <div className="eyebrow">Una mirada integral</div>
+              <h2>
+                Diseñamos tu web.
+                <br />
+                Impulsamos tu presencia.
+              </h2>
             </div>
-            <nav className="footer-nav" aria-label="Navegación del pie">
-              <a href="#servicios">Servicios</a>
-              <a href="#proyectos">Casos de éxito</a>
-              <a href="#sitios">Inspiración</a>
-              <a href="#proceso">Cómo trabajamos</a>
-              <a href="#contacto">Contacto</a>
-            </nav>
-          </div>
-          <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} ORIAVISION · Buenos Aires, Argentina</span>
-            <span>
-              ¿Buscás asesoría y herramientas de MercadoLibre?{" "}
-              <a href="https://edgardoadiaz.com.ar/" {...EXT}>
-                Edgardo A. Díaz ↗
-              </a>
-            </span>
+            <div className="intro-copy">
+              <p>
+                Somos una agencia especializada en diseño web, posicionamiento SEO y marketing digital para negocios y
+                profesionales.
+              </p>
+              <p>
+                Unimos diseño, tecnología y criterio comercial para que tu sitio comunique lo que hacés y tus campañas
+                tengan un destino pensado para convertir el interés en consultas.
+              </p>
+            </div>
           </div>
         </div>
-      </footer>
-    </>
+      </section>
+
+      {SERVICE_BANDS.map(({ band, label, services }, b) => (
+        <section className={`service-band ${band}`} aria-label={label} key={band}>
+          <div className="wrap">
+            <div className="services-grid">
+              {services.map((s, i) => (
+                <article className="service" id={s.id} key={s.id}>
+                  <div className="service-num">
+                    {String(b * 2 + i + 1).padStart(2, "0")}
+                    <svg fill="none" strokeWidth="1.4" aria-hidden="true">
+                      <use href={`#${s.icon}`} />
+                    </svg>
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                  <span className="service-detail">{s.detail}</span>
+                </article>
+              ))}
+            </div>
+            {band === "band-black" ? (
+              <div className="service-cta">
+                <div>
+                  <h3>¿Por dónde conviene empezar?</h3>
+                  <p>Contanos en qué etapa está tu negocio. Definimos juntos el próximo paso.</p>
+                </div>
+                <a className="btn" href={waLink("Quiero saber qué servicios necesita mi negocio.")} {...EXT}>
+                  <span>Consultanos</span>
+                  <Arrow />
+                </a>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ))}
+
+      <section className="explore-section" id="explorar">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Ideas para tu próximo paso</div>
+              <h2>Encontrá tu dirección.</h2>
+            </div>
+            <p>Conocé nuestro trabajo, explorá una propuesta o empezá por tu actividad.</p>
+          </div>
+          <div className="explore-list">
+            {EXPLORE.map((row, i) => (
+              <article className="explore-row" key={row.href}>
+                <span className="explore-num">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{row.title}</h3>
+                  <p>{row.text}</p>
+                </div>
+                <a className="btn btn-dark edge-light" href={row.href}>
+                  <span>{row.cta}</span>
+                  <Arrow />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="idea-band">
+        <div className="wrap">
+          <div>
+            <h2>
+              Tu idea merece
+              <br />
+              una web propia.
+            </h2>
+            <p>Podemos adaptar una propuesta o diseñar desde cero. Tu identidad y tus objetivos definen el camino.</p>
+          </div>
+          <a className="btn" href={waLink("Hola, Oriavision. Quiero una propuesta para mi sitio.")} {...EXT}>
+            <span>Quiero mi sitio</span>
+            <Arrow />
+          </a>
+        </div>
+      </section>
+
+      <section className="process" id="proceso">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Cómo trabajamos</div>
+              <h2>
+                Una buena web empieza
+                <br />
+                por escucharte.
+              </h2>
+            </div>
+            <p>Avanzamos por etapas, con una propuesta clara y espacio para revisar cada decisión.</p>
+          </div>
+          <div className="steps">
+            {STEPS.map(([label, title, text]) => (
+              <article className="step" key={label}>
+                <span>{label}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="faq" id="preguntas">
+        <div className="wrap faq-grid">
+          <div className="faq-head">
+            <div className="eyebrow">Antes de empezar</div>
+            <h2>Hablemos claro.</h2>
+            <p>Algunas respuestas para que puedas imaginar tu próximo sitio.</p>
+          </div>
+          <div className="questions">
+            {FAQ.map(([q, a]) => (
+              <details key={q}>
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </AgencyPage>
   );
 }

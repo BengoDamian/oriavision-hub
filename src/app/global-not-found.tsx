@@ -15,7 +15,7 @@ export default function GlobalNotFound() {
   return (
     <html lang="es-AR">
       <body id="inicio">
-        <AgencyHeader base="/" />
+        <AgencyHeader />
         <main id="contenido">
           <section className="hero" aria-labelledby="error-title">
             <div className="hero-grid-light" aria-hidden="true" />

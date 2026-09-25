@@ -71,7 +71,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
 
       <body className="min-h-screen flex flex-col bg-white font-sans text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-700">
         <div className="ovc ovc-header">
-          <AgencyHeader base="/" />
+          <AgencyHeader />
         </div>
         <main className="flex-grow">{children}</main>
         <div className="ovc ovc-footer">
@@ -86,9 +86,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <nav className="footer-nav" aria-label="Navegación del pie">
                   <a href="/#servicios">Servicios</a>
-                  <a href="/#proyectos">Casos de éxito</a>
-                  <a href="/#sitios">Inspiración</a>
-                  <a href="/#proceso">Cómo trabajamos</a>
+                  <a href="/proyectos/">Proyectos</a>
+                  <a href="/inspiracion/">Inspiración</a>
+                  <a href="/rubros/">Rubros</a>
                   <a href="/#contacto">Contacto</a>
                 </nav>
               </div>

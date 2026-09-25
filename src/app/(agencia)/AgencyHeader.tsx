@@ -3,12 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo, waLink } from "./shared";
 
-type Props = {
-  /** Prefijo para los enlaces de sección: "" en la portada, "/" en las páginas internas. */
-  base?: string;
-};
-
-export default function AgencyHeader({ base = "" }: Props) {
+export default function AgencyHeader() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -44,7 +39,7 @@ export default function AgencyHeader({ base = "" }: Props) {
   return (
     <header className="site-header" ref={headerRef}>
       <div className="nav wrap">
-        <a className="brand" href={base ? "/" : "#inicio"} aria-label="ORIAVISION, inicio">
+        <a className="brand" href="/" aria-label="ORIAVISION, inicio">
           <BrandLogo />
         </a>
         <nav
@@ -52,17 +47,17 @@ export default function AgencyHeader({ base = "" }: Props) {
           id="navegacion"
           aria-label="Navegación principal"
         >
-          <a href={`${base}#servicios`} onClick={close}>
+          <a href="/#servicios" onClick={close}>
             Servicios
           </a>
-          <a href={`${base}#proyectos`} onClick={close}>
-            Casos de éxito
+          <a href="/proyectos/" onClick={close}>
+            Proyectos
           </a>
-          <a href={`${base}#sitios`} onClick={close}>
+          <a href="/inspiracion/" onClick={close}>
             Inspiración
           </a>
-          <a href={`${base}#proceso`} onClick={close}>
-            Cómo trabajamos
+          <a href="/rubros/" onClick={close}>
+            Rubros
           </a>
         </nav>
         <div className="header-actions">

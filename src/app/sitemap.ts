@@ -38,6 +38,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${SITE_URL}/proyectos/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/inspiracion/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/rubros/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/prompts/`,
       lastModified: now,
       changeFrequency: "weekly" as const,
