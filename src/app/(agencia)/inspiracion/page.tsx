@@ -20,8 +20,8 @@ export default function InspiracionPage() {
         <div className="wrap">
           <SampleCatalog />
           <p className="catalog-note">
-            Todos son diseños de muestra personalizables; no representan clientes diferentes. Las propuestas con publicación pendiente
-            se podrán explorar cuando su acceso público esté habilitado.
+            Todos son diseños de muestra personalizables; no representan clientes diferentes. Elegí una paleta para comparar cada
+            variante y explorarla en detalle.
           </p>
         </div>
       </section>
