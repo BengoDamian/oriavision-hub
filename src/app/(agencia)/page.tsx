@@ -1,44 +1,57 @@
 import AgencyHeader from "./AgencyHeader";
+import HeroPhotos from "./HeroPhotos";
 import { BrandLogo, waLink } from "./shared";
 
+// Los seis servicios se presentan en tres franjas de dos (verde, blanca y negra), como en la referencia.
 const SERVICES = [
   {
+    id: "diseno-web",
     icon: "web",
     title: "Diseño web",
     text: "Landing pages y sitios profesionales que presentan tus servicios con claridad y facilitan las consultas.",
     detail: "Sitios nuevos · Rediseño · Personalización",
   },
   {
+    id: "presencia-google",
     icon: "search",
     title: "Presencia en Google",
     text: "Preparamos tu sitio para que Google pueda encontrarlo y trabajamos la información de tu negocio en búsquedas y mapas.",
     detail: "SEO inicial · Search Console · Perfil de Empresa",
   },
   {
+    id: "marketing",
     icon: "chart",
     title: "Marketing y medición",
     text: "Conectamos tu propuesta, tus campañas y tu web. Medimos visitas y consultas para entender qué mejorar.",
     detail: "Páginas para campañas · Analytics · Conversiones",
   },
   {
+    id: "contenido-imagen",
     icon: "image",
     title: "Contenido e imagen",
     text: "Textos, imágenes y piezas para comunicar mejor lo que hacés, con una identidad consistente en cada punto de contacto.",
     detail: "Edición de imágenes · Textos web · Piezas digitales",
   },
   {
+    id: "mantenimiento",
     icon: "tools",
     title: "Mantenimiento",
     text: "Actualizaciones de contenido, nuevas secciones y mejoras para que tu sitio acompañe la evolución de tu negocio.",
     detail: "Cambios puntuales · Seguimiento · Auditorías web",
   },
   {
+    id: "funciones-a-medida",
     icon: "code",
     title: "Funciones a medida",
     text: "Cuando necesitás algo más: reservas, paneles, formularios especiales e integraciones que simplifican tu trabajo.",
     detail: "Turnos · Sistemas web · Automatizaciones",
   },
 ];
+
+const SERVICE_BANDS = ["band-green", "band-white", "band-black"].map((band, i) => ({
+  band,
+  services: SERVICES.slice(i * 2, i * 2 + 2),
+}));
 
 type SuccessCase = {
   id: string;
@@ -284,46 +297,84 @@ export default function Home() {
       </a>
       <AgencyHeader />
       <main id="contenido">
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-grid-light" aria-hidden="true" />
-          <div className="wrap hero-inner">
-            <div className="eyebrow">Diseño web &amp; presencia digital</div>
-            <h1 id="hero-title">
-              Tu marca.
-              <br />
-              <span>Otra dimensión.</span>
-            </h1>
-            <div className="hero-bottom">
+        <section className="hero photo-hero" aria-labelledby="hero-title">
+          <HeroPhotos>
+            <div className="wrap hero-inner">
+              <div className="eyebrow">Diseño web &amp; presencia digital</div>
+              <h1 id="hero-title">
+                Tu marca.
+                <br />
+                <span>Otra dimensión.</span>
+              </h1>
               <p className="lead">
                 Sitios con identidad, hechos para tu negocio.
                 <br />
                 Diseño, tecnología y una mirada comercial.
               </p>
+              <nav className="hero-actions" aria-label="Explorar nuestros proyectos">
+                <a className="btn" href="#proyectos">
+                  <span>Casos de éxito</span>
+                  <Arrow />
+                </a>
+                <a className="btn btn-outline" href="#sitios">
+                  <span>Inspiración</span>
+                  <Arrow />
+                </a>
+              </nav>
+            </div>
+          </HeroPhotos>
+        </section>
+
+        <nav className="intro-strip" aria-label="Áreas de trabajo">
+          <div className="wrap">
+            <a href="#diseno-web">Diseño web</a>
+            <a href="#contenido-imagen">Identidad digital</a>
+            <a href="#presencia-google">Presencia en Google</a>
+            <a href="#marketing">Marketing</a>
+          </div>
+        </nav>
+
+        <section className="agency-intro" id="servicios">
+          <div className="wrap">
+            <div className="section-head">
+              <div>
+                <div className="eyebrow">Cómo podemos ayudarte</div>
+                <h2>
+                  Tu web es el comienzo.
+                  <br />
+                  Hagamos que funcione.
+                </h2>
+              </div>
+              <div className="intro-copy">
+                <p>
+                  Desde una primera página hasta una presencia digital más completa. Definimos los servicios según la
+                  etapa de tu negocio.
+                </p>
+              </div>
             </div>
           </div>
         </section>
-
-        <div className="hero-action-band">
-          <nav className="wrap hero-actions" aria-label="Explorar nuestros proyectos">
-            <a className="btn" href="#proyectos">
-              <span>Casos de éxito</span>
-              <Arrow />
-            </a>
-            <a className="btn btn-dark" href="#sitios">
-              <span>Inspiración</span>
-              <Arrow />
-            </a>
-          </nav>
-        </div>
-
-        <div className="intro-strip">
-          <div className="wrap">
-            <span>Diseño web</span>
-            <span>Identidad digital</span>
-            <span>Presencia en Google</span>
-            <span>Marketing</span>
-          </div>
-        </div>
+        {SERVICE_BANDS.map(({ band, services }, b) => (
+          <section className={`service-band ${band}`} aria-label={services.map((s) => s.title).join(" y ")} key={band}>
+            <div className="wrap">
+              <div className="services-grid">
+                {services.map((s, i) => (
+                  <article className="service" id={s.id} key={s.id}>
+                    <div className="service-num">
+                      {String(b * 2 + i + 1).padStart(2, "0")}
+                      <svg fill="none" strokeWidth="1.4" aria-hidden="true">
+                        <use href={`#${s.icon}`} />
+                      </svg>
+                    </div>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                    <span className="service-detail">{s.detail}</span>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        ))}
 
         <section id="sitios">
           <div className="wrap">
@@ -493,40 +544,6 @@ export default function Home() {
                   <p>Dominio, correo profesional y una experiencia cuidada en celulares y computadoras.</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="servicios">
-          <div className="wrap">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">Cómo podemos ayudarte</div>
-                <h2>
-                  Tu web es el comienzo.
-                  <br />
-                  Hagamos que funcione.
-                </h2>
-              </div>
-              <p>
-                Desde una primera página hasta una presencia digital más completa. Definimos los servicios según la
-                etapa de tu negocio.
-              </p>
-            </div>
-            <div className="services-grid">
-              {SERVICES.map((s, i) => (
-                <article className="service" key={s.title}>
-                  <div className="service-num">
-                    {String(i + 1).padStart(2, "0")}
-                    <svg fill="none" strokeWidth="1.4" aria-hidden="true">
-                      <use href={`#${s.icon}`} />
-                    </svg>
-                  </div>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                  <span className="service-detail">{s.detail}</span>
-                </article>
-              ))}
             </div>
           </div>
         </section>
@@ -730,9 +747,10 @@ export default function Home() {
               <p>Diseño web con una mirada propia.</p>
             </div>
             <nav className="footer-nav" aria-label="Navegación del pie">
-              <a href="#sitios">Ejemplos</a>
               <a href="#servicios">Servicios</a>
-              <a href="#proceso">Proceso</a>
+              <a href="#proyectos">Casos de éxito</a>
+              <a href="#sitios">Inspiración</a>
+              <a href="#proceso">Cómo trabajamos</a>
               <a href="#contacto">Contacto</a>
             </nav>
           </div>

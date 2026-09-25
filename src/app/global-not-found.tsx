@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#164c3f",
+  themeColor: "#0a4531",
 };
 
 export default function GlobalNotFound() {

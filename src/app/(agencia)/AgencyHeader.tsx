@@ -52,17 +52,17 @@ export default function AgencyHeader({ base = "" }: Props) {
           id="navegacion"
           aria-label="Navegación principal"
         >
-          <a href={`${base}#sitios`} onClick={close}>
-            Inspiración
-          </a>
           <a href={`${base}#servicios`} onClick={close}>
             Servicios
           </a>
-          <a href={`${base}#proceso`} onClick={close}>
-            Cómo trabajamos
-          </a>
           <a href={`${base}#proyectos`} onClick={close}>
             Casos de éxito
+          </a>
+          <a href={`${base}#sitios`} onClick={close}>
+            Inspiración
+          </a>
+          <a href={`${base}#proceso`} onClick={close}>
+            Cómo trabajamos
           </a>
         </nav>
         <div className="header-actions">

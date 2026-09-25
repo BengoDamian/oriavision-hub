@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#164c3f",
+  themeColor: "#0a4531",
 };
 
 const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -85,9 +85,10 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                   <p>Diseño web con una mirada propia.</p>
                 </div>
                 <nav className="footer-nav" aria-label="Navegación del pie">
-                  <a href="/#sitios">Ejemplos</a>
                   <a href="/#servicios">Servicios</a>
-                  <a href="/#proceso">Proceso</a>
+                  <a href="/#proyectos">Casos de éxito</a>
+                  <a href="/#sitios">Inspiración</a>
+                  <a href="/#proceso">Cómo trabajamos</a>
                   <a href="/#contacto">Contacto</a>
                 </nav>
               </div>

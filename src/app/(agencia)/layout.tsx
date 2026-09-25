@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#164c3f",
+  themeColor: "#0a4531",
 };
 
 const SERVICES = [
@@ -117,7 +117,7 @@ export default function AgenciaLayout({ children }: { children: React.ReactNode 
           />
         ) : null}
       </head>
-      <body id="inicio">{children}</body>
+      <body id="inicio" className="agency-home">{children}</body>
     </html>
   );
 }
