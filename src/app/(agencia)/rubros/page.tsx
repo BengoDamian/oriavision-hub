@@ -1,5 +1,5 @@
 import { AgencyPage, Arrow, EXT, PageIntro, pageMetadata } from "../chrome";
-import { RUBROS } from "../samples";
+import { RUBROS, SAMPLES } from "../samples";
 import { waLink } from "../shared";
 
 export const metadata = pageMetadata({
@@ -20,16 +20,29 @@ export default function RubrosPage() {
       <section className="rubros-section">
         <div className="wrap">
           <div className="rubro-grid">
-            {RUBROS.map((r, i) => (
-              <a className="rubro-card" href={`/inspiracion/?rubro=${r.id}`} key={r.id}>
-                <span className="rubro-num">{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h2>{r.name}</h2>
-                  <p>{r.text}</p>
-                </div>
-                <Arrow />
-              </a>
-            ))}
+            {RUBROS.map((r, i) => {
+              const variants = SAMPLES.filter((sample) => sample.rubro === r.id);
+              const preview = variants[0];
+
+              return (
+                <a className="rubro-card" href={`/inspiracion/?rubro=${r.id}`} key={r.id}>
+                  <div className="rubro-card-preview">
+                    <img src={preview.preview} alt="" loading="lazy" decoding="async" />
+                  </div>
+                  <div className="rubro-card-copy">
+                    <span className="rubro-num">{String(i + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h2>{r.name}</h2>
+                      <p>{r.text}</p>
+                      <small>
+                        {variants.length} {variants.length === 1 ? "diseño" : "diseños"}
+                      </small>
+                    </div>
+                    <Arrow />
+                  </div>
+                </a>
+              );
+            })}
           </div>
           <div className="rubro-other">
             <p>¿Tu actividad no está en la lista? Podemos desarrollar una propuesta para vos.</p>

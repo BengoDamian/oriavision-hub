@@ -56,7 +56,7 @@ function PaletteBlock({
           })}
         </div>
 
-        <div className="palette-copy">
+        <div className="palette-heading">
           <div className="demo-card-top palette-card-top">
             <span>
               COLECCIÓN {String(number).padStart(2, "0")} · {samples.length} VARIANTES
@@ -76,71 +76,72 @@ function PaletteBlock({
             {selected.public ? "Disponible para explorar" : "Publicación pendiente"}
           </span>
           <h2>{selected.title}</h2>
-          <p className="palette-description">{selected.text}</p>
+        </div>
 
-          <fieldset className="palette-selector">
-            <legend>{title} · Elegí una paleta</legend>
-            <div className="palette-options">
-              {samples.map((sample) => {
-                const active = sample.href === selected.href;
-                return (
-                  <button
-                    type="button"
-                    className={
-                      "palette-option" +
-                      (active ? " is-active" : "") +
-                      (!sample.public ? " is-pending" : "")
-                    }
-                    aria-label={
-                      sample.variant +
-                      (sample.public ? "" : " · publicación pendiente")
-                    }
-                    aria-pressed={active}
-                    onClick={() => setSelectedHref(sample.href)}
-                    key={sample.href}
-                  >
-                    <VariantSwatches sample={sample} />
-                    <span className="palette-option-name">{sample.variant}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
+        <fieldset className="palette-selector">
+          <legend>{title} · Elegí una paleta</legend>
+          <div className="palette-options">
+            {samples.map((sample) => {
+              const active = sample.href === selected.href;
+              return (
+                <button
+                  type="button"
+                  className={
+                    "palette-option" +
+                    (active ? " is-active" : "") +
+                    (!sample.public ? " is-pending" : "")
+                  }
+                  aria-label={
+                    sample.variant +
+                    (sample.public ? "" : " · publicación pendiente")
+                  }
+                  aria-pressed={active}
+                  onClick={() => setSelectedHref(sample.href)}
+                  key={sample.href}
+                >
+                  <VariantSwatches sample={sample} />
+                  <span className="palette-option-name">{sample.variant}</span>
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
 
-          <div className="demo-card-actions palette-actions">
-            {selected.public ? (
-              <a
-                className="btn btn-dark edge-light"
-                href={selected.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Explorar diseño</span>
-                <svg aria-hidden="true">
-                  <use href="#external" />
-                </svg>
-              </a>
-            ) : (
-              <span
-                className="btn btn-disabled"
-                aria-disabled="true"
-                title="La demo todavía requiere publicación pública"
-              >
-                <span>Exploración pendiente</span>
-              </span>
-            )}
+        <p className="palette-description">{selected.text}</p>
+
+        <div className="demo-card-actions palette-actions">
+          {selected.public ? (
             <a
-              className="btn btn-contact"
-              href={waLink(message)}
+              className="btn btn-dark edge-light"
+              href={selected.href}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Quiero este diseño</span>
+              <span>Explorar diseño</span>
               <svg aria-hidden="true">
-                <use href="#arrow" />
+                <use href="#external" />
               </svg>
             </a>
-          </div>
+          ) : (
+            <span
+              className="btn btn-disabled"
+              aria-disabled="true"
+              title="La demo todavía requiere publicación pública"
+            >
+              <span>Exploración pendiente</span>
+            </span>
+          )}
+          <a
+            className="btn btn-contact"
+            href={waLink(message)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Quiero este diseño</span>
+            <svg aria-hidden="true">
+              <use href="#arrow" />
+            </svg>
+          </a>
         </div>
       </div>
     </article>

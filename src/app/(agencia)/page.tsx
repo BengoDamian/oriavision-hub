@@ -1,5 +1,7 @@
 import HeroPhotos from "./HeroPhotos";
 import { AgencyPage, Arrow, EXT, pageMetadata } from "./chrome";
+import { FEATURED_PROJECT, SUCCESS_CASES } from "./projects";
+import { RUBROS, SAMPLES } from "./samples";
 import { waLink } from "./shared";
 
 export const metadata = pageMetadata({
@@ -73,28 +75,34 @@ const SERVICE_BANDS = [
   },
 ];
 
-const EXPLORE = [
+const HOME_PROJECTS = [
   {
-    title: "Proyectos realizados",
-    text: "Un espacio para conocer los proyectos, sus objetivos y las soluciones que desarrollamos.",
-    href: "/proyectos/",
-    cta: "Ver proyectos",
+    title: SUCCESS_CASES[0].title,
+    category: SUCCESS_CASES[0].category,
+    href: SUCCESS_CASES[0].href,
+    img: SUCCESS_CASES[0].img,
+    alt: SUCCESS_CASES[0].alt,
   },
   {
-    title: "Inspiración para tu sitio",
-    text: "Propuestas de muestra para imaginar estilos, recorridos y funciones que podemos adaptar a tu negocio.",
-    href: "/inspiracion/",
-    cta: "Explorar ideas",
+    title: "Quirvo",
+    category: "Portero QR · Desarrollo propio",
+    href: "https://quirvo.com.ar/",
+    img: "/assets/quirvo.webp",
+    alt: "Quirvo, sistema de portero QR",
   },
   {
-    title: "Buscá por rubro",
-    // La referencia agrega "desde un comercio hasta un estudio profesional"; se omite porque hoy
-    // solo hay muestras de barbería y de bienestar.
-    text: "Encontrá un punto de partida pensado para tu actividad.",
-    href: "/rubros/",
-    cta: "Ver rubros",
+    title: FEATURED_PROJECT.name,
+    category: FEATURED_PROJECT.category,
+    href: FEATURED_PROJECT.href,
+    img: FEATURED_PROJECT.img,
+    alt: FEATURED_PROJECT.alt,
   },
 ];
+
+const RUBRO_SUMMARY = RUBROS.map((rubro) => ({
+  ...rubro,
+  count: SAMPLES.filter((sample) => sample.rubro === rubro.id).length,
+}));
 
 const STEPS = [
   ["01 / CONVERSAMOS", "Tu punto de partida", "Nos contás qué hacés, a quién querés llegar y qué necesitás de tu sitio."],
@@ -237,30 +245,63 @@ export default function Home() {
         </section>
       ))}
 
-      <section className="explore-section" id="explorar">
+      <section className="home-projects" id="explorar">
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head compact-section-head">
             <div>
-              <div className="eyebrow">Ideas para tu próximo paso</div>
-              <h2>Encontrá tu dirección.</h2>
+              <div className="eyebrow">Una selección de nuestro trabajo</div>
+              <h2>Proyectos con objetivos distintos.</h2>
             </div>
-            <p>Conocé nuestro trabajo, explorá una propuesta o empezá por tu actividad.</p>
+            <a className="btn btn-dark" href="/proyectos/">
+              <span>Ver todos los proyectos</span>
+              <Arrow />
+            </a>
           </div>
-          <div className="explore-list">
-            {EXPLORE.map((row, i) => (
-              <article className="explore-row" key={row.href}>
-                <span className="explore-num">{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{row.title}</h3>
-                  <p>{row.text}</p>
-                </div>
-                <a className="btn btn-dark edge-light" href={row.href}>
-                  <span>{row.cta}</span>
-                  <Arrow />
+          <div className="home-project-grid">
+            {HOME_PROJECTS.map((project) => (
+              <article className="home-project-card" key={project.href}>
+                <a className="home-project-preview" href={project.href} {...EXT} aria-label={`Visitar ${project.title}`}>
+                  <img src={project.img} alt={project.alt} loading="lazy" decoding="async" />
                 </a>
+                <div className="home-project-copy">
+                  <div>
+                    <span>{project.category}</span>
+                    <h3>{project.title}</h3>
+                  </div>
+                  <a href={project.href} {...EXT} aria-label={`Visitar ${project.title}`}>
+                    <Arrow />
+                  </a>
+                </div>
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="home-rubros" aria-labelledby="home-rubros-title">
+        <div className="wrap">
+          <div className="section-head compact-section-head">
+            <div>
+              <div className="eyebrow">Diseños por rubro</div>
+              <h2 id="home-rubros-title">Un punto de partida para tu actividad.</h2>
+            </div>
+            <a className="btn" href="/rubros/">
+              <span>Ver rubros</span>
+              <Arrow />
+            </a>
+          </div>
+          <nav className="home-rubro-grid" aria-label="Resumen de rubros disponibles">
+            {RUBRO_SUMMARY.map((rubro, index) => (
+              <a href={`/inspiracion/?rubro=${rubro.id}`} key={rubro.id}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{rubro.name}</strong>
+                <small>
+                  {rubro.count} {rubro.count === 1 ? "diseño" : "diseños"}
+                </small>
+                <Arrow />
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
 
