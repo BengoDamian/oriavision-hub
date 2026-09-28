@@ -1,5 +1,4 @@
-// Diseños de muestra y su estado de publicación.
-// Las demos restringidas se muestran como pendientes, sin un enlace de exploración engañoso.
+// Diseños de muestra y su estado de publicación verificado.
 
 export const RUBROS = [
   { id: "unas", name: "Uñas y belleza", text: "Servicios, estilos, colores y una experiencia visual pensada para convertir visitas en consultas." },
@@ -138,7 +137,7 @@ export const SAMPLES: Sample[] = [
     text: "Una variante serena con azul profundo y rosa suave para comunicar cuidado y movimiento.",
     href: "https://aluna-pilates-blossom.ercasa.chatgpt.site/",
     swatches: ["#0D3A5C", "#F7A8C1", "#F7F8F3"],
-    preview: "/catalog/aluna-blossom.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Blossom", public: false,
+    preview: "/catalog/aluna-blossom.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Blossom", public: true,
   },
   {
     familyId: "aluna", familyName: "Aluna Pilates", variant: "Delft", rubro: "bienestar",
@@ -146,7 +145,7 @@ export const SAMPLES: Sample[] = [
     text: "Una versión gráfica de azul y blanco con acento naranja para una presencia más dinámica.",
     href: "https://aluna-pilates-delft.ercasa.chatgpt.site/",
     swatches: ["#0033A0", "#FAFAFA", "#FF8200"],
-    preview: "/catalog/aluna-delft.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Delft", public: false,
+    preview: "/catalog/aluna-delft.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Delft", public: true,
   },
   {
     familyId: "aluna", familyName: "Aluna Pilates", variant: "Arcade", rubro: "bienestar",
@@ -154,7 +153,7 @@ export const SAMPLES: Sample[] = [
     text: "Una propuesta en azul y magenta con energía digital para una marca joven y expresiva.",
     href: "https://aluna-pilates-arcade.ercasa.chatgpt.site/",
     swatches: ["#07329B", "#ED0F87", "#1BB5FD"],
-    preview: "/catalog/aluna-arcade.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Arcade", public: false,
+    preview: "/catalog/aluna-arcade.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Arcade", public: true,
   },
   {
     familyId: "habitacion-antipanico", familyName: "Habitación Antipánico", variant: "Original", rubro: "arquitectura",
@@ -162,7 +161,7 @@ export const SAMPLES: Sample[] = [
     text: "Una presentación técnica y clara para explicar arquitectura segura, protección y asesoramiento.",
     href: "https://habitacion-antipanico.ercasa.chatgpt.site/",
     swatches: ["#203B4B", "#0DA797", "#FCA311"],
-    preview: "/catalog/habitacion-antipanico-original.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Original", public: false,
+    preview: "/catalog/habitacion-antipanico-original.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Original", public: true,
   },
   {
     familyId: "habitacion-antipanico", familyName: "Habitación Antipánico", variant: "Petróleo", rubro: "arquitectura",
@@ -170,7 +169,7 @@ export const SAMPLES: Sample[] = [
     text: "Una variante sobria en tonos petróleo y cobre para comunicar confianza, ingeniería y resguardo.",
     href: "https://habitacion-antipanico-petroleo.ercasa.chatgpt.site/",
     swatches: ["#133640", "#0D7F97", "#C65A18"],
-    preview: "/catalog/habitacion-antipanico-petroleo.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Petróleo", public: false,
+    preview: "/catalog/habitacion-antipanico-petroleo.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Petróleo", public: true,
   },
   {
     familyId: "habitacion-antipanico", familyName: "Habitación Antipánico", variant: "Dorado", rubro: "arquitectura",
@@ -178,7 +177,7 @@ export const SAMPLES: Sample[] = [
     text: "Una propuesta de azul profundo y dorado que combina precisión técnica con una presencia premium.",
     href: "https://habitacion-antipanico-dorado.ercasa.chatgpt.site/",
     swatches: ["#050A30", "#785D32", "#FFFAF2"],
-    preview: "/catalog/habitacion-antipanico-dorado.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Dorado", public: false,
+    preview: "/catalog/habitacion-antipanico-dorado.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Dorado", public: true,
   },
   {
     familyId: "habitacion-antipanico", familyName: "Habitación Antipánico", variant: "Cobre", rubro: "arquitectura",
@@ -186,6 +185,6 @@ export const SAMPLES: Sample[] = [
     text: "Una identidad oscura con acentos cobre para destacar soluciones de seguridad y diseño a medida.",
     href: "https://habitacion-antipanico-cobre.ercasa.chatgpt.site/",
     swatches: ["#162334", "#9A5A36", "#FAFBFC"],
-    preview: "/catalog/habitacion-antipanico-cobre.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Cobre", public: false,
+    preview: "/catalog/habitacion-antipanico-cobre.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Cobre", public: true,
   },
 ];

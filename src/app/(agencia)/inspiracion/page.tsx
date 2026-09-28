@@ -21,7 +21,7 @@ export default function InspiracionPage() {
           <SampleCatalog />
           <p className="catalog-note">
             Todos son diseños de muestra personalizables; no representan clientes diferentes. Elegí una paleta para comparar cada
-            variante. Las opciones con publicación pendiente pueden verse acá, pero no se habilitan para explorar hasta que su acceso sea público.
+            variante y explorarla en detalle.
           </p>
         </div>
       </section>
