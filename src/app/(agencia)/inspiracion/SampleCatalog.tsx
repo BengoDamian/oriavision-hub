@@ -1,18 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RUBROS, SAMPLES } from "../samples";
+import { RUBROS, SAMPLE_FAMILIES, SAMPLES, type Sample } from "../samples";
 import { waLink } from "../shared";
 
 type Filter = "todos" | (typeof RUBROS)[number]["id"];
-type Sample = (typeof SAMPLES)[number];
 
 const KNOWN = ["todos", ...RUBROS.map((rubro) => rubro.id)];
-const NAIL_SAMPLES = SAMPLES.filter((sample) => sample.rubro === "unas");
-const BARBER_SAMPLES = SAMPLES.filter((sample) => sample.rubro === "barberias");
-const SINGLE_SAMPLES = SAMPLES.filter(
-  (sample) => sample.rubro === "cafeterias" || sample.rubro === "bienestar",
-);
 
 function VariantSwatches({ sample }: { sample: Sample }) {
   return (
@@ -23,25 +17,29 @@ function VariantSwatches({ sample }: { sample: Sample }) {
     </span>
   );
 }
+
 function PaletteBlock({
+  number,
   title,
-  eyebrow,
   samples,
 }: {
+  number: number;
   title: string;
-  eyebrow: string;
   samples: Sample[];
 }) {
   const [selectedHref, setSelectedHref] = useState(samples[0].href);
   const selected =
     samples.find((sample) => sample.href === selectedHref) ?? samples[0];
+  const message =
+    `Hola, ORIAVISION. Quiero consultar por una web como ${selected.familyName}, ` +
+    `variante ${selected.variant}. Vi este diseño: ${selected.href}`;
 
   return (
-    <article className="demo-card demo-card-palette">
+    <article className="demo-card demo-card-palette" data-rubro={selected.rubro}>
       <div className="palette-layout">
         <div
           className="demo-preview palette-preview"
-          aria-label={"Vista previa de " + selected.contactName}
+          aria-label={"Vista previa de " + selected.title}
           aria-live="polite"
         >
           {samples.map((sample) => {
@@ -49,11 +47,7 @@ function PaletteBlock({
             return (
               <img
                 src={sample.preview}
-                alt={
-                  active
-                    ? sample.previewAlt ?? "Vista previa de " + sample.title
-                    : ""
-                }
+                alt={active ? sample.previewAlt : ""}
                 aria-hidden={!active}
                 className={active ? "is-active" : ""}
                 key={sample.href}
@@ -64,7 +58,9 @@ function PaletteBlock({
 
         <div className="palette-copy">
           <div className="demo-card-top palette-card-top">
-            <span>{eyebrow}</span>
+            <span>
+              COLECCIÓN {String(number).padStart(2, "0")} · {samples.length} VARIANTES
+            </span>
             <div className="swatches" aria-hidden="true">
               {selected.swatches.map((color) => (
                 <span style={{ background: color }} key={color} />
@@ -72,8 +68,12 @@ function PaletteBlock({
             </div>
           </div>
 
-          <span className="demo-status is-public">
-            Disponible para explorar
+          <span
+            className={
+              "demo-status " + (selected.public ? "is-public" : "is-pending")
+            }
+          >
+            {selected.public ? "Disponible para explorar" : "Publicación pendiente"}
           </span>
           <h2>{selected.title}</h2>
           <p className="palette-description">{selected.text}</p>
@@ -83,20 +83,24 @@ function PaletteBlock({
             <div className="palette-options">
               {samples.map((sample) => {
                 const active = sample.href === selected.href;
-                const variant =
-                  sample.title.split(" · ")[1] ?? sample.title;
                 return (
                   <button
                     type="button"
                     className={
-                      "palette-option" + (active ? " is-active" : "")
+                      "palette-option" +
+                      (active ? " is-active" : "") +
+                      (!sample.public ? " is-pending" : "")
+                    }
+                    aria-label={
+                      sample.variant +
+                      (sample.public ? "" : " · publicación pendiente")
                     }
                     aria-pressed={active}
                     onClick={() => setSelectedHref(sample.href)}
                     key={sample.href}
                   >
                     <VariantSwatches sample={sample} />
-                    <span className="palette-option-name">{variant}</span>
+                    <span className="palette-option-name">{sample.variant}</span>
                   </button>
                 );
               })}
@@ -104,25 +108,30 @@ function PaletteBlock({
           </fieldset>
 
           <div className="demo-card-actions palette-actions">
-            <a
-              className="btn btn-dark edge-light"
-              href={selected.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Explorar diseño</span>
-              <svg aria-hidden="true">
-                <use href="#external" />
-              </svg>
-            </a>
+            {selected.public ? (
+              <a
+                className="btn btn-dark edge-light"
+                href={selected.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Explorar diseño</span>
+                <svg aria-hidden="true">
+                  <use href="#external" />
+                </svg>
+              </a>
+            ) : (
+              <span
+                className="btn btn-disabled"
+                aria-disabled="true"
+                title="La demo todavía requiere publicación pública"
+              >
+                <span>Exploración pendiente</span>
+              </span>
+            )}
             <a
               className="btn btn-contact"
-              href={waLink(
-                "Hola, ORIAVISION. Me interesa el diseño " +
-                  selected.contactName +
-                  " para mi negocio. Lo vi acá: " +
-                  selected.href,
-              )}
+              href={waLink(message)}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -133,90 +142,6 @@ function PaletteBlock({
             </a>
           </div>
         </div>
-      </div>
-    </article>
-  );
-}
-
-function SampleCard({ sample, number }: { sample: Sample; number: number }) {
-  return (
-    <article className="demo-card" data-rubro={sample.rubro}>
-      {sample.preview ? (
-        <div className="demo-preview">
-          <img
-            src={sample.preview}
-            alt={
-              sample.previewAlt ?? "Vista previa de " + sample.title
-            }
-          />
-        </div>
-      ) : (
-        <div
-          className="demo-preview demo-preview-pending"
-          aria-label="Vista previa pendiente de publicación"
-        >
-          <div className="demo-preview-mark" aria-hidden="true">
-            {sample.title.split(" · ")[1]?.slice(0, 1) ??
-              sample.title.slice(0, 1)}
-          </div>
-          <span>Vista previa disponible al publicar la demo</span>
-        </div>
-      )}
-      <div className="demo-card-top">
-        <span>DISEÑO {String(number).padStart(2, "0")}</span>
-        <div className="swatches" aria-hidden="true">
-          {sample.swatches.map((color) => (
-            <span style={{ background: color }} key={color} />
-          ))}
-        </div>
-      </div>
-      <span
-        className={
-          "demo-status " + (sample.public ? "is-public" : "is-pending")
-        }
-      >
-        {sample.public ? "Disponible para explorar" : "Publicación pendiente"}
-      </span>
-      <h2>{sample.title}</h2>
-      <p>{sample.text}</p>
-      <div className="demo-card-actions">
-        {sample.public ? (
-          <a
-            className="btn btn-dark edge-light"
-            href={sample.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>Explorar diseño</span>
-            <svg aria-hidden="true">
-              <use href="#external" />
-            </svg>
-          </a>
-        ) : (
-          <span
-            className="btn btn-disabled"
-            aria-disabled="true"
-            title="La demo todavía requiere publicación pública"
-          >
-            <span>Exploración pendiente</span>
-          </span>
-        )}
-        <a
-          className="btn btn-contact"
-          href={waLink(
-            "Hola, ORIAVISION. Me interesa el diseño " +
-              sample.contactName +
-              " para mi negocio. Lo vi acá: " +
-              sample.href,
-          )}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>Quiero este diseño</span>
-          <svg aria-hidden="true">
-            <use href="#arrow" />
-          </svg>
-        </a>
       </div>
     </article>
   );
@@ -243,11 +168,15 @@ export default function SampleCatalog() {
   const visible = SAMPLES.filter(
     (sample) => filter === "todos" || sample.rubro === filter,
   );
-  const showNails = filter === "todos" || filter === "unas";
-  const showBarbers = filter === "todos" || filter === "barberias";
-  const visibleSingles = SINGLE_SAMPLES.filter(
-    (sample) => filter === "todos" || sample.rubro === filter,
-  );
+  const visibleFamilies = SAMPLE_FAMILIES.map((family, index) => ({
+    ...family,
+    number: index + 1,
+    samples: SAMPLES.filter(
+      (sample) =>
+        sample.familyId === family.id &&
+        (filter === "todos" || sample.rubro === filter),
+    ),
+  })).filter((family) => family.samples.length > 0);
 
   return (
     <>
@@ -275,25 +204,12 @@ export default function SampleCatalog() {
       </div>
 
       <div className="demo-grid">
-        {showNails && (
+        {visibleFamilies.map((family) => (
           <PaletteBlock
-            title="Art Nails"
-            eyebrow="COLECCIÓN 01 · 4 VARIANTES"
-            samples={NAIL_SAMPLES}
-          />
-        )}
-        {showBarbers && (
-          <PaletteBlock
-            title="Barberías y peluquerías"
-            eyebrow="COLECCIÓN 02 · 4 VARIANTES"
-            samples={BARBER_SAMPLES}
-          />
-        )}
-        {visibleSingles.map((sample) => (
-          <SampleCard
-            sample={sample}
-            number={SAMPLES.indexOf(sample) + 1}
-            key={sample.href}
+            number={family.number}
+            title={family.title}
+            samples={family.samples}
+            key={family.id}
           />
         ))}
       </div>
