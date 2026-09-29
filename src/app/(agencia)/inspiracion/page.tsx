@@ -5,7 +5,7 @@ export const metadata = pageMetadata({
   path: "/inspiracion/",
   title: "Inspiración para tu sitio · ORIAVISION",
   description:
-    "Explorá diseños web personalizables para uñas y belleza, barberías, cafeterías, bienestar, arquitectura y seguridad.",
+    "Explorá diseños web personalizables para uñas y belleza, barberías, cafeterías, bienestar, tatuajes, arquitectura y seguridad.",
 });
 
 export default function InspiracionPage() {

@@ -5,6 +5,7 @@ export const RUBROS = [
   { id: "barberias", name: "Barberías y peluquerías", text: "Servicios, profesionales, turnos y una identidad con carácter." },
   { id: "cafeterias", name: "Cafeterías y gastronomía", text: "Propuestas, carta, ambiente y llamados a la acción para atraer nuevas visitas." },
   { id: "bienestar", name: "Bienestar y movimiento", text: "Clases, disciplinas, profesionales y horarios." },
+  { id: "tatuajes", name: "Tatuajes", text: "Estilos, artistas, estudio y reservas de muestra con una identidad visual propia." },
   { id: "arquitectura", name: "Arquitectura y seguridad", text: "Proyectos, soluciones de protección y espacios seguros explicados con claridad." },
 ] as const;
 
@@ -15,6 +16,7 @@ export const SAMPLE_FAMILIES = [
   { id: "barberias", title: "Barberías y peluquerías" },
   { id: "buen-rato", title: "Buen Rato Café" },
   { id: "aluna", title: "Aluna Pilates" },
+  { id: "ink-house", title: "Ink House / Tatuajes" },
   { id: "habitacion-antipanico", title: "Habitación Antipánico" },
 ] as const;
 
@@ -154,6 +156,38 @@ export const SAMPLES: Sample[] = [
     href: "https://aluna-pilates-arcade.ercasa.chatgpt.site/",
     swatches: ["#07329B", "#ED0F87", "#1BB5FD"],
     preview: "/catalog/aluna-arcade.webp", previewAlt: "Portada del diseño de muestra Aluna Pilates Arcade", public: true,
+  },
+  {
+    familyId: "ink-house", familyName: "Ink House / Tatuajes", variant: "Original", rubro: "tatuajes",
+    title: "Ink House · Original",
+    text: "Una propuesta clara y cálida para presentar estilos, artistas y reservas de un estudio de tatuajes.",
+    href: "https://ink-house.ercasa.chatgpt.site/",
+    swatches: ["#F6F1E8", "#C65F4B", "#276B6C"],
+    preview: "/catalog/ink-house-original.webp", previewAlt: "Portada del diseño de muestra Ink House Original", public: true,
+  },
+  {
+    familyId: "ink-house", familyName: "Ink House / Tatuajes", variant: "Classic", rubro: "tatuajes",
+    title: "Ink House · Classic",
+    text: "Una variante oscura de inspiración tradicional, con rojo profundo y tipografía de fuerte carácter.",
+    href: "https://ink-house-classic.ercasa.chatgpt.site/",
+    swatches: ["#202124", "#B51527", "#F5F3EF"],
+    preview: "/catalog/ink-house-classic.webp", previewAlt: "Portada del diseño de muestra Ink House Classic", public: true,
+  },
+  {
+    familyId: "ink-house", familyName: "Ink House / Tatuajes", variant: "Neón", rubro: "tatuajes",
+    title: "Ink House · Neón",
+    text: "Una identidad nocturna en azul, rosa y cian para un estudio joven, expresivo y contemporáneo.",
+    href: "https://ink-house-neon.ercasa.chatgpt.site/",
+    swatches: ["#0B0F2B", "#FF5CA8", "#00F0FF"],
+    preview: "/catalog/ink-house-neon.webp", previewAlt: "Portada del diseño de muestra Ink House Neón", public: true,
+  },
+  {
+    familyId: "ink-house", familyName: "Ink House / Tatuajes", variant: "Oxide", rubro: "tatuajes",
+    title: "Ink House · Oxide",
+    text: "Una versión industrial en negro y naranja para comunicar oficio, contraste y una presencia directa.",
+    href: "https://ink-house-oxide.ercasa.chatgpt.site/",
+    swatches: ["#0B1014", "#EE690B", "#BBD3EB"],
+    preview: "/catalog/ink-house-oxide.webp", previewAlt: "Portada del diseño de muestra Ink House Oxide", public: true,
   },
   {
     familyId: "habitacion-antipanico", familyName: "Habitación Antipánico", variant: "Original", rubro: "arquitectura",
