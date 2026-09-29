@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/rubros/",
   title: "Sitios web por rubro · ORIAVISION",
   description:
-    "Ideas de diseño web para uñas y belleza, barberías y peluquerías, cafeterías y gastronomía, bienestar, tatuajes, arquitectura y seguridad.",
+    "Ideas de diseño web para uñas y belleza, barberías y peluquerías, cafeterías y gastronomía, bienestar, tatuajes, arquitectura, seguridad, parrillas y herrería.",
 });
 
 export default function RubrosPage() {

@@ -7,6 +7,7 @@ export const RUBROS = [
   { id: "bienestar", name: "Bienestar y movimiento", text: "Clases, disciplinas, profesionales y horarios." },
   { id: "tatuajes", name: "Tatuajes", text: "Estilos, artistas, estudio y reservas de muestra con una identidad visual propia." },
   { id: "arquitectura", name: "Arquitectura y seguridad", text: "Proyectos, soluciones de protección y espacios seguros explicados con claridad." },
+  { id: "parrillas-herreria", name: "Parrillas y herrería", text: "Productos, trabajos a medida y consultas con una identidad visual sólida y artesanal." },
 ] as const;
 
 export type RubroId = (typeof RUBROS)[number]["id"];
@@ -18,6 +19,7 @@ export const SAMPLE_FAMILIES = [
   { id: "aluna", title: "Aluna Pilates" },
   { id: "ink-house", title: "Ink House / Tatuajes" },
   { id: "habitacion-antipanico", title: "Habitación Antipánico" },
+  { id: "watorii", title: "watorii" },
 ] as const;
 
 type FamilyId = (typeof SAMPLE_FAMILIES)[number]["id"];
@@ -220,5 +222,21 @@ export const SAMPLES: Sample[] = [
     href: "https://habitacion-antipanico-cobre.ercasa.chatgpt.site/",
     swatches: ["#162334", "#9A5A36", "#FAFBFC"],
     preview: "/catalog/habitacion-antipanico-cobre.webp", previewAlt: "Portada del diseño de muestra Habitación Antipánico Cobre", public: true,
+  },
+  {
+    familyId: "watorii", familyName: "watorii", variant: "Original", rubro: "parrillas-herreria",
+    title: "watorii · Original",
+    text: "Una propuesta de azul profundo, cobre y blanco para presentar parrillas, campanas y trabajos de herrería.",
+    href: "https://watorii-parrillas.ercasa.chatgpt.site/",
+    swatches: ["#162334", "#9A5A36", "#FAFBFC"],
+    preview: "/catalog/watorii-original.webp", previewAlt: "Portada del diseño de muestra watorii Original", public: true,
+  },
+  {
+    familyId: "watorii", familyName: "watorii", variant: "Turquesa", rubro: "parrillas-herreria",
+    title: "watorii · Turquesa",
+    text: "Una variante turquesa y naranja, fresca y contrastada, para destacar productos, proyectos y consultas.",
+    href: "https://watorii-turquesa.ercasa.chatgpt.site/",
+    swatches: ["#0C354D", "#0DA797", "#C54B20"],
+    preview: "/catalog/watorii-turquesa.webp", previewAlt: "Portada del diseño de muestra watorii Turquesa", public: true,
   },
 ];
