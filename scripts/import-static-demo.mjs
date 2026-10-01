@@ -1,5 +1,5 @@
 import { cpSync, existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { basename, extname, join, resolve, sep } from "node:path";
+import { basename, extname, join, relative, resolve, sep } from "node:path";
 
 const [sourceArg, slug, sourceHostname, family, variant] = process.argv.slice(2);
 
@@ -44,10 +44,14 @@ function rewrite(content) {
     .replaceAll(`${basePath}//`, `${basePath}/`);
 }
 
-function addDemoHost(html) {
+function addDemoHost(html, path) {
   const script = `<script src="/demos/demo-host.js" data-root="${basePath}" data-family="${family.replaceAll('"', '&quot;')}" data-variant="${variant.replaceAll('"', '&quot;')}"></script>`;
-  if (html.includes('src="/demos/demo-host.js"')) return html;
-  return html.replace(/<head([^>]*)>/i, `<head$1>${script}`);
+  const relativePath = relative(destination, path).split(sep).join("/");
+  const pagePath = relativePath === "index.html" ? "/" : `/${relativePath.replace(/index\.html$/, "")}`;
+  const canonical = `<link rel="canonical" href="${publicOrigin}${pagePath}">`;
+  const withoutCanonical = html.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/gi, "");
+  const host = withoutCanonical.includes('src="/demos/demo-host.js"') ? "" : script;
+  return withoutCanonical.replace(/<head([^>]*)>/i, `<head$1>${host}${canonical}`);
 }
 
 function visit(directory) {
@@ -69,7 +73,7 @@ function visit(directory) {
     if (family === "Clínica Veterinaria" && basename(entry.name) === "site.css") {
       after += "\nhtml,body{max-width:100%;overflow-x:hidden}\n";
     }
-    if (extname(entry.name) === ".html") after = addDemoHost(after);
+    if (extname(entry.name) === ".html") after = addDemoHost(after, path);
     if (after !== before) writeFileSync(path, after, "utf8");
   }
 }
