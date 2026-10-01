@@ -1,11 +1,11 @@
 import { cpSync, existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, extname, join, resolve, sep } from "node:path";
 
-const [sourceArg, slug, sourceHostname] = process.argv.slice(2);
+const [sourceArg, slug, sourceHostname, family, variant] = process.argv.slice(2);
 
-if (!sourceArg || !slug || !sourceHostname) {
+if (!sourceArg || !slug || !sourceHostname || !family || !variant) {
   throw new Error(
-    "Uso: node scripts/import-static-demo.mjs <directorio-exportado> <slug> <hostname-origen>",
+    "Uso: node scripts/import-static-demo.mjs <directorio-exportado> <slug> <hostname-origen> <familia> <variante>",
   );
 }
 
@@ -44,6 +44,12 @@ function rewrite(content) {
     .replaceAll(`${basePath}//`, `${basePath}/`);
 }
 
+function addDemoHost(html) {
+  const script = `<script src="/demos/demo-host.js" data-root="${basePath}" data-family="${family.replaceAll('"', '&quot;')}" data-variant="${variant.replaceAll('"', '&quot;')}"></script>`;
+  if (html.includes('src="/demos/demo-host.js"')) return html;
+  return html.replace(/<head([^>]*)>/i, `<head$1>${script}`);
+}
+
 function visit(directory) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const path = join(directory, entry.name);
@@ -57,7 +63,13 @@ function visit(directory) {
     }
 
     const before = readFileSync(path, "utf8");
-    const after = rewrite(before);
+    let after = basename(entry.name) === "sitemap.xml"
+      ? '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>'
+      : rewrite(before);
+    if (family === "Clínica Veterinaria" && basename(entry.name) === "site.css") {
+      after += "\nhtml,body{max-width:100%;overflow-x:hidden}\n";
+    }
+    if (extname(entry.name) === ".html") after = addDemoHost(after);
     if (after !== before) writeFileSync(path, after, "utf8");
   }
 }

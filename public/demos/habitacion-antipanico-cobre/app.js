@@ -1,0 +1,15 @@
+const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('#nav');
+menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open)});
+nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+const demoVariant="Cobre",demoUrl="https://www.oriavision.com.ar/demos/habitacion-antipanico-cobre/",demoMessage='Hola, ORIAVISION. Me interesa un sitio como Habitación Antipánico, variante '+demoVariant+'. Vi este diseño: '+demoUrl,demoWhatsApp='https://wa.me/5491127575675?text='+encodeURIComponent(demoMessage);document.querySelectorAll('[data-consult]').forEach(el=>el.addEventListener('click',()=>window.open(demoWhatsApp,'_blank','noopener,noreferrer')));const demoBar=document.createElement('aside');demoBar.className='oriavision-demo';demoBar.setAttribute('aria-label','Sitio de ejemplo de ORIAVISION');demoBar.innerHTML='<p>Sitio de ejemplo de <a href="https://www.oriavision.com.ar/" target="_blank" rel="noopener noreferrer"><strong>ORIAVISION</strong></a></p><nav class="oriavision-demo__links" aria-label="Opciones de ORIAVISION"><a class="oriavision-demo__primary" href="'+demoWhatsApp+'" target="_blank" rel="noopener noreferrer">Quiero un sitio como este</a><a href="https://www.oriavision.com.ar/inspiracion/" target="_blank" rel="noopener noreferrer">Ver más diseños</a></nav>';document.querySelector('footer')?.before(demoBar);const dialog=document.querySelector('#contact-dialog');if(dialog)dialog.hidden=true;
+const bar=document.querySelector('.whatsapp-bar'),hero=document.querySelector('.hero')||document.querySelector('.detail-hero');
+function syncBar(){const heroButton=hero?.querySelector('[data-consult]');const visible=heroButton?heroButton.getBoundingClientRect().bottom<0:window.scrollY>180;bar.classList.toggle('visible',visible);bar.setAttribute('aria-hidden',String(!visible));bar.tabIndex=visible?0:-1}
+addEventListener('scroll',syncBar,{passive:true});addEventListener('resize',syncBar);syncBar();
+const slides=[...document.querySelectorAll('.slide')];
+if(slides.length){
+ let index=0,timer;const carousel=document.querySelector('.hero'),motion=matchMedia('(prefers-reduced-motion: reduce)');
+ function showNext(){slides[index].classList.remove('active');slides[index].setAttribute('aria-hidden','true');index=(index+1)%slides.length;slides[index].classList.add('active');slides[index].setAttribute('aria-hidden','false')}
+ function syncRotation(){clearInterval(timer);if(!motion.matches&&!document.hidden&&!carousel.contains(document.activeElement))timer=setInterval(showNext,7500)}
+ carousel.addEventListener('focusin',syncRotation);carousel.addEventListener('focusout',()=>setTimeout(syncRotation,0));document.addEventListener('visibilitychange',syncRotation);motion.addEventListener('change',syncRotation);syncRotation();
+}

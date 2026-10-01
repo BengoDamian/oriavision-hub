@@ -178,3 +178,5 @@
 .button:focus-visible,.text-link:focus-visible,summary:focus-visible{outline-color:currentColor}
 .mobile-menu>a:hover,.mobile-menu>a[aria-current]{background:#7D8285;color:#111111}
 .agenda-dialog label,.agenda-dialog input,.agenda-dialog select{color:#242424}
+
+html,body{max-width:100%;overflow-x:hidden}

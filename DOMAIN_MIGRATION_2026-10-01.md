@@ -1,5 +1,7 @@
 # Inventario de dominios de demos
 
+> **Migración pausada.** Este documento conserva el inventario histórico, pero no debe usarse para crear nuevas asociaciones en Sites ni registros DNS. Desde el 1 de octubre de 2026, el catálogo usa demos alojadas dentro de `https://www.oriavision.com.ar/demos/`; las publicaciones y asociaciones existentes se mantienen sin cambios.
+
 Estado comprobado el 1 de octubre de 2026.
 
 ## Resumen
@@ -82,4 +84,3 @@ Los nombres completos de los registros son:
 3. Reintentar el alta de los 9 dominios sin asociar cuando se restablezca la cuota semanal de Sites. Copiar los TXT que Sites genere; no reutilizar ni adivinar valores.
 4. Crear el DNS de esos 9 dominios, refrescar su estado y verificar HTTPS.
 5. Sólo después de cada activación, cambiar en la demo y en el catálogo el canonical, sitemap, enlaces y mensajes de WhatsApp al dominio propio.
-

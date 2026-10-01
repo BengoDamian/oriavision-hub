@@ -252,7 +252,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .palette-copy{display:flex;min-width:0;height:100%;flex-direction:column}
 .palette-card-top{margin-top:0}
 .palette-copy h2{min-height:2.1rem}
-.palette-description{min-height:5.3rem}
 .palette-selector{min-width:0;margin:0 0 24px;padding:0;border:0}
 .palette-selector legend{margin-bottom:11px;font-size:.875rem;font-weight:800;color:#0a4531}
 .palette-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -279,7 +278,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .rubro-other{display:flex;justify-content:space-between;align-items:center;gap:28px;margin-top:38px}
 .rubro-other p{max-width:600px;color:#494949;font-size:1rem;line-height:1.8}
 .rubro-other .btn{flex-shrink:0}
-@media(max-width:1000px){.photo-hero h1{font-size:3.1rem}.demo-grid{grid-template-columns:1fr 1fr}.palette-layout{grid-template-columns:1fr}.palette-description{min-height:0}.explore-row{gap:20px;grid-template-columns:38px 1fr auto}.agency-intro .section-head{gap:35px}.explore-row .btn{min-width:153px}}
+@media(max-width:1000px){.photo-hero h1{font-size:3.1rem}.demo-grid{grid-template-columns:1fr 1fr}.palette-layout{grid-template-columns:1fr}.explore-row{gap:20px;grid-template-columns:38px 1fr auto}.agency-intro .section-head{gap:35px}.explore-row .btn{min-width:153px}}
 @media(max-width:640px){
  .photo-hero{min-height:0;padding:34px 0 30px}
  .hero-photo{object-position:65% center}
@@ -321,7 +320,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .demo-card-palette{padding:14px}
  .palette-layout{gap:18px}
  .palette-copy h2{min-height:2.1rem}
- .palette-description{min-height:7rem;margin-bottom:19px}
  .palette-selector{margin-bottom:19px}
  .palette-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
  .palette-option{min-height:56px;padding:9px 8px;gap:7px}
@@ -434,12 +432,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .catalog-toolbar select{min-height:46px;padding-block:10px}
 .demo-grid{gap:17px}
 .demo-card-palette{padding:19px}
-.palette-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(345px,.7fr);grid-template-areas:"preview heading" "preview selector" "preview description" "preview actions";grid-template-rows:auto auto 1fr auto;gap:14px 24px;align-items:start}
+.palette-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(345px,.7fr);grid-template-areas:"preview heading" "preview selector" "preview actions";grid-template-rows:auto auto auto;gap:14px 24px;align-items:start;align-content:start}
 .palette-preview{grid-area:preview;aspect-ratio:16/10;align-self:start}
 .palette-heading{grid-area:heading;min-width:0}
 .palette-heading h2{min-height:2.6em;margin:10px 0 0}
 .palette-selector{grid-area:selector;margin:0}
-.palette-description{grid-area:description;min-height:5.1rem;margin:0!important;font-size:.9375rem!important;line-height:1.65!important}
 .palette-actions{grid-area:actions;margin:0}
 .palette-option{min-height:52px;padding:8px 10px}
 .palette-card-top{margin-top:0}
@@ -464,9 +461,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .home-rubro-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
  .home-rubro-grid>a:nth-child(4n){border-right:0}
  .home-rubro-grid>a:nth-child(-n+4){border-bottom:1px solid #ffffff35}
- .palette-layout{grid-template-columns:1fr;grid-template-areas:"preview" "heading" "selector" "description" "actions";grid-template-rows:auto;gap:14px}
+ .palette-layout{grid-template-columns:1fr;grid-template-areas:"preview" "heading" "selector" "actions";grid-template-rows:auto;gap:14px}
  .palette-heading h2{min-height:0}
- .palette-description{min-height:0}
  .rubro-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:640px){
@@ -509,7 +505,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .palette-option-swatches{gap:2px}
  .palette-option-swatches span{width:10px;height:10px}
  .palette-option-name{font-size:.875rem;line-height:1.2;overflow-wrap:normal}
- .palette-description{min-height:4.9rem!important;font-size:.875rem!important;line-height:1.55!important}
  .palette-actions{gap:9px}
  .demo-card .btn{min-height:46px;padding:12px 14px}
  .catalog-note{margin-top:18px;font-size:.875rem}

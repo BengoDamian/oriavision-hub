@@ -107,8 +107,6 @@ function PaletteBlock({
           </div>
         </fieldset>
 
-        <p className="palette-description">{selected.text}</p>
-
         <div className="demo-card-actions palette-actions">
           {selected.public ? (
             <a
