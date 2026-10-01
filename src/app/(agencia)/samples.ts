@@ -8,6 +8,7 @@ export const RUBROS = [
   { id: "tatuajes", name: "Tatuajes", text: "Estilos, artistas, estudio y reservas de muestra con una identidad visual propia." },
   { id: "arquitectura", name: "Arquitectura y seguridad", text: "Proyectos, soluciones de protección y espacios seguros explicados con claridad." },
   { id: "parrillas-herreria", name: "Parrillas y herrería", text: "Productos, trabajos a medida y consultas con una identidad visual sólida y artesanal." },
+  { id: "veterinarias", name: "Veterinarias", text: "Servicios, equipo, agenda demostrativa y consultas con una identidad cercana y profesional." },
 ] as const;
 
 export type RubroId = (typeof RUBROS)[number]["id"];
@@ -20,6 +21,7 @@ export const SAMPLE_FAMILIES = [
   { id: "ink-house", title: "Ink House / Tatuajes" },
   { id: "habitacion-antipanico", title: "Habitación Antipánico" },
   { id: "watorii", title: "watorii" },
+  { id: "clinica-veterinaria", title: "Clínica Veterinaria" },
 ] as const;
 
 type FamilyId = (typeof SAMPLE_FAMILIES)[number]["id"];
@@ -238,5 +240,37 @@ export const SAMPLES: Sample[] = [
     href: "https://watorii-turquesa.ercasa.chatgpt.site/",
     swatches: ["#0C354D", "#0DA797", "#C54B20"],
     preview: "/catalog/watorii-turquesa.webp", previewAlt: "Portada del diseño de muestra watorii Turquesa", public: true,
+  },
+  {
+    familyId: "clinica-veterinaria", familyName: "Clínica Veterinaria", variant: "Tropical", rubro: "veterinarias",
+    title: "Clínica Veterinaria · Tropical",
+    text: "Una variante en azul profundo y amarillo vibrante para comunicar cercanía, energía y cuidado profesional.",
+    href: "https://clinica-veterinaria-tropical.ercasa.chatgpt.site/",
+    swatches: ["#061B26", "#FEFE41", "#FFFFFF"],
+    preview: "/catalog/veterinaria-tropical.jpg", previewAlt: "Portada real del diseño de muestra Clínica Veterinaria Tropical", public: true,
+  },
+  {
+    familyId: "clinica-veterinaria", familyName: "Clínica Veterinaria", variant: "Azul y Dorado", rubro: "veterinarias",
+    title: "Clínica Veterinaria · Azul y Dorado",
+    text: "Una propuesta sobria en azul y dorado para presentar servicios, equipo ficticio y consultas con claridad.",
+    href: "https://clinica-veterinaria-azul-dorado.ercasa.chatgpt.site/",
+    swatches: ["#182B49", "#D4AF37", "#FFFFFF"],
+    preview: "/catalog/veterinaria-azul-dorado.jpg", previewAlt: "Portada real del diseño de muestra Clínica Veterinaria Azul y Dorado", public: true,
+  },
+  {
+    familyId: "clinica-veterinaria", familyName: "Clínica Veterinaria", variant: "Original", rubro: "veterinarias",
+    title: "Clínica Veterinaria · Original",
+    text: "Una identidad neutra con naranja y verde para recorrer servicios, agenda simulada y contacto comercial.",
+    href: "https://clinica-veterinaria-demo.ercasa.chatgpt.site/",
+    swatches: ["#363636", "#F58F1F", "#457534"],
+    preview: "/catalog/veterinaria-original.jpg", previewAlt: "Portada real del diseño de muestra Clínica Veterinaria Original", public: true,
+  },
+  {
+    familyId: "clinica-veterinaria", familyName: "Clínica Veterinaria", variant: "Petróleo", rubro: "veterinarias",
+    title: "Clínica Veterinaria · Petróleo",
+    text: "Una versión serena en petróleo, aqua y arena para transmitir confianza, cuidado y una presencia contemporánea.",
+    href: "https://clinica-veterinaria-petroleo.ercasa.chatgpt.site/",
+    swatches: ["#083A4F", "#407E8C", "#A58D66"],
+    preview: "/catalog/veterinaria-petroleo.jpg", previewAlt: "Portada real del diseño de muestra Clínica Veterinaria Petróleo", public: true,
   },
 ];
