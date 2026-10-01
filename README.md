@@ -1,179 +1,57 @@
-# ORIAVISION HUB 🚀
+# Nubrexa · catálogo de marca blanca
 
-Landing + hub de recursos **gratuitos** para vendedores de **MercadoLibre Argentina** (y Tiendanube), con captación de leads y medición.
+Versión del 01/10/2026: 8 rubros y 30 variantes.
 
-**Oriavision Hub** es una web tipo SaaS (clean, rápida y mobile-first) pensada para:
-- Mostrar nuestra herramienta principal (**Calculadora ML**)
-- Publicar **Guías gratuitas** prácticas (para leer y aplicar)
-- Publicar **Prompts gratis** listos para usar (copiar con 1 click)
-- Captar mails con **Newsletter** (Brevo) y automatizar **Welcome email**
-- Recibir pedidos de **landing a medida** desde `/web`
-- Medir **visitas + clicks + conversiones** con Cloudflare Web Analytics
+## Subir la actualización
 
----
+Copiá el contenido de este ZIP dentro de tu repositorio nubrexa-landing, reemplazando los archivos existentes. index.html debe quedar en la raíz. Conservá la carpeta .git de tu repositorio. Luego hacé commit y push para que Cloudflare Pages publique los cambios.
 
-## ✨ Qué incluye
+## Abrir localmente
 
-### ✅ Landing (Home)
-- Hero + CTA claros
-- **LeadMagnet** arriba del fold (animado)
-- Sección Herramientas (hoy: **Calculadora ML**)
-- Preview de **Prompts gratis** (cards → detalle)
-- Preview de **Guías gratuitas** (cards → detalle)
-- Sección “Quiénes somos”
-- CTA final de contacto
-- Link sutil al final: **”Pedí una landing como esta →”** (`/web`)
-- Botones flotantes:
-  - **Calculadora ML** (abajo izquierda)
-  - **WhatsApp** (abajo derecha)
+En Visual Studio Code, abrí la carpeta del proyecto y ejecutá en la terminal:
 
-### ✅ Prompts gratis
-- Listado: `/prompts`
-- Detalle: `/prompts/[id]`
-- En el detalle se muestra el prompt completo y **se puede copiar** (`CopyPromptButton`)
-- Acceso gratuito a decenas de prompts listos para IA
-- Datos en `src/lib/prompts.ts`
+```
+python -m http.server 8000
+```
 
-### ✅ Guías gratuitas
-- Listado: `/guias`
-- Detalle: `/guias/[id]`
-- Guías prácticas y gratuitas pensadas para **leer**, con estética tipo artículo (`GuideBody`)
-- Contenido de valor para vendedores de Mercado Libre
-- Datos en `src/lib/guides.ts`
+Abrí http://localhost:8000/ en el navegador.
 
-### ✅ Newsletter (Brevo)
-- Formulario de suscripción en Home (al final)
-- Endpoint serverless en Cloudflare Pages Functions:
-  - `POST /api/subscribe` → agrega/actualiza contacto en Brevo y lo mete en una lista
-- Automatización en Brevo:
-  - **Welcome email** automático al entrar a la lista
-- **Conversión medida:** luego de suscribirse, redirige a `/gracias`
+## Navegación
 
-### ✅ Página de conversión (medición)
-- `/gracias` (landing simple post-suscripción)
-- Se usa para medir conversiones en Cloudflare Web Analytics:
-  - `/gracias?src=leadmagnet`
-  - `/gracias?src=newsletter`
+- “Ver proyectos” y “Ver rubros” llevan a coleccion.html#rubros.
+- El índice tiene buscador y muestra todas las categorías.
+- Al elegir una categoría, se muestra únicamente ese rubro.
+- “Todos los rubros” vuelve al índice. El selector permite cambiar de rubro.
+- Los enlaces anteriores (#art-nails, #barberia, etc.) siguen funcionando.
+- La selección de paleta se conserva en la dirección al navegar.
+- En celular las paletas se distribuyen en dos columnas, junto a la vista previa.
 
-### ✅ Pedidos de landing a medida
-- Página: `/web`
-- Formulario real (`WebRequestForm`) que envía un mail a soporte vía Brevo transactional:
-  - `POST /api/webquote` → manda email a `soporte@oriavision.com.ar`
+## Variantes
 
-### ✅ Medición (Cloudflare Web Analytics)
-- Beacon en `layout.tsx` con modo SPA (`spa: true`)
-- Medición de clicks usando páginas `/go/*` (redirección con pequeño delay):
-  - `/go/calculadora`
-  - `/go/whatsapp`
+- Uñas y estética: 4.
+- Peluquería y barbería (un solo rubro): 4.
+- Café y gastronomía: 4 (Azul & Marfil del ZIP anterior, Verde & Arena del enlace original actual, Bosque y Tierra).
+- Tatuajes: 4 (Neón, Clásico, Original y Oxide).
+- Pilates y bienestar: 4.
+- Arquitectura y seguridad: 4.
+- Parrillas y quinchos: 2 (Watorii Original y Turquesa).
+- Veterinaria y mascotas: 4 (Original, Tropical, Azul & Dorado y Petróleo), sin contactos activos.
 
-> Nota: extensiones tipo AdBlock pueden bloquear el tracking. Para testear, usar incógnito o desactivar bloqueos para el dominio.
+## Agregar rubros o paletas
 
----
+1. Agregá los datos a catalogo.json siguiendo las entradas existentes.
+2. Guardá la demo local en demos/ y la captura de 1200 × 750 en assets/previews/.
+3. Ejecutá:
 
-## 🧱 Stack
-- **Next.js (App Router)**
-- **Tailwind CSS**
-- **Cloudflare Pages** (deploy)
-- **Cloudflare Pages Functions** (API)
-- **Brevo** (newsletter + automatizaciones + transactional SMTP)
-- Componentes UI: `Reveal` (scroll animations) + `Blob` (decoración)
-- Tipografía: `next/font` (Inter)
+```
+python scripts/build_catalog.py
+python scripts/build_assets.py
+```
 
----
+El índice, las fichas, los selectores y los contadores se generan desde catalogo.json. Para agregar nuevas categorías, revisá también el texto breve de rubros de la portada.
 
-## 🗺️ Rutas
+## Marca blanca
 
-- `/` Home
-- `/prompts` listado
-- `/prompts/[id]` detalle
-- `/guias` listado
-- `/guias/[id]` detalle
-- `/web` pedir landing a medida (form)
-- `/gracias` confirmación suscripción (conversión)
-- `/go/calculadora` tracking click → redirige a Calculadora
-- `/go/whatsapp` tracking click → redirige a WhatsApp
+Las demostraciones son locales. En Watorii se conservan activos los contactos originales: WhatsApp, teléfonos, ubicación, reseñas de Google y enlaces al sitio del negocio. En los demás rubros, los botones de contacto, teléfono, WhatsApp y reservas están desactivados. Fuera de Watorii no se envían formularios ni se incluyen números o correo. Ninguna demo incluye credenciales, paneles administrativos o servicios de reservas. Las cartas, notas, páginas de modelos y navegación interna siguen disponibles.
 
----
-
-## 🧩 Archivos clave
-
-- Home: `src/app/page.tsx`
-- Layout + Analytics: `src/app/layout.tsx`
-- LeadMagnet: `src/components/LeadMagnet.tsx`
-- Newsletter: `src/components/Newsletter.tsx`
-- Prompts data: `src/lib/prompts.ts`
-- Guías data: `src/lib/guides.ts`
-- Página /web: `src/app/web/page.tsx`
-- Form /web: `src/components/WebRequestForm.tsx`
-- API webquote: `functions/api/webquote.ts`
-- API subscribe: `functions/api/subscribe.ts`
-- Página /gracias: `src/app/gracias/page.tsx`
-- Redirect tracking: `src/components/GoRedirect.tsx`
-- /go routes:
-  - `src/app/go/calculadora/page.tsx`
-  - `src/app/go/whatsapp/page.tsx`
-
----
-
-## ⚙️ Configuración de Newsletter (Brevo + Cloudflare)
-
-### 1) Crear lista en Brevo
-Brevo → Contactos → Listas  
-Creá una lista (ej: “Oriavision Newsletter”) y guardá el **List ID**.
-
-### 2) Crear API Key en Brevo
-Brevo → Settings → SMTP y API → **Claves API**  
-Generá una **API Key**.
-
-### 3) Variables de entorno en Cloudflare Pages
-Cloudflare → Pages → proyecto → Settings → Environment variables
-
-Agregar:
-- `BREVO_API_KEY` = tu API key
-- `BREVO_LIST_ID` = el ID numérico de la lista
-
-### 4) Endpoint
-El endpoint vive en:
-- `functions/api/subscribe.ts`
-
-El front envía:
-- `POST /api/subscribe` con JSON `{ "email": "..." }`
-
----
-
-## ✉️ Configuración de pedidos de landing (/web)
-
-### Endpoint
-- `functions/api/webquote.ts`
-
-### Variables
-- `BREVO_API_KEY` (obligatoria)
-Opcional:
-- `SUPPORT_EMAIL=soporte@oriavision.com.ar`
-- `BREVO_SENDER_EMAIL=noreply@oriavision.com.ar`
-
----
-
-## 📈 Medición (Cloudflare Web Analytics)
-
-### 1) Crear sitio en Web Analytics
-Cloudflare → Web Analytics → Add site → copiar **token**.
-
-### 2) Variable de entorno
-Cloudflare Pages → Environment variables:
-- `NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN` = token
-
-### 3) /go tracking
-Los botones a Calculadora/WhatsApp apuntan a rutas internas:
-- `/go/calculadora`
-- `/go/whatsapp`
-
-Esas páginas muestran un “abriendo…” y redirigen a los destinos reales, permitiendo registrar el pageview..
-
----
-
-## 🖥️ Desarrollo local
-
-```bash
-npm install
-npm run dev
+No hacen falta Node.js, bases de datos ni comandos de compilación en Cloudflare. Framework: None. Directorio de salida: raíz del repositorio.

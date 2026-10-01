@@ -1,0 +1,430 @@
+[
+  {
+    "id": "art-nails",
+    "name": "Art Nails",
+    "category": "UÑAS & ESTÉTICA",
+    "description": "Un atelier, cuatro formas de expresarse.",
+    "variants": [
+      {
+        "id": "art-nails-limon",
+        "label": "Limón & Verde",
+        "colors": [
+          "#1e4d16",
+          "#bfd931",
+          "#ffd62f",
+          "#fffdf0"
+        ],
+        "image": "assets/previews/art-nails-limon.jpg",
+        "url": "demos/art-nails-limon/index.html"
+      },
+      {
+        "id": "art-nails-tornasol",
+        "label": "Azul & Tornasol",
+        "colors": [
+          "#044470",
+          "#80abd8",
+          "#650632",
+          "#c11044"
+        ],
+        "image": "assets/previews/art-nails-tornasol.jpg",
+        "url": "demos/art-nails-tornasol/index.html"
+      },
+      {
+        "id": "art-nails-vibrante",
+        "label": "Fucsia & Turquesa",
+        "colors": [
+          "#a00957",
+          "#f769bb",
+          "#08bbd6",
+          "#b6dc00"
+        ],
+        "image": "assets/previews/art-nails-vibrante.jpg",
+        "url": "demos/art-nails-vibrante/index.html"
+      },
+      {
+        "id": "art-nails-tropical",
+        "label": "Tropical",
+        "colors": [
+          "#0f6cd4",
+          "#299675",
+          "#d2d83b",
+          "#ffa726"
+        ],
+        "image": "assets/previews/art-nails-tropical.jpg",
+        "url": "demos/art-nails-tropical/index.html"
+      }
+    ],
+    "rubro": "Uñas y estética"
+  },
+  {
+    "id": "barberia",
+    "name": "Peluquería y barbería",
+    "category": "PELUQUERÍA Y BARBERÍA",
+    "description": "Un mismo rubro, cuatro estilos para elegir.",
+    "variants": [
+      {
+        "id": "barberia-turquesa",
+        "label": "Turquesa",
+        "colors": [
+          "#092d33",
+          "#087f8c",
+          "#ffe35b",
+          "#f3f4ec"
+        ],
+        "image": "assets/previews/barberia-turquesa.jpg",
+        "url": "demos/barberia-turquesa/index.html"
+      },
+      {
+        "id": "barberia-verde",
+        "label": "Verde",
+        "colors": [
+          "#0e4937",
+          "#fbe9d1",
+          "#ff5d00",
+          "#72bf00"
+        ],
+        "image": "assets/previews/barberia-verde.jpg",
+        "url": "demos/barberia-verde/index.html"
+      },
+      {
+        "id": "barberia-azul",
+        "label": "Azul & Lino",
+        "colors": [
+          "#1664b0",
+          "#efe8de",
+          "#d21624"
+        ],
+        "image": "assets/previews/barberia-azul.jpg",
+        "url": "demos/barberia-azul/index.html"
+      },
+      {
+        "id": "proceres-barberia",
+        "label": "Negro & Dorado",
+        "colors": [
+          "#151614",
+          "#f2cd65",
+          "#f6f4ec"
+        ],
+        "image": "assets/previews/proceres-barberia.jpg",
+        "url": "demos/proceres-barberia/index.html"
+      }
+    ],
+    "rubro": "Peluquería y barbería"
+  },
+  {
+    "id": "buen-rato",
+    "name": "Buen Rato Café",
+    "category": "CAFÉ & GASTRONOMÍA",
+    "description": "Cuatro paletas para disfrutar un café de barrio.",
+    "variants": [
+      {
+        "id": "buen-rato-cafe-azul",
+        "label": "Azul & Marfil",
+        "colors": [
+          "#24345d",
+          "#f5f1e9",
+          "#d8b45e"
+        ],
+        "image": "assets/previews/buen-rato-cafe-azul.jpg",
+        "url": "demos/buen-rato-cafe-azul/index.html"
+      },
+      {
+        "id": "buen-rato-cafe",
+        "label": "Verde & Arena",
+        "colors": [
+          "#002724",
+          "#0B5145",
+          "#B78E65",
+          "#F3E8DB"
+        ],
+        "image": "assets/previews/buen-rato-cafe.jpg",
+        "url": "demos/buen-rato-cafe/index.html"
+      },
+      {
+        "id": "buen-rato-cafe-bosque",
+        "label": "Bosque",
+        "colors": [
+          "#0A5A2A",
+          "#E67816",
+          "#2B2B2B",
+          "#F7F5EC"
+        ],
+        "image": "assets/previews/buen-rato-cafe-bosque.jpg",
+        "url": "demos/buen-rato-cafe-bosque/index.html"
+      },
+      {
+        "id": "buen-rato-cafe-tierra",
+        "label": "Tierra",
+        "colors": [
+          "#263B2B",
+          "#A45832",
+          "#E8D7BB",
+          "#CDD1AC"
+        ],
+        "image": "assets/previews/buen-rato-cafe-tierra.jpg",
+        "url": "demos/buen-rato-cafe-tierra/index.html"
+      }
+    ],
+    "rubro": "Café y gastronomía"
+  },
+  {
+    "id": "ink-house-neon",
+    "name": "Ink House",
+    "category": "TATUAJES & ARTE CORPORAL",
+    "description": "Tinta, color y una identidad que se hace notar.",
+    "variants": [
+      {
+        "id": "ink-house-neon",
+        "label": "Neón",
+        "colors": [
+          "#0B0F2B",
+          "#FF5CA8",
+          "#00F0FF",
+          "#BC6CFF"
+        ],
+        "image": "assets/previews/ink-house-neon.jpg",
+        "url": "demos/ink-house-neon/index.html"
+      },
+      {
+        "id": "ink-house-classic",
+        "label": "Clásico",
+        "colors": [
+          "#202124",
+          "#B51527",
+          "#D7D3CB",
+          "#F5F3EF"
+        ],
+        "image": "assets/previews/ink-house-classic.jpg",
+        "url": "demos/ink-house-classic/index.html"
+      },
+      {
+        "id": "ink-house",
+        "label": "Original",
+        "colors": [
+          "#F6F1E8",
+          "#C65F4B",
+          "#276B6C",
+          "#262625"
+        ],
+        "image": "assets/previews/ink-house.jpg",
+        "url": "demos/ink-house/index.html"
+      },
+      {
+        "id": "ink-house-oxide",
+        "label": "Oxide",
+        "colors": [
+          "#0B1014",
+          "#EE690B",
+          "#2E3E4B",
+          "#BBD3EB"
+        ],
+        "image": "assets/previews/ink-house-oxide.jpg",
+        "url": "demos/ink-house-oxide/index.html"
+      }
+    ],
+    "rubro": "Tatuajes"
+  },
+  {
+    "id": "aluna-pilates",
+    "name": "Aluna Pilates",
+    "category": "PILATES & BIENESTAR",
+    "description": "Un espacio para el movimiento y la calma.",
+    "variants": [
+      {
+        "id": "aluna-pilates",
+        "label": "Verde & Marfil",
+        "colors": [
+          "#294D42",
+          "#F5F1E8",
+          "#91A88C",
+          "#D8C7AC"
+        ],
+        "image": "assets/previews/aluna-pilates.jpg",
+        "url": "demos/aluna-pilates/index.html"
+      },
+      {
+        "id": "aluna-pilates-blossom",
+        "label": "Blossom",
+        "colors": [
+          "#0D3A5C",
+          "#F7A8C1",
+          "#C8D24A",
+          "#FFFCFD"
+        ],
+        "image": "assets/previews/aluna-pilates-blossom.jpg",
+        "url": "demos/aluna-pilates-blossom/index.html"
+      },
+      {
+        "id": "aluna-pilates-delft",
+        "label": "Delft",
+        "colors": [
+          "#0033A0",
+          "#FAFAFA",
+          "#FF8200",
+          "#4B6F44"
+        ],
+        "image": "assets/previews/aluna-pilates-delft.jpg",
+        "url": "demos/aluna-pilates-delft/index.html"
+      },
+      {
+        "id": "aluna-pilates-arcade",
+        "label": "Arcade",
+        "colors": [
+          "#07329B",
+          "#ED0F87",
+          "#E18EE5",
+          "#1BB5FD"
+        ],
+        "image": "assets/previews/aluna-pilates-arcade.jpg",
+        "url": "demos/aluna-pilates-arcade/index.html"
+      }
+    ],
+    "rubro": "Pilates y bienestar"
+  },
+  {
+    "id": "habitacion-antipanico",
+    "name": "Habitación Antipánico",
+    "category": "ARQUITECTURA & SEGURIDAD",
+    "description": "Arquitectura que cuida, con cuatro identidades para explorar.",
+    "variants": [
+      {
+        "id": "habitacion-antipanico-petroleo",
+        "label": "Petróleo",
+        "colors": [
+          "#133640",
+          "#0D7F97",
+          "#C65A18",
+          "#EAF1F4"
+        ],
+        "image": "assets/previews/habitacion-antipanico-petroleo.jpg",
+        "url": "demos/habitacion-antipanico-petroleo/index.html"
+      },
+      {
+        "id": "habitacion-antipanico",
+        "label": "Original",
+        "colors": [
+          "#0C354D",
+          "#0DA797",
+          "#FCA311",
+          "#EAF1F4"
+        ],
+        "image": "assets/previews/habitacion-antipanico.jpg",
+        "url": "demos/habitacion-antipanico/index.html"
+      },
+      {
+        "id": "habitacion-antipanico-dorado",
+        "label": "Dorado",
+        "colors": [
+          "#050A30",
+          "#785D32",
+          "#E8D9C4",
+          "#FFFAF2"
+        ],
+        "image": "assets/previews/habitacion-antipanico-dorado.jpg",
+        "url": "demos/habitacion-antipanico-dorado/index.html"
+      },
+      {
+        "id": "habitacion-antipanico-cobre",
+        "label": "Cobre",
+        "colors": [
+          "#162334",
+          "#9A5A36",
+          "#D7DDE2",
+          "#FAFBFC"
+        ],
+        "image": "assets/previews/habitacion-antipanico-cobre.jpg",
+        "url": "demos/habitacion-antipanico-cobre/index.html"
+      }
+    ],
+    "rubro": "Arquitectura y seguridad"
+  },
+  {
+    "id": "watorii",
+    "name": "Watorii",
+    "category": "PARRILLAS & QUINCHOS",
+    "description": "Diseño en fierro para disfrutar alrededor del fuego.",
+    "variants": [
+      {
+        "id": "watorii-parrillas",
+        "label": "Original",
+        "colors": [
+          "#162334",
+          "#9A5A36",
+          "#D7DDE2",
+          "#FAFBFC"
+        ],
+        "image": "assets/previews/watorii-parrillas.jpg",
+        "url": "demos/watorii-parrillas/index.html"
+      },
+      {
+        "id": "watorii-turquesa",
+        "label": "Turquesa",
+        "colors": [
+          "#0C354D",
+          "#0DA797",
+          "#C54B20",
+          "#F9DEB2"
+        ],
+        "image": "assets/previews/watorii-turquesa.jpg",
+        "url": "demos/watorii-turquesa/index.html"
+      }
+    ],
+    "rubro": "Parrillas y quinchos"
+  },
+  {
+    "id": "clinica-veterinaria",
+    "name": "Clínica veterinaria",
+    "category": "VETERINARIA & MASCOTAS",
+    "description": "Cuatro paletas para cuidar cada detalle.",
+    "variants": [
+      {
+        "id": "clinica-veterinaria-demo",
+        "label": "Original",
+        "colors": [
+          "#363636",
+          "#F58F1F",
+          "#457534",
+          "#FFFFFF"
+        ],
+        "image": "assets/previews/clinica-veterinaria-demo.jpg",
+        "url": "demos/clinica-veterinaria-demo/index.html"
+      },
+      {
+        "id": "clinica-veterinaria-tropical",
+        "label": "Tropical",
+        "colors": [
+          "#0F6CD4",
+          "#299675",
+          "#D2D83B",
+          "#FFA726"
+        ],
+        "image": "assets/previews/clinica-veterinaria-tropical.jpg",
+        "url": "demos/clinica-veterinaria-tropical/index.html"
+      },
+      {
+        "id": "clinica-veterinaria-azul-dorado",
+        "label": "Azul & Dorado",
+        "colors": [
+          "#182B49",
+          "#D4AF37",
+          "#FFFFFF"
+        ],
+        "image": "assets/previews/clinica-veterinaria-azul-dorado.jpg",
+        "url": "demos/clinica-veterinaria-azul-dorado/index.html"
+      },
+      {
+        "id": "clinica-veterinaria-petroleo",
+        "label": "Petróleo",
+        "colors": [
+          "#083A4F",
+          "#A58D66",
+          "#407E8C",
+          "#C0D5D6"
+        ],
+        "image": "assets/previews/clinica-veterinaria-petroleo.jpg",
+        "url": "demos/clinica-veterinaria-petroleo/index.html"
+      }
+    ],
+    "rubro": "Veterinaria y mascotas"
+  }
+]
