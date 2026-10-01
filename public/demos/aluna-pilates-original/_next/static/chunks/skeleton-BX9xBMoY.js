@@ -1,0 +1,1 @@
+import{r as e}from"./framework-D_rUT4EX.js";import{o as t}from"./client-Ei0U3ChI.js";var n=e();function r({className:e,...r}){return(0,n.jsx)(`div`,{"data-slot":`skeleton`,className:t(`animate-pulse rounded-md bg-accent`,e),...r})}export{r as t};

@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, resolve, sep } from "node:path";
 
 const [originArg, slug, family, variant] = process.argv.slice(2);
@@ -159,4 +159,19 @@ while (assetQueue.length) {
   }
 }
 
-console.log(`${slug}: ${seenPages.size} páginas, ${seenAssets.size} recursos`);
+// A new build gives content-hashed chunks new names. Remove only obsolete
+// JavaScript chunks from this demo after every current asset was fetched.
+const chunksDirectory = ensureInsideDestination(join(destination, "_next", "static", "chunks"));
+const currentChunks = new Set(
+  [...seenAssets]
+    .filter((pathname) => pathname.startsWith("/_next/static/chunks/"))
+    .map((pathname) => decodeURIComponent(pathname).replace(/^\/_next\/static\/chunks\//, "")),
+);
+let removedChunks = 0;
+for (const entry of readdirSync(chunksDirectory, { withFileTypes: true })) {
+  if (!entry.isFile() || currentChunks.has(entry.name)) continue;
+  unlinkSync(ensureInsideDestination(join(chunksDirectory, entry.name)));
+  removedChunks += 1;
+}
+
+console.log(`${slug}: ${seenPages.size} páginas, ${seenAssets.size} recursos, ${removedChunks} chunks obsoletos eliminados`);

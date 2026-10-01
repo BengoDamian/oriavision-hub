@@ -39,6 +39,12 @@ socket.addEventListener("message", (event) => {
     const details = message.params.exceptionDetails;
     navigationErrors.push(details.exception?.description || details.text || "runtime exception");
   }
+  if (message.method === "Runtime.consoleAPICalled" && ["error", "warning"].includes(message.params.type)) {
+    const rendered = message.params.args
+      .map((arg) => arg.value ?? arg.description ?? arg.type)
+      .join(" ");
+    navigationErrors.push(`console.${message.params.type}: ${rendered}`);
+  }
   if (message.method === "Network.responseReceived" && message.params.response.status >= 400) {
     const url = message.params.response.url;
     if (!url.endsWith("/favicon.ico")) navigationErrors.push(`${message.params.response.status} ${url}`);
@@ -66,7 +72,7 @@ async function navigate(url, width, reload = false) {
   await call("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: false });
   if (reload) await call("Page.reload", { ignoreCache: true });
   else await call("Page.navigate", { url });
-  await new Promise((resolveWait) => setTimeout(resolveWait, 450));
+  await new Promise((resolveWait) => setTimeout(resolveWait, 700));
   const metrics = await evaluate(`(() => ({
     title: document.title,
     bodyText: (document.body?.innerText || '').trim().length,
@@ -119,6 +125,10 @@ function findFormPage(slug) {
 const problems = [];
 const checked = [];
 const warnings = [];
+const hydrationSlugs = new Set([
+  "aluna-pilates-original", "aluna-pilates-arcade", "aluna-pilates-blossom", "aluna-pilates-delft",
+  "barberia-proceres", "barberia-azul", "barberia-turquesa", "barberia-verde",
+]);
 for (const width of [1440, 390, 360]) {
   for (const slug of slugs) {
     const url = `${baseUrl}/demos/${slug}/`;
@@ -131,12 +141,7 @@ for (const width of [1440, 390, 360]) {
     if (metrics?.badContacts.length) problems.push(`${slug}@${width}: contacto externo ${metrics.badContacts.join(",")}`);
     if (metrics?.adminLinks.length) problems.push(`${slug}@${width}: enlace administrativo publico ${metrics.adminLinks.join(",")}`);
     if (metrics?.incompleteWhatsapp.length) problems.push(`${slug}@${width}: mensaje de WhatsApp incompleto`);
-    const expectedHydrationRecovery = errors.filter((error) =>
-      /^(?:aluna-pilates|barberia)-/.test(slug) && /Minified React error #418/.test(error),
-    );
-    const blockingErrors = errors.filter((error) => !expectedHydrationRecovery.includes(error));
-    if (expectedHydrationRecovery.length) warnings.push(`${slug}@${width}: React regeneró el árbol hidratado`);
-    if (blockingErrors.length) problems.push(`${slug}@${width}: ${blockingErrors.join(" | ")}`);
+    if (errors.length) problems.push(`${slug}@${width}: ${errors.join(" | ")}`);
     if (width === 390) {
       const menu = await evaluate(`(() => {
         const button = document.querySelector('[aria-controls="main-menu"]');
@@ -160,13 +165,50 @@ for (const slug of slugs) {
   if (internal) {
     const first = await navigate(`${baseUrl}${internal}`, 1280);
     if (!first.metrics || first.metrics.bodyText < 200 || first.metrics.brokenImages.length) problems.push(`${slug}: página interna inválida ${internal}`);
+    if (hydrationSlugs.has(slug) && first.errors.length) problems.push(`${slug}: página interna produjo ${first.errors.join(" | ")}`);
     const second = await navigate(`${baseUrl}${internal}`, 1280, true);
     if (!second.metrics || second.metrics.title !== first.metrics.title) problems.push(`${slug}: recarga interna inestable ${internal}`);
+    if (hydrationSlugs.has(slug) && second.errors.length) problems.push(`${slug}: recarga interna produjo ${second.errors.join(" | ")}`);
+  }
+
+  if (hydrationSlugs.has(slug) && internal) {
+    const rootUrl = `${baseUrl}/demos/${slug}/`;
+    await navigate(rootUrl, 1280);
+    const reloaded = await navigate(rootUrl, 1280, true);
+    if (!reloaded.metrics || reloaded.errors.length) {
+      problems.push(`${slug}: recarga de portada inestable${reloaded.errors.length ? ` (${reloaded.errors.join(" | ")})` : ""}`);
+    }
+
+    await navigate(rootUrl, 1280);
+    const clicked = await evaluate(`(() => {
+      const normalized = (path) => path.endsWith('/') ? path.slice(0, -1) : path;
+      const expected = normalized(${JSON.stringify(internal)});
+      const link = [...document.querySelectorAll('a[href]')].find((anchor) => normalized(new URL(anchor.href).pathname) === expected);
+      if (!link) return false;
+      link.click();
+      return true;
+    })()`);
+    if (!clicked) problems.push(`${slug}: no se encontró enlace interno a ${internal}`);
+    else {
+      await new Promise((resolveWait) => setTimeout(resolveWait, 450));
+      const arrived = await evaluate("location.pathname");
+      if (arrived.replace(/\/$/, "") !== internal.replace(/\/$/, "")) problems.push(`${slug}: navegación por enlace falló (${arrived})`);
+      await evaluate("history.back()");
+      await new Promise((resolveWait) => setTimeout(resolveWait, 450));
+      const backed = await evaluate("location.pathname");
+      if (backed !== `/demos/${slug}/`) problems.push(`${slug}: Atrás falló (${backed})`);
+      await evaluate("history.forward()");
+      await new Promise((resolveWait) => setTimeout(resolveWait, 450));
+      const forwarded = await evaluate("location.pathname");
+      if (forwarded.replace(/\/$/, "") !== internal.replace(/\/$/, "")) problems.push(`${slug}: Adelante falló (${forwarded})`);
+      if (navigationErrors.length) problems.push(`${slug}: historial produjo ${navigationErrors.join(" | ")}`);
+    }
   }
 
   const formPage = findFormPage(slug);
   if (formPage) {
-    await navigate(`${baseUrl}${formPage}`, 1280);
+    const formNavigation = await navigate(`${baseUrl}${formPage}`, 1280);
+    if (hydrationSlugs.has(slug) && formNavigation.errors.length) problems.push(`${slug}: formulario produjo ${formNavigation.errors.join(" | ")}`);
     const simulated = await evaluate(`(() => {
       const form = document.querySelector('form');
       if (!form) return false;
