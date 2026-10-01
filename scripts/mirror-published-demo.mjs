@@ -96,7 +96,7 @@ function rewriteHtml(html, pathname) {
   // Adding a new script node before hydration makes React reject the document
   // in some Vinext builds. Reuse the load event of an existing module and add
   // the host behavior after hydration has started instead.
-  const loader = `setTimeout(()=>{const s=document.createElement("script");s.src="/demos/demo-host.js";s.dataset.root=${JSON.stringify(basePath)};s.dataset.family=${JSON.stringify(family)};s.dataset.variant=${JSON.stringify(variant)};document.body.appendChild(s)},250)`;
+  const loader = `setTimeout(()=>{const s=document.createElement("script");s.src="/demos/demo-host.js";s.dataset.root=${JSON.stringify(basePath)};s.dataset.family=${JSON.stringify(family)};s.dataset.variant=${JSON.stringify(variant)};document.head.appendChild(s)},250)`;
   const escapedLoader = loader.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
   next = next.replace(
     /(<script\b[^>]*\bsrc=["'][^"']*\/_next\/static\/chunks\/[^"']+["'][^>]*)(>)/i,
