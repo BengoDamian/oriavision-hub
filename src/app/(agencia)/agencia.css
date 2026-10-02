@@ -208,6 +208,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .footer-nav{flex-wrap:wrap}
 .page-intro{background:#0a4531;color:#fff;padding:32px 0 53px;border-bottom:4px solid #da9928}
 .back-link{display:inline-block;color:#fff;font-size:.875rem;margin-bottom:28px;border-bottom:1px solid #ffffff50}
+.breadcrumbs{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:28px;color:#dce9e1;font-size:.875rem}
+.breadcrumbs>span{display:flex;align-items:center;gap:7px}
+.breadcrumbs a{border-bottom:1px solid #ffffff50;transition:border-color .16s,color .16s}
+.breadcrumbs a:hover{color:#fff;border-color:#fff}
+.breadcrumbs [aria-current="page"]{color:#efc273;font-weight:750}
 .page-intro .eyebrow{color:#e5af4b}
 .page-intro h1{font-size:clamp(2.45rem,5vw,4.4rem);line-height:1.12;letter-spacing:-.05em;margin:18px 0 20px;max-width:950px}
 .page-intro>div>p{max-width:720px;margin:0;font-size:1.125rem;line-height:1.8;color:#e9f1ed}
@@ -222,6 +227,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .catalog-toolbar select:focus-visible{outline:3px solid #da9928;outline-offset:3px}
 .catalog-toolbar p{font-size:.9375rem;color:#494949;margin:0 0 10px}
 .demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}
+.demo-grid[data-stack="true"] .demo-card-palette{position:sticky;top:calc(var(--catalog-sticky-top,106px) + var(--stack-offset,0px));box-shadow:0 8px 0 #e8eee9,0 18px 34px #0a45311c}
+.demo-grid[data-stack="true"] .demo-card-palette:focus-within{z-index:20!important}
 .demo-card{display:flex;flex-direction:column;border:1px solid #d8dfdb;border-radius:9px;padding:20px;background:#fff;min-width:0;box-shadow:0 6px 0 #f0f4f2}
 .demo-preview{position:relative;aspect-ratio:3/2;overflow:hidden;border:1px solid #ccd8d1;border-radius:6px;background:#eef3ef}
 .demo-preview img{width:100%;height:100%;object-fit:cover;object-position:top center}
@@ -325,7 +332,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .palette-option{min-height:56px;padding:9px 8px;gap:7px}
  .palette-option-swatches span{width:11px;height:11px}
  .palette-option-name{font-size:.875rem}
- .palette-actions{grid-template-columns:1fr}
+ .palette-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
  .rubro-grid{grid-template-columns:1fr}
  .rubro-card{gap:12px;padding:23px 0;grid-template-columns:26px 1fr 23px}
  .rubro-other{display:block;margin-top:27px}
@@ -427,6 +434,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .page-intro h1{font-size:clamp(2.25rem,4.3vw,3.8rem);margin:14px 0 15px}
 .page-intro>div>p{font-size:1.0625rem;line-height:1.7}
 .back-link{margin-bottom:22px}
+.breadcrumbs{margin-bottom:22px}
 .catalog-section,.rubros-section{padding:38px 0 52px}
 .catalog-toolbar{align-items:center;padding-bottom:19px;margin-bottom:19px}
 .catalog-toolbar select{min-height:46px;padding-block:10px}
@@ -488,6 +496,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .page-intro h1{font-size:2.35rem;margin-block:12px}
  .page-intro>div>p{font-size:.9375rem;line-height:1.65}
  .back-link{margin-bottom:18px}
+ .breadcrumbs{margin-bottom:18px;font-size:.8125rem}
  .catalog-section,.rubros-section{padding:26px 0 38px}
  .catalog-toolbar{padding-bottom:16px;margin-bottom:15px}
  .catalog-toolbar p{margin-top:12px}
@@ -506,7 +515,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .palette-option-swatches span{width:10px;height:10px}
  .palette-option-name{font-size:.875rem;line-height:1.2;overflow-wrap:normal}
  .palette-actions{gap:9px}
- .demo-card .btn{min-height:46px;padding:12px 14px}
+ .palette-actions .btn{min-width:0;min-height:46px;padding:10px 7px;gap:6px;font-size:clamp(.75rem,3.35vw,.875rem);white-space:nowrap}
+ .palette-actions .btn svg{width:16px;height:16px}
  .catalog-note{margin-top:18px;font-size:.875rem}
  .rubro-grid{grid-template-columns:1fr;gap:12px}
  .rubro-card{display:grid;grid-template-columns:38% 62%;min-height:142px}
@@ -517,3 +527,5 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
  .rubro-card-copy small{margin-top:7px;font-size:.6875rem}
  .rubro-other{margin-top:23px}
 }
+@media(max-height:640px){.demo-grid[data-stack="true"] .demo-card-palette{position:relative;top:auto;z-index:auto}}
+@media(prefers-reduced-motion:reduce){.demo-grid[data-stack="true"] .demo-card-palette{scroll-behavior:auto}.breadcrumbs a{transition:none}}

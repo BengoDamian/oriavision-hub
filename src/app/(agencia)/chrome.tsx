@@ -125,7 +125,7 @@ function SiteFooter() {
           <nav className="footer-nav" aria-label="Navegación del pie">
             <a href="/#servicios">Servicios</a>
             <a href="/proyectos/">Proyectos</a>
-            <a href="/inspiracion/">Inspiración</a>
+            <a href="/inspiracion/">Explorar rubros</a>
             <a href="/rubros/">Rubros</a>
             <a href="/#contacto">Contacto</a>
           </nav>
@@ -164,13 +164,40 @@ export function AgencyPage({ children, home = false }: { children: React.ReactNo
 }
 
 /** Encabezado verde de las páginas internas (Proyectos, Inspiración, Rubros). */
-export function PageIntro({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
+type Breadcrumb = { href?: string; label: string };
+
+export function PageIntro({
+  eyebrow,
+  title,
+  text,
+  breadcrumbs,
+}: {
+  eyebrow: string;
+  title: string;
+  text: string;
+  breadcrumbs?: Breadcrumb[];
+}) {
   return (
     <section className="page-intro">
       <div className="wrap">
-        <a className="back-link" href="/">
-          ← Volver al inicio
-        </a>
+        {breadcrumbs ? (
+          <nav className="breadcrumbs" aria-label="Migas de pan">
+            {breadcrumbs.map((item, index) => (
+              <span key={item.label}>
+                {index > 0 ? <span aria-hidden="true">/</span> : null}
+                {item.href ? (
+                  <a href={item.href}>{item.label}</a>
+                ) : (
+                  <span aria-current="page">{item.label}</span>
+                )}
+              </span>
+            ))}
+          </nav>
+        ) : (
+          <a className="back-link" href="/">
+            ← Volver al inicio
+          </a>
+        )}
         <div className="eyebrow">{eyebrow}</div>
         <h1>{title}</h1>
         <p>{text}</p>

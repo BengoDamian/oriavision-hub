@@ -54,7 +54,7 @@ export default function AgencyHeader() {
             Proyectos
           </a>
           <a href="/inspiracion/" onClick={close}>
-            Inspiración
+            Explorar rubros
           </a>
           <a href="/rubros/" onClick={close}>
             Rubros

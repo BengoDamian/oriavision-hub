@@ -3,18 +3,23 @@ import SampleCatalog from "./SampleCatalog";
 
 export const metadata = pageMetadata({
   path: "/inspiracion/",
-  title: "Inspiración para tu sitio · ORIAVISION",
+  title: "Explorar rubros · ORIAVISION",
   description:
-    "Explorá diseños web personalizables para uñas y belleza, barberías, cafeterías, bienestar, tatuajes, arquitectura, seguridad y veterinarias.",
+    "Elegí tu rubro y explorá diseños web personalizables para uñas y belleza, barberías, cafeterías, bienestar, tatuajes, arquitectura, seguridad y veterinarias.",
 });
 
 export default function InspiracionPage() {
   return (
     <AgencyPage>
       <PageIntro
-        eyebrow="Propuestas de muestra"
-        title="Inspiración para tu sitio."
-        text="Explorá distintos estilos. Son diseños de muestra, personalizables con tu nombre, tu contenido y las funciones de tu negocio."
+        eyebrow="Diseños por actividad"
+        title="Explorar rubros"
+        text="Elegí un rubro y explorá sus diseños. Cada propuesta se puede personalizar con tu nombre, tu contenido y las funciones de tu negocio."
+        breadcrumbs={[
+          { href: "/", label: "Inicio" },
+          { href: "/rubros/", label: "Rubros" },
+          { label: "Explorar rubros" },
+        ]}
       />
       <section className="catalog-section">
         <div className="wrap">

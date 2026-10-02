@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { RUBROS, SAMPLE_FAMILIES, SAMPLES, type Sample } from "../samples";
 import { waLink } from "../shared";
 
@@ -22,10 +22,12 @@ function PaletteBlock({
   number,
   title,
   samples,
+  stackIndex,
 }: {
   number: number;
   title: string;
   samples: Sample[];
+  stackIndex: number;
 }) {
   const [selectedHref, setSelectedHref] = useState(samples[0].href);
   const selected =
@@ -35,7 +37,16 @@ function PaletteBlock({
     `variante ${selected.variant}. Vi este diseño: ${selected.href}`;
 
   return (
-    <article className="demo-card demo-card-palette" data-rubro={selected.rubro}>
+    <article
+      className="demo-card demo-card-palette"
+      data-rubro={selected.rubro}
+      style={
+        {
+          "--stack-offset": `${stackIndex * 7}px`,
+          zIndex: stackIndex + 1,
+        } as CSSProperties
+      }
+    >
       <div className="palette-layout">
         <div
           className="demo-preview palette-preview"
@@ -115,7 +126,7 @@ function PaletteBlock({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Explorar diseño</span>
+              <span>Ver diseño</span>
               <svg aria-hidden="true">
                 <use href="#external" />
               </svg>
@@ -126,7 +137,7 @@ function PaletteBlock({
               aria-disabled="true"
               title="La demo todavía requiere publicación pública"
             >
-              <span>Exploración pendiente</span>
+              <span>Ver diseño</span>
             </span>
           )}
           <a
@@ -135,7 +146,7 @@ function PaletteBlock({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>Quiero este diseño</span>
+            <span>Quiero uno así</span>
             <svg aria-hidden="true">
               <use href="#arrow" />
             </svg>
@@ -149,6 +160,8 @@ function PaletteBlock({
 /** Catálogo de muestras con filtro por rubro y selectores de variantes. */
 export default function SampleCatalog() {
   const [filter, setFilter] = useState<Filter>("todos");
+  const [stackEnabled, setStackEnabled] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const value =
@@ -177,6 +190,41 @@ export default function SampleCatalog() {
     ),
   })).filter((family) => family.samples.length > 0);
 
+  useEffect(() => {
+    const grid = gridRef.current;
+    const header = document.querySelector<HTMLElement>(".site-header");
+    if (!grid || visibleFamilies.length <= 1) {
+      setStackEnabled(false);
+      return;
+    }
+
+    const cards = Array.from(
+      grid.querySelectorAll<HTMLElement>(".demo-card-palette"),
+    );
+    const updateStack = () => {
+      const headerHeight = header?.getBoundingClientRect().height ?? 0;
+      const stickyTop = Math.ceil(headerHeight + 12);
+      const availableHeight = window.innerHeight - stickyTop - 24;
+      const cardsFit = cards.every(
+        (card) => card.getBoundingClientRect().height <= availableHeight,
+      );
+
+      grid.style.setProperty("--catalog-sticky-top", `${stickyTop}px`);
+      setStackEnabled(cardsFit);
+    };
+
+    updateStack();
+    const observer = new ResizeObserver(updateStack);
+    cards.forEach((card) => observer.observe(card));
+    if (header) observer.observe(header);
+    window.addEventListener("resize", updateStack);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateStack);
+    };
+  }, [filter, visibleFamilies.length]);
+
   return (
     <>
       <div className="catalog-toolbar">
@@ -202,12 +250,17 @@ export default function SampleCatalog() {
         </p>
       </div>
 
-      <div className="demo-grid">
-        {visibleFamilies.map((family) => (
+      <div
+        className="demo-grid"
+        data-stack={stackEnabled ? "true" : "false"}
+        ref={gridRef}
+      >
+        {visibleFamilies.map((family, stackIndex) => (
           <PaletteBlock
             number={family.number}
             title={family.title}
             samples={family.samples}
+            stackIndex={stackIndex}
             key={family.id}
           />
         ))}
