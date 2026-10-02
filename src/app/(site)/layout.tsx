@@ -87,8 +87,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 <nav className="footer-nav" aria-label="Navegación del pie">
                   <a href="/#servicios">Servicios</a>
                   <a href="/proyectos/">Proyectos</a>
-                  <a href="/inspiracion/">Explorar rubros</a>
-                  <a href="/rubros/">Rubros</a>
+                  <a href="/rubros/">Explorar rubros</a>
                   <a href="/#contacto">Contacto</a>
                 </nav>
               </div>

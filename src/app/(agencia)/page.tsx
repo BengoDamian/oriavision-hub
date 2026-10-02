@@ -286,13 +286,13 @@ export default function Home() {
               <h2 id="home-rubros-title">Un punto de partida para tu actividad.</h2>
             </div>
             <a className="btn" href="/rubros/">
-              <span>Ver rubros</span>
+              <span>Explorar rubros</span>
               <Arrow />
             </a>
           </div>
           <nav className="home-rubro-grid" aria-label="Resumen de rubros disponibles">
             {RUBRO_SUMMARY.map((rubro, index) => (
-              <a href={`/inspiracion/?rubro=${rubro.id}`} key={rubro.id}>
+              <a href={`/rubros/?rubro=${rubro.id}`} key={rubro.id}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{rubro.name}</strong>
                 <small>

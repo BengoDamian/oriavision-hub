@@ -44,12 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/inspiracion/`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
       url: `${SITE_URL}/rubros/`,
       lastModified: now,
       changeFrequency: "monthly" as const,

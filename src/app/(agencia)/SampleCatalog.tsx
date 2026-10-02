@@ -1,12 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { RUBROS, SAMPLE_FAMILIES, SAMPLES, type Sample } from "../samples";
-import { waLink } from "../shared";
+import { RUBROS, SAMPLE_FAMILIES, SAMPLES, type Sample } from "./samples";
+import { waLink } from "./shared";
 
 type Filter = "todos" | (typeof RUBROS)[number]["id"];
 
 const KNOWN = ["todos", ...RUBROS.map((rubro) => rubro.id)];
+
+function getFilterFromLocation(): Filter {
+  const value =
+    new URLSearchParams(window.location.search).get("rubro") ?? "todos";
+  return (KNOWN.includes(value) ? value : "todos") as Filter;
+}
 
 function VariantSwatches({ sample }: { sample: Sample }) {
   return (
@@ -164,9 +170,11 @@ export default function SampleCatalog() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const value =
-      new URLSearchParams(window.location.search).get("rubro") ?? "todos";
-    setFilter((KNOWN.includes(value) ? value : "todos") as Filter);
+    const syncFilter = () => setFilter(getFilterFromLocation());
+
+    syncFilter();
+    window.addEventListener("popstate", syncFilter);
+    return () => window.removeEventListener("popstate", syncFilter);
   }, []);
 
   const change = (value: Filter) => {
@@ -174,7 +182,9 @@ export default function SampleCatalog() {
     const url = new URL(window.location.href);
     if (value === "todos") url.searchParams.delete("rubro");
     else url.searchParams.set("rubro", value);
-    window.history.replaceState(null, "", url);
+    if (url.href !== window.location.href) {
+      window.history.pushState(null, "", url);
+    }
   };
 
   const visible = SAMPLES.filter(
@@ -229,7 +239,7 @@ export default function SampleCatalog() {
     <>
       <div className="catalog-toolbar">
         <div>
-          <label htmlFor="rubro-filter">Filtrar por rubro</label>
+          <label htmlFor="rubro-filter">Elegí un rubro</label>
           <select
             id="rubro-filter"
             value={filter}

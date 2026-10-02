@@ -1,60 +1,32 @@
-import { AgencyPage, Arrow, EXT, PageIntro, pageMetadata } from "../chrome";
-import { RUBROS, SAMPLES } from "../samples";
-import { waLink } from "../shared";
+import { AgencyPage, PageIntro, pageMetadata } from "../chrome";
+import SampleCatalog from "../SampleCatalog";
 
 export const metadata = pageMetadata({
   path: "/rubros/",
-  title: "Sitios web por rubro · ORIAVISION",
+  title: "Explorar rubros · ORIAVISION",
   description:
-    "Ideas de diseño web para uñas y belleza, barberías y peluquerías, cafeterías y gastronomía, bienestar, tatuajes, arquitectura, seguridad, parrillas, herrería y veterinarias.",
+    "Elegí tu rubro y explorá diseños web personalizables para uñas y belleza, barberías, cafeterías, bienestar, tatuajes, arquitectura, seguridad y veterinarias.",
 });
 
 export default function RubrosPage() {
   return (
     <AgencyPage>
       <PageIntro
-        eyebrow="Tu actividad, tu punto de partida"
-        title="Buscá por rubro."
-        text="Cada actividad necesita contar algo diferente. Elegí la tuya para explorar propuestas y pensar qué debería resolver tu web."
+        eyebrow="Diseños por actividad"
+        title="Explorar rubros"
+        text="Elegí un rubro y explorá sus diseños. Cada propuesta se puede personalizar con tu nombre, tu contenido y las funciones de tu negocio."
+        breadcrumbs={[
+          { href: "/", label: "Inicio" },
+          { label: "Explorar rubros" },
+        ]}
       />
-      <section className="rubros-section">
+      <section className="catalog-section">
         <div className="wrap">
-          <div className="rubro-grid">
-            {RUBROS.map((r, i) => {
-              const variants = SAMPLES.filter((sample) => sample.rubro === r.id);
-              const preview = variants[0];
-
-              return (
-                <a className="rubro-card" href={`/inspiracion/?rubro=${r.id}`} key={r.id}>
-                  <div className="rubro-card-preview">
-                    <img src={preview.preview} alt="" loading="lazy" decoding="async" />
-                  </div>
-                  <div className="rubro-card-copy">
-                    <span className="rubro-num">{String(i + 1).padStart(2, "0")}</span>
-                    <div>
-                      <h2>{r.name}</h2>
-                      <p>{r.text}</p>
-                      <small>
-                        {variants.length} {variants.length === 1 ? "diseño" : "diseños"}
-                      </small>
-                    </div>
-                    <Arrow />
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-          <div className="rubro-other">
-            <p>¿Tu actividad no está en la lista? Podemos desarrollar una propuesta para vos.</p>
-            <a
-              className="btn btn-dark"
-              href={waLink("Mi rubro no está en el catálogo. Quiero conversar sobre mi sitio.")}
-              {...EXT}
-            >
-              <span>Contanos qué hacés</span>
-              <Arrow />
-            </a>
-          </div>
+          <SampleCatalog />
+          <p className="catalog-note">
+            Todos son diseños de muestra personalizables; no representan clientes diferentes. Elegí una paleta para comparar cada
+            variante y explorarla en detalle.
+          </p>
         </div>
       </section>
     </AgencyPage>

@@ -53,11 +53,8 @@ export default function AgencyHeader() {
           <a href="/proyectos/" onClick={close}>
             Proyectos
           </a>
-          <a href="/inspiracion/" onClick={close}>
-            Explorar rubros
-          </a>
           <a href="/rubros/" onClick={close}>
-            Rubros
+            Explorar rubros
           </a>
         </nav>
         <div className="header-actions">

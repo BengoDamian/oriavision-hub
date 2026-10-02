@@ -125,8 +125,7 @@ function SiteFooter() {
           <nav className="footer-nav" aria-label="Navegación del pie">
             <a href="/#servicios">Servicios</a>
             <a href="/proyectos/">Proyectos</a>
-            <a href="/inspiracion/">Explorar rubros</a>
-            <a href="/rubros/">Rubros</a>
+            <a href="/rubros/">Explorar rubros</a>
             <a href="/#contacto">Contacto</a>
           </nav>
         </div>
@@ -163,7 +162,7 @@ export function AgencyPage({ children, home = false }: { children: React.ReactNo
   );
 }
 
-/** Encabezado verde de las páginas internas (Proyectos, Inspiración, Rubros). */
+/** Encabezado verde de las páginas internas (Proyectos y Rubros). */
 type Breadcrumb = { href?: string; label: string };
 
 export function PageIntro({
