@@ -12,7 +12,7 @@ que no dispone de fuentes locales. Se conserva una fuente estática editable en
 demo-sources/abogados, generada desde las páginas públicas y sus datos públicos de
 preguntas frecuentes. No contiene backend, panel editorial ni código de hidratación.
 
-Cada variante conserva su CSS, tipografía e imágenes propios. Espresso con imagen
+Cada variante conserva su CSS, tipografía e imágenes propios. Espresso Editorial
 mantiene la sección adicional con practice-consultation.webp. Las interacciones
 locales están en demo.js: menú móvil, preguntas frecuentes, publicaciones, opiniones,
 carrusel y barra de WhatsApp. No hay formularios que guarden o envíen información.
@@ -24,6 +24,7 @@ node scripts/prepare-law-demos.mjs. Revisar el diff antes de recompilar/publicar
 
 Respaldo previo: .backups/2026-10-06-familia-profesional/oriavision-before.zip
 Estado inicial: main, a2185b040f7d75c1f91ff0784ef6d37ef8c613e5, sin cambios locales.
+Respaldo previo al cambio de identidad y URL: .backups/2026-10-06-law-rename/before.zip
 No se editaron NUBREXA ni las demos anteriores ni sus asociaciones de dominio.
 
 URL OPERATIVA PREVISTA TRAS EL DESPLIEGUE DE ESTE COMMIT
@@ -32,7 +33,7 @@ Bordó y Oro        https://www.oriavision.com.ar/demos/abogados-bordo-oro/
 Esmeralda y Oro    https://www.oriavision.com.ar/demos/abogados-esmeralda-oro/
 Azul y Oro         https://www.oriavision.com.ar/demos/abogados-azul-oro/
 Espresso           https://www.oriavision.com.ar/demos/abogados-espresso/
-Espresso con imagen https://www.oriavision.com.ar/demos/abogados-espresso-imagen/
+Espresso Editorial https://www.oriavision.com.ar/demos/abogados-espresso-editorial/
 
 SUBDOMINIOS: CONFIGURACIÓN MANUAL PENDIENTE
 
@@ -43,7 +44,8 @@ de Workers Builds ya fallaba antes de este cambio; no se modificó ese alojamien
 
 No hay sesión de Cloudflare en Wrangler ni conexión de navegador disponible.
 No se encontró una integración de Cloudflare en el directorio de plugins. Las
-consultas DNS públicas devolvieron NXDOMAIN para los cinco nombres el 06/10/2026.
+consultas DNS públicas devolvieron NXDOMAIN para los cinco nombres iniciales el
+06/10/2026, antes de renombrar la quinta variante como Espresso Editorial.
 Por lo tanto, no se crearon asociaciones ni registros y no se verificaron
 certificados de esos subdominios. El catálogo usa las rutas HTTPS de www.
 
@@ -55,7 +57,7 @@ CNAME abogados-bordo-oro.oriavision.com.ar                   oriavision-hub.page
 CNAME abogados-esmeralda-oro.oriavision.com.ar               oriavision-hub.pages.dev Automático
 CNAME abogados-azul-oro.oriavision.com.ar                    oriavision-hub.pages.dev Automático
 CNAME abogados-espresso.oriavision.com.ar                    oriavision-hub.pages.dev Automático
-CNAME abogados-espresso-imagen.oriavision.com.ar             oriavision-hub.pages.dev Automático
+CNAME abogados-espresso-editorial.oriavision.com.ar          oriavision-hub.pages.dev Automático
 
 Estos valores se basan en el nombre real del proyecto y la URL de despliegue
 devuelta por el check de Cloudflare Pages. No se necesitan los TXT de Sites.
@@ -73,6 +75,12 @@ Después del alta, comprobar DNS, certificado HTTPS válido y las 17 rutas de ca
 host (incluidas recargas y recursos). Sólo entonces cambiar los href del catálogo.
 
 CONTACTOS
+
+Nombre visible actualizado a Martín Fiotto en las cinco demos. La identidad se
+configura en demo-sources/abogados/identity.json. La variante antes denominada
+Espresso con imagen ahora se llama Espresso Editorial. Su ruta anterior redirige
+con 301 a la nueva, conservando las páginas internas. El dominio de referencia
+original se conserva únicamente como procedencia de los recursos públicos.
 
 WhatsApp: 5491127575675. Cada enlace identifica Estudio jurídico, variante y URL.
 Sitio: https://www.oriavision.com.ar/

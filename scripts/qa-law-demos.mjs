@@ -33,6 +33,8 @@ try {
         assert(message.includes('Estudio jurídico')&&message.includes(variant.name)&&message.includes(canonical+'/'));
       }
       assert(!/contacto@ferlante|\+34 600|Carrer de Mallorca/.test(await page.locator('body').innerText()));
+      assert(!/Mat[ií]as\s+Ferlante/i.test(await page.locator('body').textContent()));
+      assert((await page.locator('.brand-name').first().textContent()).includes('Martín Fiotto'));
       assert(await page.locator('.footer-bottom').innerText().then(t=>t.includes('Sitio de demostración. Consultas sobre este diseño a ORIAVISION')));
       assert(await page.locator('img').evaluateAll(els=>els.every(img=>img.complete&&img.naturalWidth>0)));
       for(const width of [1365,360,390]){
@@ -68,7 +70,7 @@ try {
         }
         await page.setViewportSize({width:1365,height:1000});
         // Show the distinctive photographed section in this variant's real capture.
-        if(variant.id==='espresso-imagen')await page.evaluate(()=>scrollTo(0,document.querySelector('.practice-intro').getBoundingClientRect().top+scrollY-250));
+        if(variant.id==='espresso-editorial')await page.evaluate(()=>scrollTo(0,document.querySelector('.practice-intro').getBoundingClientRect().top+scrollY-250));
         await page.screenshot({path:`${output}/${variant.id}-desktop.png`});
         await sharp(`${output}/${variant.id}-desktop.png`).resize(1200,879).webp({quality:82,effort:5}).toFile(`public/catalog/abogados-${variant.id}.webp`);
       }

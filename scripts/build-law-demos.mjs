@@ -1,6 +1,7 @@
 import { cpSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, extname, resolve, join } from 'node:path';
 const root = resolve('demo-sources/abogados');
+const identity = JSON.parse(readFileSync(join(root, 'identity.json'), 'utf8'));
 const variants = JSON.parse(readFileSync(join(root, 'variants.json'), 'utf8'));
 for (const variant of variants) {
   const slug = `abogados-${variant.id}`;
@@ -8,7 +9,7 @@ for (const variant of variants) {
   const url = `https://www.oriavision.com.ar${base}/`;
   const whatsapp = `https://wa.me/5491127575675?text=${encodeURIComponent(`Hola, ORIAVISION. Me interesa la familia Estudio jurídico, variante ${variant.name}. Vi este diseño: ${url}`)}`;
   const output = resolve('public/demos', slug);
-  const replace = (s, canonical = url) => s.replaceAll('{{BASE}}', base).replaceAll('{{URL}}', url).replaceAll('{{WHATSAPP}}', whatsapp).replaceAll('{{VARIANT}}', variant.name).replaceAll('{{CANONICAL}}', canonical);
+  const replace = (s, canonical = url) => s.replaceAll('{{BASE}}', base).replaceAll('{{URL}}', url).replaceAll('{{WHATSAPP}}', whatsapp).replaceAll('{{VARIANT}}', variant.name).replaceAll('{{CANONICAL}}', canonical).replaceAll('{{PROFESSIONAL}}', identity.name);
   function copyAssets(dir, target) {
     mkdirSync(target, {recursive:true});
     for (const file of readdirSync(dir, {withFileTypes:true})) {

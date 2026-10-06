@@ -1,6 +1,6 @@
 // Only the five new law-demo hostnames are routed here. Existing demo domains
 // and the main ORIAVISION site pass through unchanged.
-const variants = ["bordo-oro", "esmeralda-oro", "azul-oro", "espresso", "espresso-imagen"];
+const variants = ["bordo-oro", "esmeralda-oro", "azul-oro", "espresso", "espresso-editorial"];
 const demoHosts = new Map(variants.map(variant => [`abogados-${variant}.oriavision.com.ar`, `abogados-${variant}`]));
 
 type Element = {getAttribute(name: string): string | null; setAttribute(name: string, value: string): void};

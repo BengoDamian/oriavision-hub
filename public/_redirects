@@ -16,3 +16,8 @@
 # "Quiénes somos" (texto anterior, noindex) -> portada.
 /quienes-somos   /       301
 /quienes-somos/  /       301
+
+# Variante renombrada: conservar enlaces ya compartidos y sus páginas internas.
+/demos/abogados-espresso-imagen   /demos/abogados-espresso-editorial/   301
+/demos/abogados-espresso-imagen/  /demos/abogados-espresso-editorial/   301
+/demos/abogados-espresso-imagen/* /demos/abogados-espresso-editorial/:splat 301

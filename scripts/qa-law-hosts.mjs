@@ -24,6 +24,8 @@ for(const variant of variants){
     assert.equal(response.status,200,`${host}${path}`);
     assert.equal(response.headers.get('x-robots-tag'),'noindex, nofollow');
     const $=load(await response.text());
+    assert($('.brand-name').first().text().includes('Martín Fiotto'));
+    assert(!/Mat[ií]as\s+Ferlante/i.test($('body').text()));
     assert.equal($('link[rel="canonical"]').attr('href'),root+path.slice(1));
     $('[data-oria-contact]').each((_,el)=>{
       const href=$(el).attr('href');
@@ -51,4 +53,10 @@ for(const variant of variants){
 }
 assert.equal((await fetch(endpoint+'/rubros/',{headers:{Host:'www.oriavision.com.ar'}})).status,200);
 assert.equal((await fetch(endpoint+'/demos/barberia-verde/',{headers:{Host:'www.oriavision.com.ar'}})).status,200);
+for(const path of ['', '/', '/contacto/', '/areas/laboral/']){
+  const response=await fetch(endpoint+'/demos/abogados-espresso-imagen'+path,{headers:{Host:'www.oriavision.com.ar'}});
+  assert.equal(response.status,301);
+  assert.equal(new URL(response.headers.get('location'),endpoint).pathname,'/demos/abogados-espresso-editorial'+(path||'/'));
+}
+console.log('Las URLs anteriores redirigen con 301 conservando la página interna.');
 assert(!readFileSync('out/sitemap.xml','utf8').includes('/demos/'));

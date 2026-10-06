@@ -22,7 +22,7 @@ function findFAQs(value, result = []) {
   return result;
 }
 for (const variant of variants) {
-  const source = resolve('.tool-cache/law-references', variant.id);
+  const source = resolve('.tool-cache/law-references', variant.sourceId ?? variant.id);
   const destination = resolve('demo-sources/abogados', variant.id);
   const manifest = JSON.parse(readFileSync(resolve(source, 'manifest.json'), 'utf8'));
   for (const resource of manifest.resources.filter(path => !/\.(js|json)$/.test(path))) {
@@ -80,7 +80,7 @@ for (const variant of variants) {
     }
     // A static navigation drawer retains the public links; no React hydration.
     const nav = $('.nav').html();
-    $('body').append(`<dialog class="oria-menu" aria-label="Navegación móvil"><button class="oria-menu-close" type="button" aria-label="Cerrar menú">×</button><div class="brand-name">Matías Ferlante<small>Demostración · ORIAVISION</small></div><nav class="mobile-links">${nav}</nav></dialog>`);
+    $('body').append(`<dialog class="oria-menu" aria-label="Navegación móvil"><button class="oria-menu-close" type="button" aria-label="Cerrar menú">×</button><div class="brand-name">{{PROFESSIONAL}}<small>Demostración · ORIAVISION</small></div><nav class="mobile-links">${nav}</nav></dialog>`);
     $('.menu-toggle').attr('aria-controls', 'oria-menu');
     $('.oria-menu').attr('id', 'oria-menu');
     $('a[href]').each((_, el) => {
@@ -106,7 +106,7 @@ for (const variant of variants) {
     $('link[rel="icon"],link[rel="shortcut icon"]').remove();
     $('head').append('<link rel="icon" type="image/svg+xml" href="{{BASE}}/favicon.svg">');
     $('head').append('<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="{{CANONICAL}}"><link rel="stylesheet" href="{{BASE}}/demo.css"><script src="{{BASE}}/demo.js" defer></script>');
-    let result = $.html().replaceAll('contacto@ferlante.example', 'www.oriavision.com.ar').replaceAll('+34 600 000 000', '+54 9 11 2757-5675');
+    let result = $.html().replaceAll('Matías Ferlante', '{{PROFESSIONAL}}').replaceAll('contacto@ferlante.example', 'www.oriavision.com.ar').replaceAll('+34 600 000 000', '+54 9 11 2757-5675');
     const unsafe = result.match(/.{0,120}(?:chatgpt\.site|<iframe|\/administracion|maps\.google|Carrer de Mallorca).{0,200}/);
     if (unsafe) throw new Error(`Unsafe leftover: ${variant.id} ${page}: ${unsafe[0]}`);
     const target = resolve(destination, 'pages', pageFile);
