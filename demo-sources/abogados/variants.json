@@ -1,0 +1,7 @@
+[
+  {"id":"bordo-oro","name":"Bordó y Oro","colors":["#480010","#C9A977","#F8F5EE"]},
+  {"id":"esmeralda-oro","name":"Esmeralda y Oro","colors":["#006447","#E5B94F","#FAF9F2"]},
+  {"id":"azul-oro","name":"Azul y Oro","colors":["#344A82","#D7AE56","#F7F7F4"]},
+  {"id":"espresso","name":"Espresso","colors":["#6B4A3A","#C48A5A","#F2E9DE"]},
+  {"id":"espresso-imagen","name":"Espresso con imagen","colors":["#6B4A3A","#C48A5A","#F2E9DE"]}
+]

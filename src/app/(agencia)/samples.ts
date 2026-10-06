@@ -1,4 +1,5 @@
 // Diseños de muestra y su estado de publicación verificado.
+import lawVariants from "../../../demo-sources/abogados/variants.json";
 
 export const RUBROS = [
   { id: "unas", name: "Uñas y belleza", text: "Servicios, estilos, colores y una experiencia visual pensada para convertir visitas en consultas." },
@@ -9,6 +10,7 @@ export const RUBROS = [
   { id: "arquitectura", name: "Arquitectura y seguridad", text: "Proyectos, soluciones de protección y espacios seguros explicados con claridad." },
   { id: "parrillas-herreria", name: "Parrillas y herrería", text: "Productos, trabajos a medida y consultas con una identidad visual sólida y artesanal." },
   { id: "veterinarias", name: "Veterinarias", text: "Servicios, equipo, agenda demostrativa y consultas con una identidad cercana y profesional." },
+  { id: "abogados", name: "Abogados y estudios jurídicos", text: "Áreas de práctica, presentación del estudio, publicaciones y consultas con una identidad profesional." },
 ] as const;
 
 export type RubroId = (typeof RUBROS)[number]["id"];
@@ -22,6 +24,7 @@ export const SAMPLE_FAMILIES = [
   { id: "habitacion-antipanico", title: "Habitación Antipánico" },
   { id: "watorii", title: "watorii" },
   { id: "clinica-veterinaria", title: "Clínica Veterinaria" },
+  { id: "estudio-juridico", title: "Estudio jurídico" },
 ] as const;
 
 type FamilyId = (typeof SAMPLE_FAMILIES)[number]["id"];
@@ -41,6 +44,17 @@ export type Sample = {
 };
 
 export const SAMPLES: Sample[] = [
+  // Las URL de subdominio se incorporarán únicamente después de verificar HTTPS.
+  ...lawVariants.map((variant): Sample => ({
+    familyId: "estudio-juridico", familyName: "Estudio jurídico", variant: variant.name, rubro: "abogados",
+    title: `Estudio jurídico · ${variant.name}`,
+    text: "Áreas de práctica, despacho, publicaciones y opiniones de demostración.",
+    href: `https://www.oriavision.com.ar/demos/abogados-${variant.id}/`,
+    swatches: variant.colors as [string, string, string],
+    preview: `/catalog/abogados-${variant.id}.webp`,
+    previewAlt: `Captura real del diseño Estudio jurídico · ${variant.name}`,
+    public: true,
+  })),
   {
     familyId: "art-nails", familyName: "Art Nails", variant: "Limón", rubro: "unas",
     title: "Art Nails · Limón",

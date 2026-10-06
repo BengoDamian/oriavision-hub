@@ -216,7 +216,7 @@ export default function SampleCatalog() {
       const stickyTop = Math.ceil(headerHeight + 12);
       const availableHeight = window.innerHeight - stickyTop - 24;
       const cardsFit = cards.every(
-        (card) => card.getBoundingClientRect().height <= availableHeight,
+        (card, index) => card.getBoundingClientRect().height <= availableHeight - index * 7,
       );
 
       grid.style.setProperty("--catalog-sticky-top", `${stickyTop}px`);

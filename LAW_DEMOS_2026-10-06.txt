@@ -1,0 +1,104 @@
+ORIAVISION — Familia Estudio jurídico — 6 de octubre de 2026
+
+Catálogo vigente: https://www.oriavision.com.ar/rubros/?rubro=abogados
+Rubro: Abogados y estudios jurídicos. Una tarjeta, cinco variantes.
+
+FUENTES Y ALOJAMIENTO
+
+Las cinco referencias públicas representan un despacho de abogados. Se recuperaron
+17 páginas por variante (85 páginas), CSS, imágenes y tipografías públicas. La
+cuenta de Sites conectada no tiene acceso a sus repositorios y el usuario confirmó
+que no dispone de fuentes locales. Se conserva una fuente estática editable en
+demo-sources/abogados, generada desde las páginas públicas y sus datos públicos de
+preguntas frecuentes. No contiene backend, panel editorial ni código de hidratación.
+
+Cada variante conserva su CSS, tipografía e imágenes propios. Espresso con imagen
+mantiene la sección adicional con practice-consultation.webp. Las interacciones
+locales están en demo.js: menú móvil, preguntas frecuentes, publicaciones, opiniones,
+carrusel y barra de WhatsApp. No hay formularios que guarden o envíen información.
+
+Compilar: npm run build
+Reconstruir las fuentes desde las referencias públicas (sólo si se desea importar
+una nueva versión): node scripts/fetch-law-demos.mjs y después
+node scripts/prepare-law-demos.mjs. Revisar el diff antes de recompilar/publicar.
+
+Respaldo previo: .backups/2026-10-06-familia-profesional/oriavision-before.zip
+Estado inicial: main, a2185b040f7d75c1f91ff0784ef6d37ef8c613e5, sin cambios locales.
+No se editaron NUBREXA ni las demos anteriores ni sus asociaciones de dominio.
+
+URL OPERATIVA PREVISTA TRAS EL DESPLIEGUE DE ESTE COMMIT
+
+Bordó y Oro        https://www.oriavision.com.ar/demos/abogados-bordo-oro/
+Esmeralda y Oro    https://www.oriavision.com.ar/demos/abogados-esmeralda-oro/
+Azul y Oro         https://www.oriavision.com.ar/demos/abogados-azul-oro/
+Espresso           https://www.oriavision.com.ar/demos/abogados-espresso/
+Espresso con imagen https://www.oriavision.com.ar/demos/abogados-espresso-imagen/
+
+SUBDOMINIOS: CONFIGURACIÓN MANUAL PENDIENTE
+
+Proyecto existente comprobado en el check de GitHub: Cloudflare Pages oriavision-hub.
+Destino de alojamiento: oriavision-hub.pages.dev (no el Worker del mismo nombre).
+El check de Pages para el commit anterior fue satisfactorio. El check independiente
+de Workers Builds ya fallaba antes de este cambio; no se modificó ese alojamiento.
+
+No hay sesión de Cloudflare en Wrangler ni conexión de navegador disponible.
+No se encontró una integración de Cloudflare en el directorio de plugins. Las
+consultas DNS públicas devolvieron NXDOMAIN para los cinco nombres el 06/10/2026.
+Por lo tanto, no se crearon asociaciones ni registros y no se verificaron
+certificados de esos subdominios. El catálogo usa las rutas HTTPS de www.
+
+Primero, en Cloudflare > Workers & Pages > oriavision-hub (Pages) > Custom domains,
+asociar cada nombre completo indicado debajo. Después confirmar/crear su CNAME:
+
+Tipo  Nombre completo                                       Destino                 TTL
+CNAME abogados-bordo-oro.oriavision.com.ar                   oriavision-hub.pages.dev Automático
+CNAME abogados-esmeralda-oro.oriavision.com.ar               oriavision-hub.pages.dev Automático
+CNAME abogados-azul-oro.oriavision.com.ar                    oriavision-hub.pages.dev Automático
+CNAME abogados-espresso.oriavision.com.ar                    oriavision-hub.pages.dev Automático
+CNAME abogados-espresso-imagen.oriavision.com.ar             oriavision-hub.pages.dev Automático
+
+Estos valores se basan en el nombre real del proyecto y la URL de despliegue
+devuelta por el check de Cloudflare Pages. No se necesitan los TXT de Sites.
+Si Cloudflare solicita validación adicional, usar los valores que muestre el panel;
+no se conocen ni se inventan aquí. Crear solamente CNAME sin asociar antes el dominio
+en Pages no completa el alta. Documentación oficial:
+https://developers.cloudflare.com/pages/configuration/custom-domains/
+
+functions/_middleware.ts reconoce exclusivamente estos cinco hosts y sirve la
+variante correspondiente desde el alojamiento actual. Adapta la navegación,
+canonical y URL del mensaje de WhatsApp al subdominio. No redirige a ChatGPT Sites.
+Las rutas bajo www mantienen su propio canonical. Ninguna demo entra en sitemap.xml.
+
+Después del alta, comprobar DNS, certificado HTTPS válido y las 17 rutas de cada
+host (incluidas recargas y recursos). Sólo entonces cambiar los href del catálogo.
+
+CONTACTOS
+
+WhatsApp: 5491127575675. Cada enlace identifica Estudio jurídico, variante y URL.
+Sitio: https://www.oriavision.com.ar/
+Más diseños: https://www.oriavision.com.ar/rubros/
+Aviso: Sitio de demostración. Consultas sobre este diseño a ORIAVISION.
+Se eliminaron mapas, dirección, redes sociales, correo y teléfono originales,
+así como el acceso editorial. Se conservaron fuentes jurídicas editoriales neutras.
+No se enviaron mensajes ni consultas durante las pruebas.
+
+VERIFICACIÓN REPRODUCIBLE
+
+node scripts/serve-static.mjs public 4181
+node scripts/qa-law-demos.mjs
+node scripts/serve-static.mjs out 4182
+node scripts/qa-law-catalog.mjs
+
+Enrutamiento de subdominios verificado además con Cloudflare Pages local:
+npx wrangler pages dev out --port 4183
+node scripts/qa-law-hosts.mjs
+Las 85 páginas y sus recursos respondieron correctamente con cada Host previsto;
+canonical y mensajes de WhatsApp usan el subdominio en esa emulación. Esta prueba
+no reemplaza el alta DNS ni la validación del certificado público pendiente.
+
+Los resultados y capturas de QA se guardan localmente en .tool-cache/law-qa.
+Las capturas optimizadas reales del catálogo están en public/catalog/abogados-*.webp.
+Las pruebas verifican las 85 páginas, recarga, tres anchos, ausencia de desbordamiento,
+recursos locales, contactos, FAQs, filtros y menú. La revisión del catálogo incluye
+cinco paletas, imagen/nombre/enlaces, altura y scroll constantes, foco táctil, botones
+de igual ancho y mínimo 46 px, y flujo normal en pantallas de poca altura.

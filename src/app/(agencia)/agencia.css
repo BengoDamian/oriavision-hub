@@ -529,3 +529,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 }
 @media(max-height:640px){.demo-grid[data-stack="true"] .demo-card-palette{position:relative;top:auto;z-index:auto}}
 @media(prefers-reduced-motion:reduce){.demo-grid[data-stack="true"] .demo-card-palette{scroll-behavior:auto}.breadcrumbs a{transition:none}}
+
+/* Cinco variantes: espacio de título estable también en tablet. */
+.demo-card-palette[data-rubro="abogados"] .palette-heading h2{min-height:2.6em}
