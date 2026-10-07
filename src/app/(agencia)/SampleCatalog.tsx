@@ -215,12 +215,22 @@ export default function SampleCatalog() {
       const headerHeight = header?.getBoundingClientRect().height ?? 0;
       const stickyTop = Math.ceil(headerHeight + 12);
       const availableHeight = window.innerHeight - stickyTop - 24;
-      const cardsFit = cards.every(
-        (card, index) => card.getBoundingClientRect().height <= availableHeight - index * 7,
-      );
+      let hasStackableCard = false;
+      cards.forEach((card, index) => {
+        const spareHeight = availableHeight - card.getBoundingClientRect().height;
+        const fits = spareHeight >= 0 && window.innerHeight > 640;
+        // A taller collection must not disable stacking for every other card.
+        // Compress the decorative offset when the card itself still fits.
+        card.dataset.stackable = String(fits);
+        card.style.setProperty(
+          "--stack-offset",
+          `${Math.max(0, Math.min(index * 7, spareHeight))}px`,
+        );
+        hasStackableCard ||= fits;
+      });
 
       grid.style.setProperty("--catalog-sticky-top", `${stickyTop}px`);
-      setStackEnabled(cardsFit);
+      setStackEnabled(hasStackableCard);
     };
 
     updateStack();

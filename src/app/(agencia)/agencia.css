@@ -227,8 +227,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: va
 .catalog-toolbar select:focus-visible{outline:3px solid #da9928;outline-offset:3px}
 .catalog-toolbar p{font-size:.9375rem;color:#494949;margin:0 0 10px}
 .demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}
-.demo-grid[data-stack="true"] .demo-card-palette{position:sticky;top:calc(var(--catalog-sticky-top,106px) + var(--stack-offset,0px));box-shadow:0 8px 0 #e8eee9,0 18px 34px #0a45311c}
-.demo-grid[data-stack="true"] .demo-card-palette:has(:focus-visible){z-index:20!important}
+.demo-grid[data-stack="true"] .demo-card-palette[data-stackable="true"]{position:sticky;top:calc(var(--catalog-sticky-top,106px) + var(--stack-offset,0px));box-shadow:0 8px 0 #e8eee9,0 18px 34px #0a45311c}
+.demo-grid[data-stack="true"] .demo-card-palette[data-stackable="true"]:has(:focus-visible){z-index:20!important}
 .demo-card{display:flex;flex-direction:column;border:1px solid #d8dfdb;border-radius:9px;padding:20px;background:#fff;min-width:0;box-shadow:0 6px 0 #f0f4f2}
 .demo-preview{position:relative;aspect-ratio:3/2;overflow:hidden;border:1px solid #ccd8d1;border-radius:6px;background:#eef3ef}
 .demo-preview img{width:100%;height:100%;object-fit:cover;object-position:top center}
