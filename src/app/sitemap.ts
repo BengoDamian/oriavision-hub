@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/rubros/`,
+      url: `${SITE_URL}/trabajos-realizados/`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.9,
@@ -97,6 +97,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly" as const,
       priority: 0.2,
     },
+    ...["diseno-web", "seo", "marketing-digital", "meta-ads", "google-ads"].map(path => ({
+      url: `${SITE_URL}/${path}/`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9,
+    })),
     ...prompts,
     ...guides,
   ];

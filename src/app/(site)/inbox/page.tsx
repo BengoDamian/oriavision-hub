@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import InboxHeroMockup from "./components/InboxHeroMockup";
 import InboxFlowVisual from "./components/InboxFlowVisual";
@@ -333,13 +332,13 @@ export default function InboxLanding() {
                 Te conectás autorizando el acceso, sin entregar tu contraseña. Vos
                 mantenés el control y podés revocar los permisos cuando quieras.
               </p>
-              <Link
+              <a
                 href="/inbox/seguridad/"
                 className="mt-6 inline-flex items-center gap-2 text-base font-extrabold text-brand-700 hover:underline"
               >
                 Ver detalle de seguridad
                 <ArrowRight className="h-5 w-5" />
-              </Link>
+              </a>
             </div>
           </Reveal>
 
@@ -423,15 +422,15 @@ export default function InboxLanding() {
 
         {/* Enlaces legales */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold text-textMuted">
-          <Link href="/inbox/terminos/" className="hover:text-brand-700 hover:underline">
+          <a href="/inbox/terminos/" className="hover:text-brand-700 hover:underline">
             Términos
-          </Link>
-          <Link href="/inbox/privacidad/" className="hover:text-brand-700 hover:underline">
+          </a>
+          <a href="/inbox/privacidad/" className="hover:text-brand-700 hover:underline">
             Privacidad
-          </Link>
-          <Link href="/inbox/seguridad/" className="hover:text-brand-700 hover:underline">
+          </a>
+          <a href="/inbox/seguridad/" className="hover:text-brand-700 hover:underline">
             Seguridad
-          </Link>
+          </a>
         </div>
       </section>
     </div>

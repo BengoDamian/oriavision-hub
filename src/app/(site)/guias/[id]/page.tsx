@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import GuideBody from "@/components/GuideBody";
 import Newsletter from "@/components/Newsletter";
 import { getGuideByIdMerged, getGuideIdsMerged } from "@/lib/content";
@@ -143,12 +142,12 @@ export default async function GuiaDetailPage({ params }: PageProps) {
 
       <div className="mx-auto max-w-5xl px-4 py-10 md:px-6 md:py-12">
         <div className="mb-6">
-          <Link
+          <a
             href="/guias/"
             className="text-sm font-semibold text-textBody transition-colors hover:text-brand-600"
           >
             ← Volver a Guías
-          </Link>
+          </a>
         </div>
 
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">

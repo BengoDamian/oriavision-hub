@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyPromptButton from "@/components/CopyPromptButton";
 import Newsletter from "@/components/Newsletter";
@@ -112,12 +111,12 @@ export default async function PromptDetailPage({ params }: PageProps) {
 
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-4">
-          <Link
+          <a
             href="/prompts/"
             className="inline-flex text-sm font-extrabold text-slate-600 transition-colors hover:text-brand-600"
           >
             ← Volver a Prompts
-          </Link>
+          </a>
 
           <div className="mt-8">
             <div className="text-xs font-extrabold uppercase tracking-widest text-brand-600">

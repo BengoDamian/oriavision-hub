@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -12,13 +11,13 @@ export const metadata: Metadata = {
 export default function InboxPrivacidad() {
   return (
     <div className="container max-w-3xl py-20 sm:py-24">
-      <Link
+      <a
         href="/inbox/"
         className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-700 hover:underline"
       >
         <ArrowLeft className="h-4 w-4" />
         Volver a Oriavision Inbox
-      </Link>
+      </a>
 
       <h1 className="mt-6 text-4xl font-black text-textStrong">
         Política de privacidad
@@ -77,12 +76,12 @@ export default function InboxPrivacidad() {
             Conservamos los datos el tiempo necesario para prestar el servicio.
             Aplicamos medidas de seguridad razonables, como conexiones cifradas y
             accesos limitados a lo necesario. Podés ampliar en nuestra{" "}
-            <Link
+            <a
               href="/inbox/seguridad/"
               className="font-extrabold text-brand-600 hover:underline"
             >
               página de seguridad
-            </Link>
+            </a>
             .
           </p>
         </section>

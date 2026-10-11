@@ -51,7 +51,11 @@ for(const variant of variants){
   for(const path of ['/api/track','/administracion','/demos/barberia-verde/'])assert.equal((await fetch(endpoint+path,{headers:{Host:host}})).status,404);
   console.log(`${host}: 17 páginas, canonical, WhatsApp, rutas y recursos OK (emulación local; DNS pendiente)`);
 }
-assert.equal((await fetch(endpoint+'/rubros/',{headers:{Host:'www.oriavision.com.ar'}})).status,200);
+const catalogRedirect = await fetch(endpoint+'/rubros/?rubro=abogados',{headers:{Host:'www.oriavision.com.ar'}});
+assert.equal(catalogRedirect.status,301);
+assert.equal(new URL(catalogRedirect.headers.get('location'),endpoint).pathname,'/proyectos/');
+assert.equal(new URL(catalogRedirect.headers.get('location'),endpoint).search,'?rubro=abogados');
+assert.equal((await fetch(endpoint+'/proyectos/',{headers:{Host:'www.oriavision.com.ar'}})).status,200);
 assert.equal((await fetch(endpoint+'/demos/barberia-verde/',{headers:{Host:'www.oriavision.com.ar'}})).status,200);
 for(const path of ['', '/', '/contacto/', '/areas/laboral/']){
   const response=await fetch(endpoint+'/demos/abogados-espresso-imagen'+path,{headers:{Host:'www.oriavision.com.ar'}});

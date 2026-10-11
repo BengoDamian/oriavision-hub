@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Newsletter from "@/components/Newsletter";
@@ -91,7 +90,7 @@ export default function GuiasPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {guides.map((g, i) => (
               <Reveal key={g.id} delay={0.05 + i * 0.04}>
-                <Link
+                <a
                   href={`/guias/${g.id}/`}
                   className="group block rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
@@ -110,7 +109,7 @@ export default function GuiasPage() {
                   <div className="mt-6 inline-flex items-center gap-2 font-extrabold text-brand-600">
                     Ver guía <ArrowRight className="h-4 w-4" />
                   </div>
-                </Link>
+                </a>
               </Reveal>
             ))}
           </div>

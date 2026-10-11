@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import "./agencia.css";
+import "./redesign-integration.css";
 import { WHATSAPP_NUMBER } from "./shared";
+import { Header, Footer, WhatsAppBar } from "./site-components";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const DESCRIPTION =
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a4531",
+  themeColor: "#106346", width: "device-width", initialScale: 1, viewportFit: "cover",
 };
 
 const SERVICES = [
@@ -63,7 +65,7 @@ const jsonLd = {
       logo: `${SITE_URL}/assets/oriavision-logo-original.jpg`,
       image: `${SITE_URL}${OG_IMAGE.url}`,
       description: DESCRIPTION,
-      slogan: "Tu marca. Otra dimensión.",
+      slogan: "Para que te encuentren y te elijan.",
       telephone: `+${WHATSAPP_NUMBER}`,
       address: {
         "@type": "PostalAddress",
@@ -85,7 +87,8 @@ const jsonLd = {
 
 export default function AgenciaLayout({ children }: { children: React.ReactNode }) {
   const token = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
-  preload("/assets/ethnocentric.otf", { as: "font", type: "font/otf", crossOrigin: "" });
+  preload("/fonts/ethnocentric.otf", { as: "font", type: "font/otf", crossOrigin: "" });
+  preload("/fonts/manrope-400.ttf", { as: "font", type: "font/ttf", crossOrigin: "" });
 
   return (
     <html lang="es-AR">
@@ -99,7 +102,7 @@ export default function AgenciaLayout({ children }: { children: React.ReactNode 
           />
         ) : null}
       </head>
-      <body id="inicio">{children}</body>
+      <body id="inicio"><a className="skip-link" href="#contenido">Saltar al contenido</a><Header />{children}<Footer /><WhatsAppBar /></body>
     </html>
   );
 }

@@ -21,3 +21,7 @@
 /demos/abogados-espresso-imagen   /demos/abogados-espresso-editorial/   301
 /demos/abogados-espresso-imagen/  /demos/abogados-espresso-editorial/   301
 /demos/abogados-espresso-imagen/* /demos/abogados-espresso-editorial/:splat 301
+
+# El catálogo del rediseño conserva los filtros y los enlaces anteriores.
+/rubros    /proyectos/   301
+/rubros/   /proyectos/   301

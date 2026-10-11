@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowLeft, Lock, EyeOff, KeyRound, Server, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -35,13 +34,13 @@ const PILLARS = [
 export default function InboxSeguridad() {
   return (
     <div className="container max-w-3xl py-20 sm:py-24">
-      <Link
+      <a
         href="/inbox/"
         className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-700 hover:underline"
       >
         <ArrowLeft className="h-4 w-4" />
         Volver a Oriavision Inbox
-      </Link>
+      </a>
 
       <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-600/15 bg-brand-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-brand-700">
         <ShieldCheck className="h-4 w-4" />
@@ -116,12 +115,12 @@ export default function InboxSeguridad() {
       </div>
 
       <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold text-textMuted">
-        <Link href="/inbox/terminos/" className="hover:text-brand-700 hover:underline">
+        <a href="/inbox/terminos/" className="hover:text-brand-700 hover:underline">
           Términos
-        </Link>
-        <Link href="/inbox/privacidad/" className="hover:text-brand-700 hover:underline">
+        </a>
+        <a href="/inbox/privacidad/" className="hover:text-brand-700 hover:underline">
           Privacidad
-        </Link>
+        </a>
       </div>
 
       <p className="mt-8 text-sm font-semibold text-textMuted">

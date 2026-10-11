@@ -1,0 +1,55 @@
+ORIAVISION — Integración del diseño provisto — 11 de octubre de 2026
+
+Fuente: ORIAVISION_Prueba_uno_proyecto_completo_2026-10-09 (1).zip
+Base de Git: abcfc86. Estado inicial limpio.
+Respaldo completo: .backups/2026-10-11-redesign/before.zip
+
+Se integraron las fuentes visuales, CSS, imágenes y tipografías del ZIP en el
+Next.js existente. No se importaron hosting.json, autenticación, conectores,
+credenciales, ejemplos, scripts de instalación ni dependencias de la prueba.
+Se conserva el flujo habitual GitHub → Cloudflare Pages y el alojamiento actual.
+
+RUTAS
+/ — Portada, carrusel de trabajos y diseños, servicios y contacto.
+/diseno-web/ — Diseño y desarrollo web.
+/seo/ — Posicionamiento SEO.
+/marketing-digital/ — Estrategia de marketing.
+/meta-ads/ y /google-ads/ — Páginas de publicidad.
+/trabajos-realizados/ — 11 trabajos, con las tarjetas animadas del diseño.
+/proyectos/ — 9 colecciones y 34 variantes de muestra; filtro ?rubro= conservado.
+/rubros/ — Redirección 301 a /proyectos/, conservando el filtro de la URL.
+
+Las demos de public/demos y sus fuentes no se modificaron. Se mantienen Martín
+Fiotto, Espresso Editorial y todas las URLs operativas. Las capturas jurídicas
+se toman de la versión corregida del repositorio, no del nombre antiguo del ZIP.
+No se modificó NUBREXA ni las asociaciones de dominio de las demos.
+
+Las guías, prompts, Inbox y textos legales permanecen disponibles con cabecera,
+pie y tipografía del nuevo diseño. Sus enlaces usan navegación HTML normal,
+evitando precargas de segmentos RSC incompatibles con la exportación estática.
+
+Se quitaron las marcas de prueba del contenido público; la web comercial sigue
+indexable, con canonical propio, metadatos y sitemap actualizado. Las demos
+conservan noindex. WhatsApp de ORIAVISION: 5491127575675.
+
+INTERACCIONES
+Se conserva el carrusel del ZIP y el apilado con escala al desplazarse.
+Las tarjetas altas permiten llegar a las acciones antes de quedar apiladas.
+La preferencia de movimiento reducido desactiva ese movimiento.
+Las paletas usan controles de radio nativos con la apariencia del diseño y
+navegación por teclado. El título reserva altura para evitar saltos al elegir.
+
+VERIFICACIÓN
+npm run build
+node scripts/serve-static.mjs out 4182
+node scripts/qa-redesign.mjs
+node scripts/qa-redesign-interactions.mjs
+
+La suite recorre 13 páginas en 1440, 768, 390 y 360 px, revisando recursos,
+desbordamientos, metadatos, contactos, paletas, altura/scroll, menú, filtro y
+animación. Capturas y resultados: .tool-cache/redesign-qa.
+La segunda suite comprueba el avance y pausa del carrusel, las 34 paletas,
+navegación por teclado, enlaces y botones visibles sobre la barra de WhatsApp.
+Las antiguas entradas qa-law-catalog y qa-catalog-stack remiten a esta suite.
+Para los hosts jurídicos y las redirecciones: Cloudflare Pages local en 4183
+y node scripts/qa-law-hosts.mjs. Esto no configura los DNS aún pendientes.

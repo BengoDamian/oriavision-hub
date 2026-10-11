@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Suscripción confirmada",
@@ -29,18 +28,18 @@ export default function GraciasPage() {
             </a>
 
             <div className="grid grid-cols-2 gap-3">
-              <Link
+              <a
                 href="/prompts/"
                 className="rounded-full border-2 border-slate-200 px-6 py-3 font-extrabold text-slate-900 transition-colors hover:border-brand-600 hover:text-brand-600"
               >
                 Ver Prompts
-              </Link>
-              <Link
+              </a>
+              <a
                 href="/guias/"
                 className="rounded-full border-2 border-slate-200 px-6 py-3 font-extrabold text-slate-900 transition-colors hover:border-brand-600 hover:text-brand-600"
               >
                 Ver Guías
-              </Link>
+              </a>
             </div>
           </div>
 
