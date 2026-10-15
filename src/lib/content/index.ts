@@ -3,11 +3,6 @@ import {
   type PromptItem as LegacyPromptItem,
 } from "@/lib/prompts";
 import {
-  guides as legacyGuides,
-  type GuideItem as LegacyGuideItem,
-} from "@/lib/guides";
-
-import {
   getAllPromptsFromContent,
   type PromptItem as ContentPromptItem,
 } from "@/lib/content/prompts";
@@ -32,27 +27,6 @@ function normalizeLegacyPrompt(item: LegacyPromptItem): ContentPromptItem {
     seoTitle: item.seoTitle,
     seoDescription: item.seoDescription,
     updatedAt: item.updatedAt,
-  };
-}
-
-function normalizeLegacyGuide(item: LegacyGuideItem): ContentGuideItem {
-  return {
-    id: item.id,
-    title: item.title,
-    description: item.description,
-    category: item.category,
-    content: item.content,
-    tags: item.tags,
-    featured: item.featured,
-    draft: item.draft,
-    noindex: item.noindex,
-    editorialStatus: item.editorialStatus || "published",
-    seoTitle: item.seoTitle,
-    seoDescription: item.seoDescription,
-    publishedAt: item.publishedAt,
-    updatedAt: item.updatedAt,
-    image: item.image,
-    author: item.author,
   };
 }
 
@@ -91,23 +65,7 @@ export function getPromptIdsMerged(): string[] {
 
 // ===== GUIDES =====
 export function getAllGuidesMerged(): ContentGuideItem[] {
-  const cms = getAllGuidesFromContent();
-  const map = new Map<string, ContentGuideItem>();
-
-  for (const item of legacyGuides) {
-    const normalized = normalizeLegacyGuide(item);
-    map.set(normalized.id, normalized);
-  }
-
-  for (const item of cms) {
-    map.set(item.id, item);
-  }
-
-  return Array.from(map.values()).filter(item => !item.draft).sort(
-    (a, b) =>
-      Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
-      a.title.localeCompare(b.title)
-  );
+  return getAllGuidesFromContent().filter(item => !item.draft);
 }
 
 export function getGuideByIdMerged(id: string): ContentGuideItem | null {

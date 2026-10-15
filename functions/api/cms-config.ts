@@ -113,8 +113,21 @@ collections:
         picker_utc: false
       - { label: "Autor", name: "author", widget: "string", required: false }
       - { label: "Imagen", name: "image", widget: "image", required: false }
+      - { label: "Portada pequeña (640 × 336)", name: "imageSmall", widget: "image", required: false }
+      - { label: "Descripción de la portada", name: "imageAlt", widget: "string", required: false }
+      - { label: "Qué resuelve la guía", name: "takeaways", widget: "list", required: false, hint: "Dos o tres objetivos concretos que el contenido permite resolver." }
+      - label: "Guías relacionadas"
+        name: "relatedGuides"
+        widget: "relation"
+        collection: "guides"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+        hint: "Elegí sólo lecturas complementarias. Las archivadas, borradores y noindex se excluyen automáticamente."
       - { label: "Contenido", name: "body", widget: "markdown" }
-      - { label: "Mensaje de consulta web por WhatsApp", name: "contactMessage", widget: "text", required: false, hint: "Si se completa, muestra el contacto de ORIAVISION en lugar de la calculadora." }
+      - { label: "Mensaje de consulta web por WhatsApp", name: "contactMessage", widget: "text", required: false, hint: "Mensaje pertinente a la guía para consultar con ORIAVISION." }
       - { label: "Título del bloque de consulta", name: "contactTitle", widget: "string", required: false }
 `.trim();
 

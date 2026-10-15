@@ -2,35 +2,75 @@
 .guides-container{max-width:1160px;margin-inline:auto;padding:24px 32px 64px}
 .guides-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.8125rem;color:var(--copy);margin-bottom:30px}
 .guides-breadcrumb a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
-.guides-intro{max-width:830px;margin-bottom:40px}
+.guides-intro{max-width:830px;margin-bottom:28px}
 .guides-intro .eyebrow{margin-bottom:12px}
 .guides-intro h1{font-size:clamp(2rem,3.5vw,3rem);line-height:1.18;font-weight:600;letter-spacing:-.04em;text-wrap:balance}
 .guides-intro>p:last-child{max-width:700px;margin-top:18px;font-size:1.125rem;line-height:1.75;color:var(--copy)}
 .guides-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.guide-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:30px;border:1px solid var(--line);border-radius:14px;background:#fff}
-.guide-card-featured{grid-column:1/-1;background:var(--paper);border-top:3px solid var(--gold);padding:34px}
-.guide-card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:16px}
+.guide-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:0 24px 22px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 4px 18px #163e3108;overflow:hidden}
+.guide-card-featured{border-color:#c7b88e}
+.guide-cover{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;background:#eff3eb}
+.guide-card>.guide-cover{width:calc(100% + 48px);max-width:none;margin-inline:-24px;margin-bottom:22px}
+.guide-card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-bottom:12px}
 .guides-category{display:inline-block;color:var(--green);font-size:.8125rem;font-weight:700;line-height:1.5}
-.guide-featured-label{font-size:.75rem;color:#68501d;border-left:1px solid #c5b184;padding-left:18px}
-.guide-card h2{font-size:1.5rem;line-height:1.35;font-weight:600;letter-spacing:-.025em;text-wrap:initial;max-width:780px}
-.guide-card-featured h2{font-size:1.875rem}
-.guide-card>p{max-width:750px;margin-block:14px 20px;color:var(--copy);line-height:1.75}
+.guide-featured-label{font-size:.75rem;color:#68501d;border-left:1px solid #c5b184;padding-left:14px}
+.guide-card h2{font-size:1.375rem;line-height:1.35;font-weight:600;letter-spacing:-.025em;text-wrap:initial}
+.guide-card>p{margin-block:12px 16px;color:var(--copy);line-height:1.7;font-size:.9375rem}
 .guides-text-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--green);font-size:.9375rem;font-weight:700;text-decoration:underline;text-underline-offset:5px}
 .guide-card>.guides-text-link{margin-top:auto}
+.guide-search{max-width:700px;margin-bottom:26px}
+.guide-search label{display:block;font-weight:700;font-size:1rem;margin-bottom:10px}
+.guide-search-field{display:flex;align-items:center;gap:12px;border:1px solid #879c8d;border-radius:12px;padding-left:16px;background:white;color:var(--green)}
+.guide-search-field:focus-within{outline:2px solid var(--green);outline-offset:3px}
+.guide-search-field>svg{flex:none}
+.guide-search input{width:100%;min-width:0;height:54px;border:0;border-radius:12px;background:transparent;padding:12px 12px 12px 0;font:inherit;font-size:1rem;color:var(--ink);outline:none}
+.guide-search input::placeholder{color:#5d6c62;opacity:1}
+.guide-search input::-webkit-search-cancel-button{display:none}
+.guide-search input:disabled{cursor:not-allowed}
+.guide-search button{display:grid;place-items:center;flex:none;width:46px;height:46px;margin-right:4px;border-radius:8px;color:var(--green)}
+.guide-search>p{font-size:.8125rem;color:var(--copy);margin-top:12px;min-height:1.5em}
+.guide-search-empty{padding:32px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.guide-search-empty h2{font-size:1.25rem;font-weight:600}
+.guide-search-empty p{margin-block:10px;color:var(--copy)}
+.guides-section :is(a,button,summary,textarea):focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:4px}
 .guide-reading{max-width:824px;margin-inline:auto;padding:22px 32px 56px}
+.guide-reading-current{max-width:1160px}
+.guide-reading-column{max-width:740px;margin-inline:auto}
 .guide-reading .guides-breadcrumb{margin-bottom:24px}
 .guide-archive-notice{padding:20px;margin-bottom:28px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;background:var(--paper);font-size:.9375rem;color:var(--copy)}
 .guide-archive-notice strong{color:var(--ink)}
 .guide-archive-notice p{margin-top:8px}
 .guide-article-header{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.guide-article-header-visual{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);align-items:center;gap:32px}
+.guide-article-header .guide-cover{border-radius:14px}
 .guide-article-header h1{font-size:clamp(1.875rem,3.1vw,2.75rem);line-height:1.22;font-weight:600;letter-spacing:-.035em;margin-top:10px;text-wrap:balance}
 .guide-article-description{font-size:1.0625rem;color:var(--copy);line-height:1.75;margin-top:16px}
 .guide-byline{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:.8125rem;color:var(--copy)}
+.guide-takeaways{margin-bottom:24px;padding:20px 24px;background:var(--paper);border-left:3px solid var(--gold);border-radius:0 10px 10px 0}
+.guide-takeaways h2{font-size:1.125rem;font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.guide-takeaways ul{list-style:disc;padding-left:20px;margin-top:10px;color:var(--copy);font-size:1rem;line-height:1.7}
+.guide-takeaways li+li{margin-top:6px}
+.guide-toc{margin-bottom:32px;border-block:1px solid var(--line)}
+.guide-toc summary{padding-block:15px;cursor:pointer;font-weight:700;min-height:54px}
+.guide-toc summary span{font-size:.8125rem;font-weight:400;color:var(--copy);margin-left:12px}
+.guide-toc ol{padding-bottom:16px}
+.guide-toc a{display:block;padding-block:8px;font-size:.9375rem;color:var(--green);text-decoration:underline;text-underline-offset:4px;line-height:1.6}
+.guide-reading :is(h2,h3)[id]{scroll-margin-top:110px}
+.guide-reading :is(h2,h3)[tabindex]:focus{outline:none}
+.guide-reading :is(h2,h3)[tabindex]:focus-visible{outline:2px solid var(--green);outline-offset:6px}
 .guide-reading .guide-body{color:var(--ink);overflow-wrap:anywhere}
 .guide-reading .guide-body p,.guide-reading .guide-body ul{font-size:1.0625rem;line-height:1.85;font-weight:400;color:var(--copy)}
 .guide-reading .guide-body h2{font-size:1.5rem;line-height:1.35;font-weight:700;letter-spacing:-.025em;text-wrap:initial;color:var(--ink);margin-top:12px}
 .guide-reading .guide-body h3{font-size:1.25rem;line-height:1.4;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
 .guide-body a{color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.guide-reading .guide-callout{border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;background:var(--paper);padding:22px}
+.guide-reading .guide-callout>div{font-size:1.0625rem;font-weight:700;color:var(--ink)}
+.guide-reading .guide-checklist{list-style-type:'✓  ';padding:22px 22px 22px 42px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.guide-checklist li::marker{color:var(--green);font-weight:700}
+.guide-related{margin-block:32px;padding-block:24px;border-block:1px solid var(--line)}
+.guide-related h2{font-size:1.125rem;font-weight:600;line-height:1.5;margin-bottom:10px}
+.guide-related a{line-height:1.7}
+.guide-related svg{flex:none}
 .guide-template{padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
 .guide-template textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;min-height:330px;resize:vertical;padding:16px;border:1px solid #aabbb0;border-radius:8px;background:white;font-family:inherit;font-size:1rem;line-height:1.8;color:var(--ink)}
 .guide-template button{margin-top:16px}
@@ -54,8 +94,10 @@
 @media(hover:hover) and (pointer:fine){.guide-card h2 a:hover,.guides-text-link:hover,.guides-breadcrumb a:hover{color:var(--green-light)}.guides-newsletter button:hover{background:var(--green-light)}}
 @media(max-width:700px){
   .guides-container{padding:12px 20px 40px}.guides-breadcrumb{margin-bottom:20px}.guides-intro{margin-bottom:28px}.guides-intro h1{font-size:2rem}.guides-intro>p:last-child{font-size:1rem;margin-top:14px}
-  .guides-grid{grid-template-columns:1fr;gap:18px}.guide-card,.guide-card-featured{padding:24px}.guide-card h2,.guide-card-featured h2{font-size:1.375rem}.guide-card-meta{gap:8px 12px}.guide-featured-label{padding-left:12px}.guide-card>p{font-size:1rem}
-  .guide-reading{padding:12px 20px 36px}.guide-reading .guides-breadcrumb{margin-bottom:16px}.guide-article-header{padding-bottom:22px;margin-bottom:24px}.guide-article-header h1{font-size:1.875rem}.guide-article-description{font-size:1rem}.guide-byline{margin-top:14px}
+  .guides-grid{grid-template-columns:1fr;gap:18px}.guide-card{padding:0 20px 20px}.guide-card>.guide-cover{width:calc(100% + 40px);margin-inline:-20px;margin-bottom:18px}.guide-card h2{font-size:1.25rem}.guide-card-meta{gap:8px 12px}.guide-featured-label{padding-left:12px}
+  .guide-search-empty{padding:22px}.guide-search input{font-size:1rem}.guide-search-field{gap:8px;padding-left:12px}
+  .guide-reading{padding:12px 20px 36px}.guide-reading .guides-breadcrumb{margin-bottom:16px}.guide-article-header{padding-bottom:22px;margin-bottom:24px}.guide-article-header h1{font-size:1.75rem;text-wrap:initial}.guide-article-description{font-size:1rem;line-height:1.65}.guide-byline{margin-top:14px}.guide-article-header-visual{grid-template-columns:1fr;gap:20px}
+  .guide-takeaways{padding:18px}.guide-takeaways h2{font-size:1.0625rem}.guide-toc summary span{margin-left:8px}.guide-reading .guide-callout{padding:18px}
   .guide-reading .guide-body h2{font-size:1.375rem}.guide-reading .guide-body p,.guide-reading .guide-body ul{font-size:1rem;line-height:1.85}
   .guide-template{padding:16px}.guide-template textarea{min-height:430px;padding:12px}.guide-template button{width:100%}.guide-contact-block{padding:22px}.guide-contact-block h2{font-size:1.375rem}.guide-contact-actions .button{width:100%}
   .guides-newsletter>section>div{padding-inline:20px}.guides-newsletter>section>div>div{padding:22px}.guides-newsletter form{align-items:stretch}

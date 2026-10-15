@@ -12,7 +12,7 @@ const articlePath = `/guias/${slug}/`;
 const googleSlug = 'como-crear-un-perfil-de-empresa-de-google-y-conseguir-resenas-sin-infringir-las-politicas';
 const activeSlugs = [slug, googleSlug];
 const guide = matter(readFileSync(`content/guides/${slug}.md`, 'utf8'));
-const output = process.env.QA_OUTPUT || '.tool-cache/guides-editorial-qa';
+const output = process.env.QA_OUTPUT || '.tool-cache/guides-visual-qa';
 const oldSlugs = [
   'logistica-flex-principiantes', 'promociones-publicidad-politica-precios',
   'tienda-oficial-mercadolibre-empeza-por-esto', 'courier-argentina-2026-guia',
@@ -25,7 +25,8 @@ mkdirSync(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const results = [];
 try {
-  for (const width of [1440, 1280, 1152, 1024, 768, 390, 360]) {
+  const widths = process.env.QA_WIDTHS ? process.env.QA_WIDTHS.split(',').map(Number) : [1440, 1280, 1152, 1024, 768, 390, 360];
+  for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 850 }, isMobile: width < 700, hasTouch: width < 700, permissions: ['clipboard-read', 'clipboard-write'] });
     const page = await context.newPage();
     const errors = [];
@@ -67,6 +68,37 @@ try {
         for (const id of activeSlugs) assert(links.includes(`/guias/${id}/`));
         for (const id of archivedSlugs) await expect(page.locator(`a[href="/guias/${id}/"]`)).toHaveCount(0);
         assert.equal(await page.locator('.guide-card').first().evaluate(el => getComputedStyle(el).position), 'static');
+        const cards = await page.locator('.guide-card').evaluateAll(els => els.map(el => ({ x: el.getBoundingClientRect().x, y: el.getBoundingClientRect().y, height: el.getBoundingClientRect().height })));
+        assert.equal(Math.abs(cards[0].y - cards[1].y) < 2, width > 700, 'Two columns on desktop, one on mobile');
+        assert(cards.every(card => card.height < 650), 'Cards should remain compact');
+        const search = page.getByRole('searchbox', { name: 'Buscá un tema para tu negocio' });
+        await search.fill('PRESENCIA DIGITAL');
+        await expect(page.locator('.guide-card')).toHaveCount(2); // Category in one guide, body in the other.
+        for (const [query, expected] of [['página', slug], ['PAGINA', slug], ['DISEÑO WEB', slug], ['lavarropas', slug], ['RESEÑAS', googleSlug], ['resenas', googleSlug], ['negocio local reseñas', googleSlug], ['videollamada', googleSlug], ['selección de clientes', googleSlug]]) {
+          await search.fill(query);
+          await expect(page.locator('.guide-card'), `Search: ${query}`).toHaveCount(1);
+          await expect(page.locator('.guide-card h2 a')).toHaveAttribute('href', `/guias/${expected}/`);
+          await expect(page.locator('#guide-results-count')).toContainText('1 guía');
+        }
+        for (const query of ['courier', 'Mercado Libre', 'zzzxxyy']) {
+          await search.fill(query);
+          await expect(page.locator('.guide-card')).toHaveCount(0);
+          await expect(page.locator('.guide-search-empty')).toContainText('Probá con un tema más general');
+          await expect(page.locator('#guide-results-count')).toContainText('0 guías');
+        }
+        await search.press('Tab');
+        await expect(page.getByRole('button', { name: 'Limpiar búsqueda' })).toBeFocused();
+        await page.keyboard.press('Enter');
+        await expect(search).toBeFocused();
+        await expect(search).toHaveValue('');
+        await expect(page.locator('.guide-card')).toHaveCount(2);
+        assert.equal(page.url(), origin + '/guias/', 'Search must not create query URLs');
+        await search.fill('ningunresultado');
+        await page.getByRole('button', { name: 'Ver todas las guías', exact: true }).click();
+        await expect(page.locator('.guide-card')).toHaveCount(2);
+        await search.fill('   ');
+        await expect(page.locator('.guide-card')).toHaveCount(2);
+        await page.getByRole('button', { name: 'Limpiar búsqueda' }).click();
       } else {
         assert(schemas.some(s => s['@type'] === 'Article'));
         await expect(page.getByRole('link', { name: 'Volver a todas las guías' })).toHaveAttribute('href', '/guias/');
@@ -84,17 +116,53 @@ try {
         assert.equal(article.datePublished, '2026-10-15');
         await expect(page.locator('.guide-body h2')).toHaveCount(8);
         await expect(page.locator('.guide-body h3, .guide-body h4')).toHaveCount(0);
-        const bodyTop = await page.locator('.guide-body').evaluate(el => el.getBoundingClientRect().top);
-        assert(bodyTop < 700, `Article starts too low: ${bodyTop}`);
+        const headerHeight = await page.locator('.guide-article-header').evaluate(el => el.getBoundingClientRect().height);
+        assert(headerHeight < (width > 700 ? 500 : 640), `Header too tall: ${headerHeight}`);
         const whatsapp = new URL(await page.getByRole('link', { name: 'Consultar con ORIAVISION', exact: true }).getAttribute('href'));
         assert.equal(whatsapp.pathname, '/5491127575675');
         assert.equal(whatsapp.searchParams.get('text'), guide.data.contactMessage);
         await expect(page.getByRole('link', { name: 'Explorar rubros' })).toHaveAttribute('href', '/proyectos/');
         await expect(page.getByRole('link', { name: 'guía oficial de Google' })).toHaveCount(1);
       }
+      if (!isArchived(path)) {
+        const covers = await page.locator('.guide-cover').evaluateAll(els => els.map(el => ({ loaded: el.complete && el.naturalWidth > 0, alt: el.alt, width: el.getAttribute('width'), height: el.getAttribute('height'), src: el.src })));
+        assert.equal(covers.length, path === '/guias/' ? 2 : 1);
+        assert(covers.every(cover => cover.loaded && cover.alt && cover.width === '1200' && cover.height === '630'));
+        assert.equal(new Set(covers.map(cover => cover.src)).size, covers.length, 'Unique covers');
+        if (path !== '/guias/') {
+          await expect(page.locator('.guide-takeaways li')).toHaveCount(3);
+          await expect(page.locator('.guide-checklist')).toHaveCount(1);
+          await expect(page.locator('.guide-related a')).toHaveCount(1);
+          const toc = page.locator('.guide-toc');
+          assert.equal(await toc.getAttribute('open'), null);
+          await toc.locator('summary').focus();
+          await page.keyboard.press('Enter');
+          await expect(toc).toHaveAttribute('open', '');
+          const anchors = await toc.locator('a').evaluateAll(els => els.map(el => ({ href: el.getAttribute('href'), text: el.textContent })));
+          assert.equal(anchors.length, 8);
+          for (const anchor of anchors) await expect(page.locator(anchor.href)).toHaveText(anchor.text);
+          await toc.locator('a').first().click();
+          await expect.poll(async () => {
+            const top = await page.locator(anchors[0].href).evaluate(el => el.getBoundingClientRect().top);
+            return top >= 80 && top < 300;
+          }, { message: 'Anchor settles below the fixed navigation' }).toBe(true);
+          await toc.locator('summary').click();
+          await page.goto(origin + path, { waitUntil: 'networkidle' });
+        }
+      }
       if ([1440, 390, 360].includes(width) && (paths.indexOf(path) < 2 || path === `/guias/${googleSlug}/` || path === `/guias/${archivedSlugs[0]}/`)) {
         const label = path === articlePath ? 'article' : path === '/guias/' ? 'index' : isArchived(path) ? 'archive' : 'google';
         await page.screenshot({ path: `${output}/${label}-${width}.png`, fullPage: false });
+        if (path === '/guias/') {
+          await page.locator('.guide-card').first().scrollIntoViewIfNeeded();
+          await page.screenshot({ path: `${output}/cards-${width}.png` });
+        } else if (!isArchived(path)) {
+          await page.locator('.guide-toc summary').click();
+          await page.locator('.guide-toc').scrollIntoViewIfNeeded();
+          await page.screenshot({ path: `${output}/${label}-toc-${width}.png` });
+          await page.locator('.guide-body h2').first().scrollIntoViewIfNeeded();
+          await page.screenshot({ path: `${output}/${label}-reading-${width}.png` });
+        }
       }
       results.push({ width, path, status: 'passed' });
     }
@@ -135,9 +203,15 @@ try {
 
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 360, height: 850 } });
   const page = await context.newPage();
+  await page.goto(origin + '/guias/');
+  await expect(page.locator('.guide-card h2 a')).toHaveCount(2);
+  assert((await page.locator('noscript').textContent()).includes('Podés leer todas las guías'));
+  await expect(page.locator('noscript p')).toBeVisible();
   await page.goto(origin + articlePath);
   await expect(page.locator('.guide-body h2')).toHaveCount(8);
   await expect(page.locator('.guide-template textarea')).toContainText('Mi negocio ofrece:');
+  await page.locator('.guide-toc summary').click();
+  await expect(page.locator('.guide-toc nav')).toBeVisible();
   await context.close();
 
   const interaction = await browser.newContext();
@@ -160,6 +234,23 @@ try {
   for (const id of archivedSlugs) assert(!sitemap.includes(publicOrigin + `/guias/${id}/`));
   const robots = await (await fetch(origin + '/robots.txt')).text();
   assert(!robots.includes('Disallow: /guias'));
+  assert(robots.includes(`Sitemap: ${publicOrigin}/sitemap.xml`));
+  const sitemapUrls = load(sitemap, { xmlMode: true })('loc').map((_, el) => el.children[0].data).get();
+  assert(sitemapUrls.every(url => !url.includes('?') && !url.includes('/demos/')));
+  // Text/background combinations used by the new guide UI meet WCAG AA (normal text).
+  const luminance = hex => {
+    const rgb = hex.match(/\w\w/g).map(value => parseInt(value, 16) / 255).map(c => c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4);
+    return rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722;
+  };
+  for (const [foreground, background] of [['163e31', 'ffffff'], ['4a5b53', 'ffffff'], ['4a5b53', 'f5f7f5'], ['106346', 'ffffff'], ['68501d', 'ffffff'], ['5d6c62', 'ffffff']]) {
+    const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+    assert((values[0] + .05) / (values[1] + .05) >= 4.5, `Contrast ${foreground}/${background}`);
+  }
+  for (const name of ['preparar-web', 'perfil-google']) for (const suffix of ['', '-640']) {
+    const response = await fetch(`${origin}/images/guides/${name}${suffix}.webp`);
+    assert.equal(response.status, 200);
+    assert((await response.arrayBuffer()).byteLength < 25000, 'Optimized guide cover');
+  }
   for (const demo of ['abogados-bordo-oro', 'abogados-espresso-editorial']) {
     const html = await (await fetch(`${origin}/demos/${demo}/`)).text();
     assert(/noindex/.test(html), demo);

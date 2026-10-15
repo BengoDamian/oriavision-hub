@@ -13,6 +13,15 @@ noindex: false
 seoTitle: Perfil de Empresa de Google y reseñas para tu negocio
 seoDescription: Cómo crear o reclamar tu Perfil de Empresa, verificarlo y pedir reseñas respetando las políticas de Google. Pasos para negocios con atención presencial.
 author: ORIAVISION
+image: /images/guides/perfil-google.webp
+imageSmall: /images/guides/perfil-google-640.webp
+imageAlt: Ilustración de un comercio, un marcador de ubicación y opiniones de clientes.
+takeaways:
+  - Comprobar si tu actividad puede tener un Perfil de Empresa.
+  - Ordenar los datos del negocio y conservar el control de sus accesos.
+  - Pedir y responder reseñas respetando las políticas de Google.
+relatedGuides:
+  - que-preparar-antes-de-crear-tu-pagina-web
 updatedAt: "2026-10-15"
 contactTitle: ¿Querés mejorar la presencia de tu negocio en Google?
 contactMessage: Hola, leí la guía sobre Perfil de Empresa de Google y quiero consultar cómo mejorar la presencia digital de mi negocio.
@@ -57,6 +66,7 @@ Si te pide una grabación de video, prepará cómo mostrar la ubicación, la act
 
 Invitá a clientes con una experiencia real a contarla libremente. No ofrezcas descuentos, regalos ni pagos a cambio de reseñas, tampoco para modificar o retirar una negativa. No pidas cinco estrellas, palabras específicas ni que nombren a un empleado.
 
+📌 Error frecuente: elegir quién puede opinar
 No filtres la invitación para que sólo los clientes satisfechos lleguen a Google. Tampoco presiones para que escriban una reseña en el local. Estas prácticas están contempladas en la [política contra la manipulación de valoraciones](https://support.google.com/contributionpolicy/answer/7400114?hl=es).
 
 Un mensaje posible: «Gracias por elegirnos. Si querés, podés contar tu experiencia en Google en este enlace». Enviá la invitación de manera consistente, sin condicionarla a una opinión positiva y sin insistir si la persona no quiere participar.
@@ -67,7 +77,7 @@ Desde tu Perfil de Empresa, buscá la opción para conseguir más reseñas. Pod�
 
 Los clientes necesitan iniciar sesión en una cuenta de Google para publicar una reseña. Cuando respondas, aportá información útil y cuidá la privacidad: no expongas datos personales ni detalles de una compra o atención. Una crítica no se elimina por ser negativa; podés denunciarla si considerás que infringe las políticas. Consultá los [consejos de Google sobre reseñas y respuestas](https://support.google.com/business/answer/3474122?hl=es).
 
-## Antes de dar el perfil por listo
+## Checklist antes de dar el perfil por listo
 
 - Confirmé que mi actividad es elegible y no dupliqué una ficha existente.
 - El nombre, la categoría y la ubicación representan el negocio real.

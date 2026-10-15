@@ -13,6 +13,15 @@ seoTitle: Qué preparar antes de pedir una página web para tu negocio
 seoDescription: Definí el objetivo de tu web, reuní textos y fotos y elegí las funciones necesarias. Una guía práctica con ficha copiable y checklist antes de publicar.
 publishedAt: "2026-10-15"
 author: ORIAVISION
+image: /images/guides/preparar-web.webp
+imageSmall: /images/guides/preparar-web-640.webp
+imageAlt: Ilustración de una página web junto a una lista de preparación y materiales visuales.
+takeaways:
+  - Definir qué acción querés que hagan los visitantes de tu web.
+  - Reunir información, fotos y accesos para pedir un presupuesto claro.
+  - Completar una ficha del negocio y revisar lo esencial antes de publicar.
+relatedGuides:
+  - como-crear-un-perfil-de-empresa-de-google-y-conseguir-resenas-sin-infringir-las-politicas
 contactMessage: Hola, leí la guía sobre qué preparar antes de crear una página web y quiero consultar por el sitio de mi negocio.
 ---
 Antes de pedir un presupuesto, conviene ordenar algunas decisiones sobre tu negocio. No necesitás saber programar ni llegar con todo resuelto: necesitás poder explicar qué ofrecés, a quién y qué esperás del sitio.
@@ -47,6 +56,7 @@ Armá una carpeta compartida con lo que ya existe. No hace falta que esté perfe
 - Preguntas frecuentes y sus respuestas: plazos, formas de pago, zonas de entrega o preparación para un turno.
 - Teléfono, WhatsApp, correo y redes actualizados.
 
+📌 Para empezar con lo que tenés
 Un logo profesional y fotos de estudio no son requisitos indispensables. Podés empezar con el nombre bien presentado y fotos de celular claras, con buena luz. Evitá imágenes que prometan instalaciones o trabajos que no son tuyos.
 
 ## 4. Qué funciones necesitás de verdad

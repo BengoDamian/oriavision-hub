@@ -2,12 +2,13 @@
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import GuideBody from "@/components/GuideBody";
+import GuideCover from "@/components/GuideCover";
 import Newsletter from "@/components/Newsletter";
-import { getGuideByIdMerged, getGuideIdsMerged } from "@/lib/content";
+import { getGuideByIdMerged, getGuideIdsMerged, getPublishedGuides } from "@/lib/content";
 import { isGuideIndexable } from "@/lib/guide-policy";
+import { parseGuideContent } from "@/lib/guide-content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
-const CALC_URL = "https://calculadoraml.oriavision.com.ar";
 export const dynamic = "error";
 export const dynamicParams = false;
 type PageProps = { params: Promise<{ id: string }> };
@@ -42,6 +43,9 @@ export default async function GuiaDetailPage({ params }: PageProps) {
   const item = getGuideByIdMerged(id);
   if (!item) notFound();
   const archived = item.editorialStatus === "archived";
+  const current = isGuideIndexable(item);
+  const sections = parseGuideContent(item.content).filter(block => block.type === "heading" && block.level !== 3);
+  const related = current ? getPublishedGuides().filter(guide => guide.id !== item.id && item.relatedGuides?.includes(guide.id)) : [];
   const url = `${SITE_URL}/guias/${item.id}/`;
   const author = item.author || "ORIAVISION";
   const image = item.image || (item.contactMessage ? "/og/oriavision-agencia.png" : "/og/guia.png");
@@ -67,7 +71,7 @@ export default async function GuiaDetailPage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c") }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }} />
-      <div className="guide-reading">
+      <div className={`guide-reading${current ? " guide-reading-current" : ""}`}>
         <nav className="guides-breadcrumb" aria-label="Ruta de navegación">
           <a href="/">Inicio</a><span aria-hidden="true">/</span>
           <a href="/guias/">Guías</a><span aria-hidden="true">/</span>
@@ -79,7 +83,8 @@ export default async function GuiaDetailPage({ params }: PageProps) {
           <a className="guides-text-link" href="/guias/">Ver guías vigentes</a>
         </aside>}
         <article>
-          <header className="guide-article-header">
+          <header className={`guide-article-header${current && item.image ? " guide-article-header-visual" : ""}`}>
+            <div>
             <span className="guides-category">{item.category}</span>
             <h1>{item.title}</h1>
             <p className="guide-article-description">{item.description}</p>
@@ -88,26 +93,40 @@ export default async function GuiaDetailPage({ params }: PageProps) {
               {item.publishedAt && <time dateTime={item.publishedAt}>{new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(item.publishedAt))}</time>}
               {item.updatedAt && item.updatedAt !== item.publishedAt && <span>Actualizada el <time dateTime={item.updatedAt}>{new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(item.updatedAt))}</time></span>}
             </div>
+            </div>
+            {current && <GuideCover {...item} priority sizes="(max-width: 700px) calc(100vw - 40px), 360px" />}
           </header>
-          <GuideBody content={item.content} />
+          <div className="guide-reading-column">
+            {current && !!item.takeaways?.length && <section className="guide-takeaways" aria-labelledby="guide-takeaways-title">
+              <h2 id="guide-takeaways-title">Qué vas a poder resolver con esta guía</h2>
+              <ul>{item.takeaways.map(point => <li key={point}>{point}</li>)}</ul>
+            </section>}
+            {current && sections.length >= 4 && <details className="guide-toc">
+              <summary>En esta guía <span>{sections.length} secciones</span></summary>
+              <nav aria-label="Secciones de esta guía"><ol>{sections.map(section => section.type === "heading" &&
+                <li key={section.id}><a href={`#${section.id}`}>{section.text}</a></li>
+              )}</ol></nav>
+            </details>}
+            <GuideBody content={item.content} />
+          </div>
         </article>
-        {archived ? null : item.contactMessage ? (
+        <div className="guide-reading-column">
+        {current && (
           <aside className="guide-contact-block" aria-label="Consultá por tu sitio web">
             <h2>{item.contactTitle || "¿Querés llevar estas ideas al sitio de tu negocio?"}</h2>
             <p>Si buscás ideas para tu actividad, podés recorrer nuestros diseños por rubro.</p>
             <div className="guide-contact-actions">
-              <a className="button button-dark" href={`https://wa.me/5491127575675?text=${encodeURIComponent(item.contactMessage)}`} target="_blank" rel="noopener noreferrer">Consultar con ORIAVISION</a>
+              <a className="button button-dark" href={`https://wa.me/5491127575675?text=${encodeURIComponent(item.contactMessage || `Hola, leí la guía «${item.title}» y quiero consultar por la presencia digital de mi negocio.`)}`} target="_blank" rel="noopener noreferrer">Consultar con ORIAVISION</a>
               <a className="guides-text-link" href="/proyectos/">Explorar rubros <ArrowRight size={18} aria-hidden="true" /></a>
             </div>
           </aside>
-        ) : (
-          <aside className="guide-contact-block" aria-label="Calculadora de precios">
-            <h2>¿Querés calcular precios sin perder margen?</h2>
-            <p>Abrí la Calculadora ML y sacá el precio final en segundos (contado + cuotas).</p>
-            <div className="guide-contact-actions"><a className="button button-dark" href={CALC_URL} target="_blank" rel="noopener noreferrer">Abrir Calculadora ML</a></div>
-          </aside>
         )}
+        {related.length > 0 && <aside className="guide-related" aria-labelledby="guide-related-title">
+          <h2 id="guide-related-title">Para seguir con la presencia digital de tu negocio</h2>
+          {related.map(guide => <a key={guide.id} className="guides-text-link" href={`/guias/${guide.id}/`}>{guide.title}<ArrowRight size={18} aria-hidden="true" /></a>)}
+        </aside>}
         <a className="guides-text-link" href="/guias/"><ArrowLeft size={18} aria-hidden="true" />Volver a todas las guías</a>
+        </div>
       </div>
       <div className="guides-newsletter"><Newsletter /></div>
     </>

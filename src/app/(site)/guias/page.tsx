@@ -1,7 +1,8 @@
 ﻿import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
 import Newsletter from "@/components/Newsletter";
+import GuideSearch from "@/components/GuideSearch";
 import { getPublishedGuides } from "@/lib/content";
+import { makeGuideSearchText } from "@/lib/guide-search";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const title = "Guías para mejorar la presencia digital de tu negocio";
@@ -47,21 +48,11 @@ export default function GuiasPage() {
           <h1>{title}</h1>
           <p>{description}</p>
         </header>
-        <div className="guides-grid">
-          {ordered.map(g => (
-            <article key={g.id} className={`guide-card${g.id === featured?.id ? " guide-card-featured" : ""}`}>
-              <div className="guide-card-meta">
-                <span className="guides-category">{g.category}</span>
-                {g.id === featured?.id && <span className="guide-featured-label">Guía destacada</span>}
-              </div>
-              <h2><a href={`/guias/${g.id}/`}>{g.title}</a></h2>
-              <p>{g.description}</p>
-              <a className="guides-text-link" href={`/guias/${g.id}/`} aria-label={`Leer guía: ${g.title}`}>
-                Leer guía <ArrowRight size={18} aria-hidden="true" />
-              </a>
-            </article>
-          ))}
-        </div>
+        <GuideSearch guides={ordered.map(g => ({
+          id: g.id, title: g.title, description: g.description, category: g.category,
+          featured: g.id === featured?.id, image: g.image, imageSmall: g.imageSmall, imageAlt: g.imageAlt,
+          searchText: makeGuideSearchText(g),
+        }))} />
       </div>
       <div className="guides-newsletter"><Newsletter /></div>
     </>
