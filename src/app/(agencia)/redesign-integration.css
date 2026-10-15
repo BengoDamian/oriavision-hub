@@ -9,5 +9,8 @@
 .catalog-toolbar .catalog-note{padding:0;margin:0}
 .footer-resources{display:flex;flex-wrap:wrap;gap:12px 24px;padding-block:18px;font-size:.8125rem;border-top:1px solid #ffffff30}
 .legacy-content{min-height:50vh}
+/* Keep all navigation items readable after adding Guías. */
+@media(min-width:951px) and (max-width:1150px){.header-inner{min-height:74px}.menu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;background:#ffffff08;color:white;border:1px solid #d7e7d745;border-radius:8px}.main-nav{display:none;position:absolute;left:0;right:0;top:100%;background:#0a4531;border-bottom:1px solid #aec9b2;padding:16px 24px 24px;flex-direction:column;align-items:stretch;gap:0;max-height:calc(100dvh - 74px - var(--contact-bar-height) - env(safe-area-inset-bottom));overflow-y:auto}.main-nav.is-open{display:flex}.main-nav>a{min-height:49px;padding:12px 0;font-size:1rem}.main-nav .nav-contact{max-width:none;margin-top:10px;text-align:center;padding:13px}}
+@media(min-width:1151px) and (max-width:1400px){.main-nav{gap:18px}.header-inner{gap:20px}.brand{width:220px}.main-nav .nav-contact{max-width:155px}.main-nav>a{line-height:1.45}}
 .error-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
 @media(max-width:700px){.catalog-toolbar{align-items:stretch;flex-direction:column;gap:16px}.catalog-toolbar select{width:100%}.catalog-toolbar .catalog-note{font-size:.875rem}}

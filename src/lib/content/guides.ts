@@ -21,6 +21,7 @@ export type GuideItem = {
   updatedAt?: string;
   image?: string;
   author?: string;
+  contactMessage?: string;
 };
 
 const DIR = path.join(process.cwd(), "content", "guides");
@@ -51,6 +52,7 @@ export function getAllGuidesFromContent(): GuideItem[] {
       updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
       image: data.image ? String(data.image) : undefined,
       author: data.author ? String(data.author) : undefined,
+      contactMessage: data.contactMessage ? String(data.contactMessage) : undefined,
     };
   });
 
@@ -86,5 +88,6 @@ export function getGuideByIdFromContent(id: string): GuideItem | null {
     updatedAt: data.updatedAt ? String(data.updatedAt) : undefined,
     image: data.image ? String(data.image) : undefined,
     author: data.author ? String(data.author) : undefined,
+    contactMessage: data.contactMessage ? String(data.contactMessage) : undefined,
   };
 }

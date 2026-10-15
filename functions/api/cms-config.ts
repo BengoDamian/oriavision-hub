@@ -106,6 +106,7 @@ collections:
       - { label: "Autor", name: "author", widget: "string", required: false }
       - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Contenido", name: "body", widget: "markdown" }
+      - { label: "Mensaje de consulta web por WhatsApp", name: "contactMessage", widget: "text", required: false, hint: "Si se completa, muestra el contacto de ORIAVISION en lugar de la calculadora." }
 `.trim();
 
   return new Response(yaml, {

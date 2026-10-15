@@ -1,8 +1,18 @@
+import CopyableGuideTemplate from "./CopyableGuideTemplate";
+
+function inlineText(text: string) {
+  return text.split(/(\[[^\]]+\]\(https?:\/\/[^\s)]+\))/g).map((part, index) => {
+    const link = part.match(/^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)$/);
+    return link ? <a key={index} href={link[2]}>{link[1]}</a> : part;
+  });
+}
+
 export default function GuideBody({ content }: { content: string }) {
   const lines = content.replace(/\r\n/g, "\n").split("\n");
 
   const blocks: Array<
     | { type: "p"; text: string }
+    | { type: "template"; text: string }
     | { type: "heading"; level: 1 | 2 | 3; text: string; sub?: string }
     | { type: "ul"; items: string[] }
     | { type: "callout"; title: string; body?: string }
@@ -52,6 +62,17 @@ export default function GuideBody({ content }: { content: string }) {
 
     if (!line) {
       i++;
+      continue;
+    }
+
+    if (line === "```ficha") {
+      const template: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== "```") {
+        template.push(lines[i++]);
+      }
+      i++;
+      blocks.push({ type: "template", text: template.join("\n") });
       continue;
     }
 
@@ -329,8 +350,9 @@ export default function GuideBody({ content }: { content: string }) {
   }
 
   return (
-    <article className="w-full max-w-none space-y-7 text-slate-800">
+    <div className="guide-body w-full max-w-none space-y-7 text-slate-800">
       {blocks.map((b, idx) => {
+        if (b.type === "template") return <CopyableGuideTemplate key={idx} text={b.text} />;
         if (b.type === "heading") {
           if (b.level === 1) {
             return (
@@ -350,9 +372,9 @@ export default function GuideBody({ content }: { content: string }) {
           if (b.level === 2) {
             return (
               <section key={idx} className="space-y-3 pt-2">
-                <h3 className="text-xl font-black tracking-tight text-slate-900 md:text-3xl">
+                <h2 className="text-xl font-black tracking-tight text-slate-900 md:text-3xl">
                   {b.text}
-                </h3>
+                </h2>
                 {b.sub ? (
                   <p className="text-base font-medium leading-7 text-textBody md:text-lg">
                     {b.sub}
@@ -364,9 +386,9 @@ export default function GuideBody({ content }: { content: string }) {
 
           return (
             <section key={idx} className="space-y-2 pt-1">
-              <h4 className="text-lg font-extrabold tracking-tight text-slate-900 md:text-2xl">
+              <h3 className="text-lg font-extrabold tracking-tight text-slate-900 md:text-2xl">
                 {b.text}
-              </h4>
+              </h3>
               {b.sub ? (
                 <p className="text-base font-medium leading-7 text-textBody md:text-lg">
                   {b.sub}
@@ -450,10 +472,10 @@ export default function GuideBody({ content }: { content: string }) {
             key={idx}
             className="text-base font-medium leading-8 text-textBody md:text-[18px]"
           >
-            {b.text}
+            {inlineText(b.text)}
           </p>
         );
       })}
-    </article>
+    </div>
   );
 }
