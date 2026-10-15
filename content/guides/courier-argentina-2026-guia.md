@@ -12,6 +12,7 @@ tags:
   - "AFIP"
   - "ARCA"
 featured: false
+editorialStatus: archived
 draft: false
 noindex: false
 seoTitle: "Courier en Argentina 2026: cuál sirve para revender y cuál no"

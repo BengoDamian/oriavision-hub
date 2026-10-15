@@ -76,11 +76,19 @@ collections:
     format: "frontmatter"
     editor:
       preview: false
-    summary: "{{title}} | {{category}} | featured: {{featured}} | draft: {{draft}} | noindex: {{noindex}}"
+    summary: "{{title}} | {{category}} | {{editorialStatus}} | draft: {{draft}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Categoría", name: "category", widget: "string" }
+      - label: "Estado editorial"
+        name: "editorialStatus"
+        widget: "select"
+        default: "published"
+        options:
+          - { label: "Vigente", value: "published" }
+          - { label: "Archivada", value: "archived" }
+        hint: "Archivada conserva la URL, aplica noindex, follow y la excluye del catálogo y sitemap. Borrador impide publicar la URL."
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Destacada", name: "featured", widget: "boolean", required: false, default: false }
       - { label: "Borrador", name: "draft", widget: "boolean", required: false, default: false }
@@ -107,6 +115,7 @@ collections:
       - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Contenido", name: "body", widget: "markdown" }
       - { label: "Mensaje de consulta web por WhatsApp", name: "contactMessage", widget: "text", required: false, hint: "Si se completa, muestra el contacto de ORIAVISION en lugar de la calculadora." }
+      - { label: "Título del bloque de consulta", name: "contactTitle", widget: "string", required: false }
 `.trim();
 
   return new Response(yaml, {

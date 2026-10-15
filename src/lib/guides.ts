@@ -1,3 +1,5 @@
+import type { GuideEditorialStatus } from "./guide-policy";
+
 export type GuideCategory = string;
 
 export type GuideItem = {
@@ -10,6 +12,7 @@ export type GuideItem = {
   featured?: boolean;
   draft?: boolean;
   noindex?: boolean;
+  editorialStatus?: GuideEditorialStatus;
   seoTitle?: string;
   seoDescription?: string;
   publishedAt?: string;
@@ -21,6 +24,7 @@ export type GuideItem = {
 export const guides: GuideItem[] = [
   {
     id: "logistica-flex-principiantes",
+    editorialStatus: "archived",
     title: "Cómo elegir logística Flex (principiantes)",
     description: "Guía práctica para no arruinar tu reputación en los primeros envíos.",
     category: "Logística",
@@ -63,6 +67,7 @@ Elegí una logística cerca + que cumpla. El precio es secundario si te cuida la
 
   {
     id: "promociones-publicidad-politica-precios",
+    editorialStatus: "archived",
     title: "Promociones, publicidad y política de precios: una buena idea... hasta que la operación te pasa factura",
     description:
       "Testear promociones y publicidad suena bárbaro, pero si multiplicás publicaciones y precios, la gestión se complica.",
@@ -119,6 +124,7 @@ Sirve para testear y aprender, pero a escala la operación manda. Lo que cierra 
 
   {
     id: "tienda-oficial-mercadolibre-empeza-por-esto",
+    editorialStatus: "archived",
     title: "¿Querés llegar a tener una Tienda Oficial en Mercado Libre? Empezá por esto",
     description:
       "Antes de pensar en Tienda Oficial, ordená tu marca: INPI, agente de marcas e identidad consistente.",

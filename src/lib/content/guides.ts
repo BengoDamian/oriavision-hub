@@ -2,6 +2,7 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { parseGuideEditorialStatus, type GuideEditorialStatus } from "@/lib/guide-policy";
 
 export type GuideCategory = string;
 
@@ -15,6 +16,7 @@ export type GuideItem = {
   featured?: boolean;
   draft?: boolean;
   noindex?: boolean;
+  editorialStatus?: GuideEditorialStatus;
   seoTitle?: string;
   seoDescription?: string;
   publishedAt?: string;
@@ -22,6 +24,7 @@ export type GuideItem = {
   image?: string;
   author?: string;
   contactMessage?: string;
+  contactTitle?: string;
 };
 
 const DIR = path.join(process.cwd(), "content", "guides");
@@ -46,6 +49,7 @@ export function getAllGuidesFromContent(): GuideItem[] {
       featured: Boolean(data.featured ?? false),
       draft: Boolean(data.draft ?? false),
       noindex: Boolean(data.noindex ?? false),
+      editorialStatus: parseGuideEditorialStatus(data.editorialStatus),
       seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
       seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
       publishedAt: data.publishedAt ? String(data.publishedAt) : undefined,
@@ -53,6 +57,7 @@ export function getAllGuidesFromContent(): GuideItem[] {
       image: data.image ? String(data.image) : undefined,
       author: data.author ? String(data.author) : undefined,
       contactMessage: data.contactMessage ? String(data.contactMessage) : undefined,
+      contactTitle: data.contactTitle ? String(data.contactTitle) : undefined,
     };
   });
 
@@ -82,6 +87,7 @@ export function getGuideByIdFromContent(id: string): GuideItem | null {
     featured: Boolean(data.featured ?? false),
     draft: Boolean(data.draft ?? false),
     noindex: Boolean(data.noindex ?? false),
+    editorialStatus: parseGuideEditorialStatus(data.editorialStatus),
     seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
     seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
     publishedAt: data.publishedAt ? String(data.publishedAt) : undefined,
@@ -89,5 +95,6 @@ export function getGuideByIdFromContent(id: string): GuideItem | null {
     image: data.image ? String(data.image) : undefined,
     author: data.author ? String(data.author) : undefined,
     contactMessage: data.contactMessage ? String(data.contactMessage) : undefined,
+    contactTitle: data.contactTitle ? String(data.contactTitle) : undefined,
   };
 }

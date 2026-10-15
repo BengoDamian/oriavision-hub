@@ -16,6 +16,7 @@ import {
   getAllGuidesFromContent,
   type GuideItem as ContentGuideItem,
 } from "@/lib/content/guides";
+import { isGuideIndexable } from "@/lib/guide-policy";
 
 function normalizeLegacyPrompt(item: LegacyPromptItem): ContentPromptItem {
   return {
@@ -45,6 +46,7 @@ function normalizeLegacyGuide(item: LegacyGuideItem): ContentGuideItem {
     featured: item.featured,
     draft: item.draft,
     noindex: item.noindex,
+    editorialStatus: item.editorialStatus || "published",
     seoTitle: item.seoTitle,
     seoDescription: item.seoDescription,
     publishedAt: item.publishedAt,
@@ -94,16 +96,14 @@ export function getAllGuidesMerged(): ContentGuideItem[] {
 
   for (const item of legacyGuides) {
     const normalized = normalizeLegacyGuide(item);
-    if (normalized.draft) continue;
     map.set(normalized.id, normalized);
   }
 
   for (const item of cms) {
-    if (item.draft) continue;
     map.set(item.id, item);
   }
 
-  return Array.from(map.values()).sort(
+  return Array.from(map.values()).filter(item => !item.draft).sort(
     (a, b) =>
       Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
       a.title.localeCompare(b.title)
@@ -115,7 +115,10 @@ export function getGuideByIdMerged(id: string): ContentGuideItem | null {
 }
 
 export function getGuideIdsMerged(): string[] {
-  return getAllGuidesMerged()
-    .filter((item) => !item.noindex)
-    .map((item) => item.id);
+  // Routing includes archives and noindex pages; discovery uses getPublishedGuides.
+  return getAllGuidesMerged().map((item) => item.id);
+}
+
+export function getPublishedGuides(): ContentGuideItem[] {
+  return getAllGuidesMerged().filter(isGuideIndexable);
 }

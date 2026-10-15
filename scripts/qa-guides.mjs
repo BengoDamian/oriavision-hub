@@ -3,19 +3,24 @@ import assert from 'node:assert/strict';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import matter from 'gray-matter';
+import { load } from 'cheerio';
 
 const origin = process.env.QA_ORIGIN || 'http://127.0.0.1:4185';
 const publicOrigin = 'https://www.oriavision.com.ar';
 const slug = 'que-preparar-antes-de-crear-tu-pagina-web';
 const articlePath = `/guias/${slug}/`;
+const googleSlug = 'como-crear-un-perfil-de-empresa-de-google-y-conseguir-resenas-sin-infringir-las-politicas';
+const activeSlugs = [slug, googleSlug];
 const guide = matter(readFileSync(`content/guides/${slug}.md`, 'utf8'));
-const output = '.tool-cache/guides-qa';
+const output = process.env.QA_OUTPUT || '.tool-cache/guides-editorial-qa';
 const oldSlugs = [
   'logistica-flex-principiantes', 'promociones-publicidad-politica-precios',
   'tienda-oficial-mercadolibre-empeza-por-esto', 'courier-argentina-2026-guia',
   'como-crear-un-perfil-de-empresa-de-google-y-conseguir-resenas-sin-infringir-las-politicas',
   'mercadolibre-cambia-como-mide-la-experiencia-de-compra-desde-abril-de-2026',
 ];
+const archivedSlugs = oldSlugs.filter(id => id !== googleSlug);
+const isArchived = path => archivedSlugs.some(id => path === `/guias/${id}/`);
 mkdirSync(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const results = [];
@@ -36,7 +41,16 @@ try {
       await expect(page.locator('h1')).toHaveCount(1);
       await expect(page.locator('main')).toHaveCount(1);
       assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), publicOrigin + path);
-      assert(!/noindex/.test(await page.locator('meta[name=robots]').getAttribute('content')));
+      const robotsMeta = await page.locator('meta[name=robots]').getAttribute('content');
+      assert.equal(/noindex/.test(robotsMeta), isArchived(path));
+      assert(!/nofollow/.test(robotsMeta));
+      if (isArchived(path)) {
+        await expect(page.locator('.guide-archive-notice')).toBeVisible();
+        await expect(page.locator('.guide-archive-notice')).toContainText('Contenido archivado');
+        await expect(page.locator('.guide-contact-block')).toHaveCount(0);
+      } else {
+        await expect(page.locator('.guide-archive-notice')).toHaveCount(0);
+      }
       assert((await page.locator('meta[name=description]').getAttribute('content')).length > 40);
       assert(!(await page.title()).includes('ORIAVISION | ORIAVISION'));
       assert.equal(await page.locator('.site-header a[href="/guias/"]').textContent(), 'Guías');
@@ -47,15 +61,21 @@ try {
       const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll(els => els.map(el => JSON.parse(el.textContent)));
       assert(schemas.some(s => s['@type'] === 'BreadcrumbList'));
       if (path === '/guias/') {
-        await expect(page.locator('.guide-card')).toHaveCount(7);
+        await expect(page.locator('.guide-card')).toHaveCount(2);
         await expect(page.locator('.guide-card-featured h2')).toHaveText(guide.data.title);
         const links = await page.locator('.guide-card>.guides-text-link').evaluateAll(els => els.map(el => el.getAttribute('href')));
-        for (const id of [...oldSlugs, slug]) assert(links.includes(`/guias/${id}/`));
+        for (const id of activeSlugs) assert(links.includes(`/guias/${id}/`));
+        for (const id of archivedSlugs) await expect(page.locator(`a[href="/guias/${id}/"]`)).toHaveCount(0);
         assert.equal(await page.locator('.guide-card').first().evaluate(el => getComputedStyle(el).position), 'static');
       } else {
         assert(schemas.some(s => s['@type'] === 'Article'));
         await expect(page.getByRole('link', { name: 'Volver a todas las guías' })).toHaveAttribute('href', '/guias/');
-        if (path !== articlePath) await expect(page.getByRole('link', { name: 'Abrir Calculadora ML' })).toHaveAttribute('href', 'https://calculadoraml.oriavision.com.ar');
+        if (path === `/guias/${googleSlug}/`) {
+          await expect(page.getByRole('link', { name: 'Abrir Calculadora ML' })).toHaveCount(0);
+          await expect(page.getByRole('link', { name: 'Consultar con ORIAVISION', exact: true })).toHaveCount(1);
+          await expect(page.locator('.guide-article-header')).toContainText('Actualizada el');
+          await expect(page.locator('.guide-body a[href^="https://support.google.com/"]')).toHaveCount(9);
+        }
       }
       if (path === articlePath) {
         const article = schemas.find(s => s['@type'] === 'Article');
@@ -72,8 +92,9 @@ try {
         await expect(page.getByRole('link', { name: 'Explorar rubros' })).toHaveAttribute('href', '/proyectos/');
         await expect(page.getByRole('link', { name: 'guía oficial de Google' })).toHaveCount(1);
       }
-      if ([1440, 390, 360].includes(width) && paths.indexOf(path) < 2) {
-        await page.screenshot({ path: `${output}/${path === articlePath ? 'article' : 'index'}-${width}.png`, fullPage: false });
+      if ([1440, 390, 360].includes(width) && (paths.indexOf(path) < 2 || path === `/guias/${googleSlug}/` || path === `/guias/${archivedSlugs[0]}/`)) {
+        const label = path === articlePath ? 'article' : path === '/guias/' ? 'index' : isArchived(path) ? 'archive' : 'google';
+        await page.screenshot({ path: `${output}/${label}-${width}.png`, fullPage: false });
       }
       results.push({ width, path, status: 'passed' });
     }
@@ -135,17 +156,63 @@ try {
   await interaction.close();
 
   const sitemap = await (await fetch(origin + '/sitemap.xml')).text();
-  for (const path of ['/guias/', articlePath, ...oldSlugs.map(id => `/guias/${id}/`)]) assert(sitemap.includes(publicOrigin + path));
+  for (const path of ['/guias/', ...activeSlugs.map(id => `/guias/${id}/`)]) assert(sitemap.includes(publicOrigin + path));
+  for (const id of archivedSlugs) assert(!sitemap.includes(publicOrigin + `/guias/${id}/`));
   const robots = await (await fetch(origin + '/robots.txt')).text();
   assert(!robots.includes('Disallow: /guias'));
   for (const demo of ['abogados-bordo-oro', 'abogados-espresso-editorial']) {
     const html = await (await fetch(`${origin}/demos/${demo}/`)).text();
     assert(/noindex/.test(html), demo);
   }
-  const protectedPaths = ['src/lib/guides.ts', ...oldSlugs.slice(3).map(id => `content/guides/${id}.md`), 'src/components/Newsletter.tsx', 'functions/api/subscribe.ts', 'functions/_middleware.ts', 'public/_redirects', 'src/app/robots.txt'];
-  assert.equal(execFileSync('git', ['diff', '--name-only', '--', ...protectedPaths], { encoding: 'utf8' }).trim(), '');
-  writeFileSync(`${output}/results.json`, JSON.stringify({ results, words: guide.content.trim().split(/\s+/).length, newsletter: 'mocked API; no real subscription', javascriptDisabled: 'readable', sitemap: 'passed', preservedSources: protectedPaths }, null, 2));
-  console.log('Existing content, newsletter contract, sitemap, robots and demo noindex OK');
+  const protectedPaths = ['src/components/Newsletter.tsx', 'functions/api/subscribe.ts', 'functions/_middleware.ts', 'public/_redirects', 'src/app/robots.txt', 'public/demos', 'demos', 'demo-sources'];
+  assert.equal(execFileSync('git', ['-c', 'core.safecrlf=false', 'diff', '--name-only', '--', ...protectedPaths], { encoding: 'utf8' }).trim(), '');
+
+  // Inspect the response HTML before JavaScript runs, including production headers.
+  const httpResults = [];
+  const titles = new Set();
+  const descriptions = new Set();
+  assert(!/^disallow:\s*\/(?:\s*$|guias)/im.test(robots), 'Guides must be crawlable');
+  for (const path of ['/guias/', ...activeSlugs.map(id => `/guias/${id}/`), ...archivedSlugs.map(id => `/guias/${id}/`)]) {
+    const response = await fetch(origin + path, { redirect: 'manual' });
+    assert.equal(response.status, 200, path);
+    const html = load(await response.text());
+    assert.equal(html('h1').length, 1);
+    assert.equal(html('link[rel=canonical]').attr('href'), publicOrigin + path);
+    const directives = [html('meta[name=robots]').attr('content'), html('meta[name=googlebot]').attr('content'), response.headers.get('x-robots-tag')].filter(Boolean).join(',');
+    assert.equal(/noindex/.test(directives), isArchived(path), path);
+    assert(!/nofollow/.test(directives), path);
+    const title = html('title').text();
+    const description = html('meta[name=description]').attr('content');
+    assert(title && description && !titles.has(title) && !descriptions.has(description));
+    titles.add(title); descriptions.add(description);
+    if (path === '/guias/') {
+      assert.equal(html('.guide-card').length, 2);
+    } else {
+      assert(html('.guide-body').text().trim().length > 500, `Missing initial HTML content: ${path}`);
+      const schemas = html('script[type="application/ld+json"]').map((_, el) => JSON.parse(html(el).text())).get();
+      const article = schemas.find(s => s['@type'] === 'Article');
+      assert.equal(article.headline, html('h1').text());
+      assert.equal(article.description, html('.guide-article-description').text());
+      assert.equal(article.url, publicOrigin + path);
+      assert.equal(schemas.find(s => s['@type'] === 'BreadcrumbList').itemListElement.at(-1).item, publicOrigin + path);
+      if (path === articlePath) {
+        assert.equal(article.datePublished, '2026-10-15');
+        assert.equal(article.dateModified, '2026-10-15');
+      } else if (path === `/guias/${googleSlug}/`) {
+        assert.equal(article.datePublished, undefined, 'Do not invent an original publication date');
+        assert.equal(article.dateModified, '2026-10-15');
+        assert.equal(html('.guide-byline time').attr('datetime'), article.dateModified);
+      }
+    }
+    httpResults.push({ path, status: response.status, directives, canonical: html('link[rel=canonical]').attr('href'), inSitemap: sitemap.includes(publicOrigin + path), htmlContent: true });
+  }
+  for (const path of ['/gracias/', '/go/calculadora/', '/go/whatsapp/', '/admin/']) {
+    const response = await fetch(origin + path);
+    const html = load(await response.text());
+    assert(/noindex/.test(html('meta[name=robots]').attr('content') || ''), `Preserve private/utility noindex: ${path}`);
+  }
+  writeFileSync(`${output}/results.json`, JSON.stringify({ origin, results, httpResults, newsletter: 'mocked API; no real subscription', javascriptDisabled: 'readable', sitemap: 'passed', preservedSources: protectedPaths }, null, 2));
+  console.log('Two current guides, five crawlable noindex archives, raw HTML, metadata, sitemap, newsletter and protected pages OK');
 } finally {
   await browser.close();
 }

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPromptsMerged, getAllGuidesMerged } from "@/lib/content";
+import { getAllPromptsMerged, getPublishedGuides } from "@/lib/content";
 
 export const dynamic = "force-static";
 
@@ -17,15 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  const guides = getAllGuidesMerged()
-    .filter((g) => !g.noindex)
+  const guides = getPublishedGuides()
     .map((g) => ({
       url: `${SITE_URL}/guias/${g.id}/`,
       lastModified: g.updatedAt
         ? new Date(g.updatedAt)
         : g.publishedAt
         ? new Date(g.publishedAt)
-        : now,
+        : undefined,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     }));
@@ -57,7 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/guias/`,
-      lastModified: now,
+      // Actual editorial revision, not the date of every subsequent build.
+      lastModified: new Date("2026-10-15"),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },

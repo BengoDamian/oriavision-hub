@@ -19,6 +19,9 @@
 .guide-card>.guides-text-link{margin-top:auto}
 .guide-reading{max-width:824px;margin-inline:auto;padding:22px 32px 56px}
 .guide-reading .guides-breadcrumb{margin-bottom:24px}
+.guide-archive-notice{padding:20px;margin-bottom:28px;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;background:var(--paper);font-size:.9375rem;color:var(--copy)}
+.guide-archive-notice strong{color:var(--ink)}
+.guide-archive-notice p{margin-top:8px}
 .guide-article-header{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:28px}
 .guide-article-header h1{font-size:clamp(1.875rem,3.1vw,2.75rem);line-height:1.22;font-weight:600;letter-spacing:-.035em;margin-top:10px;text-wrap:balance}
 .guide-article-description{font-size:1.0625rem;color:var(--copy);line-height:1.75;margin-top:16px}

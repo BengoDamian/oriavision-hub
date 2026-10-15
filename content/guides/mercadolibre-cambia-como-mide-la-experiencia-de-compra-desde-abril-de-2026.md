@@ -15,6 +15,7 @@ tags:
   - reputación
   - ventas
 featured: false
+editorialStatus: archived
 draft: false
 noindex: false
 seoTitle: MercadoLibre cambia la experiencia de compra en 2026

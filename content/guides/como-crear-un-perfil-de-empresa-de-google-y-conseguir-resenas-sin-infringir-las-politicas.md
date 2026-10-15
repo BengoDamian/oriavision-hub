@@ -1,131 +1,78 @@
----
-title: Cómo crear un Perfil de Empresa de Google y conseguir reseñas sin
-  infringir las políticas
-description: Guía paso a paso, pensada para principiantes, para crear un Perfil
-  de Empresa de Google desde cero, verificarlo correctamente y pedir reseñas
-  reales sin incumplir las políticas.
+﻿---
+title: Cómo crear un Perfil de Empresa de Google y conseguir reseñas sin infringir las políticas
+description: Revisá si tu negocio puede tener un perfil, completá sus datos, verificá el acceso y pedí reseñas reales sin incentivos ni selección de clientes.
 category: Google / Negocio local
 tags:
   - Perfil de Empresa de Google
-  - Google Business Profile
-  - reseñas Google
-  - ficha de Google
-  - negocio local
-  - reputación online
-  - atención al cliente
+  - Negocio local
+  - Reseñas
 featured: false
+editorialStatus: published
 draft: false
 noindex: false
-seoTitle: Cómo crear un Perfil de Empresa de Google y conseguir reseñas
-seoDescription: Aprendé paso a paso cómo crear un Perfil de Empresa de Google,
-  verificarlo correctamente y pedir reseñas reales sin infringir las políticas.
+seoTitle: Perfil de Empresa de Google y reseñas para tu negocio
+seoDescription: Cómo crear o reclamar tu Perfil de Empresa, verificarlo y pedir reseñas respetando las políticas de Google. Pasos para negocios con atención presencial.
+author: ORIAVISION
+updatedAt: "2026-10-15"
+contactTitle: ¿Querés mejorar la presencia de tu negocio en Google?
+contactMessage: Hola, leí la guía sobre Perfil de Empresa de Google y quiero consultar cómo mejorar la presencia digital de mi negocio.
 ---
-Paso 1: prendiste la computadora y estás en Google
-Lo primero que tenés que saber es esto: para abrir un Perfil de Empresa de Google necesitás tener una cuenta de Google iniciada. Puede ser una cuenta Gmail o una cuenta Google creada con otro correo.
-Entonces, estando en la pantalla de Google, lo primero es fijarte si ya estás dentro de una cuenta. Si no lo estás, Google te va a pedir iniciar sesión. Entrá con el correo que quieras usar para administrar el negocio.
-Consejo profesional: usá un correo que vayas a conservar y revisar seguido, porque ahí te van a llegar avisos importantes sobre la ficha.
+Un Perfil de Empresa puede ayudar a que quienes buscan tu negocio encuentren cómo llegar, cuándo atendés y cómo contactarte. Antes de crearlo, revisá si corresponde a tu actividad y si ya existe uno. Esta guía está pensada para comercios y profesionales que atienden clientes de forma presencial.
 
-Paso 2: ahora vamos al lugar correcto
-Una vez que ya entraste con tu cuenta, hacé clic en la barra del buscador y escribí esto exactamente:
-business.google.com/add
-Ese es el punto oficial para agregar un negocio.
-Cuando entres, Google te va a mostrar la opción para agregar tu negocio. A partir de ahí te va a empezar a pedir datos. No te asustes si ves varias pantallas seguidas: es normal. Google te va llevando paso a paso.
+## 1. Comprobá si tu negocio cumple los requisitos
 
-Paso 3: antes de escribir nada, pensá cuál es tu caso
-Acá tenés que decidir una de estas dos cosas:
-• Si tenés un local, oficina, showroom o lugar donde el cliente realmente puede ir y ser atendido, vas a cargar una dirección visible.
-• Si no atendés público en tu dirección, pero sí visitás clientes o entregás dentro de una zona, conviene usar área de servicio y no mostrar la dirección públicamente.
-Esto es importante porque mucha gente se equivoca acá. Si no recibís clientes en ese domicilio, no conviene mostrarlo.
+Google exige atención presencial al cliente, con excepciones específicas. Puede ser en tu local o desplazándote hasta donde está el cliente. Un negocio que funciona únicamente por Internet no es elegible por el solo hecho de tener una web.
 
-Paso 4: escribir el nombre del negocio
-Cuando Google te pida el nombre, escribí el nombre real de tu negocio.
-No le agregues palabras de más para intentar posicionarte mejor.
-Por ejemplo, si tu negocio se llama ERCAS, escribí simplemente: ERCAS.
-No escribas algo como: ERCAS cartuchos impresoras toner mayorista Capital Federal.
+Por ejemplo, un electricista que visita domicilios puede encuadrar como negocio de servicios locales. Un servicio que se presta exclusivamente por videollamada no debería crear una ubicación ficticia. Consultá los [requisitos oficiales de elegibilidad](https://support.google.com/business/answer/13763036?hl=es) para tu caso.
 
-Paso 5: elegir la categoría
-Después Google te va a pedir una categoría. Eso significa qué tipo de negocio sos.
-Acá no tenés que inventar una categoría. Tenés que elegir la que mejor describa lo que hacés y, dentro de las opciones disponibles, la más específica posible.
-Mi consejo es este: pensá primero qué soy y no qué ofrezco. Después, si hace falta, vas a poder agregar categorías secundarias.
+## 2. Buscá el perfil existente y conservá el control
 
-Paso 6: dirección o área de servicio
-Si tu negocio atiende personas en un lugar físico, cargá la dirección completa y correcta.
-Si no atendés público en el lugar, no conviene mostrar la dirección. En ese caso, cargás área de servicio.
+Iniciá sesión con una cuenta de Google que puedas conservar y revisá si el negocio ya aparece en la Búsqueda o en Maps. Si existe, seguí el proceso para reclamarlo o solicitar acceso; no crees un duplicado. Si no existe, podés empezar desde [agregar tu empresa en Google](https://business.google.com/add).
 
-Paso 7: teléfono y página web
-Después te va a pedir datos de contacto.
-Ahí completás tu teléfono comercial y tu página web, si la tenés.
-Mi recomendación es simple: poné un teléfono que realmente atiendas. No pongas uno por compromiso. En Google, los datos tienen que ser útiles de verdad.
+El propietario del negocio debería conservar la propiedad principal. Si una agencia o colaborador te ayuda, agregalo con su propia cuenta y el rol necesario. No compartas contraseñas: Google permite asignar [propietarios y administradores](https://support.google.com/business/answer/3403100?hl=es). Anotá qué cuenta administra el perfil y revisá los accesos cuando alguien deje de trabajar con vos.
 
-Paso 8: horarios
-Google también suele pedirte horarios.
-Completalos con sinceridad. Es mejor poner un horario más acotado pero real, que uno más amplio y después no atender.
+## 3. Cargá nombre, categoría y ubicación reales
 
-Paso 9: revisar si la ficha ya existía
-A veces pasa que Google ya tenía una ficha creada automáticamente o que otra persona la cargó antes.
-Si eso pasa, en vez de crear una nueva, lo correcto es reclamarla.
-Esto es importante porque no conviene crear dos fichas del mismo negocio. Si ves que ya existe una, reclamá esa en lugar de abrir otra.
+Usá el nombre con el que tus clientes conocen al negocio. No agregues barrios, servicios ni frases publicitarias para intentar posicionarlo. Elegí una categoría principal que describa la actividad y sólo las categorías adicionales necesarias.
 
-Paso 10: la verificación
-Acá viene una parte muy importante.
-Google no te deja manejar completamente el perfil hasta que lo verifiques.
-Los métodos de verificación los decide automáticamente Google y no siempre podés elegir el que querés. En algunos casos te puede pedir más de un método.
+Si atendés en un local, la dirección debe representar una ubicación real con señalización permanente y atención durante los horarios indicados. Si visitás clientes y no los recibís en tu domicilio, ocultá la dirección pública y configurá la zona de servicio. Una oficina virtual no reemplaza un establecimiento real. Un negocio híbrido puede indicar su local y también su área de atención.
 
-Paso 11: si Google te pide video
-Hoy Google usa mucho la verificación por video.
-Si te toca eso, no significa que hiciste algo mal. Significa que Google necesita comprobar que vos representás realmente a ese negocio.
-Lo importante acá es no inventar nada. Mostrá lo real: el lugar, cartelería si la hay, herramientas de trabajo, mercadería, acceso al negocio, o lo que efectivamente demuestre que el negocio existe y lo manejás vos.
+Estas decisiones siguen las [directrices de Google para representar una empresa](https://support.google.com/business/answer/3038177?hl=es). Si tu situación no encaja, revisá las condiciones antes de cargar una dirección.
 
-Paso 12: una vez verificado, cómo lo administrás
-Cuando ya esté verificado, podés administrar el perfil directamente desde Google Search o desde Google Maps, siempre entrando con la misma cuenta con la que lo creaste o reclamaste.
-A partir de ahí vas a poder corregir dirección, horarios, teléfono, categoría, fotos y demás.
-Muchas veces alcanza con entrar a Google, buscar el nombre de tu negocio, y te aparece el panel para administrarlo.
+## 4. Completá los datos que ayudan a consultar
 
-Paso 13: dejalo prolijo y profesional
-Una ficha profesional no termina cuando la creaste. Ahí recién empieza.
-Completá el perfil con fotos y videos del frente, productos y servicios.
-También podés hacer publicaciones dentro del perfil para compartir novedades, anuncios, ofertas o actualizaciones. Eso ayuda a que la ficha no se vea abandonada.
+Agregá un teléfono que controles y atiendas, y el enlace al sitio propio si ya tenés uno. Revisá que el destino abra correctamente y represente tu negocio. Mantené coherentes los datos de contacto entre la web y el perfil.
 
-Paso 14: si hay más de una persona manejando la ficha
-No compartas tu contraseña.
-Si otra persona te va a ayudar a responder reseñas, editar datos o hacer publicaciones, lo correcto es agregarla como administrador o propietario con su propia cuenta de Google.
+Completá los horarios cuando correspondan a tu actividad y actualizá las excepciones, como feriados. Describí tus servicios con palabras que pueda entender alguien que llega por primera vez. Sumá fotos propias que muestren qué va a encontrar el cliente.
 
-Paso 15: cómo conseguir reseñas sin meterte en problemas
-Una vez que tu ficha ya esté activa, podés pedir reseñas.
-Lo importante es que sean reseñas reales, de clientes reales, sobre experiencias reales.
-Lo que no tenés que hacer es ofrecer premios, descuentos, regalos o cualquier incentivo a cambio de la reseña.
-Tampoco tenés que intentar influir en la calificación o en lo que la persona va a escribir.
+Podés administrar la información desde la Búsqueda y Maps con la cuenta asociada. La [ayuda para editar el perfil](https://support.google.com/business/answer/3039617?hl=es) explica los campos disponibles; algunas funciones dependen de la actividad y de la región.
 
-Paso 16: cómo sacar el link o QR oficial para pedir reseñas
-Google tiene una forma oficial de hacerlo.
-Desde tu Perfil de Empresa, una vez que ya esté activo, podés entrar a la parte de reseñas y usar la opción para conseguir más reseñas.
-Desde ahí podés:
-• copiar un enlace
-• descargar un código QR
-Ese link o QR lo podés compartir en:
-• tickets
-• mails de agradecimiento
-• al final de un chat
-• o incluso exhibirlo en el local
+## 5. Verificá el negocio con el método disponible
 
-Paso 17: qué mensaje mandar para pedir una reseña
-El mensaje correcto es simple y honesto. Por ejemplo:
-“Hola, gracias por tu compra. Si querés, podés dejar una reseña en Google contando tu experiencia. Nos ayuda mucho.”
-Eso está bien porque pedís una opinión real, no ofrecés nada a cambio y no intentás empujar a la persona a poner una calificación determinada.
-Lo que no hay que hacer es decir cosas como:
-• “Te hago descuento si me dejás reseña.”
-• “Solo si te gustó dejame comentario.”
-• “Poneme 5 estrellas.”
+Google determina los métodos de verificación y puede pedir más de uno. Usá las opciones que aparezcan en tu perfil: no hay un método único que sirva para todos ni una aprobación garantizada. Revisá las instrucciones de [verificación de empresas](https://support.google.com/business/answer/7107242?hl=es) y los avisos de tu cuenta.
 
-Paso 18: responder reseñas
-Cuando empiecen a llegarte reseñas, respondelas.
-Eso da una imagen más profesional y muestra atención al cliente.
-Si alguna reseña infringe las políticas, se puede reportar. Pero no cualquier reseña se elimina: solo las que realmente incumplen las normas.
+Si te pide una grabación de video, prepará cómo mostrar la ubicación, la actividad y que podés gestionar el negocio. El video debe ser continuo, sin editar, durar al menos 30 segundos y grabarse y subirse desde el celular mediante el perfil. No sirve preparar un video por separado para cargarlo después. Evitá información sensible y caras de otras personas. Consultá los [requisitos del video de verificación](https://support.google.com/business/answer/14271705?hl=es) según atiendas en un local o a domicilio.
 
-Resumen simple, como para no perderte
-Primero: entrás con tu cuenta de Google.
-Segundo: escribís business.google.com/add.
-Tercero: cargás nombre real, categoría correcta, dirección o área de servicio, teléfono, web y horarios.
-Cuarto: verificás la ficha con el método que Google te ofrezca.
-Quinto: una vez aprobada, completás fotos, datos y publicaciones.
-Sexto: recién ahí empezás a pedir reseñas usando el link o QR oficial, siempre sin ofrecer nada a cambio.
+## 6. Pedí reseñas sin incentivos ni selección por satisfacción
+
+Invitá a clientes con una experiencia real a contarla libremente. No ofrezcas descuentos, regalos ni pagos a cambio de reseñas, tampoco para modificar o retirar una negativa. No pidas cinco estrellas, palabras específicas ni que nombren a un empleado.
+
+No filtres la invitación para que sólo los clientes satisfechos lleguen a Google. Tampoco presiones para que escriban una reseña en el local. Estas prácticas están contempladas en la [política contra la manipulación de valoraciones](https://support.google.com/contributionpolicy/answer/7400114?hl=es).
+
+Un mensaje posible: «Gracias por elegirnos. Si querés, podés contar tu experiencia en Google en este enlace». Enviá la invitación de manera consistente, sin condicionarla a una opinión positiva y sin insistir si la persona no quiere participar.
+
+## 7. Usá el enlace o QR del perfil y respondé con cuidado
+
+Desde tu Perfil de Empresa, buscá la opción para conseguir más reseñas. Podés copiar el enlace o descargar el QR para compartirlo, por ejemplo, en un mensaje de agradecimiento o en un ticket. La [guía oficial para crear el enlace o QR](https://support.google.com/business/answer/16816815?hl=es) muestra el recorrido actual.
+
+Los clientes necesitan iniciar sesión en una cuenta de Google para publicar una reseña. Cuando respondas, aportá información útil y cuidá la privacidad: no expongas datos personales ni detalles de una compra o atención. Una crítica no se elimina por ser negativa; podés denunciarla si considerás que infringe las políticas. Consultá los [consejos de Google sobre reseñas y respuestas](https://support.google.com/business/answer/3474122?hl=es).
+
+## Antes de dar el perfil por listo
+
+- Confirmé que mi actividad es elegible y no dupliqué una ficha existente.
+- El nombre, la categoría y la ubicación representan el negocio real.
+- Conservo el acceso y completé la verificación solicitada.
+- Los horarios, el teléfono y el enlace a mi web están actualizados.
+- Pido opiniones reales sin premios, presión ni selección de clientes satisfechos.
+
+Revisá el perfil cuando cambien tus servicios, horarios o contactos. Tenerlo completo es parte del trabajo de presencia digital; no reemplaza una web clara ni permite prometer una cantidad de consultas o ventas.

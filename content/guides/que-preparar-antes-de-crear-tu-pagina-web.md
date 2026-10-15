@@ -6,6 +6,7 @@ tags:
   - Diseño web
   - Negocios
 featured: true
+editorialStatus: published
 draft: false
 noindex: false
 seoTitle: Qué preparar antes de pedir una página web para tu negocio

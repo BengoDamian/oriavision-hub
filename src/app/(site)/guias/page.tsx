@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Newsletter from "@/components/Newsletter";
-import { getAllGuidesMerged } from "@/lib/content";
+import { getPublishedGuides } from "@/lib/content";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const title = "Guías para mejorar la presencia digital de tu negocio";
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export const dynamic = "error";
 
 export default function GuiasPage() {
-  const guides = getAllGuidesMerged();
+  const guides = getPublishedGuides();
   const featured = guides.filter(g => g.featured).sort((a, b) =>
     (b.publishedAt || "").localeCompare(a.publishedAt || "")
   )[0];
