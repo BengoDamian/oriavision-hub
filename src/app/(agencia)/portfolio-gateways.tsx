@@ -1,8 +1,10 @@
+import { completedWorks } from "./catalog-data";
+
 export function PortfolioGateways() {
   return <section className="portfolio-gateways" aria-label="Trabajos realizados y diseños para tu web">
     <article className="portfolio-gateway gateway-works" id="trabajos" aria-labelledby="works-gateway-title">
       <div className="gateway-heading">
-        <img src="/images/edgardo-home.webp" alt="Vista del sitio realizado para Edgardo A. Díaz" width="1348" height="926" loading="lazy" />
+        <img src={completedWorks[0].image} alt="Vista del sitio realizado para Edgardo A. Díaz" width="1333" height="926" loading="lazy" />
         <h2 id="works-gateway-title">Trabajos realizados</h2>
       </div>
       <p>Sitios que desarrollamos y que podés visitar. Conocé cómo resolvimos necesidades concretas.</p>

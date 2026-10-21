@@ -6,9 +6,9 @@ import { projectCollections } from "./project-collections";
 
 type CarouselSite = { title: string; image: string; href: string; kind: string; position?: string };
 
-const work = (title: string, position?: string): CarouselSite => {
+const work = (title: string): CarouselSite => {
   const entry = completedWorks.find(item => item.title === title)!;
-  return { ...entry, kind: "Trabajo realizado", position };
+  return { ...entry, kind: "Trabajo realizado", position: "center center" };
 };
 const sample = (id: string, title?: string): CarouselSite => {
   const collection = projectCollections.find(item => item.id === id)!;
@@ -17,11 +17,11 @@ const sample = (id: string, title?: string): CarouselSite => {
 };
 
 const sites: CarouselSite[] = [
-  work("Edgardo A. Díaz", "center 63%"),
+  work("Edgardo A. Díaz"),
   sample("clinica-veterinaria"),
-  work("Bot de Telegram", "center 38%"),
+  work("Bot de Telegram"),
   sample("buen-rato"),
-  work("Calculadora ML", "center 40%"),
+  work("Calculadora ML"),
   sample("estudio-juridico", "Martín Fiotto"),
   sample("ink-house"),
   sample("aluna"),
@@ -96,6 +96,7 @@ export function HeroCarousel() {
 
   const tiles = (duplicate: boolean) => sites.map(site => <a
     className="carousel-site"
+    data-completed={site.kind === "Trabajo realizado" || undefined}
     href={site.href}
     key={site.title}
     target="_blank"

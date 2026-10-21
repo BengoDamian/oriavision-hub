@@ -34,7 +34,7 @@ export function CompletedCatalog() {
     <div className="stack-anchor" aria-hidden="true" />
     <article className="stack-card" style={{ zIndex: index + 1 }} aria-labelledby={`work-${index}`}>
       <div className="stack-panel stack-panel-work">
-        <a className="stack-media" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${item.title}, abre en otra pestaña`}><img src={item.image} alt={`Captura de la página ${item.title}`} width="1440" height="990" loading="lazy" /></a>
+        <a className="stack-media" href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`Visitar ${item.title}, abre en otra pestaña`}><img src={item.image} alt={`Captura de la página ${item.title}`} width="1333" height="926" loading="lazy" decoding="async" /></a>
         <div className="stack-copy"><p className="stack-category">{item.type}</p><span className="catalog-status">Trabajo realizado</span><h2 id={`work-${index}`}>{item.title}</h2><p className="stack-description">{item.description}</p>
           <CatalogActions title={item.title} href={item.href} completed />
         </div>
