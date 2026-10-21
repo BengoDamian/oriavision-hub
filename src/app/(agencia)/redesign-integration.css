@@ -14,3 +14,9 @@
 @media(min-width:1151px) and (max-width:1400px){.main-nav{gap:18px}.header-inner{gap:20px}.brand{width:220px}.main-nav .nav-contact{max-width:155px}.main-nav>a{line-height:1.45}}
 .error-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:28px}
 @media(max-width:700px){.catalog-toolbar{align-items:stretch;flex-direction:column;gap:16px}.catalog-toolbar select{width:100%}.catalog-toolbar .catalog-note{font-size:.875rem}}
+
+/* Current work covers stay complete and centered at every viewport width. */
+.stack-panel-work .stack-media{width:100%;aspect-ratio:1333/926;align-self:center;background:#f1f5f3}
+.stack-panel-work .stack-media img{object-fit:contain;object-position:center center}
+.carousel-site[data-completed] img{object-fit:contain;object-position:center center;background:#f1f5f3}
+.gateway-works .gateway-heading img{object-fit:contain;object-position:center center;background:#f1f5f3}
