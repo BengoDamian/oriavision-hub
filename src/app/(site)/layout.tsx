@@ -3,6 +3,7 @@ import "../globals.css";
 import "../(agencia)/agencia.css";
 import "../(agencia)/redesign-integration.css";
 import { Header, Footer, WhatsAppBar } from "../(agencia)/site-components";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const SITE_NAME = "ORIAVISION";
@@ -69,7 +70,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         ) : null}
       </head>
 
-      <body><a className="skip-link" href="#contenido">Saltar al contenido</a><Header /><main id="contenido" className="legacy-content">{children}</main><Footer /><WhatsAppBar /></body>
+      <body><a className="skip-link" href="#contenido">Saltar al contenido</a><Header /><main id="contenido" className="legacy-content">{children}</main><Footer /><WhatsAppBar /><GoogleAnalytics /></body>
     </html>
   );
 }
