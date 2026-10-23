@@ -4,6 +4,7 @@ import "./agencia.css";
 import "./redesign-integration.css";
 import { WHATSAPP_NUMBER } from "./shared";
 import { Header, Footer, WhatsAppBar } from "./site-components";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const SITE_URL = "https://www.oriavision.com.ar";
 const DESCRIPTION =
@@ -102,7 +103,7 @@ export default function AgenciaLayout({ children }: { children: React.ReactNode 
           />
         ) : null}
       </head>
-      <body id="inicio"><a className="skip-link" href="#contenido">Saltar al contenido</a><Header />{children}<Footer /><WhatsAppBar /></body>
+      <body id="inicio"><a className="skip-link" href="#contenido">Saltar al contenido</a><Header />{children}<Footer /><WhatsAppBar /><GoogleAnalytics /></body>
     </html>
   );
 }
