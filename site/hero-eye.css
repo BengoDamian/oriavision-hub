@@ -1,0 +1,42 @@
+/* ORIAVISION's eye: the outline and network stay in the brand palette.
+   The existing carousel owns the blink and platform change together. */
+.home-page .hero-eye{right:-12px;top:0;bottom:0;width:47%;display:flex;align-items:center;justify-content:center}
+.hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,#39d8ff29,transparent 68%)}
+.oria-eye{position:relative;width:100%;max-width:520px;filter:drop-shadow(0 12px 24px #09143750)}
+.oria-eye-art{width:100%;height:auto;overflow:visible}
+.eye-lid,.eye-aperture{transform-origin:260px 165px;transform:scaleY(1);transition:transform 240ms cubic-bezier(.2,.65,.3,1)}
+.eye-lid{filter:drop-shadow(0 0 5px #58dfff45)}
+.signal-hero[data-blink="closing"] :is(.eye-lid,.eye-aperture){transform:scaleY(.012);transition-duration:180ms;transition-timing-function:ease-in}
+.eye-platform{opacity:0;visibility:hidden}
+.signal-hero[data-active="0"] .eye-platform-store,
+.signal-hero[data-active="1"] .eye-platform-ml,
+.signal-hero[data-active="2"] .eye-platform-meta{opacity:1;visibility:visible}
+.oria-eye-art .eye-platform-meta{filter:brightness(0) invert(1)}
+.eye-platform-name{display:grid;text-align:center;margin-top:18px;min-height:26px;color:#dcfaff;font-size:17px;font-weight:600;letter-spacing:.4px}
+.eye-platform-name span{grid-area:1/1}
+@media(max-width:1100px) and (min-width:601px){
+ .home-page .hero-eye{right:-15px;width:43%}
+}
+@media(max-width:800px) and (min-width:601px){
+ .home-page .hero-eye{width:38%;right:-10px}
+}
+@media(max-width:600px){
+ /* A horizontal eye needs its own compact row; it must not cover the copy. */
+ .home-page .hero-eye{grid-area:2/1;position:relative;inset:auto;width:100%;height:auto;margin:-5px 0 17px}
+ .home-page .hero-eye .oria-eye{width:210px;max-width:70%}
+ .eye-platform-name{font-size:13px;min-height:18px;margin-top:3px;letter-spacing:.2px}
+ .home-page .slides-window{grid-area:3/1}
+ .home-page .hero-actions{grid-area:4/1;margin-top:17px}
+ .home-page .hero-partner{grid-area:5/1;margin-top:18px}
+ .home-page .slide-heading{font-size:34px;min-height:111px;max-width:100%;line-height:1.08}
+ .home-page .hero-description{max-width:100%;min-height:47px;margin-top:12px;font-size:14px}
+ .home-page .hero-positioning{margin-bottom:16px}
+}
+@media(max-width:360px){
+ .home-page .hero-eye .oria-eye{width:190px}
+ .home-page .slide-heading{font-size:32px;min-height:104px}
+ .home-page .hero-description{font-size:13px;min-height:43px}
+}
+@media(prefers-reduced-motion:reduce){
+ .eye-lid,.eye-aperture{transform:none!important;transition:none}
+}

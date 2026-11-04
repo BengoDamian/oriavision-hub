@@ -7,7 +7,7 @@ const source = readFileSync(new URL('../site/experience.js', import.meta.url), '
 
 // Exercise the production script with a deterministic clock. No browser, real
 // delays or duplicated carousel implementation is needed to reproduce stalls.
-function setup({ reducedMotion = false, observer = true } = {}) {
+function setup({ reducedMotion = false, observer = true, eye = false } = {}) {
   const events = target => {
     const listeners = new Map();
     return Object.assign(target, {
@@ -33,6 +33,7 @@ function setup({ reducedMotion = false, observer = true } = {}) {
   const timers = new Map();
   const hero = events({
     dataset: { active: '0' },
+    querySelector: selector => selector === '.oria-eye' && eye ? {} : null,
     querySelectorAll: () => slides,
     getBoundingClientRect: () => bounds,
     contains: element => element === cta,
@@ -178,5 +179,80 @@ test('rotation also starts when IntersectionObserver is unavailable', () => {
   const page = setup({ observer: false });
   page.tick(5000);
   page.active(2);
+  assert.equal(page.pending(), 1);
+});
+
+test('the eye closes before each platform change and then opens with the matching copy', () => {
+  const page = setup({ eye: true });
+  page.tick(2000);
+  page.active(0);
+  assert.equal(page.hero.dataset.blink, 'closing');
+  page.tick(179);
+  page.active(0);
+  page.tick(1);
+  page.active(1);
+  assert.equal(page.hero.dataset.blink, 'opening');
+  page.tick(240);
+  assert.equal(page.hero.dataset.blink, 'idle');
+  page.tick(2760);
+  page.active(2);
+  assert.equal(page.hero.dataset.blink, 'opening');
+  page.tick(3000);
+  page.active(0);
+  assert.equal(page.pending(), 1);
+});
+
+test('scrolling away mid-blink and returning completes the same blink once', () => {
+  const page = setup({ eye: true });
+  page.tick(2070);
+  page.visible(false);
+  assert.equal(page.pending(), 0);
+  page.tick(10000);
+  page.active(0);
+  page.visible(true);
+  page.tick(109);
+  page.active(0);
+  page.tick(1);
+  page.active(1);
+  page.tick(240);
+  assert.equal(page.hero.dataset.blink, 'idle');
+  assert.equal(page.pending(), 1);
+});
+
+test('reduced motion during a blink leaves the eye open without advancing platforms', () => {
+  const page = setup({ eye: true });
+  page.tick(2000);
+  page.motion.matches = true;
+  page.motion.fire('change');
+  assert.equal(page.hero.dataset.blink, 'idle');
+  assert.equal(page.pending(), 0);
+  page.tick(10000);
+  page.active(0);
+  page.motion.matches = false;
+  page.motion.fire('change');
+  page.tick(3180);
+  page.active(1);
+  assert.equal(page.hero.dataset.blink, 'opening');
+});
+
+test('the eye stays on the first platform when reduced motion is initially enabled', () => {
+  const page = setup({ eye: true, reducedMotion: true });
+  page.tick(10000);
+  page.active(0);
+  assert.notEqual(page.hero.dataset.blink, 'closing');
+  assert.equal(page.pending(), 0);
+});
+
+test('a page restored mid-blink resumes without leaving the eye closed', () => {
+  const page = setup({ eye: true });
+  page.tick(2050);
+  page.window.fire('pagehide', { persisted: true });
+  page.tick(10000);
+  page.window.fire('pageshow', { persisted: true });
+  page.window.fire('pageshow', { persisted: true });
+  page.tick(130);
+  page.active(1);
+  page.tick(240);
+  assert.equal(page.hero.dataset.blink, 'idle');
   assert.equal(page.pending(), 1);
 });
