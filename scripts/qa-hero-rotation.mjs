@@ -182,12 +182,15 @@ test('rotation also starts when IntersectionObserver is unavailable', () => {
   assert.equal(page.pending(), 1);
 });
 
-test('the eye closes before each platform change and then opens with the matching copy', () => {
+test('the eyelid finishes closing and holds before changing the platform', () => {
   const page = setup({ eye: true });
   page.tick(2000);
   page.active(0);
   assert.equal(page.hero.dataset.blink, 'closing');
-  page.tick(179);
+  page.tick(180);
+  page.active(0);
+  assert.equal(page.hero.dataset.blink, 'closing');
+  page.tick(39);
   page.active(0);
   page.tick(1);
   page.active(1);
@@ -210,7 +213,7 @@ test('scrolling away mid-blink and returning completes the same blink once', () 
   page.tick(10000);
   page.active(0);
   page.visible(true);
-  page.tick(109);
+  page.tick(149);
   page.active(0);
   page.tick(1);
   page.active(1);
@@ -230,7 +233,7 @@ test('reduced motion during a blink leaves the eye open without advancing platfo
   page.active(0);
   page.motion.matches = false;
   page.motion.fire('change');
-  page.tick(3180);
+  page.tick(3220);
   page.active(1);
   assert.equal(page.hero.dataset.blink, 'opening');
 });
@@ -250,7 +253,7 @@ test('a page restored mid-blink resumes without leaving the eye closed', () => {
   page.tick(10000);
   page.window.fire('pageshow', { persisted: true });
   page.window.fire('pageshow', { persisted: true });
-  page.tick(130);
+  page.tick(170);
   page.active(1);
   page.tick(240);
   assert.equal(page.hero.dataset.blink, 'idle');

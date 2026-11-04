@@ -12,7 +12,8 @@
     const eye=hero.querySelector('.oria-eye');
     const motion=matchMedia('(prefers-reduced-motion: reduce)');
     const slideDelay=3000;
-    const closeDelay=180,openDelay=240;
+    // The lid travels for 180 ms, then covers the logo for 40 ms before swapping.
+    const closeDelay=220,openDelay=240;
     let blink='idle';
     let index=0,timer=null,visible=true,pageActive=true,remaining=2000,deadline=0;
     const paused=()=>slides.length<2||motion.matches||document.hidden||!visible||!pageActive;
