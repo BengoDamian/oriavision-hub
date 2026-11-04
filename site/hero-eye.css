@@ -1,10 +1,14 @@
-/* The original ORIAVISION eye keeps its blue/cyan palette and proportions.
-   Only the separate upper eyelid moves; the outline and iris stay fixed. */
+/* The outline keeps ORIAVISION's blue/cyan palette; only the iris takes
+   each platform's color. The existing upper-eyelid movement stays unchanged. */
+.oria-eye{--iris-core:#154f99;--iris-mid:#147dcc;--iris-edge:#51cdf0;--iris-network:#a7edff;--iris-node:#d1f8ff}
+.signal-hero[data-active="1"] .oria-eye{--iris-core:#efc72e;--iris-mid:#ffdc3b;--iris-edge:#fff08a;--iris-network:#77601d;--iris-node:#fffde3}
+.signal-hero[data-active="2"] .oria-eye{--iris-core:#074bb9;--iris-mid:#0866ff;--iris-edge:#63bdff;--iris-network:#a5d6ff;--iris-node:#d9f1ff}
 .home-page .hero-slide{transition:none;transform:none}
 .home-page .hero-eye{right:-12px;top:0;bottom:0;width:47%;display:flex;align-items:center;justify-content:center}
-.hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(ellipse,#31d1ef,transparent 68%);opacity:.2}
+.hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(ellipse,#31d1ef,transparent 68%);opacity:.32}
 .oria-eye{position:relative;width:100%;max-width:520px;filter:drop-shadow(0 12px 24px #09143750)}
 .oria-eye-art{width:100%;height:auto;overflow:visible}
+.eye-outline{filter:drop-shadow(0 0 3px #39cde766)}
 .eye-lid{transform:translateY(0);transition:transform 240ms cubic-bezier(.2,.65,.3,1)}
 .signal-hero[data-blink="closing"] .eye-lid{transform:translateY(292px);transition-duration:180ms;transition-timing-function:ease-in}
 .eye-platform{opacity:0;visibility:hidden}
@@ -12,6 +16,7 @@
 .signal-hero[data-active="1"] .eye-platform-ml,
 .signal-hero[data-active="2"] .eye-platform-meta{opacity:1;visibility:visible}
 .oria-eye-art .eye-platform{filter:brightness(0) invert(1)}
+.oria-eye-art .eye-platform-ml{filter:brightness(0)}
 .eye-platform-name{display:grid;text-align:center;margin-top:18px;min-height:26px;color:#dcfaff;font-size:17px;font-weight:600;letter-spacing:.4px}
 .eye-platform-name span{grid-area:1/1}
 @media(max-width:1100px) and (min-width:601px){
