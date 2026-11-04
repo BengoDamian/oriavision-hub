@@ -21,6 +21,26 @@
   color:#fff;
   background:var(--guide-bg);
 }
+/* Separate visible articles without adding text to the search index. */
+.guides-index .resource-guide:not([hidden]) ~ .resource-guide:not([hidden])::before{
+  content:"Otra guía para tu negocio";
+  display:block;
+  padding:24px 20px;
+  background:#f5f5f8;
+  color:#4f556a;
+  border-block:1px solid #e1e3eb;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.5;
+  letter-spacing:.04em;
+  text-align:center;
+}
+@media(max-width:600px){
+  .guides-index .resource-guide:not([hidden]) ~ .resource-guide:not([hidden])::before{
+    padding:18px 20px;
+    font-size:13px;
+  }
+}
 .resource-guide-layout,.guide-article-header{
   position:relative;
   display:grid;
