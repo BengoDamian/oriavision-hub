@@ -1,18 +1,22 @@
-/* ORIAVISION's eye: the outline and network stay in the brand palette.
+/* Platform colors fill the eye, without circular traffic-light badges.
    The existing carousel owns the blink and platform change together. */
+.signal-hero{--eye-accent:#65b6ff;--eye-center-light:#1879eb;--eye-center-dark:#0050c3}
+.signal-hero[data-active="1"]{--eye-accent:#ffe64a;--eye-center-light:#fff36a;--eye-center-dark:#ffc820}
+.signal-hero[data-active="2"]{--eye-accent:#65b6ff;--eye-center-light:#f2faff;--eye-center-dark:#bedfff}
 .home-page .hero-slide{transition:none;transform:none}
 .home-page .hero-eye{right:-12px;top:0;bottom:0;width:47%;display:flex;align-items:center;justify-content:center}
-.hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,#39d8ff29,transparent 68%)}
+.hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(ellipse,var(--eye-accent),transparent 68%);opacity:.2}
 .oria-eye{position:relative;width:100%;max-width:520px;filter:drop-shadow(0 12px 24px #09143750)}
 .oria-eye-art{width:100%;height:auto;overflow:visible}
 .eye-lid,.eye-aperture{transform-origin:260px 165px;transform:scaleY(1);transition:transform 240ms cubic-bezier(.2,.65,.3,1)}
-.eye-lid{filter:drop-shadow(0 0 5px #58dfff45)}
+.eye-lid{filter:drop-shadow(0 0 5px var(--eye-accent))}
 .signal-hero[data-blink="closing"] :is(.eye-lid,.eye-aperture){transform:scaleY(.012);transition-duration:180ms;transition-timing-function:ease-in}
 .eye-platform{opacity:0;visibility:hidden}
 .signal-hero[data-active="0"] .eye-platform-store,
 .signal-hero[data-active="1"] .eye-platform-ml,
 .signal-hero[data-active="2"] .eye-platform-meta{opacity:1;visibility:visible}
-.oria-eye-art .eye-platform-meta{filter:brightness(0) invert(1)}
+.oria-eye-art .eye-platform-ml{filter:brightness(0)}
+.eye-center{filter:drop-shadow(0 4px 10px #07193766)}
 .eye-platform-name{display:grid;text-align:center;margin-top:18px;min-height:26px;color:#dcfaff;font-size:17px;font-weight:600;letter-spacing:.4px}
 .eye-platform-name span{grid-area:1/1}
 @media(max-width:1100px) and (min-width:601px){
