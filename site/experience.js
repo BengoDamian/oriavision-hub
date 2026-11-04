@@ -11,31 +11,55 @@
     const slides=[...hero.querySelectorAll('[data-slide]')];
     const motion=matchMedia('(prefers-reduced-motion: reduce)');
     const slideDelay=3000;
-    const firstDelay=2000;
-    let index=0,timer=null,focused=false,hovered=false,visible=true,firstTransition=true;
-    function stop(){clearTimeout(timer);timer=null;}
+    let index=0,timer=null,visible=true,pageActive=true,remaining=2000,deadline=0;
+    const paused=()=>slides.length<2||motion.matches||document.hidden||!visible||!pageActive;
+    function stop(){
+      if(timer===null)return;
+      remaining=Math.max(0,deadline-performance.now());
+      clearTimeout(timer);
+      timer=null;
+    }
     function schedule(){
-      const paused=motion.matches||focused||hovered||document.hidden||!visible;
-      hero.dataset.effectsPaused=String(paused);
-      stop();
-      if(!paused)timer=setTimeout(()=>{
-        firstTransition=false;
+      const isPaused=paused();
+      hero.dataset.effectsPaused=String(isPaused);
+      if(isPaused){stop();return;}
+      // Repeated observer/lifecycle events must not postpone the next light.
+      if(timer!==null)return;
+      deadline=performance.now()+remaining;
+      timer=setTimeout(()=>{
+        timer=null;
+        if(paused()){remaining=0;schedule();return;}
         show((index+1)%slides.length);
-      },firstTransition?firstDelay:slideDelay);
+        remaining=slideDelay;
+        schedule();
+      },remaining);
     }
     function show(next){
       index=next;
       hero.dataset.active=String(index);
       slides.forEach((slide,i)=>{const active=i===index;slide.classList.toggle('is-active',active);slide.inert=!active;slide.setAttribute('aria-hidden',String(!active));});
-      schedule();
     }
-    hero.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;schedule();}});
-    hero.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;schedule();}});
-    hero.addEventListener('focusin',()=>{focused=true;schedule();});
-    hero.addEventListener('focusout',()=>{setTimeout(()=>{focused=hero.contains(document.activeElement);schedule();},0);});
-    document.addEventListener('visibilitychange',schedule);
+    function refreshVisibility(){
+      const bounds=hero.getBoundingClientRect();
+      visible=bounds.bottom>0&&bounds.top<window.innerHeight;
+    }
+    // The rotating slides contain only copy; hovering or focusing the fixed
+    // action links must not freeze the text and the traffic light indefinitely.
+    document.addEventListener('visibilitychange',()=>{
+      if(!document.hidden)refreshVisibility();
+      schedule();
+    });
+    window.addEventListener('pagehide',()=>{pageActive=false;schedule();});
+    window.addEventListener('pageshow',()=>{
+      pageActive=true;
+      refreshVisibility();
+      schedule();
+    });
     motion.addEventListener('change',schedule);
-    if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:.15}).observe(hero);
+    if('IntersectionObserver' in window){
+      refreshVisibility();
+      new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:0}).observe(hero);
+    }
     schedule();
   }
 

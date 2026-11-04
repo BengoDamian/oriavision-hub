@@ -6,7 +6,7 @@
     "dev": "npm run build && node scripts/serve-static.mjs out 3000",
     "build": "node scripts/build-law-demos.mjs && next build && node scripts/build-reference-site.mjs && npm run qa:site",
     "start": "node scripts/serve-static.mjs out 3000",
-    "qa:site": "node scripts/qa-reference-site.mjs && node scripts/qa-reference-routing.mjs",
+    "qa:site": "node scripts/qa-reference-site.mjs && node scripts/qa-reference-routing.mjs && node --test scripts/qa-hero-rotation.mjs",
     "lint": "next lint"
   },
   "dependencies": {
