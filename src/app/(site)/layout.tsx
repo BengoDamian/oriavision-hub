@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "../globals.css";
-import "../(agencia)/agencia.css";
-import "../(agencia)/redesign-integration.css";
-import { Header, Footer, WhatsAppBar } from "../(agencia)/site-components";
+import "./reference-resources.css";
+import { ReferenceHeader, ReferenceFooter, ReferenceWhatsApp } from "@/components/ReferenceChrome";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const SITE_URL = "https://www.oriavision.com.ar";
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a4531",
+  themeColor: "#13183c",
 };
 
 const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -61,6 +61,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR">
       <head>
+        <link rel="stylesheet" href="/experience.css" />
+        <link rel="stylesheet" href="/buttons.css" />
         {token ? (
           <script
             defer
@@ -70,7 +72,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         ) : null}
       </head>
 
-      <body><a className="skip-link" href="#contenido">Saltar al contenido</a><Header /><main id="contenido" className="legacy-content">{children}</main><Footer /><WhatsAppBar /><GoogleAnalytics /></body>
+      <body className="resource-page"><a className="skip" href="#contenido">Saltar al contenido</a><ReferenceHeader /><main id="contenido" className="legacy-content">{children}</main><ReferenceFooter /><ReferenceWhatsApp /><GoogleAnalytics /><Script src="/experience.js" strategy="afterInteractive" /></body>
     </html>
   );
 }

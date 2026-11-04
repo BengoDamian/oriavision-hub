@@ -1,0 +1,32 @@
+/* Native scroll stacking; the full project remains readable before it is covered. */
+.portfolio-page .all-projects{display:flex;flex-direction:column;gap:clamp(52px,9svh,90px);isolation:isolate}
+.portfolio-page .all-projects .project-card{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:36px;padding:24px;background:#fff;border:1px solid #dce0e9;border-radius:16px;box-shadow:0 12px 36px #19274812;scroll-margin-top:110px}
+.portfolio-page .all-projects .project-card[hidden]{display:none}
+.portfolio-page .all-projects .project-media{width:100%;aspect-ratio:1.44;border-radius:9px;align-self:center}
+.portfolio-page .all-projects .project-copy{min-width:0;padding:14px 20px 14px 0}
+.portfolio-page .all-projects .project-label{font-size:11px;line-height:1.6;margin:0 0 16px}
+.portfolio-page .all-projects h3{font-size:clamp(28px,3vw,39px);line-height:1.15;letter-spacing:-1px;margin-bottom:18px}
+.portfolio-page .all-projects .project-description{font-size:17px;line-height:1.65;max-width:38ch;margin-bottom:25px}
+.portfolio-page .all-projects .project-link{min-height:50px;font-size:18px;padding:12px 22px}
+.portfolio-page .all-projects.is-stacked .project-card{position:sticky;top:var(--stack-top,94px);z-index:var(--stack-order,0)}
+.portfolio-page .all-projects.is-stacked .project-card:has(:focus-visible){z-index:25}
+@media(max-width:900px){
+ .portfolio-page .all-projects .project-card{gap:24px;padding:18px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .portfolio-page .all-projects .project-copy{padding-right:0}
+ .portfolio-page .all-projects .project-description{font-size:15px}
+ .portfolio-page .all-projects h3{font-size:29px}
+}
+@media(max-width:700px){
+ .portfolio-page .all-projects{gap:54px}
+ .portfolio-page .all-projects .project-card{display:block;padding:0;gap:0;border-radius:13px;scroll-margin-top:100px}
+ .portfolio-page .all-projects .project-media{border:0;border-radius:12px 12px 0 0;aspect-ratio:1.55}
+ .portfolio-page .all-projects .project-copy{padding:21px 18px 23px}
+ .portfolio-page .all-projects .project-label{font-size:10px;letter-spacing:.8px;margin-bottom:10px}
+ .portfolio-page .all-projects h3{font-size:28px;line-height:1.18;margin-bottom:12px}
+ .portfolio-page .all-projects .project-description{font-size:15px;line-height:1.6;max-width:none;margin-bottom:19px}
+ .portfolio-page .all-projects .project-link{font-size:17px;min-height:48px;padding:11px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .portfolio-page .all-projects.is-stacked .project-card{position:relative;top:auto}
+ .portfolio-page .all-projects .project-media>img{transition:none;transform:none}
+}

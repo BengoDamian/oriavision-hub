@@ -1,0 +1,18 @@
+/* Each symbol and its illumination share the lamp opacity and the carousel timing. */
+.home-page .lamp{
+  display:grid;place-items:center;mix-blend-mode:normal;
+  background:radial-gradient(ellipse at 45% 40%,#ffffff10 0%,transparent 74%),color-mix(in srgb,var(--light) 90%,black);
+  box-shadow:0 0 12px 2px color-mix(in srgb,var(--light) 70%,transparent),0 0 27px 4px color-mix(in srgb,var(--light) 30%,transparent),inset 0 0 4px 1px #ffffff20;
+}
+.home-page .lamp::after{inset:4%;z-index:0;opacity:.16;pointer-events:none}
+.lamp-symbol{
+  position:relative;z-index:1;pointer-events:none;display:block;object-fit:contain;opacity:.96;mix-blend-mode:screen;
+  filter:brightness(0) invert(1) drop-shadow(0 0 .25px #fff) drop-shadow(0 0 1.7px var(--light));
+}
+.lamp-symbol-store{width:94%;height:86%}
+.lamp-symbol-ml{width:98%;height:90%;mix-blend-mode:normal;filter:brightness(0) invert(1) drop-shadow(0 0 .65px #7b4100)}
+.lamp-symbol-meta{width:98%;height:86%;transform:translateX(3%)}
+@media(max-width:600px){
+  .home-page .lamp{box-shadow:0 0 8px 2px color-mix(in srgb,var(--light) 70%,transparent),0 0 18px 3px color-mix(in srgb,var(--light) 30%,transparent),inset 0 0 3px 1px #ffffff20}
+}
+@media(prefers-reduced-motion:reduce){.home-page .lamp{transition:none}}

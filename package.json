@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "node scripts/build-law-demos.mjs && next build",
-    "start": "next start",
+    "dev": "npm run build && node scripts/serve-static.mjs out 3000",
+    "build": "node scripts/build-law-demos.mjs && next build && node scripts/build-reference-site.mjs && npm run qa:site",
+    "start": "node scripts/serve-static.mjs out 3000",
+    "qa:site": "node scripts/qa-reference-site.mjs && node scripts/qa-reference-routing.mjs",
     "lint": "next lint"
   },
   "dependencies": {

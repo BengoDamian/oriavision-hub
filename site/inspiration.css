@@ -1,0 +1,80 @@
+/* Open, full-width design collection. The samples carry their original palettes. */
+.inspiration-hero{background:radial-gradient(ellipse at 70% 30%,#7e4bd4 0%,#6b3bd8 45%,#45219c 100%);padding-bottom:48px}
+.inspiration-hero h1{max-width:900px}.inspiration-hero h1 em{display:inline}
+.inspiration-hero .service-lead{max-width:740px;font-size:21px;line-height:1.6}
+.inspiration-disclosure{max-width:750px;margin-top:24px;font-size:16px;line-height:1.7;color:#f3eaff}
+.inspiration-filter{padding:28px 0;background:#f5f1ff;border-bottom:1px solid #dcd3ed}
+.inspiration-filter>.wrap{display:flex;gap:24px;align-items:end;justify-content:space-between}
+.inspiration-filter label{display:block;font-weight:700;font-size:16px;margin-bottom:10px}
+.inspiration-filter select{font:inherit;font-size:17px;width:340px;max-width:100%;padding:14px 35px 14px 15px;background:#fff;color:#202440;border:1px solid #b9a7d8;border-radius:8px}
+.inspiration-filter p{font-size:15px;color:#5e586d;padding-bottom:13px}
+.inspiration-design{padding:52px 0 60px;background:radial-gradient(ellipse at 45% 45%,#fff 35%,#f6f2fd 100%);border-bottom:1px solid #e1d9ed;scroll-margin-top:100px}
+.inspiration-design[hidden]{display:none}
+.inspiration-design:nth-of-type(even){background:radial-gradient(ellipse at 50% 40%,#fff 20%,#eee6ff 100%)}
+/* Full-width sheets stack with native scrolling, including tall mobile designs. */
+.inspiration-stack{isolation:isolate;display:flex;flex-direction:column;gap:clamp(56px,10svh,88px);background:#eee7f8}
+.inspiration-stack.is-stacked>.inspiration-design{position:sticky;top:var(--inspiration-stack-top,94px);z-index:var(--inspiration-stack-order,1);border-top:1px solid #d8cee8;box-shadow:0 -12px 30px #27114514}
+.inspiration-stack.is-stacked>.inspiration-design:has(:focus-visible){z-index:20}
+.inspiration-stack :is(a,input){scroll-margin-block:calc(var(--inspiration-header-offset,94px) + 24px) 48px}
+.inspiration-design-heading{margin-bottom:25px}
+.inspiration-design-heading>p{font-size:13px;color:#6d5f82;margin-bottom:9px}
+.inspiration-design h2{font-size:clamp(29px,3vw,40px);line-height:1.15;letter-spacing:-.8px}
+.inspiration-design-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:42px;align-items:center}
+.inspiration-preview{margin:0;min-width:0}
+.design-image-link{display:block;background:#eee9f6;box-shadow:0 14px 32px #2b17461f}
+.inspiration-preview img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;object-position:top;background:#fff}
+.inspiration-preview figcaption{margin-top:15px;color:#665b76;font-size:14px;line-height:1.5}
+.inspiration-options fieldset{padding:0;border:0;margin:0;min-width:0}
+.inspiration-options legend{font-size:20px;font-weight:700;margin-bottom:18px;padding:0}
+.palette-list{display:flex;flex-wrap:wrap;gap:10px}
+.palette-choice{position:relative;display:flex;align-items:center;gap:8px;min-height:48px;padding:10px 13px;border:1px solid #c5bad5;border-radius:9px;background:#fff;font-size:14px;line-height:1.4;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s}
+.palette-choice input{position:absolute;opacity:0;width:1px;height:1px}
+.palette-choice:has(input:checked){border-color:#5830cf;background:#f1eaff;box-shadow:inset 0 0 0 1px #5830cf}
+.palette-choice:has(input:focus-visible){outline:3px solid #27115f;outline-offset:3px}
+.palette-choice:hover{border-color:#5830cf}
+.palette-swatch{display:flex;flex-shrink:0;border-radius:50px;overflow:hidden;border:1px solid #1722371a}
+.palette-swatch i{width:13px;height:23px;background:var(--swatch)}
+.inspiration-help{margin:22px 0;font-size:15px;color:#655a73;line-height:1.6}
+.inspiration-actions{display:grid;gap:12px;max-width:340px}
+.inspiration-actions .button{min-width:0;width:100%;font-size:19px;min-height:56px}
+.inspiration-actions .design-consult{background:#fff;color:#4a2e88;border:1px solid #cabbdc}
+.inspiration-next{padding:48px 0;background:#f1eaff}
+.inspiration-next>.wrap{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.inspiration-next h2{font-size:30px;line-height:1.2}
+.inspiration-next p{font-size:17px;line-height:1.6;margin-top:15px}
+.inspiration-next .button{flex-shrink:0}
+.inspiration-teaser{padding:60px 0;background:radial-gradient(ellipse at 50% 45%,#fbf9ff 0%,#e3d5ff 100%);border-block:1px solid #dbceef}
+.inspiration-teaser h2{font-size:clamp(34px,4vw,48px);letter-spacing:-1.2px;line-height:1.15}
+.inspiration-teaser h2 em{color:#5830cf}
+.inspiration-teaser-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:52px;align-items:center}
+.inspiration-teaser p{font-size:18px;line-height:1.7;margin-top:22px}
+.inspiration-teaser .inspiration-note{font-size:14px;margin-top:14px;color:#655b76}
+.inspiration-teaser .button{margin-top:24px}
+.inspiration-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;align-items:start}
+.inspiration-strip a{display:block;box-shadow:0 10px 28px #30126025;transition:transform .2s}
+.inspiration-strip a:nth-child(2){margin-top:42px}
+.inspiration-strip a:hover{transform:translateY(-4px)}
+.inspiration-strip img{width:100%;height:auto;display:block;aspect-ratio:3/2}
+@media(max-width:800px){
+ .inspiration-design-layout{grid-template-columns:1fr;gap:25px}
+ .inspiration-actions{grid-template-columns:1fr 1fr;max-width:none}
+ .inspiration-actions .button{font-size:18px;padding:12px}
+ .inspiration-teaser-layout{grid-template-columns:1fr;gap:30px}
+ .inspiration-strip{max-width:680px}
+ .inspiration-next>.wrap{display:block}.inspiration-next .button{margin-top:24px}
+}
+@media(max-width:600px){
+ .inspiration-hero{padding-bottom:34px}.inspiration-hero h1{font-size:43px;letter-spacing:-1.8px}
+ .inspiration-hero .service-lead{font-size:18px;margin-top:20px}.inspiration-disclosure{font-size:15px;margin-top:18px}
+ .inspiration-filter>.wrap{display:block}.inspiration-filter select{width:100%}.inspiration-filter p{padding:0;margin-top:16px;font-size:14px}
+ .inspiration-design{padding:34px 0 38px}.inspiration-design-heading{margin-bottom:20px}
+ .inspiration-design-layout{width:100%;max-width:none}.inspiration-options,.inspiration-preview figcaption{padding-inline:5%}
+ .design-image-link{box-shadow:none}.inspiration-options legend{font-size:19px}
+ .palette-choice{padding:10px 12px;font-size:14px;min-height:48px}.palette-list{gap:9px}
+ .inspiration-help{margin:20px 0}.inspiration-actions{gap:10px}
+ .inspiration-next{padding:38px 0}.inspiration-next h2{font-size:29px}
+ .inspiration-next .button{width:100%;max-width:350px}
+ .inspiration-teaser{padding:40px 0}.inspiration-teaser p{font-size:17px}
+ .inspiration-strip{gap:11px}.inspiration-strip a:nth-child(2){margin-top:24px}
+}
+@media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}.inspiration-stack.is-stacked>.inspiration-design{position:relative;top:auto;box-shadow:none}}

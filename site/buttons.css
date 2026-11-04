@@ -1,0 +1,271 @@
+/* Shared button treatment. Loaded after page styles so labels remain consistent.
+   Doubled component classes intentionally override legacy context selectors. */
+:root{
+  --oria-button-radius:14px;
+  --oria-button-shadow:0 5px 14px #14213d20,0 1px 2px #14213d12;
+  --oria-button-raised:0 8px 20px #14213d29,0 2px 4px #14213d12;
+}
+
+body :is(.button.button,.banner-link.banner-link,.offer-cta.offer-cta,.service-cta.service-cta,.download.download){
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  min-height:54px;
+  max-width:100%;
+  padding:12px 22px;
+  border-radius:var(--oria-button-radius);
+  font-family:inherit;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:0;
+  text-align:center;
+  text-decoration:none;
+  white-space:normal;
+  box-shadow:var(--oria-button-shadow);
+  transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;
+}
+body .button.button{font-size:20px;height:auto}
+body .button>.cta-label{font:inherit;line-height:1.2;position:relative;z-index:1}
+body .banner-link.banner-link{min-width:190px}
+body :is(.offer-cta.offer-cta,.service-cta.service-cta){
+  align-self:flex-start;
+  min-height:48px;
+  padding:12px 18px;
+  font-size:16px;
+  color:var(--service-dark,#173b4d);
+  background:var(--service-soft,#eef7fa);
+  border:1px solid #17354a16;
+}
+
+/* The two opening actions keep identical dimensions on every screen. */
+.home-page .hero-actions .button{
+  width:100%;
+  min-width:0;
+  min-height:54px;
+  padding:8px 10px;
+  border-radius:var(--oria-button-radius);
+  font-size:20px;
+  font-weight:700;
+  justify-content:center;
+  text-align:center;
+  line-height:1.15;
+}
+.home-page .hero-actions .button>.cta-label{font:inherit;line-height:1.15}
+
+body :is(.nav-contact,.nav-cta),.site-header nav>a.nav-contact{
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  min-height:48px;
+  padding:11px 19px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.25;
+  text-align:center;
+  background:#ffffff0b;
+  color:#fff;
+  box-shadow:0 4px 12px #050e2920;
+  transition:background-color .2s,color .2s,box-shadow .2s;
+  --button-hover-bg:#22e2b9;
+  --button-hover-ink:#103746;
+}
+
+/* Smaller actions remain quieter than a primary contact button. */
+body :is(.project-link.project-link,.underlined.underlined,.case-consult.case-consult,.back-link.back-link,.back-home.back-home){
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  width:fit-content;
+  max-width:100%;
+  min-height:46px;
+  padding:11px 17px;
+  border:1px solid #17354a24;
+  border-radius:12px;
+  background:var(--service-soft,#fff);
+  color:var(--service-dark,var(--ink,#172a44));
+  font-size:16px;
+  font-weight:700;
+  line-height:1.3;
+  text-align:center;
+  text-decoration:none;
+  white-space:normal;
+  box-shadow:0 3px 10px #14213d12;
+  transition:background-color .2s,color .2s,box-shadow .2s,transform .2s;
+  --button-hover-bg:#d9f7f2;
+  --button-hover-ink:#12364a;
+}
+body .tools-band .underlined{background:#e4fff7;color:#103b47;border-color:#e4fff7}
+body .filters button{
+  min-height:46px;
+  padding:11px 17px;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  line-height:1.2;
+  box-shadow:0 3px 8px #14213d0e;
+  transition:background-color .2s,color .2s,box-shadow .2s;
+  --button-hover-bg:#e4f9f5;
+  --button-hover-ink:#183847;
+}
+body .filters button.is-active{background:var(--navy,#1b203d);color:#fff;box-shadow:0 4px 12px #14213d29}
+body .offer-nav a{font-weight:700;border-radius:10px;padding-left:12px;padding-right:12px;transition:background-color .2s,color .2s}
+body .offer-nav a:hover{background:#ffffff36;text-decoration:none}
+body .offer-related .offer-nav a:hover{background:var(--service-soft,#eaf6fa)}
+body .service-family-nav a{font-size:14px;font-weight:600;border-radius:10px;padding:8px 10px;transition:background-color .2s,color .2s}
+body .service-family-nav a:hover{background:var(--service-soft,#eaf6fa)}
+body .case-nav a{font-weight:700}
+body .menu-toggle{border-radius:12px;box-shadow:0 3px 10px #00000012}
+
+/* Existing homepage effects are replaced, not layered with a second animation. */
+.hero-actions .cta-orbit::before,.hero-actions .cta-shimmer::before{
+  content:none;
+  animation:none;
+  background:none;
+  mask:none;
+  -webkit-mask:none;
+}
+
+@property --oria-button-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+body :is(.effect-orbit,.effect-sheen,.effect-color){position:relative;isolation:isolate}
+
+/* A short, luminous journey along the edge, with a quiet interval. */
+:is(body .effect-orbit,.hero-actions .cta-orbit.effect-orbit)::before{
+  content:'';
+  position:absolute;
+  inset:-1px;
+  z-index:1;
+  padding:2px;
+  border-radius:inherit;
+  pointer-events:none;
+  background:conic-gradient(from var(--oria-button-angle),transparent 0% 55%,#58e8e9 66%,#fff 74%,#c9a7ff 82%,transparent 94%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+  animation:oria-button-orbit 10s linear infinite;
+}
+@keyframes oria-button-orbit{
+  0%{--oria-button-angle:0deg;opacity:.28}
+  5%{opacity:.9}
+  36%{--oria-button-angle:360deg;opacity:.9}
+  42%,100%{--oria-button-angle:360deg;opacity:.28}
+}
+
+/* The iridescent reflection crosses occasionally and stays behind the label. */
+:is(body .effect-sheen,.hero-actions .cta-shimmer.effect-sheen){overflow:hidden}
+:is(body .effect-sheen,.hero-actions .cta-shimmer.effect-sheen)::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(118deg,transparent 30%,#79e9ff22 40%,#d0b2ff3b 47%,#ffffff4a 50%,#8affdd2e 54%,transparent 65%);
+  background-size:300% 100%;
+  background-position:150% 0;
+  opacity:0;
+  animation:oria-button-sheen 12s ease-in-out infinite;
+}
+@keyframes oria-button-sheen{
+  0%,66%{background-position:150% 0;opacity:0}
+  70%{opacity:1}
+  88%{background-position:-100% 0;opacity:1}
+  90%,100%{background-position:-100% 0;opacity:0}
+}
+.service-web .effect-sheen::after{animation-delay:-4s}
+.service-seo .effect-sheen::after{animation-delay:-8s}
+
+@media(hover:hover){
+  body :is(.button,.banner-link,.offer-cta,.service-cta,.download,.project-link,.underlined,.case-consult,.back-link,.back-home):hover,
+  .service-banner:hover .banner-link,.offer-card:hover .offer-cta{
+    box-shadow:var(--oria-button-raised);
+    transform:translateY(-2px);
+  }
+  body .effect-color:hover,body .nav-contact.effect-color:hover,body .nav-cta.effect-color:hover{background:var(--button-hover-bg,#e4f9f5);color:var(--button-hover-ink,#183847)}
+  body .filters button.is-active:hover{background:#293557;color:#fff}
+}
+body :is(.button,.download,.project-link,.underlined,.case-consult,.back-link,.back-home):active,
+.service-banner:active .banner-link,.offer-card:active .offer-cta{
+  transform:translateY(1px);
+  box-shadow:0 2px 6px #14213d22,inset 0 0 0 100px #ffffff16;
+}
+body .effect-color:active,body .nav-contact.effect-color:active,body .nav-cta.effect-color:active{background:var(--button-hover-bg,#d9f7f2);color:var(--button-hover-ink,#183847)}
+body .filters button.is-active:active{background:#293557;color:#fff}
+body :is(.button,.nav-contact,.nav-cta,.download,.project-link,.underlined,.case-consult,.back-link,.back-home,.filters button):focus-visible{
+  outline:3px solid currentColor;
+  outline-offset:4px;
+}
+.service-banner:focus-visible .banner-link,.offer-card:focus-visible .offer-cta{box-shadow:var(--oria-button-raised)}
+
+/* A clearly recognizable WhatsApp action, with one short pulse every 3 seconds. */
+body .floating-wa{
+  width:68px;
+  height:68px;
+  right:calc(24px + env(safe-area-inset-right,0px));
+  bottom:calc(24px + env(safe-area-inset-bottom,0px));
+  color:#fff;
+  background:#25d366;
+  border:3px solid #fff;
+  box-shadow:0 6px 22px #093b2638,0 2px 5px #093b2626;
+  transform-origin:center;
+  animation:oria-whatsapp-heartbeat 3s ease-in-out infinite;
+  transition:background-color .2s,box-shadow .2s;
+}
+body .floating-wa svg{
+  width:40px;
+  height:40px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+body .floating-wa svg path+path{fill:currentColor;stroke-width:.5}
+@keyframes oria-whatsapp-heartbeat{
+  0%,32%,100%{transform:scale(1)}
+  16%{transform:scale(1.3)}
+}
+@media(hover:hover){
+  body .floating-wa:hover{background:#1ebe5d;animation-play-state:paused;box-shadow:0 8px 26px #093b264d}
+}
+body .floating-wa:focus-visible{outline:3px solid #075e36;outline-offset:5px;animation:none;transform:scale(1)}
+body .floating-wa:active{animation:none;transform:scale(.97);background:#1ebe5d}
+
+@supports not ((mask-composite:exclude) or (-webkit-mask-composite:xor)){
+  :is(body .effect-orbit,.hero-actions .cta-orbit.effect-orbit)::before{content:none}
+  body .effect-orbit{box-shadow:var(--oria-button-shadow),0 0 0 1px #80e5e377}
+}
+@media(max-width:600px){
+  body .floating-wa{width:64px;height:64px}
+  .home-page .hero-actions .button{font-size:18px}
+  body .button.button{font-size:18px;padding:12px 18px;min-height:54px}
+  body .service-hero .button{font-size:20px}
+  body .banner-link.banner-link{font-size:18px;padding:13px 20px}
+  body :is(.offer-cta.offer-cta,.service-cta.service-cta){font-size:16px}
+  body .filters button{font-size:14px;padding:10px 13px}
+  body .portfolio-contact-actions{grid-template-columns:1fr}
+  body .portfolio-contact-actions .button{width:100%}
+  body .case-actions{grid-template-columns:1fr 1fr;gap:12px}
+  body .case-actions .button,body .case-actions .case-consult{width:100%;min-width:0;font-size:16px;padding:11px 12px;min-height:54px}
+  body .service-family-nav a{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  body .floating-wa{animation:none;transition:none;transform:none}
+  :is(body .effect-orbit,.hero-actions .cta-orbit.effect-orbit)::before{animation:none;opacity:.4}
+  :is(body .effect-sheen,.hero-actions .cta-shimmer.effect-sheen)::after{animation:none;display:none}
+  body :is(.button,.banner-link,.offer-cta,.service-cta,.download,.project-link,.underlined,.case-consult,.back-link,.back-home,.nav-contact,.nav-cta,.filters button){transition:none}
+  body :is(.button,.banner-link,.offer-cta,.service-cta,.download,.project-link,.underlined,.case-consult,.back-link,.back-home):hover,
+  body :is(.button,.download,.project-link,.underlined,.case-consult,.back-link,.back-home):active,
+  .service-banner:is(:hover,:active) .banner-link,.offer-card:is(:hover,:active) .offer-cta{transform:none}
+}

@@ -1,0 +1,6 @@
+Marketing banner brand assets, retrieved 2026-10-30.
+Google Ads: https://www.gstatic.com/images/branding/productlogos/ads/v5/192px.svg
+Google Analytics: https://www.gstatic.com/images/branding/productlogos/google_analytics/v6/192px.svg
+Google Search Console: https://gstatic.com/search-console/scfe/logo_search_console.svg
+Meta: https://static.xx.fbcdn.net/rsrc.php/y9/r/tL_v571NdZ0.svg
+The two -symbol.svg files change only the SVG root viewport to display the symbol without the wordmark. Original SVGs retained alongside them.

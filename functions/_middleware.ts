@@ -1,5 +1,8 @@
-// Only the five new law-demo hostnames are routed here. Existing demo domains
-// and the main ORIAVISION site pass through unchanged.
+import { legacyDestination } from "../scripts/site-config.mjs";
+
+// Demo hosts retain their isolated routes. The main site also handles migrated
+// URLs here: Cloudflare does not apply _redirects to Pages Functions requests.
+// https://developers.cloudflare.com/pages/configuration/redirects/
 const variants = ["bordo-oro", "esmeralda-oro", "azul-oro", "espresso", "espresso-editorial"];
 const demoHosts = new Map(variants.map(variant => [`abogados-${variant}.oriavision.com.ar`, `abogados-${variant}`]));
 
@@ -13,7 +16,15 @@ type Context = {request: Request; next(): Promise<Response>; env: {ASSETS: {fetc
 export const onRequest = async (context: Context) => {
   const url = new URL(context.request.url);
   const slug = demoHosts.get(url.hostname);
-  if (!slug) return context.next();
+  if (!slug) {
+    const destination = legacyDestination(url.pathname);
+    if (destination) {
+      const target = new URL(destination, url.origin);
+      target.search = url.search;
+      return Response.redirect(target.toString(), 301);
+    }
+    return context.next();
+  }
   const prefix = `/demos/${slug}`;
   const pathname = url.pathname.startsWith(`${prefix}/`) ? url.pathname.slice(prefix.length) : url.pathname;
   // Do not expose other demos, APIs or the commercial site's pages on this host.

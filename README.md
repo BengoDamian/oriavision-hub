@@ -1,57 +1,51 @@
-# Nubrexa · catálogo de marca blanca
+# Oriavision
 
-Versión del 01/10/2026: 8 rubros y 30 variantes.
+Sitio de Oriavision para Cloudflare Pages. La portada, los servicios, trabajos, inspiración, guías vigentes y páginas legales reproducen la versión 53 del ZIP `oriavision-codigo-completo-v53.zip` del 4 de noviembre de 2026.
 
-## Subir la actualización
+## Editar y ejecutar
 
-Copiá el contenido de este ZIP dentro de tu repositorio nubrexa-landing, reemplazando los archivos existentes. index.html debe quedar en la raíz. Conservá la carpeta .git de tu repositorio. Luego hacé commit y push para que Cloudflare Pages publique los cambios.
+- `site/`: HTML, CSS, JavaScript y recursos originales de la referencia. Esta es la fuente del diseño nuevo.
+- `src/app/(site)/`: recursos anteriores que siguen disponibles, incluidos prompts, Inbox y guías archivadas. Comparten encabezado y pie con la referencia.
+- `public/demos/` y `demo-sources/`: diseños de muestra existentes.
+- `functions/`: integraciones y enrutamiento de Cloudflare Pages.
+- `out/`: resultado completo generado, listo para publicar. No editar esta carpeta manualmente.
 
-## Abrir localmente
-
-En Visual Studio Code, abrí la carpeta del proyecto y ejecutá en la terminal:
-
-```
-python -m http.server 8000
-```
-
-Abrí http://localhost:8000/ en el navegador.
-
-## Navegación
-
-- “Ver proyectos” y “Ver rubros” llevan a coleccion.html#rubros.
-- El índice tiene buscador y muestra todas las categorías.
-- Al elegir una categoría, se muestra únicamente ese rubro.
-- “Todos los rubros” vuelve al índice. El selector permite cambiar de rubro.
-- Los enlaces anteriores (#art-nails, #barberia, etc.) siguen funcionando.
-- La selección de paleta se conserva en la dirección al navegar.
-- En celular las paletas se distribuyen en dos columnas, junto a la vista previa.
-
-## Variantes
-
-- Uñas y estética: 4.
-- Peluquería y barbería (un solo rubro): 4.
-- Café y gastronomía: 4 (Azul & Marfil del ZIP anterior, Verde & Arena del enlace original actual, Bosque y Tierra).
-- Tatuajes: 4 (Neón, Clásico, Original y Oxide).
-- Pilates y bienestar: 4.
-- Arquitectura y seguridad: 4.
-- Parrillas y quinchos: 2 (Watorii Original y Turquesa).
-- Veterinaria y mascotas: 4 (Original, Tropical, Azul & Dorado y Petróleo), sin contactos activos.
-
-## Agregar rubros o paletas
-
-1. Agregá los datos a catalogo.json siguiendo las entradas existentes.
-2. Guardá la demo local en demos/ y la captura de 1200 × 750 en assets/previews/.
-3. Ejecutá:
-
-```
-python scripts/build_catalog.py
-python scripts/build_assets.py
+```sh
+npm ci
+npm run dev
 ```
 
-El índice, las fichas, los selectores y los contadores se generan desde catalogo.json. Para agregar nuevas categorías, revisá también el texto breve de rubros de la portada.
+En Windows con restricciones de PowerShell se puede usar `npm.cmd` en lugar de `npm`. `dev` compila y sirve el sitio final en `http://127.0.0.1:3000`. Después de editar, ejecutar nuevamente `npm run build` y recargar el navegador; el servidor sirve los archivos nuevos sin reiniciarse.
 
-## Marca blanca
+```sh
+npm run build
+npm start
+```
 
-Las demostraciones son locales. En Watorii se conservan activos los contactos originales: WhatsApp, teléfonos, ubicación, reseñas de Google y enlaces al sitio del negocio. En los demás rubros, los botones de contacto, teléfono, WhatsApp y reservas están desactivados. Fuera de Watorii no se envían formularios ni se incluyen números o correo. Ninguna demo incluye credenciales, paneles administrativos o servicios de reservas. Las cartas, notas, páginas de modelos y navegación interna siguen disponibles.
+La compilación conserva la exportación estática de Next para los recursos anteriores, incorpora las páginas de `site/`, prepara el SEO y ejecuta las comprobaciones. `next dev` por sí solo muestra las plantillas anteriores y no es la vista previa del sitio final. El antiguo `index.html` de la raíz pertenece al catálogo anterior; no es la portada publicada.
 
-No hacen falta Node.js, bases de datos ni comandos de compilación en Cloudflare. Framework: None. Directorio de salida: raíz del repositorio.
+## Cloudflare Pages
+
+- Comando de compilación: `npm run build`.
+- Directorio de salida: `out`.
+- Conservar las Functions, variables de entorno e integraciones existentes.
+- No publicar la raíz del repositorio ni solamente `site/`: omitiría las demos, recursos anteriores e integraciones.
+
+Los cambios quedan preparados en el repositorio; compilar localmente no modifica la publicación en producción.
+
+## Rutas e indexación
+
+`scripts/site-config.mjs` define las 15 direcciones anteriores y sus reemplazos permanentes. Se aplican tanto en el middleware de Cloudflare como en `_redirects`, evitando depender de redirecciones que Pages Functions puede omitir. Se mantienen los parámetros de consulta. Cada página nueva tiene su propio `index.html`, URL canónica en `https://www.oriavision.com.ar`, título, descripción y datos para compartir.
+
+El sitemap contiene las 30 páginas públicas de la referencia y los recursos vigentes anteriores. Las pruebas de animación, las guías archivadas y las páginas de redirección mantienen `noindex`. `robots.txt` permite el rastreo público y declara el sitemap. Las URL desconocidas devuelven un 404 real para evitar contenido duplicado y falsos éxitos. La indexación efectiva depende de que el sitio se publique y los buscadores lo rastreen.
+
+## Verificación
+
+```sh
+npm run qa:site
+node scripts/qa-reference-site.mjs --url http://127.0.0.1:3000
+```
+
+La auditoría comprueba páginas, enlaces y anclas internas, recursos, sitemap, canónicas, redirecciones y compatibilidad del middleware con los dominios de demos. También compara el cuerpo de cada página y los bytes de los recursos con `site/`: los cambios de producción se limitan a enlaces locales, metadatos SEO y la integración de Analytics ya existente.
+
+Con `--url` también comprueba respuestas HTTP, enlaces anteriores con y sin barra final, parámetros de consulta, video por rangos y el estado 404 de una ruta inexistente. Estas comprobaciones no sustituyen una revisión visual en navegador.

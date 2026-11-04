@@ -1,0 +1,17 @@
+{
+  "source_url": "https://oriavision-tiendanube-borrador.ercasa.chatgpt.site/",
+  "export_date": "2026-11-04",
+  "site_version": 53,
+  "source_commit": "9b2c4e9469c683733e6b1c66189460171b2da82d",
+  "original_files": 155,
+  "html_pages": 31,
+  "original_files_unchanged": true,
+  "live_homepage_matches_source": true,
+  "supplemental_files": [
+    "LEEME.txt",
+    "PAGINAS.txt",
+    "VERSION.json",
+    "SHA256SUMS.txt",
+    "recursos-externos/oriavision-logo-original.jpg"
+  ]
+}

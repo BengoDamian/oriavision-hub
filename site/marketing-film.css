@@ -1,0 +1,14 @@
+/* Portrait motion piece introduces the full marketing service family. */
+.marketing-motion-hero{background:radial-gradient(ellipse 78% 110% at 67% 50%,#c9fbff 0%,#8aeafa 30%,#32bcd9 63%,#138db8 100%);padding-bottom:36px}
+.marketing-motion-hero:after{display:none}
+.marketing-motion-hero .service-hero-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.marketing-motion-hero .service-lead{max-width:520px}
+.marketing-film{position:relative;margin:0;min-width:0;width:100%;max-width:440px;justify-self:center}
+.marketing-film-stage{position:relative;overflow:hidden;aspect-ratio:3/4;background:#102f50;border-radius:20px;box-shadow:0 18px 44px #00537a30}
+.marketing-film video{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.marketing-film video::-webkit-media-controls{display:none!important}
+.marketing-film video::-webkit-media-controls-start-playback-button{display:none!important}
+@media(max-width:1000px){.marketing-motion-hero .service-hero-layout{gap:30px}.marketing-motion-hero h1{font-size:44px}}
+@media(max-width:700px){.marketing-motion-hero{--marketing-gutter:24px;padding-top:18px;padding-bottom:0;background:radial-gradient(ellipse 90% 65% at 50% 68%,#c9fbff,#65dcf1 46%,#21abc9 100%)}.marketing-motion-hero .breadcrumbs{margin-bottom:20px;font-size:10px}.marketing-motion-hero .service-hero-layout{grid-template-columns:minmax(0,1fr);gap:28px}.marketing-motion-hero h1{font-size:40px}.marketing-motion-hero .service-lead{font-size:15px;margin-top:20px;line-height:1.65}.marketing-motion-hero .button{margin-top:22px}.marketing-motion-hero>.wrap{width:100%}.marketing-motion-hero .breadcrumbs{margin-left:var(--marketing-gutter);margin-right:var(--marketing-gutter)}.marketing-motion-hero .service-hero-layout>div{min-width:0;margin-left:var(--marketing-gutter);margin-right:var(--marketing-gutter)}.marketing-film{max-width:none}.marketing-film-stage{border-radius:0;box-shadow:none}}
+@media(max-width:600px){.marketing-motion-hero{--marketing-gutter:19px}}
+@media(max-width:360px){.marketing-motion-hero{--marketing-gutter:16px}.marketing-motion-hero h1{font-size:36px}}

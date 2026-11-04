@@ -1,0 +1,14 @@
+/* The main offer stays visible while the three platform messages rotate. */
+.home-page .hero-positioning{font-size:21px;font-weight:600;line-height:1.35;letter-spacing:-.25px;color:#e9f5fc;margin:0 0 22px;max-width:470px;text-wrap:balance}
+.home-page .service-shop .marketplace-summary{margin-top:14px}
+.home-page .service-shop .marketplace-summary strong{font-weight:700}
+@media(max-width:800px){.home-page .hero-positioning{font-size:19px;max-width:390px}}
+@media(max-width:600px){
+ .home-page .hero-layout{padding-top:20px;padding-bottom:26px}
+ .home-page .hero-positioning{grid-area:1/1;position:relative;z-index:3;font-size:19px;line-height:1.35;max-width:100%;margin:0 0 22px;padding-right:4px}
+ .home-page .slides-window,.home-page .hero-visual{grid-area:2/1}
+ .home-page .hero-actions{grid-area:3/1}
+ .home-page .hero-partner{grid-area:4/1}
+ .home-page .service-shop .marketplace-summary{margin-top:12px}
+}
+@media(max-width:360px){.home-page .hero-positioning{font-size:18px;margin-bottom:20px}}
