@@ -9,11 +9,8 @@
   const hero=document.querySelector('.signal-hero');
   if(hero){
     const slides=[...hero.querySelectorAll('[data-slide]')];
-    const eye=hero.querySelector('.oria-eye');
     const motion=matchMedia('(prefers-reduced-motion: reduce)');
     const slideDelay=3000;
-    const closeDelay=180,openDelay=240;
-    let blink='idle';
     let index=0,timer=null,visible=true,pageActive=true,remaining=2000,deadline=0;
     const paused=()=>slides.length<2||motion.matches||document.hidden||!visible||!pageActive;
     function stop(){
@@ -26,30 +23,14 @@
       const isPaused=paused();
       hero.dataset.effectsPaused=String(isPaused);
       if(isPaused){stop();return;}
-      // Repeated observer/lifecycle events must not postpone the next slide.
+      // Repeated observer/lifecycle events must not postpone the next light.
       if(timer!==null)return;
       deadline=performance.now()+remaining;
       timer=setTimeout(()=>{
         timer=null;
         if(paused()){remaining=0;schedule();return;}
-        if(eye&&blink==='idle'){
-          blink='closing';
-          hero.dataset.blink=blink;
-          remaining=closeDelay;
-        }else if(eye&&blink==='closing'){
-          // Replace both the logo and the copy only while the eyelid is closed.
-          show((index+1)%slides.length);
-          blink='opening';
-          hero.dataset.blink=blink;
-          remaining=openDelay;
-        }else if(eye){
-          blink='idle';
-          hero.dataset.blink=blink;
-          remaining=slideDelay-closeDelay-openDelay;
-        }else{
-          show((index+1)%slides.length);
-          remaining=slideDelay;
-        }
+        show((index+1)%slides.length);
+        remaining=slideDelay;
         schedule();
       },remaining);
     }
@@ -63,7 +44,7 @@
       visible=bounds.bottom>0&&bounds.top<window.innerHeight;
     }
     // The rotating slides contain only copy; hovering or focusing the fixed
-    // action links must not freeze the text and the visual indefinitely.
+    // action links must not freeze the text and the traffic light indefinitely.
     document.addEventListener('visibilitychange',()=>{
       if(!document.hidden)refreshVisibility();
       schedule();
@@ -74,15 +55,7 @@
       refreshVisibility();
       schedule();
     });
-    motion.addEventListener('change',()=>{
-      if(motion.matches&&eye&&blink!=='idle'){
-        stop();
-        blink='idle';
-        hero.dataset.blink=blink;
-        remaining=slideDelay;
-      }
-      schedule();
-    });
+    motion.addEventListener('change',schedule);
     if('IntersectionObserver' in window){
       refreshVisibility();
       new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();},{threshold:0}).observe(hero);

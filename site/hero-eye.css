@@ -1,5 +1,6 @@
 /* ORIAVISION's eye: the outline and network stay in the brand palette.
    The existing carousel owns the blink and platform change together. */
+.home-page .hero-slide{transition:none;transform:none}
 .home-page .hero-eye{right:-12px;top:0;bottom:0;width:47%;display:flex;align-items:center;justify-content:center}
 .hero-eye .signal-halo{inset:50% auto auto 50%;width:100%;height:auto;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,#39d8ff29,transparent 68%)}
 .oria-eye{position:relative;width:100%;max-width:520px;filter:drop-shadow(0 12px 24px #09143750)}
