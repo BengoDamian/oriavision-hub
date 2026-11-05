@@ -1,6 +1,6 @@
 /* The web service overview: scoped so the catalog and other services keep their layout. */
 .web-design-page .web-hero {
-  padding: 24px 0 0;
+  padding: 22px 0 30px;
   background: radial-gradient(ellipse at 85% 32%, #8c57ea70, transparent 52%),
     linear-gradient(120deg, #201c4d, #40308d 56%, #663cd5);
 }
@@ -11,50 +11,41 @@
   right: -240px;
   border-color: #c6aeff2b;
 }
-.web-design-page .web-hero .breadcrumbs { color: #e8e0fc; margin-bottom: 32px; }
-.web-design-page .web-hero-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; padding-bottom: 48px; }
-.web-design-page .web-hero-copy { padding-bottom: 12px; }
+.web-design-page .web-hero .breadcrumbs { color: #e8e0fc; margin-bottom: 25px; }
+.web-design-page .web-hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding-bottom: 36px; }
+.web-design-page .web-hero-copy { min-width: 0; }
 .web-design-page .web-eyebrow { font-size: 11px; letter-spacing: 1.65px; font-weight: 700; margin-bottom: 19px; color: var(--service-dark); }
 .web-design-page .web-hero .web-eyebrow { color: #cfc2fa; }
-.web-design-page .web-hero h1 { font-size: clamp(46px, 5.1vw, 70px); line-height: 1.04; letter-spacing: -2.6px; }
+.web-design-page .web-hero h1 { font-size: clamp(46px, 4.6vw, 62px); line-height: 1.04; letter-spacing: -2.6px; }
 .web-design-page .web-hero h1 em { color: #b8f9e6; margin-top: 3px; white-space: nowrap; }
-.web-design-page .web-hero .service-lead { font-size: 18px; line-height: 1.65; max-width: 410px; color: #eee9fc; margin-top: 25px; }
-.web-design-page .web-hero-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 29px; }
+.web-design-page .web-hero .service-lead { font-size: 18px; line-height: 1.65; max-width: 480px; color: #eee9fc; margin-top: 0; }
+.web-design-page .web-hero-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 22px; }
 .web-design-page .web-hero-actions .button { background: #b8f9e6; color: #183c3c; margin: 0; font-size: 18px; }
 .web-design-page .web-text-link { display: inline-flex; align-items: center; gap: 20px; min-height: 48px; font-size: 15px; font-weight: 600; }
 .web-design-page .web-text-link span { font-size: 22px; transition: transform .2s; }
 .web-design-page .web-text-link:hover span { transform: translate(3px, -2px); }
 .web-design-page .web-text-link:hover { text-decoration: underline; text-underline-offset: 5px; }
-.web-design-page .web-showcase { min-width: 0; position: relative; }
-.web-design-page .web-showcase-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 14px; }
-.web-design-page .web-showcase-heading > p { font-size: 10px; letter-spacing: 1.6px; color: #ded4fc; }
 .web-design-page .web-status { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; color: #f6f1ff; }
 .web-design-page .web-status i { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px #0de3ad18; }
-.web-design-page .web-browser { background: #fff; color: var(--ink); border: 1px solid #ffffff70; border-radius: 14px; overflow: hidden; box-shadow: 0 25px 70px #0c083f44, 0 0 0 8px #ffffff07; }
-.web-design-page .web-browser-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #f4f3f9; padding: 11px 15px; color: #687087; font-size: 10px; }
-.web-design-page .web-browser-dots { display: flex; gap: 5px; }
-.web-design-page .web-browser-dots i { width: 6px; height: 6px; border-radius: 50%; background: #c5c3d3; }
-.web-design-page .web-browser-bar > svg { width: 17px; height: 17px; }
-.web-design-page .web-project-image { display: block; overflow: hidden; background: #e1f0f3; aspect-ratio: 8 / 5; }
-.web-design-page .web-project-image img { width: 100%; height: 100%; object-fit: cover; }
-.web-design-page .web-project-caption { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 21px; border-top: 1px solid #19254912; }
-.web-design-page .web-project-caption p { font-size: 9px; letter-spacing: 1.3px; color: #697086; margin-bottom: 5px; }
-.web-design-page .web-project-caption h2 { font-size: 20px; line-height: 1.3; letter-spacing: -.5px; }
-.web-design-page .web-project-caption a { display: grid; place-items: center; flex: none; width: 44px; height: 44px; background: #f2edff; border: 1px solid #ded2fc; border-radius: 50%; color: var(--service-dark); font-size: 24px; transition: background .2s; }
-.web-design-page .web-project-caption a:hover { background: #dfd2fd; }
-.web-design-page .web-project-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 14px; margin-top: 17px; }
 .web-design-page .web-tabs { display: flex; }
 .web-design-page [hidden] { display: none !important; }
-.web-design-page .web-project-tabs { gap: 5px; padding: 4px; border: 1px solid #ffffff40; border-radius: 30px; background: #1d14462b; }
-.web-design-page .web-project-tabs button { display: flex; align-items: center; gap: 8px; background: transparent; color: #eee7ff; font-size: 12px; border: 0; padding: 10px 14px; border-radius: 24px; min-height: 44px; }
-.web-design-page .web-project-tabs button span { font-size: 10px; opacity: .65; }
-.web-design-page .web-project-tabs button[aria-pressed="true"] { background: #fff; color: #422c8b; }
-.web-design-page .web-project-tabs button:hover:not([aria-pressed="true"]) { background: #ffffff18; }
 .web-design-page .web-all-projects { font-size: 12px; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
 .web-design-page .web-all-projects:hover { text-decoration: underline; text-underline-offset: 4px; }
-.web-design-page .web-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; list-style: none; margin: 0; padding: 24px 0; border-top: 1px solid #ffffff30; }
-.web-design-page .web-principles li { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #e6defb; }
-.web-design-page .web-principles svg { width: 24px; height: 24px; flex: none; color: #b8f9e6; }
+.web-design-page .web-featured { border-top: 1px solid #ffffff35; padding-top: 20px; }
+.web-design-page .web-featured-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 18px; }
+.web-design-page .web-featured-heading h2 { color: #fff; font-size: 24px; letter-spacing: -.5px; line-height: 1.2; }
+.web-design-page .web-featured-heading .web-all-projects { font-size: 14px; }
+.web-design-page .web-featured-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.web-design-page .web-featured .project-card { display: flex; flex-direction: column; background: #fff; color: var(--ink); border-radius: 12px; overflow: hidden; border: 1px solid #ffffff75; box-shadow: 0 14px 34px #110b3e26; }
+.web-design-page .web-featured .project-media { aspect-ratio: 1.6; border: 0; border-bottom: 1px solid #e6e4ef; border-radius: 0; }
+.web-design-page .web-featured-copy { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 0; }
+.web-design-page .web-featured .project-label { margin: 0 0 10px; font-size: 9px; line-height: 1.5; letter-spacing: 1px; color: #626a7e; }
+.web-design-page .web-featured h3 { font-size: 25px; line-height: 1.2; letter-spacing: -.6px; margin: 0 0 18px; }
+.web-design-page .web-featured-link { display: flex; align-items: center; justify-content: space-between; gap: 14px; border-top: 1px solid #e6e0f1; color: #5230b0; font-size: 14px; font-weight: 600; min-height: 49px; margin-top: auto; }
+.web-design-page .web-featured-link span { font-size: 23px; transition: transform .2s; }
+.web-design-page .web-featured-link:hover span { transform: translate(3px, -3px); }
+.web-design-page .web-featured-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0 24px; padding-top: 12px; }
+.web-design-page .web-featured-footer .web-text-link { font-size: 12px; gap: 10px; color: #eee7ff; }
 .web-design-page .web-offer-section { padding: 72px 0 58px; }
 .web-design-page .web-section-heading { margin-bottom: 31px; }
 .web-design-page .web-section-heading h2, .web-design-page .web-ideas h2 { font-size: clamp(34px, 3.5vw, 46px); letter-spacing: -1.5px; line-height: 1.12; }
@@ -86,8 +77,8 @@
 .web-design-page .web-ideas-footer .web-text-link { color: #4e2aab; }
 .web-design-page .web-idea-stage { min-width: 0; grid-column: 2; grid-row: 1 / span 2; }
 .web-design-page .web-idea { background: white; border: 1px solid #e0d9eb; border-radius: 14px; box-shadow: 0 12px 36px #2c1b5310; overflow: hidden; }
-.web-design-page .web-idea + .web-idea, .web-design-page .web-project + .web-project { margin-top: 20px; }
-.web-design-page .is-enhanced .web-idea, .web-design-page .is-enhanced .web-project { margin-top: 0; }
+.web-design-page .web-idea + .web-idea { margin-top: 20px; }
+.web-design-page .is-enhanced .web-idea { margin-top: 0; }
 .web-design-page .web-idea-image { display: block; aspect-ratio: 8 / 5; background: #e8e3ed; overflow: hidden; }
 .web-design-page .web-idea-image img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .web-design-page .web-idea-caption { padding: 22px 24px 13px; display: flex; justify-content: space-between; align-items: center; gap: 18px; }
@@ -108,30 +99,27 @@
 }
 /* Short entrances and user-triggered changes; content is visible without JavaScript. */
 @media (prefers-reduced-motion: no-preference) {
-  .web-design-page .web-showcase { animation: web-settle .85s cubic-bezier(.2,.7,.2,1) both; }
   .web-design-page .web-hero-copy { animation: web-appear .7s ease-out both; }
   .web-design-page .web-reveal.is-in-view { animation: web-appear .65s ease-out both; }
   .web-design-page .is-enhanced [data-web-panel]:not([hidden]) img { animation: web-image-in .4s ease-out both; }
 }
-@keyframes web-settle { from { opacity: .25; transform: translateY(18px) rotate(1.5deg); } to { opacity: 1; transform: none; } }
 @keyframes web-appear { from { opacity: .4; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes web-image-in { from { opacity: .55; transform: scale(1.015); } to { opacity: 1; transform: none; } }
 @media (max-width: 1080px) {
   .web-design-page .web-hero-layout { gap: 32px; }
   .web-design-page .web-hero h1 { font-size: clamp(43px, 5.1vw, 55px); }
   .web-design-page .web-hero .service-lead { font-size: 17px; }
-  .web-design-page .web-project-controls { gap: 6px; }
   .web-design-page .web-ideas-layout { grid-template-columns: .7fr 1.3fr; gap: 28px; }
   .web-design-page .web-idea-caption { flex-wrap: wrap; }
+  .web-design-page .web-featured-grid { gap: 16px; }
+  .web-design-page .web-featured-copy { padding: 16px 16px 0; }
+  .web-design-page .web-featured h3 { font-size: 22px; }
 }
 @media (max-width: 800px) {
-  .web-design-page .web-hero-layout { grid-template-columns: 1fr; gap: 36px; padding-bottom: 32px; }
+  .web-design-page .web-hero-layout { grid-template-columns: 1fr; gap: 19px; padding-bottom: 26px; }
   .web-design-page .web-hero-copy { padding-bottom: 0; }
-  .web-design-page .web-hero h1 { font-size: 58px; }
+  .web-design-page .web-hero h1 { font-size: 52px; }
   .web-design-page .web-hero .service-lead { max-width: 530px; }
-  .web-design-page .web-showcase { max-width: 620px; width: 100%; margin: auto; }
-  .web-design-page .web-principles { gap: 18px; }
-  .web-design-page .web-principles li { font-size: 12px; gap: 8px; }
   .web-design-page .web-ideas-heading { display: block; }
   .web-design-page .web-ideas-heading > p { margin-top: 20px; max-width: none; }
   .web-design-page .web-offer { padding: 23px 23px 0; }
@@ -150,28 +138,26 @@
 }
 @media (max-width: 600px) {
   .web-design-page .web-hero { padding-top: 17px; }
-  .web-design-page .web-hero .breadcrumbs { margin-bottom: 26px; }
+  .web-design-page .web-hero .breadcrumbs { margin-bottom: 20px; }
   .web-design-page .web-eyebrow { font-size: 10px; letter-spacing: 1.2px; margin-bottom: 16px; }
   .web-design-page .web-hero h1 { font-size: clamp(41px, 11.6vw, 58px); letter-spacing: -1.8px; }
-  .web-design-page .web-hero .service-lead { margin-top: 20px; font-size: 16px; }
-  .web-design-page .web-hero-actions { margin-top: 23px; gap: 10px 20px; }
+  .web-design-page .web-hero .service-lead { margin-top: 0; font-size: 16px; }
+  .web-design-page .web-hero-actions { margin-top: 17px; gap: 8px 17px; }
   .web-design-page .web-hero-actions .button { font-size: 17px; min-width: 0; }
   .web-design-page .web-hero-actions .web-text-link { font-size: 14px; }
-  .web-design-page .web-hero-layout { gap: 26px; }
-  .web-design-page .web-showcase-heading { gap: 8px; margin-bottom: 11px; }
-  .web-design-page .web-showcase-heading > p { font-size: 8px; letter-spacing: 1px; }
+  .web-design-page .web-hero-layout { gap: 15px; }
+  .web-design-page .web-featured { padding-top: 18px; }
+  .web-design-page .web-featured-heading { align-items: flex-start; gap: 0; margin-bottom: 14px; }
+  .web-design-page .web-featured-heading h2 { width: 100%; font-size: 24px; }
+  .web-design-page .web-featured-heading .web-all-projects { font-size: 13px; }
+  .web-design-page .web-featured-grid { grid-template-columns: 1fr; gap: 19px; }
+  .web-design-page .web-featured-copy { padding: 17px 19px 0; }
+  .web-design-page .web-featured h3 { font-size: 25px; margin-bottom: 14px; }
+  .web-design-page .web-featured-link { min-height: 49px; font-size: 14px; }
+  .web-design-page .web-featured-footer { padding-top: 15px; gap: 0; }
+  .web-design-page .web-featured-footer .web-text-link { width: 100%; }
   .web-design-page .web-status { font-size: 10px; gap: 6px; }
-  .web-design-page .web-browser { border-radius: 11px; box-shadow: 0 16px 35px #0c083f3a; }
-  .web-design-page .web-browser-bar { padding: 8px 11px; font-size: 8px; }
-  .web-design-page .web-project-caption { padding: 14px; }
-  .web-design-page .web-project-caption h2 { font-size: 18px; }
-  .web-design-page .web-project-caption p { font-size: 8px; }
-  .web-design-page .web-project-controls { margin-top: 13px; }
-  .web-design-page .web-project-tabs button { font-size: 12px; padding: 9px 12px; }
   .web-design-page .web-all-projects { margin-left: 7px; }
-  .web-design-page .web-principles { grid-template-columns: 1fr; gap: 15px; padding: 25px 0; }
-  .web-design-page .web-principles li { font-size: 14px; gap: 13px; }
-  .web-design-page .web-principles svg { width: 21px; height: 21px; }
   .web-design-page .web-offer-section, .web-design-page .web-ideas, .web-design-page .web-faq-section { padding: 43px 0; }
   .web-design-page .web-section-heading h2, .web-design-page .web-ideas h2 { font-size: 33px; letter-spacing: -1.1px; }
   .web-design-page .web-offers { grid-template-columns: 1fr; gap: 17px; }
@@ -196,5 +182,5 @@
 @media (prefers-reduced-motion: reduce) {
   .web-design-page { scroll-behavior: auto; }
   .web-design-page *, .web-design-page *::before, .web-design-page *::after { animation: none !important; transition: none !important; }
-  .web-design-page .web-offer:hover, .web-design-page .web-offer:hover .web-offer-link > span, .web-design-page .web-text-link:hover span { transform: none; }
+  .web-design-page .web-offer:hover, .web-design-page .web-offer:hover .web-offer-link > span, .web-design-page .web-text-link:hover span, .web-design-page .web-featured-link:hover span { transform: none; }
 }
