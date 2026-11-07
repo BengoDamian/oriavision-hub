@@ -1,0 +1,118 @@
+/* The design service keeps the visual language of the home, with its own scope. */
+.web-design-page .hero-layout{min-height:570px;padding-top:32px;padding-bottom:32px}
+.web-design-page .hero-copy{max-width:650px}
+.web-design-page .web-breadcrumb{display:flex;gap:10px;color:#c6d6e7;font-size:12px;margin-bottom:28px}
+.web-design-page .web-breadcrumb a{text-decoration:underline;text-underline-offset:4px}
+.web-design-page .hero-positioning{font-size:17px;letter-spacing:.1px;margin-bottom:20px;max-width:550px;color:#c5e4ee}
+.web-design-page .slide-heading{font-size:clamp(43px,4.65vw,66px);min-height:220px;max-width:650px;line-height:1.06}
+.web-design-page .slide-heading em{display:block}
+.web-design-page .hero-description{font-size:16px;max-width:440px;min-height:54px;margin-top:18px}
+.web-design-page .hero-actions{max-width:460px;margin-top:23px}
+.web-design-page .hero-actions .button{font-size:18px;min-height:57px}
+.web-design-page .hero-visual{right:0;top:20px;bottom:10px;width:46%}
+.web-design-page .traffic-art{width:370px}
+.web-design-page .lamp-symbol-web{width:76%;height:70%}
+.web-design-page .lamp-symbol-search,.web-design-page .lamp-symbol-growth{width:72%;height:72%;fill:none;stroke:white;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;filter:none}
+.web-design-page .lamp{mix-blend-mode:normal}
+.web-design-page .hero-route{display:flex;gap:19px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.web-design-page .hero-route button{display:flex;align-items:center;gap:7px;color:#cfdaea;background:none;border:0;padding:8px 0;font-size:12px;min-height:36px}
+.web-design-page .hero-route button[aria-pressed=true]{color:#fff;text-decoration:underline;text-underline-offset:5px}
+.web-design-page .route-dot{width:7px;height:7px;border-radius:50%;background:var(--dot)}
+.web-design-page .hero-route .motion-button{margin-left:8px;font-size:11px;color:#cfdaea;text-decoration:none;gap:6px}
+.web-design-page .motion-button svg{width:12px;height:12px;fill:currentColor}
+.web-design-page .web-intro{display:flex;align-items:center;justify-content:space-between;gap:36px;padding-top:30px;padding-bottom:30px}
+.web-design-page .web-intro p{font-size:15px;max-width:640px;color:var(--muted)}
+.web-design-page .web-intro strong{display:block;color:var(--ink);font-size:19px;font-weight:500;margin-bottom:3px}
+.web-design-page .web-intro a{font-size:13px;white-space:nowrap}
+.web-design-page .web-work .service-banner-inner{grid-template-columns:.85fr 1.15fr;gap:70px;min-height:480px}
+.web-design-page .web-work h2{font-size:59px;letter-spacing:-2px;margin-bottom:20px}
+.web-design-page .web-work h2 em{color:#fff}
+.web-design-page .web-work .eyebrow{color:#efe6ff;letter-spacing:1.6px;margin:0 0 18px;font-size:11px}
+.web-design-page .web-work .project-kind{font-size:12px;margin-top:20px;color:#efe6ff}
+.web-design-page .web-work .screen-captures{aspect-ratio:1348/926}
+.web-design-page .web-work .screen-captures img{object-fit:contain}
+.web-design-page .web-work .service-scene{max-width:640px}
+.web-design-page .web-work .banner-link{margin-top:22px}
+.web-design-page .web-process{padding:76px 0 70px}
+.web-design-page .web-process .process-grid{margin:0;padding-left:0;list-style:none}
+.web-design-page .web-process .process-grid li>span{font-size:13px}
+.web-design-page .web-process .process-grid h3{font-size:22px;line-height:1.2}
+.web-design-page .web-process .process-grid p{font-size:14px}
+.web-design-page .web-delivery{display:grid;grid-template-columns:.7fr 1.3fr;gap:55px;align-items:center;background:#f4f5fb;padding:28px 32px;border-radius:14px;margin-top:42px}
+.web-design-page .web-delivery h3{font-size:23px;line-height:1.25;letter-spacing:-.6px}
+.web-design-page .web-delivery p{font-size:14px;color:var(--muted)}
+.web-design-page .web-growth .service-banner-inner{grid-template-columns:1.15fr .85fr;gap:72px;padding-top:64px;padding-bottom:64px}
+.web-design-page .web-growth h2{font-size:48px;letter-spacing:-1.6px;line-height:1.08;margin-bottom:20px}
+.web-design-page .web-growth h2 em{color:#124c75}
+.web-design-page .web-growth .service-banner-copy{max-width:610px}
+.web-design-page .web-growth .eyebrow{font-size:11px;color:#174c6c;margin:0 0 18px}
+.web-design-page .growth-services{margin-top:25px;border-top:1px solid #16557540}
+.web-design-page .growth-services a{display:grid;grid-template-columns:118px 1fr 20px;gap:14px;align-items:start;padding:17px 0;border-bottom:1px solid #16557540;color:#12354f}
+.web-design-page .growth-services strong{font-size:17px;font-weight:600}
+.web-design-page .growth-services span{font-size:14px;line-height:1.55}
+.web-design-page .growth-services b{font-size:20px;font-weight:400}
+.web-design-page .growth-services a:hover strong{text-decoration:underline;text-underline-offset:4px}
+.web-design-page .web-growth .scope-note{font-size:12px;line-height:1.65;margin-top:20px;color:#17445f}
+.web-design-page .marketing-film{max-width:350px}
+.web-design-page .marketing-film-stage{aspect-ratio:3/4;border-radius:22px;background:#0b3557;box-shadow:0 22px 50px #084e752a;overflow:hidden}
+.web-design-page .marketing-film video{display:block;width:100%;height:100%;object-fit:contain}
+.web-design-page .film-control{display:block;min-height:40px;margin:12px auto 0;border:0;border-bottom:1px solid #17445f66;background:none;color:#17445f;font-size:12px;padding:7px 0}
+.web-design-page .web-remote{background:#13183c;color:white;padding:52px 0}
+.web-design-page .web-remote>.wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.web-design-page .web-remote h2{font-size:39px;letter-spacing:-1px;line-height:1.15}
+.web-design-page .web-remote em{color:var(--mint)}
+.web-design-page .web-remote p{font-size:15px;color:#d7e1f3;margin-top:12px;max-width:550px}
+.web-design-page .remote-caption{font-size:11px!important;letter-spacing:1.1px;color:#a7cfda!important;text-transform:uppercase;margin:0 0 14px!important}
+.web-design-page .web-paths{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px}
+.web-design-page .web-paths a{font-size:13px;border-bottom:1px solid #b2c2de88;padding-bottom:6px}
+.web-design-page .web-faq{padding:70px 0}
+.web-design-page .web-faq h2{font-size:42px}
+.web-design-page .web-faq summary{font-size:15px}
+.web-design-page .web-faq details p{font-size:14px}
+.web-design-page .contact-section .eyebrow{color:#1e5a50;font-size:11px}
+.web-design-page .contact-section h2{font-size:48px}
+.web-design-page .contact-section p{max-width:530px}
+.web-design-page [id]{scroll-margin-top:95px}
+@media(min-width:701px) and (max-width:1000px){
+ .web-design-page .hero-layout{min-height:560px}.web-design-page .hero-visual{right:-65px;width:43%}.web-design-page .traffic-art{width:310px}
+ .web-design-page .slide-heading{font-size:49px;min-height:170px}.web-design-page .hero-description{max-width:360px}.web-design-page .hero-copy{max-width:430px}
+ .web-design-page .web-work .service-banner-inner,.web-design-page .web-growth .service-banner-inner{gap:35px}
+ .web-design-page .web-work h2{font-size:47px}.web-design-page .web-growth h2{font-size:39px}.web-design-page .growth-services a{grid-template-columns:95px 1fr 15px;gap:10px}
+}
+@media(max-width:700px){
+ .web-design-page .hero-layout{display:grid;grid-template-columns:minmax(0,1fr);min-height:0;padding-top:24px;padding-bottom:24px}
+ .web-design-page .hero-copy{display:contents}.web-design-page .web-breadcrumb{grid-area:1/1;margin-bottom:19px;font-size:11px}
+ .web-design-page .hero-positioning{grid-area:2/1;max-width:100%;font-size:15px;margin-bottom:22px;padding:0}
+ .web-design-page .slides-window{grid-area:3/1;z-index:3;min-width:0}
+ .web-design-page .slide-heading{font-size:clamp(34px,7.7vw,48px);line-height:1.06;letter-spacing:-1.25px;min-height:3.25em;max-width:calc(100% - 110px)}
+ .web-design-page .slide-heading br{display:block}.web-design-page .slide-heading em{letter-spacing:-1.15px}
+ .web-design-page .hero-description{max-width:calc(100% - 105px);min-height:82px;font-size:14px;line-height:1.55;margin-top:14px}
+ .web-design-page .hero-visual{grid-area:3/1;position:relative;inset:auto;width:100%;height:100%;z-index:2}
+ .web-design-page .traffic-art{width:auto;height:calc(100% + 22px);aspect-ratio:2/3;right:-42px;left:auto;top:-11px;transform:none}
+ .web-design-page .signal-halo{width:190px;height:220px;right:-35px;top:0}.web-design-page .signal-lines{display:none}
+ .web-design-page .hero-actions{grid-area:4/1;max-width:none;margin-top:22px;gap:12px}
+ .web-design-page .hero-actions .button{font-size:16px;min-height:54px;padding:12px}
+ .web-design-page .hero-route{grid-area:5/1;margin-top:18px;gap:14px;justify-content:space-between}
+ .web-design-page .hero-route button{font-size:11px;gap:5px}.web-design-page .hero-route .motion-button{margin:0;font-size:10px;gap:4px}
+ .web-design-page .web-intro{display:block;padding-top:25px;padding-bottom:25px}.web-design-page .web-intro p{font-size:14px}.web-design-page .web-intro strong{font-size:17px}.web-design-page .web-intro a{display:inline-block;margin-top:13px}
+ .web-design-page .web-work .service-banner-inner{grid-template-columns:minmax(0,1fr);gap:32px;min-height:0;padding-top:39px;padding-bottom:32px}
+ .web-design-page .web-work h2{font-size:46px;letter-spacing:-1.3px;margin-bottom:17px}.web-design-page .web-work .service-banner-copy>p:not(.eyebrow){font-size:15px}
+ .web-design-page .web-work .project-kind{font-size:11px!important;margin-top:16px}.web-design-page .web-work .service-scene{max-width:520px}
+ .web-design-page .web-process{padding:46px 0}.web-design-page .web-process h2{font-size:35px}.web-design-page .web-process .process-grid{gap:28px 22px}.web-design-page .web-process .process-grid h3{font-size:20px}.web-design-page .web-process .process-grid p{font-size:13px}
+ .web-design-page .web-delivery{grid-template-columns:1fr;gap:13px;padding:24px;margin-top:30px}.web-design-page .web-delivery h3{font-size:22px}
+ .web-design-page .web-growth .service-banner-inner{grid-template-columns:minmax(0,1fr);gap:30px;padding-top:43px;padding-bottom:31px}
+ .web-design-page .web-growth h2{font-size:37px;letter-spacing:-1.2px}.web-design-page .web-growth .service-banner-copy>p{font-size:15px}
+ .web-design-page .growth-services a{grid-template-columns:94px 1fr 16px;gap:10px}.web-design-page .growth-services strong{font-size:16px}.web-design-page .growth-services span{font-size:13px}
+ .web-design-page .web-growth .scope-note{font-size:12px!important}.web-design-page .marketing-film{max-width:315px;margin:auto}
+ .web-design-page .web-remote{padding:38px 0}.web-design-page .web-remote>.wrap{grid-template-columns:1fr;gap:15px}.web-design-page .web-remote h2{font-size:32px}.web-design-page .web-remote p{font-size:14px}
+ .web-design-page .web-paths{gap:17px}.web-design-page .web-paths a{font-size:12px}
+ .web-design-page .web-faq{padding:45px 0}.web-design-page .web-faq h2{font-size:34px}.web-design-page .contact-section h2{font-size:38px}
+}
+@media(max-width:370px){
+ .web-design-page .slide-heading{font-size:32px;min-height:3.25em;max-width:calc(100% - 92px)}.web-design-page .hero-description{max-width:calc(100% - 92px);font-size:13px;min-height:80px}
+ .web-design-page .traffic-art{right:-41px}.web-design-page .hero-route{gap:8px}.web-design-page .hero-route button{font-size:10px}
+ .web-design-page .web-process .process-grid{grid-template-columns:1fr}.web-design-page .growth-services a{grid-template-columns:85px 1fr 12px}
+}
+
+.web-design-page .motion-button[hidden]{display:none}
+.web-design-page .growth-services b svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
