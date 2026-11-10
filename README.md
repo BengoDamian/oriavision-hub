@@ -48,4 +48,6 @@ node scripts/qa-reference-site.mjs --url http://127.0.0.1:3000
 
 La auditoría comprueba páginas, enlaces y anclas internas, recursos, sitemap, canónicas, redirecciones y compatibilidad del middleware con los dominios de demos. También compara el cuerpo de cada página y los bytes de los recursos con `site/`: los cambios de producción se limitan a enlaces locales, metadatos SEO y la integración de Analytics ya existente.
 
+Las variantes de inspiración deben estar alojadas en `https://www.oriavision.com.ar/demos/`, con sus páginas internas y recursos en `public/demos/`. `qa-demo-urls.mjs` verifica los enlaces del catálogo y de consulta, `noindex`, la exclusión del sitemap y las dependencias de las demos migradas. Para incorporar una demo publicada se puede usar `mirror-published-demo.mjs <origen> <slug> <familia> <variante>`; conserva la navegación estática mediante `demo-host.js` y recalcula los tamaños de los metadatos de React después de adaptar las URL. Revisar también las interacciones en navegador antes de publicar.
+
 Con `--url` también comprueba respuestas HTTP, enlaces anteriores con y sin barra final, parámetros de consulta, video por rangos y el estado 404 de una ruta inexistente. Estas comprobaciones no sustituyen una revisión visual en navegador.

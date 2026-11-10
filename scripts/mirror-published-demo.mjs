@@ -1,5 +1,6 @@
 import { mkdirSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, resolve, sep } from "node:path";
+import { normalizeDemoMetadataLengths } from './demo-rsc-metadata.mjs';
 
 const [originArg, slug, family, variant] = process.argv.slice(2);
 if (!originArg || !slug || !family || !variant) {
@@ -54,6 +55,13 @@ function collectReferences(text, from, contentType) {
     for (const match of text.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) enqueue(match[1], from, true);
   }
   for (const match of text.matchAll(/["'](\/?_next\/static\/[^"'`()\s,;]+)["']/g)) enqueue(match[1].startsWith("/") ? match[1] : `/${match[1]}`, from, true);
+  if (/javascript/.test(contentType) || /\.(?:js|mjs)$/.test(from.pathname)) {
+    // Bundlers also emit relative imports, which are absent from the HTML.
+    for (const match of text.matchAll(/\b(?:from\s*|import\s*(?:\(\s*)?)["']([^"']+)["']/g)) {
+      if (/^(?:\.{1,2}\/|\/)/.test(match[1])) enqueue(match[1], from, true);
+    }
+    for (const match of text.matchAll(/["'](\/(?:images|fonts|assets)\/[^"'\s]+)["']/g)) enqueue(match[1], from, true);
+  }
 }
 
 function rewriteRootReferences(text) {
@@ -102,7 +110,7 @@ function rewriteHtml(html, pathname) {
     /(<script\b[^>]*\bsrc=["'][^"']*\/_next\/static\/chunks\/[^"']+["'][^>]*)(>)/i,
     `$1 onload="${escapedLoader}"$2`,
   );
-  return next;
+  return normalizeDemoMetadataLengths(next);
 }
 
 function pageFile(pathname) {
@@ -119,21 +127,18 @@ async function request(pathname) {
   const response = await fetch(new URL(pathname, origin), {
     headers: { "User-Agent": "ORIAVISION local demo migration" },
     redirect: "follow",
+    signal: AbortSignal.timeout(30000),
   });
   if (!response.ok) throw new Error(`${response.status} ${pathname}`);
   return response;
 }
 
-while (pageQueue.length) {
-  const pathname = pageQueue.shift();
-  const key = pathname.replace(/\/$/, "") || "/";
-  if (seenPages.has(key)) continue;
-  seenPages.add(key);
+async function mirrorPage(pathname) {
   const response = await request(pathname);
   const type = response.headers.get("content-type") || "";
   if (!type.includes("html")) {
     assetQueue.push(pathname);
-    continue;
+    return;
   }
   const html = await response.text();
   collectReferences(html, new URL(pathname, origin), type);
@@ -142,10 +147,19 @@ while (pageQueue.length) {
   writeFileSync(output, rewriteHtml(html, pathname), "utf8");
 }
 
-while (assetQueue.length) {
-  const pathname = assetQueue.shift();
-  if (seenAssets.has(pathname)) continue;
-  seenAssets.add(pathname);
+while (pageQueue.length) {
+  const batch = [];
+  while (pageQueue.length && batch.length < 6) {
+    const pathname = pageQueue.shift();
+    const key = pathname.replace(/\/$/, "") || "/";
+    if (seenPages.has(key)) continue;
+    seenPages.add(key);
+    batch.push(pathname);
+  }
+  await Promise.all(batch.map(mirrorPage));
+}
+
+async function mirrorAsset(pathname) {
   const response = await request(pathname);
   const type = response.headers.get("content-type") || "";
   const output = assetFile(pathname);
@@ -157,6 +171,17 @@ while (assetQueue.length) {
   } else {
     writeFileSync(output, Buffer.from(await response.arrayBuffer()));
   }
+}
+
+while (assetQueue.length) {
+  const batch = [];
+  while (assetQueue.length && batch.length < 6) {
+    const pathname = assetQueue.shift();
+    if (seenAssets.has(pathname)) continue;
+    seenAssets.add(pathname);
+    batch.push(pathname);
+  }
+  await Promise.all(batch.map(mirrorAsset));
 }
 
 // A new build gives content-hashed chunks new names. Remove only obsolete

@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-400.woff) format('woff');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-500.woff) format('woff');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-700.woff) format('woff');
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-condensed-700.woff) format('woff');
+}
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/barlow-condensed-800.woff) format('woff');
+}
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/caveat-600.woff) format('woff');
+}
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/demos/buen-rato-cafe-turquesa-naranja/fonts/caveat-700.woff) format('woff');
+}
