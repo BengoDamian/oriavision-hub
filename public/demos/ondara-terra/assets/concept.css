@@ -1,0 +1,52 @@
+/* TERRA — a warm editorial direction, with generous serif headlines. */
+:root{--heading:'Cormorant Garamond',Georgia,serif;--serif:var(--heading);--paper:#f8f1e8;--surface:#fffaf3;--surface-alt:#eee1d1;--ink:#3c2e27;--muted:#746052;--deep:#372a23;--header-solid:#372a23f2;--accent:#9e4a31;--water-accent:var(--accent);--line:#d7c4b1;--hero-accent:#f5cfad;--footer-muted:#ddcbbc;--radius:1px;--title-main-color:var(--ink);--title-detail-color:var(--accent)}
+h1,h2,h3{font-weight:500}
+:root .editorial-title .title-detail{font-style:italic;font-weight:400}
+:root .hero-cinematic .editorial-title{font-size:clamp(74px,8.5vw,132px);line-height:.94;max-width:950px}
+.hero-cinematic .hero-shade{background:linear-gradient(0deg,#221a14c4,transparent 74%),linear-gradient(90deg,#2b1d1729,transparent 78%)}
+.hero-cinematic .hero-content{padding-bottom:85px}
+.hero-cinematic .actions{margin-top:10px}
+.hero-cinematic .actions .btn{letter-spacing:.05em;font-weight:500}
+.brand-wordmark{font-weight:600;font-size:34px;letter-spacing:.12em}
+.brand-symbol{color:#eab891}
+#mirada{grid-template-columns:.35fr 1.65fr;gap:5vw;padding-block:110px}
+#mirada .intro-copy{display:grid;grid-template-columns:1.4fr 1fr;gap:0 7vw;align-items:start}
+#mirada .editorial-title{grid-column:1;grid-row:1/4;font-size:clamp(48px,5vw,80px)}
+#mirada .lead{font-size:16px;line-height:1.95}
+#mirada .link-line{grid-column:2}
+.photo-diptych--linked{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;padding:0 var(--pad) 90px;align-items:start}
+.photo-diptych--linked>a:last-child{margin-top:110px}
+.photo-diptych--linked figure:first-child,.photo-diptych--linked figure:last-child{height:clamp(400px,44vw,650px)}
+.photo-diptych--linked img{height:100%;object-fit:cover}
+.photo-diptych--linked figcaption{padding:70px 30px 30px}
+.photo-diptych figcaption>span:first-of-type{font-family:var(--heading);font-size:40px;line-height:1.1;max-width:12ch}
+.service-section{padding-block:85px}
+.service-section .service-layout{grid-template-columns:.85fr 1.15fr}
+.showcase-card{border:0;border-bottom:1px solid var(--line)}
+.showcase-caption{padding:30px}
+.pool-review-card{border-top:0;border-bottom:1px solid var(--accent)}
+.process-step{border-top:1px solid var(--line);padding-top:24px}
+.process-step h3{font-size:35px}
+.step-no{color:var(--accent);font-family:var(--heading);font-size:22px}
+.feature-band:before{background:linear-gradient(90deg,#2e201bce,#2e201b22)}
+.cta-section--garden{background:#9e4a31;--title-main-color:#fff7eb;--title-detail-color:#fff7eb}
+.cta-section--garden .garden-texture{opacity:.1;mix-blend-mode:luminosity}
+.cta-section--garden .editorial-title{text-shadow:none}
+.cta-section--garden .eyebrow{text-shadow:none}
+.cta-section--garden .round-cta{background:transparent;color:#fff7eb;border:1px solid #fff7eb;box-shadow:none}
+.pool-location{background:var(--paper)}
+.pool-location h2{font-size:56px}.pool-location h2 em{font-style:italic}
+.pool-location-map{border:0}
+.team-profile-portrait img{border:12px solid var(--surface)}
+@media(max-width:760px){
+ :root .hero-cinematic .editorial-title{font-size:clamp(56px,14vw,78px);line-height:.97}
+ .brand-wordmark{font-size:30px}.brand-symbol{width:32px}
+ #mirada{display:block;padding-block:65px}#mirada .intro-copy{display:block}#mirada .editorial-title{font-size:48px;margin-bottom:26px}#mirada .lead{font-size:16px}
+ .photo-diptych--linked{display:block;padding:0}.photo-diptych--linked>a:last-child{margin:0}
+ .photo-diptych--linked figure:first-child,.photo-diptych--linked figure:last-child{height:420px}
+ .photo-diptych figcaption>span:first-of-type{font-size:34px;max-width:14ch}
+ .service-section{padding-block:65px}.service-section .service-layout{grid-template-columns:1fr}
+ .process-step{padding:25px 0 10px 44px}.process-step h3{font-size:30px}
+ .pool-location h2{font-size:43px}
+ .team-profile-portrait img{border:0}
+}

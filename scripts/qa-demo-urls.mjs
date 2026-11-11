@@ -56,7 +56,7 @@ for (const pathname of sitemapPaths) assert(!pathname.startsWith('/demos/'), `De
 // Validate the complete newly migrated sites, including deep pages and their
 // CSS/module dependencies. This catches valid-looking catalog links with
 // missing exports, fonts or dynamically imported chunks.
-const migrated = ['clinica-dental-original', 'clinica-dental-azul', 'clinica-dental-salvia', 'clinica-dental-terracota', 'buen-rato-cafe-turquesa-naranja'];
+const migrated = ['clinica-dental-original', 'clinica-dental-azul', 'clinica-dental-salvia', 'clinica-dental-terracota', 'buen-rato-cafe-turquesa-naranja', 'ondara-original', 'ondara-noche', 'ondara-selva', 'ondara-terra'];
 let pages = 0;
 let assets = 0;
 function checkReference(value, from) {

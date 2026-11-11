@@ -1,0 +1,186 @@
+/* Pruebas only: open water, clear surfaces and a restrained deep-blue frame. */
+:root{
+  --ink:#483425;
+  --deep:#261b12;
+  --paper:#fdfbf9;
+  --aqua:#e8d4c4;
+  --muted:#73665c;
+  --line:#e2d9d2;
+  --water-accent:#764a29;
+  --title-main-color:var(--ink);
+  --title-detail-color:var(--water-accent);
+}
+::selection{background:#ead7c8;color:#261b12}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#82512b}
+.hero{background-color:var(--deep)}
+
+/* White branding stays readable over the film and on the light inner pages. */
+.header.is-fixed{
+  background:rgba(10,32,46,.92);
+  border-bottom-color:#e8d4c42e;
+  box-shadow:0 6px 24px #2d1d1026;
+}
+body:is([data-page=proyectos],[data-page=contacto],[data-page=error]) .header:not(.is-fixed){
+  background:#261b12;
+  border-bottom-color:#e8d4c42e;
+}
+.header :is(a,button):focus-visible,.mobile-menu a:focus-visible,
+.footer a:focus-visible,.hero :is(a,button):focus-visible,
+.feature-band button:focus-visible{outline-color:#fff}
+.mobile-menu{background:var(--deep)}
+.mobile-menu small{color:#e0cfc2}
+.mobile-menu a{border-bottom-color:#e8d4c42e}
+
+/* Most former petroleum panels become light, full-width water-blue surfaces. */
+.dark-section{
+  background:linear-gradient(120deg,#f7f0eb 0%,#fcf9f6 68%,#f8f2ee 100%);
+  color:var(--ink);
+}
+.dark-section,.pool-location,.contact-hero,.projects-intro{
+  --title-main-color:var(--ink);
+  --title-detail-color:var(--water-accent);
+}
+:is(.dark-section,.pool-location,.contact-hero,.projects-intro) .editorial-title .title-detail{
+  background-image:none;
+  color:var(--title-detail-color);
+  -webkit-text-fill-color:currentColor;
+  filter:none;
+}
+.dark-section .lead,.service-row p,.values-grid p{color:var(--muted)}
+.dark-section .eyebrow,.service-row .number{color:#725b4a}
+.service-row,.service-row:last-child,.values-grid article{border-color:#dacdc3}
+.service-row .arrow,.service-row:hover h3{color:var(--water-accent)}
+.dark-section .btn-light,.contact-hero .btn-light{
+  background:#6c4629;
+  border-color:#6c4629;
+  color:#fff;
+}
+.dark-section .btn-light:hover,.contact-hero .btn-light:hover{
+  background:#573a24;
+  border-color:#573a24;
+  color:#fff;
+}
+.micro-band{
+  background:linear-gradient(100deg,#eee0d6,#f8f1eb);
+  color:#55402f;
+  border-top:1px solid #e6d8ce;
+  border-bottom:1px solid #e6d8ce;
+}
+.micro-band i{background:#8e5e39}
+.pool-reviews{
+  background:linear-gradient(180deg,#fbf6f2,#fdfbf9);
+  border-bottom-color:#e9e0da;
+}
+.pool-review-card{
+  background:#fff;
+  color:var(--ink);
+  border-color:#e2d6cd;
+  border-top-color:#b0805b;
+  box-shadow:0 5px 14px #563b2618;
+}
+.pool-review-carousel:focus-visible{outline-color:var(--water-accent)}
+.pool-review-stars{color:#94690a}
+
+/* The map and text-only openings stay airy instead of adding dark blocks. */
+.pool-location{
+  background:linear-gradient(120deg,#f6efe9,#fcf7f4);
+  color:var(--ink);
+}
+.pool-location .eyebrow,.pool-location h2 em{color:var(--water-accent)}
+.pool-location-city,.pool-location-note{color:var(--muted)}
+.pool-location-map{background:#f0eae5;border-color:#d2c3b8}
+.pool-location-map:hover{border-color:#9b7558;box-shadow:0 5px 22px #3c28191a}
+.contact-hero,.projects-intro{
+  background:linear-gradient(120deg,#f7f0ea 0%,#fdfbf9 72%,#f9f4f1 100%);
+  color:var(--ink);
+}
+.contact-hero .eyebrow,.projects-intro .eyebrow{color:#725b4a}
+.contact-hero .lead,.projects-intro .lead{color:var(--muted)}
+.contact-hero:after{
+  border-color:#c2a99633;
+  box-shadow:0 0 0 100px #c7a99309,0 0 0 200px #c7a99306;
+}
+.contact-prep{background:#f7f1ec;border-left-color:#b29681}
+.contact-option:hover h3{color:var(--water-accent)}
+.filter-btn[aria-pressed=false]:hover{background:#f6f0eb}
+.gallery-image:after{background:#261b1270}
+.cta-section{background:linear-gradient(110deg,#fdfbf9,#f9f4f1);border-top-color:#e9e0d9}
+
+/* Shared closing invitation: the same full-color garden on every page. */
+.cta-section--garden{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#342920;
+  color:#fff;
+  --title-main-color:#fff;
+  --title-detail-color:#fff;
+}
+.cta-section--garden .cta-inner{position:relative;z-index:1}
+.cta-section--garden .editorial-title{
+  text-shadow:0 2px 3px #0c0704e6,0 0 14px #0c0704a6;
+}
+.cta-section--garden .title-main,.cta-section--garden .title-detail{
+  -webkit-text-stroke:.25px currentColor;
+  paint-order:stroke fill;
+}
+.cta-section--garden .eyebrow{
+  color:#fff;
+  font-weight:800;
+  text-shadow:0 1px 3px #0c0704;
+}
+.cta-section--garden .round-cta{background:#fffffff0;color:#483425;border-color:#fff;box-shadow:0 3px 16px #0c070459}
+.cta-section--garden .round-cta:hover{background:var(--ink);color:#fff}
+.cta-section--garden .round-cta:focus-visible{outline:2px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px var(--ink)}
+.garden-texture{position:absolute;inset:0;pointer-events:none;user-select:none}
+.garden-texture img{
+  width:100%;height:100%;object-fit:cover;object-position:50% 46%;
+}
+.garden-texture:after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,#0f0a0694 0%,#0f0a068f 78%,#0f0a061a 100%);
+}
+@media(max-width:760px){
+  .garden-texture img{object-position:58% 48%}
+}
+
+/* Natural greenery remains in the photography; the deep blue anchors the end. */
+.feature-band:before{background:linear-gradient(90deg,#261b12db,#261b1248)}
+.feature-band .lead{color:#f4efec}
+.footer{background:var(--deep);color:#f3ede8}
+.footer p{color:#d8cec6}
+.footer h3{color:#cebaab}
+.footer-nav a:hover{color:#ebd4c3}
+.footer-bottom{color:#cfc4bc;border-top-color:#d3c1b42e}
+
+dialog{background:#261b12f5}
+dialog::backdrop{background:#21160eeb}
+.dialog-body video{background:#261b12}
+.dialog-caption{color:#eae0d8}
+.whatsapp-dialog{background:#fdfbf9;color:var(--ink);border-color:#e2d8d0}
+.whatsapp-close{color:var(--ink)}
+@media(max-width:760px){
+  .feature-band:before{background:linear-gradient(90deg,#261b12cc,#261b1245)}
+  #media-dialog.is-film .dialog-top,
+  #media-dialog.is-film .dialog-body video{background:#261b12}
+}
+@media(forced-colors:active){
+  .garden-texture{display:none}
+  body,.dark-section,.pool-location,.contact-hero,.projects-intro,.cta-section,
+  .micro-band,.pool-reviews,.pool-review-card,.contact-prep,.footer,
+  .header.is-fixed,.mobile-menu,
+  body:is([data-page=proyectos],[data-page=contacto],[data-page=error]) .header:not(.is-fixed){
+    background:Canvas;color:CanvasText;
+  }
+  :root,.dark-section,.pool-location,.contact-hero,.projects-intro,.cta-section--garden{
+    --ink:CanvasText;--muted:CanvasText;
+    --title-main-color:CanvasText;--title-detail-color:CanvasText;
+  }
+  .cta-section--garden .editorial-title,.cta-section--garden .eyebrow{color:CanvasText;text-shadow:none}
+  .cta-section--garden .title-main,.cta-section--garden .title-detail{-webkit-text-stroke:0}
+  .dark-section .btn-light,.contact-hero .btn-light,
+  .dark-section .btn-light:hover,.contact-hero .btn-light:hover,
+  .cta-section--garden .round-cta,.cta-section--garden .round-cta:hover{
+    background:ButtonFace;color:ButtonText;border-color:ButtonText;
+  }
+}

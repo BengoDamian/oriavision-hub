@@ -1,0 +1,67 @@
+/* ONDARA: a clean aquatic identity, with the existing editorial layout. */
+.header .brand,.header .brand img{width:228px}
+.header .brand img{height:auto;display:block;filter:drop-shadow(0 2px 8px #1b1e1a30)}
+.sticky-contact .whatsapp-number{font-size:clamp(16px,1.7vw,23px);letter-spacing:.01em}
+.sample-caption{font-size:12px;color:var(--muted);margin:10px 0 0;letter-spacing:.025em}
+.pool-reviews-heading{display:block}
+.reference-credit{font-size:12px;line-height:1.7;color:var(--muted);max-width:65ch;margin:22px 0 0}
+.reference-credit a,.demo-about a{text-decoration:underline;text-underline-offset:3px}
+.footer p.demo-disclosure{font-size:12px;line-height:1.65;margin-top:24px;color:#c0c3be}
+.demo-contact-panel{background:#f0f2ef;border:1px solid #d3d6d2;padding:clamp(28px,4vw,52px);align-self:start;scroll-margin-top:120px}
+.demo-kicker{font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:#51584e}
+.demo-contact-panel h2{font-size:clamp(30px,3vw,42px);line-height:1.12;margin:24px 0}
+.demo-contact-panel p{color:var(--muted);line-height:1.8;font-size:15px;margin:18px 0}
+.demo-contact-panel .btn{margin-top:12px;background:#42493f;color:white;border-color:#42493f}
+.demo-contact-panel .link-line{display:flex;margin-top:30px}
+.demo-about{scroll-margin-top:110px;max-width:1100px}
+.demo-about h2{font-size:clamp(32px,4vw,48px);margin-bottom:24px}
+.demo-about p{max-width:80ch;color:var(--muted);line-height:1.9}
+.demo-about details{margin-top:32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0}
+.demo-about summary{font-weight:700;cursor:pointer;padding:10px 0}
+.demo-about li{margin:15px 0;line-height:1.7}
+.demo-about details p{font-size:13px}
+/* Clear, compact actions without turning them into full-width banners. */
+.team-profile-link,.team-profile-jump{padding:11px 17px;min-height:46px;border:1px solid #70766d;border-radius:6px;background:#f1f2f1;font-size:14px;line-height:1.4}
+.photo-diptych--linked .home-project-cta{padding:10px 16px;min-height:44px;border:1px solid #ffffffd9;border-radius:6px;background:#20231e8f;box-shadow:0 2px 12px #181a1726}
+.photo-diptych figcaption{background:linear-gradient(transparent,#17191694);text-shadow:0 1px 4px #1a1d19c9}
+.catalogue-open{padding:10px 16px;min-height:46px;border:1px solid #70766d;border-radius:6px;background:#f1f2f1}
+/* One shared location block, with clearly illustrative contact details. */
+.pool-location{border-top:1px solid var(--line);scroll-margin-top:110px}
+.pool-location-layout{gap:clamp(32px,5vw,80px)}
+.pool-location h2{font-size:clamp(38px,3.6vw,60px);line-height:1.12;margin-bottom:24px}
+.pool-location-place{font-size:20px;font-weight:700;line-height:1.4;margin:0 0 5px}
+.pool-location-city{font-size:14px;line-height:1.6;margin:0}
+.pool-location-phone{margin:24px 0 20px}
+.pool-location-phone span{font-size:12px;color:var(--muted)}
+.pool-location-phone p{margin:2px 0 0;font-size:24px;font-weight:650;line-height:1.4;font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.pool-location-link{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;min-height:48px;padding:11px 18px;border:1px solid #70766d;border-radius:6px;background:#eaebe9;color:var(--ink);font-size:14px;font-weight:700;line-height:1.4;transition:background .2s}
+.pool-location-link .arrow{font-size:24px}
+.pool-location-link:hover{background:#dbdeda}
+.pool-location-note{max-width:35ch;margin:16px 0 0;font-size:12px;line-height:1.65}
+.pool-location-map iframe{height:420px}
+.footer p.design-credit{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:none;margin:24px 0 0;padding-top:18px;border-top:1px solid #c3c6c12e;font-size:13px;line-height:1.5;color:#ced1cd;text-align:center}
+.design-credit a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#f6f7f6;font-size:13px;font-weight:750;letter-spacing:.08em;text-decoration:underline;text-underline-offset:5px;text-decoration-color:#a9ada7}
+.design-credit a:hover{color:#d3d7d1}
+@media(max-width:760px){
+ .header .brand,.header .brand img{width:188px}
+ .sticky-contact .whatsapp-number{font-size:17px}
+ .sample-caption{font-size:11px;margin-top:8px}
+ .reference-credit{font-size:12px}
+ .demo-contact-panel{padding:28px 24px}
+ .photo-diptych--linked .home-project-cta{padding:10px 14px;font-size:14px}
+ .catalogue-caption{flex-wrap:wrap}
+ .catalogue-open{font-size:13px;gap:16px}
+ .pool-location{padding-block:46px 0}
+ .pool-location-layout{padding-inline:0;gap:28px}
+ .pool-location-copy{padding-inline:var(--pad)}
+ .pool-location .eyebrow{font-size:10px;margin-bottom:18px}
+ .pool-location h2{font-size:40px;margin-bottom:20px}
+ .pool-location-note{max-width:none}
+ .pool-location-map{border:0;border-top:1px solid var(--line);border-radius:0}
+ .pool-location-map iframe{height:320px}
+ .footer p.design-credit{margin-top:26px;padding-top:14px}
+}
+@media(max-width:360px){
+ .header .brand,.header .brand img{width:165px}
+ .sticky-contact .whatsapp-number{font-size:15px}
+}

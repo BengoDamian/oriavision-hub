@@ -1,5 +1,6 @@
-import { mkdirSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, resolve, sep } from "node:path";
+import { load } from 'cheerio';
 import { normalizeDemoMetadataLengths } from './demo-rsc-metadata.mjs';
 
 const [originArg, slug, family, variant] = process.argv.slice(2);
@@ -46,12 +47,20 @@ function enqueue(reference, from, forceAsset = false) {
 
 function collectReferences(text, from, contentType) {
   if (contentType.includes("html")) {
-    for (const match of text.matchAll(/\b(?:href|src|poster|action)=["']([^"']+)["']/gi)) enqueue(match[1], from);
-    for (const match of text.matchAll(/\bsrcset=["']([^"']+)["']/gi)) {
-      for (const candidate of match[1].split(",")) enqueue(candidate.trim().split(/\s+/)[0], from, true);
-    }
+    const $ = load(text);
+    $('[href],[src],[poster],[action]').each((_, node) => {
+      for (const attr of ['href', 'src', 'poster', 'action']) enqueue($(node).attr(attr), from);
+    });
+    $('[srcset]').each((_, node) => {
+      for (const candidate of $(node).attr('srcset').split(',')) enqueue(candidate.trim().split(/\s+/)[0], from, true);
+    });
+    // Only parse CSS as CSS: inline scripts can contain calls such as
+    // url(new URL(...)), which are not resource references.
+    $('style,[style]').each((_, node) => {
+      collectReferences($(node).attr('style') || $(node).text(), from, 'text/css');
+    });
   }
-  if (contentType.includes("css") || contentType.includes("html")) {
+  if (contentType.includes("css")) {
     for (const match of text.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) enqueue(match[1], from, true);
   }
   for (const match of text.matchAll(/["'](\/?_next\/static\/[^"'`()\s,;]+)["']/g)) enqueue(match[1].startsWith("/") ? match[1] : `/${match[1]}`, from, true);
@@ -106,10 +115,15 @@ function rewriteHtml(html, pathname) {
   // the host behavior after hydration has started instead.
   const loader = `setTimeout(()=>{const s=document.createElement("script");s.src="/demos/demo-host.js";s.dataset.root=${JSON.stringify(basePath)};s.dataset.family=${JSON.stringify(family)};s.dataset.variant=${JSON.stringify(variant)};document.head.appendChild(s)},250)`;
   const escapedLoader = loader.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
-  next = next.replace(
-    /(<script\b[^>]*\bsrc=["'][^"']*\/_next\/static\/chunks\/[^"']+["'][^>]*)(>)/i,
+  const moduleScript = /(<script\b[^>]*\bsrc=["'][^"']*\/_next\/static\/chunks\/[^"']+["'][^>]*)(>)/i;
+  if (moduleScript.test(next)) next = next.replace(
+    moduleScript,
     `$1 onload="${escapedLoader}"$2`,
   );
+  else {
+    const escape = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+    next = next.replace(/<\/head>/i, `<script defer src="/demos/demo-host.js" data-root="${basePath}" data-family="${escape(family)}" data-variant="${escape(variant)}"></script></head>`);
+  }
   return normalizeDemoMetadataLengths(next);
 }
 
@@ -193,7 +207,7 @@ const currentChunks = new Set(
     .map((pathname) => decodeURIComponent(pathname).replace(/^\/_next\/static\/chunks\//, "")),
 );
 let removedChunks = 0;
-for (const entry of readdirSync(chunksDirectory, { withFileTypes: true })) {
+for (const entry of existsSync(chunksDirectory) ? readdirSync(chunksDirectory, { withFileTypes: true }) : []) {
   if (!entry.isFile() || currentChunks.has(entry.name)) continue;
   unlinkSync(ensureInsideDestination(join(chunksDirectory, entry.name)));
   removedChunks += 1;

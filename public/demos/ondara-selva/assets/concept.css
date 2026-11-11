@@ -1,0 +1,63 @@
+/* SELVA — relaxed, lush and tactile; soft typography and rounded actions. */
+:root{--heading:'Fraunces',Georgia,serif;--serif:var(--heading);--paper:#f7f8ef;--surface:#fffef6;--surface-alt:#e3ebd9;--ink:#1f4539;--muted:#526c5b;--deep:#173d31;--header-solid:#173d31f2;--accent:#466d38;--water-accent:var(--accent);--line:#bfcdb2;--hero-accent:#dfefaf;--footer-muted:#cbd9bc;--radius:26px;--title-main-color:var(--ink);--title-detail-color:var(--accent)}
+h1,h2,h3{font-weight:500;font-variation-settings:'SOFT' 70,'WONK' 1}
+:root .editorial-title{letter-spacing:-.045em;line-height:1.08}
+:root .hero-cinematic .editorial-title{font-size:clamp(60px,6.4vw,96px);max-width:1050px;line-height:1.06}
+.hero-cinematic .hero-content{align-items:center;text-align:center;justify-content:center;padding-top:160px;padding-bottom:65px}
+.hero-cinematic .hero-shade{background:linear-gradient(0deg,#092e21a6,#092e2126 65%,#092e214d)}
+.hero-cinematic .actions{justify-content:center;margin-top:8px}
+.hero-cinematic .actions .btn{border-radius:100px;padding-inline:25px}
+.hero-kicker{padding:9px 18px;border:1px solid #ffffff66;border-radius:99px;background:#153c231a;letter-spacing:.09em}
+.hero-note{display:none}
+.brand-wordmark{text-transform:lowercase;font-size:34px;letter-spacing:-.035em}
+.brand-wordmark small{text-transform:uppercase;letter-spacing:.17em}
+.brand-symbol{color:#d8eaae}
+#mirada{display:block;max-width:1120px;text-align:center;padding-block:100px}
+#mirada>.eyebrow{justify-content:center}#mirada>.eyebrow:before{display:none}
+#mirada .editorial-title{font-size:clamp(44px,5vw,72px);margin-bottom:30px}
+#mirada .lead{max-width:660px;margin:0 auto 30px;font-size:18px}
+#mirada .link-line{margin:auto;border-radius:50px}
+.photo-diptych--linked{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:0 var(--pad) 80px}
+.photo-diptych--linked figure:first-child,.photo-diptych--linked figure:last-child{height:clamp(440px,44vw,670px)}
+.photo-diptych--linked>a:first-child{border-radius:220px 220px 24px 24px;overflow:hidden}
+.photo-diptych--linked>a:last-child{border-radius:24px 24px 220px 24px;overflow:hidden}
+.photo-diptych--linked img{height:100%;object-fit:cover}
+.photo-diptych--linked figcaption{padding:70px 32px 42px}
+.photo-diptych figcaption>span:first-of-type{font-family:var(--heading);font-size:34px;line-height:1.15;max-width:15ch}
+.photo-diptych--linked .home-project-cta{border-radius:50px}
+.service-section{padding-block:80px}
+.service-section .service-layout{grid-template-columns:1fr 1fr;gap:8vw}
+.service-section .service-visual{align-self:center}
+.service-section .showcase-card{border:0;border-radius:70px 70px 22px 22px}
+.service-section .showcase-caption{padding:32px}
+.service-catalogue-link{border-radius:22px!important}
+.pool-reviews{background:#eff3e5}.pool-review-card{border:1px solid var(--line);border-radius:100px}
+.eyebrow:before{width:8px;height:8px;border-radius:50%;opacity:1}
+.process-grid{gap:22px}.process-step{background:var(--surface-alt);border-radius:30px;padding:32px}
+.process-step .step-no{width:42px;height:42px;border:1px solid var(--accent);border-radius:50%;display:grid;place-items:center;color:var(--accent);font-size:14px}
+.process-step h3{font-size:30px}
+.feature-band:before{background:linear-gradient(90deg,#113c2ed9,#113c2e22)}
+.feature-band .play-circle{background:#ffffff13}
+.cta-section--garden .round-cta{background:#e3efc5;color:#234132;border-color:#e3efc5}
+.cta-section--garden .garden-texture:after{background:#102e1c99}
+.team-section .team-card{border-radius:36px;overflow:hidden;border:0}
+.team-profile-portrait img{border-radius:140px 140px 25px 25px}
+.pool-location h2{font-size:45px}.pool-location-map{border-radius:40px;overflow:hidden;border:0}
+@media(max-width:760px){
+ :root .hero-cinematic .editorial-title{font-size:clamp(46px,11.8vw,66px);line-height:1.09}
+ .hero-cinematic .hero-content{justify-content:flex-end;padding-bottom:83px;padding-top:120px}
+ .hero-cinematic .actions .btn{padding-inline:13px;font-size:13px}
+ .hero-kicker{font-size:8px;padding-inline:11px}
+ .brand-wordmark{font-size:29px}
+ #mirada{padding-block:65px}#mirada .editorial-title{font-size:41px}#mirada .lead{font-size:16px}
+ .photo-diptych--linked{display:block;padding:0}
+ .photo-diptych--linked>a:first-child,.photo-diptych--linked>a:last-child{border-radius:0}
+ .photo-diptych--linked figure:first-child,.photo-diptych--linked figure:last-child{height:420px}
+ .photo-diptych figcaption>span:first-of-type{font-size:30px}
+ .service-section{padding-block:65px}.service-section .service-layout{grid-template-columns:1fr;gap:30px}
+ .service-section .showcase-card,.team-section .team-card{border-radius:0}
+ .process-step{padding:27px 25px 28px 77px;border-radius:25px}.process-step .step-no{position:absolute;left:22px;top:27px;width:35px;height:35px}
+ .process-step h3{font-size:26px}
+ .pool-location h2{font-size:35px}.pool-location-map{border-radius:0}
+ .team-profile-portrait img{border-radius:60px 60px 0 0}
+}

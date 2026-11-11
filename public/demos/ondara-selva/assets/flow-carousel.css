@@ -1,0 +1,33 @@
+/* One complete module at a time. The native scroll surface remains swipeable. */
+.showcase-flow .showcase-viewport{--peek:0px;scroll-snap-type:none;scrollbar-width:none;padding:0;overflow-anchor:none}
+.showcase-flow .showcase-viewport::-webkit-scrollbar{display:none}
+.showcase-flow .showcase-viewport:after{display:none}
+.showcase-flow .showcase-card{flex-basis:100%}
+.showcase-flow .showcase-all{margin-top:24px}
+.showcase-flow .showcase-caption{align-items:flex-start}
+.card-action,.team-profile-link,.team-profile-jump{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:46px;padding:11px 17px;border:1px solid #578c64;border-radius:6px;background:#ecf7ef;color:#264b2f;font-family:var(--sans);font-size:14px;font-weight:750;line-height:1.4;letter-spacing:0;box-shadow:0 3px 10px #21562e0a}
+.card-action{margin-top:22px}
+.card-action>span,.team-profile-link>span{font-size:23px;line-height:1}
+.showcase-card:hover :is(.card-action,.team-profile-link),.team-profile-jump:hover{background:#e0f0e4;border-color:#367345}
+.showcase-flow .showcase-viewport:focus-visible{outline:2px solid #3e834f;outline-offset:4px}
+@media(min-width:1000px){
+ .detail-related .showcase-flow .showcase-card{min-width:0}
+}
+@media(max-width:760px){
+ .showcase-flow .showcase-viewport{margin-inline:calc(-1 * var(--pad));width:calc(100% + 2 * var(--pad));--card-gap:0px}
+ .showcase-flow .showcase-card{border-inline:0;border-radius:0}
+ .showcase-flow .showcase-caption{padding:24px var(--pad) 27px;min-height:0}
+ .showcase-flow .showcase-caption h3{font-size:29px}
+ .showcase-flow .showcase-caption p{font-size:15px;line-height:1.65}
+ .showcase-flow .team-card-portrait img{height:clamp(210px,67vw,340px);aspect-ratio:auto;object-fit:cover;object-position:50% 27%}
+ .showcase-flow .team-card-copy{padding:22px var(--pad) 26px;flex:0 0 auto}
+ .showcase-flow .team-card h3{font-size:32px;margin-bottom:10px}
+ .showcase-flow .team-discipline{margin-bottom:11px}
+ .showcase-flow .team-role{margin-bottom:12px}
+ .showcase-flow .team-focus{line-height:1.65;margin-bottom:20px}
+ .showcase-flow .team-profile-link{margin-top:0;font-size:14px;padding:11px 17px;border:1px solid #578c64}
+ .card-action{margin-top:20px}
+}
+@media(forced-colors:active){
+ .card-action,.team-profile-link,.team-profile-jump{background:ButtonFace;color:ButtonText;border-color:ButtonText}
+}

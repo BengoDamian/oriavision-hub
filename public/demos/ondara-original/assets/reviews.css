@@ -1,0 +1,19 @@
+.pool-reviews{padding:24px 0 8px;background:linear-gradient(180deg,#edfaf8,#f7f8f1);border-bottom:1px solid #cddfda;overflow:hidden}
+.pool-reviews-heading{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:nowrap}
+.pool-reviews-heading .editorial-title{margin-inline:0;max-width:620px}
+.pool-reviews-heading .editorial-title--inline .title-pair{white-space:nowrap;text-align:center}
+.pool-reviews-heading .editorial-title--inline .title-main,.pool-reviews-heading .editorial-title--inline .title-detail{display:inline}
+.pool-reviews-heading h2{font-size:clamp(27px,2.7vw,35px);line-height:1.15;margin:0;letter-spacing:-.02em}
+.pool-review-carousel{--review-width:205px;--review-height:70px;display:flex;gap:14px;position:relative;isolation:isolate;max-width:1440px;margin:2px auto 0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;align-items:center;padding:22px 16px;scroll-snap-type:x proximity}
+.pool-review-carousel::-webkit-scrollbar{display:none}
+.pool-review-carousel:focus-visible{outline:2px solid #008f9b;outline-offset:-4px}
+.pool-review-card{flex:0 0 var(--review-width);width:var(--review-width);height:var(--review-height);padding:6px 13px;display:flex;flex-direction:column;justify-content:center;background:#fffefa;color:#163638;border:1px solid #c7ddda;border-top:2px solid #00c4cc;border-radius:7px;box-shadow:0 5px 14px #0b454b20;transform-origin:50% 50%;overflow:hidden;user-select:none;-webkit-user-select:none;scroll-snap-align:center}
+.pool-review-top{display:flex;align-items:center;justify-content:center;gap:8px}
+.pool-review-stars{color:#9d700a;font-size:12px;letter-spacing:.7px;line-height:1}
+.pool-review-quote{font-size:15px;line-height:1.35;font-weight:600;margin:5px 0 0;letter-spacing:-.005em;text-align:center}
+.pool-review-carousel[data-enhanced=true]{height:calc(var(--review-height)*1.24 + 32px);padding:0;display:block;overflow:hidden;touch-action:pan-y pinch-zoom;cursor:grab;scroll-snap-type:none}
+.pool-review-carousel[data-enhanced=true] .pool-review-card{position:absolute;left:0;top:50%;will-change:transform}
+.pool-review-carousel[data-dragging=true]{cursor:grabbing}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:760px){.pool-reviews{padding:19px 0 6px}.pool-reviews-heading{gap:14px;flex-direction:row}.pool-reviews-heading h2{font-size:27px}.pool-review-carousel{--review-width:min(180px,calc((100vw - 24px)/2.7));--review-height:68px;gap:8px;margin-top:0}.pool-review-card{padding:6px;border-radius:5px}.pool-review-quote{font-size:14px;line-height:1.3;margin:4px 0 0}.pool-review-stars{font-size:11px;letter-spacing:.4px}}
+@media(prefers-reduced-motion:reduce){.pool-review-carousel{scroll-snap-type:x proximity}.pool-review-card{transform:none!important}}

@@ -1,0 +1,113 @@
+/* Shared behavior, deliberately distinct visual systems in concept.css. */
+:root{--sans:'DM Sans','ONDARA Symbols',Arial,sans-serif;--radius:0px;--surface:var(--paper);--surface-alt:#eee;--accent:var(--water-accent);--on-accent:#fff;--heading:var(--serif)}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink)}
+h1,h2,h3,.detail-explore strong,.team-profile-nav strong{font-family:var(--heading);font-weight:500;letter-spacing:-.035em}
+:root .editorial-title{container-type:normal;font-family:var(--heading);font-size:clamp(38px,4.8vw,72px);line-height:1.06;text-wrap:balance}
+:root .editorial-title .title-pair{font-size:inherit;line-height:inherit;letter-spacing:inherit;white-space:normal}
+:root .editorial-title :is(.title-main,.title-detail){font-family:inherit;font-size:1em;line-height:inherit;font-weight:inherit;letter-spacing:inherit;white-space:normal;padding:0;background:none;-webkit-text-fill-color:currentColor;filter:none}
+:root .editorial-title .title-main{font-style:normal;color:var(--title-main-color,var(--ink))}
+:root .editorial-title .title-detail{font-style:normal;color:var(--title-detail-color,var(--accent))}
+:root .editorial-title--inline .title-main,:root .editorial-title--inline .title-detail{display:inline}
+:root :is(.hero,.feature-band,.cta-section--garden){--title-main-color:#fff;--title-detail-color:var(--hero-accent,#fff)}
+:root :is(.dark-section,.pool-location,.contact-hero,.projects-intro){--title-main-color:var(--ink);--title-detail-color:var(--accent)}
+:root .hero-cinematic .editorial-title{font-size:clamp(64px,7.4vw,116px);margin-bottom:30px;max-width:100%;text-shadow:0 2px 25px #0005}
+:root .hero:not(.hero-cinematic) .editorial-title{font-size:clamp(46px,6.1vw,86px)}
+:root .feature-band .editorial-title{font-size:clamp(46px,6vw,82px)}
+:root .pool-reviews-heading .editorial-title{font-size:clamp(25px,3vw,35px);max-width:none;text-align:center;line-height:1.2}
+:root .pool-reviews-heading .editorial-title .title-pair{white-space:normal}
+:root .cta-inner .editorial-title{font-size:clamp(40px,5.5vw,82px)}
+.hero-cinematic{min-height:660px}
+.hero-cinematic .hero-content{width:100%;max-width:none;padding-bottom:90px}
+.hero-kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 26px;font-weight:600;color:#fff}
+.hero-kicker span{display:inline-block;width:26px;height:1px;background:currentColor;vertical-align:middle;margin:0 12px}
+.hero-note{position:absolute;right:var(--pad);bottom:90px;max-width:210px;color:#fff;line-height:1.7;font-size:12px;margin:0;padding-left:20px;border-left:1px solid #ffffff70}
+.hero-cinematic .actions .btn{border-radius:var(--radius);font-family:var(--sans);font-size:15px;box-shadow:none;background:#00000014;border-color:#ffffffbd;text-shadow:0 1px 4px #0009}
+.hero-cinematic .actions .btn:hover{background:#ffffff18;box-shadow:none}
+.header .brand{display:flex;align-items:center;gap:12px;width:auto!important;flex:none;line-height:1}
+.brand-symbol{display:block;width:45px;height:49px;color:var(--hero-accent,#fff);flex:none}
+.brand-wordmark{font-family:var(--heading);font-size:31px;letter-spacing:.09em;color:#fff;line-height:.95}
+.brand-wordmark small{display:block;font-family:var(--sans);font-size:7px;font-weight:500;letter-spacing:.18em;line-height:1;margin-top:9px}
+.header.is-fixed{background:var(--header-solid);box-shadow:0 4px 20px #00000010;border-bottom-color:#ffffff29;backdrop-filter:blur(12px)}
+body:is([data-page=proyectos],[data-page=contacto],[data-page=error]) .header:not(.is-fixed),body[data-page=nosotros][data-template=detail] .header:not(.is-fixed){background:var(--deep)}
+body[data-page=proyectos][data-template=detail] .header:not(.is-fixed){background:transparent}
+.mobile-menu{background:var(--deep)}
+.mobile-menu small{color:var(--footer-muted)}
+.eyebrow{color:var(--accent);letter-spacing:.15em;font-weight:700}
+.hero .eyebrow,.feature-band .eyebrow,.cta-section--garden .eyebrow{color:#fff}
+.dark-section,.pool-location,.team-section,.detail-related,.team-profile-hero.contact-hero,.contact-hero,.projects-intro{background:var(--surface-alt);color:var(--ink)}
+.catalogue-row:nth-child(even){background:var(--surface-alt)}
+.dark-section .eyebrow,.projects-intro .eyebrow,.contact-hero .eyebrow,.pool-location .eyebrow{color:var(--accent)}
+.contact-hero:after{display:none}
+.micro-band{background:var(--deep);color:var(--footer-muted);border:0;font-size:10px;font-weight:600;letter-spacing:.13em;padding-block:24px}
+.micro-band i{background:currentColor}
+.pool-reviews{background:var(--surface-alt);border-bottom-color:var(--line);padding-block:28px 16px}
+.pool-review-card{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-top:1px solid var(--accent);border-radius:var(--radius);box-shadow:none}
+.pool-review-stars{color:var(--accent)}
+.showcase-card{background:var(--surface);border-color:var(--line);border-radius:var(--radius)}
+.showcase-photo,.team-card-portrait,.project-photo{background:var(--surface-alt)}
+.showcase-caption h3,.team-card h3{font-family:var(--heading);color:var(--ink)}
+.showcase-caption p,.team-focus,.team-role,.service-catalogue-description{color:var(--muted)}
+:is(.link-line,.card-action,.team-profile-link,.team-profile-jump,.catalogue-open,.pool-location-link,.filter-btn){background:transparent;border:1px solid var(--accent);color:var(--ink);border-radius:var(--radius);box-shadow:none;font-family:var(--sans);font-size:14px;min-height:46px;text-shadow:none}
+.link-line:before,.link-line:after{display:none}
+:is(.link-line,.card-action,.team-profile-link,.team-profile-jump,.catalogue-open,.pool-location-link):hover,.showcase-card:hover :is(.card-action,.team-profile-link){background:var(--accent);color:var(--on-accent);border-color:var(--accent);box-shadow:none}
+:is(.service-section,.team-projects) .service-catalogue-link,.showcase-all{background:var(--surface);color:var(--ink);border-color:var(--accent);border-radius:var(--radius);box-shadow:none}
+:is(.service-section,.team-projects) .service-catalogue-description{color:var(--muted)}
+:is(.service-section,.team-projects) .service-catalogue-arrow{color:var(--accent)}
+:is(.service-section,.team-projects) .service-catalogue-link:is(:hover,:focus-visible),.showcase-all:hover{background:var(--surface-alt);box-shadow:none;border-color:var(--accent)}
+.showcase-buttons button{border-color:var(--line)}
+.showcase-buttons button:hover{background:var(--surface-alt)}
+.team-hero-button{border-radius:var(--radius)}
+.team-discipline,.team-profile-nav span,.detail-explore>a>span:first-child{color:var(--accent)}
+.team-profile-portrait img{border-radius:var(--radius)}
+.filter-btn[aria-pressed=true],.dark-section .btn-light,.contact-hero .btn-light,.demo-contact-panel .btn{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.filter-btn[aria-pressed=false]:hover{background:var(--surface-alt)}
+.demo-contact-panel,.contact-prep{background:var(--surface-alt);border-color:var(--line)}
+.demo-kicker{color:var(--accent)}
+.pool-location-map{border-color:var(--line);border-radius:var(--radius)}
+.pool-location-map:hover{border-color:var(--accent);box-shadow:none}
+.pool-location h2 em{font-style:normal;color:var(--accent)}
+.footer{background:var(--deep);color:#fff;padding-bottom:90px}
+.footer p,.footer .demo-disclosure,.footer-bottom,.footer p.design-credit{color:var(--footer-muted)}
+.footer h3{color:var(--footer-muted);font-family:var(--sans)}
+.footer-nav a:hover,.design-credit a:hover{color:var(--hero-accent)}
+.design-credit a{color:#fff;text-decoration-color:var(--footer-muted)}
+/* A small floating contact entry leaves room for the photographs. */
+.sticky-contact{left:auto;right:24px;bottom:max(22px,env(safe-area-inset-bottom));width:60px;height:60px;min-height:60px;padding:0;border:1px solid var(--accent);border-radius:50%;background:var(--accent);color:var(--on-accent);box-shadow:0 4px 24px #0003;gap:0}
+.sticky-contact:hover{background:var(--deep);color:#fff;box-shadow:0 4px 24px #0003}
+.sticky-contact:before{display:none}
+.sticky-contact .whatsapp-number{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.sticky-contact>.whatsapp-icon{width:29px;height:29px}
+.footer-bottom{border-color:#ffffff29}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:760px){
+ :root{--pad:24px}
+ .brand-symbol{width:35px;height:39px}.brand-wordmark{font-size:27px}.brand-wordmark small{font-size:6px;margin-top:7px}
+ .nav-wrap{height:84px}.menu-button{font-size:14px}
+ .hero-cinematic{height:94svh;min-height:590px;max-height:960px}
+ .hero-cinematic .hero-content{padding-top:120px;padding-bottom:68px}
+ :root .hero-cinematic .editorial-title{font-size:clamp(49px,12.5vw,72px);line-height:1.02;margin-bottom:28px;max-width:100%}
+ :root .editorial-title{font-size:clamp(36px,9.5vw,52px)}
+ :root .hero:not(.hero-cinematic) .editorial-title{font-size:clamp(39px,10.5vw,60px)}
+ :root .pool-reviews-heading .editorial-title{font-size:clamp(25px,6.6vw,34px)}
+ .hero-kicker{font-size:9px;letter-spacing:.14em;margin-bottom:20px}.hero-note{display:none}
+ .hero-cinematic .actions{max-width:480px;gap:10px}
+ .hero-cinematic .actions .btn{font-size:14px;min-height:54px;padding:12px 13px}
+ .micro-band{font-size:8px;padding-block:20px;letter-spacing:.08em}
+ .service-section .service-layout{grid-template-columns:1fr}
+ .showcase-flow .showcase-card{border-radius:0;border-inline:0}
+ .showcase-flow .showcase-caption{padding-inline:var(--pad)}
+ .showcase-flow .team-profile-link{border-color:var(--accent)}
+ .pool-location-map{border-radius:0}
+ .sticky-contact{width:55px;height:55px;min-height:55px;right:17px;bottom:max(18px,env(safe-area-inset-bottom))}
+ .footer{padding-bottom:95px}
+ .photo-diptych--linked .home-project-cta{font-size:13px;min-height:44px}
+ :root .cta-inner .editorial-title{font-size:clamp(32px,8vw,46px)}
+ .cta-inner{gap:16px}.round-cta{width:62px;height:62px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important}.hero-note{animation:none}}
+@media(forced-colors:active){
+ :root{--ink:CanvasText;--muted:CanvasText;--accent:LinkText;--on-accent:ButtonText;--paper:Canvas;--surface:Canvas;--surface-alt:Canvas;--deep:Canvas;--footer-muted:CanvasText}
+ .sticky-contact,.brand-wordmark,.footer,.design-credit a{color:CanvasText;background:Canvas}
+}
+
+.btn>span[aria-hidden],.link-line>span[aria-hidden],.card-action>span[aria-hidden],.team-profile-link>span[aria-hidden],.catalogue-open>span[aria-hidden]{font-family:'ONDARA Symbols',sans-serif}
