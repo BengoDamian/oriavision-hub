@@ -28,3 +28,6 @@ export function legacyDestination(pathname) {
   if (pathname.startsWith('/demos/abogados-espresso-imagen/')) return pathname.replace('/demos/abogados-espresso-imagen/', '/demos/abogados-espresso-editorial/');
   return null;
 }
+
+// Dates reflect substantive content edits, not each deployment.
+export const pageLastModified = {"/servicios/tiendanube/crear-tienda/": "2026-11-16", "/servicios/tiendanube/mejorar-tienda/": "2026-11-16", "/servicios/tiendanube/": "2026-11-16", "/": "2026-11-16", "/trabajos/ercas/": "2026-11-16", "/trabajos/pampatex/": "2026-11-16", "/trabajos/": "2026-11-16"};

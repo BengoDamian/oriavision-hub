@@ -1,0 +1,12 @@
+/* Scoped links and project evidence for the Tiendanube services. */
+.commerce-paths{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px}
+.commerce-paths a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;line-height:1.5;text-decoration:underline;text-underline-offset:4px;color:inherit}
+.commerce-paths a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.commerce-evidence .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.commerce-evidence .project-description{max-width:52ch;line-height:1.7}
+.commerce-case-links{margin:0 0 24px;color:#344c43}
+.commerce-case-links>p{font-size:16px;line-height:1.6;margin:0}
+.commerce-case-links .commerce-paths{margin-top:6px}
+.commerce-next{background:#eafbf5;color:#123c3b}
+.commerce-next>.wrap>p{max-width:650px;margin-top:18px;line-height:1.7}
+@media(max-width:700px){.commerce-evidence .project-grid{grid-template-columns:1fr;gap:32px}.commerce-paths{gap:4px 18px}.commerce-next h2{font-size:30px}}

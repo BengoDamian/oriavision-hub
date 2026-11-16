@@ -1,7 +1,7 @@
 import { cp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import { load } from 'cheerio';
-import { SITE_URL, SOURCE_URL, legacyRoutes } from './site-config.mjs';
+import { SITE_URL, SOURCE_URL, legacyRoutes, pageLastModified } from './site-config.mjs';
 
 const source = resolve('site');
 const output = resolve('out');
@@ -81,7 +81,7 @@ oldSitemap('url').each((_, element) => {
   const pathname = new URL(loc).pathname;
   if (!legacyRoutes[pathname]) entries.set(pathname, oldSitemap.xml(element));
 });
-for (const pathname of publicPages) entries.set(pathname, `<url><loc>${escape(SITE_URL + pathname)}</loc><changefreq>${pathname === '/' ? 'weekly' : 'monthly'}</changefreq><priority>${pathname === '/' ? '1.0' : '0.8'}</priority></url>`);
+for (const pathname of publicPages) entries.set(pathname, `<url><loc>${escape(SITE_URL + pathname)}</loc>${pageLastModified[pathname] ? `<lastmod>${pageLastModified[pathname]}</lastmod>` : ''}<changefreq>${pathname === '/' ? 'weekly' : 'monthly'}</changefreq><priority>${pathname === '/' ? '1.0' : '0.8'}</priority></url>`);
 await writeFile(join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...entries.values()].join('\n')}\n</urlset>\n`);
 await writeFile(join(output, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\nDisallow: /pruebas/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 await writeFile(join(output, 'site-analytics.js'), `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P7CCCZEQGN');const script=document.createElement('script');script.async=true;script.src='https://www.googletagmanager.com/gtag/js?id=G-P7CCCZEQGN';document.head.appendChild(script);\n`);
