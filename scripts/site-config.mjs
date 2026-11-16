@@ -30,4 +30,4 @@ export function legacyDestination(pathname) {
 }
 
 // Dates reflect substantive content edits, not each deployment.
-export const pageLastModified = {"/servicios/tiendanube/crear-tienda/": "2026-11-16", "/servicios/tiendanube/mejorar-tienda/": "2026-11-16", "/servicios/tiendanube/": "2026-11-16", "/": "2026-11-16", "/trabajos/ercas/": "2026-11-16", "/trabajos/pampatex/": "2026-11-16", "/trabajos/": "2026-11-16"};
+export const pageLastModified = {"/trabajos/quirvo/": "2026-11-16", "/servicios/tiendanube/crear-tienda/": "2026-11-16", "/servicios/tiendanube/mejorar-tienda/": "2026-11-16", "/servicios/tiendanube/": "2026-11-16", "/": "2026-11-16", "/trabajos/ercas/": "2026-11-16", "/trabajos/pampatex/": "2026-11-16", "/trabajos/": "2026-11-16"};
