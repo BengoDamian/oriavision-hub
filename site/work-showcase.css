@@ -1,6 +1,6 @@
 /* The portfolio is a first stop, with one project and one story at a time. */
 .work-showcase [hidden]{display:none}
-.work-showcase{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:radial-gradient(ellipse at 82% 32%,#b077f5 0%,transparent 49%),linear-gradient(115deg,#40218d,#6638d3 57%,#432690);padding:40px 0 32px;scroll-margin-top:82px}
+.work-showcase{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:radial-gradient(ellipse at 82% 32%,#b077f5 0%,transparent 49%),linear-gradient(115deg,#40218d,#6638d3 57%,#432690);padding:40px 0 32px;scroll-margin-top:0}
 .work-showcase::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(172deg,transparent 73%,#ffffff24 73.3%,transparent 74%);pointer-events:none}
 .work-showcase-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:27px;margin-bottom:28px;border-bottom:1px solid #ffffff38}
 .work-showcase h2{font-size:28px;line-height:1.2;letter-spacing:-.8px;color:#fff}
@@ -45,7 +45,7 @@
 .portfolio-first .hero-actions a.work-hero-access .cta-label{font-size:17px;line-height:1.25}
 @media(min-width:701px) and (max-width:1000px){.work-stage,.work-slide{column-gap:34px;grid-template-columns:1fr 1.1fr}.work-title{font-size:42px}.work-description{font-size:15px}.work-copy{padding-bottom:90px}.work-project-link{font-size:14px;padding:13px 17px}}
 @media(max-width:700px){
- .work-showcase{padding:26px 0 30px;scroll-margin-top:70px}
+ .work-showcase{padding:26px 0 30px}
  .work-showcase-header{gap:15px;align-items:center;margin-bottom:24px;padding-bottom:19px}
  .work-showcase h2{font-size:23px;letter-spacing:-.6px;max-width:150px}
  .work-all-link{font-size:12px;gap:7px;white-space:nowrap;min-height:44px}
