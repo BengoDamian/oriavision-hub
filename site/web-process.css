@@ -1,0 +1,80 @@
+/* A visual, four-step explanation of the website process. */
+.web-design-page .web-process.process-visual{padding:68px 0 54px;background:linear-gradient(180deg,#fff,#fafbff)}
+.process-visual .process-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:38px;margin-bottom:34px}
+.process-visual .process-heading .eyebrow{margin-bottom:17px;color:#596778;font-size:11px;letter-spacing:1.6px}
+.web-design-page .process-visual .process-heading h2{font-size:clamp(39px,4.5vw,58px);letter-spacing:-1.9px;line-height:1.04}
+.process-visual .process-heading h2 em{color:#6638ec}
+.process-visual .process-lead{max-width:255px;color:#626c80;font-size:15px;line-height:1.6;padding-bottom:4px}
+.process-visual-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;list-style:none;padding:0;margin:0}
+.process-visual-card{--step-ink:#6540d8;--step-paper:#f0eaff;position:relative;min-width:0;border:1px solid #e4e6ef;border-radius:21px;overflow:hidden;background:#fff;box-shadow:0 8px 30px #141d3905}
+.process-visual-card:nth-child(2){--step-ink:#087e99;--step-paper:#e4f6fb}
+.process-visual-card:nth-child(3){--step-ink:#7047dc;--step-paper:#ede9ff}
+.process-visual-card:nth-child(4){--step-ink:#168770;--step-paper:#e3f6ed}
+.process-visual-art{position:relative;aspect-ratio:300/232;background:var(--step-paper);overflow:hidden}
+.process-visual-art>svg{width:100%;height:100%;display:block;overflow:visible}
+.process-visual-art svg text{font-family:Arial,Helvetica,sans-serif}
+.process-visual-number{position:absolute;z-index:2;top:14px;left:14px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:var(--step-ink);background:#ffffffc9;border:1px solid #ffffffd9;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+.process-visual-copy{padding:23px 22px 26px}
+.web-design-page .process-visual-copy h3{font-size:23px;line-height:1.18;letter-spacing:-.7px;min-height:2.36em;margin:0 0 12px;color:#17203d}
+.process-visual-copy p{font-size:14px;line-height:1.6;color:#5c677c;margin:0}
+.process-visual-base{margin-top:32px;padding-top:25px;border-top:1px solid #dfe4ee;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.web-design-page .process-visual-base h3{font-size:21px;line-height:1.3;letter-spacing:-.4px;margin:0;color:#25304b}
+.process-visual-benefits{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.process-visual-benefits li{display:flex;align-items:center;gap:8px;color:#4c5970;font-size:12px;white-space:nowrap}
+.process-visual-benefits svg{width:20px;height:20px;fill:none;stroke:#7350df;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.process-visual .process-visual-scope{font-size:11px;line-height:1.55;color:#6b7588;margin:13px 0 0}
+@media(prefers-reduced-motion:no-preference){
+ .process-visual-card.is-in-view .process-chat-first{animation:process-chat-in .7s both}
+ .process-visual-card.is-in-view .process-chat-second{animation:process-chat-in .7s .25s both}
+ .process-visual-card.is-in-view .process-chat-check{animation:process-pop .65s .55s both;transform-box:fill-box;transform-origin:center}
+ .process-visual-card.is-in-view .process-chat-dot{animation:process-dot .65s .15s 3}
+ .process-visual-card.is-in-view .process-chat-dot:nth-child(2){animation-delay:.28s}
+ .process-visual-card.is-in-view .process-chat-dot:nth-child(3){animation-delay:.4s}
+ .process-visual-card.is-in-view .process-wire-hero{animation:process-piece-in .8s .1s both}
+ .process-visual-card.is-in-view .process-wire-one{animation:process-piece-in .8s .35s both}
+ .process-visual-card.is-in-view .process-wire-two{animation:process-piece-in .8s .55s both}
+ .process-visual-card.is-in-view .process-wire-cursor{animation:process-cursor 2.4s .15s both}
+ .process-visual-card.is-in-view .process-desktop{animation:process-device-in 1s both}
+ .process-visual-card.is-in-view .process-phone{animation:process-phone-in 1s .3s both}
+ .process-visual-card.is-in-view .process-palette{animation:process-pop .7s .55s both;transform-box:fill-box;transform-origin:center}
+ .process-visual-card.is-in-view .process-orbit{animation:process-orbit-in 2.8s both;transform-box:fill-box;transform-origin:center}
+ .process-visual-card.is-in-view .process-online-window{animation:process-device-in .8s .1s both}
+ .process-visual-card.is-in-view .process-online-check{animation:process-check-in 1s .5s both;stroke-dasharray:64;stroke-dashoffset:0}
+ .process-visual-card.is-in-view .process-online-status{animation:process-pop .6s 1s both;transform-box:fill-box;transform-origin:center}
+}
+@keyframes process-chat-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes process-pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes process-dot{0%,70%,100%{transform:translateY(0)}35%{transform:translateY(-4px)}}
+@keyframes process-piece-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes process-cursor{0%{opacity:0;transform:translate(24px,21px)}25%{opacity:1}65%{transform:translate(-10px,-20px)}100%{opacity:1;transform:translate(0,0)}}
+@keyframes process-device-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes process-phone-in{from{opacity:0;transform:translate(16px,8px)}to{opacity:1;transform:translate(0,0)}}
+@keyframes process-orbit-in{from{opacity:0;transform:rotate(-38deg) scale(.8)}to{opacity:1;transform:rotate(0) scale(1)}}
+@keyframes process-check-in{from{stroke-dashoffset:64}to{stroke-dashoffset:0}}
+@media(min-width:601px) and (max-width:1000px){
+ .process-visual-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+ .process-visual-art{aspect-ratio:340/215}.process-visual-art>svg{max-width:300px;margin:auto}
+ .web-design-page .process-visual-copy h3{min-height:0;font-size:24px}
+ .process-visual-copy p{max-width:290px}
+ .process-visual-base{align-items:flex-start;flex-direction:column;gap:15px}
+}
+@media(max-width:600px){
+ .web-design-page .web-process.process-visual{padding:42px 0 36px}
+ .process-visual .process-heading{display:block;margin-bottom:25px}
+ .web-design-page .process-visual .process-heading h2{font-size:41px;letter-spacing:-1.4px}
+ .process-visual .process-heading .eyebrow{font-size:10px;margin-bottom:14px}
+ .process-visual .process-lead{font-size:14px;max-width:280px;padding:0;margin-top:17px}
+ .process-visual-grid{grid-template-columns:minmax(0,1fr);gap:15px}
+ .process-visual-card{display:grid;grid-template-columns:44% minmax(0,1fr);align-items:stretch;border-radius:17px}
+ .process-visual-art{aspect-ratio:auto;min-height:167px;display:grid;align-items:center}
+ .process-visual-art>svg{height:auto;width:100%}
+ .process-visual-number{top:10px;left:10px;width:23px;height:23px;font-size:10px}
+ .process-visual-copy{padding:21px 17px;align-self:center}
+ .web-design-page .process-visual-copy h3{font-size:21px;min-height:0;line-height:1.15;margin-bottom:10px;letter-spacing:-.5px}
+ .process-visual-copy p{font-size:13px;line-height:1.55}
+ .process-visual-base{margin-top:25px;padding-top:23px;flex-direction:column;align-items:flex-start;gap:17px}
+ .web-design-page .process-visual-base h3{font-size:21px}
+ .process-visual-benefits{gap:12px 16px}.process-visual-benefits li{font-size:11px;gap:6px}.process-visual-benefits svg{width:18px;height:18px}
+ .process-visual .process-visual-scope{font-size:11px;margin-top:16px;max-width:300px}
+}
+@media(max-width:360px){.process-visual-copy{padding:20px 13px}.web-design-page .process-visual-copy h3{font-size:19px}.process-visual-copy p{font-size:12px}.process-visual-art{min-height:170px}}
