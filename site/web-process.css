@@ -152,4 +152,7 @@
  .studio-canvas{padding:10px}
  .board-heading{font-size:8px}
  .board-heading>span:first-child{font-size:10px}
+ .wire-fashion-copy{top:12%;padding:4px}
+ .wire-fashion-copy strong{font-size:14px;line-height:1.05}
+ .wire-fashion-copy>span{margin-top:4px;line-height:1.2}
 }
