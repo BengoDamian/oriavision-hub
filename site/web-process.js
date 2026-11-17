@@ -5,7 +5,7 @@
       matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
+      if (!entry.isIntersecting || entry.intersectionRatio < .25) return;
       entry.target.classList.add('is-in-view');
       observer.unobserve(entry.target);
     });
