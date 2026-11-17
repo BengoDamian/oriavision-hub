@@ -6,6 +6,7 @@
   const captions = [...studio.querySelectorAll('[data-studio-caption]')];
   const boards = [...studio.querySelectorAll('[data-studio-board]')];
   const projects = [...studio.querySelectorAll('[data-studio-project]')];
+  const projectSelect = studio.querySelector('[data-studio-project-select]');
   const toggle = studio.querySelector('[data-studio-pause]');
   const status = studio.querySelector('[data-studio-status]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -51,6 +52,7 @@
     current = index;
     studio.dataset.phase = phases[index];
     studio.dataset.project = boards[currentProject].dataset.projectId;
+    if (projectSelect) projectSelect.value = studio.dataset.project;
     captions.forEach((caption, i) => {
       caption.querySelector('p').textContent = boards[currentProject].dataset[`${phases[i]}Copy`];
       caption.classList.toggle('is-active', i === index);
@@ -94,6 +96,14 @@
     paused = motion.matches;
     show(0);
     status.textContent = `${boards[index].dataset.projectName}. Etapa 1 de 4: Conocer.${paused ? '' : ' Reproduciendo etapas.'}`;
+  }
+
+  if (projectSelect) {
+    projectSelect.disabled = false;
+    projectSelect.addEventListener('change', () => {
+      const index = boards.findIndex(board => board.dataset.projectId === projectSelect.value);
+      if (index !== -1) selectProject(index);
+    });
   }
 
   projects.forEach((button, index) => {
