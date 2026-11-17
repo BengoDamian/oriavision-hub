@@ -4,6 +4,7 @@
   const phases = ['idea', 'wire', 'design', 'online'];
   const steps = [...studio.querySelectorAll('[data-studio-step]')];
   const captions = [...studio.querySelectorAll('[data-studio-caption]')];
+  const boards = [...studio.querySelectorAll('[data-studio-board]')];
   const toggle = studio.querySelector('[data-studio-pause]');
   const status = studio.querySelector('[data-studio-status]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -52,10 +53,15 @@
       caption.setAttribute('aria-hidden', String(i !== index));
       caption.inert = i !== index;
     });
+    boards.forEach((board, i) => {
+      board.classList.toggle('is-active', i === index);
+      board.setAttribute('aria-hidden', String(i !== index));
+      board.inert = i !== index;
+    });
     steps.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
     if (manual) {
       paused = true;
-      status.textContent = `Etapa ${index + 1} de 4: ${captions[index].querySelector('h3').textContent.trim()}`;
+      status.textContent = `Etapa ${index + 1} de 4: ${captions[index].querySelector('h3').textContent.trim()} Proyecto: ${boards[index].dataset.projectName}.`;
     } else {
       status.textContent = '';
     }
@@ -82,10 +88,13 @@
     paused = !paused;
     sync();
   });
-  studio.querySelector('.studio-steps').addEventListener('focusin', () => {
+  function pauseForInteraction() {
     paused = true;
     sync();
-  });
+  }
+  studio.querySelector('.studio-steps').addEventListener('focusin', pauseForInteraction);
+  studio.querySelector('.studio-canvas').addEventListener('focusin', pauseForInteraction);
+  boards.forEach(board => board.querySelector('a').addEventListener('pointerenter', pauseForInteraction));
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .25;
