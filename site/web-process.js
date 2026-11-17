@@ -6,7 +6,10 @@
   const captions = [...studio.querySelectorAll('[data-studio-caption]')];
   const boards = [...studio.querySelectorAll('[data-studio-board]')];
   const projects = [...studio.querySelectorAll('[data-studio-project]')];
-  const projectSelect = studio.querySelector('[data-studio-project-select]');
+  const stageNumber = studio.querySelector('[data-studio-number]');
+  const stageName = studio.querySelector('[data-studio-stage-name]');
+  const previous = studio.querySelector('[data-studio-prev]');
+  const next = studio.querySelector('[data-studio-next]');
   const toggle = studio.querySelector('[data-studio-pause]');
   const status = studio.querySelector('[data-studio-status]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -52,7 +55,8 @@
     current = index;
     studio.dataset.phase = phases[index];
     studio.dataset.project = boards[currentProject].dataset.projectId;
-    if (projectSelect) projectSelect.value = studio.dataset.project;
+    stageNumber.textContent = `${String(index + 1).padStart(2, '0')} / 04`;
+    stageName.textContent = steps[index].lastElementChild.textContent;
     captions.forEach((caption, i) => {
       caption.querySelector('p').textContent = boards[currentProject].dataset[`${phases[i]}Copy`];
       caption.classList.toggle('is-active', i === index);
@@ -98,13 +102,9 @@
     status.textContent = `${boards[index].dataset.projectName}. Etapa 1 de 4: Conocer.${paused ? '' : ' Reproduciendo etapas.'}`;
   }
 
-  if (projectSelect) {
-    projectSelect.disabled = false;
-    projectSelect.addEventListener('change', () => {
-      const index = boards.findIndex(board => board.dataset.projectId === projectSelect.value);
-      if (index !== -1) selectProject(index);
-    });
-  }
+  previous.disabled = next.disabled = false;
+  previous.addEventListener('click', () => show((current + phases.length - 1) % phases.length, true));
+  next.addEventListener('click', () => show((current + 1) % phases.length, true));
 
   projects.forEach((button, index) => {
     button.disabled = false;
@@ -147,6 +147,7 @@
     sync();
   }
   studio.querySelector('.studio-steps').addEventListener('focusin', pauseForInteraction);
+  studio.querySelector('.studio-stage-arrows').addEventListener('focusin', pauseForInteraction);
   studio.querySelector('.studio-canvas').addEventListener('focusin', pauseForInteraction);
   boards.forEach(board => board.querySelector('a').addEventListener('pointerenter', pauseForInteraction));
   if ('IntersectionObserver' in window) {
