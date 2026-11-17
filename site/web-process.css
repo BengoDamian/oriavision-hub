@@ -138,8 +138,8 @@
  .studio-canvas{padding:14px}
  .board-heading{font-size:9px;letter-spacing:.3px;padding-bottom:12px}
  .board-heading>span:first-child{font-size:11px;letter-spacing:.7px}
- .board-footer{font-size:10px;line-height:1.4;gap:12px;padding-top:8px}
- .board-footer a{font-size:12px;min-height:44px;gap:7px}
+ .board-footer{font-size:10px;line-height:1.4;justify-content:flex-start;gap:14px;padding:8px 64px 0 0}
+ .board-footer a{order:-1;font-size:12px;min-height:44px;gap:7px}
  .process-studio .studio-footnote{text-align:left;font-size:11px;max-width:290px;margin-top:14px}
 }
 @media(max-width:380px){
