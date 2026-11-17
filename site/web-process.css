@@ -5,10 +5,10 @@
 .web-design-page .process-studio .process-heading h2{font-size:clamp(40px,4.5vw,58px);letter-spacing:-1.9px;line-height:1.04;margin:0}
 .process-studio .process-heading h2 em{color:#6638ec}
 .process-studio .process-lead{max-width:250px;color:#626c80;font-size:15px;line-height:1.6;margin:0 0 3px}
-.studio-experience{--studio-accent:#b6a0ff;position:relative;isolation:isolate;overflow:hidden;border-radius:24px;color:#fff;background:#10152e;border:1px solid #252b49}
-.studio-experience[data-phase="wire"]{--studio-accent:#6fe8f0}
-.studio-experience[data-phase="design"]{--studio-accent:#c6b1ff}
-.studio-experience[data-phase="online"]{--studio-accent:#a7efbe}
+.studio-experience{--studio-accent:#b6a0ff;--studio-duration:3s;position:relative;isolation:isolate;overflow:hidden;border-radius:24px;color:#fff;background:#10152e;border:1px solid #252b49}
+.studio-experience[data-phase="wire"]{--studio-accent:#6fe8f0;--studio-duration:4s}
+.studio-experience[data-phase="design"]{--studio-accent:#c6b1ff;--studio-duration:5.5s}
+.studio-experience[data-phase="online"]{--studio-accent:#a7efbe;--studio-duration:4.5s}
 .studio-main{display:grid;grid-template-columns:.72fr 1.28fr;min-height:490px}
 .studio-story{position:relative;z-index:2;align-self:center;padding:42px 0 42px 40px;pointer-events:none}
 .studio-kicker{display:flex;align-items:center;gap:10px;color:var(--studio-accent);font-size:10px;font-weight:600;letter-spacing:2px;margin:0 0 28px;transition:color .7s}
@@ -99,7 +99,7 @@
 .studio-step:hover:not(:disabled){color:#fff}.studio-step:disabled{cursor:default}
 .studio-step::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--studio-accent);transform:scaleX(0);transform-origin:left}
 .studio-step[aria-pressed="true"]::after{transform:scaleX(1)}
-.studio-ready .studio-step[aria-pressed="true"]::after{animation:studio-progress 6.5s linear both;animation-play-state:paused}
+.studio-ready .studio-step[aria-pressed="true"]::after{animation:studio-progress var(--studio-duration) linear both;animation-play-state:paused}
 .is-running .studio-step[aria-pressed="true"]::after{animation-play-state:running}
 .studio-toggle{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border:1px solid #ffffff40;border-radius:50%;background:transparent;color:#e7e9f6;transition:background .2s}
 .studio-toggle:hover{background:#ffffff15}.studio-toggle[hidden]{display:none}.studio-toggle svg{width:13px;height:13px;fill:currentColor}

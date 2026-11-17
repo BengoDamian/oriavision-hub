@@ -7,14 +7,14 @@
   const toggle = studio.querySelector('[data-studio-pause]');
   const status = studio.querySelector('[data-studio-status]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const duration = 6500;
+  const durations = [3000, 4000, 5500, 4500];
   let current = motion.matches ? 2 : 0;
   let paused = motion.matches;
   let visible = !('IntersectionObserver' in window);
   let pageActive = true;
   let timer = null;
   let deadline = 0;
-  let remaining = duration;
+  let remaining = durations[current];
 
   function stop() {
     if (timer !== null) {
@@ -44,7 +44,7 @@
 
   function show(index, manual = false) {
     stop();
-    remaining = duration;
+    remaining = durations[index];
     current = index;
     studio.dataset.phase = phases[index];
     captions.forEach((caption, i) => {
@@ -56,6 +56,8 @@
     if (manual) {
       paused = true;
       status.textContent = `Etapa ${index + 1} de 4: ${captions[index].querySelector('h3').textContent.trim()}`;
+    } else {
+      status.textContent = '';
     }
     sync();
   }
