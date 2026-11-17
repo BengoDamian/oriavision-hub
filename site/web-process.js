@@ -29,8 +29,8 @@
     studio.classList.toggle('is-running', running);
     toggle.setAttribute('aria-label', paused ? 'Reproducir animación' : 'Pausar animación');
     toggle.setAttribute('aria-pressed', String(paused));
-    toggle.querySelector('[data-studio-play-icon]').hidden = !paused;
-    toggle.querySelector('[data-studio-pause-icon]').hidden = paused;
+    toggle.querySelector('[data-studio-play-icon]').toggleAttribute('hidden', !paused);
+    toggle.querySelector('[data-studio-pause-icon]').toggleAttribute('hidden', paused);
     if (!running) {
       stop();
     } else if (timer === null) {
