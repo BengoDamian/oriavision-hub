@@ -1,0 +1,78 @@
+/* The portfolio is a first stop, with one project and one story at a time. */
+.work-showcase [hidden]{display:none}
+.work-showcase{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:radial-gradient(ellipse at 82% 32%,#b077f5 0%,transparent 49%),linear-gradient(115deg,#40218d,#6638d3 57%,#432690);padding:40px 0 32px;scroll-margin-top:82px}
+.work-showcase::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(172deg,transparent 73%,#ffffff24 73.3%,transparent 74%);pointer-events:none}
+.work-showcase-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:27px;margin-bottom:28px;border-bottom:1px solid #ffffff38}
+.work-showcase h2{font-size:28px;line-height:1.2;letter-spacing:-.8px;color:#fff}
+.work-all-link{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:9px 0;color:#b5faff;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:6px;text-decoration-color:#b5faff77}
+.work-all-link:hover{text-decoration-color:currentColor}
+.work-all-link svg,.work-project-link svg{width:19px;height:19px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.work-stage{display:grid;grid-template-columns:.85fr 1.15fr;column-gap:64px}
+.work-slides{grid-area:1/1/2/3;display:grid;min-width:0;touch-action:pan-y pinch-zoom}
+.work-slide{grid-area:1/1;display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;min-width:0;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .4s ease,visibility .4s}
+.work-slide.is-active{visibility:visible;opacity:1;pointer-events:auto}
+.work-copy{min-width:0;padding:8px 0 88px;align-self:center}
+.work-category{font-size:11px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:#e7dcff;margin-bottom:18px}
+.work-title{font-size:clamp(38px,4.5vw,60px);letter-spacing:-1.7px;line-height:1.08;max-width:450px;margin:0 0 22px;text-wrap:balance}
+.work-title em{color:#fff}
+.work-description{font-size:17px;line-height:1.65;color:#f4eeff;max-width:440px;min-height:5em}
+.work-project-link{display:inline-flex;align-items:center;justify-content:center;gap:24px;background:#fff;color:#40218d;min-height:54px;border-radius:12px;padding:14px 22px;margin-top:25px;font-size:16px;font-weight:700;box-shadow:0 7px 22px #24144929;transition:background .2s,transform .2s}
+.work-project-link:hover{background:#e3fcff;transform:translateY(-2px)}
+.work-scene{position:relative;margin:0;padding:0 0 40px;min-width:0;width:100%;align-self:center}
+.work-screen{display:block;position:relative;z-index:2;border:1px solid #c2d3e6;border-bottom-color:#293c51;border-radius:14px;padding:7px 8px 0;overflow:hidden;background:linear-gradient(140deg,#293d50,#0a1525);color:#fff;box-shadow:0 18px 34px #21104a45,0 0 36px #e5c6ff33}
+.work-screen-bar{position:relative;display:block;text-align:center;min-height:27px;padding:3px 33px 8px;font-size:10px;line-height:1.4;color:#e0edf9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.work-screen-dots{position:absolute;left:7px;top:7px;display:flex;gap:4px}
+.work-screen-dots i{width:4px;height:4px;background:#a8c4d3;border-radius:50%}
+.work-capture{position:relative;display:block;aspect-ratio:1348/926;background:#f5f7f9;overflow:hidden;border-radius:2px}
+.work-capture img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;user-select:none;-webkit-user-drag:none}
+.work-screen-visit{display:flex;align-items:center;justify-content:center;gap:9px;min-height:35px;padding:8px;font-size:12px;font-weight:600}
+.work-screen-visit svg{height:13px;width:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+.work-scene .screen-stand{bottom:10px;height:40px;background:linear-gradient(90deg,#46346d,#c5b1e4 44%,#8b70b4 72%,#362653)}
+.work-scene .screen-foot{bottom:4px;background:linear-gradient(#d5c6ef,#8f75b3 38%,#3e2a6a 70%,#b59ed4)}
+.work-controls{grid-area:1/1;z-index:4;align-self:end;display:flex;align-items:center;gap:12px;padding:0 0 7px;margin-bottom:19px;width:max-content;max-width:100%}
+.work-arrow,.work-toggle{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:48px;height:48px;border:1px solid #ffffff75;border-radius:50%;background:#29165338;color:#fff;transition:background .2s,border-color .2s}
+.work-arrow:hover,.work-toggle:hover{background:#ffffff20;border-color:#fff}
+.work-arrow svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.work-toggle{width:44px;height:44px;margin-left:5px;border-color:transparent;background:transparent}
+.work-toggle svg{width:16px;height:16px;fill:currentColor}
+.work-counter{font-size:14px;color:#dcd0f5;letter-spacing:1px;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:59px;text-align:center}
+.work-counter strong{font-size:18px;color:#fff;font-weight:500}
+.work-showcase :is(a,button):focus-visible{outline:3px solid #9ef5ff;outline-offset:5px}
+.work-mobile-access{display:none}
+.portfolio-first .site-header nav>a[href="/trabajos/"]{color:#a5f4ff;border-bottom:1px solid #6de9f3;padding-bottom:6px}
+.portfolio-first .hero-actions a.work-hero-access{background:#cdfaff;border-color:#cdfaff;color:#15394d;box-shadow:0 5px 24px #05c8dc25}
+.portfolio-first .hero-actions a.work-hero-access:hover{background:#fff}
+.portfolio-first .hero-actions a.work-hero-access .cta-label{font-size:17px;line-height:1.25}
+@media(min-width:701px) and (max-width:1000px){.work-stage,.work-slide{column-gap:34px;grid-template-columns:1fr 1.1fr}.work-title{font-size:42px}.work-description{font-size:15px}.work-copy{padding-bottom:90px}.work-project-link{font-size:14px;padding:13px 17px}}
+@media(max-width:700px){
+ .work-showcase{padding:26px 0 30px;scroll-margin-top:70px}
+ .work-showcase-header{gap:15px;align-items:center;margin-bottom:24px;padding-bottom:19px}
+ .work-showcase h2{font-size:23px;letter-spacing:-.6px;max-width:150px}
+ .work-all-link{font-size:12px;gap:7px;white-space:nowrap;min-height:44px}
+ .work-all-link svg{width:16px;height:16px}
+ .work-stage{grid-template-columns:minmax(0,1fr);gap:0}
+ .work-slides{grid-area:1/1}
+ .work-slide{grid-template-columns:minmax(0,1fr);gap:16px;align-content:start}
+ .work-scene{grid-row:1;max-width:540px;justify-self:center;padding-bottom:29px}
+ .work-scene .screen-stand{height:29px;bottom:6px}.work-scene .screen-foot{height:8px;bottom:1px}
+ .work-screen{padding:4px 5px 0;border-radius:10px}
+ .work-screen-bar{font-size:8px;min-height:23px;padding:4px 25px 6px}
+ .work-screen-visit{font-size:11px;min-height:31px}
+ .work-copy{grid-row:2;padding:0;align-self:start;max-width:540px;justify-self:center;width:100%}
+ .work-category{font-size:10px;letter-spacing:1px;margin-bottom:10px}
+ .work-title{font-size:34px;line-height:1.1;letter-spacing:-1px;margin-bottom:13px;max-width:100%;min-height:2.2em;text-wrap:balance}
+ .work-description{font-size:15px;line-height:1.6;min-height:4.8em;max-width:100%}
+ .work-project-link{min-height:48px;font-size:14px;padding:12px 18px;margin-top:18px}
+ .work-controls{grid-area:2/1;margin:23px 0 0;padding:0;gap:12px;justify-self:start}
+ .work-arrow{width:46px;height:46px}
+ .portfolio-first .hero-actions a.work-hero-access .cta-label{font-size:15px}
+}
+@media(max-width:600px){
+ .portfolio-first .nav-row{gap:9px}
+ .portfolio-first .site-header .brand svg.brand-logo{width:155px;height:34px}
+ .portfolio-first .menu-toggle{flex-shrink:0;width:40px;padding:10px}
+ .work-mobile-access{display:inline-flex;align-items:center;justify-content:center;min-height:42px;gap:4px;padding:8px 10px;border:1px solid #6de9f3;border-radius:9px;font-size:12px;font-weight:600;color:#b5faff;margin-left:auto;white-space:nowrap}
+ .work-mobile-access svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.7}
+}
+@media(max-width:360px){.portfolio-first .site-header .brand svg.brand-logo{width:135px}.work-mobile-access{font-size:11px;padding:8px}.work-title{font-size:30px}.work-showcase h2{font-size:21px}.work-all-link{font-size:11px}.work-description{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.work-slide,.work-project-link{transition:none}.work-project-link:hover{transform:none}}
