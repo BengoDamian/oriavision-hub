@@ -1,5 +1,6 @@
 /* Four complete scenes: no playback, hidden steps or JavaScript dependency. */
 .web-design-page .web-process.process-story{padding:72px 0 48px;background:var(--paper);color:var(--navy)}
+.web-design-page #como-trabajamos{scroll-margin-top:0}
 .process-story-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:42px}
 .process-story-heading .eyebrow{color:var(--purple);font-size:11px;letter-spacing:1.7px;margin:0 0 18px}
 .web-design-page .process-story-heading h2{font-size:clamp(38px,4.1vw,57px);line-height:1.06;letter-spacing:-2px;margin:0}
@@ -94,7 +95,7 @@
  .process-story-footer{align-items:flex-start}
  .process-story-footer>span{max-width:145px;flex-shrink:1}
 }
-@media(max-width:700px){
+@media(max-width:820px){
  .web-design-page .web-process.process-story{padding:42px 0 32px}
  .process-story-heading{display:block;margin-bottom:28px}
  .process-story-heading .eyebrow{font-size:10px;margin-bottom:14px}
@@ -102,12 +103,12 @@
  .process-story-heading>p{margin-top:16px;font-size:15px;max-width:340px}
  .process-story-heading>p br{display:none}
  .process-story-grid{grid-template-columns:minmax(0,1fr);gap:30px}
- .process-art{aspect-ratio:1.65}
+ .process-art{aspect-ratio:1.65;min-height:210px}
  .process-chapter-copy{padding-top:17px;grid-template-columns:26px minmax(0,1fr);gap:12px}
  .process-chapter-copy h3{font-size:23px;letter-spacing:-.65px;margin-bottom:8px}
  .process-chapter-copy p{font-size:14px;line-height:1.6}
  .process-chat{padding:4% 5%}
- .process-chat p{font-size:5.3cqw}
+ .process-chat p{font-size:clamp(18px,5.3cqw,28px)}
  .process-chat-client{top:45%}
  .process-chat-outcome{bottom:7%;font-size:12px}
  .process-page-plan{top:18%}
@@ -138,4 +139,18 @@
  .process-launch-checks{font-size:10px;gap:8px}
  .process-proposal-seal{font-size:10px;padding:8px 9px}
  .process-review-note>span{letter-spacing:.5px}
+}
+
+@media(max-width:450px){
+ .process-proposal{min-height:254px}
+ .process-proposal-sheet{left:9%;top:5%;width:76%;padding:4%}
+ .process-sheet-brand{font-size:9.5px;padding-bottom:6px}
+ .process-sheet-brand>span{font-size:8px}
+ .process-proposal-sheet>p{font-size:24px;padding:8px 0 12px}
+ .process-sheet-row{font-size:12px;padding:5px 0;gap:8px;min-height:27px}
+ .process-sheet-row>span{font-size:9px}
+ .process-sheet-row svg{width:15px;height:15px}
+ .process-page-plan{display:none}
+ .process-proposal-seal{bottom:6%;right:7%;padding:9px 12px;font-size:11px}
+ .process-review-note>p{font-size:20px}
 }
