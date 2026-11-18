@@ -9,11 +9,13 @@
 .process-story-heading>p{color:var(--muted);font-size:16px;line-height:1.6;max-width:280px;margin:24px 0 0}
 .process-story-grid{padding:0;margin:0;list-style:none;min-width:0}
 .process-chapter{min-width:0}
-.process-step{border-top:1px solid var(--line)}
+.process-step{border:0;border-top:1px solid var(--line)}
 .process-chapter:last-child .process-step{border-bottom:1px solid var(--line)}
 .process-step>summary{display:grid;grid-template-columns:28px minmax(0,1fr) 36px;gap:16px;align-items:start;padding:24px 0;cursor:pointer;list-style:none}
 .process-step>summary::-webkit-details-marker{display:none}
 .process-step>summary::marker{content:""}
+/* The site's FAQ rotates summary spans; this disclosure keeps its content horizontal. */
+.process-step[open]>summary span{transform:none}
 .process-step>summary:focus-visible{outline:2px solid var(--purple);outline-offset:4px;border-radius:4px}
 .process-chapter-number{color:var(--purple);font-size:12px;line-height:1.5;padding-top:5px;font-variant-numeric:tabular-nums}
 .process-step-copy{min-width:0}
