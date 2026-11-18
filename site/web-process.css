@@ -28,7 +28,7 @@
 .process-chat-outcome svg{width:18px;height:18px}
 /* A proposal is a concrete deliverable, not a generic planning icon. */
 .process-proposal{background:var(--soft);border:1px solid var(--line)}
-.process-proposal-sheet{position:absolute;left:7%;top:8%;width:51%;padding:4% 4% 3%;background:#fff;border:1px solid var(--line);box-shadow:0 12px 24px #13183c0c;transform:rotate(-3deg)}
+.process-proposal-sheet{position:absolute;left:7%;top:8%;width:51%;padding:4% 4% 3%;background:#fff;border:1px solid var(--line);box-shadow:0 12px 24px #13183c0c}
 .process-sheet-brand{display:flex;align-items:center;justify-content:space-between;font-size:clamp(8px,1.7cqw,10px);font-weight:700;letter-spacing:.3px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .process-sheet-brand>span{font-size:clamp(6px,1.3cqw,8px);font-weight:400;color:var(--muted)}
 .process-proposal-sheet>p{font-size:clamp(23px,5.3cqw,32px);line-height:1.05;letter-spacing:-1px;padding:8% 0 7%}
