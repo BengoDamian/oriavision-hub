@@ -31,8 +31,8 @@
     player.classList.toggle('is-running', running);
     label.textContent = paused ? 'Reproducir recorrido' : 'Pausar recorrido';
     playback.setAttribute('aria-pressed', String(paused));
-    playIcon.hidden = !paused;
-    pauseIcon.hidden = paused;
+    playIcon.toggleAttribute('hidden', !paused);
+    pauseIcon.toggleAttribute('hidden', paused);
     if (!running) {
       stop();
     } else if (timer === null) {

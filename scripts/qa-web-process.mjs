@@ -29,6 +29,7 @@ function setup({ reduced = false, observer = true } = {}) {
       querySelectorAll: selector => $(node).find(selector).toArray().map(wrap),
       setAttribute: (key, value) => $(node).attr(key, value),
       getAttribute: key => $(node).attr(key),
+      toggleAttribute(key, enabled) { if (enabled) $(node).attr(key, ''); else $(node).removeAttr(key); },
       classList: {
         toggle(key, active) { if (active) $(node).addClass(key); else $(node).removeClass(key); },
         add: key => $(node).addClass(key),
@@ -98,10 +99,14 @@ test('manual selection stops rotation and exposes a complete static stage until 
   assert.equal(s.player.dataset.phase, 'design');
   assert.equal(s.player.dataset.manual, 'true');
   assert.equal(s.pending(), 0);
+  assert.equal(s.player.querySelector('[data-process-play-icon]').getAttribute('hidden'), undefined);
+  assert.notEqual(s.player.querySelector('[data-process-pause-icon]').getAttribute('hidden'), undefined);
   s.tick(30000);
   assert.equal(s.player.dataset.phase, 'design');
   assert.match(s.player.querySelector('[data-process-announcement]').textContent, /Paso 3 de 4/);
   s.playback.fire('click');
+  assert.notEqual(s.player.querySelector('[data-process-play-icon]').getAttribute('hidden'), undefined);
+  assert.equal(s.player.querySelector('[data-process-pause-icon]').getAttribute('hidden'), undefined);
   assert.equal(s.player.dataset.manual, 'false');
   assert.equal(s.pending(), 1);
   s.tick(5600);
