@@ -68,7 +68,7 @@
 .process-launch{background:var(--navy)}
 .process-launch-label{position:absolute;left:6%;top:7%;display:flex;align-items:center;gap:7px;font-size:clamp(8px,1.8cqw,11px);letter-spacing:1.4px;color:#fff}
 .process-launch-label>span{width:6px;height:6px;background:var(--cyan);border-radius:50%}
-.process-browser-launch{left:6%;top:17%;width:72%;border-color:#fff}
+.process-browser-launch{left:6%;top:17%;width:72%;height:63%;border-color:#fff}
 .process-phone{position:absolute;right:6%;bottom:17%;width:20%;padding:7px 4px 5px;border:2px solid #d8dfed;border-radius:15px;background:#fff;box-shadow:0 8px 20px #070a2499}
 .process-phone-camera{position:absolute;left:35%;top:3px;width:30%;height:3px;background:var(--navy);border-radius:3px;z-index:1}
 .process-phone-screen{aspect-ratio:691/1292;border-radius:7px;overflow:hidden}
