@@ -1,6 +1,14 @@
 export const SITE_URL = 'https://www.oriavision.com.ar';
 export const SOURCE_URL = 'https://oriavision-tiendanube-borrador.ercasa.chatgpt.site';
 
+export function localizeSiteLinks(html) {
+  return html.replace(/((?:href|src|data-src|data-preview|data-url|data-project-url)=")https:\/\/(?:www\.)?oriavision\.com\.ar(\/[^"\s]*)/g, (link, attribute, pathname) => {
+    // Open the published dental demo from preview deployments as well.
+    if (pathname === '/demos/clinica-dental-original/') return link;
+    return attribute + pathname;
+  });
+}
+
 // Every old public landing has a single permanent destination (no redirect chains).
 export const legacyRoutes = {
   '/diseno-web/': '/servicios/diseno-web/',
