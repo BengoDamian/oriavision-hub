@@ -5,15 +5,14 @@
     if (slides.length < 2) return;
     const viewport = root.querySelector('[data-work-swipe]');
     const controls = root.querySelector('[data-work-controls]');
-    const toggle = root.querySelector('[data-work-toggle]');
     const count = root.querySelector('[data-work-current]');
     const status = root.querySelector('[data-work-status]');
     const pending = new Map();
     let index = 0, requested = 0, revision = 0, generation = 0, timer;
     let visible = !('IntersectionObserver' in window), pageActive = true;
-    let userPaused = motion.matches, hovering = false, focused = false, gesture = null;
+    let focused = false, gesture = null;
     let suppressClickUntil = 0;
-    const paused = () => userPaused || !visible || !pageActive || document.hidden || hovering || focused || gesture !== null;
+    const paused = () => motion.matches || !visible || !pageActive || document.hidden || focused || gesture !== null;
 
     function prepare(slide) {
       const image = slide.querySelector('img');
@@ -38,17 +37,13 @@
       prepare(slides[(index + 1) % slides.length]);
       timer = setTimeout(() => change((index + 1) % slides.length, false, currentGeneration), 8000);
     }
-    function updateToggle() {
-      toggle.setAttribute('aria-label', userPaused ? 'Reproducir carrusel' : 'Pausar carrusel');
-      toggle.setAttribute('aria-pressed', String(userPaused));
-      toggle.querySelector('[data-work-play]').toggleAttribute('hidden', !userPaused);
-      toggle.querySelector('[data-work-pause]').toggleAttribute('hidden', userPaused);
-    }
     async function change(next, manual, autoGeneration) {
       const request = ++revision;
       const target = (next + slides.length) % slides.length;
-      if (manual) requested = target;
-      if (manual) { userPaused = true; updateToggle(); stop(); }
+      if (manual) {
+        requested = target;
+        stop();
+      }
       const ready = await prepare(slides[target]);
       if (request !== revision || (!manual && (paused() || autoGeneration !== generation))) return;
       if (!ready) {
@@ -71,12 +66,6 @@
     }
     root.querySelector('[data-work-prev]').addEventListener('click', () => change(requested - 1, true));
     root.querySelector('[data-work-next]').addEventListener('click', () => change(requested + 1, true));
-    toggle.addEventListener('click', () => {
-      userPaused = !userPaused;
-      // Explicit play resumes even while the pointer/focus remains on this control.
-      if (!userPaused) { hovering = false; focused = false; }
-      updateToggle(); schedule();
-    });
     root.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.altKey || event.ctrlKey || event.metaKey) return;
       if (event.target.closest('input,textarea,select,[contenteditable]')) return;
@@ -86,20 +75,18 @@
       button.focus({ preventScroll: true });
       change(requested + (event.key === 'ArrowRight' ? 1 : -1), true);
     });
-    root.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'mouse') { hovering = true; schedule(); }
-    });
-    root.addEventListener('pointerleave', event => {
-      if (event.pointerType === 'mouse') { hovering = false; schedule(); }
-    });
     root.addEventListener('focusin', event => {
-      if (event.target !== toggle) { focused = true; schedule(); }
+      // Keep a keyboard-targeted project link available until focus leaves it.
+      focused = event.target.matches(':focus-visible') && !!event.target.closest('[data-work-slide]');
+      schedule();
     });
-    root.addEventListener('focusout', event => {
-      if (!root.contains(event.relatedTarget)) { focused = false; schedule(); }
+    root.addEventListener('focusout', () => {
+      focused = false;
+      schedule();
     });
     viewport.addEventListener('pointerdown', event => {
       if (!event.isPrimary || event.button > 0) return;
+      focused = false;
       gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
       schedule();
     });
@@ -119,11 +106,8 @@
     }, true);
     document.addEventListener('visibilitychange', schedule);
     window.addEventListener('pagehide', () => { pageActive = false; ++revision; requested = index; stop(); });
-    window.addEventListener('pageshow', () => { pageActive = true; hovering = false; focused = false; gesture = null; schedule(); });
-    motion.addEventListener('change', () => {
-      if (motion.matches) userPaused = true;
-      updateToggle(); schedule();
-    });
+    window.addEventListener('pageshow', () => { pageActive = true; focused = false; gesture = null; schedule(); });
+    motion.addEventListener('change', schedule);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(entries => {
         visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .2;
@@ -132,6 +116,6 @@
     }
     controls.hidden = false;
     root.dataset.activeProject = slides[index].dataset.project;
-    updateToggle(); schedule();
+    schedule();
   });
 })();
