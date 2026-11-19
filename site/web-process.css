@@ -7,6 +7,7 @@
 .web-design-page .process-story-heading h2{font-size:clamp(38px,4.1vw,57px);line-height:1.06;letter-spacing:-2px;margin:0}
 .process-story-heading h2 em{color:var(--purple)}
 .process-story-heading>p{color:var(--muted);font-size:16px;line-height:1.6;max-width:280px;margin:24px 0 0}
+.process-story-heading>p a{color:var(--purple);text-decoration:underline;text-underline-offset:.16em}
 .process-story-grid{padding:0;margin:0;list-style:none;min-width:0}
 .process-chapter{min-width:0}
 .process-step{border:0;border-top:1px solid var(--line)}
