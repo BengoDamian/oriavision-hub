@@ -8,15 +8,18 @@
 .inspiration-filter label{display:block;font-weight:700;font-size:16px;margin-bottom:10px}
 .inspiration-filter select{font:inherit;font-size:17px;width:340px;max-width:100%;padding:14px 35px 14px 15px;background:#fff;color:#202440;border:1px solid #b9a7d8;border-radius:8px}
 .inspiration-filter p{font-size:15px;color:#5e586d;padding-bottom:13px}
-.inspiration-design{padding:52px 0 60px;background:radial-gradient(ellipse at 45% 45%,#fff 35%,#f6f2fd 100%);border-bottom:1px solid #e1d9ed;scroll-margin-top:100px}
+.inspiration-design{--sheet-edge:#6538df;--sheet-paper:#fbfaff;padding:0 0 44px;background:var(--sheet-paper);border-bottom:1px solid #e1d9ed;border-radius:18px 18px 0 0;scroll-margin-top:100px}
 .inspiration-design[hidden]{display:none}
-.inspiration-design:nth-of-type(even){background:radial-gradient(ellipse at 50% 40%,#fff 20%,#eee6ff 100%)}
+.inspiration-design:nth-of-type(4n+2){--sheet-edge:#49c6d3;--sheet-paper:#f7fcfd}
+.inspiration-design:nth-of-type(4n+3){--sheet-edge:#364876;--sheet-paper:#f9faff}
+.inspiration-design:nth-of-type(4n+4){--sheet-edge:#ad91e2;--sheet-paper:#fcfaff}
 /* Full-width sheets stack with native scrolling, including tall mobile designs. */
 .inspiration-stack{isolation:isolate;display:flex;flex-direction:column;gap:clamp(56px,10svh,88px);background:#eee7f8}
-.inspiration-stack.is-stacked>.inspiration-design{position:sticky;top:var(--inspiration-stack-top,94px);z-index:var(--inspiration-stack-order,1);border-top:1px solid #d8cee8;box-shadow:0 -12px 30px #27114514}
+.inspiration-stack.is-stacked>.inspiration-design{position:sticky;top:var(--inspiration-stack-top,94px);z-index:var(--inspiration-stack-order,1);clip-path:inset(var(--inspiration-clip-top,0px) 0 0 round 18px 18px 0 0)}
+.inspiration-stack.is-stacked .inspiration-design-heading{position:sticky;top:var(--inspiration-sheet-top,94px)}
 .inspiration-stack.is-stacked>.inspiration-design:has(:focus-visible){z-index:20}
-.inspiration-stack :is(a,input){scroll-margin-block:calc(var(--inspiration-header-offset,94px) + 24px) 48px}
-.inspiration-design-heading{margin-bottom:25px}
+.inspiration-stack :is(a,input){scroll-margin-block:calc(var(--inspiration-sheet-top,94px) + 150px) 48px}
+.inspiration-design-heading{position:relative;z-index:2;width:100%;margin:0;padding:28px max(5%,calc((100% - 1200px)/2)) 24px;background:var(--sheet-paper);border-top:4px solid var(--sheet-edge);border-radius:18px 18px 0 0;box-shadow:0 8px 18px #25213f08}
 .inspiration-design-heading>p{font-size:13px;color:#6d5f82;margin-bottom:9px}
 .inspiration-design h2{font-size:clamp(29px,3vw,40px);line-height:1.15;letter-spacing:-.8px}
 .inspiration-design-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr);gap:42px;align-items:center}
@@ -67,7 +70,7 @@
  .inspiration-hero{padding-bottom:34px}.inspiration-hero h1{font-size:43px;letter-spacing:-1.8px}
  .inspiration-hero .service-lead{font-size:18px;margin-top:20px}.inspiration-disclosure{font-size:15px;margin-top:18px}
  .inspiration-filter>.wrap{display:block}.inspiration-filter select{width:100%}.inspiration-filter p{padding:0;margin-top:16px;font-size:14px}
- .inspiration-design{padding:34px 0 38px}.inspiration-design-heading{margin-bottom:20px}
+ .inspiration-design{padding-bottom:32px}.inspiration-design-heading{padding:20px 5% 18px}
  .inspiration-design-layout{width:100%;max-width:none}.inspiration-options,.inspiration-preview figcaption{padding-inline:5%}
  .design-image-link{box-shadow:none}.inspiration-options legend{font-size:19px}
  .palette-choice{padding:10px 12px;font-size:14px;min-height:48px}.palette-list{gap:9px}
@@ -77,4 +80,4 @@
  .inspiration-teaser{padding:40px 0}.inspiration-teaser p{font-size:17px}
  .inspiration-strip{gap:11px}.inspiration-strip a:nth-child(2){margin-top:24px}
 }
-@media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}.inspiration-stack.is-stacked>.inspiration-design{position:relative;top:auto;box-shadow:none}}
+@media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}.inspiration-stack.is-stacked>.inspiration-design{position:relative;top:auto;clip-path:none}.inspiration-stack.is-stacked .inspiration-design-heading{position:relative;top:auto}}
