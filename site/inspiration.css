@@ -15,7 +15,8 @@
 .inspiration-design:nth-of-type(4n+4){--sheet-edge:#ad91e2;--sheet-paper:#fcfaff}
 /* Full-width sheets stack with native scrolling, including tall mobile designs. */
 .inspiration-stack{isolation:isolate;display:flex;flex-direction:column;gap:clamp(56px,10svh,88px);background:#eee7f8}
-.inspiration-stack.is-stacked>.inspiration-design{position:sticky;top:var(--inspiration-stack-top,94px);z-index:var(--inspiration-stack-order,1);clip-path:inset(var(--inspiration-clip-top,0px) 0 0 round 18px 18px 0 0)}
+/* svh stays stable when the mobile browser's address bar opens or closes. */
+.inspiration-stack.is-stacked>.inspiration-design{position:sticky;top:min(var(--inspiration-sheet-top,94px),calc(100svh - var(--inspiration-sheet-height,0px) - 24px));z-index:var(--inspiration-stack-order,1);clip-path:inset(var(--inspiration-clip-top,0px) 0 0 round 18px 18px 0 0)}
 .inspiration-stack.is-stacked .inspiration-design-heading{position:sticky;top:var(--inspiration-sheet-top,94px)}
 .inspiration-stack.is-stacked>.inspiration-design:has(:focus-visible){z-index:20}
 .inspiration-stack :is(a,input){scroll-margin-block:calc(var(--inspiration-sheet-top,94px) + 150px) 48px}
