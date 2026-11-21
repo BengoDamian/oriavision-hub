@@ -1,6 +1,14 @@
 export const SITE_URL = 'https://www.oriavision.com.ar';
 export const SOURCE_URL = 'https://oriavision-tiendanube-borrador.ercasa.chatgpt.site';
 
+export function localizeSiteLinks(html) {
+  return html.replace(/((?:href|src|data-src|data-preview|data-url|data-project-url)=")https:\/\/(?:www\.)?oriavision\.com\.ar(\/[^"\s]*)/g, (link, attribute, pathname) => {
+    // Open the published dental demo from preview deployments as well.
+    if (pathname === '/demos/clinica-dental-original/') return link;
+    return attribute + pathname;
+  });
+}
+
 // Every old public landing has a single permanent destination (no redirect chains).
 export const legacyRoutes = {
   '/diseno-web/': '/servicios/diseno-web/',
@@ -30,4 +38,4 @@ export function legacyDestination(pathname) {
 }
 
 // Dates reflect substantive content edits, not each deployment.
-export const pageLastModified = {"/trabajos/quirvo/": "2026-11-16", "/servicios/tiendanube/crear-tienda/": "2026-11-16", "/servicios/tiendanube/mejorar-tienda/": "2026-11-16", "/servicios/tiendanube/": "2026-11-16", "/": "2026-11-16", "/trabajos/ercas/": "2026-11-16", "/trabajos/pampatex/": "2026-11-16", "/trabajos/": "2026-11-16"};
+export const pageLastModified = {"/servicios/diseno-web/": "2026-11-21", "/trabajos/quirvo/": "2026-11-16", "/servicios/tiendanube/crear-tienda/": "2026-11-16", "/servicios/tiendanube/mejorar-tienda/": "2026-11-16", "/servicios/tiendanube/": "2026-11-16", "/": "2026-11-16", "/trabajos/ercas/": "2026-11-16", "/trabajos/pampatex/": "2026-11-16", "/trabajos/": "2026-11-16"};

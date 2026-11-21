@@ -30,11 +30,9 @@
 .work-scene .screen-stand{bottom:10px;height:40px;background:linear-gradient(90deg,#46346d,#c5b1e4 44%,#8b70b4 72%,#362653)}
 .work-scene .screen-foot{bottom:4px;background:linear-gradient(#d5c6ef,#8f75b3 38%,#3e2a6a 70%,#b59ed4)}
 .work-controls{grid-area:1/1;z-index:4;align-self:end;display:flex;align-items:center;gap:12px;padding:0 0 7px;margin-bottom:19px;width:max-content;max-width:100%}
-.work-arrow,.work-toggle{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:48px;height:48px;border:1px solid #ffffff75;border-radius:50%;background:#29165338;color:#fff;transition:background .2s,border-color .2s}
-.work-arrow:hover,.work-toggle:hover{background:#ffffff20;border-color:#fff}
+.work-arrow{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:48px;height:48px;border:1px solid #ffffff75;border-radius:50%;background:#29165338;color:#fff;transition:background .2s,border-color .2s}
+.work-arrow:hover{background:#ffffff20;border-color:#fff}
 .work-arrow svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.work-toggle{width:44px;height:44px;margin-left:5px;border-color:transparent;background:transparent}
-.work-toggle svg{width:16px;height:16px;fill:currentColor}
 .work-counter{font-size:14px;color:#dcd0f5;letter-spacing:1px;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:59px;text-align:center}
 .work-counter strong{font-size:18px;color:#fff;font-weight:500}
 .work-showcase :is(a,button):focus-visible{outline:3px solid #9ef5ff;outline-offset:5px}

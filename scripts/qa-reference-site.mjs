@@ -3,7 +3,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { extname, join, relative, resolve, sep } from 'node:path';
 import { load } from 'cheerio';
-import { SITE_URL, legacyRoutes } from './site-config.mjs';
+import { SITE_URL, legacyRoutes, localizeSiteLinks } from './site-config.mjs';
 
 const root = resolve('out');
 const source = resolve('site');
@@ -103,12 +103,22 @@ for (const file of sources) {
   if (!file.endsWith('.html')) {
     assert.equal(hash(await readFile(file)), hash(await readFile(outputFile)), `Asset changed: ${file}`);
   } else {
-    const original = load((await readFile(file,'utf8')).replace(/((?:href|src|data-src|data-preview|data-url|data-project-url)=")https:\/\/(?:www\.)?oriavision\.com\.ar(?=\/)/g,'$1'));
+    const original = load(localizeSiteLinks(await readFile(file,'utf8')));
     const exported = load(await readFile(outputFile,'utf8'));
     exported('script[src="/site-analytics.js"]').remove();
     assert.equal(exported('body').prop('outerHTML'),original('body').prop('outerHTML'),`Reference body changed: ${file}`);
   }
 }
+
+const home = await documentFor('/');
+const webDesign = await documentFor('/servicios/diseno-web/');
+const dentalDemoLinks = [
+  home('[data-project-id="clinica-dental"]').attr('data-project-url'),
+  ...webDesign('[data-project="clinica-dental"] a').toArray().map(link => webDesign(link).attr('href')),
+  webDesign('.process-story-heading a').attr('href'),
+];
+assert.deepEqual(dentalDemoLinks, Array(4).fill(SITE_URL + '/demos/clinica-dental-original/'),
+  'Dental demo links must retain the published ORIAVISION domain in the build');
 
 const redirects = await readFile(join(root,'_redirects'),'utf8');
 for (const [from,to] of Object.entries(legacyRoutes)) {

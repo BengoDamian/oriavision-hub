@@ -1,7 +1,7 @@
 import { cp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import { load } from 'cheerio';
-import { SITE_URL, SOURCE_URL, legacyRoutes, pageLastModified } from './site-config.mjs';
+import { SITE_URL, SOURCE_URL, legacyRoutes, pageLastModified, localizeSiteLinks } from './site-config.mjs';
 
 const source = resolve('site');
 const output = resolve('out');
@@ -30,7 +30,7 @@ for (const file of referenceFiles) {
   // Preserve the original markup, styles and interaction scripts. Only links and
   // nonvisual production metadata differ from the supplied v53 snapshot.
   let html = await readFile(file, 'utf8');
-  html = html.replace(/((?:href|src|data-src|data-preview|data-url|data-project-url)=")https:\/\/(?:www\.)?oriavision\.com\.ar(?=\/)/g, '$1');
+  html = localizeSiteLinks(html);
   html = html.replaceAll(SOURCE_URL, SITE_URL);
   html = html.replace(/<meta\b[^>]*name="robots"[^>]*>/gi, '');
   html = html.replace(/<link\b[^>]*rel="canonical"[^>]*>/gi, '');
