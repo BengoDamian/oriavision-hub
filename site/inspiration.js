@@ -7,22 +7,21 @@
   const header = document.querySelector('.site-header');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let stackFrame = 0;
-  let paintFrame = 0;
   let sheets = [];
+  let layoutWidth = window.innerWidth;
 
   function paintStack() {
-    paintFrame = 0;
     // A tall sheet can scroll through its body, but its heading and colored rim
     // stay below the navigation. Clip its background at that same rim so it
     // cannot paint over the edges of earlier sheets.
     const clips = sheets.map(({section, rim}) =>
       Math.max(0, rim - section.getBoundingClientRect().top));
     sheets.forEach(({section}, index) => {
-      section.style.setProperty('--inspiration-clip-top', `${clips[index]}px`);
+      const clip = `${clips[index]}px`;
+      if (section.style.getPropertyValue('--inspiration-clip-top') !== clip) {
+        section.style.setProperty('--inspiration-clip-top', clip);
+      }
     });
-  }
-  function schedulePaint() {
-    if (!paintFrame && sheets.length) paintFrame = requestAnimationFrame(paintStack);
   }
 
   function updateStack() {
@@ -38,16 +37,17 @@
       const rim = headerTop + step * index;
       // Keep natural document scrolling for content taller than the viewport.
       // The inner heading uses the positive rim offset instead of this body offset.
-      const top = Math.min(rim, window.innerHeight - section.offsetHeight - 24);
-      section.style.setProperty('--inspiration-stack-top', `${top}px`);
+      section.style.setProperty('--inspiration-sheet-height', `${section.offsetHeight}px`);
       section.style.setProperty('--inspiration-sheet-top', `${rim}px`);
       section.style.setProperty('--inspiration-stack-order', String(index + 1));
-      section.style.removeProperty('--inspiration-clip-top');
       if (enabled) sheets.push({section, rim});
+      else section.style.removeProperty('--inspiration-clip-top');
     });
     stack.style.setProperty('--inspiration-header-offset', `${headerTop}px`);
     stack.classList.toggle('is-stacked', enabled);
-    schedulePaint();
+    // Apply the new geometry and its clip in the same frame. Clearing the clip
+    // first exposed the entire sheet for a frame whenever the mobile toolbar moved.
+    paintStack();
   }
   function scheduleStack() {
     if (!stackFrame) stackFrame = requestAnimationFrame(updateStack);
@@ -80,9 +80,15 @@
     resize.observe(header);
     designs.forEach(section => resize.observe(section));
   }
-  window.addEventListener('resize', scheduleStack, {passive:true});
-  window.addEventListener('scroll', schedulePaint, {passive:true});
-  window.visualViewport?.addEventListener('resize', scheduleStack, {passive:true});
+  window.addEventListener('resize', () => {
+    if (layoutWidth !== window.innerWidth) {
+      layoutWidth = window.innerWidth;
+      scheduleStack();
+    } else paintStack();
+  }, {passive:true});
+  // Update the clip in the scroll event itself, without postponing it to an
+  // extra frame after the native sticky position has already changed.
+  window.addEventListener('scroll', paintStack, {passive:true});
   reducedMotion.addEventListener('change', scheduleStack);
   document.fonts?.ready.then(scheduleStack);
   window.addEventListener('pageshow', () => {
