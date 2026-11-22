@@ -51,3 +51,9 @@ La auditoría comprueba páginas, enlaces y anclas internas, recursos, sitemap, 
 Las variantes de inspiración deben estar alojadas en `https://www.oriavision.com.ar/demos/`, con sus páginas internas y recursos en `public/demos/`. `qa-demo-urls.mjs` verifica los enlaces del catálogo y de consulta, `noindex`, la exclusión del sitemap y las dependencias de las demos migradas. Para incorporar una demo publicada se puede usar `mirror-published-demo.mjs <origen> <slug> <familia> <variante>`; conserva la navegación estática mediante `demo-host.js` y recalcula los tamaños de los metadatos de React después de adaptar las URL. Revisar también las interacciones en navegador antes de publicar.
 
 Con `--url` también comprueba respuestas HTTP, enlaces anteriores con y sin barra final, parámetros de consulta, video por rangos y el estado 404 de una ruta inexistente. Estas comprobaciones no sustituyen una revisión visual en navegador.
+
+## Catálogo de ideas
+
+`site/inspiration.js` presenta una ficha completa por vez; el resto queda fuera del foco y de la interacción. Anterior/Siguiente, teclado y gestos cambian una propuesta por acción. Los gestos se capturan solo si la ficha entra completa en pantalla; en los extremos o en ventanas bajas se conserva el desplazamiento normal. El modo lista y los filtros siguen disponibles. Sin JavaScript, se muestran todos los diseños.
+
+`site/inspiration-favorites.js` guarda cada diseño y paleta en localStorage. El diálogo permite volver a abrirlos o consultar sin enviar mensajes automáticamente. Las pruebas de comportamiento están en `scripts/qa-inspiration-stack.mjs`.
