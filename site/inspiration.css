@@ -80,15 +80,15 @@
 }
 @media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}}
 
-/* One complete sheet at rest. The colored rims are decorative, never another
-   card sliding over the current card's controls. Natural flow is the fallback. */
+/* Real accumulated sheets: the next sheet rises over the previous sheet, then
+   rests completely. Future sheets never creep over the active controls. */
 .inspiration-viewer{padding:40px 0 24px;background:#eee7f8}
-.inspiration-stack.is-deck{--inspiration-preview-height:240px;position:relative;isolation:isolate;display:grid;gap:0;width:90%;max-width:1200px;margin-inline:auto;border-radius:18px;background:#fbfaff;box-shadow:0 12px 32px #25213f13;scroll-margin-top:90px}
-.inspiration-stack.is-deck::before,.inspiration-stack.is-deck::after{content:"";position:absolute;inset:-9px 9px auto;height:28px;border-radius:15px 15px 0 0;background:#49c6d3;z-index:-1;pointer-events:none}
-.inspiration-stack.is-deck::before{inset:-18px 18px auto;background:#ad91e2;z-index:-2}
-.inspiration-stack.is-deck>.inspiration-design{grid-area:1/1;align-self:stretch;position:relative;top:auto;visibility:hidden;pointer-events:none;border-radius:18px;padding-bottom:22px;display:flex;flex-direction:column}
+.inspiration-stack.is-deck{--inspiration-preview-height:240px;position:relative;isolation:isolate;display:grid;gap:0;width:90%;max-width:1200px;margin-inline:auto;padding-bottom:var(--inspiration-pile-depth,48px);overflow:hidden;overflow:clip;border-radius:18px;background:transparent;scroll-margin-top:90px}
+.inspiration-stack.is-deck>.inspiration-design{grid-area:1/1;align-self:stretch;position:relative;top:auto;visibility:hidden;pointer-events:none;border-radius:18px;padding-bottom:22px;display:flex;flex-direction:column;transform:translateY(var(--inspiration-sheet-offset,0px));z-index:var(--inspiration-sheet-order,1);box-shadow:0 -5px 18px #25213f12}
 .inspiration-stack.is-deck>.inspiration-design[hidden]{display:none}
-.inspiration-stack.is-deck>.inspiration-design.is-active{visibility:visible;pointer-events:auto}
+.inspiration-stack.is-deck>.inspiration-design.is-in-pile,.inspiration-stack.is-deck>.inspiration-design.is-leaving{visibility:visible}
+.inspiration-stack.is-deck>.inspiration-design.is-active{pointer-events:auto}
+.inspiration-stack.is-deck.is-moving>.inspiration-design{pointer-events:none}
 .inspiration-stack.is-deck .inspiration-design-heading{width:100%;padding:18px 24px 16px;box-shadow:none}
 .inspiration-stack.is-deck .inspiration-design-heading>p{display:none}
 .inspiration-stack.is-deck h2{font-size:clamp(27px,3vw,36px)}

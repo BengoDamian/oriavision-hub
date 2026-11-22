@@ -54,6 +54,6 @@ Con `--url` también comprueba respuestas HTTP, enlaces anteriores con y sin bar
 
 ## Catálogo de ideas
 
-`site/inspiration.js` presenta una ficha completa por vez; el resto queda fuera del foco y de la interacción. Anterior/Siguiente, teclado y gestos cambian una propuesta por acción. Los gestos se capturan solo si la ficha entra completa en pantalla; en los extremos o en ventanas bajas se conserva el desplazamiento normal. El modo lista y los filtros siguen disponibles. Sin JavaScript, se muestran todos los diseños.
+`site/inspiration.js` apila las fichas reales: cada nueva propuesta sube desde abajo, cubre la anterior y deja visible su borde superior. Las anteriores permanecen debajo; solo la actual admite interacción. Al retroceder, la ficha superior baja y descubre la que ya estaba en la pila. Cada gesto avanza una sola ficha; al terminar, las fichas futuras no invaden los botones en reposo. Anterior/Siguiente, teclado y gestos cambian una propuesta por acción. Los gestos se capturan solo si la ficha entra completa en pantalla; en los extremos o en ventanas bajas se conserva el desplazamiento normal. El modo lista y los filtros siguen disponibles. Sin JavaScript, se muestran todos los diseños.
 
 `site/inspiration-favorites.js` guarda cada diseño y paleta en localStorage. El diálogo permite volver a abrirlos o consultar sin enviar mensajes automáticamente. Las pruebas de comportamiento están en `scripts/qa-inspiration-stack.mjs`.

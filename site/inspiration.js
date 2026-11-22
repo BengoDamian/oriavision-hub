@@ -16,12 +16,28 @@
   let visible = designs, current = 0, list = false, frame = 0, touch = null, filterValue = select.value;
   let ignoreClickUntil = 0, lastWheel = 0, wheelAmount = 0, wheelConsumed = false, animation;
   function resetGesture() { lastWheel = 0; wheelAmount = 0; wheelConsumed = false; touch = null; }
+  function stopMotion() {
+    const running = animation;
+    animation = null;
+    running?.cancel();
+    designs.forEach(section => section.classList.toggle('is-leaving', false));
+    stack.classList.toggle('is-moving', false);
+    stack.setAttribute('aria-busy', 'false');
+  }
   function render() {
     const deck = !list && visible.length > 1;
+    const step = Math.min(8, (window.innerWidth <= 600 ? 48 : 64) / Math.max(1, visible.length - 1));
+    stack.style.setProperty('--inspiration-pile-depth', `${step * (visible.length - 1)}px`);
     stack.classList.toggle('is-deck', deck);
     stack.tabIndex = deck ? 0 : -1;
     designs.forEach(section => {
+      const index = visible.indexOf(section);
       const active = !deck || section === visible[current];
+      // These are the actual earlier sheets, retained below the current one.
+      // Their colored top edges stay visible; future sheets stay out of view.
+      section.classList.toggle('is-in-pile', deck && index >= 0 && index <= current);
+      section.style.setProperty('--inspiration-sheet-offset', `${Math.max(0, index) * step}px`);
+      section.style.setProperty('--inspiration-sheet-order', String(index + 1));
       section.classList.toggle('is-active', active);
       section.inert = section.hidden || !active;
       if (section.inert) section.setAttribute('aria-hidden', 'true');
@@ -41,16 +57,25 @@
   function move(direction, animate = true) {
     const next = current + direction;
     if (next < 0 || next >= visible.length || list) return false;
-    const restoreFocus = visible[current].contains(document.activeElement);
+    const departing = visible[current];
+    const restoreFocus = departing.contains(document.activeElement);
+    stopMotion();
     current = next;
-    animation?.cancel();
     render();
     if (restoreFocus) stack.focus({preventScroll:true});
     if (animate && !reducedMotion.matches && visible[current].animate) {
-      animation = visible[current].animate([
-        {opacity:.55, transform:`translateY(${direction * 14}px)`},
-        {opacity:1, transform:'translateY(0)'}
-      ], {duration:180, easing:'cubic-bezier(.23,1,.32,1)'});
+      const sheet = direction > 0 ? visible[current] : departing;
+      const offset = parseFloat(sheet.style.getPropertyValue('--inspiration-sheet-offset')) || 0;
+      const below = stack.clientHeight + 24;
+      if (direction < 0) sheet.classList.toggle('is-leaving', true);
+      stack.classList.toggle('is-moving', true);
+      stack.setAttribute('aria-busy', 'true');
+      const positions = direction > 0 ? [below, offset] : [offset, below];
+      const running = sheet.animate(positions.map(y => ({transform:`translateY(${y}px)`})), {
+        duration:360, easing:'cubic-bezier(.22,1,.36,1)'
+      });
+      animation = running;
+      running.onfinish = running.oncancel = () => { if (animation === running) stopMotion(); };
     }
     return true;
   }
@@ -69,7 +94,7 @@
   function measureSoon() { if (!frame) frame = requestAnimationFrame(measure); }
   function readyForGesture() {
     if (list || visible.length < 2 || document.querySelector('dialog[open]') || document.querySelector('.menu-toggle[aria-expanded="true"]')) return false;
-    const rect = stack.getBoundingClientRect();
+    const rect = visible[current].getBoundingClientRect();
     const headerBottom = header?.getBoundingClientRect().bottom || 0;
     const bottom = window.visualViewport?.height || window.innerHeight;
     return rect.top >= headerBottom - 2 && rect.bottom <= bottom - 4;
@@ -78,11 +103,14 @@
   // Only a completely visible deck captures a gesture. Never intercept the
   // whole page; once consumed, discard momentum until a genuinely new gesture.
   stack.addEventListener('wheel', event => {
-    if (event.ctrlKey || event.metaKey || isControl(event.target) || !readyForGesture() || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    if (event.ctrlKey || event.metaKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
     const now = performance.now();
-    if (now - lastWheel > 240) { wheelAmount = 0; wheelConsumed = false; }
+    if (now - lastWheel > 240) { wheelAmount = 0; wheelConsumed = false; if (animation) stopMotion(); }
+    // The incoming card is outside the viewport during part of its animation.
+    // Consume the original gesture's momentum before checking its geometry.
+    if (wheelConsumed) { lastWheel = now; event.preventDefault(); return; }
+    if (isControl(event.target) || !readyForGesture()) return;
     lastWheel = now;
-    if (wheelConsumed) { event.preventDefault(); return; }
     const direction = Math.sign(event.deltaY);
     if (!direction || (direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1)) return;
     const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stack.clientHeight : 1;
@@ -93,6 +121,7 @@
   }, {passive:false});
   stack.addEventListener('touchstart', event => {
     touch = null;
+    if (animation) stopMotion();
     if (event.touches.length !== 1 || isControl(event.target) || !readyForGesture()) return;
     touch = {x:event.touches[0].clientX, y:event.touches[0].clientY, direction:0, captured:false};
   }, {passive:true});
@@ -127,9 +156,10 @@
     const direction = ['ArrowDown','ArrowRight','PageDown'].includes(event.key) ? 1 : ['ArrowUp','ArrowLeft','PageUp'].includes(event.key) ? -1 : 0;
     if (direction && move(direction, false)) event.preventDefault();
   });
-  previous.addEventListener('click', () => { resetGesture(); move(-1, false); });
-  following.addEventListener('click', () => { resetGesture(); move(1, false); });
-  view.addEventListener('click', () => { list = !list; resetGesture(); animation?.cancel(); render(); });
+  previous.addEventListener('click', event => { resetGesture(); move(-1, event.detail !== 0); });
+  following.addEventListener('click', event => { resetGesture(); move(1, event.detail !== 0); });
+  view.addEventListener('click', () => { list = !list; resetGesture(); stopMotion(); render(); });
+  stack.addEventListener('focusin', () => { if (animation) stopMotion(); });
   function applyPalette(section, input) {
     if (!input) return;
     const image = section.querySelector('.inspiration-preview img');
@@ -148,7 +178,7 @@
     visible = designs.filter(section => !section.hidden);
     current = 0;
     resetGesture();
-    animation?.cancel();
+    stopMotion();
     const variants = visible.reduce((sum, section) => sum + section.querySelectorAll('input[type="radio"]').length, 0);
     count.textContent = `${visible.length} ${visible.length === 1 ? 'propuesta' : 'propuestas'} · ${variants} variantes de color`;
     render();
@@ -168,13 +198,14 @@
     if (layoutWidth !== window.innerWidth) {
       layoutWidth = window.innerWidth;
       layoutHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
-      resetGesture(); measureSoon();
+      resetGesture(); stopMotion(); render();
     }
   }, {passive:true});
-  reducedMotion.addEventListener('change', () => animation?.cancel());
+  reducedMotion.addEventListener('change', stopMotion);
   document.fonts?.ready.then(measureSoon);
   window.addEventListener('hashchange', revealHash);
   window.addEventListener('pageshow', () => {
+    stopMotion();
     designs.forEach(section => applyPalette(section, section.querySelector('input:checked')));
     if (select.value !== filterValue) filter();
     else render();

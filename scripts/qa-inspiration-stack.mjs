@@ -9,7 +9,7 @@ const favoriteSource = readFileSync(new URL('../site/inspiration-favorites.js', 
 // to replace visual/touch QA in a browser.
 function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', storageFails = false} = {}) {
   let document, now = 1000, nextFrame = 0, animations = 0;
-  const frames = new Map(), memory = new Map([['oriavision:inspiration:favorites:v1',stored]]);
+  const frames = new Map(), motions = [], memory = new Map([['oriavision:inspiration:favorites:v1',stored]]);
   class Element {
     constructor(extra = {}) {
       this.listeners = new Map(); this.attributes = new Map(); this.children = []; this.nodes = new Map();
@@ -20,7 +20,7 @@ function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', 
     }
     addEventListener(type, fn) { if (!this.listeners.has(type)) this.listeners.set(type, []); this.listeners.get(type).push(fn); }
     fire(type, details = {}) {
-      const event = {target:this, prevented:false, ...details, preventDefault() { this.prevented=true; }, stopPropagation() { this.stopped=true; }};
+      const event = {target:this, detail:0, prevented:false, ...details, preventDefault() { this.prevented=true; }, stopPropagation() { this.stopped=true; }};
       for (const fn of this.listeners.get(type)||[]) fn(event); return event;
     }
     setAttribute(k,v) { this.attributes.set(k,v); }
@@ -34,7 +34,11 @@ function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', 
     append(...nodes) { this.children.push(...nodes); }
     replaceChildren(...nodes) { this.children=nodes; }
     getBoundingClientRect() { return this.rect || {top:90,bottom:cardBottom,height:cardBottom-90}; }
-    animate() { animations++; return {cancel(){}}; }
+    animate(keyframes, options) {
+      animations++;
+      const motion = {element:this, keyframes, options, canceled:false, cancel(){this.canceled=true;this.oncancel?.();}, finish(){this.onfinish?.();}};
+      motions.push(motion); return motion;
+    }
     showModal() { this.open=true; }
     close() { this.open=false; this.fire('close'); }
   }
@@ -56,7 +60,7 @@ function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', 
   vm.runInNewContext(source,context); vm.runInNewContext(favoriteSource,context);
   const frame = ()=>{const batch=[...frames.values()];frames.clear();batch.forEach(f=>f());}; frame();
   const wheel = (dy=100,extra={})=>stack.fire('wheel',{deltaY:dy,deltaX:0,deltaMode:0,...extra});
-  return {designs,stack,select,count,position,navigation,previous,following,view,motion,window,document,dialog,saved,items,note,memory,wheel,frame,location:context.location,advance(ms=300){now+=ms;},animations:()=>animations};
+  return {designs,stack,select,count,position,navigation,previous,following,view,motion,window,document,dialog,saved,items,note,memory,wheel,frame,motions,location:context.location,advance(ms=300){now+=ms;},animations:()=>animations};
 }
 function active(page) { return page.designs.filter(d=>!d.hidden&&!d.inert); }
 
@@ -73,7 +77,7 @@ test('a long wheel gesture and its momentum cannot skip cards; a fresh gesture c
 test('the first/last boundaries, zoom, inputs and a partly visible card leave page scrolling alone',()=>{
  const p=setup();assert.equal(p.wheel(-80).prevented,false);assert.equal(p.wheel(90,{ctrlKey:true}).prevented,false);
  assert.equal(p.wheel(90,{target:p.designs[0].inputs[0]}).prevented,false);
- p.stack.rect.top=0;assert.equal(p.wheel().prevented,false);
+ p.designs[0].rect={top:0,bottom:580,height:580};assert.equal(p.wheel().prevented,false);
  const short=setup({height:480,cardBottom:700});assert.equal(short.wheel().prevented,false);short.following.fire('click');assert.equal(short.position.textContent,'2 de 3');
 });
 test('touch changes cards on release, once, and suppresses click-through to a sample',()=>{
@@ -115,4 +119,42 @@ test('favorites retain multiple palettes, survive reload, and ignore unrecognize
 });
 test('unavailable storage does not break saving or navigation and explains the limit',()=>{
  const p=setup({storageFails:true});p.designs[0].querySelector('.design-save').fire('click');assert.equal(p.saved.querySelector('span').textContent,1);assert.match(p.note.textContent,/no permite/);p.following.fire('click');assert.equal(p.position.textContent,'2 de 3');
+});
+
+test('a pointer step slides the actual new sheet over the retained previous sheet',()=>{
+ const p=setup();p.following.fire('click',{detail:1});
+ assert.equal(p.motions.length,1);const move=p.motions[0];
+ assert.equal(move.element,p.designs[1]);
+ assert.ok(parseFloat(move.keyframes[0].transform.match(/[\d.]+/)[0])>=p.stack.clientHeight);
+ assert.equal(move.keyframes[1].transform,'translateY(8px)');
+ assert.equal(p.designs[0].classList.contains('is-in-pile'),true);
+ assert.equal(p.designs[1].classList.contains('is-in-pile'),true);
+ assert.equal(p.designs[2].classList.contains('is-in-pile'),false);
+ assert.equal(p.designs[0].inert,true);assert.equal(p.designs[1].inert,false);
+ assert.ok(+p.designs[1].style.getPropertyValue('--inspiration-sheet-order')>+p.designs[0].style.getPropertyValue('--inspiration-sheet-order'));
+ move.finish();assert.equal(p.stack.classList.contains('is-moving'),false);
+ assert.equal(p.designs[0].classList.contains('is-in-pile'),true);
+ assert.equal(p.designs[2].classList.contains('is-in-pile'),false);
+});
+test('going backwards lowers the top sheet and reveals the existing sheet below it',()=>{
+ const p=setup();p.following.fire('click',{detail:1});p.motions.at(-1).finish();
+ p.previous.fire('click',{detail:1});const move=p.motions.at(-1);
+ assert.equal(move.element,p.designs[1]);assert.equal(move.keyframes[0].transform,'translateY(8px)');
+ assert.equal(p.designs[1].classList.contains('is-leaving'),true);
+ assert.equal(p.designs[0].classList.contains('is-in-pile'),true);
+ move.finish();assert.equal(p.designs[1].classList.contains('is-leaving'),false);
+ assert.equal(p.designs[1].classList.contains('is-in-pile'),false);
+ assert.equal(p.stack.getAttribute('aria-busy'),'false');
+});
+test('wheel momentum is consumed while the animated sheet is still below the viewport',()=>{
+ const p=setup();p.wheel();p.designs[1].rect={top:900,bottom:1480,height:580};
+ p.advance(40);assert.equal(p.wheel().prevented,true);assert.equal(p.position.textContent,'2 de 3');
+});
+test('interrupted animations cannot leave an extra sheet covering the active controls',()=>{
+ const p=setup();p.following.fire('click',{detail:1});p.motions.at(-1).finish();
+ p.previous.fire('click',{detail:1});const departing=p.motions.at(-1);
+ p.select.value='design-2';p.select.fire('change');
+ assert.equal(departing.canceled,true);assert.equal(p.designs[1].classList.contains('is-leaving'),false);
+ assert.equal(p.stack.classList.contains('is-moving'),false);assert.deepEqual(active(p).map(x=>x.id),['design-2']);
+ departing.finish();assert.equal(p.designs[2].inert,false);
 });
