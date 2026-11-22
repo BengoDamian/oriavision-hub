@@ -63,6 +63,15 @@
     current = next;
     render();
     if (restoreFocus) stack.focus({preventScroll:true});
+    // A tall outgoing sheet may have been scrolled past its heading. Reveal
+    // the new sheet from the top instead of leaving it partly behind the header.
+    const rect = visible[current].getBoundingClientRect();
+    const offset = parseFloat(visible[current].style.getPropertyValue('--inspiration-sheet-offset')) || 0;
+    const top = (header?.getBoundingClientRect().bottom || 0) + 12 + offset;
+    const bottom = window.visualViewport?.height || window.innerHeight;
+    if (rect.top < top || rect.bottom > bottom) {
+      window.scrollBy({top:rect.top - top, behavior:'instant'});
+    }
     if (animate && !reducedMotion.matches && visible[current].animate) {
       const sheet = direction > 0 ? visible[current] : departing;
       const offset = parseFloat(sheet.style.getPropertyValue('--inspiration-sheet-offset')) || 0;
@@ -92,16 +101,23 @@
     if (mobile && overflow) stack.style.setProperty('--inspiration-preview-height', `${Math.max(116, Math.floor(desired - overflow))}px`);
   }
   function measureSoon() { if (!frame) frame = requestAnimationFrame(measure); }
-  function readyForGesture() {
-    if (list || visible.length < 2 || document.querySelector('dialog[open]') || document.querySelector('.menu-toggle[aria-expanded="true"]')) return false;
+  function readyForGesture(direction = 0) {
+    if (list || visible.length < 2 || (window.visualViewport?.scale || 1) > 1.05 || document.querySelector('dialog[open]') || document.querySelector('.menu-toggle[aria-expanded="true"]')) return false;
     const rect = visible[current].getBoundingClientRect();
     const headerBottom = header?.getBoundingClientRect().bottom || 0;
     const bottom = window.visualViewport?.height || window.innerHeight;
-    return rect.top >= headerBottom - 2 && rect.bottom <= bottom - 4;
+    if (rect.bottom <= headerBottom + 24 || rect.top >= bottom - 24) return false;
+    // Requiring BOTH edges on screen permanently disabled gestures on short
+    // phones, larger text and partially scrolled sheets. Only the relevant
+    // edge matters: read to the bottom before advancing, or to the top to return.
+    if (direction > 0) return rect.bottom <= bottom + 12;
+    if (direction < 0) return rect.top >= headerBottom - 12;
+    return true;
   }
-  const isControl = target => !!target.closest('button, input, select, textarea, label, a:not(.design-image-link)');
-  // Only a completely visible deck captures a gesture. Never intercept the
-  // whole page; once consumed, discard momentum until a genuinely new gesture.
+  const isEditable = target => !!target.closest('select, textarea, [contenteditable="true"]');
+  // A swipe may begin on a palette, link or button. Taps retain their normal
+  // action; only a captured swipe suppresses the resulting synthetic click.
+  // Never intercept the whole page. Discard momentum after one completed step.
   stack.addEventListener('wheel', event => {
     if (event.ctrlKey || event.metaKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
     const now = performance.now();
@@ -109,9 +125,9 @@
     // The incoming card is outside the viewport during part of its animation.
     // Consume the original gesture's momentum before checking its geometry.
     if (wheelConsumed) { lastWheel = now; event.preventDefault(); return; }
-    if (isControl(event.target) || !readyForGesture()) return;
-    lastWheel = now;
     const direction = Math.sign(event.deltaY);
+    if (isEditable(event.target) || !readyForGesture(direction)) return;
+    lastWheel = now;
     if (!direction || (direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1)) return;
     const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stack.clientHeight : 1;
     if (Math.sign(wheelAmount) !== direction) wheelAmount = 0;
@@ -122,12 +138,12 @@
   stack.addEventListener('touchstart', event => {
     touch = null;
     if (animation) stopMotion();
-    if (event.touches.length !== 1 || isControl(event.target) || !readyForGesture()) return;
+    if (event.touches.length !== 1 || isEditable(event.target) || !readyForGesture()) return;
     touch = {x:event.touches[0].clientX, y:event.touches[0].clientY, direction:0, captured:false};
   }, {passive:true});
   stack.addEventListener('touchmove', event => {
     if (!touch) return;
-    if (event.touches.length !== 1) { touch = null; return; }
+    if (event.touches.length !== 1 || event.cancelable === false) { touch = null; return; }
     const dx = event.touches[0].clientX - touch.x, dy = touch.y - event.touches[0].clientY;
     if (Math.abs(dx) > Math.abs(dy) || dy === 0) {
       touch.direction = 0;
@@ -135,7 +151,7 @@
       return;
     }
     const direction = Math.sign(dy);
-    if (!touch.captured && ((direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1))) { touch = null; return; }
+    if (!touch.captured && (!readyForGesture(direction) || (direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1))) { touch = null; return; }
     touch.captured = true;
     touch.direction = Math.abs(dy) >= 48 ? direction : 0;
     event.preventDefault();
