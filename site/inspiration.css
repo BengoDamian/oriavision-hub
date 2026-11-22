@@ -80,9 +80,17 @@
 }
 @media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}}
 
-/* Real accumulated sheets: the next sheet rises over the previous sheet, then
-   rests completely. Future sheets never creep over the active controls. */
-.inspiration-viewer{padding:40px 0 24px;background:#eee7f8}
+/* The page itself scrolls through a sticky stage. Static markers provide
+   native stops; no touch/wheel interception is needed to reach another card. */
+html.inspiration-scroll-steps{scroll-snap-type:y proximity;scroll-padding-top:0}
+.inspiration-viewer{position:relative;padding:12px 0;background:#eee7f8;overflow-anchor:none}
+.inspiration-stage{display:flow-root}
+.inspiration-viewer.is-scroll-stack{height:var(--inspiration-scroll-height)}
+.is-scroll-stack>.inspiration-stage{position:sticky;top:var(--inspiration-sticky-top,80px)}
+.inspiration-scroll-stop{display:none;position:absolute;left:0;width:1px;height:1px;pointer-events:none;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:var(--inspiration-sticky-top,80px)}
+.is-scroll-stack>.inspiration-scroll-stop{display:block}
+.inspiration-stack.is-native-stack{isolation:isolate;gap:clamp(64px,20svh,180px);padding-bottom:40svh}
+.inspiration-stack.is-native-stack>.inspiration-design{position:sticky;top:var(--inspiration-native-top,80px);z-index:var(--inspiration-sheet-order,1);box-shadow:0 -5px 18px #25213f12}
 .inspiration-stack.is-deck{--inspiration-preview-height:240px;position:relative;isolation:isolate;display:grid;gap:0;width:90%;max-width:1200px;margin-inline:auto;padding-bottom:var(--inspiration-pile-depth,48px);overflow:hidden;overflow:clip;border-radius:18px;background:transparent;scroll-margin-top:90px}
 .inspiration-stack.is-deck>.inspiration-design{grid-area:1/1;align-self:stretch;position:relative;top:auto;visibility:hidden;pointer-events:none;border-radius:18px;padding-bottom:22px;display:flex;flex-direction:column;transform:translateY(var(--inspiration-sheet-offset,0px));z-index:var(--inspiration-sheet-order,1);box-shadow:0 -5px 18px #25213f12}
 .inspiration-stack.is-deck>.inspiration-design[hidden]{display:none}
@@ -134,8 +142,8 @@
  .inspiration-stack.is-deck .inspiration-design-layout{margin:0 14px;gap:14px;display:flex;flex-direction:column;align-items:stretch}
  .inspiration-stack.is-deck .inspiration-options{padding:0;display:flex;flex-direction:column;flex:1}
  .inspiration-stack.is-deck .inspiration-actions{margin-top:auto;padding-top:12px}
- .inspiration-stack.is-deck .palette-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
- .inspiration-stack.is-deck .palette-choice{font-size:14px;min-width:0;padding:7px 8px;line-height:1.2}
+ .inspiration-stack.is-deck .palette-list{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;padding:3px;scrollbar-width:thin}
+ .inspiration-stack.is-deck .palette-choice{font-size:14px;flex-shrink:0;padding:7px 8px;line-height:1.2}
  .inspiration-stack.is-deck .palette-swatch i{width:10px;height:20px}
  .inspiration-stack.is-deck .inspiration-options legend{font-size:16px;margin-bottom:10px}
  .inspiration-stack.is-deck .inspiration-preview figcaption,.inspiration-stack.is-deck .inspiration-help{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}

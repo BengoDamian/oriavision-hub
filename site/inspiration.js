@@ -3,6 +3,8 @@
   const designs = [...document.querySelectorAll('.inspiration-design')];
   const select = document.querySelector('#inspiration-activity');
   const count = document.querySelector('#inspiration-count');
+  const viewer = document.querySelector('.inspiration-viewer');
+  const stage = document.querySelector('.inspiration-stage');
   const stack = document.querySelector('.inspiration-stack');
   const header = document.querySelector('.site-header');
   const navigation = document.querySelector('.inspiration-navigation');
@@ -10,12 +12,21 @@
   const following = document.querySelector('#inspiration-following');
   const position = document.querySelector('#inspiration-position');
   const view = document.querySelector('#inspiration-view');
-  if (!select || !count || !stack || !navigation || !view) return;
+  if (!designs.length || !select || !count || !viewer || !stage || !stack || !navigation || !view) return;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const stops = designs.map(() => {
+    const stop = document.createElement('span');
+    stop.className = 'inspiration-scroll-stop';
+    stop.setAttribute('aria-hidden', 'true');
+    viewer.append(stop);
+    return stop;
+  });
+  let visible = designs, current = 0, list = false, stepped = false;
+  let stepDistance = 600, stickyTop = 80, frame = 0, animation;
+  let layoutWidth = window.innerWidth;
   let layoutHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
-  let visible = designs, current = 0, list = false, frame = 0, touch = null, filterValue = select.value;
-  let ignoreClickUntil = 0, lastWheel = 0, wheelAmount = 0, wheelConsumed = false, animation;
-  function resetGesture() { lastWheel = 0; wheelAmount = 0; wheelConsumed = false; touch = null; }
+  let filterValue = select.value;
+
   function stopMotion() {
     const running = animation;
     animation = null;
@@ -24,158 +35,119 @@
     stack.classList.toggle('is-moving', false);
     stack.setAttribute('aria-busy', 'false');
   }
-  function render() {
-    const deck = !list && visible.length > 1;
-    const step = Math.min(8, (window.innerWidth <= 600 ? 48 : 64) / Math.max(1, visible.length - 1));
-    stack.style.setProperty('--inspiration-pile-depth', `${step * (visible.length - 1)}px`);
-    stack.classList.toggle('is-deck', deck);
-    stack.tabIndex = deck ? 0 : -1;
+  function renderCards() {
     designs.forEach(section => {
       const index = visible.indexOf(section);
-      const active = !deck || section === visible[current];
-      // These are the actual earlier sheets, retained below the current one.
-      // Their colored top edges stay visible; future sheets stay out of view.
-      section.classList.toggle('is-in-pile', deck && index >= 0 && index <= current);
-      section.style.setProperty('--inspiration-sheet-offset', `${Math.max(0, index) * step}px`);
-      section.style.setProperty('--inspiration-sheet-order', String(index + 1));
+      const active = !stepped || index === current;
+      section.classList.toggle('is-in-pile', stepped && index >= 0 && index <= current);
       section.classList.toggle('is-active', active);
       section.inert = section.hidden || !active;
       if (section.inert) section.setAttribute('aria-hidden', 'true');
       else section.removeAttribute('aria-hidden');
     });
-    navigation.hidden = !deck;
     previous.disabled = current === 0;
     following.disabled = current === visible.length - 1;
-    position.textContent = `${current + 1} de ${visible.length}`;
+    position.textContent = `Ficha ${current + 1} de ${visible.length}`;
     position.setAttribute('aria-label', `${current + 1} de ${visible.length}: ${visible[current].querySelector('h2').textContent}`);
-    view.hidden = visible.length < 2;
-    view.textContent = list ? 'Ver por fichas' : 'Ver en lista';
-    view.setAttribute('aria-pressed', String(list));
-    stack.setAttribute('aria-label', deck ? 'Propuestas de diseño. Usá Anterior, Siguiente o deslizá una ficha por vez.' : 'Propuestas de diseño');
-    measureSoon();
   }
-  function move(direction, animate = true) {
-    const next = current + direction;
-    if (next < 0 || next >= visible.length || list) return false;
+  function show(index, animate = true) {
+    if (index === current) return;
     const departing = visible[current];
+    const direction = Math.sign(index - current);
     const restoreFocus = departing.contains(document.activeElement);
     stopMotion();
-    current = next;
-    render();
+    current = index;
+    renderCards();
     if (restoreFocus) stack.focus({preventScroll:true});
-    // A tall outgoing sheet may have been scrolled past its heading. Reveal
-    // the new sheet from the top instead of leaving it partly behind the header.
-    const rect = visible[current].getBoundingClientRect();
-    const offset = parseFloat(visible[current].style.getPropertyValue('--inspiration-sheet-offset')) || 0;
-    const top = (header?.getBoundingClientRect().bottom || 0) + 12 + offset;
-    const bottom = window.visualViewport?.height || window.innerHeight;
-    if (rect.top < top || rect.bottom > bottom) {
-      window.scrollBy({top:rect.top - top, behavior:'instant'});
-    }
-    if (animate && !reducedMotion.matches && visible[current].animate) {
-      const sheet = direction > 0 ? visible[current] : departing;
-      const offset = parseFloat(sheet.style.getPropertyValue('--inspiration-sheet-offset')) || 0;
-      const below = stack.clientHeight + 24;
-      if (direction < 0) sheet.classList.toggle('is-leaving', true);
-      stack.classList.toggle('is-moving', true);
-      stack.setAttribute('aria-busy', 'true');
-      const positions = direction > 0 ? [below, offset] : [offset, below];
-      const running = sheet.animate(positions.map(y => ({transform:`translateY(${y}px)`})), {
-        duration:360, easing:'cubic-bezier(.22,1,.36,1)'
-      });
-      animation = running;
-      running.onfinish = running.oncancel = () => { if (animation === running) stopMotion(); };
-    }
-    return true;
+    if (!animate || reducedMotion.matches || !visible[current].animate) return;
+    const sheet = direction > 0 ? visible[current] : departing;
+    const offset = parseFloat(sheet.style.getPropertyValue('--inspiration-sheet-offset')) || 0;
+    const below = stack.clientHeight + 24;
+    if (direction < 0) sheet.classList.toggle('is-leaving', true);
+    stack.classList.toggle('is-moving', true);
+    stack.setAttribute('aria-busy', 'true');
+    const positions = direction > 0 ? [below, offset] : [offset, below];
+    const running = sheet.animate(positions.map(y => ({transform:`translateY(${y}px)`})), {
+      duration:320, easing:'cubic-bezier(.22,1,.36,1)'
+    });
+    animation = running;
+    running.onfinish = running.oncancel = () => { if (animation === running) stopMotion(); };
   }
-  function measure() {
+  // This is the page's real scroll position, not a synthetic swipe counter.
+  // The sticky stage has enough document height to visit every sheet. Static
+  // snap markers let the browser stop at each sheet, including on Android.
+  function startPosition() {
+    return window.scrollY + viewer.getBoundingClientRect().top + 12 - stickyTop;
+  }
+  function syncScroll(animate = true) {
     frame = 0;
-    if (!stack.classList.contains('is-deck')) return;
-    const mobile = window.innerWidth <= 800;
-    const desired = mobile ? Math.min(240, stack.clientWidth * .60) : 380;
-    stack.style.setProperty('--inspiration-preview-height', `${Math.floor(desired)}px`);
-    const headerHeight = header?.getBoundingClientRect().height || 0;
-    // Text is never shrunk or clipped to fit. Short viewports scroll normally.
-    const available = layoutHeight - headerHeight - navigation.offsetHeight - 48;
-    const overflow = Math.max(0, stack.offsetHeight - available);
-    if (mobile && overflow) stack.style.setProperty('--inspiration-preview-height', `${Math.max(116, Math.floor(desired - overflow))}px`);
+    if (!stepped) return;
+    const progress = (window.scrollY - startPosition()) / stepDistance;
+    const index = Math.max(0, Math.min(visible.length - 1, Math.round(progress)));
+    show(index, animate);
   }
-  function measureSoon() { if (!frame) frame = requestAnimationFrame(measure); }
-  function readyForGesture(direction = 0) {
-    if (list || visible.length < 2 || (window.visualViewport?.scale || 1) > 1.05 || document.querySelector('dialog[open]') || document.querySelector('.menu-toggle[aria-expanded="true"]')) return false;
-    const rect = visible[current].getBoundingClientRect();
-    const headerBottom = header?.getBoundingClientRect().bottom || 0;
-    const bottom = window.visualViewport?.height || window.innerHeight;
-    if (rect.bottom <= headerBottom + 24 || rect.top >= bottom - 24) return false;
-    // Requiring BOTH edges on screen permanently disabled gestures on short
-    // phones, larger text and partially scrolled sheets. Only the relevant
-    // edge matters: read to the bottom before advancing, or to the top to return.
-    if (direction > 0) return rect.bottom <= bottom + 12;
-    if (direction < 0) return rect.top >= headerBottom - 12;
+  function onScroll() {
+    if (stepped && !frame) frame = requestAnimationFrame(() => syncScroll());
+  }
+  function goTo(index, smooth = true) {
+    if (!stepped || index < 0 || index >= visible.length) return false;
+    window.scrollTo({top:startPosition() + index * stepDistance, behavior:smooth && !reducedMotion.matches ? 'smooth' : 'instant'});
+    if (!smooth || reducedMotion.matches) syncScroll(false);
     return true;
   }
-  const isEditable = target => !!target.closest('select, textarea, [contenteditable="true"]');
-  // A swipe may begin on a palette, link or button. Taps retain their normal
-  // action; only a captured swipe suppresses the resulting synthetic click.
-  // Never intercept the whole page. Discard momentum after one completed step.
-  stack.addEventListener('wheel', event => {
-    if (event.ctrlKey || event.metaKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-    const now = performance.now();
-    if (now - lastWheel > 240) { wheelAmount = 0; wheelConsumed = false; if (animation) stopMotion(); }
-    // The incoming card is outside the viewport during part of its animation.
-    // Consume the original gesture's momentum before checking its geometry.
-    if (wheelConsumed) { lastWheel = now; event.preventDefault(); return; }
-    const direction = Math.sign(event.deltaY);
-    if (isEditable(event.target) || !readyForGesture(direction)) return;
-    lastWheel = now;
-    if (!direction || (direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1)) return;
-    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? stack.clientHeight : 1;
-    if (Math.sign(wheelAmount) !== direction) wheelAmount = 0;
-    wheelAmount += event.deltaY * unit;
-    event.preventDefault();
-    if (Math.abs(wheelAmount) >= 48) wheelConsumed = move(direction);
-  }, {passive:false});
-  stack.addEventListener('touchstart', event => {
-    touch = null;
-    if (animation) stopMotion();
-    if (event.touches.length !== 1 || isEditable(event.target) || !readyForGesture()) return;
-    touch = {x:event.touches[0].clientX, y:event.touches[0].clientY, direction:0, captured:false};
-  }, {passive:true});
-  stack.addEventListener('touchmove', event => {
-    if (!touch) return;
-    if (event.touches.length !== 1 || event.cancelable === false) { touch = null; return; }
-    const dx = event.touches[0].clientX - touch.x, dy = touch.y - event.touches[0].clientY;
-    if (Math.abs(dx) > Math.abs(dy) || dy === 0) {
-      touch.direction = 0;
-      if (touch.captured) event.preventDefault();
-      return;
+  function configure() {
+    stopMotion();
+    const wantsStack = !list && visible.length > 1;
+    const step = Math.min(8, (window.innerWidth <= 600 ? 40 : 56) / Math.max(1, visible.length - 1));
+    stickyTop = (header?.getBoundingClientRect().height || 0) + 12;
+    const available = layoutHeight - stickyTop - 12;
+    stack.style.setProperty('--inspiration-pile-depth', `${step * (visible.length - 1)}px`);
+    viewer.style.setProperty('--inspiration-sticky-top', `${stickyTop}px`);
+    stack.classList.toggle('is-native-stack', false);
+    stack.classList.toggle('is-deck', wantsStack);
+    navigation.hidden = !wantsStack;
+    designs.forEach(section => {
+      const index = visible.indexOf(section);
+      section.style.setProperty('--inspiration-sheet-offset', `${Math.max(0, index) * step}px`);
+      section.style.setProperty('--inspiration-sheet-order', String(index + 1));
+    });
+    if (wantsStack) {
+      const desired = window.innerWidth <= 800 ? Math.min(240, stack.clientWidth * .60) : 380;
+      stack.style.setProperty('--inspiration-preview-height', `${Math.floor(desired)}px`);
+      const overflow = Math.max(0, stage.getBoundingClientRect().height - available);
+      if (overflow) stack.style.setProperty('--inspiration-preview-height', `${Math.max(80, Math.floor(desired - overflow))}px`);
     }
-    const direction = Math.sign(dy);
-    if (!touch.captured && (!readyForGesture(direction) || (direction < 0 && current === 0) || (direction > 0 && current === visible.length - 1))) { touch = null; return; }
-    touch.captured = true;
-    touch.direction = Math.abs(dy) >= 48 ? direction : 0;
-    event.preventDefault();
-  }, {passive:false});
-  stack.addEventListener('touchend', () => {
-    if (touch?.captured) {
-      ignoreClickUntil = performance.now() + 450;
-      if (touch.direction) move(touch.direction);
+    stepped = wantsStack && stage.getBoundingClientRect().height <= available + 1;
+    stack.classList.toggle('is-deck', stepped);
+    stack.classList.toggle('is-native-stack', wantsStack && !stepped);
+    viewer.classList.toggle('is-scroll-stack', stepped);
+    document.documentElement.classList.toggle('inspiration-scroll-steps', stepped);
+    navigation.hidden = !stepped;
+    stack.tabIndex = stepped ? 0 : -1;
+    if (stepped) {
+      stepDistance = Math.max(360, Math.round(layoutHeight * .8));
+      const height = stage.getBoundingClientRect().height + stepDistance * (visible.length - 1) + 184;
+      viewer.style.setProperty('--inspiration-scroll-height', `${Math.ceil(height)}px`);
+    } else {
+      viewer.style.removeProperty('--inspiration-scroll-height');
+      // Very short windows or large text keep a real, naturally scrolling
+      // sticky stack. No content is hidden merely because it cannot fit.
+      visible.forEach((section, index) => {
+        const top = Math.min(stickyTop + index * step, layoutHeight - section.getBoundingClientRect().height - 12);
+        section.style.setProperty('--inspiration-native-top', `${Math.floor(top)}px`);
+      });
     }
-    touch = null;
-  });
-  stack.addEventListener('touchcancel', () => { touch = null; });
-  stack.addEventListener('click', event => {
-    if (performance.now() < ignoreClickUntil) { event.preventDefault(); event.stopPropagation(); }
-  }, true);
-  stack.addEventListener('keydown', event => {
-    if (event.target !== stack || list || event.altKey || event.ctrlKey || event.metaKey) return;
-    const direction = ['ArrowDown','ArrowRight','PageDown'].includes(event.key) ? 1 : ['ArrowUp','ArrowLeft','PageUp'].includes(event.key) ? -1 : 0;
-    if (direction && move(direction, false)) event.preventDefault();
-  });
-  previous.addEventListener('click', event => { resetGesture(); move(-1, event.detail !== 0); });
-  following.addEventListener('click', event => { resetGesture(); move(1, event.detail !== 0); });
-  view.addEventListener('click', () => { list = !list; resetGesture(); stopMotion(); render(); });
-  stack.addEventListener('focusin', () => { if (animation) stopMotion(); });
+    stops.forEach((stop, index) => {
+      stop.hidden = !stepped || index >= visible.length;
+      stop.style.setProperty('top', `${12 + index * stepDistance}px`);
+    });
+    view.hidden = visible.length < 2;
+    view.textContent = list ? 'Ver fichas apilables' : 'Ver en lista';
+    view.setAttribute('aria-pressed', String(list));
+    stack.setAttribute('aria-label', stepped ? 'Propuestas de diseño. Desplazá la página o usá Anterior y Siguiente.' : 'Propuestas de diseño');
+    renderCards();
+    syncScroll(false);
+  }
   function applyPalette(section, input) {
     if (!input) return;
     const image = section.querySelector('.inspiration-preview img');
@@ -193,38 +165,53 @@
     designs.forEach(section => section.hidden = select.value !== 'all' && section.id !== select.value);
     visible = designs.filter(section => !section.hidden);
     current = 0;
-    resetGesture();
-    stopMotion();
     const variants = visible.reduce((sum, section) => sum + section.querySelectorAll('input[type="radio"]').length, 0);
     count.textContent = `${visible.length} ${visible.length === 1 ? 'propuesta' : 'propuestas'} · ${variants} variantes de color`;
-    render();
+    configure();
   }
   function revealHash() {
-    const target = designs.find(section => '#' + section.id === location.hash);
-    if (!target) return;
-    select.value = 'all'; filter(); current = designs.indexOf(target); render();
+    const index = designs.findIndex(section => '#' + section.id === location.hash);
+    if (index < 0) return;
+    select.value = 'all';
+    filter();
+    if (stepped) goTo(index, false);
+    else designs[index].scrollIntoView({block:'start', behavior:'instant'});
   }
+  // Touch, wheel, pinch, links and palette controls keep native browser input.
+  // Only explicit navigation keys on the focused region override their default.
+  window.addEventListener('scroll', onScroll, {passive:true});
+  stack.addEventListener('keydown', event => {
+    if (event.target !== stack || !stepped || event.altKey || event.ctrlKey || event.metaKey) return;
+    const direction = ['ArrowDown','ArrowRight','PageDown'].includes(event.key) ? 1 : ['ArrowUp','ArrowLeft','PageUp'].includes(event.key) ? -1 : 0;
+    if (direction && goTo(current + direction, false)) event.preventDefault();
+  });
+  previous.addEventListener('click', event => goTo(current - 1, event.detail !== 0));
+  following.addEventListener('click', event => goTo(current + 1, event.detail !== 0));
+  view.addEventListener('click', () => { list = !list; configure(); });
+  stack.addEventListener('focusin', () => { if (animation) stopMotion(); });
+  select.addEventListener('change', filter);
   designs.forEach(section => {
     section.querySelectorAll('input[type="radio"]').forEach(input => input.addEventListener('change', () => applyPalette(section, input)));
     applyPalette(section, section.querySelector('input:checked'));
   });
-  select.addEventListener('change', filter);
-  let layoutWidth = window.innerWidth;
   window.addEventListener('resize', () => {
-    if (layoutWidth !== window.innerWidth) {
+    if (layoutWidth !== window.innerWidth || Math.abs(window.innerHeight - layoutHeight) > 160) {
+      const preserve = stepped && window.scrollY >= startPosition() && window.scrollY <= startPosition() + (visible.length - 1) * stepDistance;
+      const index = current;
       layoutWidth = window.innerWidth;
       layoutHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
-      resetGesture(); stopMotion(); render();
+      configure();
+      if (preserve && stepped) goTo(index, false);
     }
   }, {passive:true});
   reducedMotion.addEventListener('change', stopMotion);
-  document.fonts?.ready.then(measureSoon);
+  document.fonts?.ready.then(configure);
   window.addEventListener('hashchange', revealHash);
   window.addEventListener('pageshow', () => {
-    stopMotion();
     designs.forEach(section => applyPalette(section, section.querySelector('input:checked')));
     if (select.value !== filterValue) filter();
-    else render();
+    else configure();
   });
-  filter(); revealHash();
+  filter();
+  revealHash();
 })();
