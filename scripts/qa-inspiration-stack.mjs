@@ -7,7 +7,7 @@ const source = readFileSync(new URL('../site/inspiration.js', import.meta.url), 
 const favoriteSource = readFileSync(new URL('../site/inspiration-favorites.js', import.meta.url), 'utf8');
 // Exercise the real page handlers. Geometry is explicit; this does not pretend
 // to replace visual/touch QA in a browser.
-function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', storageFails = false} = {}) {
+function setup({height = 820, cardTop = 90, cardBottom = 670, reduced = false, stored = '[]', storageFails = false} = {}) {
   let document, now = 1000, nextFrame = 0, animations = 0;
   const frames = new Map(), motions = [], memory = new Map([['oriavision:inspiration:favorites:v1',stored]]);
   class Element {
@@ -28,12 +28,15 @@ function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', 
     getAttribute(k) { return this.attributes.get(k); }
     querySelector(s) { return s==='input:checked' ? this.inputs?.find(i=>i.checked) : this.nodes.get(s); }
     querySelectorAll(s) { return s==='input[type="radio"]' ? this.inputs : this.children.flatMap(c=>[...(s===c.tag?[c]:[]),...c.querySelectorAll(s)]); }
-    closest() { return this.control ? this : null; }
+    closest(selector) {
+      if (selector.includes('textarea') && !selector.includes('button')) return this.editable ? this : null;
+      return this.control ? this : null;
+    }
     contains(node) { return node===this || [...this.nodes.values(),...(this.inputs||[])].includes(node); }
     focus() { document.activeElement=this; }
     append(...nodes) { this.children.push(...nodes); }
     replaceChildren(...nodes) { this.children=nodes; }
-    getBoundingClientRect() { return this.rect || {top:90,bottom:cardBottom,height:cardBottom-90}; }
+    getBoundingClientRect() { return this.rect || {top:cardTop,bottom:cardBottom,height:cardBottom-cardTop}; }
     animate(keyframes, options) {
       animations++;
       const motion = {element:this, keyframes, options, canceled:false, cancel(){this.canceled=true;this.oncancel?.();}, finish(){this.onfinish?.();}};
@@ -52,6 +55,8 @@ function setup({height = 820, cardBottom = 670, reduced = false, stored = '[]', 
   const select = new Element({value:'all'}), count = new Element(), position = new Element(), navigation = new Element({offsetHeight:74});
   const previous = new Element(), following = new Element(), view = new Element();
   const motion = new Element({matches:reduced}), window = new Element({innerWidth:390,innerHeight:height,visualViewport:{height}});
+  window.scrolls = [];
+  window.scrollBy = options => window.scrolls.push(options);
   const header = new Element({rect:{height:68,bottom:68}}), saved = new Element(), dialog = new Element(), items = new Element(), note = new Element();
   saved.nodes.set('span',new Element()); dialog.nodes.set('.favorites-close',new Element());
   const nodes = new Map([['#inspiration-activity',select],['#inspiration-count',count],['.inspiration-stack',stack],['.site-header',header],['.inspiration-navigation',navigation],['#inspiration-previous',previous],['#inspiration-following',following],['#inspiration-position',position],['#inspiration-view',view],['#inspiration-saved',saved],['.inspiration-favorites',dialog],['#inspiration-favorites-items',items],['#inspiration-storage-note',note],['.inspiration-toast',new Element()]]);
@@ -74,11 +79,40 @@ test('a long wheel gesture and its momentum cannot skip cards; a fresh gesture c
  assert.equal(p.position.textContent,'2 de 3'); p.advance();p.wheel();assert.equal(p.position.textContent,'3 de 3');
  p.advance();assert.equal(p.wheel().prevented,false);p.advance();p.wheel(-80);assert.equal(p.position.textContent,'2 de 3');
 });
-test('the first/last boundaries, zoom, inputs and a partly visible card leave page scrolling alone',()=>{
+test('the first/last boundaries, zoom and unread card content leave page scrolling alone',()=>{
  const p=setup();assert.equal(p.wheel(-80).prevented,false);assert.equal(p.wheel(90,{ctrlKey:true}).prevented,false);
- assert.equal(p.wheel(90,{target:p.designs[0].inputs[0]}).prevented,false);
- p.designs[0].rect={top:0,bottom:580,height:580};assert.equal(p.wheel().prevented,false);
  const short=setup({height:480,cardBottom:700});assert.equal(short.wheel().prevented,false);short.following.fire('click');assert.equal(short.position.textContent,'2 de 3');
+});
+test('a tall card advances once its bottom is visible, even with its heading above the screen',()=>{
+ const p=setup({height:640,cardTop:-180,cardBottom:620});
+ assert.equal(p.wheel().prevented,true);assert.equal(p.position.textContent,'2 de 3');
+ assert.ok(p.window.scrolls.some(scroll=>scroll.top<0),'the new card is brought back below the header');
+});
+test('backward navigation works at the top of an oversized card without requiring its bottom',()=>{
+ const p=setup({height:480,cardBottom:900});p.following.fire('click');p.advance();
+ assert.equal(p.wheel(-100).prevented,true);assert.equal(p.position.textContent,'1 de 3');
+});
+test('a touch may start on palettes, save buttons or links; taps keep their normal action',()=>{
+ const p=setup();const control=p.designs[0].inputs[0];
+ p.stack.fire('touchstart',{target:control,touches:[{clientX:50,clientY:400}]});
+ p.stack.fire('touchend');assert.equal(p.position.textContent,'1 de 3');assert.equal(p.stack.fire('click',{target:control}).prevented,false);
+ p.stack.fire('touchstart',{target:control,touches:[{clientX:50,clientY:400}]});
+ assert.equal(p.stack.fire('touchmove',{target:control,touches:[{clientX:50,clientY:300}]}).prevented,true);
+ p.stack.fire('touchend');assert.equal(p.position.textContent,'2 de 3');assert.equal(p.stack.fire('click',{target:control}).prevented,true);
+ p.advance(500);assert.equal(p.stack.fire('click',{target:control}).prevented,false);
+});
+test('a tall card can be read first and advanced with the next swipe at its bottom',()=>{
+ const p=setup({height:640,cardBottom:1000});
+ p.stack.fire('touchstart',{touches:[{clientX:50,clientY:400}]});
+ assert.equal(p.stack.fire('touchmove',{touches:[{clientX:50,clientY:300}]}).prevented,false);
+ p.stack.fire('touchend');assert.equal(p.position.textContent,'1 de 3');
+ p.designs[0].rect={top:-290,bottom:620,height:910};
+ p.stack.fire('touchstart',{touches:[{clientX:50,clientY:400}]});
+ assert.equal(p.stack.fire('touchmove',{touches:[{clientX:50,clientY:280}]}).prevented,true);
+ p.stack.fire('touchend');assert.equal(p.position.textContent,'2 de 3');
+});
+test('wheel scrolling over palette controls can advance the card',()=>{
+ const p=setup();assert.equal(p.wheel(100,{target:p.designs[0].inputs[0]}).prevented,true);assert.equal(p.position.textContent,'2 de 3');
 });
 test('touch changes cards on release, once, and suppresses click-through to a sample',()=>{
  const p=setup();p.stack.fire('touchstart',{touches:[{clientX:50,clientY:400}]});
