@@ -14,9 +14,6 @@
 .inspiration-design:nth-of-type(4n+3){--sheet-edge:#364876;--sheet-paper:#f9faff}
 .inspiration-design:nth-of-type(4n+4){--sheet-edge:#ad91e2;--sheet-paper:#fcfaff}
 .inspiration-stack{display:flex;flex-direction:column;gap:40px;background:#eee7f8}
-.inspiration-design-heading{position:sticky;top:var(--inspiration-sheet-top,94px)}
-.inspiration-stack.is-stacked>.inspiration-design:has(:focus-visible){z-index:20}
-.inspiration-stack :is(a,input){scroll-margin-block:calc(var(--inspiration-sheet-top,94px) + 150px) 48px}
 .inspiration-design-heading{position:relative;z-index:2;width:100%;margin:0;padding:28px max(5%,calc((100% - 1200px)/2)) 24px;background:var(--sheet-paper);border-top:4px solid var(--sheet-edge);border-radius:18px 18px 0 0;box-shadow:0 8px 18px #25213f08}
 .inspiration-design-heading>p{font-size:13px;color:#6d5f82;margin-bottom:9px}
 .inspiration-design h2{font-size:clamp(29px,3vw,40px);line-height:1.15;letter-spacing:-.8px}
@@ -80,50 +77,17 @@
 }
 @media(prefers-reduced-motion:reduce){.palette-choice,.inspiration-strip a{transition:none}}
 
-/* The page itself scrolls through a sticky stage. Static markers provide
-   native stops; no touch/wheel interception is needed to reach another card. */
-html.inspiration-scroll-steps{scroll-snap-type:y proximity;scroll-padding-top:0}
-.inspiration-viewer{position:relative;padding:12px 0;background:#eee7f8;overflow-anchor:none}
-.inspiration-stage{display:flow-root}
-.inspiration-viewer.is-scroll-stack{height:var(--inspiration-scroll-height)}
-.is-scroll-stack>.inspiration-stage{position:sticky;top:var(--inspiration-sticky-top,80px)}
-.inspiration-scroll-stop{display:none;position:absolute;left:0;width:1px;height:1px;pointer-events:none;scroll-snap-align:start;scroll-snap-stop:always;scroll-margin-top:var(--inspiration-sticky-top,80px)}
-.is-scroll-stack>.inspiration-scroll-stop{display:block}
-.inspiration-stack.is-native-stack{isolation:isolate;gap:clamp(64px,20svh,180px);padding-bottom:40svh}
-.inspiration-stack.is-native-stack>.inspiration-design{position:sticky;top:var(--inspiration-native-top,80px);z-index:var(--inspiration-sheet-order,1);box-shadow:0 -5px 18px #25213f12}
-.inspiration-stack.is-deck{--inspiration-preview-height:240px;position:relative;isolation:isolate;display:grid;gap:0;width:90%;max-width:1200px;margin-inline:auto;padding-bottom:var(--inspiration-pile-depth,48px);overflow:hidden;overflow:clip;border-radius:18px;background:transparent;scroll-margin-top:90px}
-.inspiration-stack.is-deck>.inspiration-design{grid-area:1/1;align-self:stretch;position:relative;top:auto;visibility:hidden;pointer-events:none;border-radius:18px;padding-bottom:22px;display:flex;flex-direction:column;transform:translateY(var(--inspiration-sheet-offset,0px));z-index:var(--inspiration-sheet-order,1);box-shadow:0 -5px 18px #25213f12}
-.inspiration-stack.is-deck>.inspiration-design[hidden]{display:none}
-.inspiration-stack.is-deck>.inspiration-design.is-in-pile,.inspiration-stack.is-deck>.inspiration-design.is-leaving{visibility:visible}
-.inspiration-stack.is-deck>.inspiration-design.is-active{pointer-events:auto}
-.inspiration-stack.is-deck.is-moving>.inspiration-design{pointer-events:none}
-.inspiration-stack.is-deck .inspiration-design-heading{width:100%;padding:18px 24px 16px;box-shadow:none}
-.inspiration-stack.is-deck .inspiration-design-heading>p{display:none}
-.inspiration-stack.is-deck h2{font-size:clamp(27px,3vw,36px)}
-.inspiration-stack.is-deck .inspiration-design-layout{width:auto;max-width:none;margin:0 24px;gap:28px;flex:1}
-.inspiration-stack.is-deck .inspiration-preview img{height:var(--inspiration-preview-height);aspect-ratio:auto;object-position:center;object-fit:contain}
-.inspiration-stack.is-deck .inspiration-preview figcaption{margin-top:8px}
-.inspiration-stack.is-deck .inspiration-options legend{font-size:18px;margin-bottom:12px}
-.inspiration-stack.is-deck .inspiration-help{font-size:15px;margin:14px 0}
-.inspiration-stack.is-deck .palette-list{gap:8px}
-.inspiration-stack.is-deck .palette-choice{min-height:44px;padding:8px 10px}
 .inspiration-actions{grid-template-columns:1fr 1fr;max-width:none;gap:10px}
 .inspiration-page .inspiration-actions .button.button{font-size:17px;min-height:48px;padding:10px 12px}
 .inspiration-page .inspiration-actions .design-save{background:#fff;color:#4a2e88;border:1px solid #cabbdc;cursor:pointer}
 .inspiration-page .inspiration-actions .design-save[aria-pressed=true]{background:#e8ddff;border-color:#5830cf}
 .inspiration-page .inspiration-actions .design-consult{grid-column:1/-1;background:transparent;border:0;box-shadow:none;min-height:40px;padding:8px;font-size:15px;text-decoration:underline;text-underline-offset:3px}
 .inspiration-view-tools{display:flex;gap:10px;flex-wrap:wrap;align-self:center}
-.inspiration-view-tools button,.inspiration-navigation button,.inspiration-favorites button{font:inherit;font-weight:600;border:1px solid #c5bad5;border-radius:10px;background:#fff;color:#4a2e88;min-height:44px;padding:10px 16px;cursor:pointer}
-.inspiration-view-tools button:hover,.inspiration-navigation button:hover:not(:disabled){background:#f1eaff;border-color:#5830cf}
+.inspiration-view-tools button,.inspiration-favorites button{font:inherit;font-weight:600;border:1px solid #c5bad5;border-radius:10px;background:#fff;color:#4a2e88;min-height:44px;padding:10px 16px;cursor:pointer}
+.inspiration-view-tools button:hover{background:#f1eaff;border-color:#5830cf}
 .inspiration-view-tools span{font-variant-numeric:tabular-nums}
-.inspiration-navigation{width:90%;max-width:1200px;margin:16px auto 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px 16px}
-.inspiration-navigation button{width:max-content;min-width:112px}
-.inspiration-navigation button:last-of-type{justify-self:end;background:#5830cf;color:#fff;border-color:#5830cf}
-.inspiration-navigation button:disabled{opacity:.4;cursor:default}
-.inspiration-navigation p{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;margin:0}
-.inspiration-gesture-hint{grid-column:1/-1;text-align:center;font-size:13px;color:#655a73}
 .inspiration-page [hidden]{display:none!important}
-.inspiration-stack:focus-visible,.inspiration-view-tools button:focus-visible,.inspiration-navigation button:focus-visible{outline:3px solid #27115f;outline-offset:4px}
+.inspiration-view-tools button:focus-visible{outline:3px solid #27115f;outline-offset:4px}
 .inspiration-favorites{width:min(640px,calc(100% - 32px));max-height:85svh;margin:auto;border:1px solid #cabbdc;border-radius:18px;padding:24px;color:#202440;background:#fbfaff;overflow:auto}
 .inspiration-favorites::backdrop{background:#13183cb3}
 .inspiration-favorites .favorites-heading{display:flex;align-items:center;gap:20px;justify-content:space-between;margin-bottom:16px}
@@ -135,25 +99,44 @@ html.inspiration-scroll-steps{scroll-snap-type:y proximity;scroll-padding-top:0}
 .favorite-item a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:underline;margin-right:16px;color:#5830cf}
 .favorite-item button{font-size:14px;padding:8px 12px}
 .inspiration-toast{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;pointer-events:none}
-@media(max-width:800px){
- .inspiration-filter>.wrap{flex-wrap:wrap;align-items:center;gap:16px}.inspiration-filter p{padding:0}
- .inspiration-stack.is-deck{width:94%}
- .inspiration-stack.is-deck .inspiration-design-heading{padding:14px 16px 12px}
- .inspiration-stack.is-deck .inspiration-design-layout{margin:0 14px;gap:14px;display:flex;flex-direction:column;align-items:stretch}
- .inspiration-stack.is-deck .inspiration-options{padding:0;display:flex;flex-direction:column;flex:1}
- .inspiration-stack.is-deck .inspiration-actions{margin-top:auto;padding-top:12px}
- .inspiration-stack.is-deck .palette-list{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;padding:3px;scrollbar-width:thin}
- .inspiration-stack.is-deck .palette-choice{font-size:14px;flex-shrink:0;padding:7px 8px;line-height:1.2}
- .inspiration-stack.is-deck .palette-swatch i{width:10px;height:20px}
- .inspiration-stack.is-deck .inspiration-options legend{font-size:16px;margin-bottom:10px}
- .inspiration-stack.is-deck .inspiration-preview figcaption,.inspiration-stack.is-deck .inspiration-help{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
- .inspiration-stack.is-deck>.inspiration-design{padding-bottom:10px}
- .inspiration-navigation{width:94%;gap:8px}.inspiration-navigation button{min-width:96px;padding-inline:12px}
- .inspiration-filter>.wrap{display:flex}.inspiration-filter>.wrap>div:first-child{width:100%}
- .inspiration-view-tools{width:100%;justify-content:space-between}.inspiration-filter p{margin:0}
+
+/* Nubrexa catalogue card layout on mobile, using Oriavision's existing content. */
+.inspiration-viewer{padding:24px 0;background:#eee7f8}
+@media(max-width:600px){
+ .inspiration-viewer{padding:20px 0}
+ .inspiration-stack{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;width:calc(100% - 44px);margin-inline:auto}
+ .inspiration-design{min-width:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr auto;gap:12px;padding:14px;border:1px solid #c5bad5;border-top:2px solid var(--sheet-edge);border-radius:0;width:100%;max-width:480px;margin-inline:auto;isolation:isolate}
+ .inspiration-design-heading{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:65px;width:100%;padding:0;margin:0;border:0;border-radius:0;box-shadow:none;background:transparent;grid-row:1}
+ .inspiration-design-heading>p{display:none}
+ .inspiration-design h2{font-size:32px;line-height:1.03;letter-spacing:-.01em}
+ .inspiration-design-layout,.inspiration-options{display:contents}
+ .inspiration-preview{grid-row:2;overflow:hidden;width:100%;min-width:0}
+ .design-image-link{box-shadow:none}
+ .inspiration-preview img{width:100%;height:auto;aspect-ratio:1.6;object-fit:contain;object-position:center}
+ .inspiration-options fieldset{grid-row:3;min-width:0;align-content:start}
+ .inspiration-options legend,.inspiration-help,.inspiration-preview figcaption{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ .palette-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;align-content:start}
+ .palette-choice{min-width:0;min-height:46px;padding:6px 8px;gap:7px;line-height:1.15;font-size:14px;border-radius:5px}
+ .palette-swatch{width:32px;height:23px;border-radius:3px;flex:none}
+ .palette-swatch i{flex:1;width:auto;min-width:0;height:23px}
+ .inspiration-actions{grid-row:4;gap:9px}
+ .inspiration-page .inspiration-actions .button.button{min-height:46px;font-size:15px;padding:10px 12px}
+ .inspiration-page .inspiration-actions .design-consult{display:none}
+ .inspiration-view-tools{margin-block:14px;justify-content:flex-end}
  .inspiration-favorites{padding:18px}.favorite-item{grid-template-columns:75px 1fr}
 }
-@media(prefers-reduced-motion:reduce){.inspiration-viewer *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-/* The card, header and footer already provide WhatsApp. Its floating duplicate
-   must not cover the card actions or Siguiente on this catalogue page. */
+@media(max-width:360px){
+ .inspiration-design{padding:12px;gap:11px}
+ .inspiration-design h2{font-size:29px}
+ .palette-list{gap:6px}.palette-choice{padding:6px;gap:6px}.palette-swatch{width:27px}
+}
+/* Same sticky rules, 24px spacing and trailing space as Nubrexa's catalogue. */
+@media(max-width:600px) and (prefers-reduced-motion:no-preference){
+ .inspiration-stack[data-stack=true]{display:block;isolation:isolate}
+ .inspiration-stack[data-stack=true]::after{content:"";display:block;height:var(--stack-tail,0px)}
+ .inspiration-stack[data-stack=true]>.inspiration-design{position:sticky;top:var(--stack-top,82px);z-index:var(--stack-order,1);height:var(--stack-card-height,auto);margin-bottom:24px;opacity:1;transform:none;transition:none;box-shadow:0 -2px 8px #25213f0c}
+ .inspiration-stack[data-stack=true]>.inspiration-design:last-child{margin-bottom:0}
+ .inspiration-stack[data-stack=true] .inspiration-preview{height:var(--stack-preview-height,auto)}
+ .inspiration-stack[data-stack=true] .inspiration-preview img{height:var(--stack-preview-height,auto);object-fit:contain}
+}
 body.inspiration-page .floating-wa{display:none}
