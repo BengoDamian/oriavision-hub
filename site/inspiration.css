@@ -146,3 +146,6 @@
  .inspiration-favorites{padding:18px}.favorite-item{grid-template-columns:75px 1fr}
 }
 @media(prefers-reduced-motion:reduce){.inspiration-viewer *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* The card, header and footer already provide WhatsApp. Its floating duplicate
+   must not cover the card actions or Siguiente on this catalogue page. */
+body.inspiration-page .floating-wa{display:none}
